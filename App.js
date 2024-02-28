@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-// test chnage
+// test chnage 45678
 import UserDetails from './UserDetails';
 import DescriptionScreen from './DescriptionScreen'; 
 import ActivityScreen from './ActivityScreen'; 
