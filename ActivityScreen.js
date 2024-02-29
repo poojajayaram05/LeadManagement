@@ -9,6 +9,7 @@ const ActivityScreen = () => {
   );
 };
 
+// test change
 const styles = StyleSheet.create({
   container: {
     flex: 1,
