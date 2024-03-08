@@ -8,6 +8,13 @@ import { useColorScheme } from '@/components/useColorScheme';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Drawer } from 'expo-router/drawer';
 import '@tamagui/core/reset.css'
+import MainPage from './menu';
+import { Slot } from 'expo-router';
+import { Feeds } from '@/assets/images';
+//import Icon from 'react-native-ionicons'
+import { Ionicons } from '@expo/vector-icons';
+import CustomDrawerContent from '../../LeadManagement/customComponents/CustomDrawerContent'
+import { Button, StyleSheet } from 'react-native';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -17,14 +24,87 @@ export {
 
 export default function Layout() {
   return (
-   
+    // <Drawer/>
+   <>
     <GestureHandlerRootView style={{ flex: 1 }}>
-      {/* <Drawer screenOptions={{ headerShown: true}} /> */}
-      <Drawer
-      screenOptions={{ headerShown: false, swipeEdgeWidth : 6 }}
-    >
+   {/* <Drawer screenOptions={{ headerShown: true}} /> */}
+  
+   <Drawer drawerContent={CustomDrawerContent} screenOptions={{drawerActiveTintColor:'#fff', drawerActiveBackgroundColor:'#5eb1e0'}}>
+    
+    <Drawer.Screen
+    name='index'
+    options={{
+      drawerLabel:'Home',
+      headerTitle:'Home',
+      drawerIcon:({}) =>(
+        <Ionicons name='home' size={32} color='black' /> 
+      )
+
+    }}
+    
+    ></Drawer.Screen>
+        <Drawer.Screen
+    name='createTask'
+    options={{
+      drawerLabel:'Add a task',
+      headerTitle:'Add a task',
+      drawerIcon:({}) =>(
+        <Ionicons name='add-circle' size={32} color='black' /> 
+      )
+
+    }}
+    
+    ></Drawer.Screen>
+     <Drawer.Screen
+    name='form'
+    options={{
+      drawerLabel:'Add a lead',
+      headerTitle:'Add a lead',
+      drawerIcon:({}) =>(
+        <Ionicons name='person' size={32} color='black' /> 
+        
+
+      )
+        
+    
+    }}
+    
+    ></Drawer.Screen>
+    <Drawer.Screen
+    name='menu'
+    options={{
+      drawerLabel:'Menu',
+      headerTitle:'Menu',
+      drawerIcon:({}) =>(
+        <Ionicons name='menu' size={32} color='black' /> 
+        
+
+      )
+    }}
+
+    
+    ></Drawer.Screen>
+    <Drawer.Screen
+    name='dashboard'
+    options={{
+      drawerLabel:'Dashboard',
+      headerTitle:'Dashboard',
+      drawerIcon:({}) =>(
+        <Ionicons name='apps-sharp' size={32} color='black' /> 
+        
+
+      )
+    }}
+
+    
+    ></Drawer.Screen>
    </Drawer>
-    </GestureHandlerRootView>
+</GestureHandlerRootView>
+</>
+  //   >
+  //     <MainPage/>
+  //  </Drawer>
+  //   </GestureHandlerRootView>
    
   );
 }

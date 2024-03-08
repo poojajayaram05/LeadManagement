@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "app/customComponents/customDropdown.js", "app/index.js"  ]
+, "app/customComponents/customDropdown.js", "app/index.js", "app/_layout.tsx", "customComponents/customCalender.tsx"  ]
 }

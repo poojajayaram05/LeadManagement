@@ -43,5 +43,8 @@ export {default as Contacts} from './contacts.png';
 export {default as Tasks} from './tasks.png'
 export {default as Feeds} from './feed.jpg';
 export {default as Reports} from './reports.png';
+export {default as DropdownIcon} from './dropdown.png';
+export {default as DropupIcon} from './dropup.png';
+export {default as HomeProfile} from './home-profile.png';
 
 

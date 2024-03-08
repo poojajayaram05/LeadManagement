@@ -109,9 +109,189 @@
 
 
 
+//main
+
+// import React, { FC, ReactElement, useRef, useState, } from 'react';
+// import {
+//     FlatList,
+//     StyleSheet,
+//     Text,
+//     TouchableOpacity,
+//     Modal,
+//     View,
+//     ScrollView
+// } from 'react-native';
+// import Icon from 'react-native-vector-icons/FontAwesome';
+// import Colors from '../utils/Colors';
+// import DimensionUtils from '../utils/DimensionUtils'
+// import CommonStyles from '../utils/CommanStyles';
+// import { debounce } from '../utils/CommanUtils';
 
 
-import React, { FC, ReactElement, useRef, useState, } from 'react';
+// const Dropdown = ({ label, data, onSelect, title }) => {
+
+//     const DropdownButton = useRef();
+//     const [visible, setVisible] = useState(false);
+//     const [selected, setSelected] = useState(undefined);
+//     const [dropdownTop, setDropdownTop] = useState();
+//     const [dropDownStart, setDropDownStart] = useState()
+
+//     const toggleDropdown = () => {
+//         visible ? setVisible(false) : openDropdown();
+//     };
+
+//     const openDropdown = () => {
+//         DropdownButton?.current.measure((_fx, _fy, _wr, h, _px, py) => {
+//             setDropDownStart(_px - DimensionUtils.pixelSizeHorizontal(15)) // 15 is the paddingHorizantal
+//            //setDropdownTop(py + h + DimensionUtils.pixelSizeVertical(8));
+//             setDropdownTop(py + h);
+//             setVisible(true);
+            
+//         });
+      
+//     };
+
+//     const onItemPress = debounce((item)=> {
+//         setSelected(item);
+//         onSelect(item);
+//         setVisible(false);
+//     });
+
+//     const renderItem = ({ item }) => (
+//         // <View style={styles.item}>
+//         // <TouchableOpacity  onPress={() => onItemPress(item)}>
+//         //     <Text style={styles.label}>{item.label}</Text>
+//         // </TouchableOpacity>
+//         // </View>
+//         <View style={styles.item}>
+//         <TouchableOpacity  onPress={() => onItemPress(item)}>
+//             <Text style={[CommonStyles.roboto_normal_16,{
+//                 color: item.label === label ? Colors.BLACK_COLOR : Colors.DISABLE_BUTTON_COLOR
+//             }]}>{item.label}</Text>
+//         </TouchableOpacity>
+//         </View>
+//     );
+
+//     const renderDropdown = () => {
+//         return (
+        
+//             <Modal visible={visible} transparent animationType="none">
+//             <TouchableOpacity
+//                 style={styles.overlay}
+//                 onPress={() => setVisible(false)}
+//             >
+//                 <View style={[styles.dropdown, { top: dropdownTop, left: dropDownStart }]}>
+//                     <Modal>
+//                     <ScrollView>
+//                         <FlatList
+//                             data={data}
+//                             renderItem={renderItem}
+//                             keyExtractor={(item, index) => index.toString()}
+//                         />
+//                     </ScrollView>
+//                     </Modal>
+//                 </View>
+//             </TouchableOpacity>
+//         </Modal>
+//         );
+//     };
+
+//     return (
+//         <View style={styles.button}>
+//             <TouchableOpacity
+//                 ref={DropdownButton}
+
+//                 onPress={toggleDropdown}
+//             >
+//                 {renderDropdown()}
+//                 <View style={{
+//                     flexDirection: 'row', alignItems: 'center',
+//                     justifyContent: 'space-between'
+//                 }}>
+//                     <Text style={[styles.roboto_normal_12, {
+//                         marginStart: DimensionUtils.pixelSizeHorizontal(15)
+
+//                     }]}>
+//                         {!!selected ? selected.label : label}
+//                     </Text>
+
+//                     <Icon name={'chevron-down'}
+//                         style={{ marginStart: DimensionUtils.pixelSizeHorizontal(10) }}
+//                         size={12} color={Colors.DARK_GRAY}
+//                     />
+
+//                 </View>
+//             </TouchableOpacity>
+//         </View>
+//     );
+// };
+
+// const styles = StyleSheet.create({
+//     button: {
+//         width: "100%",
+//         alignItems: 'center',
+//         flexDirection: 'row',
+//         borderRadius: 4,
+//         backgroundColor: Colors.WHITE_COLOR_0PACITY_12,
+//         borderStyle: 'solid',
+//         borderWidth: 1,
+//         borderColor: Colors.LEAD_ITEM_BORDER_COLOR,
+//         paddingVertical: DimensionUtils.pixelSizeVertical(18),
+//         paddingStart: DimensionUtils.pixelSizeHorizontal(75),
+//         paddingEnd: DimensionUtils.pixelSizeHorizontal(10),
+//         zIndex: 1,
+//         flexDirection: "row", alignItems: 'center'
+//     },
+//     buttonText: {
+
+//     },
+//     icon: {
+//         marginRight: DimensionUtils.pixelSizeHorizontal(10),
+//     },
+//     dropdown: {
+//         minWidth:DimensionUtils.pixelSizeVertical(150),
+//         position: 'absolute',
+//         backgroundColor: Colors.WHITE_COLOR,
+//         shadowColor: Colors.SHADOW_COLOR,
+//         shadowRadius: 4,
+//         shadowOffset: { height: 4, width: 0 },
+//         elevation: 6,
+//         shadowOpacity: 0.5,
+//     },
+//     overlay: {
+       
+//     },
+//     scrollContainer: {
+//         maxHeight: 500, // Set your desired max height here
+//     },
+//     label: {
+//         marginBottom: 3,
+//         fontSize: 12,
+//         fontWeight: 'bold',
+//         paddingRight:20
+        
+//       },
+//     item: {
+//         paddingHorizontal: DimensionUtils.pixelSizeHorizontal(16),
+//         paddingVertical: DimensionUtils.pixelSizeVertical(16),
+//         borderBottomWidth: 0.6,
+//         borderBottomColor:Colors.DISABLE_BUTTON_COLOR,
+//         minWidth:DimensionUtils.pixelSizeHorizontal(160)
+//     },
+//     roboto_normal_12: {
+//         fontFamily: "Roboto-Regular",
+//         fontSize: DimensionUtils.fontPixel(13),
+//         fontWeight: "400",
+//         fontStyle: "normal",
+//         color: Colors.PRIMARY_COLOR
+//     }
+    
+
+// });
+
+// export default Dropdown;
+
+import React, { useRef, useState } from 'react';
 import {
     FlatList,
     StyleSheet,
@@ -122,61 +302,42 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Colors from '../utils/Colors';
-import DimensionUtils from '../utils/DimensionUtils'
-import CommonStyles from '../utils/CommanStyles';
+import DimensionUtils from '../utils/DimensionUtils';
 import { debounce } from '../utils/CommanUtils';
-
-
-const Dropdown = ({ label, data, onSelect, title }) => {
-
+ 
+const Dropdown = ({ label, data, onSelect }) => {
     const DropdownButton = useRef();
     const [visible, setVisible] = useState(false);
     const [selected, setSelected] = useState(undefined);
-    const [dropdownTop, setDropdownTop] = useState();
-    const [dropDownStart, setDropDownStart] = useState()
-
+ 
     const toggleDropdown = () => {
-        visible ? setVisible(false) : openDropdown();
+        setVisible(!visible);
     };
-
-    const openDropdown = () => {
-        DropdownButton?.current.measure((_fx, _fy, _wr, h, _px, py) => {
-            setDropDownStart(_px - DimensionUtils.pixelSizeHorizontal(15)) // 15 is the paddingHorizantal
-           // setDropdownTop(py + h + DimensionUtils.pixelSizeVertical(8));
-            setDropdownTop(py + h);
-            setVisible(true);
-            
-        });
-      
-    };
-
-    const onItemPress = debounce((item)=> {
+ 
+    const onItemPress = debounce((item) => {
         setSelected(item);
         onSelect(item);
         setVisible(false);
     });
-
+ 
     const renderItem = ({ item }) => (
-        <View style={styles.item}>
-        <TouchableOpacity  onPress={() => onItemPress(item)}>
+        <TouchableOpacity onPress={() => onItemPress(item)}>
             <Text style={styles.label}>{item.label}</Text>
         </TouchableOpacity>
-        </View>
     );
-
-    const renderDropdown = () => {
-        return (
-            <Modal visible={visible} transparent animationType="none">
-                <TouchableOpacity
-                    style={styles.overlay}
-                    onPress={() => setVisible(false)}
-                >
-                    <View style={[styles.dropdown, { top: dropdownTop, left:dropDownStart }]}>
+ 
+    return (
+        <View style={styles.container}>
+            <TouchableOpacity ref={DropdownButton} onPress={toggleDropdown}>
+                <View style={styles.dropdownButton}>
+                    <Text style={styles.selectedText}>{selected ? selected.label : label}</Text>
+                    <Icon name={'chevron-down'} style={styles.icon} size={12} color={Colors.DARK_GRAY} />
+                </View>
+            </TouchableOpacity>
+            <Modal visible={visible} transparent animationType="fade">
+                <TouchableOpacity style={styles.modalOverlay} onPress={toggleDropdown}>
+                    <View style={styles.modalContent}>
                         <FlatList
-                            contentContainerStyle={{flex:1,overflow:'hidden'}}
-                        nestedScrollEnabled = {true}
-                        
-                           scrollEnabled = {true}
                             data={data}
                             renderItem={renderItem}
                             keyExtractor={(item, index) => index.toString()}
@@ -184,102 +345,70 @@ const Dropdown = ({ label, data, onSelect, title }) => {
                     </View>
                 </TouchableOpacity>
             </Modal>
-        );
-    };
-
-    return (
-        <View style={styles.button}>
-            <TouchableOpacity
-                ref={DropdownButton}
-
-                onPress={toggleDropdown}
-            >
-                {renderDropdown()}
-                <View style={{
-                    flexDirection: 'row', alignItems: 'center',
-                    justifyContent: 'space-between'
-                }}>
-                    <Text style={[styles.roboto_normal_12, {
-                        marginStart: DimensionUtils.pixelSizeHorizontal(15)
-
-                    }]}>
-                        {!!selected ? selected.label : label}
-                    </Text>
-
-                    <Icon name={'chevron-down'}
-                        style={{ marginStart: DimensionUtils.pixelSizeHorizontal(10) }}
-                        size={12} color={Colors.DARK_GRAY}
-                    />
-
-                </View>
-            </TouchableOpacity>
         </View>
     );
 };
-
+ 
 const styles = StyleSheet.create({
-    button: {
-        width: "100%",
-        alignItems: 'center',
-        flexDirection: 'row',
-        borderRadius: 4,
-        backgroundColor: Colors.WHITE_COLOR_0PACITY_12,
-        borderStyle: 'solid',
-        borderWidth: 1,
-        borderColor: Colors.LEAD_ITEM_BORDER_COLOR,
-        paddingVertical: DimensionUtils.pixelSizeVertical(18),
-        paddingStart: DimensionUtils.pixelSizeHorizontal(15),
-        paddingEnd: DimensionUtils.pixelSizeHorizontal(10),
-        zIndex: 1,
-        flexDirection: "row", alignItems: 'center'
+    container: {
+        position: 'relative',
     },
-    buttonText: {
-
+    inputContainer: {
+        position: 'absolute',
+        left: 0,
+        top: 0,
+    },
+    dropdownButton: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingVertical: 13,
+        paddingHorizontal: 15,
+        borderWidth: 1,
+        borderColor: Colors.LIGHT_GRAY,
+        borderRadius: 3,
+    },
+    selectedText: {
+        fontSize: 14,
+        color: Colors.DARK_GRAY,
     },
     icon: {
-        marginRight: DimensionUtils.pixelSizeHorizontal(10),
+        marginLeft: 10,
     },
-    dropdown: {
-        minWidth:DimensionUtils.pixelSizeVertical(150),
-        position: 'absolute',
-        backgroundColor: Colors.WHITE_COLOR,
-        shadowColor: Colors.SHADOW_COLOR,
-        shadowRadius: 4,
-        shadowOffset: { height: 4, width: 0 },
-        elevation: 6,
-        shadowOpacity: 0.5,
-    },
-    overlay: {
+    modalOverlay: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'right',
+        position: 'relative',
        
+
+
+
+    },
+    modalContent: {
+        backgroundColor:'#f2f2f2',
+        borderRadius: 10,
+        padding: 10,
+        minHeight:100,
+        maxHeight: 200,
+        borderColor: 'black',
+        borderWidth: 1,
+        position: 'relative',
+    //     width:'90%',
+    //     height:200,
+    //     backgroundColor:'white',
+    //     elevation:5,
+    //     marginTop:20,
+    //     borderRadius:10
+    // },
     },
     label: {
-        marginBottom: 3,
-        fontSize: 12,
-        fontWeight: 'bold',
-        paddingRight:20
-        
-      },
-    item: {
-        paddingHorizontal: DimensionUtils.pixelSizeHorizontal(16),
-        paddingVertical: DimensionUtils.pixelSizeVertical(16),
-        borderBottomWidth: 0.6,
-        borderBottomColor:Colors.DISABLE_BUTTON_COLOR,
-        minWidth:DimensionUtils.pixelSizeHorizontal(160)
+        fontSize: 14,
+        paddingVertical: 8,
     },
-    roboto_normal_12: {
-        fontFamily: "Roboto-Regular",
-        fontSize: DimensionUtils.fontPixel(13),
-        fontWeight: "400",
-        fontStyle: "normal",
-        color: Colors.PRIMARY_COLOR
-    }
-
 });
-
+ 
 export default Dropdown;
-
-
-
 // import { Check, ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
 // import { useMemo, useState } from 'react'
 // import  { FontSizeTokens, SelectProps } from 'tamagui'
