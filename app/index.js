@@ -19,6 +19,7 @@ import LeadItem from './leadList/leadCard';
 import { router } from 'expo-router';
 import { TouchableOpacity } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
+import { FontAwesome } from '@expo/vector-icons';
 import {
   SafeAreaView,
   View,
@@ -45,6 +46,7 @@ import { Header } from 'react-native-elements';
 
     "phone": "8884763231",
     "status":"open",
+    "temperature":"hot",
     "id":"1",
 
   },
@@ -61,6 +63,7 @@ import { Header } from 'react-native-elements';
 
     "phone": "8891234567",
     "status":"contacted",
+    "temperature":"cold",
     "id":"2",
 
   },
@@ -77,6 +80,7 @@ import { Header } from 'react-native-elements';
 
     "phone": "8902345678",
     "status":"qualified",
+    "temperature":"warm",
     "id":"3",
 
   },
@@ -93,6 +97,7 @@ import { Header } from 'react-native-elements';
 
     "phone": "8913456789",
     "status":"accepted",
+    "temperature":"cold",
     "id":"4",
 
   },
@@ -109,6 +114,7 @@ import { Header } from 'react-native-elements';
 
     "phone": "8924567890",  
     "status":"accepted",
+    "temperature":"hot",
     "id":"5",
 
   },
@@ -125,6 +131,7 @@ import { Header } from 'react-native-elements';
 
     "phone": "8935678901",
     "status":"qualified",
+    "temperature":"hot",
     "id":"6",
 
   },
@@ -141,6 +148,7 @@ import { Header } from 'react-native-elements';
 
     "phone": "8946789012",
     "status":"qualified",
+    "temperature":"cold",
     "id":"7",
 
   },
@@ -157,6 +165,7 @@ import { Header } from 'react-native-elements';
 
     "phone": "8957890123",
     "status":"qualified",
+    "temperature":"warm",
     "id":"8",
 
   },
@@ -173,6 +182,7 @@ import { Header } from 'react-native-elements';
 
     "phone": "8968901234",
     "status":"qualified",
+    "temperature":"warm",
     "id":"9",
 
   },
@@ -189,6 +199,7 @@ import { Header } from 'react-native-elements';
 
     "phone": "8979012345",
     "status":"qualified",
+    "temperature":"cold",
     "id":"10",
 
   }
@@ -209,13 +220,20 @@ const Page = () => {
       setStarredLeads([...starredLeads, leadId]);
     }
   };
+
+  const goToTask=()=>{
+    router.replace('/Task/task');
+  }
+  const handleFilterClick = () => {
+    console.log('Filter clicked!');
+  };
   
 
   const renderScene = ({ route }) => {
     switch (route.key) {
       case 'allLeads':
         return (
-          <View>
+          <View sty>
             <FlatList
               data={leadData}
               renderItem={renderItem}
@@ -238,6 +256,7 @@ const Page = () => {
       phone={item.phone}
       status={item.status}
       id={item.id}
+      temperature={item.temperature}
       onStarPress={toggleStarredLead}
       isStarred={starredLeads.includes(item.id)}
     />
@@ -246,11 +265,17 @@ const Page = () => {
 
   return (
     <View style={styles.container}>
-      <Header
+     {/* <Button title='task' onPress={goToTask}></Button> */}
+     <Button  title='task' onPress={goToTask}></Button>
+      {/* <Header
         leftComponent={{ icon: 'menu', color: '#fff' }}
         centerComponent={{ text: 'LEADS', style: { color: '#fff' } }}
         rightComponent={{ icon: 'home', color: '#fff' }}
-      />
+      /> */}
+    
+    <TouchableOpacity onPress={handleFilterClick} style={styles.filterIcon}>
+          <FontAwesome name="filter" size={24} color="black" />
+        </TouchableOpacity>
       <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}
@@ -261,8 +286,12 @@ const Page = () => {
             indicatorStyle={{ backgroundColor: 'white' }}
             style={{ backgroundColor: '#3498db' }}
           />
+          
         )}
+        
       />
+     
+
     </View>
   );
 };
@@ -271,7 +300,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
+    backgroundColor:'#f2f2f2'
   },
+  filterIcon: {
+    marginLeft: 350,
+  },
+
 });
 
 export default Page;
