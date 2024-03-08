@@ -414,7 +414,7 @@ const DATA = [
         time: '10:00am',
         duedate:'Upcoming',
         assignedToMe:'Ruby',
-      assignedByMe:'Roxy',
+        assignedByMe:'Roxy',
 
       },
       {
@@ -482,7 +482,7 @@ const TaskItem = ({ state, taskName, ownerName, time }) => (
       } else if (activeTab === 'Overdue') {
         filteredTasks = filteredTasks.filter((item) => item.duedate === 'Overdue');
       } else if (activeTab === 'Done') {
-        filteredTasks = filteredTasks.filter((item) => item.state === 'completed');
+        filteredTasks = filteredTasks.filter((item) => item.state === 'completed'); 
       }
   
       setFilteredData(filteredTasks);

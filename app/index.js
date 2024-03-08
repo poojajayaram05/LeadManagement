@@ -272,10 +272,10 @@ const Page = () => {
         centerComponent={{ text: 'LEADS', style: { color: '#fff' } }}
         rightComponent={{ icon: 'home', color: '#fff' }}
       /> */}
-    
+{/*     
     <TouchableOpacity onPress={handleFilterClick} style={styles.filterIcon}>
           <FontAwesome name="filter" size={24} color="black" />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}
