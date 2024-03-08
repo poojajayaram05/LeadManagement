@@ -11,8 +11,7 @@ import RNDateTimePicker from '@react-native-community/datetimepicker';
 import { date } from 'zod';
 import { Ionicons } from '@expo/vector-icons';
 import MultilineTextInput from '../customComponents/customMultilineInput';
-import MultiSelectExample from '../customComponents/cutsomMultipleSelect';
-
+import CustomMultipleSelect from '../customComponents/cutsomMultipleSelect';
 
 export default function CreateTask() {
   // const { control, handleSubmit, formState: { errors } } = useForm();
@@ -107,7 +106,7 @@ const renderFormElement = (element) => {
                 <Text style={styles.label}>{element.title}</Text>
                
                     <Dropdown style={styles.inputContainer}
-                        label={selectedValue ? selectedValue.label : 'Select'}
+                        label={selectedValue ? selectedValue.firstname : 'Select'}
                         data={element.dropdownData}
                         value={selectedValue}
                         onSelect={handleSelect}
@@ -219,13 +218,13 @@ const renderFormElement = (element) => {
                         
                     </View>
                 );
-                case 'multilineInput':
-               return (
-
-                <View></View>
-                )
-            
-            
+                case 'multipleSelect':
+                  return (
+                    <View style={styles.inputContainer}>
+                      <Text style={styles.label}>Select multiple items</Text>
+                      <CustomMultipleSelect items={element.dropdownData} />
+                    </View>
+                  );
                         
 };
 }

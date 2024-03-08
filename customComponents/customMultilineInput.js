@@ -10,10 +10,10 @@ function MultilineTextInput(){
     <View
       style={{
         backgroundColor: value,
-        borderBottomColor: '#000000',
-        borderBottomWidth: 1,
-        // borderWidth:1,
-        // borderColor:'#000'
+        // borderBottomColor: '#000000',
+        // borderBottomWidth: 1,
+        borderWidth:0.55,
+        borderColor:'#000'
       }}>
       <TextInput
         editable

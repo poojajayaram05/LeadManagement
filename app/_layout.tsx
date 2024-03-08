@@ -15,6 +15,7 @@ import { Feeds } from '@/assets/images';
 import { Ionicons } from '@expo/vector-icons';
 import CustomDrawerContent from '../../LeadManagement/customComponents/CustomDrawerContent'
 import { Button, StyleSheet } from 'react-native';
+import { Tabs } from 'expo-router/tabs';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -28,7 +29,7 @@ export default function Layout() {
    <>
     <GestureHandlerRootView style={{ flex: 1 }}>
    {/* <Drawer screenOptions={{ headerShown: true}} /> */}
-  
+   
    <Drawer drawerContent={CustomDrawerContent} screenOptions={{drawerActiveTintColor:'#fff', drawerActiveBackgroundColor:'#5eb1e0'}}>
     
     <Drawer.Screen

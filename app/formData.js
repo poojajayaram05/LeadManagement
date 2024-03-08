@@ -291,11 +291,183 @@ export const formData = {
         },
         {
           "name": "leads",
-          "type": "multiSelect",
+          "type": "dropdown",
           "title": "Leads",
           "inputType": "text",
           
-           "dropdownData" :leadData,
+           "dropdownData" :[
+ 
+            {
+           
+              "firstname": "John",
+           
+              "lastname": "Smith",
+           
+              "email": "johnsmith1@gmail.com",
+           
+              "job-title": "Engineer",
+           
+              "phone": "8884763231",
+              "status":"open",
+              "temperature":"hot",
+              "id":"1",
+           
+            },
+           
+            {
+           
+              "firstname": "Jane",
+           
+              "lastname": "Johnson",
+           
+              "email": "janejohnson2@yahoo.com",
+           
+              "job-title": "Designer",
+           
+              "phone": "8891234567",
+              "status":"contacted",
+              "temperature":"cold",
+              "id":"2",
+           
+            },
+           
+            {
+           
+              "firstname": "Michael",
+           
+              "lastname": "Brown",
+           
+              "email": "michaelbrown3@hotmail.com",
+           
+              "job-title": "Manager",
+           
+              "phone": "8902345678",
+              "status":"qualified",
+              "temperature":"warm",
+              "id":"3",
+           
+            },
+           
+            {
+           
+              "firstname": "Emily",
+           
+              "lastname": "Jones",
+           
+              "email": "emilyjones4@outlook.com",
+           
+              "job-title": "Developer",
+           
+              "phone": "8913456789",
+              "status":"accepted",
+              "temperature":"cold",
+              "id":"4",
+           
+            },
+           
+            {
+           
+              "firstname": "William",
+           
+              "lastname": "Garcia",
+           
+              "email": "williamgarcia5@gmail.com",
+           
+              "job-title": "Analyst",
+           
+              "phone": "8924567890",  
+              "status":"accepted",
+              "temperature":"hot",
+              "id":"5",
+           
+            },
+           
+            {
+           
+              "firstname": "Olivia",
+           
+              "lastname": "Miller",
+           
+              "email": "oliviamiller6@yahoo.com",
+           
+              "job-title": "Consultant",
+           
+              "phone": "8935678901",
+              "status":"qualified",
+              "temperature":"hot",
+              "id":"6",
+           
+            },
+           
+            {
+           
+              "firstname": "James",
+           
+              "lastname": "Davis",
+           
+              "email": "jamesdavis7@hotmail.com",
+           
+              "job-title": "Coordinator",
+           
+              "phone": "8946789012",
+              "status":"qualified",
+              "temperature":"cold",
+              "id":"7",
+           
+            },
+           
+            {
+           
+              "firstname": "Sophia",
+           
+              "lastname": "Rodriguez",
+           
+              "email": "sophiarodriguez8@outlook.com",
+           
+              "job-title": "Administrator",
+           
+              "phone": "8957890123",
+              "status":"qualified",
+              "temperature":"warm",
+              "id":"8",
+           
+            },
+           
+            {
+           
+              "firstname": "Benjamin",
+           
+              "lastname": "Martinez",
+           
+              "email": "benjaminmartinez9@gmail.com",
+           
+              "job-title": "Engineer",
+           
+              "phone": "8968901234",
+              "status":"qualified",
+              "temperature":"warm",
+              "id":"9",
+           
+            },
+           
+            {
+           
+              "firstname": "Emma",
+           
+              "lastname": "Hernandez",
+           
+              "email": "emmahernandez10@yahoo.com",
+           
+              "job-title": "Designer",
+           
+              "phone": "8979012345",
+              "status":"qualified",
+              "temperature":"cold",
+              "id":"10",
+           
+            }
+          ]
+          
            
            
            

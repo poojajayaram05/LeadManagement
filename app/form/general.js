@@ -7,7 +7,7 @@ import Collapsible from 'react-native-collapsible';
 import { TouchableOpacity } from 'react-native';
 import Dropdown from '../../customComponents/customDropdown';
 import RadioButton from '../../customComponents/customRadio';
-import { isEnabled } from 'react-native/Libraries/Performance/Systrace';
+//import { isEnabled } from 'react-native/Libraries/Performance/Systrace';
 import { DropdownIcon, DropupIcon } from '../../assets/images';
 import { Ionicons } from '@expo/vector-icons';
 

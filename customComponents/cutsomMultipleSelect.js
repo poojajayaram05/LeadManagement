@@ -1,53 +1,28 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { MultiSelect } from 'react-native-element-dropdown';
+import { View, Text } from 'react-native';
+import MultiSelect from 'react-native-multiple-select';
 
-const items = [{
-    id: '92iijs7yta',
-    name: 'Ondo'
-  }, {
-    id: 'a0s0a8ssbsd',
-    name: 'Ogun'
-  }, {
-    id: '16hbajsabsd',
-    name: 'Calabar'
-  }, {
-    id: 'nahs75a5sg',
-    name: 'Lagos'
-  }, {
-    id: '667atsas',
-    name: 'Maiduguri'
-  }, {
-    id: 'hsyasajs',
-    name: 'Anambra'
-  }, {
-    id: 'djsjudksjd',
-    name: 'Benue'
-  }, {
-    id: 'sdhyaysdj',
-    name: 'Kaduna'
-  }, {
-    id: 'suudydjsjd',
-    name: 'Abuja'
-}];
-
-const MultiSelectExample = () => {
+const CustomMultipleSelect = ({ items }) => {
   const [selectedItems, setSelectedItems] = useState([]);
 
   const onSelectedItemsChange = selectedItems => {
     setSelectedItems(selectedItems);
   };
 
+  // Extract only the first names from the items array
+  const firstNames = items.map(item => item.firstname);
+  console.log(firstNames);
+
   return (
-    <View style={styles.container}>
+    <View>
       <MultiSelect
-        items={items}
+        items={firstNames} // Use only the first names
         uniqueKey="id"
         onSelectedItemsChange={onSelectedItemsChange}
         selectedItems={selectedItems}
         selectText="Select items"
         searchInputPlaceholderText="Search items..."
-        onChangeInput={text => console.log(text)}
+        onChangeInput={text => console.log(text.firstname)}
         altFontFamily="ProximaNova-Light"
         tagRemoveIconColor="#CCC"
         tagBorderColor="#CCC"
@@ -63,19 +38,11 @@ const MultiSelectExample = () => {
       <View>
         <Text>Selected items:</Text>
         {selectedItems.map(item => (
-          <Text key={item}>{item}</Text>
+          <Text key={item}>{item}</Text> // Display selected first names
         ))}
       </View>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: '#fff',
-  },
-});
-
-export default MultiSelectExample;
+export default CustomMultipleSelect;
