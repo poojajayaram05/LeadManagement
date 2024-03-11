@@ -3,8 +3,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Drawer } from 'expo-router/drawer';
 import { Button, View, Text } from 'react-native';
 import { StyleSheet } from 'react-native';
-import { TamaguiProvider, createTamagui } from '@tamagui/core'
-import { config } from '@tamagui/config/v3';
+
 
 
 

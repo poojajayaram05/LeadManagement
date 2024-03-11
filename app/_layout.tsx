@@ -44,6 +44,18 @@ export default function Layout() {
     }}
     
     ></Drawer.Screen>
+    <Drawer.Screen
+    name='dashboard'
+    options={{
+      drawerLabel:'Dashboard',
+      headerTitle:'Dashboard',
+      drawerIcon:({}) =>(
+        <Ionicons name='home' size={32} color='black' /> 
+      )
+
+    }}
+    
+    ></Drawer.Screen>
         <Drawer.Screen
     name='createTask'
     options={{
@@ -86,10 +98,24 @@ export default function Layout() {
     
     ></Drawer.Screen>
     <Drawer.Screen
-    name='dashboard'
+    name='leadList'
     options={{
-      drawerLabel:'Dashboard',
-      headerTitle:'Dashboard',
+      drawerLabel:'Leads',
+      headerTitle:'Leads',
+      drawerIcon:({}) =>(
+        <Ionicons name='apps-sharp' size={32} color='black' /> 
+        
+
+      )
+    }}
+
+    
+    ></Drawer.Screen>
+     <Drawer.Screen
+    name='taskList'
+    options={{
+      drawerLabel:'Tasks',
+      headerTitle:'Tasks',
       drawerIcon:({}) =>(
         <Ionicons name='apps-sharp' size={32} color='black' /> 
         
