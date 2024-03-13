@@ -5,7 +5,7 @@ import LeadItem from '../../leadComponents/leadCard';
 import { router } from 'expo-router';
 import { TouchableOpacity } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import {
   SafeAreaView,
   View,
@@ -196,9 +196,11 @@ const LeadList = () => {
     { key: 'starredLeads', title: 'Starred Leads' },
    
   ]);
-  const goToLeadCreate=()=>[
-    router.replace('form/general')
-  ]
+  const goToLeadCreate=()=>{
+    console.log("inside navigation")
+    router.navigate('/DrawerScreens/form/general');
+    console.log("after natigation")
+  }
   const [index, setIndex] = useState(0);
   const [starredLeads, setStarredLeads] = useState([]);
  
@@ -259,6 +261,7 @@ const LeadList = () => {
     <TouchableOpacity onPress={handleFilterClick} style={styles.filterIcon}>
           <FontAwesome name="filter" size={24} color="black" />
         </TouchableOpacity> */}
+       
       <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}
@@ -271,9 +274,15 @@ const LeadList = () => {
           />
         )}  
       />
-       <TouchableOpacity style={styles.plusButton} onPress={goToLeadCreate}>
-        <FontAwesome name="plus" size={24} color="white" />
-      </TouchableOpacity>
+      
+     <View>
+  <TouchableOpacity style={styles.plusButton} onPress={goToLeadCreate}>
+   
+    <Ionicons name="add" size={24} color="white" onPress={goToLeadCreate}/>
+   
+  </TouchableOpacity>
+</View>
+
     </View>
   );
 };

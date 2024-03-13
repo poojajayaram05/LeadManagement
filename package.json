@@ -21,6 +21,7 @@
     "accordion-collapse-react-native": "^1.1.1",
     "axios": "^1.6.7",
     "expo": "~50.0.7",
+    "expo-document-picker": "^11.10.1",
     "expo-font": "~11.10.3",
     "expo-linear-gradient": "^12.7.2",
     "expo-linking": "~6.2.2",

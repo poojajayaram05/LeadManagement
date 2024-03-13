@@ -8,11 +8,6 @@ import { starTwo,starrOne } from '../assets/images';
 import {profile} from '../assets/images';
 import BadgeLead from './badgeLead';
 import { FontAwesome } from '@expo/vector-icons';
-
-
- 
-
- 
  
 const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temperature, id }) => {
     const [showSecondImage, setShowSecondImage] = useState(false);
@@ -68,9 +63,9 @@ const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temp
     return <BadgeLead color={temperatureBadgeColor} label={temperature} textColor={txtColor} />
       };
  
-    // const displayScreen = () => {
-    //     router.replace(`user/${id}`);
-    // };
+    const displayScreen = () => {
+        router.replace(`leadDetailScreens/notes`);
+    };
  
     const toggleSecondImage = () => {
         setShowSecondImage(!showSecondImage);
@@ -97,11 +92,11 @@ const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temp
             <Text>New</Text>
           </TouchableOpacity> */}
                 </View>
-                <View  style={styles.textContainer}>
-                    <Text style={styles.title}>{`${firstName} ${lastName}`}</Text>
-                    <Text style={styles.subtitle}>{email}</Text>
-                    <Text style={styles.subtitle}>{phone}</Text>
-                    <View style={styles.badgeBox}>
+                <View onPress={displayScreen}  style={styles.textContainer}>
+                    <Text  onPress={displayScreen} style={styles.title}>{`${firstName} ${lastName}`}</Text>
+                    <Text onPress={displayScreen} style={styles.subtitle}>{email}</Text>
+                    <Text  onPress={displayScreen} style={styles.subtitle}>{phone}</Text>
+                    <View onPress={displayScreen} style={styles.badgeBox}>
                     <View>
                     {renderBadge()}
                     </View>

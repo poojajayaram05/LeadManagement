@@ -149,7 +149,7 @@ const TaskItem = ({ state, taskName, ownerName, time }) => (
     const goToCreateTask=()=>{
      
     
-        router.replace('/createTask');
+        router.navigate('DrawerScreens/form/createTask');
     }
  
     useEffect(() => {
@@ -262,8 +262,8 @@ const TaskItem = ({ state, taskName, ownerName, time }) => (
  
         {renderDropdown()}
         <TouchableOpacity style={styles.plusButton} onPress={goToCreateTask}>
-        {/* <FontAwesome name="plus" size={24} color="white" onPress={goToCreateTask} /> */}
-        <Button title='add' onPress={goToCreateTask}></Button>
+        <FontAwesome name="plus" size={24} color="white" onPress={goToCreateTask} />
+        {/* <Button title='add' onPress={goToCreateTask}></Button> */}
       </TouchableOpacity>
       </SafeAreaView>
     );

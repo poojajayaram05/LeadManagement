@@ -7,5 +7,5 @@ export default ConfiguraionConstants = {
     debounceTime: 1000,
     react_query_default_retry: 1,
     TIME_OUT_TIME_MINUTES: 2,
-    TIME_OUT_TIME_SECONDS: 2 * 60
+    TIME_OUT_TIME_SECONDS: 2 * 60*90
 }
