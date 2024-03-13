@@ -46,5 +46,8 @@ export {default as Reports} from './reports.png';
 export {default as DropdownIcon} from './dropdown.png';
 export {default as DropupIcon} from './dropup.png';
 export {default as HomeProfile} from './home-profile.png';
+export {default as checkbox} from './checkbox.png';
+export {default as starrOne} from './starrOne.png';
+export {default as starTwo} from './starTwo.png';
 
 

@@ -1,7 +1,7 @@
 import React ,{useState}from 'react';
 //import { leadData } from './leadData';
 import { useCallback } from 'react';
-import LeadItem from '../leadComponents/leadCard';
+import LeadItem from '../../leadComponents/leadCard';
 import { router } from 'expo-router';
 import { TouchableOpacity } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
@@ -196,6 +196,9 @@ const LeadList = () => {
     { key: 'starredLeads', title: 'Starred Leads' },
    
   ]);
+  const goToLeadCreate=()=>[
+    router.replace('form/general')
+  ]
   const [index, setIndex] = useState(0);
   const [starredLeads, setStarredLeads] = useState([]);
  
@@ -207,13 +210,7 @@ const LeadList = () => {
     }
   };
  
-  const goToTask=()=>{
-    router.replace('/Task/task');
-  }
-  const handleFilterClick = () => {
-    console.log('Filter clicked!');
-  };
- 
+
  
   const renderScene = ({ route }) => {
     switch (route.key) {
@@ -274,7 +271,7 @@ const LeadList = () => {
           />
         )}  
       />
-       <TouchableOpacity style={styles.plusButton}>
+       <TouchableOpacity style={styles.plusButton} onPress={goToLeadCreate}>
         <FontAwesome name="plus" size={24} color="white" />
       </TouchableOpacity>
     </View>

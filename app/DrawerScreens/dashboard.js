@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import SmallCard from '../dashboardComponents/smallCard';
-import Scrollcard from '../dashboardComponents/scrollCard';
-import Bigcard from '../dashboardComponents/bigCard';
-import ChartLine from '../dashboardComponents/lineChart';
+import SmallCard from '../../dashboardComponents/smallCard';
+import Scrollcard from '../../dashboardComponents/scrollCard';
+import Bigcard from '../../dashboardComponents/bigCard';
+import ChartLine from '../../dashboardComponents/lineChart';
  
 const total_leads = 0;
 const total_calls = 1;
@@ -20,12 +20,7 @@ const App = () => {
  
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Dashboard</Text>
-        <TouchableOpacity>
-          <Ionicons name="filter" size={24} color="black" />
-        </TouchableOpacity>
-      </View>
+ 
       <ScrollView style={styles.scrollContainer} showsHorizontalScrollIndicator={false}>
       <View style={styles.smallCardGroupContainer}>
         <View style={styles.row1}>

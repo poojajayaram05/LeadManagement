@@ -1,14 +1,14 @@
 import { View, Text, Button, TextInput, StyleSheet, Select, ScrollView, Image} from 'react-native'
 import React, { useState } from 'react'
 import { useForm, Controller } from 'react-hook-form';
-import { formData } from '../formData';
-import { CustomInput } from '../../customComponents/customInput';
+import { formData } from '../../../customComponents/formData'
+import { CustomInput } from '../../../customComponents/customInput';
 import Collapsible from 'react-native-collapsible';
 import { TouchableOpacity } from 'react-native';
-import Dropdown from '../../customComponents/customDropdown';
-import RadioButton from '../../customComponents/customRadio';
+import Dropdown from '../../../customComponents/customDropdown';
+import RadioButton from '../../../customComponents/customRadio';
 //import { isEnabled } from 'react-native/Libraries/Performance/Systrace';
-import { DropdownIcon, DropupIcon } from '../../assets/images';
+import { DropdownIcon, DropupIcon } from '../../../assets/images';
 import { Ionicons } from '@expo/vector-icons';
 
 // Form component

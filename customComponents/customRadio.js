@@ -87,7 +87,7 @@ import Colors from "../utils/Colors";
 import CommonStyles from "../utils/CommanStyles";
 import { radioselected, radiounselected, Selected, unSelected } from "../assets/images";
 import { debounce } from "../utils/CommanUtils";
-import { formData } from "../app/formData";
+import { formData } from "./formData";
 import { MdDashboard } from "react-icons/md";
 
 

@@ -1,19 +1,22 @@
 import { View, Text, StyleSheet, ScrollView, Image, Button, Pressable } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import React, {useState} from 'react'
-import { taskFormData } from './formData'
+//mport { taskFormData } from '../../../customComponents/formData';
 import Collapsible from 'react-native-collapsible';
-import Dropdown from '../customComponents/customDropdown';
+import Dropdown from '../../../customComponents/customDropdown';
 import { isEnabled } from 'react-native/Libraries/Performance/Systrace';
-import { DropdownIcon, DropupIcon } from '../assets/images'
-import { CustomInput } from '../customComponents/customInput';
+import { DropdownIcon, DropupIcon } from '../../../assets/images';
+import { CustomInput } from '../../../customComponents/customInput';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import { date } from 'zod';
 import { Ionicons } from '@expo/vector-icons';
-import MultilineTextInput from '../customComponents/customMultilineInput';
-import CustomMultipleSelect from '../customComponents/cutsomMultipleSelect';
+import MultilineTextInput from '../../../customComponents/customMultilineInput';
+import CustomMultipleSelect from '../../../customComponents/cutsomMultipleSelect';
+import { taskFormData } from '../../../customComponents/formData';
+import LDropdown from '../../../customComponents/customLeadDropdown';
+import { meetingData } from '../../../customComponents/formData';
 
-export default function CreateTask() {
+export default function CreateMeeting() {
   // const { control, handleSubmit, formState: { errors } } = useForm();
   const [isSection1Collapsed, setIsSection1Collapsed] = useState(false);
   const [isSection2Collapsed, setIsSection2Collapsed] = useState(false);
@@ -106,7 +109,7 @@ const renderFormElement = (element) => {
                 <Text style={styles.label}>{element.title}</Text>
                
                     <Dropdown style={styles.inputContainer}
-                        label={selectedValue ? selectedValue.firstname : 'Select'}
+                        label={selectedValue ? selectedValue.label : 'Select'}
                         data={element.dropdownData}
                         value={selectedValue}
                         onSelect={handleSelect}
@@ -218,13 +221,34 @@ const renderFormElement = (element) => {
                         
                     </View>
                 );
-                case 'multipleSelect':
+                case 'leadDropdown':
                   return (
-                    <View style={styles.inputContainer}>
-                      <Text style={styles.label}>Select multiple items</Text>
-                      <CustomMultipleSelect items={element.dropdownData} />
-                    </View>
+                      <View style={styles.inputContainer}>
+                          <Text style={styles.label}>Select Lead</Text>
+                          <LDropdown
+                              label={selectedValue ? selectedValue.label : 'Lead'}
+                              data={element.dropdownData} // Pass the entire dropdownData array
+                              value={selectedValue}
+                              onSelect={handleSelect}
+                          />
+                      </View>
                   );
+              
+                  // case 'leadDropdown':
+                  //   return (
+                  //     <View>
+                  //     <View style = {styles.inputContainer}>
+                  //     <Text style={styles.label}>{element.title}</Text>
+                     
+                  //         <Dropdown style={styles.inputContainer}
+                  //             label={selectedValue ? selectedValue.firstname : 'Select'}
+                  //             data={element.dropdownData}
+                  //             value={selectedValue.firstname}
+                  //             onSelect={handleSelect}
+                  //         />
+                  //     </View>
+                  //     </View>
+                  //   );
                         
 };
 }
@@ -244,7 +268,7 @@ const renderFormElement = (element) => {
                      
                 </TouchableOpacity>
                 <Collapsible collapsed={isSection1Collapsed}>
-                    {taskFormData.elements.slice(0, 9).map((element, index) => (
+                    {meetingData.elements.slice(0, 9).map((element, index) => (
                         <View key={index} style={styles.inputContainer}>
                             {renderFormElement(element)}
                         </View>

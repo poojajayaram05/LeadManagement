@@ -12,11 +12,12 @@ import {
   Modal,
   TouchableWithoutFeedback,
 } from 'react-native';
-import {checkbox} from '../assets/images';
+import {checkbox} from '../../assets/images';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { router } from 'expo-router';
 // import {DATA} from '../../taskData';
+import { Link } from 'expo-router';
  
  
 const DATA = [
@@ -146,6 +147,8 @@ const TaskItem = ({ state, taskName, ownerName, time }) => (
  
     const [activeTab, setActiveTab] = useState('Today');
     const goToCreateTask=()=>{
+     
+    
         router.replace('/createTask');
     }
  
@@ -259,7 +262,8 @@ const TaskItem = ({ state, taskName, ownerName, time }) => (
  
         {renderDropdown()}
         <TouchableOpacity style={styles.plusButton} onPress={goToCreateTask}>
-        <FontAwesome name="plus" size={24} color="white" />
+        {/* <FontAwesome name="plus" size={24} color="white" onPress={goToCreateTask} /> */}
+        <Button title='add' onPress={goToCreateTask}></Button>
       </TouchableOpacity>
       </SafeAreaView>
     );

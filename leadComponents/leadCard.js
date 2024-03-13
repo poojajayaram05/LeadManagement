@@ -8,6 +8,8 @@ import { starTwo,starrOne } from '../assets/images';
 import {profile} from '../assets/images';
 import BadgeLead from './badgeLead';
 import { FontAwesome } from '@expo/vector-icons';
+
+
  
 
  
@@ -91,9 +93,9 @@ const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temp
             style={{ width: 40, height: 40, borderRadius: 20, marginBottom:10 }}
           />
          
-<TouchableOpacity onPress={handleNewButtonClick} style={styles.smallButton}>
+{/* <TouchableOpacity onPress={handleNewButtonClick} style={styles.smallButton}>
             <Text>New</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
                 </View>
                 <View  style={styles.textContainer}>
                     <Text style={styles.title}>{`${firstName} ${lastName}`}</Text>

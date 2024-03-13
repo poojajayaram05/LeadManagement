@@ -204,290 +204,115 @@ export const formData = {
     },
    
   ],
-    
-    "showQuestionNumbers": false
+  
   };
 
-  export const taskFormData={
-    "elements":[
+  export const taskFormData = {
+    "elements": [
       {
-          "name": "task-type",
-          "type": "dropdown",
-          "title": "Task Type",
-          "inputType": "text",
-          
-           "dropdownData" :[
-            { value: 1, label: 'Call' },
-            { value: 2, label: 'Email' },
-            { value: 3, label: 'Message' },
-            { value: 4, label: 'Follow-Up'},
-            { value: 5, label: 'Video Meeting' },
-            { value: 6, label: 'Meeting' },
-          
-           ]
-        },
-        {
-          "name": "due-date",
-          "type": "calenderDropdown",
-          "title": "Due Date",
-          "inputType": "text",
-          
-           "dropdownData" :[
-            { value: 1, label: 'Today' },
-            { value: 2, label: 'Tomorrow' },
-            { value: 3, label: '3 Days From Now' },
-            { value: 4, label: 'One Week From Now'},
-            { value: 5, label: '1 Month From Now' },
-            { value: 6, label: 'Custom Date' },
-          
-           ]
-          
-         
-        },
-        {
-          "name": "time",
-          "type": "timeInput",
-          "title": "Time",
-          "placeholder":"",
-         
-        },
-        {
-          "name": "repeat",
-          "type": "dropdown",
-          "title": "Repeat",
-          "inputType": "text",
-          
-           "dropdownData" :[
-            { value: 1, label: 'Daily' },
-            { value: 2, label: 'Weekly' },
-            { value: 3, label: 'Monthly' },
-            { value: 4, label: 'Yearly'},
-            { value: 5, label: 'Dont Repeat' },
-    
-           ]
-   
-        },
-        {
-          "name": "user",
-          "type": "dropdown",
-          "title": "User",
-          "inputType": "text",
-          
-           "dropdownData" :[
-            { value: 1, label: 'John Doe' },
-            { value: 2, label: 'Jane Smith' },
-            { value: 3, label: 'Alice Mark' },
-            { value: 4, label: 'Kate Winslet'},
-            { value: 5, label: 'William Henry'},
-            { value: 6, label: 'Jane Peter' },
-            { value: 7, label: 'Carley Wilson'},
-            { value: 8, label: 'William Henry'}
-           
-           
-           
-    
-           ]
-   
-        },
-        {
-          "name": "leads",
-          "type": "dropdown",
-          "title": "Leads",
-          "inputType": "text",
-          
-           "dropdownData" :[
- 
-            {
-           
-              "firstname": "John",
-           
-              "lastname": "Smith",
-           
-              "email": "johnsmith1@gmail.com",
-           
-              "job-title": "Engineer",
-           
-              "phone": "8884763231",
-              "status":"open",
-              "temperature":"hot",
-              "id":"1",
-           
-            },
-           
-            {
-           
-              "firstname": "Jane",
-           
-              "lastname": "Johnson",
-           
-              "email": "janejohnson2@yahoo.com",
-           
-              "job-title": "Designer",
-           
-              "phone": "8891234567",
-              "status":"contacted",
-              "temperature":"cold",
-              "id":"2",
-           
-            },
-           
-            {
-           
-              "firstname": "Michael",
-           
-              "lastname": "Brown",
-           
-              "email": "michaelbrown3@hotmail.com",
-           
-              "job-title": "Manager",
-           
-              "phone": "8902345678",
-              "status":"qualified",
-              "temperature":"warm",
-              "id":"3",
-           
-            },
-           
-            {
-           
-              "firstname": "Emily",
-           
-              "lastname": "Jones",
-           
-              "email": "emilyjones4@outlook.com",
-           
-              "job-title": "Developer",
-           
-              "phone": "8913456789",
-              "status":"accepted",
-              "temperature":"cold",
-              "id":"4",
-           
-            },
-           
-            {
-           
-              "firstname": "William",
-           
-              "lastname": "Garcia",
-           
-              "email": "williamgarcia5@gmail.com",
-           
-              "job-title": "Analyst",
-           
-              "phone": "8924567890",  
-              "status":"accepted",
-              "temperature":"hot",
-              "id":"5",
-           
-            },
-           
-            {
-           
-              "firstname": "Olivia",
-           
-              "lastname": "Miller",
-           
-              "email": "oliviamiller6@yahoo.com",
-           
-              "job-title": "Consultant",
-           
-              "phone": "8935678901",
-              "status":"qualified",
-              "temperature":"hot",
-              "id":"6",
-           
-            },
-           
-            {
-           
-              "firstname": "James",
-           
-              "lastname": "Davis",
-           
-              "email": "jamesdavis7@hotmail.com",
-           
-              "job-title": "Coordinator",
-           
-              "phone": "8946789012",
-              "status":"qualified",
-              "temperature":"cold",
-              "id":"7",
-           
-            },
-           
-            {
-           
-              "firstname": "Sophia",
-           
-              "lastname": "Rodriguez",
-           
-              "email": "sophiarodriguez8@outlook.com",
-           
-              "job-title": "Administrator",
-           
-              "phone": "8957890123",
-              "status":"qualified",
-              "temperature":"warm",
-              "id":"8",
-           
-            },
-           
-            {
-           
-              "firstname": "Benjamin",
-           
-              "lastname": "Martinez",
-           
-              "email": "benjaminmartinez9@gmail.com",
-           
-              "job-title": "Engineer",
-           
-              "phone": "8968901234",
-              "status":"qualified",
-              "temperature":"warm",
-              "id":"9",
-           
-            },
-           
-            {
-           
-              "firstname": "Emma",
-           
-              "lastname": "Hernandez",
-           
-              "email": "emmahernandez10@yahoo.com",
-           
-              "job-title": "Designer",
-           
-              "phone": "8979012345",
-              "status":"qualified",
-              "temperature":"cold",
-              "id":"10",
-           
-            }
-          ]
-          
-           
-           
-           
-           
-    
-           
-
-        },
-
-        {
-          "name": "note",
-          "type": "multilineInput",
-          "title": "Note",
-          "placeholder":" Enter a note",
-         
-        },
+        "name": "task-type",
+        "type": "dropdown",
+        "title": "Task Type",
+        "inputType": "text",
+        "placeholder":'Select',
+        "dropdownData": [
+          { "value": 1, "label": "Call" },
+          { "value": 2, "label": "Email" },
+          { "value": 3, "label": "Message" },
+          { "value": 4, "label": "Follow-Up" },
+          { "value": 5, "label": "Video Meeting" },
+          { "value": 6, "label": "Meeting" }
+        ]
+      },
+      {
+        "name": "due-date",
+        "type": "calenderDropdown",
+        "title": "Due Date",
+        "inputType": "text",
+        "placeholder":'Select',
+        "dropdownData": [
+          { "value": 1, "label": "Today" },
+          { "value": 2, "label": "Tomorrow" },
+          { "value": 3, "label": "3 Days From Now" },
+          { "value": 4, "label": "One Week From Now" },
+          { "value": 5, "label": "1 Month From Now" },
+          { "value": 6, "label": "Custom Date" }
+        ]
+      },
+      {
+        "name": "title",
+        "type": "TextInput",
+        "title": "Title",
+        "inputType": "text",
+        "placeholder":"Enter the title"
+      },
+      {
+        "name": "description",
+        "type": "TextInput",
+        "title": "Description",
+        "inputType": "text",
+        "placeholder":"Enter the description"
+      },
+      {
+        "name": "status",
+        "type": "dropdown",
+        "title": "Status",
+        "placeholder":'Select',
+        "dropdownData": [
+          { "value": 1, "label": "In-progress" },
+          { "value": 2, "label": "Completed" },
+          {"value":3, "label":"Not Started"}
+        ]
+      },
+      {
+        "name": "time",
+        "type": "timeInput",
+        "title": "Time",
+        "placeholder": ""
+      },
+      {
+        "name": "repeat",
+        "type": "dropdown",
+        "title": "Repeat",
+        "inputType": "text",
+        "placeholder":'Select',
+        "dropdownData": [
+          { "value": 1, "label": "Daily" },
+          { "value": 2, "label": "Weekly" },
+          { "value": 3, "label": "Monthly" },
+          { "value": 4, "label": "Yearly" },
+          { "value": 5, "label": "Don't Repeat" }
+        ]
+      },
+      {
+        "name": "owner",
+        "type": "dropdown",
+        "title": "Owner",
+        "inputType": "text",
+        "placeholder":'Select',
+        "dropdownData": [
+          { "value": 1, "label": "John Doe" },
+          { "value": 2, "label": "Jane Smith" },
+          { "value": 3, "label": "Alice Mark" },
+          { "value": 4, "label": "Kate Winslet" },
+          { "value": 5, "label": "William Henry" },
+          { "value": 6, "label": "Jane Peter" },
+          { "value": 7, "label": "Carley Wilson" },
+          { "value": 8, "label": "William Henry" }
+        ]
+      },
+      {
+        "name": "leads",
+        "type": "leadDropdown",
+        "title": "Leads",
+        "inputType": "text",
         
+         
+        
+      }
     ]
   }
-
+  
   export const leadData =
 [
  
@@ -661,5 +486,76 @@ export const formData = {
  
   }
 ]
+
+export const leadNoteData = {
+  "elements": [
+    {
+      "name": "leadId",
+      "type": "dropdown",
+      "title": "Lead",
+      "inputType": "text",
+      "placeholder": "Select",
+      "dropdownData": leadData
+    },
+    {
+      "name": "notes",
+      "type": "multiLineText",
+      "title": "Lead Notes",
+      "inputType": "text",
+      "placeholder": "Write a note"
+    }
+  ]
+};
+
+export const meetingData = {
+  "elements": [
+    {
+      "name": "lead",
+      "type": "dropdown",
+      "title": "Lead",
+      "inputType": "text",
+      "placeholder": "Select",
+      "dropdownData": leadData
+    },
+    {
+      "name": "Title",
+      "type": "TextInput",
+      "title": "Title",
+      "inputType": "text",
+      "placeholder": "Title"
+    },
+    {
+      "name": "location",
+      "type": "TextInput",
+      "title": "Location",
+      "inputType": "text",
+      "placeholder": "Location"
+    },
+    {
+      "name": "Description",
+      "type": "TextInput",
+      "title": "Description",
+      "inputType": "text",
+      "placeholder": "Description"
+    },
+    {
+      "name": "timeZone",
+      "type": "dropdown",
+      "title": "Time Zone",
+      "inputType": "text",
+      "placeholder":'Select',
+      "dropdownData": [
+        { "value": 1, "label": "Coordinated Universal Time (UTC)" },
+        { "value": 2, "label": "Eastern Standard Time (EST)" },
+        { "value": 3, "label": "Central European Time (CET)" },
+        { "value": 4, "label": "Pacific Standard Time (PST)" },
+        { "value": 5, "label": "India Standard Time (IST)" },
+        { "value": 6, "label": "China Standard Time (CST)" },
+        
+      ]
+    },
+  ]
+};
+
 
 
