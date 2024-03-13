@@ -6,9 +6,11 @@ import { Badge } from 'react-native-elements';
 import { Image } from 'react-native-elements';
 //import {handleNewButtonClick} from 'react-native-elements';
 import { starTwo,starrOne } from '../../assets/images';
-import {images} from '../../assets/images'
+import {profile} from '../../assets/images'
 import BadgeLead from '../BadgeLead';
 import { FontAwesome } from '@expo/vector-icons';
+
+
 
 
 const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temperature, id }) => {
@@ -72,29 +74,27 @@ const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temp
     const toggleSecondImage = () => {
         setShowSecondImage(!showSecondImage);
       };
-      const handleNewButtonClick = () => {
-        // logic for the 'New' button
-      }; 
+      // const handleNewButtonClick = () => {
+      //   // logic for the 'New' button
+      // }; 
 
       const handleFilterClick = () => {
         console.log('Filter clicked!');
-      };
+      };              
 
 
     return (
         <View style={{ flex: 1 }}>
-            
-          
             <View style={styles.item}>
                 <View style={styles.avatarContainer}>
                     <Image
-            source={images}
+            source={profile}
             style={{ width: 40, height: 40, borderRadius: 20, marginBottom:10 }}
           />
           
-<TouchableOpacity onPress={handleNewButtonClick} style={styles.smallButton}>
+{/* <TouchableOpacity onPress={handleNewButtonClick} style={styles.smallButton}>
             <Text>New</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
                 </View>
                 <View  style={styles.textContainer}>
                     <Text style={styles.title}>{`${firstName} ${lastName}`}</Text>
@@ -197,6 +197,7 @@ const styles = {
         backgroundColor: 'lightgray',
         borderRadius: 2,
       },
+      
     //   filterIcon: {
     //     marginLeft: 10,
     //   },

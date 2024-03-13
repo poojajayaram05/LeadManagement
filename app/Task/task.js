@@ -1,320 +1,3 @@
-// import React,{useEffect, useState} from 'react';
-// import {
-//   SafeAreaView,
-//   View,
-//   FlatList,
-//   StyleSheet,
-//   Text,
-//   StatusBar,
-//   Button,
-//   Image,
-//   TouchableOpacity,
-//   Modal,
-//   TouchableWithoutFeedback,
-// } from 'react-native';
-// import {checkbox} from '../../assets/images';
-// import { Ionicons } from '@expo/vector-icons';
-// // import {DATA} from '../../taskData'; 
-
-
-// const DATA = [
-//     {
-//       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-//       state: 'follow-up',
-//       taskName: 'Carla Demo Lead',
-//       ownerName: 'John Doe',
-//       time: '12:23pm',
-//       duedate:'Today',
-//       assignedToMe:'Carla',
-//       assignedByMe:'Sofia',
-//     },
-//     {
-//       id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-//       state: 'in-progress',
-//       taskName: 'Another Task',
-//       ownerName: 'Jane Smith',
-//       time: '3:45pm',
-//       duedate:'Upcoming',
-//       assignedToMe:'Carla',
-//       assignedByMe:'Sara',
-//     },
-//     {
-//       id: '58694a0f-3da1-471f-bd96-145571e29d72',
-//       state: 'completed',
-//       taskName: 'Final Task',
-//       ownerName: 'Bob Johnson',
-//       time: '9:15am',
-//       duedate:'Today',
-//       assignedToMe:'Patty',
-//       assignedByMe:'Bhumika',
-//     },
-//     {
-//         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-//         state: 'follow-up',
-//         taskName: 'Carla Demo Lead',
-//         ownerName: 'John Doe',
-//         time: '12:23pm',
-//         duedate:'Today',
-//         assignedToMe:'Harshini',
-//       assignedByMe:'Neeraj',
-//       },
-//       {
-//         id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-//         state: 'in-progress',
-//         taskName: 'Another Task',
-//         ownerName: 'Jane Smith',
-//         time: '3:45pm',
-//         duedate:'Upcoming',
-//         assignedToMe:'Capy',
-//       assignedByMe:'Nikita',
-//       },
-//       {
-//         id: '58694a0f-3da1-471f-bd96-145571e29d72',
-//         state: 'completed',
-//         taskName: 'Final Task',
-//         ownerName: 'Bob Johnson',
-//         time: '9:15am',
-//         duedate:'Overdue',
-//         assignedToMe:'Arpita',
-//       assignedByMe:'Sahil',
-//       },
-//       {
-//         id: '4d7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-//         state: 'pending',
-//         taskName: 'New Project',
-//         ownerName: 'Alice Williams',
-//         time: '2:30pm',
-//         duedate:'Overdue',
-//         assignedToMe:'Sharanya',
-//       assignedByMe:'Katty',
-//       },
-//       {
-//         id: '9ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-//         state: 'follow-up',
-//         taskName: 'Client Meeting',
-//         ownerName: 'Chris Davis',
-//         time: '10:00am',
-//         duedate:'Upcoming',
-//         assignedToMe:'Ruby',
-//       assignedByMe:'Roxy',
-
-//       },
-//       {
-//         id: '78694a0f-3da1-471f-bd96-145571e29d72',
-//         state: 'in-progress',
-//         taskName: 'Coding Task',
-//         ownerName: 'Eva Brown',
-//         time: '4:45pm',
-//         duedate:'Overdue',
-//         assignedToMe:'Dhanush',
-//       assignedByMe:'Yashas',
-//       },
-//     ];
-
-// const TaskItem = ({ state, taskName, ownerName, time }) => (
-//     <View style={styles.item}>
-//        <Image
-//         source={checkbox}
-//         style={{ width: 30, height: 30, marginRight:90}}
-//       />
-//       <View style={styles.textstyle}>
-//       <Text style={[styles.title,  { color: '#4789e6' ,  fontSize: 16}]}>{`${state}`}</Text>
-//       <Text style={[styles.subtitle, { fontWeight: 'bold' }]}>{`${taskName}`}</Text>
-//       <Text style={styles.subtitle}>{`Owner: ${ownerName}`}</Text>
-//       <Text style={styles.subtitle}>{`${time}`}</Text>
-//       </View>
-//       <TouchableOpacity onPress={() => console.log('Edit pressed')}
-//       style={{ alignItems: 'center', justifyContent: 'center' }}>
-//         <Ionicons name="pencil" size={16} color="black"/>
-     
-//     </TouchableOpacity>
-//     </View>
-//   );
-
-// const TaskCard = () => {
-
-//   useEffect(() => {
-//     filterData();
-//   }, [selectedTaskOption]);
-
-//   const filterData = () => {
-//     // if (selectedTaskOption === 'Assigned By Me') {
-//     //   const filteredByMe = DATA.filter((item) => item.assignedByMe === 'Sofia'); 
-//     //   setFilteredData(filteredByMe);
-//     // } else if (selectedTaskOption === 'Assigned To Me') {
-//     //   const filteredToMe = DATA.filter((item) => item.assignedToMe === 'Carla'); 
-//     //   setFilteredData(filteredToMe);
-//     // }
-//     // else{
-//     //   setFilteredData(DATA);
-
-//     // }
-//     let filteredTasks = DATA;
-
-//     if (selectedTaskOption === 'Assigned By Me') {
-//       filteredTasks = DATA.filter((item) => item.assignedByMe === 'Sofia');
-//     } else if (selectedTaskOption === 'Assigned To Me') {
-//       // Replace 'Carla' with the actual current user
-//       const currentUser = 'Carla';
-//       filteredTasks = DATA.filter((item) => item.assignedToMe === currentUser);
-//     }
-    
-//     setFilteredData(filteredTasks);
-//   };
-//   const [isDropdownVisible, setDropdownVisible] = useState(false);
-//   const [selectedTaskOption, setSelectedTaskOption] = useState('All');
-//   const[filteredData, setFilteredData] = useState(DATA);
-//   const dropdownOptions = ['Assigned By Me', 'Assigned To Me', 'All'];  
-  
-//   const renderDropdownButton = () => (
-//     <TouchableOpacity
-//       style={styles.dropdownButton}
-//       onPress={() => setDropdownVisible(!isDropdownVisible)}
-//     >
-//       <Text style={styles.dropdownButtonText}>{selectedTaskOption}</Text>    
-//       <Ionicons name="caret-down" size={20} color="white" />
-//     </TouchableOpacity>
-//   );
-
-//   const closeDropdown = () => {
-//     setDropdownVisible(false);
-//   };
-
-//   const renderDropdown = () => (
-//     <Modal transparent={true} visible={isDropdownVisible} animationType="slide">
-//       <TouchableWithoutFeedback onPress={closeDropdown}>
-//         <View style={styles.modalOverlay} />
-//       </TouchableWithoutFeedback>
-//       <View style={styles.modalContent}>
-//         <TouchableOpacity
-//           style={styles.dropdownRow}
-//           onPress={() => {
-//             setSelectedTaskOption('Assigned By Me');
-//             closeDropdown();
-          
-//           }}
-//         >
-//           <Text style={styles.dropdownRowText}>Assigned By Me</Text>
-//         </TouchableOpacity>
-//         <TouchableOpacity
-//           style={styles.dropdownRow}
-//           onPress={() => {
-//             setSelectedTaskOption('Assigned To Me');
-//             closeDropdown();
-       
-//           }}
-//         >
-//           <Text style={styles.dropdownRowText}>Assigned To Me</Text>
-//         </TouchableOpacity>
-//         <TouchableOpacity
-//           style={styles.dropdownRow}
-//           onPress={() => {
-//             setSelectedTaskOption('All');
-//             closeDropdown();
-          
-//           }}
-//         >
-//           <Text style={styles.dropdownRowText}>All</Text>
-//         </TouchableOpacity>
-//       </View>
-//     </Modal>
-//   );
-//   return (
-//     <SafeAreaView style={styles.container}>
-//       <View style={styles.header}>
-//         <Text style={styles.myTasksText}>Tasks</Text>
-//         {renderDropdownButton()}
-//       </View>
-
-//       <FlatList
-//         data={filteredData}
-//         renderItem={({item}) => <TaskItem {...item} />}
-//         keyExtractor={item => item.id} 
-//       />
-//       {renderDropdown()}
-//     </SafeAreaView>  
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     marginTop: StatusBar.currentHeight || 0,
-//   },
-//   item: {
-//     backgroundColor: '#f2f2f2',
-//     padding: 20,
-//     marginVertical: 8,
-//     marginHorizontal: 16,
-//     flexDirection:'row',
-//   },
-//   title: {
-//     fontSize: 32,
-//   },
-//   textstyle:{
-//     marginLeft:-70,
-//     flex:1,
-//   },
-//   filterIcon: {
-//     position: 'absolute',
-//     top: 10,
-//     right: 10,
-//   },
-//   header: {
-//     backgroundColor: '#4789e6',
-//     padding: 15,
-//     alignItems: 'center',
-//     flexDirection: 'row',
-//     justifyContent: 'space-between',
-//   },
-//   rightHeader: {
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//     marginLeft:80,
-//   },
-//   myTasksText: {
-//     color: 'white',
-//     fontSize: 16,
-//     marginLeft: 5,
-//   },
-//   headerText: {
-//     color: 'white',
-//     fontSize: 20,
-//     fontWeight: 'bold',
-//     marginRight:280,
-//   },
-//   dropdownButton: {
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//   },
-//   dropdownButtonText: {
-//     color: 'white',
-//     fontSize: 16,
-//     marginRight: 5,
-//   },
-//   modalOverlay: {
-//     flex: 1,
-//     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-//   },
-//   modalContent: {
-//     position: 'absolute',
-//     top: 60,
-//     right: 10,
-//     backgroundColor: '#4789e6',
-//     borderRadius: 8,
-//     padding: 10,
-//   },
-//   dropdownRow: {
-//     padding: 10,
-//   },
-//   dropdownRowText: {
-//     color: 'white',
-//     fontSize: 16,
-//   },
-// });
-
-// export default TaskCard;
-
 
 import React,{useEffect, useState} from 'react';
 import {
@@ -332,103 +15,93 @@ import {
 } from 'react-native';
 import {checkbox} from '../../assets/images';
 import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
+import { router } from 'expo-router';
 // import {DATA} from '../../taskData'; 
 
 
 const DATA = [
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      state: 'follow-up',
-      taskName: 'Carla Demo Lead',
-      ownerName: 'John Doe',
-      time: '12:23pm',
-      duedate:'Today',
-      assignedToMe:'Carla',
-      assignedByMe:'Sofia',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      state: 'in-progress',
-      taskName: 'Another Task',
-      ownerName: 'Jane Smith',
-      time: '3:45pm',
-      duedate:'Upcoming',
-      assignedToMe:'Carla',
-      assignedByMe:'Sara',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      state: 'completed',
-      taskName: 'Final Task',
-      ownerName: 'Bob Johnson',
-      time: '9:15am',
-      duedate:'Today',
-      assignedToMe:'Patty',
-      assignedByMe:'Bhumika',
-    },
-    {
-        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-        state: 'follow-up',
-        taskName: 'Carla Demo Lead',
-        ownerName: 'John Doe',
-        time: '12:23pm',
-        duedate:'Today',
-        assignedToMe:'Harshini',
-      assignedByMe:'Neeraj',
-      },
-      {
-        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-        state: 'in-progress',
-        taskName: 'Another Task',
-        ownerName: 'Jane Smith',
-        time: '3:45pm',
-        duedate:'Upcoming',
-        assignedToMe:'Capy',
-      assignedByMe:'Nikita',
-      },
-      {
-        id: '58694a0f-3da1-471f-bd96-145571e29d72',
-        state: 'completed',
-        taskName: 'Final Task',
-        ownerName: 'Bob Johnson',
-        time: '9:15am',
-        duedate:'Overdue',
-        assignedToMe:'Arpita',
-      assignedByMe:'Sahil',
-      },
-      {
-        id: '4d7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-        state: 'pending',
-        taskName: 'New Project',
-        ownerName: 'Alice Williams',
-        time: '2:30pm',
-        duedate:'Overdue',
-        assignedToMe:'Sharanya',
-      assignedByMe:'Katty',
-      },
-      {
-        id: '9ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-        state: 'follow-up',
-        taskName: 'Client Meeting',
-        ownerName: 'Chris Davis',
-        time: '10:00am',
-        duedate:'Upcoming',
-        assignedToMe:'Ruby',
-        assignedByMe:'Roxy',
-
-      },
-      {
-        id: '78694a0f-3da1-471f-bd96-145571e29d72',
-        state: 'in-progress',
-        taskName: 'Coding Task',
-        ownerName: 'Eva Brown',
-        time: '4:45pm',
-        duedate:'Overdue',
-        assignedToMe:'Dhanush',
-      assignedByMe:'Yashas',
-      },
-    ];
-
+  {
+    id: '1',
+    state: 'follow-up',
+    taskName: 'Carla Demo Lead',
+    ownerName: 'John Doe',
+    time: '12:23pm',
+    duedate: 'Today',
+    assignedToMe: 'Carla',
+    assignedByMe: 'Sofia',
+  },
+  {
+    id: '2',
+    state: 'in-progress',
+    taskName: 'Another Task',
+    ownerName: 'Jane Smith',
+    time: '3:45pm',
+    duedate: 'Upcoming',
+    assignedToMe: 'Carla',
+    assignedByMe: 'Sara',
+  },
+  {
+    id: '3',
+    state: 'completed',
+    taskName: 'Final Task',
+    ownerName: 'Bob Johnson',
+    time: '9:15am',
+    duedate: 'Today',
+    assignedToMe: 'Patty',
+    assignedByMe: 'Bhumika',
+  },
+  {
+    id: '4',
+    state: 'in-progress',
+    taskName: 'Another Task',
+    ownerName: 'Jane Smith',
+    time: '3:45pm',
+    duedate: 'Upcoming',
+    assignedToMe: 'Capy',
+    assignedByMe: 'Nikita',
+  },
+  {
+    id: '5',
+    state: 'completed',
+    taskName: 'Final Task',
+    ownerName: 'Bob Johnson',
+    time: '9:15am',
+    duedate: 'Overdue',
+    assignedToMe: 'Arpita',
+    assignedByMe: 'Sahil',
+  },
+  {
+    id: '6',
+    state: 'pending',
+    taskName: 'New Project',
+    ownerName: 'Alice Williams',
+    time: '2:30pm',
+    duedate: 'Overdue',
+    assignedToMe: 'Carla',
+    assignedByMe: 'Sofia',
+  },
+  {
+    id: '7',
+    state: 'follow-up',
+    taskName: 'Client Meeting',
+    ownerName: 'Chris Davis',
+    time: '10:00am',
+    duedate: 'Upcoming',
+    assignedToMe: 'Ruby',
+    assignedByMe: 'Roxy',
+  },
+  {
+    id: '8',
+    state: 'in-progress',
+    taskName: 'Coding Task',
+    ownerName: 'Eva Brown',
+    time: '4:45pm',
+    duedate: 'Overdue',
+    assignedToMe: 'Dhanush',
+    assignedByMe: 'Yashas',
+  },
+];
 const TaskItem = ({ state, taskName, ownerName, time }) => (
   <View style={styles.item}>
     <Image
@@ -442,6 +115,7 @@ const TaskItem = ({ state, taskName, ownerName, time }) => (
       <Text style={[styles.subtitle, { fontWeight: 'bold' }]}>{`${taskName}`}</Text>
       <Text style={styles.subtitle}>{`Owner: ${ownerName}`}</Text>
       <Text style={styles.subtitle}>{`${time}`}</Text>
+    
     </View>
     <TouchableOpacity
       onPress={() => console.log('Edit pressed')}
@@ -453,39 +127,99 @@ const TaskItem = ({ state, taskName, ownerName, time }) => (
 );
 
 
-  const TaskCard = () => {
-    const [isDropdownVisible, setDropdownVisible] = useState(false);
-    const [selectedTaskOption, setSelectedTaskOption] = useState('All');
-    const [filteredData, setFilteredData] = useState(DATA);
+  // const TaskCard = () => {
+  //   const AssignedByMe='Assigned By Me';
+  //   const AssignedToMe='Assigned To Me';
+  //   const [isDropdownVisible, setDropdownVisible] = useState(false);
+  //   const [selectedTaskOption, setSelectedTaskOption] = useState('');
+  //   const [filteredData, setFilteredData] = useState(DATA);
+  //   let filteredTasks=DATA;
   
+   
+  //   const [activeTab, setActiveTab] = useState('Today');
+  
+  //   useEffect(() => {
+  //     filterData();
+  //   }, [ activeTab]);
+
+ 
+  
+  //   const filterData = (selectedTaskOption) => {
+
+  
+  //     if (selectedTaskOption == AssignedByMe) {
+  //       filteredTasks = DATA.filter((item) => item.assignedByMe =='Sofia');
+  //     } else if (selectedTaskOption == AssignedToMe) {
+  //       const currentUser = 'Carla';
+  //       filteredTasks = DATA.filter((item) => item.assignedToMe == currentUser);
+  //     }
+     
+  //     console.log("filtered task", filteredTasks);
+  
+  //     if (activeTab === 'Today') {
+  //       filteredTasks = filteredTasks.filter((item) => item.duedate === 'Today');
+  //     } else if (activeTab === 'Upcoming') {
+  //       filteredTasks = filteredTasks.filter((item) => item.duedate === 'Upcoming');  
+  //     } else if (activeTab === 'Overdue') {
+  //       filteredTasks = filteredTasks.filter((item) => item.duedate === 'Overdue');
+  //     } else if (activeTab === 'Done') {
+  //       filteredTasks = filteredTasks.filter((item) => item.state === 'completed');
+  //     }
+
+  //     setFilteredData(filteredTasks); 
+  //     console.log("filtered data",filteredData);
+  //   };
+
+  //   useEffect(() => {
+  //     console.log(selectedTaskOption);
+  //     filterData(selectedTaskOption);
+  //   }, [selectedTaskOption]);
+
+  
+  //   const renderDropdownButton = () => ( 
+  //     <TouchableOpacity
+  //       style={styles.dropdownButton}
+  //       onPress={() => setDropdownVisible(!isDropdownVisible)}
+  //     >
+  //       <Text style={styles.dropdownButtonText}>{selectedTaskOption}</Text>
+  //       <Ionicons name="caret-down" size={20} color="white" />
+  //     </TouchableOpacity>
+  //   );
+
+  const TaskCard = () => {
+    const AssignedByMe = 'Assigned By Me';
+    const AssignedToMe = 'Assigned To Me';
+    const [isDropdownVisible, setDropdownVisible] = useState(false);
+    const [selectedTaskOption, setSelectedTaskOption] = useState('');
+    const [filteredData, setFilteredData] = useState(DATA);
+    let filteredTasks = DATA;
     const [activeTab, setActiveTab] = useState('Today');
   
     useEffect(() => {
       filterData();
-    }, [selectedTaskOption, activeTab]);
+    }, [activeTab, selectedTaskOption]);
   
     const filterData = () => {
-      let filteredTasks = DATA;
+      let tempFilteredTasks = DATA;
   
-      if (selectedTaskOption === 'Assigned By Me') {
-        filteredTasks = DATA.filter((item) => item.assignedByMe === 'Sofia');
-      } else if (selectedTaskOption === 'Assigned To Me') {
+      if (selectedTaskOption === AssignedByMe) {
+        tempFilteredTasks = tempFilteredTasks.filter((item) => item.assignedByMe === 'Sofia');
+      } else if (selectedTaskOption === AssignedToMe) {
         const currentUser = 'Carla';
-        filteredTasks = DATA.filter((item) => item.assignedToMe === currentUser);
+        tempFilteredTasks = tempFilteredTasks.filter((item) => item.assignedToMe === currentUser);
       }
   
-      // Additional filtering based on the active tab
       if (activeTab === 'Today') {
-        filteredTasks = filteredTasks.filter((item) => item.duedate === 'Today');
+        tempFilteredTasks = tempFilteredTasks.filter((item) => item.duedate === 'Today');
       } else if (activeTab === 'Upcoming') {
-        filteredTasks = filteredTasks.filter((item) => item.duedate === 'Upcoming');
+        tempFilteredTasks = tempFilteredTasks.filter((item) => item.duedate === 'Upcoming');
       } else if (activeTab === 'Overdue') {
-        filteredTasks = filteredTasks.filter((item) => item.duedate === 'Overdue');
+        tempFilteredTasks = tempFilteredTasks.filter((item) => item.duedate === 'Overdue');
       } else if (activeTab === 'Done') {
-        filteredTasks = filteredTasks.filter((item) => item.state === 'completed'); 
+        tempFilteredTasks = tempFilteredTasks.filter((item) => item.state === 'completed');
       }
   
-      setFilteredData(filteredTasks);
+      setFilteredData(tempFilteredTasks);
     };
   
     const renderDropdownButton = () => (
@@ -510,17 +244,20 @@ const TaskItem = ({ state, taskName, ownerName, time }) => (
         <View style={styles.modalContent}>
           <TouchableOpacity
             style={styles.dropdownRow}
-            onPress={() => {
-              setSelectedTaskOption('Assigned By Me');
-              closeDropdown();
-            }}
+           
           >
-            <Text style={styles.dropdownRowText}>Assigned By Me</Text>
+            <Text  onPress={() => {
+              setSelectedTaskOption("Assigned By Me");
+              filterData('Assigned By Me');
+              console.log("hiiiii",selectedTaskOption);
+              closeDropdown();
+            }} style={styles.dropdownRowText}>Assigned By Me</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.dropdownRow}
             onPress={() => {
               setSelectedTaskOption('Assigned To Me');
+              filterData(selectedTaskOption);
               closeDropdown();
             }}
           >
@@ -530,6 +267,7 @@ const TaskItem = ({ state, taskName, ownerName, time }) => (
             style={styles.dropdownRow}
             onPress={() => {
               setSelectedTaskOption('All');
+              filterData(selectedTaskOption);
               closeDropdown();
             }}
           >
@@ -548,7 +286,7 @@ const TaskItem = ({ state, taskName, ownerName, time }) => (
         }}
       >
         <Text style={styles.tabText}>{tabName}</Text>
-      </TouchableOpacity>
+      </TouchableOpacity>         
     );
   
     return (
@@ -568,6 +306,9 @@ const TaskItem = ({ state, taskName, ownerName, time }) => (
         <FlatList data={filteredData} renderItem={({ item }) => <TaskItem {...item} />} keyExtractor={(item) => item.id} />
   
         {renderDropdown()}
+        <TouchableOpacity style={styles.plusButton}>
+        <FontAwesome name="plus" size={24} color="white"/>
+      </TouchableOpacity>
       </SafeAreaView>
     );
   };
@@ -666,7 +407,14 @@ const TaskItem = ({ state, taskName, ownerName, time }) => (
   tabText: {
     color: 'white',
   },
+  plusButton: {
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+    backgroundColor: '#4789e6',
+    padding: 15,
+    borderRadius: 30,
+    elevation: 4,
+  },
 });
 export default TaskCard;
-
-  

@@ -42,12 +42,12 @@ import { Header } from 'react-native-elements';
 
     "email": "johnsmith1@gmail.com",
 
-    "job-title": "Engineer",
+    "jobTitle": "Engineer",
 
     "phone": "8884763231",
     "status":"open",
     "temperature":"hot",
-    "id":"1",
+    "id":"a123",
 
   },
 
@@ -59,12 +59,12 @@ import { Header } from 'react-native-elements';
 
     "email": "janejohnson2@yahoo.com",
 
-    "job-title": "Designer",
+    "jobTitle": "Designer",
 
     "phone": "8891234567",
     "status":"contacted",
     "temperature":"cold",
-    "id":"2",
+    "id":"b876",
 
   },
 
@@ -76,12 +76,12 @@ import { Header } from 'react-native-elements';
 
     "email": "michaelbrown3@hotmail.com",
 
-    "job-title": "Manager",
+    "jobTitle": "Manager",
 
     "phone": "8902345678",
     "status":"qualified",
     "temperature":"warm",
-    "id":"3",
+    "id":"c934",
 
   },
 
@@ -93,12 +93,12 @@ import { Header } from 'react-native-elements';
 
     "email": "emilyjones4@outlook.com",
 
-    "job-title": "Developer",
+    "jobTitle": "Developer",
 
     "phone": "8913456789",
     "status":"accepted",
     "temperature":"cold",
-    "id":"4",
+    "id":"d285",
 
   },
 
@@ -110,12 +110,12 @@ import { Header } from 'react-native-elements';
 
     "email": "williamgarcia5@gmail.com",
 
-    "job-title": "Analyst",
+    "jobTitle": "Analyst",
 
     "phone": "8924567890",  
     "status":"accepted",
     "temperature":"hot",
-    "id":"5",
+    "id":"e925",
 
   },
 
@@ -127,12 +127,12 @@ import { Header } from 'react-native-elements';
 
     "email": "oliviamiller6@yahoo.com",
 
-    "job-title": "Consultant",
+    "jobTitle": "Consultant",
 
     "phone": "8935678901",
     "status":"qualified",
     "temperature":"hot",
-    "id":"6",
+    "id":"f229",
 
   },
 
@@ -144,12 +144,12 @@ import { Header } from 'react-native-elements';
 
     "email": "jamesdavis7@hotmail.com",
 
-    "job-title": "Coordinator",
+    "jobTitle": "Coordinator",
 
     "phone": "8946789012",
     "status":"qualified",
     "temperature":"cold",
-    "id":"7",
+    "id":"g934",
 
   },
 
@@ -161,12 +161,12 @@ import { Header } from 'react-native-elements';
 
     "email": "sophiarodriguez8@outlook.com",
 
-    "job-title": "Administrator",
+    "jobTitle": "Administrator",
 
     "phone": "8957890123",
     "status":"qualified",
     "temperature":"warm",
-    "id":"8",
+    "id":"h268",
 
   },
 
@@ -178,12 +178,12 @@ import { Header } from 'react-native-elements';
 
     "email": "benjaminmartinez9@gmail.com",
 
-    "job-title": "Engineer",
+    "jobTitle": "Engineer",
 
     "phone": "8968901234",
     "status":"qualified",
     "temperature":"warm",
-    "id":"9",
+    "id":"i472",
 
   },
 
@@ -195,12 +195,12 @@ import { Header } from 'react-native-elements';
 
     "email": "emmahernandez10@yahoo.com",
 
-    "job-title": "Designer",
+    "jobTitle": "Designer",
 
     "phone": "8979012345",
     "status":"qualified",
     "temperature":"cold",
-    "id":"10",
+    "id":"j295",
 
   }
 ]
@@ -284,14 +284,13 @@ const Page = () => {
           <TabBar
             {...props}
             indicatorStyle={{ backgroundColor: 'white' }}
-            style={{ backgroundColor: '#3498db' }}
+            style={{ backgroundColor: '#4789e6' }}
           />
-          
-        )}
-        
+        )}  
       />
-     
-
+       <TouchableOpacity style={styles.plusButton}>
+        <FontAwesome name="plus" size={24} color="white" />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -304,6 +303,15 @@ const styles = StyleSheet.create({
   },
   filterIcon: {
     marginLeft: 350,
+  },
+  plusButton: {
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+    backgroundColor: '#4789e6',
+    padding: 15,
+    borderRadius: 30,
+    elevation: 4,
   },
 
 });
