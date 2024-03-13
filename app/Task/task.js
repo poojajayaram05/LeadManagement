@@ -17,174 +17,126 @@ import {checkbox} from '../../assets/images';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { router } from 'expo-router';
+import TaskItem from './taskCard';
 // import {DATA} from '../../taskData'; 
 
 
 const DATA = [
   {
     id: '1',
+    taskType: "Meeting",
     state: 'follow-up',
     taskName: 'Carla Demo Lead',
     ownerName: 'John Doe',
-    time: '12:23pm',
-    duedate: 'Today',
+    dueDate: "2024-03-01",
+    dueTime: "10:00 AM",
+    description: "Discuss project details with the client",
+    leadName:"John Smith",
+    dueState: 'Today',
     assignedToMe: 'Carla',
     assignedByMe: 'Sofia',
   },
   {
     id: '2',
+    taskType: "Assignment",
     state: 'in-progress',
     taskName: 'Another Task',
     ownerName: 'Jane Smith',
-    time: '3:45pm',
-    duedate: 'Upcoming',
+    dueDate: "2024-03-05",
+    dueTime: "2:30 PM",
+    description: "Implement new features",
+    leadName:"Jane Johnson",
+    dueState: 'Upcoming',
     assignedToMe: 'Carla',
     assignedByMe: 'Sara',
   },
   {
     id: '3',
+    taskType: "Review",
     state: 'completed',
     taskName: 'Final Task',
     ownerName: 'Bob Johnson',
-    time: '9:15am',
-    duedate: 'Today',
+    dueDate: "2024-03-10",
+   dueTime: "3:45 PM",
+    description: "Review project progress and plan for next steps",
+    leadName:"Michael Brown",
+    dueState: 'Today',
     assignedToMe: 'Patty',
     assignedByMe: 'Bhumika',
   },
   {
     id: '4',
+    taskType: "Task",
     state: 'in-progress',
     taskName: 'Another Task',
     ownerName: 'Jane Smith',
-    time: '3:45pm',
-    duedate: 'Upcoming',
+    dueDate: "2024-03-15",
+    dueTime: "9:00 AM",
+    description: "Start working on the new project",
+    leadName:"Emily Jones",
+    dueState: 'Upcoming',
     assignedToMe: 'Capy',
     assignedByMe: 'Nikita',
   },
   {
     id: '5',
+    taskType: "Event",
     state: 'completed',
     taskName: 'Final Task',
     ownerName: 'Bob Johnson',
-    time: '9:15am',
-    duedate: 'Overdue',
+    dueDate: "2024-03-20",
+    dueTime: "6:00 PM",
+    description: "Team-building activities and dinner",
+    leadName:"William Garcia",
+    dueState: 'Overdue',
     assignedToMe: 'Arpita',
     assignedByMe: 'Sahil',
   },
   {
     id: '6',
+    taskType: "Meeting",
     state: 'pending',
     taskName: 'New Project',
     ownerName: 'Alice Williams',
-    time: '2:30pm',
-    duedate: 'Overdue',
+    dueDate: "2024-03-25",
+    dueTime: "11:30 AM",
+    description: "Discuss project updates and challenges",
+    leadName:"Olivia Miller",
+    dueState: 'Overdue',
     assignedToMe: 'Carla',
     assignedByMe: 'Sofia',
   },
   {
     id: '7',
+    taskType: "Assignment",
     state: 'follow-up',
     taskName: 'Client Meeting',
     ownerName: 'Chris Davis',
-    time: '10:00am',
-    duedate: 'Upcoming',
+    dueDate: "2024-03-20",
+    dueTime: "11:35 AM",
+    description: "Prepare project documentation",
+    leadName:"James Davis",
+    dueState: 'Upcoming',
     assignedToMe: 'Ruby',
     assignedByMe: 'Roxy',
   },
   {
     id: '8',
+    taskType: "Meeting",
     state: 'in-progress',
     taskName: 'Coding Task',
     ownerName: 'Eva Brown',
-    time: '4:45pm',
-    duedate: 'Overdue',
+    dueDate: "2024-03-30",
+    dueTime: "4:15 PM",
+    description: "Discuss project updates",
+    leadName:"Benjamin Martinez ",
+    dueState: 'Overdue',
     assignedToMe: 'Dhanush',
     assignedByMe: 'Yashas',
   },
 ];
-const TaskItem = ({ state, taskName, ownerName, time }) => (
-  <View style={styles.item}>
-    <Image
-      source={checkbox}
-      style={{ width: 30, height: 30, marginRight: 90, marginTop:20 }}
-    />
-    <View style={styles.textstyle}>
-      <Text style={[styles.title, { color: '#4789e6', fontSize: 16 }]}>
-        {`${state}`}
-      </Text>
-      <Text style={[styles.subtitle, { fontWeight: 'bold' }]}>{`${taskName}`}</Text>
-      <Text style={styles.subtitle}>{`Owner: ${ownerName}`}</Text>
-      <Text style={styles.subtitle}>{`${time}`}</Text>
-    
-    </View>
-    <TouchableOpacity
-      onPress={() => console.log('Edit pressed')}
-      style={{ alignItems: 'center', justifyContent: 'center' }}
-    >
-      <Ionicons name="pencil" size={16} color="black" /> 
-    </TouchableOpacity>   
-  </View>
-);
 
 
-  // const TaskCard = () => {
-  //   const AssignedByMe='Assigned By Me';
-  //   const AssignedToMe='Assigned To Me';
-  //   const [isDropdownVisible, setDropdownVisible] = useState(false);
-  //   const [selectedTaskOption, setSelectedTaskOption] = useState('');
-  //   const [filteredData, setFilteredData] = useState(DATA);
-  //   let filteredTasks=DATA;
-  
-   
-  //   const [activeTab, setActiveTab] = useState('Today');
-  
-  //   useEffect(() => {
-  //     filterData();
-  //   }, [ activeTab]);
-
- 
-  
-  //   const filterData = (selectedTaskOption) => {
-
-  
-  //     if (selectedTaskOption == AssignedByMe) {
-  //       filteredTasks = DATA.filter((item) => item.assignedByMe =='Sofia');
-  //     } else if (selectedTaskOption == AssignedToMe) {
-  //       const currentUser = 'Carla';
-  //       filteredTasks = DATA.filter((item) => item.assignedToMe == currentUser);
-  //     }
-     
-  //     console.log("filtered task", filteredTasks);
-  
-  //     if (activeTab === 'Today') {
-  //       filteredTasks = filteredTasks.filter((item) => item.duedate === 'Today');
-  //     } else if (activeTab === 'Upcoming') {
-  //       filteredTasks = filteredTasks.filter((item) => item.duedate === 'Upcoming');  
-  //     } else if (activeTab === 'Overdue') {
-  //       filteredTasks = filteredTasks.filter((item) => item.duedate === 'Overdue');
-  //     } else if (activeTab === 'Done') {
-  //       filteredTasks = filteredTasks.filter((item) => item.state === 'completed');
-  //     }
-
-  //     setFilteredData(filteredTasks); 
-  //     console.log("filtered data",filteredData);
-  //   };
-
-  //   useEffect(() => {
-  //     console.log(selectedTaskOption);
-  //     filterData(selectedTaskOption);
-  //   }, [selectedTaskOption]);
-
-  
-  //   const renderDropdownButton = () => ( 
-  //     <TouchableOpacity
-  //       style={styles.dropdownButton}
-  //       onPress={() => setDropdownVisible(!isDropdownVisible)}
-  //     >
-  //       <Text style={styles.dropdownButtonText}>{selectedTaskOption}</Text>
-  //       <Ionicons name="caret-down" size={20} color="white" />
-  //     </TouchableOpacity>
-  //   );
 
   const TaskCard = () => {
     const AssignedByMe = 'Assigned By Me';
@@ -210,11 +162,11 @@ const TaskItem = ({ state, taskName, ownerName, time }) => (
       }
   
       if (activeTab === 'Today') {
-        tempFilteredTasks = tempFilteredTasks.filter((item) => item.duedate === 'Today');
+        tempFilteredTasks = tempFilteredTasks.filter((item) => item.dueState === 'Today');
       } else if (activeTab === 'Upcoming') {
-        tempFilteredTasks = tempFilteredTasks.filter((item) => item.duedate === 'Upcoming');
+        tempFilteredTasks = tempFilteredTasks.filter((item) => item.dueState === 'Upcoming');
       } else if (activeTab === 'Overdue') {
-        tempFilteredTasks = tempFilteredTasks.filter((item) => item.duedate === 'Overdue');
+        tempFilteredTasks = tempFilteredTasks.filter((item) => item.dueState === 'Overdue');
       } else if (activeTab === 'Done') {
         tempFilteredTasks = tempFilteredTasks.filter((item) => item.state === 'completed');
       }
@@ -303,7 +255,25 @@ const TaskItem = ({ state, taskName, ownerName, time }) => (
           {renderTab('Done')}
         </View>
   
-        <FlatList data={filteredData} renderItem={({ item }) => <TaskItem {...item} />} keyExtractor={(item) => item.id} />
+        <FlatList
+  data={filteredData}
+  renderItem={({ item }) => (
+    <TaskItem
+      ownerName={item.ownerName}                        
+      taskName={item.taskName}
+      state={item.state}
+      description={item.description}
+      taskType={item.taskType}
+      dueDate={item.dueDate}
+      dueTime={item.dueTime}
+      leadName={item.leadName}
+      
+        // Make sure to add the missing properties
+    />
+  )}
+  keyExtractor={(item) => item.id}
+/>
+
   
         {renderDropdown()}
         <TouchableOpacity style={styles.plusButton}>
