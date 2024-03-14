@@ -1,27 +1,38 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Button,Image } from 'react-native';
 import { router } from 'expo-router';
 
 //import {handleNewButtonClick} from 'react-native-elements';
-import { starTwo,starrOne } from '../assets/images';
+// import { starTwo,starrOne } from '../assets/images';
 import {profile} from '../assets/images';
 import BadgeLead from './badgeLead';
 import { FontAwesome } from '@expo/vector-icons';
+import useIdStore from '../app/leadStore';
+import { set } from 'zod';
 
-
- 
-
- 
  
 const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temperature, id }) => {
+   
     const [showSecondImage, setShowSecondImage] = useState(false);
     const[selectedStar, setSelectedStar]=useState(false);
+    const { leadId, setLeadId } = useIdStore();
+    // setLeadId(id);
+
+    // useEffect(() => {
+    //     setLeadId(id);
+    // }, [id, setLeadId]);
+    // console.log(leadId);
+    // setLeadId(id);
+
  
  
     const handleSelectStar=()=>{
         setSelectedStar(!selectedStar)
-        console.log("star selecteddddd",id)
+       
+        // setLeadId(id);
+         //console.log("star selecteddddd",leadId)
+
  
 }
  
@@ -64,25 +75,31 @@ const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temp
             temperatureBadgeColor = 'grey';
             txtColor="white";
         }
+      
     //return <Badge value={<Text>{temperature}</Text>} status={temperatureBadgeColor} badgeStyle={styles.badge} />;
     return <BadgeLead color={temperatureBadgeColor} label={temperature} textColor={txtColor} />
       };
+
+      const displayScreen = () => {
+        console.log(leadId);
+        setLeadId(id);
+       
+        router.replace(`leadDetailScreens/notes`);
+        // useIdStore((state) => state.setId(id));
+        console.log('ID set:', leadId);
+    };
  
-    // const displayScreen = () => {
-    //     router.replace(`user/${id}`);
-    // };
+
  
     const toggleSecondImage = () => {
         setShowSecondImage(!showSecondImage);
       };
-      const handleNewButtonClick = () => {
-        // logic for the 'New' button
-      };
- 
+   
       const handleFilterClick = () => {
         console.log('Filter clicked!');
       };              
  
+     
  
     return (
         <View style={{ flex: 1 }}>
@@ -97,11 +114,11 @@ const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temp
             <Text>New</Text>
           </TouchableOpacity> */}
                 </View>
-                <View  style={styles.textContainer}>
-                    <Text style={styles.title}>{`${firstName} ${lastName}`}</Text>
-                    <Text style={styles.subtitle}>{email}</Text>
-                    <Text style={styles.subtitle}>{phone}</Text>
-                    <View style={styles.badgeBox}>
+                <View onPress={displayScreen}  style={styles.textContainer}>
+                    <Text  onPress={displayScreen} style={styles.title}>{`${firstName} ${lastName}`}</Text>
+                    <Text onPress={displayScreen} style={styles.subtitle}>{email}</Text>
+                    <Text  onPress={displayScreen} style={styles.subtitle}>{phone}</Text>
+                    <View onPress={displayScreen} style={styles.badgeBox}>
                     <View>
                     {renderBadge()}
                     </View>
@@ -111,13 +128,13 @@ const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temp
                     </View>
                 </View>
                 <View style={styles.badgeContainer}>
-                <TouchableOpacity onPress={handleSelectStar}>
+                {/* <TouchableOpacity onPress={handleSelectStar}>
             <Image
               style={styles.image}
               source={selectedStar ? starTwo : starrOne}
               resizeMode="contain"
             />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
              
                 </View>
                 {/* <TouchableOpacity onPress={handleFilterClick} style={styles.filterIcon}>

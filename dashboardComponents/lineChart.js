@@ -9,7 +9,7 @@ const ChartLine = () => {
         backgroundGradientFromOpacity: 0,
         backgroundGradientTo: "rgba(0, 0, 0, 0)",
         backgroundGradientToOpacity: 0,
-        color: (opacity = 1) => `rgba(0, 0, 255, ${opacity})`, // Change line color to blue
+        color: (opacity = 1) => `#023B5E`, // Change line color to blue
         strokeWidth: 2,
         barPercentage: 0.5,
         useShadowColorFromDataset: false,
@@ -18,7 +18,7 @@ const ChartLine = () => {
             fontSize: 12
         },
         propsForDots: {
-            fill: 'blue' // Change dot color to blue
+            fill: '#023B5E' // Change dot color to blue
         }
     };
  
@@ -27,7 +27,7 @@ const ChartLine = () => {
         datasets: [
             {
                 data: [20, 45, 28, 80, 99, 43],
-                color: (opacity = 1) => `rgba(0, 0, 255, ${opacity})`, // Change line color to blue
+                color: (opacity = 1) => `#023B5E`, // Change line color to blue
                 strokeWidth: 2
             }
         ],

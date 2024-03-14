@@ -375,8 +375,10 @@ const onSelectRadio = (item) => {
                 
 
                 {/* Repeat the same structure for other sections (Company Information and Contact Information) */}
-
-                <Button title="Submit" onPress={onSubmit} />
+                <View style={{backgroundColor:'#023B5E'}}> 
+                
+                <Button  title="Submit" onPress={onSubmit}  color="#023B5E"  />
+                </View>
             </View>
         </ScrollView>
     </View>
@@ -390,7 +392,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingTop: 20,
         paddingBottom:15,
-        backgroundColor: '#D6DBDF'
+        backgroundColor: '#d1e0ed'
     },
     card: {
         backgroundColor: '#FFFFFF', // White card background

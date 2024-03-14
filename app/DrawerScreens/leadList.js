@@ -5,7 +5,7 @@ import LeadItem from '../../leadComponents/leadCard';
 import { router } from 'expo-router';
 import { TouchableOpacity } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import {
   SafeAreaView,
   View,
@@ -196,9 +196,11 @@ const LeadList = () => {
     { key: 'starredLeads', title: 'Starred Leads' },
    
   ]);
-  const goToLeadCreate=()=>[
-    router.replace('form/general')
-  ]
+  const goToLeadCreate=()=>{
+    console.log("inside navigation")
+    router.navigate('/DrawerScreens/form/general');
+    console.log("after natigation")
+  }
   const [index, setIndex] = useState(0);
   const [starredLeads, setStarredLeads] = useState([]);
  
@@ -212,24 +214,7 @@ const LeadList = () => {
  
 
  
-  const renderScene = ({ route }) => {
-    switch (route.key) {
-      case 'allLeads':
-        return (
-          <View sty>
-            <FlatList
-              data={leadData}
-              renderItem={renderItem}
-              keyExtractor={(item, index) => index.toString()}
-            />
-          </View>
-        );
-     
-      default:
-        return null;
-    }
-  };
- 
+
   const renderItem = ({ item }) => (
     <TouchableOpacity>
     <LeadItem
@@ -248,6 +233,10 @@ const LeadList = () => {
  
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+          <Text style={styles.myTasksText}>Leads</Text>
+     
+        </View>
      {/* <Button title='task' onPress={goToTask}></Button> */}
     
       {/* <Header
@@ -259,7 +248,8 @@ const LeadList = () => {
     <TouchableOpacity onPress={handleFilterClick} style={styles.filterIcon}>
           <FontAwesome name="filter" size={24} color="black" />
         </TouchableOpacity> */}
-      <TabView
+       
+      {/* <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}
         onIndexChange={setIndex}
@@ -271,9 +261,20 @@ const LeadList = () => {
           />
         )}  
       />
-       <TouchableOpacity style={styles.plusButton} onPress={goToLeadCreate}>
-        <FontAwesome name="plus" size={24} color="white" />
-      </TouchableOpacity>
+       */}
+       <FlatList
+              data={leadData}
+              renderItem={renderItem}
+              keyExtractor={(item, index) => index.toString()}
+            />
+     <View>
+  <TouchableOpacity style={styles.plusButton} onPress={goToLeadCreate}>
+   
+    <Ionicons name="add" size={24} color="white" onPress={goToLeadCreate}/>
+   
+  </TouchableOpacity>
+</View>
+
     </View>
   );
 };
@@ -291,11 +292,29 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 20,
     right: 20,
-    backgroundColor: '#4789e6',
+    backgroundColor: '#023B5E',
     padding: 15,
     borderRadius: 30,
     elevation: 4,
   },
+header: {
+  backgroundColor: '#023B5E',
+  padding: 15,
+  alignItems: 'center',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+},
+headerText: {
+  color: 'white',
+  fontSize: 20,
+  fontWeight: 'bold',
+  marginRight:280,
+},
+myTasksText: {
+  color: 'white',
+  fontSize: 16,
+  marginLeft: 5,
+},
  
 });
  

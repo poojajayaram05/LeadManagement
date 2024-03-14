@@ -303,7 +303,7 @@ const renderFormElement = (element) => {
 
             {/* Repeat the same structure for other sections (Company Information and Contact Information) */}
 
-            <Button title="Submit" onPress={onSubmit} />
+            <Button title="Submit" onPress={onSubmit} color='#023B5E' />
         </View>
     </ScrollView>
 </View>
@@ -317,7 +317,8 @@ cardContainer: {
     paddingHorizontal: 20,
     paddingTop: 20,
     paddingBottom:15,
-    backgroundColor: '#D6DBDF'
+     
+        backgroundColor: '#d1e0ed'
 },
 card: {
     backgroundColor: '#FFFFFF', // White card background
