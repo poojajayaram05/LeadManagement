@@ -137,7 +137,7 @@ export const formData = {
           }
         ]
   }
-const TaskDetailsPage = () => {
+const MarkAsComplete = () => {
   const task = formData.elements[0];
   const [completedDate, setCompletedDate] = useState(task.completedDate || "");
  
@@ -294,4 +294,4 @@ const styles = StyleSheet.create({
   },
 });
  
-export default TaskDetailsPage;
+export default MarkAsComplete;
