@@ -1,21 +1,33 @@
+
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Button, TextInput, Alert } from "react-native";
+import { View, Text, StyleSheet, Button, TextInput, Alert, TouchableOpacity } from "react-native";
 import { formData } from './jsonData';
- 
+import { router } from 'expo-router';
+
 const TaskDetailsPage = () => {
   const task = formData.elements[0];
   const [completedDate, setCompletedDate] = useState(task.completedDate || "");
- 
+
   const handleCompletedDateChange = (date) => {
     setCompletedDate(date);
   };
- 
+
   const handleSubmit = () => {
     Alert.alert("Task Completed");
   };
- 
+
+  const handleTopButtonClick = () => {
+    router.navigate('/Task/task');
+  };
+
   return (
     <View style={styles.container}>
+      <View style={styles.topButtonContainer}>
+        <TouchableOpacity style={styles.topButton} onPress={handleTopButtonClick}>
+          <Text style={styles.topButtonText}>Back</Text>
+        </TouchableOpacity>
+      </View>
+
       <View style={styles.section}>
         <View style={styles.detailBox}>
           <Text style={[styles.title, { color: "black" }]}>{task.title}</Text>
@@ -31,7 +43,7 @@ const TaskDetailsPage = () => {
         </View>
         <View style={styles.horizontalLine} />
       </View>
- 
+
       <View style={styles.formSection}>
         <Text style={styles.formLabel}>Completed Task Date</Text>
         <TextInput
@@ -40,7 +52,7 @@ const TaskDetailsPage = () => {
           value={completedDate}
           placeholder="MM/DD/YYYY"
         />
- 
+
         <Text style={styles.formLabel}>Lead Notes</Text>
         <TextInput
           style={styles.textArea}
@@ -48,19 +60,15 @@ const TaskDetailsPage = () => {
           numberOfLines={4}
           placeholder="Enter lead notes..."
         />
- 
-        <View style={styles.button}>
-        <Button
-          title="Submit"
-          onPress={handleSubmit}
-          color="black"
-        />
-        </View>
+
+        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+          <Text style={styles.buttonText}>Submit</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
- 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -126,7 +134,31 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: "lightblue",
     width: "100%",
+    paddingVertical: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  buttonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'black',
+  },
+  topButtonContainer: {
+    alignSelf: 'flex-end',
+    marginVertical: 10,
+    marginRight: 20,
+  },
+  topButton: {
+    backgroundColor: "lightgrey",
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    borderRadius: 5,
+  },
+  topButtonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'black',
   },
 });
- 
+
 export default TaskDetailsPage;
