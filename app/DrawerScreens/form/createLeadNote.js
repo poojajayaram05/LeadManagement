@@ -270,11 +270,11 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: 'absolute',
-    top: 20,
-    right: 20,
+    top: 40,
+    right: 40,
   },
   backButtonText: {
-    fontSize: 16,
+    fontSize: 12,
     color: '#007AFF', 
   },
   section: {

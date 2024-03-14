@@ -72,15 +72,10 @@ export default function Layout() {
     name='form/general'
     options={{
       drawerLabel:'Add a lead',
-      
-     
       drawerIcon:({}) =>(
         <Ionicons name='person' size={32} color='black' /> 
-        
-
       )
-        
-    
+
     }}
     
     ></Drawer.Screen>
@@ -103,6 +98,7 @@ export default function Layout() {
     options={{
       drawerLabel:'Leads',
       headerTitle:'Leads',
+      headerShown:false,
       drawerIcon:({}) =>(
         <Ionicons name='apps-sharp' size={32} color='black' /> 
         
@@ -117,6 +113,8 @@ export default function Layout() {
     options={{
       drawerLabel:'Tasks',
       headerTitle:'Tasks',
+      headerShown:false,
+
       drawerIcon:({}) =>(
         <FontAwesome name='tasks' size={32} color='black' /> 
         
@@ -131,8 +129,9 @@ export default function Layout() {
     options={{
       drawerLabel:'Lead Notes',
       headerTitle:'Lead Notes',
+      headerShown:false,
       drawerIcon:({}) =>(
-        <FontAwesome name='note' size={32} color='black' /> 
+        <FontAwesome name='add' size={32} color='black' /> 
         
 
       )

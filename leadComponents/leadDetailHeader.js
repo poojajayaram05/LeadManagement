@@ -5,6 +5,7 @@ import { Linking } from 'react-native';
 import * as DocumentPicker from 'expo-document-picker';
 import { leadData } from '../customComponents/formData';
 import { router, useLocalSearchParams } from 'expo-router';
+import useIdStore from '../app/leadStore';
 // import LeadInfoPage from './detailsTabs/info';
  
 const handleCall = () => {
@@ -34,10 +35,11 @@ const handleAttachment = async () => {
 };
  
 const LeadDetail = () => {
-  const params = useLocalSearchParams();
-  const { id } = params;
+  // const params = useLocalSearchParams();
+  // const { id } = params;
  
-  const lead = leadData.find((lead) => lead.id === id);
+  const leadId = useIdStore((state) => state.leadId); 
+  const lead = leadData.find((lead) => lead.id === leadId);
   const { firstname, lastname, phone } = lead || {};
  
   const handleBack = () => {

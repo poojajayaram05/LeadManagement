@@ -31,12 +31,15 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import FloatingButton from '../../customComponents/floatingButton';
 import { router } from 'expo-router'
+import useIdStore from '../leadStore';
 
 export default function Notes() {
   const goToLeadNote = () => {
     router.navigate(`/DrawerScreens/form/createLeadNote`);
   };
 
+  const leadId = useIdStore((state) => state.leadId); 
+console.log('ID retrieved:', leadId);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Notes</Text>
@@ -45,7 +48,7 @@ export default function Notes() {
           <Text>Lead is searching for high value property</Text>
         </View>
         <View style={styles.infoContainer}>
-          <Text style={styles.infoText}>Added by : Lee James on 13-03-2024</Text>
+          <Text style={styles.infoText}>Added by : Lee James on 13-03-2024 {leadId}</Text>
         </View>
       </View>
       <View style={styles.boxContainer}>

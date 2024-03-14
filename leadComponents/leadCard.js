@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Button,Image } from 'react-native';
 import { router } from 'expo-router';
 
@@ -8,15 +8,31 @@ import { starTwo,starrOne } from '../assets/images';
 import {profile} from '../assets/images';
 import BadgeLead from './badgeLead';
 import { FontAwesome } from '@expo/vector-icons';
+import useIdStore from '../app/leadStore';
+import { set } from 'zod';
+
  
 const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temperature, id }) => {
+   
     const [showSecondImage, setShowSecondImage] = useState(false);
     const[selectedStar, setSelectedStar]=useState(false);
+    const { leadId, setLeadId } = useIdStore();
+    // setLeadId(id);
+
+    // useEffect(() => {
+    //     setLeadId(id);
+    // }, [id, setLeadId]);
+    // console.log(leadId);
+    // setLeadId(id);
+
  
  
     const handleSelectStar=()=>{
         setSelectedStar(!selectedStar)
-        console.log("star selecteddddd",id)
+       
+        // setLeadId(id);
+         //console.log("star selecteddddd",leadId)
+
  
 }
  
@@ -59,25 +75,31 @@ const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temp
             temperatureBadgeColor = 'grey';
             txtColor="white";
         }
+      
     //return <Badge value={<Text>{temperature}</Text>} status={temperatureBadgeColor} badgeStyle={styles.badge} />;
     return <BadgeLead color={temperatureBadgeColor} label={temperature} textColor={txtColor} />
       };
- 
-    const displayScreen = () => {
+
+      const displayScreen = () => {
+        console.log(leadId);
+        setLeadId(id);
+       
         router.replace(`leadDetailScreens/notes`);
+        // useIdStore((state) => state.setId(id));
+        console.log('ID set:', leadId);
     };
+ 
+
  
     const toggleSecondImage = () => {
         setShowSecondImage(!showSecondImage);
       };
-      const handleNewButtonClick = () => {
-        // logic for the 'New' button
-      };
- 
+   
       const handleFilterClick = () => {
         console.log('Filter clicked!');
       };              
  
+     
  
     return (
         <View style={{ flex: 1 }}>
