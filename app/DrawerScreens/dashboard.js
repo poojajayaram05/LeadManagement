@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   smallCardGroupContainer: {
     justifyContent: 'space-around',
     // backgroundColor: '#ADD8E6',
-    backgroundColor: '#d3e5f5',
+    backgroundColor: '#023B5E',
     // backgroundColor:'black',
     borderRadius: 10,
     marginHorizontal: 5,

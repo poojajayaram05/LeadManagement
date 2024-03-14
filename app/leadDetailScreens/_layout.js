@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     },
     topContainer: {
       flex: 2,
-      backgroundColor: 'green',
+      backgroundColor: '#023B5E',
       maxHeight: 50,
     },
     bottomContainer: {

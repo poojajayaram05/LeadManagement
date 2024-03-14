@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
  
   },
   selectedTab: {
-    backgroundColor: 'grey',
+    backgroundColor: '#023B5E',
   },
   tabText: {
     fontSize: DimensionUtils.fontPixel(16),

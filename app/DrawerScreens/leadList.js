@@ -214,24 +214,7 @@ const LeadList = () => {
  
 
  
-  const renderScene = ({ route }) => {
-    switch (route.key) {
-      case 'allLeads':
-        return (
-          <View sty>
-            <FlatList
-              data={leadData}
-              renderItem={renderItem}
-              keyExtractor={(item, index) => index.toString()}
-            />
-          </View>
-        );
-     
-      default:
-        return null;
-    }
-  };
- 
+
   const renderItem = ({ item }) => (
     <TouchableOpacity>
     <LeadItem
@@ -250,6 +233,10 @@ const LeadList = () => {
  
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+          <Text style={styles.myTasksText}>Leads</Text>
+     
+        </View>
      {/* <Button title='task' onPress={goToTask}></Button> */}
     
       {/* <Header
@@ -262,7 +249,7 @@ const LeadList = () => {
           <FontAwesome name="filter" size={24} color="black" />
         </TouchableOpacity> */}
        
-      <TabView
+      {/* <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}
         onIndexChange={setIndex}
@@ -274,7 +261,12 @@ const LeadList = () => {
           />
         )}  
       />
-      
+       */}
+       <FlatList
+              data={leadData}
+              renderItem={renderItem}
+              keyExtractor={(item, index) => index.toString()}
+            />
      <View>
   <TouchableOpacity style={styles.plusButton} onPress={goToLeadCreate}>
    
@@ -300,11 +292,29 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 20,
     right: 20,
-    backgroundColor: '#4789e6',
+    backgroundColor: '#023B5E',
     padding: 15,
     borderRadius: 30,
     elevation: 4,
   },
+header: {
+  backgroundColor: '#023B5E',
+  padding: 15,
+  alignItems: 'center',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+},
+headerText: {
+  color: 'white',
+  fontSize: 20,
+  fontWeight: 'bold',
+  marginRight:280,
+},
+myTasksText: {
+  color: 'white',
+  fontSize: 16,
+  marginLeft: 5,
+},
  
 });
  

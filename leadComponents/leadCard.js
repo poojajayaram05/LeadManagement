@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, Button,Image } from 'react-native';
 import { router } from 'expo-router';
 
 //import {handleNewButtonClick} from 'react-native-elements';
-import { starTwo,starrOne } from '../assets/images';
+// import { starTwo,starrOne } from '../assets/images';
 import {profile} from '../assets/images';
 import BadgeLead from './badgeLead';
 import { FontAwesome } from '@expo/vector-icons';
@@ -128,13 +128,13 @@ const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temp
                     </View>
                 </View>
                 <View style={styles.badgeContainer}>
-                <TouchableOpacity onPress={handleSelectStar}>
+                {/* <TouchableOpacity onPress={handleSelectStar}>
             <Image
               style={styles.image}
               source={selectedStar ? starTwo : starrOne}
               resizeMode="contain"
             />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
              
                 </View>
                 {/* <TouchableOpacity onPress={handleFilterClick} style={styles.filterIcon}>

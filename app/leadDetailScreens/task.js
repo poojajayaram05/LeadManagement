@@ -1,8 +1,8 @@
-
 import React from 'react';
 import { View, Text, FlatList, StyleSheet, ScrollView } from 'react-native';
-import FloatingButton from '../../customComponents/floatingButton'
- 
+import FloatingButton from '../../customComponents/floatingButton';
+import { router } from 'expo-router';
+
 export default function Task() {
   const data = [
     { id: '1', name: 'Task 1', description: 'Discuss project details with client', status: 'Working' },
@@ -11,6 +11,10 @@ export default function Task() {
     { id: '4', name: 'Task 4', description: 'Open new branch', status: 'Activated' },
   ];
  
+  const goToCreateTask = () => {
+    router.navigate(`/DrawerScreens/form/createTask`);
+  };
+
   const renderItem = ({ item }) => (
     <View>
       <ScrollView>
@@ -32,7 +36,7 @@ export default function Task() {
           keyExtractor={(item) => item.id}
         />
       </View>
-      <FloatingButton />
+      <FloatingButton onPress={goToCreateTask} />
     </View>
   );
 }

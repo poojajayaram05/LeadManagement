@@ -241,7 +241,7 @@ export default function CreateLeadNote({ navigation }) {
               </View>
             ))}
           </View>
-          <Button title="Submit" onPress={onSubmit} />
+          <Button title="Submit" onPress={onSubmit} color='#023B5E' />
         </View>
       </ScrollView>
       <TouchableOpacity style={styles.backButton} onPress={goToScreen}>
@@ -257,7 +257,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 20,
     paddingBottom: 15,
-    backgroundColor: '#D6DBDF',
+    backgroundColor: '#d1e0ed',
   },
   card: {
     backgroundColor: '#FFFFFF', 
