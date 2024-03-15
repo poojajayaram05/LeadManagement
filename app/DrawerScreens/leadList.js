@@ -198,7 +198,7 @@ const LeadList = () => {
   ]);
   const goToLeadCreate=()=>{
     console.log("inside navigation")
-    router.navigate('/DrawerScreens/form/general');
+    router.navigate('/formComponents/createLead');
     console.log("after natigation")
   }
   const [index, setIndex] = useState(0);

@@ -3,19 +3,19 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import React, {useState} from 'react'
 //mport { taskFormData } from '../../../customComponents/formData';
 import Collapsible from 'react-native-collapsible';
-import Dropdown from '../../../customComponents/customDropdown';
+import Dropdown from '../../customComponents/customDropdown';
 import { isEnabled } from 'react-native/Libraries/Performance/Systrace';
-import { DropdownIcon, DropupIcon } from '../../../assets/images';
-import { CustomInput } from '../../../customComponents/customInput';
+import { DropdownIcon, DropupIcon } from '../../assets/images';
+import { CustomInput } from '../../customComponents/customInput';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import { date } from 'zod';
 import { Ionicons } from '@expo/vector-icons';
-import MultilineTextInput from '../../../customComponents/customMultilineInput';
-import CustomMultipleSelect from '../../../customComponents/cutsomMultipleSelect';
-import { taskFormData } from '../../../customComponents/formData';
-import LDropdown from '../../../customComponents/customLeadDropdown';
-import { meetingData } from '../../../customComponents/formData';
-
+import MultilineTextInput from '../../customComponents/customMultilineInput';
+import CustomMultipleSelect from '../../customComponents/cutsomMultipleSelect';
+import { taskFormData } from '../../customComponents/formData';
+import LDropdown from '../../customComponents/customLeadDropdown';
+import { meetingData } from '../../customComponents/formData';
+import GestureHandlerRootView from 'react-native-gesture-handler';
 export default function CreateMeeting() {
   // const { control, handleSubmit, formState: { errors } } = useForm();
   const [isSection1Collapsed, setIsSection1Collapsed] = useState(false);
@@ -255,6 +255,7 @@ const renderFormElement = (element) => {
   return (
     <View style={styles.cardContainer}>
     <ScrollView>
+    <GestureHandlerRootView>
         <View style={styles.card}>
             <View style={styles.section}>
                 <TouchableOpacity onPress={() => toggleSection('section1')}>
@@ -300,6 +301,8 @@ const renderFormElement = (element) => {
 
             <Button title="Submit" onPress={onSubmit} />
         </View>
+        </GestureHandlerRootView>
+        
     </ScrollView>
 </View>
 

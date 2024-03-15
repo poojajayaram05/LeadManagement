@@ -31,18 +31,7 @@ export default function Layout() {
    
    <Drawer drawerContent={CustomDrawerContent} screenOptions={{drawerActiveTintColor:'#fff', drawerActiveBackgroundColor:'#023B5E'}}>
     
-    <Drawer.Screen
-    name='index'
-    options={{
-      drawerLabel:'Home',
-     
-      drawerIcon:({}) =>(
-        <Ionicons name='home' size={32} color='black' /> 
-      )
-
-    }}
-    
-    ></Drawer.Screen>
+ 
     <Drawer.Screen
     name='dashboard'
     options={{
@@ -56,29 +45,8 @@ export default function Layout() {
     }}
     
     ></Drawer.Screen>
-        <Drawer.Screen
-    name='form/createTask'
-    options={{
-      drawerLabel:'Add a task',
+       
     
-      drawerIcon:({}) =>(
-        <Ionicons name='add-circle' size={32} color='black' /> 
-      )
-
-    }}
-    
-    ></Drawer.Screen>
-     <Drawer.Screen
-    name='form/general'
-    options={{
-      drawerLabel:'Add a lead',
-      drawerIcon:({}) =>(
-        <Ionicons name='person' size={32} color='black' /> 
-      )
-
-    }}
-    
-    ></Drawer.Screen>
     <Drawer.Screen
     name='menu'
     options={{
@@ -124,21 +92,7 @@ export default function Layout() {
 
     
     ></Drawer.Screen>
-     <Drawer.Screen
-    name='form/createLeadNote'
-    options={{
-      drawerLabel:'Lead Notes',
-      headerTitle:'Lead Notes',
-      headerShown:false,
-      drawerIcon:({}) =>(
-        <FontAwesome name='add' size={32} color='black' /> 
-        
-
-      )
-    }}
-
     
-    ></Drawer.Screen>
    </Drawer>
 </GestureHandlerRootView>
 </>

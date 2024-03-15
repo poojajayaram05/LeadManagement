@@ -1,15 +1,16 @@
 import { View, Text, Button, TextInput, StyleSheet, Select, ScrollView, Image} from 'react-native'
 import React, { useState } from 'react'
 import { useForm, Controller } from 'react-hook-form';
-import { formData } from '../../../customComponents/formData'
-import { CustomInput } from '../../../customComponents/customInput';
+import { formData } from '../../customComponents/formData'
+import { CustomInput } from '../../customComponents/customInput';
 import Collapsible from 'react-native-collapsible';
 import { TouchableOpacity } from 'react-native';
-import Dropdown from '../../../customComponents/customDropdown';
-import RadioButton from '../../../customComponents/customRadio';
+import Dropdown from '../../customComponents/customDropdown';
+import RadioButton from '../../customComponents/customRadio';
 //import { isEnabled } from 'react-native/Libraries/Performance/Systrace';
-import { DropdownIcon, DropupIcon } from '../../../assets/images';
+import { DropdownIcon, DropupIcon } from '../../assets/images';
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 
 // Form component
 export default function General() {
@@ -46,6 +47,11 @@ const onSelectRadio = (item) => {
     setradioSelect(item.label);
     setFormValues(prevFormValues => ({ ...prevFormValues, radioSelect: item})); 
     console.log('Selected value:', radioSelect);
+}
+
+const goBack=()=>{
+    router.navigate('/DrawerScreens/leadList')
+    
 }
       
 
@@ -320,6 +326,9 @@ const onSelectRadio = (item) => {
         <View style={styles.cardContainer}>
         <ScrollView>
             <View style={styles.card}>
+                <View style={styles.buttonContainer}>
+                <Button title='Back' style={styles.backButton} color='#023B5E' onPress={goBack}></Button>
+                </View>
                 <View style={styles.section}>
                     <TouchableOpacity onPress={() => toggleSection('section1')}>
                         <Text style={styles.sectionTitle}>Personal Information</Text>
@@ -375,9 +384,8 @@ const onSelectRadio = (item) => {
                 
 
                 {/* Repeat the same structure for other sections (Company Information and Contact Information) */}
-                <View style={{backgroundColor:'#023B5E'}}> 
-                
-                <Button  title="Submit" onPress={onSubmit}  color="#023B5E"  />
+                <View style={styles.buttonContainer}>
+                <Button title='Back' style={styles.backButton} color='#023B5E' onPress={goBack}></Button>
                 </View>
             </View>
         </ScrollView>
@@ -409,6 +417,13 @@ const styles = StyleSheet.create({
         paddingTop: 20,
         backgroundColor:'#cad5e8'
     },
+    buttonContainer:{
+    flex: 1,
+    flexDirection: 'row', // Align items horizontally
+    alignItems: 'flex-end', // Align items to the start (left)
+    justifyContent: 'flex-end', // Align items to the start (left)
+    padding: 10,
+    },
     section: {
         marginBottom: 20,
         
@@ -425,6 +440,12 @@ const styles = StyleSheet.create({
         marginBottom:8
 
     },
+    backButton: {
+        alignSelf: 'flex-end', // Align button to the start (left)
+        marginRight: 'auto',
+        color:'#023B5E'
+         // Push button to the leftmost corner
+      },
     dropdownIcon: {
         width: 20,
         height: 20,

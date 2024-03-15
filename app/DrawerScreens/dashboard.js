@@ -5,13 +5,14 @@ import SmallCard from '../../dashboardComponents/smallCard';
 import Scrollcard from '../../dashboardComponents/scrollCard';
 import Bigcard from '../../dashboardComponents/bigCard';
 import ChartLine from '../../dashboardComponents/lineChart';
+import TabMenu from '../tabsMenu';
  
 const total_leads = 0;
 const total_calls = 1;
 const total_activites = 2;
 const sales = 3;
  
-const App = () => {
+const Dashboard = () => {
   const [selectedCard, setSelectedCard] = useState(total_leads);
  
   const handleCardPress = (cardIndex) => {
@@ -95,6 +96,7 @@ const App = () => {
           </View>
         )}
       </ScrollView>
+ 
     </View>
   );
 };
@@ -167,4 +169,4 @@ const styles = StyleSheet.create({
   },
 });
  
-export default App;
+export default Dashboard;

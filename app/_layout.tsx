@@ -21,10 +21,15 @@
 //   // Catch any errors thrown by the Layout component.
 //   ErrorBoundary,
 // } from 'expo-router';
+import TabMenu from './tabsMenu';
+import { View,Text } from 'react-native';
 
 
 // export default function Layout() {
 //   return (
+//     <View><Text>hello</Text></View>
+//     )
+    
 //     // <Drawer/>
 //    <>
 //     <GestureHandlerRootView style={{ flex: 1 }}>
@@ -130,7 +135,7 @@
 // </>
 
    
-//   );
+  
 // }
 
 // import { Tabs } from "expo-router";

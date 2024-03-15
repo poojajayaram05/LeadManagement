@@ -35,7 +35,7 @@ import useIdStore from '../leadStore';
 
 export default function Notes() {
   const goToLeadNote = () => {
-    router.navigate(`/DrawerScreens/form/createLeadNote`);
+    router.navigate(`/formComponents/createLeadNote`);
   };
 
   const leadId = useIdStore((state) => state.leadId); 

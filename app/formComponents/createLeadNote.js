@@ -170,10 +170,10 @@
 
 import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { leadNoteData } from '../../../customComponents/formData';
-import { CustomInput } from '../../../customComponents/customInput';
-import Dropdown from '../../../customComponents/customDropdown';
-import MultilineTextInput from '../../../customComponents/customMultilineInput';
+import { leadNoteData } from '../../customComponents/formData';
+import { CustomInput } from '../../customComponents/customInput';
+import Dropdown from '../../customComponents/customDropdown';
+import MultilineTextInput from '../../customComponents/customMultilineInput';
 import { router } from 'expo-router';
 
 export default function CreateLeadNote({ navigation }) {
@@ -194,6 +194,9 @@ export default function CreateLeadNote({ navigation }) {
   const goToScreen=()=>{
    router.navigate('leadDetailScreens/notes')
   };
+  const goBack=()=>{
+   router.replace('leadDetailScreens/notes')
+  }
 
   const onSubmit = () => {
     
@@ -244,9 +247,9 @@ export default function CreateLeadNote({ navigation }) {
           <Button title="Submit" onPress={onSubmit} color='#023B5E' />
         </View>
       </ScrollView>
-      <TouchableOpacity style={styles.backButton} onPress={goToScreen}>
-        <Text style={styles.backButtonText}>Back</Text>
-      </TouchableOpacity>
+      <View style={styles.buttonContainer}>
+                <Button title='Back' style={styles.backButton} color='#023B5E' onPress={goBack}></Button>
+                </View>
     </View>
   );
 }
@@ -259,6 +262,12 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     backgroundColor: '#d1e0ed',
   },
+  backButton: {
+    alignSelf: 'flex-end', // Align button to the start (left)
+    marginRight: 'auto',
+    color:'#023B5E'
+     // Push button to the leftmost corner
+  },
   card: {
     backgroundColor: '#FFFFFF', 
     borderRadius: 10,
@@ -268,11 +277,13 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 5, 
   },
-  backButton: {
-    position: 'absolute',
-    top: 40,
-    right: 40,
-  },
+  buttonContainer:{
+    flex: 1,
+    flexDirection: 'row', // Align items horizontally
+    alignItems: 'flex-end', // Align items to the start (left)
+    justifyContent: 'flex-end', // Align items to the start (left)
+    padding: 10,
+    },
   backButtonText: {
     fontSize: 12,
     color: '#007AFF', 
@@ -283,6 +294,13 @@ const styles = StyleSheet.create({
   inputContainer: {
     marginBottom: 8,
   },
+  buttonContainer:{
+    flex: 1,
+    flexDirection: 'row', // Align items horizontally
+    alignItems: 'flex-end', // Align items to the start (left)
+    justifyContent: 'flex-end', // Align items to the start (left)
+    padding: 10,
+    },
   label: {
     marginBottom: 3,
     fontSize: 12,

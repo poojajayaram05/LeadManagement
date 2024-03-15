@@ -25,7 +25,7 @@ export default function AppLayout() {
       </View>
       <TabComponent tabNames={tabNames} tabContent={tabContent}/>
       </View>
-      <View style={styles.bottomContainer}>
+   
         {/* <Tabs onTabPress={tab => setSelectedTab(tab)}>
           <Stack.Screen
             name="info"
@@ -53,7 +53,7 @@ export default function AppLayout() {
             }}
           />
         </Tabs> */}
-      </View>
+      
     </View>
   );
 }
@@ -67,7 +67,5 @@ const styles = StyleSheet.create({
       backgroundColor: '#023B5E',
       maxHeight: 50,
     },
-    bottomContainer: {
-      flex: 2,
-    },
+
   });

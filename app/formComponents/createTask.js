@@ -1,20 +1,21 @@
 import { View, Text, StyleSheet, ScrollView, Image, Button, Pressable } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { GestureHandlerRootView, TouchableOpacity } from 'react-native-gesture-handler';
 import React, {useState} from 'react'
 //mport { taskFormData } from '../../../customComponents/formData';
 import Collapsible from 'react-native-collapsible';
-import Dropdown from '../../../customComponents/customDropdown';
+import Dropdown from '../../customComponents/customDropdown';
 import { isEnabled } from 'react-native/Libraries/Performance/Systrace';
-import { DropdownIcon, DropupIcon } from '../../../assets/images';
-import { CustomInput } from '../../../customComponents/customInput';
+import { DropdownIcon, DropupIcon } from '../../assets/images';
+import { CustomInput } from '../../customComponents/customInput';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import { date } from 'zod';
 import { Ionicons } from '@expo/vector-icons';
-import MultilineTextInput from '../../../customComponents/customMultilineInput';
-import CustomMultipleSelect from '../../../customComponents/cutsomMultipleSelect';
-import { taskFormData } from '../../../customComponents/formData';
-import { leadData } from '../../../customComponents/formData';
-import LDropdown from '../../../customComponents/customLeadDropdown';
+import MultilineTextInput from '../../customComponents/customMultilineInput';
+import CustomMultipleSelect from '../../customComponents/cutsomMultipleSelect';
+import { taskFormData } from '../../customComponents/formData';
+import { leadData } from '../../customComponents/formData';
+import LDropdown from '../../customComponents/customLeadDropdown';
+import { router } from 'expo-router';
 
 export default function CreateTask() {
   // const { control, handleSubmit, formState: { errors } } = useForm();
@@ -61,6 +62,10 @@ const handleSelectTime = (time) => {
   console.log('Selected Date:', time);
   setSelectedTime(time);
 };
+
+const goBack=()=>{
+  router.navigate('/DrawerScreens/taskList');
+}
 
 const onSubmit = async () => {
 
@@ -260,7 +265,11 @@ const renderFormElement = (element) => {
   return (
     <View style={styles.cardContainer}>
     <ScrollView>
+      <GestureHandlerRootView>
         <View style={styles.card}>
+        <View style={styles.buttonContainer}>
+                <Button title='Back' style={styles.backButton} color='#023B5E' onPress={goBack}></Button>
+                </View>
             <View style={styles.section}>
                 <TouchableOpacity onPress={() => toggleSection('section1')}>
                     <Text style={styles.sectionTitle}>Task Information</Text>
@@ -305,6 +314,7 @@ const renderFormElement = (element) => {
 
             <Button title="Submit" onPress={onSubmit} color='#023B5E' />
         </View>
+        </GestureHandlerRootView>
     </ScrollView>
 </View>
 
@@ -351,6 +361,19 @@ inputContainer: {
     marginBottom:8
 
 },
+buttonContainer:{
+  flex: 1,
+  flexDirection: 'row', // Align items horizontally
+  alignItems: 'flex-end', // Align items to the start (left)
+  justifyContent: 'flex-end', // Align items to the start (left)
+  padding: 10,
+  },
+  backButton: {
+    alignSelf: 'flex-end', // Align button to the start (left)
+    marginRight: 'auto',
+    color:'#023B5E'
+     // Push button to the leftmost corner
+  },
 dropdownIcon: {
     width: 20,
     height: 20,
