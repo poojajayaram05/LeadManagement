@@ -132,13 +132,13 @@
 
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, TouchableWithoutFeedback, ScrollView } from 'react-native';
-import DefaultHeader from '../../customComponents/header';
+import DefaultHeader from './header';
 import { MdOutlineDashboard } from "react-icons/md";
-import { Dashboard } from '../../assets/images';
-import {Profile} from '../../assets/images';
-import { Calender} from '../../assets/images';
-import { Lead } from '../../assets/images';
-import { profile, Deals, Companies, Contacts,Tasks,Feeds,Reports } from '../../assets/images';
+import { Dashboard } from '../assets/images';
+import {Profile} from '../assets/images';
+import { Calender} from '../assets/images';
+import { Lead } from '../assets/images';
+import { profile, Deals, Companies, Contacts,Tasks,Feeds,Reports } from '../assets/images';
 
 
 const MainPage = () => {

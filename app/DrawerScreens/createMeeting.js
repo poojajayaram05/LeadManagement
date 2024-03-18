@@ -16,6 +16,10 @@ import { taskFormData } from '../../customComponents/formData';
 import LDropdown from '../../customComponents/customLeadDropdown';
 import { meetingData } from '../../customComponents/formData';
 import GestureHandlerRootView from 'react-native-gesture-handler';
+import {TabMenu} from '../tabsMenu';
+import { leadData } from '../../customComponents/formData';
+import MultiSelectItems from '../../customComponents/cutsomMultipleSelect';
+import CustomSwitch from '../../customComponents/customSwitch';
 export default function CreateMeeting() {
   // const { control, handleSubmit, formState: { errors } } = useForm();
   const [isSection1Collapsed, setIsSection1Collapsed] = useState(false);
@@ -102,68 +106,71 @@ const renderFormElement = (element) => {
                 />
                 </View>
             );
-        case 'dropdown':
+            case 'dropdown':
+              return (
+                  <View>
+                  <View style = {styles.inputContainer}>
+                  <Text style={styles.label}>{element.title}</Text>
+                 
+                      <Dropdown style={styles.inputContainer}
+                          label={selectedValue ? selectedValue.label : 'Select'}
+                          data={element.dropdownData}
+                          value={selectedValue}
+                          onSelect={handleSelect}
+                      />
+                  </View>
+                  </View>
+                  
+              );
+            case 'leadDropdown':
+              return (
+                <View style={styles.inputContainer}>
+                <Text style={styles.label}>Select Lead</Text>
+                <LDropdown
+label="Select Lead"
+data={leadData.map((lead) => {
+console.log(lead.id); // Log lead object
+return {
+  value: lead.id,
+  label: `${lead.id} - ${lead.firstname} ${lead.lastname}`,
+};
+})}
+onSelect={handleSelect}
+/>
+            </View>
+              );
+            case 'Date':
             return (
-                <View>
-                <View style = {styles.inputContainer}>
-                <Text style={styles.label}>{element.title}</Text>
-               
-                    <Dropdown style={styles.inputContainer}
-                        label={selectedValue ? selectedValue.label : 'Select'}
-                        data={element.dropdownData}
-                        value={selectedValue}
-                        onSelect={handleSelect}
-                    />
-                </View>
-                </View>
-                
-            );
-            case 'calenderDropdown':
-            return (
-                <View>
-                    <View style={styles.inputContainer}>
-                        <Text style={styles.label}>{element.title}</Text>
-                        
-                        <Dropdown
-                            style={styles.inputContainer}
-                            label={selectedDate ? selectedDate.label : 'Select'}
-                            data={element.dropdownData}
-                            value={selectedDate}
-                            onSelect={handleSelectDate}
-                        />
-                    </View>
-                    {selectedDate && selectedDate.label === 'Custom Date' && (
-  <View style={styles.inputContainer}>
-    <Text style={styles.label}>Select Date</Text>
-    <Pressable onPress={() => setShowCalendarModal(true)}>
-    <View style={styles.dateInput}>
-  <Pressable onPress={() => setShowCalendarModal(true)}>
-    <Text style={styles.dateText}>
-      {customDate ? customDate.toLocaleDateString() : 'Select date '}
-      <Ionicons name='calendar' size={20}  color='black' /> 
-    </Text>
-   
-  </Pressable>
-</View>
-
-    </Pressable>
-    {/* Calendar Modal */}
-    {showCalendarModal && (
-      <RNDateTimePicker
-        value={customDate || new Date()}
-        mode="date"
-        display="default"
-        onChange={(event, selectedDate) => {
-          if (selectedDate) {
-            setShowCalendarModal(false);
-            setCustomDate(selectedDate);
-          }
-        }}
-      />
-    )}
-  </View>
-)}
-                </View>
+              
+              <View style={styles.inputContainer}>
+              <Text style={styles.label}>{element.title}</Text>
+              <Pressable onPress={() => setShowCalendarModal(true)}>
+              <View style={styles.dateInput}>
+            <Pressable onPress={() => setShowCalendarModal(true)}>
+              <Text style={styles.dateText}>
+                {customDate ? customDate.toLocaleDateString() : 'Select date '}
+                <Ionicons name='calendar' size={20}  color='black' /> 
+              </Text>
+             
+            </Pressable>
+          </View>
+          
+              </Pressable>
+              {/* Calendar Modal */}
+              {showCalendarModal && (
+                <RNDateTimePicker
+                  value={customDate || new Date()}
+                  mode="date"
+                  display="default"
+                  onChange={(event, selectedDate) => {
+                    if (selectedDate) {
+                      setShowCalendarModal(false);
+                      setCustomDate(selectedDate);
+                    }
+                  }}
+                />
+              )}
+            </View>
             );
             case 'timeInput':
               return(
@@ -171,7 +178,7 @@ const renderFormElement = (element) => {
                 <Pressable onPress={() => setShowTimeModal(true)}>
                   <Text style={styles.label}>
                     {/* {customTime ? customTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : 'Select time'} */}
-                    Select Time
+                    {element.title}
                   </Text>
                   <View style={styles.dateInput}>
   <Pressable onPress={() => setShowTimeModal(true)}>
@@ -195,32 +202,9 @@ const renderFormElement = (element) => {
       />
     )}
 </View>
-                  {/* <RNDateTimePicker
-        value={ new Date()}
-        mode="time"
-        display="default"
-        onChange={(event, selectedTime) => {
-          if (selectedTime) {
-            setShowTimeModal(false); // Close the modal
-            setCustomTime(selectedTime); // Set the selected time
-          }
-        }}
-      /> */}
-                 
-                  
                 </Pressable>
               </View>
-      
               )
-              case 'multilineInput':
-                return (
-                    <View style={styles.inputContainer}>
-                        <Text style={styles.label}>Enter a note</Text>
-                        {/* <MultiSelectExample/> */}
-                        <MultilineTextInput/>
-                        
-                    </View>
-                );
                 case 'leadDropdown':
                   return (
                       <View style={styles.inputContainer}>
@@ -233,7 +217,31 @@ const renderFormElement = (element) => {
                           />
                       </View>
                   );
-              
+                  case 'MultipleSelect':
+      return (
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>{element.title}</Text>
+          <MultiSelectItems
+        dropdownData={element.dropdownData}
+        onSelectedItemsChange={(selectedItems) => {
+          setFormValues(prevFormValues => ({
+            ...prevFormValues,
+            [element.name]: selectedItems // Assuming element.name is the key to store selected items
+          }));
+        }}
+      />
+        </View>
+      );
+      case 'switch':
+      return (
+        <View style={styles.inputContainer}>
+           <Text style={styles.label}>{element.title}</Text>
+           <Text>All day</Text>
+          <CustomSwitch/>
+        </View>
+       
+      );
+     
                   // case 'leadDropdown':
                   //   return (
                   //     <View>
@@ -249,17 +257,21 @@ const renderFormElement = (element) => {
                   //     </View>
                   //     </View>
                   //   );
+                 
                         
 };
 }
   return (
+   
     <View style={styles.cardContainer}>
+      
+      
     <ScrollView>
-    <GestureHandlerRootView>
+   
         <View style={styles.card}>
             <View style={styles.section}>
                 <TouchableOpacity onPress={() => toggleSection('section1')}>
-                    <Text style={styles.sectionTitle}>Task Information</Text>
+                    <Text style={styles.sectionTitle}>Meeting Information</Text>
                   
                     <Image
                         source={isSection1Collapsed ? DropdownIcon : DropupIcon}
@@ -269,7 +281,7 @@ const renderFormElement = (element) => {
                      
                 </TouchableOpacity>
                 <Collapsible collapsed={isSection1Collapsed}>
-                    {meetingData.elements.slice(0, 9).map((element, index) => (
+                    {meetingData.elements.slice(0, 13).map((element, index) => (
                         <View key={index} style={styles.inputContainer}>
                             {renderFormElement(element)}
                         </View>
@@ -298,13 +310,18 @@ const renderFormElement = (element) => {
             
 
             {/* Repeat the same structure for other sections (Company Information and Contact Information) */}
-
+          
             <Button title="Submit" onPress={onSubmit} />
+            {/* <MultiSelectItems/> */}
+            
         </View>
-        </GestureHandlerRootView>
+      
         
     </ScrollView>
+  
+   
 </View>
+
 
 );
 }

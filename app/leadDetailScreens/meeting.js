@@ -14,7 +14,7 @@ export default function Meeting() {
   ];
 
   const goToCreateMeeting=()=>{
-    router.replace('/formComponents/createMeeting')
+    router.replace('/DrawerScreens/createMeeting')
   }
  
   // const handleMeetingPress = (date) => {

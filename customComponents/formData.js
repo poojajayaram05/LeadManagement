@@ -511,7 +511,7 @@ export const meetingData = {
   "elements": [
     {
       "name": "lead",
-      "type": "dropdown",
+      "type": "leadDropdown",
       "title": "Lead",
       "inputType": "text",
       "placeholder": "Select",
@@ -553,6 +553,54 @@ export const meetingData = {
         { "value": 6, "label": "China Standard Time (CST)" },
         
       ]
+    },
+    {
+      "name": "attendees",
+      "type": "MultipleSelect",
+      "title": "Attendees",
+      "inputType": "text",
+      "placeholder":'Select',
+      "dropdownData": [
+        { "value": 1, "label": "John Doe" },
+        { "value": 2, "label": "Jane Smith" },
+        { "value": 3, "label": "Alice Mark" },
+        { "value": 4, "label": "Kate Winslet" },
+        { "value": 5, "label": "William Henry" },
+        { "value": 6, "label": "Jane Peter" },
+        { "value": 7, "label": "Carley Wilson" },
+      
+        
+      ]
+    },
+    {
+      "name": "fromDate",
+      "type": "Date",
+      "title": "From Date",
+      "placeholder": "From Date"
+    },
+    {
+      "name": "toDate",
+      "type": "Date",
+      "title": "To Date",
+      "placeholder": "To Date"
+    },
+    {
+      "name": "fromTime",
+      "type": "timeInput",
+      "title": "From time",
+      "placeholder": "Select Time"
+    },
+    {
+      "name": "toTime",
+      "type": "timeInput",
+      "title": "To time",
+      "placeholder": "Select Time"
+    },
+    {
+      "name": "allDay",
+      "type": "switch",
+      "title": "Time Spans",
+     
     },
   ]
 };

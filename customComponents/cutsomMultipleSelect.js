@@ -1,48 +1,50 @@
 import React, { useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import MultiSelect from 'react-native-multiple-select';
 
-const CustomMultipleSelect = ({ items }) => {
+export default function MultiSelectItems({ dropdownData, onSelectedItemsChange }) {
   const [selectedItems, setSelectedItems] = useState([]);
 
-  const onSelectedItemsChange = selectedItems => {
+  const handleSelectedItemsChange = selectedItems => {
     setSelectedItems(selectedItems);
+    // Pass selected items back to parent component
+    onSelectedItemsChange(selectedItems);
   };
 
-  // Extract only the first names from the items array
-  const firstNames = items.map(item => item.firstname);
-  console.log(firstNames);
+  // Ensure each item has a unique id
+  const formattedDropdownData = dropdownData.map((item, index) => ({
+    id: index.toString(), // You can use a unique id generator here if needed
+    ...item
+  }));
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <MultiSelect
-        items={firstNames} // Use only the first names
+        hideTags
+        items={formattedDropdownData}
         uniqueKey="id"
-        onSelectedItemsChange={onSelectedItemsChange}
+        onSelectedItemsChange={handleSelectedItemsChange}
         selectedItems={selectedItems}
-        selectText="Select items"
-        searchInputPlaceholderText="Search items..."
-        onChangeInput={text => console.log(text.firstname)}
-        altFontFamily="ProximaNova-Light"
+        selectText="Pick Items"
+        searchInputPlaceholderText="Search Items..."
+        onChangeInput={(text) => console.log(text)}
         tagRemoveIconColor="#CCC"
         tagBorderColor="#CCC"
         tagTextColor="#CCC"
         selectedItemTextColor="#CCC"
         selectedItemIconColor="#CCC"
         itemTextColor="#000"
-        displayKey="name"
+        displayKey="label" // Use 'label' as the display key to show dropdown labels
         searchInputStyle={{ color: '#CCC' }}
         submitButtonColor="#CCC"
         submitButtonText="Submit"
       />
       <View>
-        <Text>Selected items:</Text>
+        {/* Render dropdown options */}
         {selectedItems.map(item => (
-          <Text key={item}>{item}</Text> // Display selected first names
+          <Text key={item.id}>{item.label}</Text>
         ))}
       </View>
     </View>
   );
-};
-
-export default CustomMultipleSelect;
+}

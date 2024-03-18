@@ -6,6 +6,7 @@ import Dashboard from "./DrawerScreens/dashboard";
 import LeadList from "./DrawerScreens/leadList";
 import { Lead } from "../assets/images";
 import TaskCard from "./DrawerScreens/taskList";
+import { View } from "@/components/Themed";
 
 function TabMenu(){
     const Tab =createBottomTabNavigator();
@@ -24,6 +25,7 @@ function TabMenu(){
       }
 
       return(
+        <View>
         <NavigationContainer>
                 <Tab.Navigator screenOptions={screenOptions}>
           <Tab.Screen 
@@ -107,6 +109,7 @@ function TabMenu(){
         /> */}
        </Tab.Navigator> 
         </NavigationContainer>
+        </View>
       )
 }
 

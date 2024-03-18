@@ -25,34 +25,6 @@ export default function AppLayout() {
       </View>
       <TabComponent tabNames={tabNames} tabContent={tabContent}/>
       </View>
-   
-        {/* <Tabs onTabPress={tab => setSelectedTab(tab)}>
-          <Stack.Screen
-            name="info"
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="notes"
-            options={{
-              headerShown: false,
-            }}
-          />
-     
-          <Stack.Screen
-            name="task"
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="meeting"
-            options={{
-              headerShown: false,
-            }}
-          />
-        </Tabs> */}
       
     </View>
   );

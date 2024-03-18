@@ -36,6 +36,7 @@ export default function Layout() {
     name='dashboard'
     options={{
       drawerLabel:'Dashboard',
+      headerTitle:'Dashboard',
       
      
       drawerIcon:({}) =>(
@@ -47,20 +48,7 @@ export default function Layout() {
     ></Drawer.Screen>
        
     
-    <Drawer.Screen
-    name='menu'
-    options={{
-      drawerLabel:'Menu',
-     
-      drawerIcon:({}) =>(
-        <Ionicons name='menu' size={32} color='black' /> 
-        
-
-      )
-    }}
-
     
-    ></Drawer.Screen>
     <Drawer.Screen
     name='leadList'
     options={{
@@ -76,12 +64,29 @@ export default function Layout() {
 
     
     ></Drawer.Screen>
+    
+     <Drawer.Screen
+    name='createLead'
+    options={{
+      drawerLabel:'Add a Lead',
+      headerTitle:'Add a Lead',
+      headerShown:true,
+
+      drawerIcon:({}) =>(
+        <Ionicons name='add-circle' size={32} color='black' /> 
+        
+
+      )
+    }}
+
+    
+    ></Drawer.Screen>
      <Drawer.Screen
     name='taskList'
     options={{
       drawerLabel:'Tasks',
       headerTitle:'Tasks',
-      headerShown:false,
+      headerShown:true,
 
       drawerIcon:({}) =>(
         <FontAwesome name='tasks' size={32} color='black' /> 
@@ -92,6 +97,23 @@ export default function Layout() {
 
     
     ></Drawer.Screen>
+     <Drawer.Screen
+    name='createTask'
+    options={{
+      drawerLabel:'Add a Task',
+      headerTitle:'Add a Task',
+      headerShown:true,
+
+      drawerIcon:({}) =>(
+        <Ionicons name='add-circle' size={32} color='black' /> 
+        
+
+      )
+    }}
+
+    
+    ></Drawer.Screen>
+    
     
    </Drawer>
 </GestureHandlerRootView>

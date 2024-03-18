@@ -96,6 +96,11 @@ const Dashboard = () => {
           </View>
         )}
       </ScrollView>
+
+      {/* <View> 
+        <TabMenu/>
+        </View> */}
+     
  
     </View>
   );

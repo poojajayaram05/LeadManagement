@@ -18,7 +18,7 @@ export default function Task() {
     { id: '6', name: 'Task 6', description: 'Open new branch', status: 'Activated' },
   ];
    const goToCreateTask = () => {
-    router.navigate('formComponents/createTask');
+    router.navigate('/DrawerScreens/createTask');
   };
 
   const renderItem = ({ item }) => (

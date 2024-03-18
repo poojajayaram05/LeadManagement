@@ -11,7 +11,6 @@ import RadioButton from '../../customComponents/customRadio';
 import { DropdownIcon, DropupIcon } from '../../assets/images';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-
 // Form component
 export default function General() {
     // const { control, handleSubmit, formState: { errors } } = useForm();
