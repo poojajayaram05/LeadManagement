@@ -148,6 +148,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import {router} from 'expo-router';
 
 const getStatusColor = (state) => {
     switch (state.toLowerCase()) {
@@ -170,7 +171,7 @@ const TaskItem = ({ state, taskName, ownerName, taskType, description, dueDate, 
     };
 
     const handleMarkCompleted = () => {
-        // Implement logic for marking the task as completed
+        router.navigate('/Task/completeForm');
         setMenuVisible(false); // Close the dropdown menu
     };
 
@@ -253,7 +254,7 @@ const styles = StyleSheet.create({
     },
     dropdown: {
         position: 'absolute',
-        top: 40,
+        top: 30,
         right: 10,
         backgroundColor: 'white',
         borderRadius: 5,

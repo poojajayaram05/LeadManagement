@@ -133,3 +133,19 @@ export const formData = {
           }
         ]
   }
+
+  // export const meetingData={
+  //   data:[
+  //     {
+  //       lead:'John Smith',
+  //       title:'Lead Management Meeting',
+  //       location:'Bangalore',
+  //       description:'This is about the lead management project',
+  //       timeZone:'Eastern Standard Time',
+  //       attendees:'Jane Smith',
+  //       fromDate:'2024-03-02',
+  //       toDate:'2024-03-21',
+  //       allDay:'True',
+  //     }
+  //   ]
+  // }

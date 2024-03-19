@@ -5,3 +5,4 @@ export {default as filer} from './filer.png';
 export {default as sort} from './sort.png';
 export {default as search} from './search.png';
 export {default as checkbox} from './checkbox.png';
+export {default as avatarpic } from './avatarpic.jpg';

@@ -145,6 +145,7 @@ const TaskCard = () => {
   const [selectedTaskOption, setSelectedTaskOption] = useState('');
   const [filteredData, setFilteredData] = useState(DATA);
   const [activeTab, setActiveTab] = useState('Today');
+  const tabs = ['Today', 'Upcoming', 'Overdue', 'Done'];
 
   useEffect(() => {
     filterData();
@@ -226,6 +227,7 @@ const TaskCard = () => {
 
   const renderTab = (tabName) => (
     <TouchableOpacity
+    key={tabName}
       style={[styles.tab, activeTab === tabName && styles.activeTab]}
       onPress={() => {
         setActiveTab(tabName);
@@ -266,6 +268,9 @@ const TaskCard = () => {
         )}
         keyExtractor={(item) => item.id}
       />
+      <TouchableOpacity style={styles.plusButton}>
+        <Ionicons name="add" size={24} color="white" />
+      </TouchableOpacity>
 
       {renderDropdown()}
     </SafeAreaView>
@@ -332,10 +337,19 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   activeTab: {
-    backgroundColor: '#023B5E',
+    backgroundColor: '#082130',
   },
   tabText: {
     color: 'white',
+  },
+  plusButton: {
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+    backgroundColor: '#023B5E',
+    padding: 15,
+    borderRadius: 30,
+    elevation: 4,
   },
 });
 

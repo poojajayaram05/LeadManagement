@@ -222,7 +222,7 @@ const Page = () => {
   };
 
   const goToTask=()=>{
-    router.replace('/Task/task');
+    router.replace('/Task/task'); 
   }
   const handleFilterClick = () => {
     console.log('Filter clicked!');
@@ -267,6 +267,11 @@ const Page = () => {
     <View style={styles.container}>
      {/* <Button title='task' onPress={goToTask}></Button> */}
      <Button  title='task' onPress={goToTask}></Button>
+     <FlatList
+              data={leadData}
+              renderItem={renderItem}
+              keyExtractor={(item, index) => index.toString()}
+            />
       {/* <Header
         leftComponent={{ icon: 'menu', color: '#fff' }}
         centerComponent={{ text: 'LEADS', style: { color: '#fff' } }}
@@ -276,7 +281,7 @@ const Page = () => {
     <TouchableOpacity onPress={handleFilterClick} style={styles.filterIcon}>
           <FontAwesome name="filter" size={24} color="black" />
         </TouchableOpacity> */}
-      <TabView
+      {/* <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}
         onIndexChange={setIndex}
@@ -287,7 +292,7 @@ const Page = () => {
             style={{ backgroundColor: '#4789e6' }}
           />
         )}  
-      />
+      /> */}
        <TouchableOpacity style={styles.plusButton}>
         <FontAwesome name="plus" size={24} color="white" />
       </TouchableOpacity>
@@ -308,7 +313,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 20,
     right: 20,
-    backgroundColor: '#4789e6',
+    backgroundColor: '#023B5E',
     padding: 15,
     borderRadius: 30,
     elevation: 4,

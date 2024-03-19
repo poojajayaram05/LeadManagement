@@ -9,14 +9,13 @@ import { starTwo,starrOne } from '../../assets/images';
 import {profile} from '../../assets/images'
 import BadgeLead from '../BadgeLead';
 import { FontAwesome } from '@expo/vector-icons';
-
-
+import { Ionicons } from '@expo/vector-icons';
 
 
 const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temperature, id }) => {
     const [showSecondImage, setShowSecondImage] = useState(false);
     const[selectedStar, setSelectedStar]=useState(false);
-
+    const [showDropdown, setShowDropdown] = useState(false);
 
     const handleSelectStar=()=>{
         setSelectedStar(!selectedStar)
@@ -42,7 +41,7 @@ const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temp
             return <BadgeLead label={'Negotiating'} color={'green'} textColor="white"/>
         }  
         return null;
-    };
+    }; 
 
     const renderTemperatureBadge = () => {
         let temperatureBadgeColor;
@@ -78,71 +77,76 @@ const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temp
       //   // logic for the 'New' button
       // }; 
 
-      const handleFilterClick = () => {
-        console.log('Filter clicked!');
-      };              
-
-
-    return (
+      // const handleFilterClick = () => {
+      //   console.log('Filter clicked!');
+      // };      
+      
+      const toggleDropdown = () => {
+        setShowDropdown(!showDropdown);
+    };
+    const closeDropdown = () => {
+      setShowDropdown(false);
+  };
+  return (
+    <TouchableOpacity onPress={closeDropdown}>
         <View style={{ flex: 1 }}>
             <View style={styles.item}>
                 <View style={styles.avatarContainer}>
                     <Image
-            source={profile}
-            style={{ width: 40, height: 40, borderRadius: 20, marginBottom:10 }}
-          />
-          
-{/* <TouchableOpacity onPress={handleNewButtonClick} style={styles.smallButton}>
-            <Text>New</Text>
-          </TouchableOpacity> */}
+                        source={profile} 
+                        style={{ width: 40, height: 40, borderRadius: 20, marginBottom: 10 }}
+                    />
                 </View>
-                <View  style={styles.textContainer}>
+                <View style={styles.textContainer}>
                     <Text style={styles.title}>{`${firstName} ${lastName}`}</Text>
                     <Text style={styles.subtitle}>{email}</Text>
                     <Text style={styles.subtitle}>{phone}</Text>
                     <View style={styles.badgeBox}>
-                    <View>
-                    {renderBadge()}
-                    </View>
-                    <View style={styles.badgeSecond}>
-                    {renderTemperatureBadge()}
-                    </View> 
+                        <View>{renderBadge()}</View>
+                        <View style={styles.badgeSecond}>{renderTemperatureBadge()}</View>
                     </View>
                 </View>
-                <View style={styles.badgeContainer}>
-                <TouchableOpacity onPress={handleSelectStar}>
-            <Image
-              style={styles.image}
-              source={selectedStar ? starTwo : starrOne}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-             
+                <View style={styles.actionsContainer}>
+                    <TouchableOpacity onPress={toggleDropdown} style={styles.dropdownIcon}>
+                        <Ionicons name="ellipsis-vertical" size={24} color="black" />
+                    </TouchableOpacity>
                 </View>
-                {/* <TouchableOpacity onPress={handleFilterClick} style={styles.filterIcon}>
-          <FontAwesome name="filter" size={24} color="black" />
-        </TouchableOpacity> */}
             </View>
+            {showDropdown && (
+                <View style={styles.dropdownMenu}>
+                    <TouchableOpacity onPress={() => {console.log('Edit lead'); closeDropdown();}}>
+                        <Text style={styles.dropdownMenuItem}>Edit lead</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => {onViewPress(); closeDropdown();}}>
+                        <Text style={styles.dropdownMenuItem}>View</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
         </View>
-    );
+    </TouchableOpacity>
+);
 };
 
+    
+
+    
 const styles = {
-    item: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        backgroundColor: 'white',
-        padding: 20,
-        marginVertical: 8,
-        marginHorizontal: 16,
-        borderRadius: 8,
-        elevation: 2,
-        shadowColor: '#000002',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 4,
-    },
+  item: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: 'white',
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,  
+    borderRadius: 8,
+    elevation: 2,
+    shadowColor: '#000002',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+},
+   
     badgeBox:{
         flexDirection:'row',
         
@@ -197,10 +201,30 @@ const styles = {
         backgroundColor: 'lightgray',
         borderRadius: 2,
       },
-      
-    //   filterIcon: {
-    //     marginLeft: 10,
-    //   },
+      actionsContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    dropdownIcon: {
+        marginLeft: 10,
+    },
+    dropdownMenu: {
+        position: 'absolute',
+        top: 60,
+        right: 20,
+        backgroundColor: 'white',
+        borderRadius: 8,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        elevation: 3,
+        zIndex: 999,
+    },
+    dropdownMenuItem: {
+        fontSize: 16,
+        paddingVertical: 8,
+    },
+
+
    
 };
 export default LeadItem;  
