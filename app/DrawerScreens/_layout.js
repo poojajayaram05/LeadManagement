@@ -37,6 +37,7 @@ export default function Layout() {
     options={{
       drawerLabel:'Dashboard',
       headerTitle:'Dashboard',
+      headerShown:true,
       
      
       drawerIcon:({}) =>(
@@ -54,7 +55,7 @@ export default function Layout() {
     options={{
       drawerLabel:'Leads',
       headerTitle:'Leads',
-      headerShown:false,
+      headerShown:true,
       drawerIcon:({}) =>(
         <Ionicons name='apps-sharp' size={32} color='black' /> 
         
@@ -86,7 +87,7 @@ export default function Layout() {
     options={{
       drawerLabel:'Tasks',
       headerTitle:'Tasks',
-      headerShown:true,
+      headerShown:false,
 
       drawerIcon:({}) =>(
         <FontAwesome name='tasks' size={32} color='black' /> 
@@ -102,6 +103,22 @@ export default function Layout() {
     options={{
       drawerLabel:'Add a Task',
       headerTitle:'Add a Task',
+      headerShown:true,
+
+      drawerIcon:({}) =>(
+        <Ionicons name='add-circle' size={32} color='black' /> 
+        
+
+      )
+    }}
+
+    
+    ></Drawer.Screen>
+         <Drawer.Screen
+    name='createMeeting'
+    options={{
+      drawerLabel:'Add a Meeting',
+      headerTitle:'Add a Meeting',
       headerShown:true,
 
       drawerIcon:({}) =>(

@@ -6,6 +6,10 @@ import { StyleSheet } from 'react-native';
 import RegisterScreen from './authScreens/register';
 import { router } from 'expo-router';
 import { AuthProvider } from '@/context/authContext';
+import Dashboard from './DrawerScreens/dashboard';
+import LeadList from './DrawerScreens/leadList';
+import LoginScreen from './authScreens/login';
+
 
 
 
@@ -25,8 +29,9 @@ export default function Root() {
        
 
       <View style={styles.container}>
-     {/* <LoginScreen/> */}
-     <RegisterScreen/>
+<LoginScreen/>
+   {/* <Dashboard/> */}
+   {/* <LeadList/> */}
       
          
          {/* <Text>Welcome to Lead Management!</Text>
@@ -35,7 +40,7 @@ export default function Root() {
          <Button title='Login' onPress={gotoLoginPage}>Login</Button> */}
    
        </View>
-       </AuthProvider>
+    </AuthProvider>
     
    
     

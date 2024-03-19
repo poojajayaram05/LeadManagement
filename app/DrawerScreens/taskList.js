@@ -320,6 +320,9 @@ const styles = StyleSheet.create({
   dropdownRow: {
     padding: 10,
   },
+  activeTab:{
+    backgroundColor:'#082130'
+  },
   dropdownRowText: {
     color: 'white',
     fontSize: 16,
@@ -335,9 +338,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 5,
   },
-  activeTab: {
-    backgroundColor: '#023B5E',
-  },
+ 
   tabText: {
     color: 'white',
   },

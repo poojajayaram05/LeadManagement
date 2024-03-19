@@ -19,7 +19,8 @@ export default function MultiSelectItems({ dropdownData, onSelectedItemsChange }
 
   return (
     <View style={{ flex: 1 }}>
-      <MultiSelect
+      
+         <MultiSelect
         hideTags
         items={formattedDropdownData}
         uniqueKey="id"
@@ -36,9 +37,10 @@ export default function MultiSelectItems({ dropdownData, onSelectedItemsChange }
         itemTextColor="#000"
         displayKey="label" // Use 'label' as the display key to show dropdown labels
         searchInputStyle={{ color: '#CCC' }}
-        submitButtonColor="#CCC"
+        submitButtonColor="#023B5E"
         submitButtonText="Submit"
       />
+     
       <View>
         {/* Render dropdown options */}
         {selectedItems.map(item => (

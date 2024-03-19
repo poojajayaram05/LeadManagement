@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Button, TextInput, Alert, TouchableOpacity } from "react-native";
 import { router } from 'expo-router';
+import ArrowBack from "../../customComponents/arrowBack";
  
 export const formData = {
     "elements":  [
@@ -156,8 +157,8 @@ const MarkAsComplete = () => {
   return (
     <View style={styles.container}>
       <View style={styles.topButtonContainer}>
-        <TouchableOpacity style={styles.topButton} onPress={handleTopButtonClick}>
-          <Text style={styles.topButtonText}>Back</Text>
+        <TouchableOpacity style={styles.topButton} onPress={handleTopButtonClick} >
+        <ArrowBack onPress={handleTopButtonClick}/ >
         </TouchableOpacity>
       </View>
  
@@ -195,7 +196,7 @@ const MarkAsComplete = () => {
         />
  
         <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-          <Text style={styles.buttonText}>Submit</Text>
+          <Text style={styles.buttonText} >Submit</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -205,15 +206,15 @@ const MarkAsComplete = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ccc",
+    backgroundColor: "#d1e0ed",
     width: "100%",
   },
   section: {
     marginBottom: 20,
-    backgroundColor: "#ccc",
+    backgroundColor: "#d1e0ed",
     borderRadius: 10,
     padding: 8,
-    shadowColor: "#E6E1DB",
+    shadowColor: "#d1e0ed",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -265,16 +266,17 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   button: {
-    backgroundColor: "lightblue",
+    backgroundColor: "#023B5E",
     width: "100%",
     paddingVertical: 10,
     borderRadius: 5,
     alignItems: 'center',
+    
   },
   buttonText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: 'black',
+    color: 'white',
   },
   topButtonContainer: {
     alignSelf: 'flex-end',
@@ -282,7 +284,7 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
   topButton: {
-    backgroundColor: "lightgrey",
+    backgroundColor: "#d1e0ed",
     paddingVertical: 5,
     paddingHorizontal: 10,
     borderRadius: 5,

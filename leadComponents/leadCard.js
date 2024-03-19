@@ -10,13 +10,16 @@ import BadgeLead from './badgeLead';
 import { FontAwesome } from '@expo/vector-icons';
 import useIdStore from '../app/leadStore';
 import { set } from 'zod';
+import { Ionicons } from '@expo/vector-icons';
+import { avatarPic } from '../assets/images';
 
  
-const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temperature, id }) => {
+const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temperature, id, gender }) => {
    
     const [showSecondImage, setShowSecondImage] = useState(false);
     const[selectedStar, setSelectedStar]=useState(false);
     const { leadId, setLeadId } = useIdStore();
+    const [showDropdown, setShowDropdown] = useState(false);
     // setLeadId(id);
 
     // useEffect(() => {
@@ -90,61 +93,54 @@ const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temp
     };
  
 
+
  
-    const toggleSecondImage = () => {
-        setShowSecondImage(!showSecondImage);
-      };
-   
-      const handleFilterClick = () => {
-        console.log('Filter clicked!');
-      };              
- 
-     
- 
-    return (
-        <View style={{ flex: 1 }}>
-            <View style={styles.item}>
-                <View style={styles.avatarContainer}>
-                    <Image
-            source={profile}
-            style={{ width: 40, height: 40, borderRadius: 20, marginBottom:10 }}
-          />
-         
-{/* <TouchableOpacity onPress={handleNewButtonClick} style={styles.smallButton}>
-            <Text>New</Text>
-          </TouchableOpacity> */}
-                </View>
-                <View onPress={displayScreen}  style={styles.textContainer}>
-                    <Text  onPress={displayScreen} style={styles.title}>{`${firstName} ${lastName}`}</Text>
-                    <Text onPress={displayScreen} style={styles.subtitle}>{email}</Text>
-                    <Text  onPress={displayScreen} style={styles.subtitle}>{phone}</Text>
-                    <View onPress={displayScreen} style={styles.badgeBox}>
-                    <View>
-                    {renderBadge()}
-                    </View>
-                    <View style={styles.badgeSecond}>
-                    {renderTemperatureBadge()}
-                    </View>
-                    </View>
-                </View>
-                <View style={styles.badgeContainer}>
-                {/* <TouchableOpacity onPress={handleSelectStar}>
-            <Image
-              style={styles.image}
-              source={selectedStar ? starTwo : starrOne}
-              resizeMode="contain"
-            />
-          </TouchableOpacity> */}
-             
-                </View>
-                {/* <TouchableOpacity onPress={handleFilterClick} style={styles.filterIcon}>
-          <FontAwesome name="filter" size={24} color="black" />
-        </TouchableOpacity> */}
-            </View>
-        </View>
-    );
+    const toggleDropdown = () => {
+      setShowDropdown(!showDropdown);
+  };
+  const closeDropdown = () => {
+    setShowDropdown(false);
 };
- 
+return (
+  <TouchableOpacity onPress={closeDropdown}>
+      <View style={{ flex: 1 }}>
+          <View style={styles.item}>
+              <View style={styles.avatarContainer}>
+                  <Image
+                      source={avatarPic}
+                      style={{ width: 40, height: 40, borderRadius: 20, marginBottom: 10 }}
+                  />
+              </View>
+              <View style={styles.textContainer}>
+                  <Text style={styles.title}>{`${firstName} ${lastName}`}</Text>
+                  <Text style={styles.subtitle}>{email}</Text>
+                  <Text style={styles.subtitle}>{phone}</Text>
+                  <View style={styles.badgeBox}>
+                      <View>{renderBadge()}</View>
+                      <View style={styles.badgeSecond}>{renderTemperatureBadge()}</View>
+                  </View>
+              </View>
+              <View style={styles.actionsContainer}>
+                  <TouchableOpacity onPress={toggleDropdown} style={styles.dropdownIcon}>
+                      <Ionicons name="ellipsis-vertical" size={24} color="black" />
+                  </TouchableOpacity>
+              </View>
+          </View>
+          {showDropdown && (
+              <View style={styles.dropdownMenu}>
+                  <TouchableOpacity onPress={() => {router.navigate('DrawerScreens/createLead'); closeDropdown();}}>
+                      <Text style={styles.dropdownMenuItem}>Edit lead</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => {displayScreen(); closeDropdown();}}>
+
+                      <Text style={styles.dropdownMenuItem}>View</Text>
+                  </TouchableOpacity>
+              </View>
+          )}
+      </View>
+  </TouchableOpacity>
+);
+};
 const styles = {
     item: {
         flexDirection: 'row',
@@ -163,6 +159,8 @@ const styles = {
     },
     badgeBox:{
         flexDirection:'row',
+        
+        width:300
        
  
     },
@@ -215,6 +213,28 @@ const styles = {
         backgroundColor: 'lightgray',
         borderRadius: 2,
       },
+      actionsContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    dropdownIcon: {
+        marginLeft: 10,
+    },
+    dropdownMenu: {
+        position: 'absolute',
+        top: 60,
+        right: 20,
+        backgroundColor: 'white',
+        borderRadius: 8,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        elevation: 3,
+        zIndex: 999,
+    },
+    dropdownMenuItem: {
+        fontSize: 16,
+        paddingVertical: 8,
+    },
      
     //   filterIcon: {
     //     marginLeft: 10,

@@ -48,7 +48,7 @@ console.log('ID retrieved:', leadId);
           <Text>Lead is searching for high value property</Text>
         </View>
         <View style={styles.infoContainer}>
-          <Text style={styles.infoText}>Added by : Lee James on 13-03-2024 {leadId}</Text>
+          <Text style={styles.infoText}>Added by : Lee James on 13-03-2024</Text>
         </View>
       </View>
       <View style={styles.boxContainer}>

@@ -173,6 +173,7 @@ import { CustomInput } from '../../customComponents/customInput';
 import Dropdown from '../../customComponents/customDropdown';
 import MultilineTextInput from '../../customComponents/customMultilineInput';
 import { router } from 'expo-router';
+import ArrowBack from '../../customComponents/arrowBack';
 
 export default function CreateLeadNote({ navigation }) {
   const [leadId, setLeadId] = useState('');
@@ -246,8 +247,10 @@ export default function CreateLeadNote({ navigation }) {
         </View>
       </ScrollView>
       <View style={styles.buttonContainer}>
-                <Button title='Back' style={styles.backButton} color='#023B5E' onPress={goBack}></Button>
-                </View>
+      <TouchableOpacity onPress={goBack}>
+        <ArrowBack />
+      </TouchableOpacity>
+    </View>
     </View>
   );
 }
@@ -275,13 +278,7 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 5, 
   },
-  buttonContainer:{
-    flex: 1,
-    flexDirection: 'row', // Align items horizontally
-    alignItems: 'flex-end', // Align items to the start (left)
-    justifyContent: 'flex-end', // Align items to the start (left)
-    padding: 10,
-    },
+ 
   backButtonText: {
     fontSize: 12,
     color: '#007AFF', 

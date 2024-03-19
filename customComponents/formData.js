@@ -97,7 +97,7 @@ export const formData = {
       "autocomplete": "email",
      
     }, {
-      "name": "job-title",
+      "name": "jobTitle",
       "type": "TextInput",
       "title": "Job Title",
       "inputType": "text",
@@ -324,12 +324,13 @@ export const formData = {
  
     "email": "johnsmith1@gmail.com",
  
-    "job-title": "Engineer",
+    "jobTitle": "Engineer",
  
     "phone": "8884763231",
     "status":"open",
     "temperature":"hot",
     "id":"1",
+    "gender":'M',
  
   },
  
@@ -341,12 +342,13 @@ export const formData = {
  
     "email": "janejohnson2@yahoo.com",
  
-    "job-title": "Designer",
+    "jobTitle": "Designer",
  
     "phone": "8891234567",
     "status":"contacted",
     "temperature":"cold",
     "id":"2",
+    "gender":'M',
  
   },
  
@@ -358,12 +360,13 @@ export const formData = {
  
     "email": "michaelbrown3@hotmail.com",
  
-    "job-title": "Manager",
+    "jobTitle": "Manager",
  
     "phone": "8902345678",
     "status":"qualified",
     "temperature":"warm",
     "id":"3",
+    "gender":'M',
  
   },
  
@@ -375,12 +378,13 @@ export const formData = {
  
     "email": "emilyjones4@outlook.com",
  
-    "job-title": "Developer",
+    "jobTitle": "Developer",
  
     "phone": "8913456789",
     "status":"accepted",
     "temperature":"cold",
     "id":"4",
+    "gender":'F',
  
   },
  
@@ -392,12 +396,13 @@ export const formData = {
  
     "email": "williamgarcia5@gmail.com",
  
-    "job-title": "Analyst",
+    "jobTitle": "Analyst",
  
     "phone": "8924567890",  
     "status":"accepted",
     "temperature":"hot",
     "id":"5",
+    "gender":'M',
  
   },
  
@@ -409,12 +414,13 @@ export const formData = {
  
     "email": "oliviamiller6@yahoo.com",
  
-    "job-title": "Consultant",
+    "jobTitle": "Consultant",
  
     "phone": "8935678901",
     "status":"qualified",
     "temperature":"hot",
     "id":"6",
+    "gender":'F',
  
   },
  
@@ -426,12 +432,13 @@ export const formData = {
  
     "email": "jamesdavis7@hotmail.com",
  
-    "job-title": "Coordinator",
+    "jobTitle": "Coordinator",
  
     "phone": "8946789012",
     "status":"qualified",
     "temperature":"cold",
     "id":"7",
+    "gender":'M',
  
   },
  
@@ -443,12 +450,13 @@ export const formData = {
  
     "email": "sophiarodriguez8@outlook.com",
  
-    "job-title": "Administrator",
+    "jobTitle": "Administrator",
  
     "phone": "8957890123",
     "status":"qualified",
     "temperature":"warm",
     "id":"8",
+    "gender":'F',
  
   },
  
@@ -460,12 +468,13 @@ export const formData = {
  
     "email": "benjaminmartinez9@gmail.com",
  
-    "job-title": "Engineer",
+    "jobTitle": "Engineer",
  
     "phone": "8968901234",
     "status":"qualified",
     "temperature":"warm",
     "id":"9",
+    "gender":'M',
  
   },
  
@@ -477,12 +486,13 @@ export const formData = {
  
     "email": "emmahernandez10@yahoo.com",
  
-    "job-title": "Designer",
+    "jobTitle": "Designer",
  
     "phone": "8979012345",
     "status":"qualified",
     "temperature":"cold",
     "id":"10",
+    "gender":'F',
  
   }
 ]
@@ -538,22 +548,7 @@ export const meetingData = {
       "inputType": "text",
       "placeholder": "Description"
     },
-    {
-      "name": "timeZone",
-      "type": "dropdown",
-      "title": "Time Zone",
-      "inputType": "text",
-      "placeholder":'Select',
-      "dropdownData": [
-        { "value": 1, "label": "Coordinated Universal Time (UTC)" },
-        { "value": 2, "label": "Eastern Standard Time (EST)" },
-        { "value": 3, "label": "Central European Time (CET)" },
-        { "value": 4, "label": "Pacific Standard Time (PST)" },
-        { "value": 5, "label": "India Standard Time (IST)" },
-        { "value": 6, "label": "China Standard Time (CST)" },
-        
-      ]
-    },
+
     {
       "name": "attendees",
       "type": "MultipleSelect",
@@ -573,6 +568,22 @@ export const meetingData = {
       ]
     },
     {
+      "name": "timeZone",
+      "type": "dropdown",
+      "title": "Time Zone",
+      "inputType": "text",
+      "placeholder":'Select',
+      "dropdownData": [
+        { "value": 1, "label": "Coordinated Universal Time (UTC)" },
+        { "value": 2, "label": "Eastern Standard Time (EST)" },
+        { "value": 3, "label": "Central European Time (CET)" },
+        { "value": 4, "label": "Pacific Standard Time (PST)" },
+        { "value": 5, "label": "India Standard Time (IST)" },
+        { "value": 6, "label": "China Standard Time (CST)" },
+        
+      ]
+    },
+    {
       "name": "fromDate",
       "type": "Date",
       "title": "From Date",
@@ -586,13 +597,13 @@ export const meetingData = {
     },
     {
       "name": "fromTime",
-      "type": "timeInput",
+      "type": "timeInputFrom",
       "title": "From time",
       "placeholder": "Select Time"
     },
     {
       "name": "toTime",
-      "type": "timeInput",
+      "type": "timeInputTo",
       "title": "To time",
       "placeholder": "Select Time"
     },

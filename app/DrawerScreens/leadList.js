@@ -225,6 +225,7 @@ const LeadList = () => {
       status={item.status}
       id={item.id}
       temperature={item.temperature}
+      gender={item.gender}
       onStarPress={toggleStarredLead}
       isStarred={starredLeads.includes(item.id)}
     />

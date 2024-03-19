@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
             try {
 
                 console.log("before post api")
-                const response = await axios.post('http://192.168.100.174:4000/auth/signup', 
+                const response = await axios.post(`${BASE_URL}/signup`, 
                    body
                 , {
                     headers: {

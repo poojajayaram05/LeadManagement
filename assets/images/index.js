@@ -49,5 +49,7 @@ export {default as HomeProfile} from './home-profile.png';
 export {default as checkbox} from './checkbox.png';
 export {default as starrOne} from './starrOne.png';
 export {default as starTwo} from './starTwo.png';
+export {default as avatarPic} from './avatarPic.png';
+export {default as femaleAvatar} from './femaleAvatar.png';
 
 

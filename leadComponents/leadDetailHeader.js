@@ -6,17 +6,10 @@ import * as DocumentPicker from 'expo-document-picker';
 import { leadData } from '../customComponents/formData';
 import { router, useLocalSearchParams } from 'expo-router';
 import useIdStore from '../app/leadStore';
+import BadgeLead from './badgeLead';
 // import LeadInfoPage from './detailsTabs/info';
  
-const handleCall = () => {
-  const phoneNumber = '9900953630';
-  Linking.openURL(`tel:${phoneNumber}`);
-};
- 
-const handleEmail = () => {
-  const email = 'poojajayaram05@gmail.com';
-  Linking.openURL(`mailto:${email}`);
-};
+
  
 const handleDirections = () => {
   const address =
@@ -37,10 +30,59 @@ const handleAttachment = async () => {
 const LeadDetail = () => {
   // const params = useLocalSearchParams();
   // const { id } = params;
+  const handleCall = () => {
+    const phoneNumber = phone;
+    Linking.openURL(`tel:${phoneNumber}`);
+  };
+   
+  const handleEmail = () => {
+    const emailid = email;
+    Linking.openURL(`mailto:${emailid}`);
+  };
+  const renderBadge = () => {
+ 
+    if (status === 'open') {
+        //return <Badge value={<Text> Sale </Text>} status="success" badgeStyle={styles.badge} />;
+       return <BadgeLead label={'Sale'} color={'#857471'} textColor="white"/>
+    } else if (status === 'contacted') {
+        // return <Badge value={<Text> Closed </Text>} status="error" badgeStyle={styles.badge} />;
+        return <BadgeLead label={'Closed'} color={'#C02DD9'} textColor="white"/>
+    } else if (status === 'qualified') {
+        // return <Badge value={<Text> New Lead </Text>} status="primary" badgeStyle={styles.badge} />;
+        return <BadgeLead label={'New Lead'} color={'maroon'} textColor="white"/>
+    } else if (status === 'accepted') {
+        // return <Badge value={<Text >Negotiating </Text>} status="warning" badgeStyle={styles.badge} />;
+        return <BadgeLead label={'Negotiating'} color={'green'} textColor="white"/>
+    }  
+    return null;
+};
+
+const renderTemperatureBadge = () => {
+    let temperatureBadgeColor;
+    switch (temperature) {
+      case 'hot':
+        temperatureBadgeColor = 'red';
+        txtColor="white";
+        break;
+      case 'warm':
+        temperatureBadgeColor = 'orange';
+        txtColor="white";
+        break;
+      case 'cold':
+        temperatureBadgeColor = '#448DD0';
+        txtColor="white";
+        break;
+      default:
+        temperatureBadgeColor = 'grey';
+        txtColor="white";
+    }
+//return <Badge value={<Text>{temperature}</Text>} status={temperatureBadgeColor} badgeStyle={styles.badge} />;
+return <BadgeLead color={temperatureBadgeColor} label={temperature} textColor={txtColor} />
+  };
  
   const leadId = useIdStore((state) => state.leadId); 
   const lead = leadData.find((lead) => lead.id === leadId);
-  const { firstname, lastname, phone } = lead || {};
+  const { firstname, lastname, phone, email, status, temperature, id, jobTitle,} = lead || {};
  
   const handleBack = () => {
     // router.replace(-1);
@@ -80,23 +122,27 @@ const LeadDetail = () => {
             {firstname} {lastname}
           </Text>
         </View>
+        <View style={styles.sectionContainer}>
+  <Text style={styles.sectionHeading}>Job Title : {jobTitle}</Text>
+  <Text style={styles.status}>{selectedStatus}</Text>
+</View>
          
         <View>
         <View style={styles.sectionContainer}>
-  <Text style={styles.sectionHeading}>Status</Text>
-  <TouchableOpacity style={styles.pencilIconContainer} onPress={() => setShowStatusModal(true)}>
-    <Ionicons name="pencil" size={18} color="black" />
-  </TouchableOpacity>
+  {/* <Text style={styles.sectionHeading}>Status : {status}</Text> */}
+  <View>{renderBadge()}</View>
   <Text style={styles.status}>{selectedStatus}</Text>
 </View>
- 
 <View style={styles.sectionContainer}>
-  <Text style={styles.sectionHeading}>Label</Text>
-  <TouchableOpacity style={styles.pencilIconContainer} onPress={() => setShowLabelModal(true)}>
-    <Ionicons name="pencil" size={18} color="black" />
-  </TouchableOpacity>
-  <Text style={styles.Label}>{selectedLabel}</Text>
+  {/*<BadgeLead label={'Cold'} color={'lightblue'}/>*/}
+ <View>{renderTemperatureBadge()}</View> 
+  {/* <Text style={styles.sectionHeading}>Label : {temperature}</Text> */}
 </View>
+
+
+
+ 
+
         </View>
         <View style={styles.actionButtonsContainer}>
           {/* Contact */}
@@ -239,13 +285,14 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     marginLeft: 10,
+    color:'#023B5E',
   },
   actionButtonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
     paddingVertical: 10,
-    marginTop: 30,
+    marginTop: 8,
     borderWidth: 4,
     borderColor: '#023B5E',
     borderRadius: 10,
@@ -345,7 +392,7 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   buttonClose: {
-    backgroundColor: '#2196F3',
+    backgroundColor: '#023B5E',
     marginTop: 20,
   },
   textStyle: {
@@ -361,7 +408,7 @@ const styles = StyleSheet.create({
     marginTop: 13,
   },
   sectionHeading: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
   },
   pencilIconContainer: {

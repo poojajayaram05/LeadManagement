@@ -16,6 +16,7 @@ import { taskFormData } from '../../customComponents/formData';
 import { leadData } from '../../customComponents/formData';
 import LDropdown from '../../customComponents/customLeadDropdown';
 import { router } from 'expo-router';
+import ArrowBack from '../../customComponents/arrowBack';
 
 export default function CreateTask() {
   // const { control, handleSubmit, formState: { errors } } = useForm();
@@ -267,9 +268,7 @@ const renderFormElement = (element) => {
     <ScrollView>
       <GestureHandlerRootView>
         <View style={styles.card}>
-        <View style={styles.buttonContainer}>
-                <Button title='Back' style={styles.backButton} color='#023B5E' onPress={goBack}></Button>
-                </View>
+       
             <View style={styles.section}>
                 <TouchableOpacity onPress={() => toggleSection('section1')}>
                     <Text style={styles.sectionTitle}>Task Information</Text>
@@ -313,7 +312,13 @@ const renderFormElement = (element) => {
             {/* Repeat the same structure for other sections (Company Information and Contact Information) */}
 
             <Button title="Submit" onPress={onSubmit} color='#023B5E' />
+             <View style={styles.buttonContainer}>
+      <TouchableOpacity onPress={goBack}>
+        <ArrowBack />
+      </TouchableOpacity>
+    </View>
         </View>
+        
         </GestureHandlerRootView>
     </ScrollView>
 </View>

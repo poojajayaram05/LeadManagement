@@ -4,7 +4,7 @@ import { DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navi
 import { useRouter } from 'expo-router'
 import { HomeProfile } from '../assets/images'
 
-export default function CustomDrawerContent(props: any) {
+export default function CustomDrawerContent(props) {
   const router = useRouter();
 
   return (
@@ -37,10 +37,10 @@ export default function CustomDrawerContent(props: any) {
   <View style={{backgroundColor:'#fff'}}>
      
       <DrawerItemList {...props} />
-      {/* <DrawerItem
+      <DrawerItem
         label={'Logout'}
-        onPress={() => router.replace('/')}
-      /> */}
+        onPress={() => router.navigate('authScreens/authLogin')}
+      />
       </View>
     </DrawerContentScrollView>
     </View>

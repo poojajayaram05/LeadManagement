@@ -11,6 +11,7 @@ import RadioButton from '../../customComponents/customRadio';
 import { DropdownIcon, DropupIcon } from '../../assets/images';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
+import ArrowBack from '../../customComponents/arrowBack';
 // Form component
 export default function General() {
     // const { control, handleSubmit, formState: { errors } } = useForm();
@@ -325,9 +326,7 @@ const goBack=()=>{
         <View style={styles.cardContainer}>
         <ScrollView>
             <View style={styles.card}>
-                <View style={styles.buttonContainer}>
-                <Button title='Back' style={styles.backButton} color='#023B5E' onPress={goBack}></Button>
-                </View>
+              
                 <View style={styles.section}>
                     <TouchableOpacity onPress={() => toggleSection('section1')}>
                         <Text style={styles.sectionTitle}>Personal Information</Text>
@@ -383,10 +382,17 @@ const goBack=()=>{
                 
 
                 {/* Repeat the same structure for other sections (Company Information and Contact Information) */}
+                <Button title="Submit" onPress={onSubmit} color='#023B5E' />
+             
                 <View style={styles.buttonContainer}>
-                <Button title='Back' style={styles.backButton} color='#023B5E' onPress={goBack}></Button>
+      <TouchableOpacity onPress={goBack}>
+        <ArrowBack />
+      </TouchableOpacity>
+    </View>
+                
+               
                 </View>
-            </View>
+         
         </ScrollView>
     </View>
 

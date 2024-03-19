@@ -29,12 +29,13 @@ const TaskItem = ({ state, taskName, ownerName, taskType, description, dueDate, 
  
     const handleEditTask = () => {
         // Implement logic for editing the task
-        router.navigate('/formComponents/createTask');
+        router.navigate('/DrawerScreens/createTask');
         setMenuVisible(false); // Close the dropdown menu
     };
  
-    const handleView = () => {
+    const handleViewTask = () => {
         // Implement logic for viewing the task
+        router.navigate('/taskDetails');
         setMenuVisible(false); // Close the dropdown menu
     };
  
@@ -83,7 +84,7 @@ const TaskItem = ({ state, taskName, ownerName, taskType, description, dueDate, 
                         <TouchableOpacity onPress={handleEditTask}>
                             <Text style={styles.dropdownItem}>Edit Task</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={handleView}>
+                        <TouchableOpacity onPress={handleViewTask}>
                             <Text style={styles.dropdownItem}>View</Text>
                         </TouchableOpacity>
                     </View>
