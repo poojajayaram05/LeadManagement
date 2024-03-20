@@ -96,12 +96,89 @@ import {
   Image
 } from "react-native";
 import { AuthContext } from "../../context/authContext";
+import { Alert } from "react-native";
+import { router } from "expo-router";
+import * as SecureStore from 'expo-secure-store';
 // import Spinner from "react-native-loading-spinner-overlay";
  
 const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { isLoading, login } = useContext(AuthContext);
+ // const { isLoading, login } = useContext(AuthContext);
+  const[token, setToken]=useState('');
+
+
+
+  const getToken= async(username,password)=>{
+    let options = {
+      "client_id" : "71d7bed90b0d0a50cd2f237b791c9ac0",
+      "client_secret" : "yb2:p1#4.N",
+      "grant_type" : "password",
+      "username" : username,
+      "password" : password
+    };
+    console.log(username," username", password, "  password");
+    AUTH_URL="https://ven06798.service-now.com/oauth_token.do"
+    const data=JSON.stringify(options);
+    const authData = new URLSearchParams();
+authData.append('client_secret', 'yb2:p1#4.N');
+authData.append('client_id', '71d7bed90b0d0a50cd2f237b791c9ac0');
+authData.append('grant_type', 'password');
+authData.append('username', username);
+authData.append('password', password);
+// const formData = new FormData();
+//   formData.append('client_id', '71d7bed90b0d0a50cd2f237b791c9ac0');
+//   formData.append('client_secret', 'yb2:p1#4.N');
+//   formData.append('grant_type', 'password');
+//   formData.append('username', username);
+//   formData.append('password', password);
+    try{
+      const res = await fetch(AUTH_URL, {
+          method: 'POST',
+          headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+            // 'Content-Type': 'application/json',
+           
+          },
+       body:authData.toString()
+                })
+        //const data = await res.json()
+        
+        const data = await res.json()
+        const accessToken = data.access_token
+        console.log("ACCESS TOKEN",accessToken);
+
+        //console.log("type of",json.stringify(accessToken));
+    
+
+        
+
+        const stoken = JSON.stringify({accessToken:accessToken});
+        
+         await SecureStore.setItemAsync("token", stoken)
+         
+         const tokenFromStore=  await SecureStore.getItemAsync('token');
+         
+
+        console.log("token from secure storage",tokenFromStore) ;
+      
+        router.replace('/DrawerScreens/dashboard')
+        setToken(token);
+        
+       
+      
+
+  }
+  catch(e){
+     
+      console.log(e);
+      // router.replace('/DrawerScreens/dashboard')
+      Alert.alert("failed to login")
+      
+
+  }
+
+  }
  
   return (
     <>
@@ -118,12 +195,12 @@ const LoginScreen = ({ navigation }) => {
               Please enter your email ID & password
             </Text>
             <View style={styles.inputWrapper}>
-              <Text style={styles.label}>Email</Text>
+              <Text style={styles.label}>Username</Text>
               <TextInput
                 style={styles.input}
-                placeholder="Enter email"
-                value={email}
-                onChangeText={(text) => setEmail(text)}
+                placeholder="Enter username"
+                value={username}
+                onChangeText={(text) => setUsername(text)}
               />
             </View>
             <View style={styles.inputWrapper}>
@@ -141,7 +218,7 @@ const LoginScreen = ({ navigation }) => {
               <Button
                 color="#023B5E"
                 title="Sign In"
-                onPress={() => login(email, password)}
+                onPress={() => getToken(username, password)}
               />
             </View>
           </View>
