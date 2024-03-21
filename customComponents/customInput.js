@@ -1,6 +1,6 @@
 import { View, Text, TextInput, StyleSheet } from "react-native";
 
-export const CustomInput = ({ title, placeholder, onChange, value, error }) => (
+export const CustomInput = ({ title, placeholder, onChange, value, errors, readOnly }) => (
   <View style={styles.container}>
     <Text style={styles.label}>{title}</Text>
     <TextInput
@@ -8,8 +8,10 @@ export const CustomInput = ({ title, placeholder, onChange, value, error }) => (
       onChangeText={onChange}
       value={value}
       placeholder={placeholder}
+      readOnly={readOnly}
+      // error={error}
     />
-    {error && <Text style={styles.error}>{error}</Text>}
+    {/* {errors && <Text style={styles.error}>{errors}</Text>} */}
   </View>
 );
 

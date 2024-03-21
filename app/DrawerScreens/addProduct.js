@@ -12,20 +12,26 @@ import { date } from 'zod';
 import { Ionicons } from '@expo/vector-icons';
 import MultilineTextInput from '../../customComponents/customMultilineInput';
 import CustomMultipleSelect from '../../customComponents/cutsomMultipleSelect';
-import { taskFormData } from '../../customComponents/formData';
+import { productData, productFormData, taskFormData } from '../../customComponents/formData';
 import { leadData } from '../../customComponents/formData';
 import LDropdown from '../../customComponents/customLeadDropdown';
 import { router } from 'expo-router';
 import ArrowBack from '../../customComponents/arrowBack';
+import CustomSwitch from '../../customComponents/customSwitch';
+import ImageUpload from '../../customComponents/imageUpload';
+import RadioButton from '../../customComponents/customRadio';
 
-export default function CreateTask() {
+ 
+ 
+export default function CreateProduct() {
   // const { control, handleSubmit, formState: { errors } } = useForm();
   const [isSection1Collapsed, setIsSection1Collapsed] = useState(false);
   const [isSection2Collapsed, setIsSection2Collapsed] = useState(false);
   const [isSection3Collapsed, setIsSection3Collapsed] = useState(false);
-  const [showCalendarModal, setShowCalendarModal] = useState(false); 
+  const [showCalendarModal, setShowCalendarModal] = useState(false);
+  const[radioSelect, setradioSelect]=useState(null);
   const [formValues, setFormValues] = useState([]);
-  const [selectedValue, setSelectedValue] = useState(null); 
+  const [selectedValue, setSelectedValue] = useState(null);
   const[selectedDate, setSelectedDate] = useState('');
   const[selectedTime, setSelectedTime]=useState(null);
   const [phoneNumbers, setPhoneNumbers] = useState(['']);
@@ -33,38 +39,49 @@ export default function CreateTask() {
   const[customTime, setCustomTime]=useState(null);
   const [isAddButtonDisabled, setIsAddButtonDisabled] = useState(false);
   const [showTimeModal, setShowTimeModal] = useState(false);
-
+ 
   const handleCancelClicked = () => {
       setIsModalVisible(false);
   };
-
+ 
   const formatTime = (time) => {
     const options = {
       hour: 'numeric',
       minute: 'numeric',
       hour12: true // Use 12-hour format
     };
-  
+ 
     return time.toLocaleString('en-US', options);
   };
-
-
-
-const handleSelectDate = (date) => {
-    console.log('Selected Date:', date);
-    setSelectedDate(date);
+ 
+  const handleSelect = (item) => {
+    setSelectedValue(item);
+    setFormValues(prevFormValues => ({ ...prevFormValues, selectedValue: item }));
+    console.log('Selected value:', item);
 };
-const handleSelectTime = (time) => {
-  console.log('Selected Date:', time);
-  setSelectedTime(time);
-};
-
-const goBack=()=>{
-  router.navigate('/DrawerScreens/taskList');
+ 
+const onSelectRadio = (item) => {
+    setradioSelect(item.label);
+    setFormValues(prevFormValues => ({ ...prevFormValues, radioSelect: item}));
+    console.log('Selected value:', radioSelect);
 }
-
+ 
+ 
+// const handleSelectDate = (date) => {
+//     console.log('Selected Date:', date);
+//     setSelectedDate(date);
+// };
+// const handleSelectTime = (time) => {
+//   console.log('Selected Date:', time);
+//   setSelectedTime(time);
+// };
+ 
+// const goBack=()=>{
+//   router.navigate('/DrawerScreens/taskList');
+// }
+ 
 const onSubmit = async () => {
-
+ 
   console.log("Form data", formValues);
   }
   const toggleSection = (section) => {
@@ -82,15 +99,9 @@ const onSubmit = async () => {
             break;
     }
 };
-
-
+ 
+ 
 const renderFormElement = (element) => {
-  const handleSelect = (item) => {
-    setSelectedValue(item);
-    setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: item.value }));
-    console.log('Selected value:', item);
-};
-
     switch (element.type) {
         case 'TextInput':
             return (
@@ -123,112 +134,20 @@ const renderFormElement = (element) => {
                     />
                 </View>
                 </View>
-                
+               
             );
-            case 'calenderDropdown':
-            return (
-                <View>
-                    <View style={styles.inputContainer}>
-                        <Text style={styles.label}>{element.title}</Text>
-                        
-                        <Dropdown
-                            style={styles.inputContainer}
-                            label={selectedDate ? selectedDate.label : 'Select'}
-                            data={element.dropdownData}
-                            value={selectedDate}
-                            onSelect={handleSelectDate}
-                        />
-                    </View>
-                    {selectedDate && selectedDate.label === 'Custom Date' && (
-  <View style={styles.inputContainer}>
-    <Text style={styles.label}>Select Date</Text>
-    <Pressable onPress={() => setShowCalendarModal(true)}>
-    <View style={styles.dateInput}>
-  <Pressable onPress={() => setShowCalendarModal(true)}>
-    <Text style={styles.dateText}>
-      {customDate ? customDate.toLocaleDateString() : 'Select date '}
-      <Ionicons name='calendar' size={20}  color='black' /> 
-    </Text>
-   
-  </Pressable>
-</View>
-
-    </Pressable>
-    {/* Calendar Modal */}
-    {showCalendarModal && (
-      <RNDateTimePicker
-        value={customDate || new Date()}
-        mode="date"
-        display="default"
-        onChange={(event, selectedDate) => {
-          if (selectedDate) {
-            setShowCalendarModal(false);
-            setCustomDate(selectedDate);
-          }
-        }}
-      />
-    )}
-  </View>
-)}
-                </View>
-            );
-            case 'timeInput':
-              return(
-                <View style={styles.timeInput}>
-                <Pressable onPress={() => setShowTimeModal(true)}>
-                  <Text style={styles.label}>
-                    {/* {customTime ? customTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : 'Select time'} */}
-                    Select Time
-                  </Text>
-                  <View style={styles.dateInput}>
-  <Pressable onPress={() => setShowTimeModal(true)}>
-    <Text style={styles.dateText}>
-    {customTime ? formatTime(customTime) : 'Select time '}
-      <Ionicons name='time' size={20} color='black' /> 
-    </Text>
-   
-  </Pressable>
-  {showTimeModal && (
-      <RNDateTimePicker
-        value={ customTime || new Date()}
-        mode="time"
-        display="default"
-        onChange={(event, selectedTime) => {
-          if (selectedTime) {
-            setShowTimeModal(false);
-            setCustomTime(selectedTime);
-          }
-        }}
-      />
-    )}
-</View>
-                  {/* <RNDateTimePicker
-        value={ new Date()}
-        mode="time"
-        display="default"
-        onChange={(event, selectedTime) => {
-          if (selectedTime) {
-            setShowTimeModal(false); // Close the modal
-            setCustomTime(selectedTime); // Set the selected time
-          }
-        }}
-      /> */}
-                 
-                  
-                </Pressable>
-              </View>
-      
-              )
+           
+           
               case 'multilineInput':
                 return (
                     <View style={styles.inputContainer}>
                         <Text style={styles.label}>Enter a note</Text>
                         {/* <MultiSelectExample/> */}
                         <MultilineTextInput/>
-                        
+                       
                     </View>
                 );
-                case 'leadDropdown':
+                case 'productDropdown':
                   return (
                     <View style={styles.inputContainer}>
                     <Text style={styles.label}>Select Lead</Text>
@@ -245,7 +164,47 @@ const renderFormElement = (element) => {
 />
                 </View>
                   );
-              
+                  case 'switch':
+                  return (
+                   
+                    <View style={styles.switchContainer}>
+                    <Text style={styles.labelswitch}>Active</Text>
+                    <View style={styles.switch}><CustomSwitch/></View>
+                    </View>
+                  );
+ 
+                  case 'imageUpload':
+                    return (
+                      <View>
+                        <Text style={styles.label}>Product Images</Text>
+                        <ImageUpload />
+                      </View>
+                    );
+                   
+                    case 'RadioButton':
+                        return(
+                           
+                           
+                                <RadioButton style={styles.inputContainer}
+                                     onSelect={onSelectRadio}
+                                     SelectedData={selectedValue}
+                                     disableLine={1}
+                                     value={selectedValue}
+                                     onChange={(onSelectRadio) => setFormValues({ ...formValues, [element.label]: onSelectRadio })}
+                                     title={element.title}
+                                     data={productFormData}
+                                     // Pass the data prop here
+                                />
+                           
+                           
+ 
+                        )
+ 
+               
+ 
+                 
+                 
+             
                   // case 'leadDropdown':
                   //   return (
                   //     <View>
@@ -261,7 +220,7 @@ const renderFormElement = (element) => {
                   //     </View>
                   //     </View>
                   //   );
-                        
+                       
 };
 }
   return (
@@ -272,8 +231,11 @@ const renderFormElement = (element) => {
        
             <View style={styles.section}>
                 <TouchableOpacity onPress={() => toggleSection('section1')}>
-                    <Text style={styles.sectionTitle}>Task Information</Text>
-                  
+                    <Text style={styles.sectionTitle}>Product Information</Text>
+                    <Text>
+ 
+</Text>
+                 
                     <Image
                         source={isSection1Collapsed ? DropdownIcon : DropupIcon}
                         resizeMode="contain"
@@ -282,14 +244,16 @@ const renderFormElement = (element) => {
                      
                 </TouchableOpacity>
                 <Collapsible collapsed={isSection1Collapsed}>
-                    {taskFormData.elements.slice(0, 9).map((element, index) => (
+                    {productFormData.elements.slice(0, 11).map((element, index) => (
                         <View key={index} style={styles.inputContainer}>
                             {renderFormElement(element)}
                         </View>
                     ))}
                 </Collapsible>
+               
+               
             </View>
-
+ 
             {/* <View style={styles.section}>
                 <TouchableOpacity onPress={() => toggleSection('section2')}>
                     <Text style={styles.sectionTitle}>Company Information</Text>
@@ -307,26 +271,30 @@ const renderFormElement = (element) => {
                     ))}
                 </Collapsible>
             </View> */}
-          
-            
-
+         
+           
+ 
             {/* Repeat the same structure for other sections (Company Information and Contact Information) */}
-
+ 
             <Button title="Submit" onPress={onSubmit} color='#023B5E' />
+           
              <View style={styles.buttonContainer}>
-      <TouchableOpacity onPress={goBack}>
+      {/* <TouchableOpacity onPress={goBack}>
         <ArrowBack />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
+   
     </View>
         </View>
-        
+       
         </GestureHandlerRootView>
     </ScrollView>
+   
+ 
 </View>
-
+ 
 );
 }
-
+ 
 const styles = StyleSheet.create({
 cardContainer: {
     flex: 1,
@@ -353,19 +321,19 @@ container: {
 },
 section: {
     marginBottom: 20,
-    
+   
 },
 sectionTitle: {
     fontSize: 20, // Increase font size for emphasis
     fontWeight: 'bold',
     marginBottom: 15, // Increase margin for better separation
     color: '#333', // Use a darker color for better readability
-    
+   
     paddingBottom: 5, // Add padding to space out the underline from the text
 },
 inputContainer: {
     marginBottom:8
-
+ 
 },
 buttonContainer:{
   flex: 1,
@@ -423,5 +391,12 @@ calendarIcon: {
   height: 20,
   marginLeft: 10, // Adjust the margin as needed
 },
-
+switch:{
+    alignItems:'flex-start',
+    marginTop:-10,
+    },
+     switchContainer:{
+        flexDirection:'row'
+      },
+ 
 });

@@ -92,100 +92,69 @@ import { MdDashboard } from "react-icons/md";
 
 
 
-export default function RadioButton({ onSelect, disableLine, title, value }) {
-    const radioButtonOptions = formData.elements.find(element => element.type === 'RadioButton').rdata;
-    const[selectedData, setSelectedData]=useState('');
-  // const renderItems = ({ item }) => {
-  //   const selectHandler = debounce(() => {
-  //     console.log("item", onSelect);
-  //    // let SelectedData = item;
-  //     setSelectedData(item);
-  //     console.log("IT IS", selectedData.label);
-  // });
-
+export default function RadioButton({ onSelect, disableLine, title, value, data }) {
+  const radioButtonOptions = data.elements.find(element => element.type === 'RadioButton').rdata;
+  const[selectedData, setSelectedData]=useState('');
+ 
   const renderItems = ({ item }) => {
     const selectHandler = () => {
       setSelectedData(item);
-        onSelect(item); // Pass the selected item directly to the onSelect function
+      onSelect(item); 
     };
-  
+ 
     return (
-        <TouchableOpacity onPress={selectHandler}>
-            
-        <View style={styles.radioContainer}>
-          
-          <Text style={styles.radioLabel} >
-            {item.label}
-          </Text>
-          <View style={styles.radioImageContainer}><Image    style={styles.image}
-    source={selectedData && selectedData.label === item.label ? Selected : unSelected}
-    resizeMode="contain"
-/></View>
-          
-
-
-        </View>
+      <TouchableOpacity onPress={selectHandler} style={styles.radioButton}>
+        <Text style={styles.radioLabel}>
+          {item.label}
+        </Text>
+        <Image
+          style={styles.image}
+          source={selectedData && selectedData.label === item.label ? Selected : unSelected}
+          resizeMode="contain"
+        />
       </TouchableOpacity>
     );
   };
-
+ 
   return (
-   <>
-        <Text style={styles.label}>{title}</Text>
-        <View style={{ paddingRight: 240 }}>
-      <FlatList
-        nestedScrollEnabled={true}
-        scrollEnabled={false}
-        extraData={radioButtonOptions}
-        data={radioButtonOptions}
-        renderItem={renderItems}
-      />
-    </View>
+    <>
+      <Text style={styles.label}>{title}</Text>
+      <View style={styles.radioButtonContainer}>
+        <FlatList
+          horizontal
+          data={radioButtonOptions}
+          renderItem={renderItems}
+          keyExtractor={(item) => item.label} // Assuming each label is unique
+        />
+      </View>
     </>
   );
 }
-
+ 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 50,
-    
+  label: {
+    marginBottom: 9,
+    fontSize: 12,
+    fontWeight: 'bold',
   },
-  
-    label: {
-        marginBottom: 9,
-        fontSize: 12,
-        fontWeight: 'bold',
-        // flex: 1, justifyContent: 'left', alignItems: 'flex-end'
-    },
-    radioLabel: {
-      fontSize: 12,
-      fontStyle:'bold'
-      //flexDirection:'row',
-      
-      
+  radioLabel: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    marginRight: 5,
   },
-  radioImageContainer:{
-    //flexDirection:'row'
-  },
-  radioContainer: {
-      flexDirection: 'column',
-      marginBottom: 12,
-    
-     
-    
-  },
-  main: {
+  radioButtonContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: DimensionUtils.pixelSizeHorizontal(18),
-    paddingVertical: DimensionUtils.pixelSizeVertical(17),
-    borderBottomColor: Colors.PURPLE_LIGHT_BORDER,
+  },
+  radioButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: 20, // Adjust as needed for spacing between radio buttons
   },
   image: {
-    width: DimensionUtils.widthPixel(12),
-    height: DimensionUtils.heightPixel(12)
-  }
+    width: 20,
+    height: 20,
+  },
 });
 //         <TouchableOpacity
 //         onPress={selectHandler}>

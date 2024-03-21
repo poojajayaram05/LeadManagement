@@ -161,8 +161,16 @@ authData.append('password', password);
          
 
         console.log("token from secure storage",tokenFromStore) ;
+        if(accessToken){
+          router.replace('/DrawerScreens/dashboard')
+
+        }
+        else{
+          Alert.alert("Incorrect credentials")
+
+        }
       
-        router.replace('/DrawerScreens/dashboard')
+        
         setToken(token);
         
        

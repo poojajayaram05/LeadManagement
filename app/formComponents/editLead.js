@@ -1,5 +1,5 @@
 import { View, Text, Button, TextInput, StyleSheet, Select, ScrollView, Image} from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm, Controller } from 'react-hook-form';
 import { formData } from '../../customComponents/formData'
 import { CustomInput } from '../../customComponents/customInput';
@@ -13,9 +13,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import ArrowBack from '../../customComponents/arrowBack';
 import * as SecureStore from 'expo-secure-store';
+import useIdStore from '../leadStore';
+import axios from 'axios';
+
 // Form component
-export default function General() {
+export default function EditlLead() {
     // const { control, handleSubmit, formState: { errors } } = useForm();
+    const[leadDetails, setLeadDetails]=useState([]);
     const [isSection1Collapsed, setIsSection1Collapsed] = useState(false);
     const [isSection2Collapsed, setIsSection2Collapsed] = useState(false);
     const [isSection3Collapsed, setIsSection3Collapsed] = useState(false);
@@ -36,6 +40,8 @@ export default function General() {
             setIsAddButtonDisabled(true);
         }
     };
+     const leadId = useIdStore((state) => state.leadId);
+     console.log(leadId);
 
 
 //   const handleSelect = (item) => {a
@@ -43,6 +49,20 @@ export default function General() {
 //     setFormValues(prevFormValues => ({ ...prevFormValues, selectedValue: item.value }));
 //     console.log('Selected value:', item.value);
 // };
+
+useEffect(() => {
+    const getLeadDetails = async () => {
+       
+            const response = await axios.get(``);
+         
+            setLeadDetails(response.data);
+            console.log(leadDetails);
+       
+    };
+
+    getLeadDetails();
+}, [leadId]); // Run the effect whenever the leadId prop changes
+
 
 const onSelectRadio = (item) => {
     setradioSelect(item.value);
@@ -57,7 +77,7 @@ const goBack=()=>{
       
 
     const onSubmit = async () => {
-        const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_management`;
+        const putUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_management`;
         const token = SecureStore.getItem('token');
         const stoken = JSON.parse(token);
         const apiToken = stoken.accessToken;
@@ -70,8 +90,8 @@ const goBack=()=>{
         //     console.log('success',response);
         // }
         try{
-        const response = await fetch(postUrl, {
-            method: 'POST',
+        const response = await fetch(putUrl, {
+            method: 'PATCH',
             headers: {
               'Content-Type': 'application/json',
               'Authorization' : 'Bearer ' + apiToken
@@ -156,7 +176,6 @@ const goBack=()=>{
                                      disableLine={1}
                                      value={selectedValue}
                                      onChange={(onSelectRadio) => setFormValues({ ...formValues, [element.name]: onSelectRadio })}
-                                     data={formData}
                                      title={element.title}
                                      // Pass the data prop here
                                 />

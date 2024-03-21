@@ -20,6 +20,13 @@ const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temp
     const[selectedStar, setSelectedStar]=useState(false);
     const { leadId, setLeadId } = useIdStore();
     const [showDropdown, setShowDropdown] = useState(false);
+
+    const goToEditLead = () => {
+        setLeadId(id);
+        router.navigate('formComponents/editLead');
+
+        closeDropdown();
+    };
     // setLeadId(id);
 
     // useEffect(() => {
@@ -128,13 +135,17 @@ return (
           </View>
           {showDropdown && (
               <View style={styles.dropdownMenu}>
-                  <TouchableOpacity onPress={() => {router.navigate('DrawerScreens/createLead'); closeDropdown();}}>
+                  <TouchableOpacity onPress={goToEditLead}>
                       <Text style={styles.dropdownMenuItem}>Edit lead</Text>
                   </TouchableOpacity>
                   <TouchableOpacity onPress={() => {displayScreen(); closeDropdown();}}>
 
                       <Text style={styles.dropdownMenuItem}>View</Text>
                   </TouchableOpacity>
+                  <TouchableOpacity onPress={() => {displayScreen(); closeDropdown();}}>
+
+<Text style={styles.dropdownMenuItem}>Change status</Text>
+</TouchableOpacity>
               </View>
           )}
       </View>

@@ -41,7 +41,7 @@ export default function Layout() {
       
      
       drawerIcon:({}) =>(
-        <Ionicons name='home' size={32} color='black' /> 
+        <Ionicons name='home' size={20} color='black' /> 
       )
 
     }}
@@ -57,7 +57,7 @@ export default function Layout() {
       headerTitle:'Leads',
       headerShown:true,
       drawerIcon:({}) =>(
-        <Ionicons name='apps-sharp' size={32} color='black' /> 
+        <Ionicons name='apps-sharp' size={20} color='black' /> 
         
 
       )
@@ -74,7 +74,7 @@ export default function Layout() {
       headerShown:true,
 
       drawerIcon:({}) =>(
-        <Ionicons name='add-circle' size={32} color='black' /> 
+        <Ionicons name='add-circle' size={20} color='black' /> 
         
 
       )
@@ -90,7 +90,7 @@ export default function Layout() {
       headerShown:false,
 
       drawerIcon:({}) =>(
-        <FontAwesome name='tasks' size={32} color='black' /> 
+        <FontAwesome name='tasks' size={20} color='black' /> 
         
 
       )
@@ -106,7 +106,7 @@ export default function Layout() {
       headerShown:true,
 
       drawerIcon:({}) =>(
-        <Ionicons name='add-circle' size={32} color='black' /> 
+        <Ionicons name='add-circle' size={20} color='black' /> 
         
 
       )
@@ -114,6 +114,24 @@ export default function Layout() {
 
     
     ></Drawer.Screen>
+
+
+<Drawer.Screen
+    name='meeting'
+    options={{
+      drawerLabel:'Meetings',
+      headerTitle:'Meetings',
+      headerShown:true,
+
+      drawerIcon:({}) =>(
+        <Ionicons name='calendar' size={20} color='black' /> 
+        
+
+      )
+    }} 
+    ></Drawer.Screen>
+
+
          <Drawer.Screen
     name='createMeeting'
     options={{
@@ -122,7 +140,52 @@ export default function Layout() {
       headerShown:true,
 
       drawerIcon:({}) =>(
-        <Ionicons name='add-circle' size={32} color='black' /> 
+        <Ionicons name='add-circle' size={20} color='black' /> 
+        
+
+      )
+    }} 
+    ></Drawer.Screen>
+    <Drawer.Screen
+    name='productList'
+    options={{
+      drawerLabel:'Products',
+      headerTitle:'Products',
+      headerShown:true,
+     
+     
+      drawerIcon:({}) =>(
+        <Ionicons name='list' size={20} color='black' />
+      )
+ 
+    }}
+   
+    ></Drawer.Screen>
+     <Drawer.Screen
+    name='addProduct'
+    options={{
+      drawerLabel:'Add a product',
+      headerTitle:'Add a product',
+      headerShown:true,
+
+      drawerIcon:({}) =>(
+        <Ionicons name='add-circle' size={20} color='black' /> 
+        
+
+      )
+    }}
+
+    
+    ></Drawer.Screen>
+     <Drawer.Screen
+    name='createNotes'
+    options={{
+      drawerLabel:'Add Notes',
+      headerTitle:'Add Notes',
+      headerShown:true,
+
+      drawerIcon:({}) =>(
+        <FontAwesome name='sticky-note' size={20} color='black' /> 
         
 
       )
