@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 const getStatusColor = (state) => {
-    switch (state.toLowerCase()) {
+    switch (state) {
         case "in-progress":
             return "skyblue";
         case "pending":

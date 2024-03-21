@@ -130,6 +130,37 @@ export default function Layout() {
 
     
     ></Drawer.Screen>
+
+<Drawer.Screen
+    name='productList'
+    options={{
+      drawerLabel:'Products',
+      headerTitle:'Products',
+      headerShown:true,
+      
+     
+      drawerIcon:({}) =>(
+        <Ionicons name='list' size={32} color='black' /> 
+      )
+
+    }}
+    
+    ></Drawer.Screen>
+
+<Drawer.Screen
+    name='createProduct'
+    options={{
+      drawerLabel:'Add a Product',
+      headerTitle:'Add a Product',
+      headerShown:true,
+
+      drawerIcon:({}) =>(
+        <Ionicons name='add-circle' size={32} color='black' /> 
+        
+
+      )
+    }}
+    ></Drawer.Screen>
     
     
    </Drawer>

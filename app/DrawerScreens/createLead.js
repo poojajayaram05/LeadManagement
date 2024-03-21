@@ -145,7 +145,7 @@ const goBack=()=>{
                                      disableLine={1}
                                      value={selectedValue}
                                      onChange={(onSelectRadio) => setFormValues({ ...formValues, [element.name]: onSelectRadio })}
-                                     
+                                     data={formData}
                                      title={element.title}
                                      // Pass the data prop here
                                 />

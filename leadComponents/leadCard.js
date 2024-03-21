@@ -101,6 +101,22 @@ const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temp
   const closeDropdown = () => {
     setShowDropdown(false);
 };
+const handleChangeState = () => {
+    // Add your logic to change the state of the lead
+    closeDropdown(); // Close the dropdown after action
+};
+
+const handleConvertLead = () => {
+    // Add your logic to convert the lead
+    closeDropdown(); // Close the dropdown after action
+};
+
+const handleReassign = () => {
+    // Add your logic to reassign the lead
+    closeDropdown(); // Close the dropdown after action
+};
+
+
 return (
   <TouchableOpacity onPress={closeDropdown}>
       <View style={{ flex: 1 }}>
@@ -132,6 +148,15 @@ return (
                       <Text style={styles.dropdownMenuItem}>Edit lead</Text>
                   </TouchableOpacity>
                   <TouchableOpacity onPress={() => {displayScreen(); closeDropdown();}}>
+                  <TouchableOpacity onPress={() => handleChangeState()}>
+                            <Text style={styles.dropdownMenuItem}>Change State</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => handleConvertLead()}>
+                            <Text style={styles.dropdownMenuItem}>Convert Lead</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => handleReassign()}>
+                            <Text style={styles.dropdownMenuItem}>Reassign</Text>
+                        </TouchableOpacity>
 
                       <Text style={styles.dropdownMenuItem}>View</Text>
                   </TouchableOpacity>
@@ -222,7 +247,7 @@ const styles = {
     },
     dropdownMenu: {
         position: 'absolute',
-        top: 60,
+        top:-50,
         right: 20,
         backgroundColor: 'white',
         borderRadius: 8,

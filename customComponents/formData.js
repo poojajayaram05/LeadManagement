@@ -76,6 +76,7 @@ export const formData = {
       "rdata" : [
         { label: "Male", id: 1 },
         { label: "Female", id: 2 },
+        {label:"Other", id:3},
       ],
       'isRequired': true
     }, {
@@ -604,7 +605,7 @@ export const meetingData = {
     {
       "name": "toTime",
       "type": "timeInputTo",
-      "title": "To time",
+      "title": "To time",  
       "placeholder": "Select Time"
     },
     {
@@ -615,6 +616,166 @@ export const meetingData = {
     },
   ]
 };
+
+
+export const productData=
+[
+ 
+  {
+ 
+    "id":"1",
+    "productName":"Topez",
+    "productCategory":"topez",
+    "categoryCode":"Travel",
+    "productDescription":"Topez offers travel insurance, providing coverage for unforeseen events during domestic or international travel.",
+    "supplierCode":"icici",
+    "supplierName":"ICICI",
+    "rate":"500000",
+    "currency":"USD"
+
+ 
+  },
+  {
+    "id": "2",
+    "productName": "Ruby",
+    "productCategory": "topez",
+    "categoryCode":"Medical",
+    "productDescription": "Ruby provides medical insurance coverage for expenses incurred due to illness or injury.",
+    "supplierCode":"icici",
+    "supplierName":"ICICI",
+    "rate":"400000",
+    "currency":"INR"
+   
+  },
+  {
+    "id": "3",
+    "productName": "Sapphire",
+    "productCategory": "sapphire",
+    "categoryCode":"Travel",
+    "productDescription": "Sapphire offers auto insurance, providing financial protection against physical damage and bodily injury resulting from traffic collisions.",
+    "supplierCode":"icici",
+    "supplierName":"ICICI",
+    "rate":"600000",
+    "currency":"USD"
+  },
+  {
+    "id": "4",
+    "productName": "Emerald",
+    "productCategory": "emerald",
+    "categoryCode":"Home",
+    "productDescription": "Emerald provides home insurance coverage for a private residence and its contents.",
+    "supplierCode":"icici",
+    "supplierName":"ICICI",
+    "rate":"700000",
+    "currency":"USD"
+  },
+  {
+    "id": "5",
+    "productName": "Diamond",
+    "productCategory": "diamond",
+    "categoryCode":"Pet",
+    "productDescription": "Diamond offers pet insurance, providing coverage for veterinary expenses and other costs associated with caring for pets. ",
+    "supplierCode":"icici",
+    "supplierName":"ICICI",
+    "rate":"700000",
+    "currency":"INR"
+  },
+  {
+    "id": "6",
+    "productName": "Pearl",
+    "productCategory": "pearl",
+    "categoryCode":"Life",
+    "productDescription": "Pearl offers life insurance, providing financial protection to the policyholder's beneficiaries in the event of the insured individual's death.",
+    "supplierCode":"icici",
+    "supplierName":"ICICI",
+    "rate":"300000",
+    "currency":"INR"
+  },
+]
+
+
+export const productFormData= {
+  "elements": [
+    {
+      "name": "type",
+      "type": "RadioButton",
+      "title": "Type",
+      "rdata": [
+        { "value": 1, "label": "Product" },
+        { "value": 2, "label": "Service" }
+      ]
+    },
+
+    {
+      "name": "category",
+      "type": "dropdown",
+      "title": "Category",
+      "inputType": "text",
+      "placeholder":'Select',
+      "dropdownData": [
+        { "value": 1, "label": "Travel" },
+        { "value": 2, "label": "Medical" },
+        { "value": 3, "label": "Home" },
+        { "value": 4, "label": "Pet" },
+        { "value": 5, "label": "Life" }
+      ]
+    },
+    {
+      "name": "name",
+      "type": "TextInput",
+      "title": "Name",
+      "inputType": "text",
+      "placeholder":"Enter the name"
+    },
+    {
+      "name": "description",
+      "type": "TextInput",
+      "title": "Description",
+      "inputType": "text",
+      "placeholder":"Enter the description"
+    },
+    {
+      "name": "currency",
+      "type": "dropdown",
+      "title": "Currency",
+      "inputType": "text",
+      "placeholder":'Select',
+      "dropdownData": [
+        { "value": 1, "label": "INR" },
+        { "value": 2, "label": "USD" }
+      ]
+    },
+    {
+      "name": "price",
+      "type": "TextInput",
+      "title": "Price",
+      "placeholder":"enter value",
+      
+    },
+
+    {
+      "name": "code",
+      "type": "TextInput",
+      "title": "SAC Code",
+      "inputType": "text",
+      "placeholder":"Enter value"
+    },
+    {
+      "name": "active",
+      "type": "switch",
+      "title": "active",
+     
+    },
+    {
+      "name": "images",
+      "type": "imageUpload",
+      "title": "Product Images",
+      "placeholder":"upload picture images"
+    },
+
+  ]
+}
+
 
 
 

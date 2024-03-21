@@ -305,7 +305,7 @@ import Colors from '../utils/Colors';
 import DimensionUtils from '../utils/DimensionUtils';
 import { debounce } from '../utils/CommanUtils';
  
-const Dropdown = ({ label, data, onSelect }) => {
+function Dropdown  ({ label, data, onSelect })  {
     const DropdownButton = useRef();
     const [visible, setVisible] = useState(false);
     const [selected, setSelected] = useState(undefined);
