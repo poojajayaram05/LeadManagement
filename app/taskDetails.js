@@ -5,6 +5,7 @@ import ArrowBack from "../customComponents/arrowBack";
 import { TouchableOpacity } from "react-native";
 import { router } from "expo-router";
 
+
 export const taskData = {
     elements: [
       {

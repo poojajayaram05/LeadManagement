@@ -289,15 +289,16 @@ const styles = StyleSheet.create({
   },
   actionButtonsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around', // Change to 'space-around'
+    alignItems: 'center', // Add this line
     paddingHorizontal: 20,
     paddingVertical: 10,
-    marginTop: 8,
+    marginTop: 30,
     borderWidth: 4,
     borderColor: '#023B5E',
     borderRadius: 10,
-    height:70,
-    width:320,
+    height: 70,
+    width: '100%', // Adjust the width to 100%
   },
   actionButton: {
     flexDirection: 'column',

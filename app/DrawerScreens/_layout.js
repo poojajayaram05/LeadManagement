@@ -114,21 +114,29 @@ export default function Layout() {
 
     
     ></Drawer.Screen>
+
+<Drawer.Screen
+    name='meeting'
+    options={{
+      drawerLabel:'Meeting',
+      headerTitle:'Meeting',
+      headerShown:true,
+      drawerIcon:({}) =>(
+        <Ionicons name='calendar' size={32} color='black' /> 
+      )
+    }}
+    ></Drawer.Screen>
+
          <Drawer.Screen
     name='createMeeting'
     options={{
       drawerLabel:'Add a Meeting',
       headerTitle:'Add a Meeting',
       headerShown:true,
-
       drawerIcon:({}) =>(
         <Ionicons name='add-circle' size={32} color='black' /> 
-        
-
       )
     }}
-
-    
     ></Drawer.Screen>
     
     

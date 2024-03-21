@@ -198,7 +198,8 @@ const LeadList = () => {
   ]);
   const goToLeadCreate=()=>{
     console.log("inside navigation")
-    router.navigate('/DrawerScreens/createLead');
+    // router.navigate('/DrawerScreens/createLead');
+    router.navigate('/leadDetailTabs/info');
     console.log("after natigation")
   }
   const [index, setIndex] = useState(0);
@@ -211,9 +212,6 @@ const LeadList = () => {
       setStarredLeads([...starredLeads, leadId]);
     }
   };
- 
-
- 
 
   const renderItem = ({ item }) => (
     <TouchableOpacity>
@@ -236,33 +234,7 @@ const LeadList = () => {
     <View style={styles.container}>
       <View style={styles.header}>
           <Text style={styles.myTasksText}>Leads</Text>
-     
         </View>
-     {/* <Button title='task' onPress={goToTask}></Button> */}
-    
-      {/* <Header
-        leftComponent={{ icon: 'menu', color: '#fff' }}
-        centerComponent={{ text: 'LEADS', style: { color: '#fff' } }}
-        rightComponent={{ icon: 'home', color: '#fff' }}
-      /> */}
-{/*    
-    <TouchableOpacity onPress={handleFilterClick} style={styles.filterIcon}>
-          <FontAwesome name="filter" size={24} color="black" />
-        </TouchableOpacity> */}
-       
-      {/* <TabView
-        navigationState={{ index, routes }}
-        renderScene={renderScene}
-        onIndexChange={setIndex}
-        renderTabBar={(props) => (
-          <TabBar
-            {...props}
-            indicatorStyle={{ backgroundColor: 'white' }}
-            style={{ backgroundColor: '#4789e6' }}
-          />
-        )}  
-      />
-       */}
        <FlatList
               data={leadData}
               renderItem={renderItem}

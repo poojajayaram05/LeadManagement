@@ -53,8 +53,6 @@ const goBack=()=>{
     router.navigate('/DrawerScreens/leadList')
     
 }
-      
-
     const onSubmit = async () => {
         const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_management`;
         const token="DeC8cB2g6op02J_9-8cvJDwpA_5QTiL_9x8VnZLmwHy3QcoqoVR7KuhWUs-M0KgzLFLlp1NB8d5kekkbt3mCYQ";

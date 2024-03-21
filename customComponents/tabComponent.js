@@ -52,12 +52,12 @@ const styles = StyleSheet.create({
   },
   tabs: {
     flexDirection: 'row',
-    marginBottom: DimensionUtils.pixelSizeVertical(20),
+    marginBottom: DimensionUtils.pixelSizeVertical(0),
     justifyContent: 'space-between',
   },
   tab: {
-    paddingHorizontal: DimensionUtils.pixelSizeHorizontal(20),
-    paddingVertical: DimensionUtils.pixelSizeVertical(10),
+    paddingHorizontal: DimensionUtils.pixelSizeHorizontal(0),
+    paddingVertical: DimensionUtils.pixelSizeVertical(0),
     flex: 1,
     marginRight: DimensionUtils.pixelSizeHorizontal(1),
     alignItems: 'center', // Center text horizontally

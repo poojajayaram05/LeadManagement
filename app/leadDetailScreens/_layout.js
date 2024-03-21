@@ -7,14 +7,17 @@ import TabComponent from '../../customComponents/tabComponent'
 import Meeting from './meeting';
 import Notes from './notes';
 import Task from './task';
+
+import Requirement from './requirement';
  
 export default function AppLayout() {
   const [selectedTab, setSelectedTab] = useState("Notes");
-  const tabNames = ['Meeting', 'Notes', 'Task'];
+  const tabNames = ['Meeting', 'Notes', 'Task', 'Requirement'];
   const tabContent = [
     <Meeting/>,
     <Notes/>,
     <Task/>,
+    <Requirement/>,
   ];
  
   return (

@@ -517,6 +517,35 @@ export const leadNoteData = {
   ]
 };
 
+export const meetingItems = {
+  elements: [
+    {
+      id: '1',
+      title: 'Lead Meeting',
+      organizer: 'Jane Smith',
+      status: 'Confirmed',
+      description: 'New lead with potential customers.',
+      location: 'Bangalore',
+      timezone: 'UTC-5',
+      from: 'all day',
+      to: 'all day',
+      all_day: 'yes',
+    },
+    {
+      id: '2',
+      title: 'Lead follow-up',
+      organizer: 'John Steve',
+      status: 'Confirmed',
+      description: 'High demand lead looking for property at headquarters.',
+      location: 'Chennai',
+      timezone: 'UTC+0',
+      from: '2024-03-20T09:00:00',
+      to: '2024-03-20T17:00:00',
+      all_day: 'no',
+    },
+  ],
+};
+
 export const meetingData = {
   "elements": [
     {

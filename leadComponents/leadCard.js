@@ -87,7 +87,7 @@ const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temp
         console.log(leadId);
         setLeadId(id);
        
-        router.replace(`leadDetailScreens/notes`);
+        router.navigate('/leadDetailTabs/info');
         // useIdStore((state) => state.setId(id));
         console.log('ID set:', leadId);
     };
