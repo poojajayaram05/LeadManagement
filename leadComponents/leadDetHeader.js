@@ -93,9 +93,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f0f1f2',
-    paddingTop: 20,
     marginBottom: 2,
-    height: '90%',
+    height: '50%',
   },
   backButton: {
     position: 'absolute',

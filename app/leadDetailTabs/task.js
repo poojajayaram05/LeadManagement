@@ -3,6 +3,7 @@ import { View, Text, FlatList, StyleSheet, ScrollView, TouchableOpacity } from '
 import FloatingButton from '../../customComponents/floatingButton';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
+import LeadDet from '../../leadComponents/leadDetHeader';
 
 
 export default function Task() {
@@ -42,6 +43,9 @@ export default function Task() {
 
   return (
     <View style={styles.container}>
+        <View style={{ height:'30%' }}>
+           <LeadDet/>
+      </View>
       <FlatList
         data={data}
         renderItem={renderItem}

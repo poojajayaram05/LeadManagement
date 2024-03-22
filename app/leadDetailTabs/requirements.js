@@ -62,6 +62,7 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons'; // Import FontAwesome for icons
+import LeadDet from '../../leadComponents/leadDetHeader';
 
 export default function Requirements() {
   const data = [
@@ -104,6 +105,9 @@ export default function Requirements() {
 
   return (
     <View style={styles.container}>
+          <View style={{ height:'30%' }}>
+           <LeadDet/>
+      </View>
       <FlatList
         data={data}
         renderItem={renderItem}

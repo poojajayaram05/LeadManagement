@@ -83,7 +83,7 @@ import LeadDet from '../../leadComponents/leadDetHeader';
 const Info = () => {
     return (
         <View style={styles.body}>
-          <View style={{ height:'45%' }}>
+          <View style={{ height:'30%' }}>
            <LeadDet/>
       </View>
         <ScrollView contentContainerStyle={styles.scrollViewContent}>
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        marginTop: 40,
+        marginTop: 10,
         marginHorizontal: 30,
         backgroundColor: 'white',
         flex: 1,

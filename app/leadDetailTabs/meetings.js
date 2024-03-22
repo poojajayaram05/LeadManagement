@@ -213,7 +213,9 @@ export default function Meeting() {
 
   return (
     <View style={styles.container}>
-      <LeadDet />
+        <View style={{ height:'30%' }}>
+           <LeadDet/>
+      </View>
       <FlatList
         data={data}
         renderItem={renderItem}

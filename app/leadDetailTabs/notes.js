@@ -72,6 +72,7 @@ import { View, Text, FlatList, StyleSheet, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import FloatingButton from '../../customComponents/floatingButton';
+import LeadDet from '../../leadComponents/leadDetHeader';
 
 export default function Notes() {
   const data = [
@@ -114,6 +115,9 @@ export default function Notes() {
 
   return (
     <View style={styles.container}>
+          <View style={{ height:'30%' }}>
+           <LeadDet/>
+      </View>
       <FlatList
         data={data}
         renderItem={renderItem}
