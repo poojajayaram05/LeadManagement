@@ -93,6 +93,15 @@ export default function AppLayout() {
       />
       <Stack.Screen
         name="task"
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="tasks" size={size} color={color} />
+          ),
+        }}
+      />
+      {/* <Stack.Screen
+        name="task"
         // component={Task} // Assuming you have a TaskScreen component
         options={{
           headerShown: true,
@@ -101,7 +110,7 @@ export default function AppLayout() {
             <FontAwesome name="tasks" size={size} color={color} />
           ),
         }}
-      />
+      /> */}
     </Tabs>
   );
 }

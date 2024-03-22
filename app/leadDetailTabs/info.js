@@ -77,10 +77,15 @@
 
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import LeadDetail from '../../leadComponents/leadDetailHeader';
+import LeadDet from '../../leadComponents/leadDetHeader';
 
 const Info = () => {
     return (
         <View style={styles.body}>
+          <View style={{ height:'45%' }}>
+           <LeadDet/>
+      </View>
         <ScrollView contentContainerStyle={styles.scrollViewContent}>
             <View style={styles.container}>
                
