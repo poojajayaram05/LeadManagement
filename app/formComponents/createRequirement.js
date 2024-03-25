@@ -40,7 +40,7 @@ export default function CreateRequirement() {
 
 
 const goBack=()=>{
-    router.navigate('/DrawerScreens/leadList')
+    router.back();
     
 }
       

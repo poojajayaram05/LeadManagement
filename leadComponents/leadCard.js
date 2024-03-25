@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Button,Image } from 'react-native';
+import { View, Text, TouchableOpacity, Button,Image,ScrollView } from 'react-native';
 import { router } from 'expo-router';
 
 //import {handleNewButtonClick} from 'react-native-elements';
@@ -14,7 +14,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { avatarPic } from '../assets/images';
 
  
-const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temperature, id, gender }) => {
+const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temperature, id, stage,gender }) => {
    
     const [showSecondImage, setShowSecondImage] = useState(false);
     const[selectedStar, setSelectedStar]=useState(false);
@@ -48,20 +48,20 @@ const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temp
  
 // const Selected = require('../../assets/images/starrOne.jpg');
 // const UnSelected = require('../../assets/images/starTwo.png');
-    const renderBadge = () => {
+    const renderBadge = (stage) => {
  
         if (status === 'open') {
             //return <Badge value={<Text> Sale </Text>} status="success" badgeStyle={styles.badge} />;
-           return <BadgeLead label={'Sale'} color={'#857471'} textColor="white"/>
+           return <BadgeLead label={stage} color={'#857471'} textColor="white"/>
         } else if (status === 'contacted') {
             // return <Badge value={<Text> Closed </Text>} status="error" badgeStyle={styles.badge} />;
-            return <BadgeLead label={'Closed'} color={'#C02DD9'} textColor="white"/>
+            return <BadgeLead label={stage} color={'#C02DD9'} textColor="white"/>
         } else if (status === 'qualified') {
             // return <Badge value={<Text> New Lead </Text>} status="primary" badgeStyle={styles.badge} />;
-            return <BadgeLead label={'New Lead'} color={'maroon'} textColor="white"/>
+            return <BadgeLead label={stage} color={'maroon'} textColor="white"/>
         } else if (status === 'accepted') {
             // return <Badge value={<Text >Negotiating </Text>} status="warning" badgeStyle={styles.badge} />;
-            return <BadgeLead label={'Negotiating'} color={'green'} textColor="white"/>
+            return <BadgeLead label={stage} color={'green'} textColor="white"/>
         }  
         return null;
     };
@@ -90,14 +90,14 @@ const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temp
     return <BadgeLead color={temperatureBadgeColor} label={temperature} textColor={txtColor} />
       };
 
-      const displayScreen = () => {
-        console.log(leadId);
-        setLeadId(id);
+    //   const displayScreen = () => {
+    //     console.log(leadId);
+    //     setLeadId(id);
        
-        router.replace(`leadDetailScreens/notes`);
-        // useIdStore((state) => state.setId(id));
-        console.log('ID set:', leadId);
-    };
+    //     router.replace(`leadDetailScreens/notes`);
+    //     // useIdStore((state) => state.setId(id));
+    //     console.log('ID set:', leadId);
+    // };
  
 
 
@@ -108,8 +108,31 @@ const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temp
   const closeDropdown = () => {
     setShowDropdown(false);
 };
+
+const handleNavigateToLeadDetails = () => {
+    router.navigate(`/leadDetailScreens/notes`);
+    setLeadId(id);
+};
+const handleChangeStage = () => {
+    router.navigate('/formComponents/changeStage');
+    setLeadId(id);
+    closeDropdown(); // Close the dropdown after action
+};
+ 
+const handleConvertLead = () => {
+   
+    closeDropdown(); // Close the dropdown after action
+};
+ 
+const handleReassign = () => {
+    // Add your logic to reassign the lead
+    closeDropdown(); // Close the dropdown after action
+};
+ 
+
+
 return (
-  <TouchableOpacity onPress={closeDropdown}>
+  <TouchableOpacity onPress={handleNavigateToLeadDetails}>
       <View style={{ flex: 1 }}>
           <View style={styles.item}>
               <View style={styles.avatarContainer}>
@@ -123,7 +146,7 @@ return (
                   <Text style={styles.subtitle}>{email}</Text>
                   <Text style={styles.subtitle}>{phone}</Text>
                   <View style={styles.badgeBox}>
-                      <View>{renderBadge()}</View>
+                      <View>{renderBadge(stage)}</View>
                       <View style={styles.badgeSecond}>{renderTemperatureBadge()}</View>
                   </View>
               </View>
@@ -134,22 +157,33 @@ return (
               </View>
           </View>
           {showDropdown && (
-              <View style={styles.dropdownMenu}>
-                  <TouchableOpacity onPress={goToEditLead}>
-                      <Text style={styles.dropdownMenuItem}>Edit lead</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity onPress={() => {displayScreen(); closeDropdown();}}>
-
-                      <Text style={styles.dropdownMenuItem}>View</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity onPress={() => {displayScreen(); closeDropdown();}}>
-
-<Text style={styles.dropdownMenuItem}>Change status</Text>
-</TouchableOpacity>
-              </View>
+    <View style={styles.dropdownContainer}>
+    <ScrollView style={styles.dropdownScrollView}>
+        <View style={styles.dropdownMenu}>
+            <TouchableOpacity onPress={() => {router.navigate('DrawerScreens/createLead'); closeDropdown();}}>
+                <Text style={styles.dropdownMenuItem}>Edit lead</Text>
+            </TouchableOpacity>
+            {/* <TouchableOpacity onPress={() => {displayScreen(); closeDropdown();}}>
+                <Text style={styles.dropdownMenuItem}>View</Text>
+            </TouchableOpacity> */}
+            <TouchableOpacity onPress={handleChangeStage}>
+                <Text style={styles.dropdownMenuItem}>Change Stage</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => handleConvertLead()}>
+                <Text style={styles.dropdownMenuItem}>Convert Lead</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => handleReassign()}>
+                <Text style={styles.dropdownMenuItem}>Reassign</Text>
+            </TouchableOpacity>
+        </View>
+    </ScrollView>
+</View>
+ 
           )}
-      </View>
-  </TouchableOpacity>
+          </View>
+      </TouchableOpacity>
+ 
+ 
 );
 };
 const styles = {
@@ -231,10 +265,17 @@ const styles = {
     dropdownIcon: {
         marginLeft: 10,
     },
-    dropdownMenu: {
+    dropdownContainer: {
         position: 'absolute',
-        top: 60,
+        top: -10, // Adjust this value to move the dropdown above the card
         right: 20,
+        width: 'auto',
+        zIndex: 999,
+    },
+    dropdownScrollView: {
+        maxHeight: 200, // Set max height for scroll view
+    },
+    dropdownMenu: {
         backgroundColor: 'white',
         borderRadius: 8,
         paddingVertical: 10,

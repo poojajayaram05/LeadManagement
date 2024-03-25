@@ -1,14 +1,21 @@
 export const formData = {
   
     "elements": [
+  
       {
-        "name": "name",
-        "type": "TextInput",
-        "title": "Name",
-        "placeholder":"Name",
-        "maxLength": 25,
-        'isRequired': true
+        "name": "u_salutation",
+        "type": "dropdown",
+        "title": "Salutation",
+        "inputType": "text",
+        "placeholder":"Salutation",
+         "dropdownData" :[
+          { value: 'Mr.', label: 'Mr.' },
+          { value: 'Ms.', label: 'Ms.' },
+          { value: 'Dr.', label: 'Dr.' },
+          { value: 'prof', label: 'Prof' },
+         ]
       },
+     
       {
         "name": "u_first_name",
         "type": "TextInput",
@@ -152,20 +159,7 @@ export const formData = {
         "isRequired": true,
        
       },
-      {
-        "name": "u_salutation",
-        "type": "dropdown",
-        "title": "Salutation",
-        "inputType": "text",
-        "placeholder":"Salutation",
-         "dropdownData" :[
-          { value: 'Mr.', label: 'Mr.' },
-          { value: 'Ms.', label: 'Ms.' },
-          { value: 'Dr.', label: 'Dr.' },
-          { value: 'prof', label: 'Prof' },
-         ]
-      },
-     
+  
   
       {
         "name":"u_annual_revenue",
@@ -265,8 +259,8 @@ export const formData = {
           { "value": 2, "label": "Email" },
           { "value": 3, "label": "Message" },
           { "value": 4, "label": "Follow-Up" },
-          { "value": 5, "label": "Video Meeting" },
-          { "value": 6, "label": "Meeting" }
+          { "value": 5, "label": "Appointment" },
+      
         ]
       },
       {
@@ -362,28 +356,30 @@ export const formData = {
 [
  
   {
+    "id":"1",
  
     "firstname": "John",
  
     "lastname": "Smith",
+    "gender":'M',
  
     "email": "johnsmith1@gmail.com",
  
     "jobTitle": "Engineer",
  
     "phone": "8884763231",
-    "status":"open",
     "temperature":"hot",
-    "id":"1",
-    "gender":'M',
+    "stage":"New Lead"
  
   },
  
   {
+    "id":"2",
  
     "firstname": "Jane",
  
     "lastname": "Johnson",
+    "gender":'M',
  
     "email": "janejohnson2@yahoo.com",
  
@@ -392,16 +388,17 @@ export const formData = {
     "phone": "8891234567",
     "status":"contacted",
     "temperature":"cold",
-    "id":"2",
-    "gender":'M',
+    "stage":"Closed"
  
   },
  
   {
+    "id":"3",
  
     "firstname": "Michael",
  
     "lastname": "Brown",
+    "gender":'M',
  
     "email": "michaelbrown3@hotmail.com",
  
@@ -410,16 +407,17 @@ export const formData = {
     "phone": "8902345678",
     "status":"qualified",
     "temperature":"warm",
-    "id":"3",
-    "gender":'M',
+    "stage":"New Lead"
  
   },
  
   {
+    "id":"4",
  
     "firstname": "Emily",
  
     "lastname": "Jones",
+    "gender":'F',
  
     "email": "emilyjones4@outlook.com",
  
@@ -428,16 +426,17 @@ export const formData = {
     "phone": "8913456789",
     "status":"accepted",
     "temperature":"cold",
-    "id":"4",
-    "gender":'F',
+    "stage":"Contacted"
  
   },
  
   {
+    "id":"5",
  
     "firstname": "William",
  
     "lastname": "Garcia",
+    "gender":'M',
  
     "email": "williamgarcia5@gmail.com",
  
@@ -446,16 +445,17 @@ export const formData = {
     "phone": "8924567890",  
     "status":"accepted",
     "temperature":"hot",
-    "id":"5",
-    "gender":'M',
+    "stage":"Contacted"
  
   },
  
   {
+    "id":"6",
  
     "firstname": "Olivia",
  
     "lastname": "Miller",
+    "gender":'F',
  
     "email": "oliviamiller6@yahoo.com",
  
@@ -464,16 +464,17 @@ export const formData = {
     "phone": "8935678901",
     "status":"qualified",
     "temperature":"hot",
-    "id":"6",
-    "gender":'F',
+    "stage":"Closed"
  
   },
  
   {
+    "id":"7",
  
     "firstname": "James",
  
     "lastname": "Davis",
+    "gender":'M',
  
     "email": "jamesdavis7@hotmail.com",
  
@@ -482,16 +483,17 @@ export const formData = {
     "phone": "8946789012",
     "status":"qualified",
     "temperature":"cold",
-    "id":"7",
-    "gender":'M',
+    "stage":"Contacted"
  
   },
  
   {
+    "id":"8",
  
     "firstname": "Sophia",
  
     "lastname": "Rodriguez",
+    "gender":'F',
  
     "email": "sophiarodriguez8@outlook.com",
  
@@ -500,16 +502,17 @@ export const formData = {
     "phone": "8957890123",
     "status":"qualified",
     "temperature":"warm",
-    "id":"8",
-    "gender":'F',
+    "stage":"Qualified"
  
   },
  
   {
+    "id":"9",
  
     "firstname": "Benjamin",
  
     "lastname": "Martinez",
+    "gender":'M',
  
     "email": "benjaminmartinez9@gmail.com",
  
@@ -518,16 +521,17 @@ export const formData = {
     "phone": "8968901234",
     "status":"qualified",
     "temperature":"warm",
-    "id":"9",
-    "gender":'M',
+    "stage":"Qualified"
  
   },
  
   {
+    "id":"10",
  
     "firstname": "Emma",
  
     "lastname": "Hernandez",
+    "gender":'F',
  
     "email": "emmahernandez10@yahoo.com",
  
@@ -536,8 +540,7 @@ export const formData = {
     "phone": "8979012345",
     "status":"qualified",
     "temperature":"cold",
-    "id":"10",
-    "gender":'F',
+    "stage":"Qualified"
  
   }
 ]
@@ -546,10 +549,11 @@ export const meetingItemsData = {
   elements: [
     {
       id: '1',
-      title: 'Lead Meeting',
-      organizer: 'Jane Smith',
+      title: 'Meeting 1',
+      Description: 'New lead with potential customers.',
       status: 'Confirmed',
-      description: 'New lead with potential customers.',
+      Date:"2024-03-14",
+      organizer: 'Jane Smith',
       location: 'Bangalore',
       timezone: 'UTC-5',
       from: 'all day',
@@ -558,10 +562,12 @@ export const meetingItemsData = {
     },
     {
       id: '2',
-      title: 'Lead follow-up',
-      organizer: 'John Steve',
+      title: 'Meeting 2',
+      Description: 'High demand lead looking for property at headquarters.',
       status: 'Confirmed',
-      description: 'High demand lead looking for property at headquarters.',
+      Date:"2024-12-04",
+      organizer: 'John Steve',
+  
       location: 'Chennai',
       timezone: 'UTC+0',
       from: '2024-03-20T09:00:00',
@@ -699,9 +705,7 @@ export const leadNoteData = {
       "dropdownData":[
         { "value": "lead", "label": "Lead" },
         { "value": "task", "label": "Task" },
-        { "value": "meeting", "label": "Meeting" },
-      
-        
+        { "value": "meeting", "label": "Meeting" },  
       ]
     },
     {
@@ -1046,6 +1050,129 @@ export const productFormData= {
       "placeholder":"upload picture images"
     },
  
+  ]
+}
+
+export const changeStatusFormData = {
+  "elements":[
+    {
+        
+    }
+  ]
+}
+
+export const callLogFormData= {
+  "elements": [
+    // {
+    //   "name": "category",
+    //   "type": "dropdown",
+    //   "title": "Select Entry",
+    //   "inputType": "text",
+    //   "placeholder":'Select',
+    //   "dropdownData": [
+    //     { "value": 1, "label": "contact" },
+    //     { "value": 2, "label": "Lead" },
+       
+    //   ]
+    // },
+    {
+      "name": "associatedLeads",
+      "type": "leadDropdown",
+      "title": "Associated Lead",
+      "inputType": "text",
+      "placeholder": "Select",
+      "dropdownData": leadData
+    },
+
+
+    {
+      "name": "phone",
+      "type": "TextInputNumber",
+      "title": "Phone Number",
+      "inputType": 'number',
+      "placeholder":"Enter the number",
+      "keyboardType":"numeric"
+    },
+    {
+      "name": "type",
+      "type": "dropdown",
+      "title": "Type",
+      "inputType": "text",
+      "placeholder":'Select',
+      "dropdownData": [
+        { "value": 1, "label": "OutGoing" },
+        { "value": 2, "label": "Incoming" }
+      ]
+    },
+    {
+      "name": "outcome",
+      "type": "dropdown",
+      "title": "Outcome",
+      "placeholder":"enter value",
+      "dropdownData": [
+        { "value": 1, "label": "Missed Call" },
+        { "value": 2, "label": "No Answer" },
+        { "value": 3, "label": "Busy" },
+        { "value": 3, "label": "Rejected" },
+        { "value": 4, "label": "Connected" }
+      ]
+     
+    },
+ 
+    {
+      "name": "time",
+      "type": "timeInput",
+      "title": "Start Time",
+      "placeholder": "Enter the time"
+    },
+    {
+      "name": "date",
+      "type": "Date",
+      "title": "Date",
+      "placeholder": "Date"
+    },
+    {
+      "name": "recoring",
+      "type": "document",
+      "title": "Recording File",
+      "placeholder":"Upload Recording"
+    },
+ 
+  ]
+}
+export const leadScoreFormData={
+  "leadId":[
+    {
+    "questionId":"1",
+    "questionLabel":"Return on investment?",
+    "questionDescription":"ROI estimation",
+    "order":"1",
+    "ansId":[
+      {
+
+      }
+    ]
+    }
+
+
+  ]
+}
+
+export const activityFormData = {
+  "taskType":[
+    {
+  "task":
+    {
+      "tFormData":taskFormData
+    },
+
+    "meeting":{
+      "mFormData":meetingData
+    },
+    "phone":{
+      "pFormData":''
+    },
+  }
   ]
 }
 

@@ -166,6 +166,7 @@ authData.append('password', password);
 
         }
         else{
+          router.replace('/DrawerScreens/dashboard')
           Alert.alert("Incorrect credentials")
 
         }

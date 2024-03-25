@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
+import useIdStore from '../app/leadStore';
 const getStatusColor = (state) => {
     switch (state.toLowerCase()) {
         case "in-progress":
@@ -15,8 +16,9 @@ const getStatusColor = (state) => {
     }
 };
  
-const TaskItem = ({ state, taskName, ownerName, taskType, description, dueDate, dueTime, leadName }) => {
+const TaskItem = ({ state, taskName, ownerName, taskType, description, dueDate, dueTime, leadName, id }) => {
     const [menuVisible, setMenuVisible] = useState(false);
+   // const { taskId, setTaskId } = useIdStore();
  
     const handleToggleMenu = () => {
         setMenuVisible(!menuVisible);
@@ -35,17 +37,26 @@ const TaskItem = ({ state, taskName, ownerName, taskType, description, dueDate, 
  
     const handleViewTask = () => {
         // Implement logic for viewing the task
+        useIdStore.getState().setTaskId(id);
         router.navigate('/taskDetails');
+        //setTaskId(id);
+       
+
         setMenuVisible(false); // Close the dropdown menu
     };
  
     const handleCardPress = () => {
+         useIdStore.getState().setTaskId(id);
+        router.navigate('/taskDetails');
+        //setTaskId(id);
+       
+
         setMenuVisible(false); // Close the dropdown menu
     };
  
     return (
         <TouchableOpacity onPress={handleCardPress}>
-            <View style={styles.section}>
+            <View style={[styles.section, styles.cardContainer]}>
                 <View style={styles.detailBox}>
                     <Text style={[styles.title, { color: "black" }]}>
                         {taskName}/{leadName}
@@ -153,6 +164,10 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderColor: 'grey',
         borderWidth: 1,
+    },
+ cardContainer: {
+        borderBottomWidth: 1,
+        borderBottomColor: 'lightgrey',
     },
 });
 

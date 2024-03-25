@@ -4,10 +4,11 @@ import useMeetingStore from '../meetingComponents/meetingStore';
 import { meetingItems, meetingItemsData } from '../customComponents/formData';
 import ArrowBack from '../customComponents/arrowBack';
 import { router } from 'expo-router';
+import DetailCard from '../customComponents/detailCard';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
  
 const goBack=()=>{
-    router.navigate('DrawerScreens/meeting');
+    router.back();
   }
  
 const LeadMeetingCard = () => {
@@ -21,9 +22,10 @@ const LeadMeetingCard = () => {
  
     return (
         <View style={styles.container}>
+             <DetailCard obj={meeting}/>
             <Text style={styles.title}>Meeting details</Text>
  
-            <Text style={styles.data}>Title: </Text>
+            {/* <Text style={styles.data}>Title: </Text>
             <Text style={styles.detail}>{title}</Text>
  
             <Text style={styles.data}>Organizer:  </Text>
@@ -48,7 +50,8 @@ const LeadMeetingCard = () => {
             <Text style={styles.detail}>{to}</Text>
  
             <Text style={styles.data}>All Day: </Text>
-            <Text style={styles.detail}>{all_day}</Text>
+            <Text style={styles.detail}>{all_day}</Text> */}
+           
             {/* <ArrowBack/> */}
             <TouchableOpacity onPress={goBack}>
         <ArrowBack />

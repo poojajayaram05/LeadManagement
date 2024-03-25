@@ -51,7 +51,7 @@ const onSelectRadio = (item) => {
 }
 
 const goBack=()=>{
-    router.navigate('/DrawerScreens/leadList')
+    router.back()
     
 }
       

@@ -34,6 +34,7 @@ import {
     "status":"open",
     "temperature":"hot",
     "id":"1",
+    "stage":"New Lead"
  
   },
  
@@ -51,6 +52,7 @@ import {
     "status":"contacted",
     "temperature":"cold",
     "id":"2",
+    "stage":"New Lead"
  
   },
  
@@ -68,6 +70,7 @@ import {
     "status":"qualified",
     "temperature":"warm",
     "id":"3",
+    "stage":"New Lead"
  
   },
  
@@ -85,6 +88,7 @@ import {
     "status":"accepted",
     "temperature":"cold",
     "id":"4",
+    "stage":"Closed"
  
   },
  
@@ -102,6 +106,7 @@ import {
     "status":"accepted",
     "temperature":"hot",
     "id":"5",
+    "stage":"Closed"
  
   },
  
@@ -119,6 +124,8 @@ import {
     "status":"qualified",
     "temperature":"hot",
     "id":"6",
+    "stage":"Qualified"
+    
  
   },
  
@@ -136,6 +143,7 @@ import {
     "status":"qualified",
     "temperature":"cold",
     "id":"7",
+    "stage":"Qualified"
  
   },
  
@@ -153,6 +161,7 @@ import {
     "status":"qualified",
     "temperature":"warm",
     "id":"8",
+    "stage":"Contacted"
  
   },
  
@@ -170,6 +179,7 @@ import {
     "status":"qualified",
     "temperature":"warm",
     "id":"9",
+    "stage":"Closed"
  
   },
  
@@ -187,6 +197,7 @@ import {
     "status":"qualified",
     "temperature":"cold",
     "id":"10",
+    "stage":"Closed"
  
   }
 ]
@@ -228,16 +239,17 @@ const LeadList = () => {
       gender={item.gender}
       onStarPress={toggleStarredLead}
       isStarred={starredLeads.includes(item.id)}
+      stage={item.stage}
     />
   </TouchableOpacity>
   );
  
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      {/* <View style={styles.header}>
           <Text style={styles.myTasksText}>Leads</Text>
      
-        </View>
+        </View> */}
      {/* <Button title='task' onPress={goToTask}></Button> */}
     
       {/* <Header

@@ -240,7 +240,7 @@ const TaskCard = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.myTasksText}>Tasks</Text>
+        {/* <Text style={styles.myTasksText}>Tasks</Text> */}
         {renderDropdownButton()}
       </View>
  
@@ -263,6 +263,7 @@ const TaskCard = () => {
             dueDate={item.dueDate}
             dueTime={item.dueTime}
             leadName={item.leadName}
+            id={item.id}
           />
         )}
         keyExtractor={(item) => item.id}

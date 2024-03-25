@@ -347,6 +347,10 @@ export default function CreateLeadNote({ navigation }) {
     // Submit logic here
   };
 
+  const goBack=()=>{
+    router.back();
+  }
+
   const handleSelect = (item) => {
     // setSelectedValue(item);
     // setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: item.value }));
@@ -442,7 +446,7 @@ export default function CreateLeadNote({ navigation }) {
       </ScrollView>
       <View style={styles.buttonContainer}>
         <TouchableOpacity >
-          <ArrowBack />
+          <ArrowBack onPress={goBack} />
         </TouchableOpacity>
       </View>
     </View>

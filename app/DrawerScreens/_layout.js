@@ -87,7 +87,7 @@ export default function Layout() {
     options={{
       drawerLabel:'Tasks',
       headerTitle:'Tasks',
-      headerShown:false,
+      headerShown:true,
 
       drawerIcon:({}) =>(
         <FontAwesome name='tasks' size={20} color='black' /> 

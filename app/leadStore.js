@@ -2,7 +2,9 @@ import {create} from 'zustand';
 
 const useIdStore = create((set) => ({
     leadId: null,
-    setLeadId: (newId) => set((state) => ({ leadId: newId })),
+    taskId: null,
+    setLeadId: (newId) => set({ leadId: newId }),
+    setTaskId: (newId) => set({ taskId: newId }),
 }));
 
 

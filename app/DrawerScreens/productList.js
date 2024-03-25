@@ -5,7 +5,7 @@ import { productData } from '../../customComponents/formData';
 import { router } from 'expo-router';
  
 const goToCreateProduct =() => {
-  router.navigate('/DrawerScreens/createProduct')
+  router.navigate('/DrawerScreens/addProduct')
 }
  
 const ProductItem = () => {

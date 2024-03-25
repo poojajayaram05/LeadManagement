@@ -12,26 +12,23 @@ import { date } from 'zod';
 import { Ionicons } from '@expo/vector-icons';
 import MultilineTextInput from '../../customComponents/customMultilineInput';
 import CustomMultipleSelect from '../../customComponents/cutsomMultipleSelect';
-import { activityFormData, taskFormData } from '../../customComponents/formData';
+import {  taskFormData } from '../../customComponents/formData';
 import { leadData } from '../../customComponents/formData';
 import LDropdown from '../../customComponents/customLeadDropdown';
 import { router } from 'expo-router';
 import ArrowBack from '../../customComponents/arrowBack';
+import { callLogFormData } from '../../customComponents/formData';
 
-export default function CreateTask() {
+export default function CreateCallLog() {
   // const { control, handleSubmit, formState: { errors } } = useForm();
   const [isSection1Collapsed, setIsSection1Collapsed] = useState(false);
-  const [isSection2Collapsed, setIsSection2Collapsed] = useState(false);
-  const [isSection3Collapsed, setIsSection3Collapsed] = useState(false);
   const [showCalendarModal, setShowCalendarModal] = useState(false); 
   const [formValues, setFormValues] = useState([]);
   const [selectedValue, setSelectedValue] = useState(null); 
   const[selectedDate, setSelectedDate] = useState('');
   const[selectedTime, setSelectedTime]=useState(null);
-  const [phoneNumbers, setPhoneNumbers] = useState(['']);
   const[customDate, setCustomDate]=useState(null);
   const[customTime, setCustomTime]=useState(null);
-  const [isAddButtonDisabled, setIsAddButtonDisabled] = useState(false);
   const [showTimeModal, setShowTimeModal] = useState(false);
 
   const handleCancelClicked = () => {
@@ -72,12 +69,6 @@ const onSubmit = async () => {
         case 'section1':
             setIsSection1Collapsed(!isSection1Collapsed);
             break;
-        case 'section2':
-            setIsSection2Collapsed(!isSection2Collapsed);
-            break;
-        case 'section3':
-            setIsSection3Collapsed(!isSection3Collapsed);
-            break;
         default:
             break;
     }
@@ -92,7 +83,7 @@ const renderFormElement = (element) => {
 };
 
     switch (element.type) {
-        case 'TextInput':
+        case 'TextInputNumber':
             return (
               <View>
                   {/* <RNDateTimePicker mode="time" value={new Date()} /> */}
@@ -106,9 +97,28 @@ const renderFormElement = (element) => {
                     // errors={errors}
                     onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
                     value={formValues[element.name] || ''}
+                    keyboardType="numeric"
                 />
                 </View>
             );
+             case 'TextInput':
+            return (
+                <View>
+                    {/* <RNDateTimePicker mode="time" value={new Date()} /> */}
+                  <CustomInput
+                      key={element.name}
+                      title={element.title}
+                      placeholder={element.placeholder}
+                      // control={control}
+                      name={element.name}
+                      rules={{ required: element.isRequired ? `${element.title} is required` : false }}
+                      // errors={errors}
+                      onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
+                      value={formValues[element.name] || ''}
+                      
+                  />
+                  </View>
+              );
         case 'dropdown':
             return (
                 <View>
@@ -125,21 +135,15 @@ const renderFormElement = (element) => {
                 </View>
                 
             );
-            case 'calenderDropdown':
+            case 'Date':
             return (
                 <View>
                     <View style={styles.inputContainer}>
                         <Text style={styles.label}>{element.title}</Text>
                         
-                        <Dropdown
-                            style={styles.inputContainer}
-                            label={selectedDate ? selectedDate.label : 'Select'}
-                            data={element.dropdownData}
-                            value={selectedDate}
-                            onSelect={handleSelectDate}
-                        />
+                      
                     </View>
-                    {selectedDate && selectedDate.label === 'Custom Date' && (
+                   
   <View style={styles.inputContainer}>
     <Text style={styles.label}>Select Date</Text>
     <Pressable onPress={() => setShowCalendarModal(true)}>
@@ -169,7 +173,7 @@ const renderFormElement = (element) => {
       />
     )}
   </View>
-)}
+
                 </View>
             );
             case 'timeInput':
@@ -219,21 +223,12 @@ const renderFormElement = (element) => {
               </View>
       
               )
-              case 'multilineInput':
-                return (
-                    <View style={styles.inputContainer}>
-                        <Text style={styles.label}>Enter a note</Text>
-                        {/* <MultiSelectExample/> */}
-                        <MultilineTextInput/>
-                        
-                    </View>
-                );
                 case 'leadDropdown':
                   return (
                     <View style={styles.inputContainer}>
-                    <Text style={styles.label}>Select Lead</Text>
+                    <Text style={styles.label}>Associated Leads</Text>
                     <LDropdown
-  label="Select Lead"
+  label="Associated Leads"
   data={leadData.map((lead) => {
     console.log(lead.id); // Log lead object
     return {
@@ -272,7 +267,7 @@ const renderFormElement = (element) => {
        
             <View style={styles.section}>
                 <TouchableOpacity onPress={() => toggleSection('section1')}>
-                    <Text style={styles.sectionTitle}>Task Information</Text>
+                    <Text style={styles.sectionTitle}>Call Log Information</Text>
                   
                     <Image
                         source={isSection1Collapsed ? DropdownIcon : DropupIcon}
@@ -282,35 +277,13 @@ const renderFormElement = (element) => {
                      
                 </TouchableOpacity>
                 <Collapsible collapsed={isSection1Collapsed}>
-                    {taskFormData.elements.slice(0, 9).map((element, index) => (
+                    {callLogFormData.elements.slice(0, 11).map((element, index) => (
                         <View key={index} style={styles.inputContainer}>
                             {renderFormElement(element)}
                         </View>
                     ))}
                 </Collapsible>
             </View>
-
-            {/* <View style={styles.section}>
-                <TouchableOpacity onPress={() => toggleSection('section2')}>
-                    <Text style={styles.sectionTitle}>Company Information</Text>
-                    <Image
-                        source={isSection2Collapsed ? DropdownIcon : DropupIcon}
-                        resizeMode="contain"
-                        style={styles.dropdownIcon}
-                    />
-                </TouchableOpacity>
-                <Collapsible collapsed={isSection2Collapsed}>
-                    {taskFormData.elements.slice(4, 9).map((element, index) => (
-                        <View key={index} style={styles.inputContainer}>
-                            {renderFormElement(element)}
-                        </View>
-                    ))}
-                </Collapsible>
-            </View> */}
-          
-            
-
-            {/* Repeat the same structure for other sections (Company Information and Contact Information) */}
 
             <Button title="Submit" onPress={onSubmit} color='#023B5E' />
              <View style={styles.buttonContainer}>

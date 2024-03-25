@@ -15,7 +15,7 @@ export default function FloatingButton({ onPress }) {
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    top:300,
+    top:600,
     right: 20,
     zIndex: 1,
    

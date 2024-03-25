@@ -21,6 +21,7 @@ import { leadData } from '../../customComponents/formData';
 import MultiSelectItems from '../../customComponents/cutsomMultipleSelect';
 import CustomSwitch from '../../customComponents/customSwitch';
 import ArrowBack from '../../customComponents/arrowBack';
+import { activityFormData } from '../../customComponents/formData';
 import { router } from 'expo-router';
 export default function CreateMeeting() {
   // const { control, handleSubmit, formState: { errors } } = useForm();
@@ -49,7 +50,7 @@ export default function CreateMeeting() {
   };
 
   const goBack=()=>{
-    router.navigate('DrawerScreens/leadList');
+    router.back();
   }
   const handleMeetingNameChange = (value) => {
     setMeetingName(value);
@@ -368,7 +369,7 @@ onSelect={handleSelect}
                      
                 </TouchableOpacity>
                 <Collapsible collapsed={isSection1Collapsed}>
-                    {meetingData.elements.slice(0, 11).map((element, index) => (
+                    {activityFormData.slice(0, 11).map((element, index) => (
                         <View key={index} style={styles.inputContainer}>
                             {renderFormElement(element)}
                         </View>
