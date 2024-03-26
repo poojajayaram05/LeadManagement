@@ -21,7 +21,6 @@ import { leadData } from '../../customComponents/formData';
 import MultiSelectItems from '../../customComponents/cutsomMultipleSelect';
 import CustomSwitch from '../../customComponents/customSwitch';
 import ArrowBack from '../../customComponents/arrowBack';
-import { activityFormData } from '../../customComponents/formData';
 import { router } from 'expo-router';
 export default function CreateMeeting() {
   // const { control, handleSubmit, formState: { errors } } = useForm();
@@ -59,26 +58,21 @@ export default function CreateMeeting() {
   const handleMeetingDescriptionChange = (value) => {
     setMeetingDescription(value);
   };
-  const handleDateChange = (selectedDate) => {
+  const handleDateChange = (selectedDate, element) => {
     if (selectedDate) {
       setShowCalendarModal(false);
       // Check which date input is being changed
       if (element.name === 'fromDate') {
-        handleFromDateChange(selectedDate);
+        setFromDate(selectedDate);
+        console.log("from date",fromDate)
       } else if (element.name === 'toDate') {
-        handleToDateChange(selectedDate);
+        setToDate(selectedDate);
+        console.log("to date",selectedDate);
       }
       setCustomDate(selectedDate);
     }
   };
 
-  const handleFromDateChange = (date) => {
-    setFromDate(date);
-  };
-
-  const handleToDateChange = (date) => {
-    setToDate(date);
-  };
 
   const handleFromTimeChange = (time) => {
     setFromTime(time);
@@ -214,10 +208,10 @@ onSelect={handleSelect}
                     {/* Calendar Modal */}
                     {showCalendarModal && (
                       <RNDateTimePicker
-                        value={customDate || new Date()}
+                        value={selectedDate || new Date()}
                         mode="date"
                         display="default"
-                        onChange={(event, selectedDate) => handleDateChange(selectedDate)}
+                        onChange={(event, selectedDate) => handleDateChange(selectedDate, element)}
                       />
                     )}
                   </View>
@@ -369,7 +363,7 @@ onSelect={handleSelect}
                      
                 </TouchableOpacity>
                 <Collapsible collapsed={isSection1Collapsed}>
-                    {activityFormData.slice(0, 11).map((element, index) => (
+                    {meetingData.elements.slice(0, 11).map((element, index) => (
                         <View key={index} style={styles.inputContainer}>
                             {renderFormElement(element)}
                         </View>

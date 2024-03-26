@@ -1,6 +1,19 @@
 export const formData = {
   
     "elements": [
+      {
+        "name":"u_task_type",
+        "type":"dropdown",
+        "title":"Task Type",
+        "inputType":"text",
+        "placeholder":"Task Type",
+        "dropdownData" :[
+          { value: 'person', label: 'Person' },
+          {value:'company', label:'Company'}
+        ]
+
+        
+      },
   
       {
         "name": "u_salutation",
@@ -121,17 +134,30 @@ export const formData = {
           { value: 'consulting', label: 'Consulting' },
           { value: 'customer_services', label: 'Customer Services'},
           { value: 'financial', label: 'Financial' },
-        
          ]
         
        
       },
       {
-        "name": "u_rating",
+        "name": "lead_currency",
         "type": "dropdown",
-        "title": "Rating",
+        "title": "Currency",
         "inputType": "text",
-        "placeholder":"Rating",
+        "placeholder":"Currency",
+         "dropdownData" :[
+          { value: 'inr', label: 'INR' },
+          { value: 'usd', label: 'USD' },
+         ]
+
+
+
+      },
+      {
+        "name": "u_label",
+        "type": "dropdown",
+        "title": "Label",
+        "inputType": "text",
+        "placeholder":"Label",
          "dropdownData" :[
           { value: 'hot', label: 'Hot' },
           { value: 'cold', label: 'Cold' },
@@ -159,8 +185,6 @@ export const formData = {
         "isRequired": true,
        
       },
-  
-  
       {
         "name":"u_annual_revenue",
         "type": "TextInput",
@@ -174,13 +198,65 @@ export const formData = {
   
       
       {
-        "name": "phone",
+        "name": "u_business_phone",
         "type": "PhoneNumber",
-        "title": "Phone",
+        "title": "Business Phone",
         "inputType": "phone",
-        "placeholder":"Phone",
+        "placeholder":"Business Phone",
         "isRequired": true,
        
+      },
+      {
+        "name": "u_mobile_phone",
+        "type": "PhoneNumber",
+        "title": "Mobile Phone",
+        "inputType": "phone",
+        "placeholder":"Mobile Phone",
+        "isRequired": true,
+       
+      },
+      {
+        "name": "u_home_phone",
+        "type": "PhoneNumber",
+        "title": "Home Phone",
+        "inputType": "phone",
+        "placeholder":"Home Phone",
+        "isRequired": true,
+       
+      },
+      {
+        "name": "u_boolean_5",
+        "type": "Switch",
+        "title": "Do Not Call",
+      },
+      {
+        "name": "u_email_1",
+        "type": "TextInput",
+        "title": "Email",
+        "placeholder":"Email",
+        "isRequired": true,
+       
+      },
+      {
+        "name": "u_alternate_email_1",
+        "type": "TextInput",
+        "title": "Alternate Email",
+        "placeholder":"Alternate Email 1",
+        "isRequired": true,
+       
+      },
+      {
+        "name": "u_alternate_email_2",
+        "type": "TextInput",
+        "title": "Alternate Email",
+        "placeholder":"Alternate Email 2",
+        "isRequired": true,
+       
+      },
+      {
+        "name": "u_email_opt_out",
+        "type": "Switch",
+        "title": "Email Opt Out",
       },
   
       {
@@ -353,197 +429,279 @@ export const formData = {
   }
   
   export const leadData =
-[
- 
-  {
-    "id":"1",
- 
-    "firstname": "John",
- 
-    "lastname": "Smith",
-    "gender":'M',
- 
-    "email": "johnsmith1@gmail.com",
- 
-    "jobTitle": "Engineer",
- 
-    "phone": "8884763231",
-    "temperature":"hot",
-    "stage":"New Lead"
- 
+  [
+   
+    {
+   
+      "LeadType": "Domestic",
+      "Number": "LEA0001509",
+      "FirstName":"John",
+      "LastName":"Smith",
+      "Gender":'M',
+      "Email": "johnsmith1@gmail.com",
+      "Score":"Null",
+      "Owner":"Carla White",
+      "LeadSource":"Partner",
+      "LeadCurrency":"INR 300000",
+      "Description":"John Smith is a potential customer who expressed interest in our services during a recent networking event.",
+      "ScoringProfile":"Profile 1",
+      "Company":"RPT",
+      "NoOfEmployees":"30",
+      "AnnualRevenue":"INR 700000",
+      "CompanyDUNSNumber":"73245",
+      "Industry":"Accounting",
+      "AlternateEmail1":"johnsmith0234@gmail.com",
+      "AlternateEmail2":"johnsmithh987@gmail.com",
+      "EmailOtpOut":"True",
+      "BusinessPhone": "8884763231",
+      "MobilePhone":"9903672637",
+      "HomePhone":"8802374321",
+      "DoNotCall":"True",
+      "Street":"No. 3, 2nd lane",
+      "City":"Boston",
+      "State":"California",
+      "Zip":"230098",
+      "Country":"USA",
+      "Preferred":"Any",
+      "Email":"johnsmith1@gmail.com",
+      "BulkEmail":"Allow",
+      "Phone":"8076845632",
+      "Whatsapp":"9985435678",
+      "Label":"hot",
+      "Id":"1",
+      "Stage":"New Lead"
+   
+    },
+   
+    {
+      "LeadType": "Domestic",
+      "Number": "LEA0001510",
+      "FirstName": "Emily",
+      "LastName": "Johnson",
+      "Gender": "F",
+      "Email": "emilyjohnson2@gmail.com",
+      "Score": "Null",
+      "Owner": "David Brown",
+      "LeadSource": "Advertisement",
+      "LeadCurrency": "USD 250000",
+      "Description": "Emily Johnson is interested in our services after attending our webinar.",
+      "ScoringProfile": "Profile 2",
+      "Company": "XYZ Corp",
+      "NoOfEmployees": "50",
+      "AnnualRevenue": "USD 900000",
+      "CompanyDUNSNumber": "87213",
+      "Industry": "Financial",
+      "AlternateEmail1": "emily.johnson@xyzcorp.com",
+      "AlternateEmail2": "emilyj123@hotmail.com",
+      "EmailOtpOut": "False",
+      "BusinessPhone": "7894563210",
+      "MobilePhone": "9876543210",
+      "HomePhone": "8765432109",
+      "DoNotCall": "False",
+      "Street": "123 Main St",
+      "City": "New York",
+      "State": "New York",
+      "Zip": "10001",
+      "Country": "USA",
+      "Preferred": "Email",
+      "BulkEmail": "Not allowed",
+      "Phone": "9876543210",
+      "Whatsapp": "Unavailable",
+      "Label": "cold",
+      "Id": "2",
+      "Stage": "Qualified"
+    },
+    {
+      "LeadType": "International",
+      "Number": "LEA0001511",
+      "FirstName": "Daniel",
+      "LastName": "Brown",
+      "Gender": "M",
+      "Email": "danielbrown@gmail.com",
+      "Score": "Null",
+      "Owner": "Maria Garcia",
+      "LeadSource": "Web",
+      "LeadCurrency": "EUR 400000",
+      "Description": "Daniel Brown contacted us through our website seeking information about our products.",
+      "ScoringProfile": "Profile 3",
+      "Company": "ABC Ltd",
+      "NoOfEmployees": "20",
+      "AnnualRevenue": "EUR 600000",
+      "CompanyDUNSNumber": "51234",
+      "Industry": "Consulting",
+      "AlternateEmail1": "danielb987@abcltd.com",
+      "AlternateEmail2": "dbrown123@yahoo.com",
+      "EmailOtpOut": "True",
+      "BusinessPhone": "6547893210",
+      "MobilePhone": "9876543210",
+      "HomePhone": "8765432109",
+      "DoNotCall": "True",
+      "Street": "456 Elm St",
+      "City": "Los Angeles",
+      "State": "California",
+      "Zip": "90001",
+      "Country": "USA",
+      "Preferred": "Phone",
+      "BulkEmail": "Allow",
+      "Phone": "9876543210",
+      "Whatsapp": "Unavailable",
+      "Label": "warm",
+      "Id": "3",
+      "Stage": "Contacted"
+    },
+    {
+      "LeadType": "Domestic",
+      "Number": "LEA0001512",
+      "FirstName": "Michael",
+      "LastName": "Wilson",
+      "Gender": "M",
+      "Email": "michaelwilson@gmail.com",
+      "Score": "Null",
+      "Owner": "Jennifer Rodriguez",
+      "LeadSource": "Web",
+      "LeadCurrency": "GBP 200000",
+      "Description": "Michael Wilson inquired about our services through our online contact form.",
+      "ScoringProfile": "Profile 4",
+      "Company": "PQR Inc",
+      "NoOfEmployees": "100",
+      "AnnualRevenue": "GBP 800000",
+      "CompanyDUNSNumber": "93215",
+      "Industry": "Customer Services",
+      "AlternateEmail1": "mwilson456@pqrinc.com",
+      "AlternateEmail2": "michael.wilson23@gmail.com",
+      "EmaieOtpOut": "False",
+      "BusinessPhone": "1234567890",
+      "MobilePhone": "9876543210",
+      "HomePhone": "8765432109",
+      "DoNotCall": "False",
+      "Street": "789 Oak St",
+      "City": "Chicago",
+      "State": "Illinois",
+      "Zip": "60001",
+      "Country": "USA",
+      "Preferred": "Any",
+      "BulkEmail": "Not allowed",
+      "Phone": "9876543210",
+      "Whatsapp": "Unavailable",
+      "Label": "hot",
+      "Id": "4",
+      "Stage": "New Lead"
+    },
+    {
+      "LeadType": "International",
+      "Number": "LEA0001513",
+      "FirstName": "Olivia",
+      "LastName": "Taylor",
+      "Gender": "F",
+      "Email": "oliviataylor@gmail.com",
+      "Score": "Null",
+      "Owner": "Robert Martinez",
+      "LeadSource": "Partner",
+      "LeadCurrency": "AUD 350000",
+      "Description": "Olivia Taylor was referred to us by one of our business partners.",
+      "ScoringProfile": "Profile 5",
+      "Company": "LMN Group",
+      "NoOfEmployees": "75",
+      "AnnualRevenue": "AUD 750000",
+      "CompanyDUNSNumber": "74239",
+      "Industry": "Accounting",
+      "AlternateEmail1": "oliviataylor@lmngroup.com",
+      "AlternateEmail2": "olivia.taylor23@hotmail.com",
+      "EmailOtpOut": "True",
+      "BusinessPhone": "9876543210",
+      "MobilePhone": "8765432109",
+      "HomePhone": "7654321098",
+      "DoNotCall": "True",
+      "Street": "101 Pine St",
+      "City": "Miami",
+      "State": "Florida",
+      "Zip": "33001",
+      "Country": "USA",
+      "Preferred": "Phone",
+      "BulkEmail": "Allow",
+      "Phone": "9876543210",
+      "Whatsapp": "Unavailable",
+      "Label": "cold",
+      "Id": "5",
+      "Stage": "Qualified"
+    },
+    {
+      "LeadType": "Domestic",
+      "Number": "LEA0001514",
+      "FirstName": "James",
+      "LastName": "Clark",
+      "Gender": "M",
+      "Email": "jamesclark@gmail.com",
+      "Score": "Null",
+      "Owner": "Karen Thompson",
+      "LeadSource": "Advertisement",
+      "LeadCurrency": "CAD 300000",
+      "Description": "James Clark saw our ad in a local newspaper and contacted us for more information.",
+      "ScoringProfile": "Profile 6",
+      "Company": "QRS Enterprises",
+      "NoOfEmployees": "40",
+    "AnnualRevenue": "CAD 500000",
+    "CompanyDUNSNumber": "61234",
+    "Industry": "Financial",
+    "AlternateEmail1": "jclark@qrsenterprises.com",
+    "AlternateEmail2": "jamesc123@yahoo.com",
+    "EmailOtpOut": "False",
+    "BusinessPhone": "9876543210",
+    "MobilePhone": "8765432109",
+    "HomePhone": "7654321098",
+    "DoNotCall": "False",
+    "Street": "456 Pine St",
+    "City": "Houston",
+    "State": "Texas",
+    "Zip": "77001",
+    "Country": "USA",
+    "Preferred": "Bulk Email",
+    "BulkEmail": "Not allowed",
+    "Phone": "9876543210",
+    "Whatsapp": "Unavailable",
+    "Label": "hot",
+    "Id": "6",
+    "Stage": "Contacted"
   },
- 
   {
-    "id":"2",
- 
-    "firstname": "Jane",
- 
-    "lastname": "Johnson",
-    "gender":'M',
- 
-    "email": "janejohnson2@yahoo.com",
- 
-    "jobTitle": "Designer",
- 
-    "phone": "8891234567",
-    "status":"contacted",
-    "temperature":"cold",
-    "stage":"Closed"
- 
-  },
- 
-  {
-    "id":"3",
- 
-    "firstname": "Michael",
- 
-    "lastname": "Brown",
-    "gender":'M',
- 
-    "email": "michaelbrown3@hotmail.com",
- 
-    "jobTitle": "Manager",
- 
-    "phone": "8902345678",
-    "status":"qualified",
-    "temperature":"warm",
-    "stage":"New Lead"
- 
-  },
- 
-  {
-    "id":"4",
- 
-    "firstname": "Emily",
- 
-    "lastname": "Jones",
-    "gender":'F',
- 
-    "email": "emilyjones4@outlook.com",
- 
-    "jobTitle": "Developer",
- 
-    "phone": "8913456789",
-    "status":"accepted",
-    "temperature":"cold",
-    "stage":"Contacted"
- 
-  },
- 
-  {
-    "id":"5",
- 
-    "firstname": "William",
- 
-    "lastname": "Garcia",
-    "gender":'M',
- 
-    "email": "williamgarcia5@gmail.com",
- 
-    "jobTitle": "Analyst",
- 
-    "phone": "8924567890",  
-    "status":"accepted",
-    "temperature":"hot",
-    "stage":"Contacted"
- 
-  },
- 
-  {
-    "id":"6",
- 
-    "firstname": "Olivia",
- 
-    "lastname": "Miller",
-    "gender":'F',
- 
-    "email": "oliviamiller6@yahoo.com",
- 
-    "jobTitle": "Consultant",
- 
-    "phone": "8935678901",
-    "status":"qualified",
-    "temperature":"hot",
-    "stage":"Closed"
- 
-  },
- 
-  {
-    "id":"7",
- 
-    "firstname": "James",
- 
-    "lastname": "Davis",
-    "gender":'M',
- 
-    "email": "jamesdavis7@hotmail.com",
- 
-    "jobTitle": "Coordinator",
- 
-    "phone": "8946789012",
-    "status":"qualified",
-    "temperature":"cold",
-    "stage":"Contacted"
- 
-  },
- 
-  {
-    "id":"8",
- 
-    "firstname": "Sophia",
- 
-    "lastname": "Rodriguez",
-    "gender":'F',
- 
-    "email": "sophiarodriguez8@outlook.com",
- 
-    "jobTitle": "Administrator",
- 
-    "phone": "8957890123",
-    "status":"qualified",
-    "temperature":"warm",
-    "stage":"Qualified"
- 
-  },
- 
-  {
-    "id":"9",
- 
-    "firstname": "Benjamin",
- 
-    "lastname": "Martinez",
-    "gender":'M',
- 
-    "email": "benjaminmartinez9@gmail.com",
- 
-    "jobTitle": "Engineer",
- 
-    "phone": "8968901234",
-    "status":"qualified",
-    "temperature":"warm",
-    "stage":"Qualified"
- 
-  },
- 
-  {
-    "id":"10",
- 
-    "firstname": "Emma",
- 
-    "lastname": "Hernandez",
-    "gender":'F',
- 
-    "email": "emmahernandez10@yahoo.com",
- 
-    "jobTitle": "Designer",
- 
-    "phone": "8979012345",
-    "status":"qualified",
-    "temperature":"cold",
-    "stage":"Qualified"
- 
-  }
-]
+    "LeadType": "International",
+    "Number": "LEA0001515",
+    "FirstName": "Sophia",
+    "LastName": "Lewis",
+    "Gender": "F",
+    "Email": "sophialewis@gmail.com",
+    "Score": "Null",
+    "Owner": "Steven Johnson",
+    "LeadSource": "Web",
+    "LeadCurrency": "EUR 400000",
+    "Description": "Sophia Lewis found our website through an online search and expressed interest in our services.",
+    "ScoringProfile": "Profile 7",
+    "Company": "STU Solutions",
+    "NoOfEmployees": "50",
+    "AnnualRevenue": "EUR 900000",
+    "CompanyDUNSNumber": "95213",
+    "Industry": "Financial",
+    "AlternateEmail1": "sophia.l@stusolutions.com",
+    "AlternateEmail2": "slewis456@yahoo.com",
+    "EmailOtpOut": "False",
+    "BusinessPhone": "2345678901",
+    "MobilePhone": "8765432109",
+    "HomePhone": "7654321098",
+    "DoNotCall": "False",
+    "Street": "456 Elm St",
+    "City": "Los Angeles",
+    "State": "California",
+    "Zip": "90001",
+    "Country": "USA",
+    "Preferred": "Phone",
+    "BulkEmail": "Not allowed",
+    "Phone": "8765432109",
+    "Whatsapp": "Unavailable",
+    "Label": "hot",
+    "Id": "7",
+    "Stage": "Closed"
+},
+  ]
 
 export const meetingItemsData = {
   elements: [

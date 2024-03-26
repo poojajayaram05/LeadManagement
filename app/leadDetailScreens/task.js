@@ -99,6 +99,90 @@
 //   },
 // });
 
+// import React from 'react';
+// import { View, Text, FlatList, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+// import FloatingButton from '../../customComponents/floatingButton';
+// import { Ionicons } from '@expo/vector-icons';
+// import { router } from 'expo-router';
+// import LeadDet from '../../leadComponents/leadDetHeader';
+// import { taskData } from '../../customComponents/formData';
+// import LeadDetailCard from '../../customComponents/leadDetailCard';
+// import useIdStore from '../leadStore';
+ 
+ 
+// export default function Task() {
+
+//   const goToCreateTask = () => {
+//     router.navigate('/DrawerScreens/createTask')
+//   }
+ 
+
+ 
+//   const renderItem = ({ item }) => {
+//     const goToTaskDetail=()=>{
+//       useIdStore.getState().setTaskId(item.id);
+    
+//       router.navigate('/taskDetails')
+//     }
+//     const { taskType, state, taskName, ownerName,id } = item;
+//     const taskItem = { taskType, state, taskName, ownerName };
+//    // useIdStore.getState().setTaskId(item.id);
+//     return(
+   
+//         <TouchableOpacity onPress={goToTaskDetail}>
+//           <View onPress={goToTaskDetail}><Text>{item.taskName}</Text></View>
+//        <LeadDetailCard obj={taskItem} name="list" />
+//         <View style={styles.divider} />
+//       </TouchableOpacity>
+
+// )}
+ 
+//   return (
+//     <View style={styles.container}>
+//         <View style={{ height:'27%' }}>
+//            <LeadDet/>
+//       </View>
+//       <FlatList
+//         data={taskData}
+//         renderItem={renderItem}
+//         keyExtractor={(item) => item.id}
+//       />
+//       <FloatingButton onPress={goToCreateTask} />
+//     </View>
+//   );
+// }
+ 
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: 'white',
+//   },
+//   boldText: {
+//     fontWeight: 'bold',
+//   },
+//   card: {
+//     flexDirection: 'row',
+//     alignItems: 'center',
+//     padding: 10,
+//     marginHorizontal: 20,
+//   },
+//   text: {
+//     fontSize: 14,
+//     marginBottom: 5,
+//   },
+//   iconContainer: {
+//     marginRight: 10,
+//   },
+//   textContainer: {
+//     flex: 1,
+//   },
+//   divider: {
+//     height: 1,
+//     backgroundColor: 'black',
+//     marginHorizontal: 20,
+//   },
+// });
+
 import React from 'react';
 import { View, Text, FlatList, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import FloatingButton from '../../customComponents/floatingButton';
@@ -111,35 +195,30 @@ import useIdStore from '../leadStore';
  
  
 export default function Task() {
-
+ 
   const goToCreateTask = () => {
     router.navigate('/DrawerScreens/createTask')
   }
- 
-
- 
   const renderItem = ({ item }) => {
     const goToTaskDetail=()=>{
       useIdStore.getState().setTaskId(item.id);
-    
       router.navigate('/taskDetails')
     }
     const { taskType, state, taskName, ownerName,id } = item;
     const taskItem = { taskType, state, taskName, ownerName };
    // useIdStore.getState().setTaskId(item.id);
     return(
-   
         <TouchableOpacity onPress={goToTaskDetail}>
-          <View onPress={goToTaskDetail}><Text>{item.taskName}</Text></View>
+          <View onPress={goToTaskDetail} style={styles.title}>
+            <Text style={styles.titletext}>{item.taskName}</Text>
+            </View>
        <LeadDetailCard obj={taskItem} name="list" />
-        <View style={styles.divider} />
+        {/* <View style={styles.divider} /> */}
       </TouchableOpacity>
-
 )}
- 
   return (
     <View style={styles.container}>
-        <View style={{ height:'27%' }}>
+        <View style={{ height:'30%' }}>
            <LeadDet/>
       </View>
       <FlatList
@@ -153,6 +232,20 @@ export default function Task() {
 }
  
 const styles = StyleSheet.create({
+  title:{
+    alignItems: 'center',
+    padding: 10,
+    marginHorizontal: 20,
+    flexDirection:'row',
+    maxWidth: '90%',
+    padding: 5,
+    borderRadius: 10,
+     backgroundColor:'#023B5E',
+  },
+  titletext:{
+    fontWeight:'bold',
+    color:'white'
+   },
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -180,5 +273,6 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: 'black',
     marginHorizontal: 20,
+    marginBottom:10
   },
 });

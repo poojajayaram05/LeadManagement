@@ -15,192 +15,9 @@ import {
   StatusBar,
   Button,
 } from 'react-native';
+import {leadData} from '../../customComponents/formData';
+ 
 
- 
- const leadData =
-[
- 
-  {
- 
-    "firstname": "John",
- 
-    "lastname": "Smith",
- 
-    "email": "johnsmith1@gmail.com",
- 
-    "job-title": "Engineer",
- 
-    "phone": "8884763231",
-    "status":"open",
-    "temperature":"hot",
-    "id":"1",
-    "stage":"New Lead"
- 
-  },
- 
-  {
- 
-    "firstname": "Jane",
- 
-    "lastname": "Johnson",
- 
-    "email": "janejohnson2@yahoo.com",
- 
-    "job-title": "Designer",
- 
-    "phone": "8891234567",
-    "status":"contacted",
-    "temperature":"cold",
-    "id":"2",
-    "stage":"New Lead"
- 
-  },
- 
-  {
- 
-    "firstname": "Michael",
- 
-    "lastname": "Brown",
- 
-    "email": "michaelbrown3@hotmail.com",
- 
-    "job-title": "Manager",
- 
-    "phone": "8902345678",
-    "status":"qualified",
-    "temperature":"warm",
-    "id":"3",
-    "stage":"New Lead"
- 
-  },
- 
-  {
- 
-    "firstname": "Emily",
- 
-    "lastname": "Jones",
- 
-    "email": "emilyjones4@outlook.com",
- 
-    "job-title": "Developer",
- 
-    "phone": "8913456789",
-    "status":"accepted",
-    "temperature":"cold",
-    "id":"4",
-    "stage":"Closed"
- 
-  },
- 
-  {
- 
-    "firstname": "William",
- 
-    "lastname": "Garcia",
- 
-    "email": "williamgarcia5@gmail.com",
- 
-    "job-title": "Analyst",
- 
-    "phone": "8924567890",  
-    "status":"accepted",
-    "temperature":"hot",
-    "id":"5",
-    "stage":"Closed"
- 
-  },
- 
-  {
- 
-    "firstname": "Olivia",
- 
-    "lastname": "Miller",
- 
-    "email": "oliviamiller6@yahoo.com",
- 
-    "job-title": "Consultant",
- 
-    "phone": "8935678901",
-    "status":"qualified",
-    "temperature":"hot",
-    "id":"6",
-    "stage":"Qualified"
-    
- 
-  },
- 
-  {
- 
-    "firstname": "James",
- 
-    "lastname": "Davis",
- 
-    "email": "jamesdavis7@hotmail.com",
- 
-    "job-title": "Coordinator",
- 
-    "phone": "8946789012",
-    "status":"qualified",
-    "temperature":"cold",
-    "id":"7",
-    "stage":"Qualified"
- 
-  },
- 
-  {
- 
-    "firstname": "Sophia",
- 
-    "lastname": "Rodriguez",
- 
-    "email": "sophiarodriguez8@outlook.com",
- 
-    "job-title": "Administrator",
- 
-    "phone": "8957890123",
-    "status":"qualified",
-    "temperature":"warm",
-    "id":"8",
-    "stage":"Contacted"
- 
-  },
- 
-  {
- 
-    "firstname": "Benjamin",
- 
-    "lastname": "Martinez",
- 
-    "email": "benjaminmartinez9@gmail.com",
- 
-    "job-title": "Engineer",
- 
-    "phone": "8968901234",
-    "status":"qualified",
-    "temperature":"warm",
-    "id":"9",
-    "stage":"Closed"
- 
-  },
- 
-  {
- 
-    "firstname": "Emma",
- 
-    "lastname": "Hernandez",
- 
-    "email": "emmahernandez10@yahoo.com",
- 
-    "job-title": "Designer",
- 
-    "phone": "8979012345",
-    "status":"qualified",
-    "temperature":"cold",
-    "id":"10",
-    "stage":"Closed"
- 
-  }
-]
 const LeadList = () => {
   const [routes] = useState([
     { key: 'allLeads', title: 'All Leads' },
@@ -228,18 +45,17 @@ const LeadList = () => {
 
   const renderItem = ({ item }) => (
     <TouchableOpacity>
-    <LeadItem
-      firstName={item.firstname}
-      lastName={item.lastname}
-      email={item.email}
-      phone={item.phone}
-      status={item.status}
-      id={item.id}
-      temperature={item.temperature}
-      gender={item.gender}
-      onStarPress={toggleStarredLead}
-      isStarred={starredLeads.includes(item.id)}
-      stage={item.stage}
+   <LeadItem
+      FirstName={item.FirstName}
+      LastName={item.LastName}
+      Email={item.Email}
+      Phone={item.Phone}
+      Stage={item.Stage}
+      Id={item.Id}
+      Label={item.Label}
+      Gender={item.Gender}
+     
+     
     />
   </TouchableOpacity>
   );
