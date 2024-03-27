@@ -10,16 +10,20 @@ export const taskData = {
       {
         id: "1",
         taskType: "Meeting",
-        state: "follow-up",
+        stage: "follow-up",
         taskName: "Carla Demo Lead",
         ownerName: "John Doe",
         dueDate: "2024-03-01",
         dueTime: "10:00 AM",
         description: "Discuss project details with the client",
-        leadName: "John Smith",
+        title:'---',
+        status:'in-progress',
+        repeat:'monthly',
+       
         // dueState: "Today",
         // assignedToMe: "Carla",
         // assignedByMe: "Sofia",
+
       },
       {
         id: "2",
@@ -140,13 +144,15 @@ function TaskDetailsPage() {
             <Text style={styles.taskName}>{task.taskName}</Text>
           </View>
           <DetailView label="Task Type" value={task.taskType} />
-          <DetailView label="Lead Name" value={task.leadName} />
-          <DetailView label="State" value={task.state} />
+          {/* <DetailView label="Lead Name" value={task.leadName} /> */}
+          <DetailView label="Stage" value={task.stage} />
           <DetailView label="Owner Name" value={task.ownerName} />
           <DetailView label="Due Date" value={task.dueDate} />
           <DetailView label="Due Time" value={task.dueTime} />
           <DetailView label="Description" value={task.description} />
-         
+          <DetailView label="Title" value={task.title} />
+          <DetailView label="Status" value={task.status} />
+          <DetailView label="Repeat" value={task.repeat} />
         </View>
         <TouchableOpacity onPress={goBack}>
         <ArrowBack />
@@ -180,18 +186,23 @@ const styles = StyleSheet.create({
     backgroundColor: "#ccc",
     padding: 20,
     width:'100%',
-   
   },
   section: {
     marginBottom: 20,
     borderRadius: 10,
-    backgroundColor: "#fff",
+    backgroundColor: "red",
     padding:20,
-    backgroundColor:'#F6FBF8'
+    backgroundColor:'#F6FBF8',
+    // borderColor:'red',
+    // borderWidth:1,
+    padding:10
    
   },
   detailBox: {
     marginBottom: 10,
+    // borderColor:'blue',
+    // borderWidth:1,
+    padding:10
   },
   taskName: {
     fontSize: 24,
@@ -205,26 +216,36 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderRadius: 10,
     width:'80%',
+   
   },
   detailItem: {
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 5,
+    // borderColor:'orange',
+    // borderWidth:1,
+    // boxShadow:1
   },
   labelBox: {
     flex: 1,
-    borderWidth: 1,
-    borderColor: "#F6FBF8",
+    // borderWidth: 1,
+    // borderColor: "#F6FBF8",
     padding: 5,
     marginRight: 10,
     borderRadius: 5,
+    fontSize:18,
+
   },
   valueBox: {
-    flex: 2,
-    borderWidth: 1,
-    borderColor: "#F6FBF8",
+    flex: 1,
+    // borderWidth: 1,
+    // borderColor: "#F6FBF8",
     padding: 5,
     borderRadius: 5,
+    position:'relative',
+    left:28,
+    // borderRightWidth:1,
+    // borderRightColor:'red'
   },
   key: {
     fontWeight: "bold",

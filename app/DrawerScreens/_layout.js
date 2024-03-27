@@ -82,6 +82,7 @@ export default function Layout() {
 
     
     ></Drawer.Screen>
+
      <Drawer.Screen
     name='taskList'
     options={{
@@ -91,13 +92,10 @@ export default function Layout() {
 
       drawerIcon:({}) =>(
         <FontAwesome name='tasks' size={32} color='black' /> 
-        
-
       )
     }}
-
-    
     ></Drawer.Screen>
+
      <Drawer.Screen
     name='createTask'
     options={{
@@ -150,10 +148,9 @@ export default function Layout() {
 <Drawer.Screen
     name='createProduct'
     options={{
-      drawerLabel:'Add a Product',
-      headerTitle:'Add a Product',
+      drawerLabel:'',
+      headerTitle:'',
       headerShown:true,
-
       drawerIcon:({}) =>(
         <Ionicons name='add-circle' size={32} color='black' /> 
         
@@ -161,8 +158,6 @@ export default function Layout() {
       )
     }}
     ></Drawer.Screen>
-    
-    
    </Drawer>
 </GestureHandlerRootView>
 </>

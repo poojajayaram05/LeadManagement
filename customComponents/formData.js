@@ -9,57 +9,6 @@ export const formData = {
         "maxLength": 25,
         'isRequired':true
       },
-      // {
-      //   "name": "name",
-      //   "type": "TextInput",
-      //   "title": "Name",
-      //   "placeholder":"Name",
-      //   "maxLength": 25,
-      //   'isRequired':true
-      // },
-      // {
-      //   "name": "primary_contact",
-      //   "type": "TextInput",
-      //   "title": "Contact",
-      //   "placeholder":"Contact",
-      //   "maxLength": 25,
-      //   'isRequired':true
-      // },
-      // {
-      //   "name": "email",
-      //   "type": "TextInput",
-      //   "title": "Email",
-      //   "placeholder":"Email",
-      //   "maxLength": 25,
-      //   'isRequired':true
-      // },
-      // {
-      //   "name": "phone",
-      //   "type": "TextInput",
-      //   "title": "Phone",
-      //   "placeholder":"Phone",
-      //   "maxLength": 25,
-      //   'isRequired':true
-      // },
-      // {
-      //   "name": "u_email_type",
-      //   "type":"TextInput",
-      //   "value": "personal_email_id",
-      //   "title": "Email type",
-      //   "placeholder":"Email type",
-      //   "maxLength": 25,
-      //   'isRequired':true
-      // },
-      // {
-      //   "name": "u_phone_type",
-      //   "type":"TextInput",
-      //   "value": "home",
-      //   "title": "Phone Type",
-      //   "placeholder":"home phone",
-      //   "maxLength": 25,
-      //   'isRequired':true
-      // },
-      
 
       {
       "name": "firstname",
@@ -693,89 +642,361 @@ export const productData=
   },
 ]
 
-
-export const productFormData= {
+export const ContactData= {
   "elements": [
+  
     {
-      "name": "type",
-      "type": "RadioButton",
-      "title": "Type",
-      "rdata": [
-        { "value": 1, "label": "Product" },
-        { "value": 2, "label": "Service" }
-      ]
+      "name": "first_name",
+      "type": "TextInput",
+      "title": "First name | first_name",
+      "inputType": "text",
+      "placeholder": "Enter First name",
+      "dataType": "string"
     },
-
     {
-      "name": "category",
+      "name": "last_name",
+      "type": "TextInput",
+      "title": "Last name | last_name",
+      "inputType": "text",
+      "placeholder": "Enter Last name",
+      "dataType": "string"
+    },
+    {
+      "name": "account_type",
       "type": "dropdown",
-      "title": "Category",
+      "title": "Account | account",
       "inputType": "text",
-      "placeholder":'Select',
+      "placeholder": "Select account type",
       "dropdownData": [
-        { "value": 1, "label": "Travel" },
-        { "value": 2, "label": "Medical" },
-        { "value": 3, "label": "Home" },
-        { "value": 4, "label": "Pet" },
-        { "value": 5, "label": "Life" }
-      ]
+        { "value": "saving", "label": "Boexo" },
+        { "value": "current", "label": "Boexo france" },
+        { "value": "current", "label": "Advance super routing" },
+        { "value": "current", "label": "Vector solutions" }
+      ],
+      "dataType": "string"
     },
     {
-      "name": "name",
+      "name": "title",
       "type": "TextInput",
-      "title": "Name",
+      "title": "Title | title",
       "inputType": "text",
-      "placeholder":"Enter the name"
+      "dataType": "string"
     },
     {
-      "name": "description",
-      "type": "TextInput",
-      "title": "Description",
-      "inputType": "text",
-      "placeholder":"Enter the description"
-    },
-    {
-      "name": "currency",
+      "name": "preferred_language",
       "type": "dropdown",
-      "title": "Currency",
+      "title": "Language | preferred_language",
       "inputType": "text",
-      "placeholder":'Select',
+      "placeholder": "System(English)",
       "dropdownData": [
-        { "value": 1, "label": "INR" },
-        { "value": 2, "label": "USD" }
-      ]
+        { "value": "English", "label": "English" },
+        { "value": "Hindi", "label": "German" }
+      ],
+      "dataType": "string"
     },
     {
-      "name": "price",
+      "name": "email",
       "type": "TextInput",
-      "title": "Price",
-      "placeholder":"enter value",
-      
-    },
-
-    {
-      "name": "code",
-      "type": "TextInput",
-      "title": "SAC Code",
+      "title": "Email | email",
       "inputType": "text",
-      "placeholder":"Enter value"
+      "placeholder": "Enter Email",
+      "dataType": "email"
     },
     {
-      "name": "active",
-      "type": "switch",
-      "title": "active",
-     
+      "name": "business_phone",
+      "type": "TextInput",
+      "title": "Business phone | business_phone",
+      "inputType": "number",
+      "placeholder": "Enter the business number",
+      "dataType": "string"
     },
     {
-      "name": "images",
-      "type": "imageUpload",
-      "title": "Product Images",
-      "placeholder":"upload picture images"
+      "name": "mobile_phone",
+      "type": "TextInput",
+      "title": "Mobile phone | mobile_phone",
+      "inputType": "numeric",
+      "placeholder": "Enter the phone number",
+      "dataType": "number"
     },
-
+    {
+      "name": "time_zone",
+      "type": "dropdown",
+      "title": "Time zone | time_zone",
+      "inputType": "text",
+      "placeholder": "System(America/Los_Angeles)",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "Asia/taipei" },
+        { "value": "america/toronto", "label": "America/Toronto" },
+        { "value": "america/toronto", "label": "caneda/atlantic" },
+        { "value": "america/toronto", "label": "caneda central" },
+        { "value": "america/toronto", "label": "US/Arizona" },
+        { "value": "america/toronto", "label": "GMT" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "notification",
+      "type": "dropdown",
+      "title": "Notification | notification",
+      "inputType": "text",
+      "placeholder": "Enable | 2",
+      "dropdownData": [
+        { "value": "test-1", "label": "enable" },
+        { "value": "test-2", "label": "disable" }
+      ],
+      "dataType": "string"
+    }
   ]
 }
 
 
+export const AccountData= {
+  "elements": [
+    {
+      "name": "account_number",
+      "type": "TextInput",
+      "title": "Account number",
+      "inputType": "numeric",
+      "placeholder": "Enter a/c number",
+      "dataType": "string"
+    },
+
+    {
+      "name": "account_currency",
+      "type": "dropdown",
+      "title": "Account currency",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "USD" },
+        { "value": "america/toronto", "label": "EUR" },
+        { "value": "america/toronto", "label": "JPY" },
+        { "value": "america/toronto", "label": "INR" },
+      ],
+      "dataType": "string"
+    },
+    
+    {
+      "name": "title",
+      "type": "TextInput",
+      "title": "Title",
+      "inputType": "text",
+      "placeholder": "Enter phone number",
+      "dataType": "number"
+    },
+    {
+      "name": "first_name",
+      "type": "TextInput",
+      "title": "First name",
+      "inputType": "text",
+      "placeholder": "Enter first name",
+      "dataType": "string"
+    },
+    {
+      "name": "middle_name",
+      "type": "TextInput",
+      "title": "Middle name",
+      "inputType": "text",
+      "placeholder": "Enter middle name",
+      "dataType": "string"
+    },
+    {
+      "name": "last_name",
+      "type": "TextInput",
+      "title": "Last name",
+      "inputType": "text",
+      "placeholder": "Enter middle name",
+      "dataType": "string"
+    },
+    {
+      "name": "salutation",
+      "type": "dropdown",
+      "title": "Salutation",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "Mr." },
+        { "value": "america/toronto", "label": "Ms." },
+        { "value": "america/toronto", "label": "Dr." },
+        { "value": "america/toronto", "label": "Prof" },
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "gender",
+      "type": "dropdown",
+      "title": "Gender",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "Male" },
+        { "value": "america/toronto", "label": "Female" },
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "owner",
+      "type": "dropdown",
+      "title": "Owner",
+      "inputType": "text",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "Acer one" },
+        { "value": "america/toronto", "label": "Adam Haro" },
+        { "value": "america/toronto", "label": "Adobe user-A" },
+        { "value": "america/toronto", "label": "Adobe user-B" },
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "owner_type",
+      "type": "dropdown",
+      "title": "Owner Type",
+      "inputType": "text",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "User" },
+        { "value": "america/toronto", "label": "Team" },
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "description",
+      "type": "multilineInput",
+      "title": "Description",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "anniversary",
+      "type": "dateInput",
+      "title": "Anniversary",
+      "inputType": "date",
+      "placeholder": "Select date",
+      
+    },
+    
+    {
+      "name": "assistant_name",
+      "type": "TextInput",
+      "title": "Assistant name",
+      "inputType": "text",
+      "dataType": "string"
+    },
+
+    {
+      "name": "account_source",
+      "type": "dropdown",
+      "title": "Account source",
+      "inputType": "text",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "Advertisement" },
+        { "value": "america/toronto", "label": "Partner" },
+        { "value": "america/toronto", "label": "Web" },
+        { "value": "america/toronto", "label": "Campaing" },
+      ],
+      "dataType": "string"
+    },
+
+    {
+      "name": "parent_account",
+      "type": "TextInput",
+      "title": "Parent Account",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    
+  
+  ]
+}
+
+
+
+export const OpportunityData= {
+  "elements": [
+    {
+      "name": "account_name",
+      "type": "TextInput",
+      "title": "Account name",
+      "inputType": "text",
+      "placeholder": "Enter a/c name",
+      "dataType": "string"
+    },
+    
+    {
+      "name": "ammount",
+      "type": "TextInput",
+      "title": "Ammount",
+      "inputType": "text",
+      "placeholder": "Enter ammount",
+      "dataType": "number"
+    },
+    {
+      "name": "close_date",
+      "type": "dateInput",
+      "title": "Close Date",
+      "inputType": "date",
+      "placeholder": "Select date",
+      
+    },
+    {
+      "name": "description",
+      "type": "multilineInput",
+      "title": "Description",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "stage",
+      "type": "TextInput",
+      "title": "Stage",
+      "inputType": "text",
+      "placeholder": "New",
+      "dataType": "string"
+    },
+    {
+      "name": "source",
+      "type": "dropdown",
+      "title": "Source",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "Direct" },
+        { "value": "america/toronto", "label": "Marketing" },
+        { "value": "america/toronto", "label": "Social Media Campaign" },
+        { "value": "america/toronto", "label": "Referral Program" },
+        { "value": "america/toronto", "label": "Email Newsletter" },
+
+      ],
+      "dataType": "string"
+    },
+
+    {
+      "name": "owner",
+      "type": "TextInput",
+      "title": "Owner",
+      "inputType": "text",
+      "placeholder": "User",
+      "value" :'User',
+      "dataType": "string"
+    },
+
+      {
+      "name": "profession",
+      "type": "dropdown",
+      "title": "Profession",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "Doctor" },
+        { "value": "america/toronto", "label": "Engg" },
+        { "value": "america/toronto", "label": "self emplyoyed" },
+        { "value": "america/toronto", "label": "business" },
+
+      ],
+      "dataType": "string"
+    },
+    
+  
+  ]
+}
 
 

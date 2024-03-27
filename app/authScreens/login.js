@@ -234,7 +234,6 @@ import { router } from "expo-router";
 const LoginScreen = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
- // const { isLoading, login } = useContext(AuthContext);
   const[token, setToken]=useState('');
  
  
@@ -256,12 +255,7 @@ authData.append('client_secret', 'yb2:p1#4.N');
 authData.append('grant_type', 'password');
 authData.append('username', username);
 authData.append('password', password);
-// const formData = new FormData();
-//   formData.append('client_id', '71d7bed90b0d0a50cd2f237b791c9ac0');
-//   formData.append('client_secret', 'yb2:p1#4.N');
-//   formData.append('grant_type', 'password');
-//   formData.append('username', username);
-//   formData.append('password', password);
+
     try{
       const res = await fetch(AUTH_URL, {
           method: 'POST',
@@ -292,8 +286,6 @@ authData.append('password', password);
       console.log(e);
       // router.replace('/DrawerScreens/dashboard')
       Alert.alert("failed to login")
-     
- 
   }
  
   }
@@ -346,36 +338,94 @@ authData.append('password', password);
       <Image
         source={{ uri: "https://i.postimg.cc/FskjFB0Y/rpt.jpg" }} // Replace with your bottom image URL
         style={styles.bottomImage}
-       
       />
     </>
   );
 };
  
+// const styles = StyleSheet.create({
+//   background: {
+//     flex: 1,
+//     resizeMode: "contian",
+//     width: "100%",
+//     height: "50%",
+//   },
+//   container: {
+//     flex: 1,
+//     alignItems: "center",
+//     justifyContent: "center",
+//   },
+//   wrapper: {
+//     width: "98%",
+//     backgroundColor: "rgba(255, 255, 255, 0.8)", // Adjust the opacity as needed
+//     padding: 20,
+//     borderRadius: 10,
+//     marginTop:100
+//   },
+//   title: {
+//     fontSize: 18,
+//     marginBottom: 20,
+//     textAlign: "center",
+//     fontWeight: "600",
+//   },
+//   inputWrapper: {
+//     marginBottom: 20,
+//   },
+//   label: {
+//     marginBottom: 5,
+//     fontWeight: "bold",
+//   },
+//   input: {
+//     borderBottomWidth: 1,
+//     borderColor: "#bbb",
+//     paddingHorizontal: 0,
+//     paddingVertical: 8,
+//   },
+ 
+//   btnBg: {
+//     backgroundColor: "#023B5E",
+//     borderRadius: 20,
+//   },
+//    bottomImage: {
+//     width: "50%",
+//     height:30, // Adjust the height as needed
+//     resizeMode: "contain", // Adjust the resizeMode as needed
+//     position: "absolute",
+//     right:100,
+//     bottom: 0,
+//     zIndex: 1,
+ 
+//     bottom:30,
+   
+//   },
+// });
+ 
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    resizeMode: "contian",
+    resizeMode: "cover", // Change to cover for better fit
     width: "100%",
-    height: "50%",
+    height: "100%", // Change to cover entire screen
   },
   container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
   },
   wrapper: {
-    width: "98%",
-    backgroundColor: "rgba(255, 255, 255, 0.8)", // Adjust the opacity as needed
+    width: "90%", // Adjust width for better fit
+    backgroundColor: "rgba(255, 255, 255, 0.9)", // Adjust opacity for a softer overlay
     padding: 20,
     borderRadius: 10,
-    marginTop:100
+    marginTop: 100,
   },
   title: {
     fontSize: 18,
     marginBottom: 20,
     textAlign: "center",
-    fontWeight: "600",
+    fontWeight: "bold", // Adjust font weight for emphasis
+    color: "#023B5E", // Adjust color for better visibility
   },
   inputWrapper: {
     marginBottom: 20,
@@ -383,30 +433,31 @@ const styles = StyleSheet.create({
   label: {
     marginBottom: 5,
     fontWeight: "bold",
+    color: "#023B5E", // Adjust color for better visibility
   },
   input: {
     borderBottomWidth: 1,
-    borderColor: "#bbb",
-    paddingHorizontal: 0,
+    borderColor: "#023B5E", // Adjust border color for better visibility
+    paddingHorizontal: 10, // Adjust padding for better appearance
     paddingVertical: 8,
+    fontSize: 16, // Adjust font size for better readability
+    color: "#333", // Adjust text color for better visibility
   },
- 
   btnBg: {
     backgroundColor: "#023B5E",
     borderRadius: 20,
+    marginTop: 10, // Adjust margin for better spacing
   },
-   bottomImage: {
+  bottomImage: {
     width: "50%",
-    height:30, // Adjust the height as needed
-    resizeMode: "contain", // Adjust the resizeMode as needed
+    height: 30, // Adjust the height as needed
+    resizeMode: "contain",
     position: "absolute",
-    right:100,
+    right: 0,
     bottom: 0,
     zIndex: 1,
- 
-    bottom:30,
-   
+    marginBottom: 20, // Adjust margin for better spacing
   },
 });
- 
+
 export default LoginScreen;
