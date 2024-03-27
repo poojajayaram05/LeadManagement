@@ -14,7 +14,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { avatarPic } from '../assets/images';
 
  
-const LeadItem = ({ FirstName, LastName, Email, Phone, onViewPress, Stage, Label, Id, Gender }) => {
+const LeadItem = ({ FirstName, LastName, Email, Phone, onViewPress, Status, label, Id, Gender }) => {
    
     const [showSecondImage, setShowSecondImage] = useState(false);
     const[selectedStar, setSelectedStar]=useState(false);
@@ -22,7 +22,7 @@ const LeadItem = ({ FirstName, LastName, Email, Phone, onViewPress, Stage, Label
     const [showDropdown, setShowDropdown] = useState(false);
 
     const goToEditLead = () => {
-        setLeadId(id);
+        setLeadId(Id);
         router.navigate('formComponents/editLead');
 
         closeDropdown();
@@ -51,16 +51,16 @@ const LeadItem = ({ FirstName, LastName, Email, Phone, onViewPress, Stage, Label
 
 const renderBadge = () => {
  
-    if (Stage === 'New Lead') {
+    if (Status === 'New Lead') {
         //return <Badge value={<Text> Sale </Text>} status="success" badgeStyle={styles.badge} />;
        return <BadgeLead label={'New Lead'} color={'#857471'} textColor="white"/>
-    } else if (Stage === 'Qualified') {
+    } else if (Status === 'Qualified') {
         // return <Badge value={<Text> Closed </Text>} status="error" badgeStyle={styles.badge} />;
         return <BadgeLead label={'Qualified'} color={'#C02DD9'} textColor="white"/>
-    } else if (Stage === 'Contacted') {
+    } else if (Status === 'Contacted') {
         // return <Badge value={<Text> New Lead </Text>} status="primary" badgeStyle={styles.badge} />;
         return <BadgeLead label={'Contacted'} color={'maroon'} textColor="white"/>
-    } else if (Stage === 'Closed') {
+    } else if (Status === 'Closed') {
         // return <Badge value={<Text >Negotiating </Text>} status="warning" badgeStyle={styles.badge} />;
         return <BadgeLead label={'Closed'} color={'green'} textColor="white"/>
     }  
@@ -68,7 +68,7 @@ const renderBadge = () => {
 };
 const renderLabelBadge = () => {
     let labelBadgeColor;
-    switch (Label) {
+    switch (label) {
       case 'hot':
         labelBadgeColor = 'red';
         txtColor="white";
@@ -87,7 +87,7 @@ const renderLabelBadge = () => {
     }
       
     //return <Badge value={<Text>{temperature}</Text>} status={temperatureBadgeColor} badgeStyle={styles.badge} />;
-    return <BadgeLead color={labelBadgeColor} label={Label} textColor={txtColor} />
+    return <BadgeLead color={labelBadgeColor} label={label} textColor={txtColor} />
       };
 
     //   const displayScreen = () => {
@@ -98,8 +98,6 @@ const renderLabelBadge = () => {
     //     // useIdStore((state) => state.setId(id));
     //     console.log('ID set:', leadId);
     // };
- 
-
 
  
     const toggleDropdown = () => {
@@ -110,12 +108,13 @@ const renderLabelBadge = () => {
 };
 
 const handleNavigateToLeadDetails = () => {
-    router.navigate(`/leadDetailScreens/notes`);
+    router.navigate(`/leadDetailScreens/info`);
     setLeadId(Id);
 };
-const handleChangeStage = () => {
-    router.navigate('/formComponents/changeStage');
+const handleChangeStatus = () => {
     setLeadId(Id);
+    router.navigate('/formComponents/changeStatus');
+  
     closeDropdown(); // Close the dropdown after action
 };
  
@@ -146,7 +145,7 @@ return (
                   <Text style={styles.subtitle}>{Email}</Text>
                   <Text style={styles.subtitle}>{Phone}</Text>
                   <View style={styles.badgeBox}>
-                      <View>{renderBadge(Stage)}</View>
+                      <View>{renderBadge(Status)}</View>
                       <View style={styles.badgeSecond}>{renderLabelBadge()}</View>
                   </View>
               </View>
@@ -160,14 +159,14 @@ return (
     <View style={styles.dropdownContainer}>
     <ScrollView style={styles.dropdownScrollView}>
         <View style={styles.dropdownMenu}>
-            <TouchableOpacity onPress={() => {router.navigate('DrawerScreens/createLead'); closeDropdown();}}>
+            {/* <TouchableOpacity onPress={() => {router.navigate('DrawerScreens/createLead'); closeDropdown();}}>
                 <Text style={styles.dropdownMenuItem}>Edit lead</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             {/* <TouchableOpacity onPress={() => {displayScreen(); closeDropdown();}}>
                 <Text style={styles.dropdownMenuItem}>View</Text>
             </TouchableOpacity> */}
-            <TouchableOpacity onPress={handleChangeStage}>
-                <Text style={styles.dropdownMenuItem}>Change Stage</Text>
+            <TouchableOpacity onPress={handleChangeStatus}>
+                <Text style={styles.dropdownMenuItem}>Change Status</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => handleConvertLead()}>
                 <Text style={styles.dropdownMenuItem}>Convert Lead</Text>

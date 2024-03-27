@@ -366,10 +366,10 @@ export default function CreateLeadNote({ navigation }) {
           <LDropdown
            label="Select Lead"
            data={leadData.map((lead) => {
-             console.log(lead.id); // Log lead object
+             console.log(lead.Id); // Log lead object
              return {
-               value: lead.id,
-               label: `${lead.id} - ${lead.firstname} ${lead.lastname}`,
+               value: lead.Id,
+               label: `${lead.Id} - ${lead.FirstName} ${lead.LastName}`,
              };
            })}
            onSelect={handleSelect}
@@ -446,7 +446,7 @@ export default function CreateLeadNote({ navigation }) {
       </ScrollView>
       <View style={styles.buttonContainer}>
         <TouchableOpacity >
-          <ArrowBack onPress={goBack} />
+          {/* <ArrowBack onPress={goBack} /> */}
         </TouchableOpacity>
       </View>
     </View>

@@ -145,6 +145,7 @@ authData.append('password', password);
         //const data = await res.json()
         
         const data = await res.json()
+        console.log("user details",data);
         const accessToken = data.access_token
         console.log("ACCESS TOKEN",accessToken);
 
@@ -166,7 +167,7 @@ authData.append('password', password);
 
         }
         else{
-          router.replace('/DrawerScreens/dashboard')
+           router.replace('/DrawerScreens/dashboard')
           Alert.alert("Incorrect credentials")
 
         }

@@ -1,41 +1,52 @@
 import { View, Text, Button, TextInput, StyleSheet, Select, ScrollView, Image} from 'react-native'
 import React, { useState } from 'react'
-import { useForm, Controller } from 'react-hook-form';
 import { formData } from '../../customComponents/formData'
 import { CustomInput } from '../../customComponents/customInput';
 import Collapsible from 'react-native-collapsible';
 import { TouchableOpacity } from 'react-native';
 import Dropdown from '../../customComponents/customDropdown';
 import RadioButton from '../../customComponents/customRadio';
-//import { isEnabled } from 'react-native/Libraries/Performance/Systrace';
 import { DropdownIcon, DropupIcon } from '../../assets/images';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import ArrowBack from '../../customComponents/arrowBack';
 import * as SecureStore from 'expo-secure-store';
+import { CustomInputSocial } from '../../customComponents/customSocialField';
 // Form component
-export default function General() {
+export default function CreateLead() {
     // const { control, handleSubmit, formState: { errors } } = useForm();
-    const [isSection1Collapsed, setIsSection1Collapsed] = useState(false);
-    const [isSection2Collapsed, setIsSection2Collapsed] = useState(false);
-    const [isSection3Collapsed, setIsSection3Collapsed] = useState(false);
+    const [isCollapsed, setIsCollapsed] = useState({
+      
+        General: false,
+        Contact: false,
+        ContactMethod: false,
+        Address: false,
+        Additional: false,
+        Company:false,
+        Social: false,
+      })
+
+      const toggleSection = (sectionName) => {
+        setIsCollapsed({ ...isCollapsed, [sectionName]: !isCollapsed[sectionName] });
+      };
+      const [alternateEmailCount, setAlternateEmailCount] = useState(0);
+
+      const onAddAlternateEmail = () => {
+        if (alternateEmailCount < 2) {
+            setAlternateEmailCount(prevCount => prevCount + 1);
+          }
+        
+      };
+    
+
+  
     const [formValues, setFormValues] = useState([]);
     const [selectedValue, setSelectedValue] = useState(null); 
     const[radioSelect, setradioSelect]=useState(null);
     const [phoneNumbers, setPhoneNumbers] = useState(['']);
     const[testValues, setTestValues]=useState([]);
     const [isAddButtonDisabled, setIsAddButtonDisabled] = useState(false);
-    const addPhoneNumberField = () => {
-        if (phoneNumbers.length < 3) {
-            setPhoneNumbers([...phoneNumbers, '']);
-            const updatedFormValues = { ...formValues };
-            updatedFormValues[`phoneNumber_${phoneNumbers.length}`] = ''; 
-            setFormValues(updatedFormValues);
-        } else {
-            console.log('Maximum limit of additional phone numbers reached');
-            setIsAddButtonDisabled(true);
-        }
-    };
+    
 
 
 //   const handleSelect = (item) => {a
@@ -46,7 +57,7 @@ export default function General() {
 
 const onSelectRadio = (item) => {
     setradioSelect(item.value);
-    setFormValues(prevFormValues => ({ ...prevFormValues, ['u_gender_identity']: item.id})); 
+    setFormValues(prevFormValues => ({ ...prevFormValues, ['gender']: item.id})); 
     console.log('Selected value:', item.id);
 }
 
@@ -57,7 +68,7 @@ const goBack=()=>{
       
 
     const onSubmit = async () => {
-        const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_management`;
+        const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_c`;
         const token = SecureStore.getItem('token');
         const stoken = JSON.parse(token);
         const apiToken = stoken.accessToken;
@@ -90,24 +101,30 @@ const goBack=()=>{
             }
 
         }
-
-    
-    const toggleSection = (section) => {
-        switch (section) {
-            case 'section1':
-                setIsSection1Collapsed(!isSection1Collapsed);
-                break;
-            case 'section2':
-                setIsSection2Collapsed(!isSection2Collapsed);
-                break;
-            case 'section3':
-                setIsSection3Collapsed(!isSection3Collapsed);
-                break;
-            default:
-                break;
-        }
-    };
-
+    // const toggleSection = (section) => {
+    //     switch (section) {
+    //         case 'section1':
+    //             setIsSection1Collapsed(!isSection1Collapsed);
+    //             break;
+    //         case 'section2':
+    //             setIsSection2Collapsed(!isSection2Collapsed);
+    //             break;
+    //         case 'section3':
+    //             setIsSection3Collapsed(!isSection3Collapsed);
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    // };
+    const renderFormElements = (sectionName) => {
+        return formData.elements
+          .filter((element) => element.sectionName === sectionName)
+          .map((element, index) => (
+            <View key={index} style={styles.formElement}>
+              {renderFormElement(element)}
+            </View>
+          ));
+      };
 
     const renderFormElement = (element) => {
         const handleSelect = (item) => {
@@ -115,6 +132,14 @@ const goBack=()=>{
             setFormValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item.value }));
             console.log(element.name, item.value);
         };
+        
+        if (element.sectionName === "General" && formValues["lead_type"] === "company") {
+            // If lead type is company and the element is related to personal information, skip rendering
+            if (element.name === "salutation" || element.name === "first_name" || element.name === "last_name" || element.name === "gender"|| element.name==="job_title") {
+                return null;
+            }
+            
+        }
         switch (element.type) {
             case 'TextInput':
                 return (
@@ -123,13 +148,61 @@ const goBack=()=>{
                         title={element.title}
                         placeholder={element.placeholder}
                         // control={control}
+                        inputType={element.inputType}
                         name={element.name}
                         rules={{ required: element.isRequired ? `${element.title} is required` : false }}
                         // errors={errors}
                         onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
-                        value={formValues[element.name] || ''}
+                        value={formValues[element.name] || ''} 
                     />
                 );
+                case 'email':
+                    return (
+                      <View key={element.name}>
+                        <CustomInput
+                          key={element.name}
+                          title={element.title}
+                          placeholder={element.placeholder}
+                          name={element.name}
+                          onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
+                          value={formValues[element.name] || ''}
+                          inputType={element.inputType}
+                        />
+                        {/* Render alternate email fields */}
+                        {[...Array(alternateEmailCount)].map((_, i) => (
+                          <CustomInput
+                            key={`alternate_email${i + 1}`}
+                            title={`Alternate Email ${i + 1}`}
+                            placeholder={`Alternate Email ${i + 1}`}
+                            name={`alternate_email${i + 1}`}
+                            onChange={(value) => setFormValues({ ...formValues, [`alternate_email${i + 1}`]: value })}
+                            value={formValues[`alternate_email${i + 1}`] || ''}
+                            inputType={element.inputType}
+                          />
+                        ))}
+                        {/* Plus Button */}
+                        <TouchableOpacity onPress={onAddAlternateEmail}>
+                          <Ionicons name="add-circle" size={24} color="black" style={styles.plusButton} />
+                        </TouchableOpacity>
+                      </View>
+                    );
+
+                case 'socialMediaInput':
+                    return (
+                        <CustomInputSocial
+                            key={element.name}
+                            title={element.title}
+                            placeholder={element.placeholder}
+                            // control={control}
+                            name={element.name}
+                            rules={{ required: element.isRequired ? `${element.title} is required` : false }}
+                            // errors={errors}
+                            icon={element.logo}
+                            onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
+                            value={formValues[element.name] || ''}
+                          
+                        />
+                    );
             case 'dropdown':
                 return (
                     <View>
@@ -140,15 +213,13 @@ const goBack=()=>{
                             data={element.dropdownData}
                             value={selectedValue}
                             onSelect={handleSelect}
-                            
                         />
                     </View>
                     </View>
                 );
                
                     case 'RadioButton':
-                        return(
-                            
+                        return( 
                             
                                 <RadioButton style={styles.inputContainer}
                                      onSelect={onSelectRadio}
@@ -160,74 +231,8 @@ const goBack=()=>{
                                      title={element.title}
                                      // Pass the data prop here
                                 />
-                            
-                           
-
                         )
-                        case 'PhoneNumber':
-                            return (
-                                <View>
-                                    {element.name === 'hphone' ? (
-                                        <View>
-                                            <Text style={styles.label}>Home Phone</Text>
-                                            {phoneNumbers.map((phoneNumber, index) => (
-                                                <View key={index} style={styles.inputContainer}>
-                                                    <CustomInput
-                                                        placeholder={`Home Phone Number`}
-                                                        // control={control}
-                                                        name={`phoneNumber_${index}`}
-                                                        rules={{ required: false }}
-                                                        // errors={errors}
-                                                        onChange={(value) => {
-                                                            const updatedPhoneNumbers = [...phoneNumbers];
-                                                            updatedPhoneNumbers[index] = value;
-                                                            setPhoneNumbers(updatedPhoneNumbers);
-                                                            const updatedFormValues = { ...formValues };
-                                                            updatedFormValues[`phoneNumber_${index}`] = value; 
-                                                            setFormValues(updatedFormValues);
-                                                        }}
-                                                        value={phoneNumber}
-                                                    />
-                                                </View>
-                                            ))}
-                                            {!isAddButtonDisabled && (
-                                                <TouchableOpacity
-                                                    style={styles.addButton}
-                                                    onPress={addPhoneNumberField}
-                                                >
-                                                    <Text> <Ionicons name='add-circle' size={20} color='black' /> </Text>
-                                                </TouchableOpacity>
-                                            )}
-                                            {phoneNumbers.length > 1 && ( // Render remove button only if there is more than one phone number
-                                                <TouchableOpacity
-                                                    style={styles.removeButton}
-                                                    onPress={() => {
-                                                        const updatedPhoneNumbers = [...phoneNumbers];
-                                                        updatedPhoneNumbers.pop(); // Remove the last phone number
-                                                        setPhoneNumbers(updatedPhoneNumbers);
-                                                    }}
-                                                >
-                                                    <Text><Ionicons name='remove-circle' size={21} color='black' /></Text>
-                                                </TouchableOpacity>
-                                            )}
-                                        </View>
-                                    ) : (
-                                        <CustomInput
-                                            key={element.name}
-                                            title={element.title}
-                                            placeholder={element.placeholder}
-                                            // control={control}
-                                            name={element.name}
-                                            rules={{ required: element.isRequired ? `${element.title} is required` : false }}
-                                            // errors={errors}
-                                            onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
-                                            value={formValues[element.name] || ''}
-                                        />
-                                    )}
-                                </View>
-                            );
-                
-                            
+              
     };
 }
 
@@ -235,77 +240,36 @@ const goBack=()=>{
       
         <View style={styles.cardContainer}>
         <ScrollView>
-            <View style={styles.card}>
-              
-                <View style={styles.section}>
-                    <TouchableOpacity onPress={() => toggleSection('section1')}>
-                        <Text style={styles.sectionTitle}>Personal Information</Text>
-                        <Image
-                            source={isSection1Collapsed ? DropdownIcon : DropupIcon}
-                            resizeMode="contain"
-                            style={styles.dropdownIcon}
-                        />
-                    </TouchableOpacity>
-                    <Collapsible collapsed={isSection1Collapsed}>
-                        {formData.elements.slice(0, 4).map((element, index) => (
-                            <View key={index} style={styles.inputContainer}>
-                                {renderFormElement(element)}
-                            </View>
-                        ))}
-                    </Collapsible>
+          <View style={styles.card}>
+            <View style={styles.section}>
+              {Object.keys(isCollapsed).map((sectionName, index) => (
+                <View key={index} style={styles.sectionContainer}>
+                  <TouchableOpacity onPress={() => toggleSection(sectionName)}>
+                    <Text style={styles.sectionTitle}>{sectionName}</Text>
+                    <Image
+                      source={isCollapsed[sectionName] ? DropdownIcon : DropupIcon}
+                      resizeMode="contain"
+                      style={styles.dropdownIcon}
+                    />
+                  </TouchableOpacity>
+                  <Collapsible collapsed={isCollapsed[sectionName]}>
+                    {renderFormElements(sectionName)}
+                  </Collapsible>
                 </View>
-
-                <View style={styles.section}>
-                    <TouchableOpacity onPress={() => toggleSection('section2')}>
-                        <Text style={styles.sectionTitle}>Company Information</Text>
-                        <Image
-                            source={isSection2Collapsed ? DropdownIcon : DropupIcon}
-                            resizeMode="contain"
-                            style={styles.dropdownIcon}
-                        />
-                    </TouchableOpacity>
-                    <Collapsible collapsed={isSection2Collapsed}>
-                        {formData.elements.slice(4, 9).map((element, index) => (
-                            <View key={index} style={styles.inputContainer}>
-                                {renderFormElement(element)}
-                            </View>
-                        ))}
-                    </Collapsible>
-                </View>
-                <View style={styles.section}>
-                    <TouchableOpacity onPress={() => toggleSection('section3')}>
-                        <Text style={styles.sectionTitle}>Contact Information</Text>
-                        <Image
-                            source={isSection3Collapsed ? DropdownIcon : DropupIcon}
-                            resizeMode="contain"
-                            style={styles.dropdownIcon}
-                        />
-                    </TouchableOpacity>
-                    <Collapsible collapsed={isSection3Collapsed}>
-                        {formData.elements.slice(9).map((element, index) => (
-                            <View key={index} style={styles.inputContainer}>
-                                {renderFormElement(element)}
-                            </View>
-                        ))}
-                    </Collapsible>
-                </View>
-                
-
-                {/* Repeat the same structure for other sections (Company Information and Contact Information) */}
-                <Button title="Submit" onPress={onSubmit} color='#023B5E' />
-             
-                <View style={styles.buttonContainer}>
-      <TouchableOpacity onPress={goBack}>
-        <ArrowBack />
-      </TouchableOpacity>
-    </View>
-                
-               
-                </View>
-         
+              ))}
+            </View>
+      
+            <Button title="Submit" onPress={onSubmit} color="#023B5E" />
+      
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity onPress={goBack}>
+                {/* <ArrowBack /> */}
+              </TouchableOpacity>
+            </View>
+          </View>
         </ScrollView>
-    </View>
-
+      </View>
+      
     );
 }
 
@@ -347,7 +311,7 @@ const styles = StyleSheet.create({
         fontSize: 20, // Increase font size for emphasis
         fontWeight: 'bold',
         marginBottom: 15, // Increase margin for better separation
-        color: '#333', // Use a darker color for better readability
+        color: 'black', // Use a darker color for better readability
         
         paddingBottom: 5, // Add padding to space out the underline from the text
     },

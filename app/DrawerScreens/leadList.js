@@ -1,4 +1,4 @@
-import React ,{useState}from 'react';
+import React ,{useState, useEffect}from 'react';
 //import { leadData } from './leadData';
 import { useCallback } from 'react';
 import LeadItem from '../../leadComponents/leadCard';
@@ -6,6 +6,7 @@ import { router } from 'expo-router';
 import { TouchableOpacity } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
+import {FetchLeads} from '../service/fetchLeads';
 import {
   SafeAreaView,
   View,
@@ -19,11 +20,7 @@ import {leadData} from '../../customComponents/formData';
  
 
 const LeadList = () => {
-  const [routes] = useState([
-    { key: 'allLeads', title: 'All Leads' },
-    { key: 'starredLeads', title: 'Starred Leads' },
-   
-  ]);
+
   const goToLeadCreate=()=>{
     console.log("inside navigation")
     router.navigate('/DrawerScreens/createLead');
@@ -32,14 +29,19 @@ const LeadList = () => {
   const [index, setIndex] = useState(0);
   const [starredLeads, setStarredLeads] = useState([]);
  
-  const toggleStarredLead = (leadId) => {
-    if (starredLeads.includes(leadId)) {
-      setStarredLeads(starredLeads.filter((id) => id !== leadId));
-    } else {
-      setStarredLeads([...starredLeads, leadId]);
-    }
-  };
- 
+
+  useEffect(() => {
+   
+    FetchLeads()
+      .then(data => {
+       
+        console.log('Data received:', data);
+      })
+      .catch(error => {
+       
+        console.error('Error fetching leads:', error);
+      });
+  }, []);
 
  
 
@@ -50,9 +52,9 @@ const LeadList = () => {
       LastName={item.LastName}
       Email={item.Email}
       Phone={item.Phone}
-      Stage={item.Stage}
+      Status={item.Status}
       Id={item.Id}
-      Label={item.Label}
+      label={item.label}
       Gender={item.Gender}
      
      

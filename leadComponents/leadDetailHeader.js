@@ -81,7 +81,7 @@ return <BadgeLead color={temperatureBadgeColor} label={temperature} textColor={t
   };
  
   const leadId = useIdStore((state) => state.leadId); 
-  const lead = leadData.find((lead) => lead.id === leadId);
+  const lead = leadData.find((lead) => lead.Id === leadId);
   const { firstname, lastname, phone, email, status, temperature, id, jobTitle,} = lead || {};
  
   const handleBack = () => {

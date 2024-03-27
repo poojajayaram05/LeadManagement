@@ -145,6 +145,7 @@ const styles = StyleSheet.create({
   radioButtonContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom:20
   },
   radioButton: {
     flexDirection: 'row',

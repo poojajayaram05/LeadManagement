@@ -2,21 +2,21 @@ export const formData = {
   
     "elements": [
       {
-        "name":"u_task_type",
+        "name":"lead_type",
         "type":"dropdown",
-        "title":"Task Type",
+        "title":"Lead Type",
         "inputType":"text",
-        "placeholder":"Task Type",
+        "placeholder":"Lead Type",
         "dropdownData" :[
           { value: 'person', label: 'Person' },
           {value:'company', label:'Company'}
-        ]
-
+        ],
+        "sectionName":"General"
         
       },
   
       {
-        "name": "u_salutation",
+        "name": "salutation",
         "type": "dropdown",
         "title": "Salutation",
         "inputType": "text",
@@ -26,28 +26,31 @@ export const formData = {
           { value: 'Ms.', label: 'Ms.' },
           { value: 'Dr.', label: 'Dr.' },
           { value: 'prof', label: 'Prof' },
-         ]
+         ],
+         "sectionName":"General"
       },
      
       {
-        "name": "u_first_name",
+        "name": "first_name",
         "type": "TextInput",
         "title": "First Name",
         "placeholder":"First Name",
         "maxLength": 25,
-        'isRequired': true
+        'isRequired': true,
+        "sectionName":"General"
       },
       {
-        "name": "u_last_name",
+        "name": "last_name",
         "type": "TextInput",
         "title": "Last Name",
         "inputType": "text",
         "placeholder": "Last Name",
         "isRequired": true,
-        "autocomplete": "lastname"
+        "autocomplete": "lastname",
+        "sectionName":"General"
       },
       {
-        "name": "u_gender_identity",
+        "name": "gender",
         "type":"RadioButton",
         "title": "Gender",
         "rdata" : [
@@ -55,31 +58,39 @@ export const formData = {
           { label: "Female", id: 'female' },
           { label: "Other", id: 'other' },
         ],
-        'isRequired': true
-      }, {
-        "name": "email",
-        "type": "TextInput",
-        "title": "Email",
-        "description": "Enter a valid email",
-        "inputType": "email",
-        "placeholder":"Email",
-        "isRequired": true,
-        "autocomplete": "email",
-       
-      }, {
-        "name": "u_title",
+        'isRequired': true,
+        "sectionName":"General"
+      }, 
+      {
+        "name": "qualification",
+        "type": "dropdown",
+        "title": "Qualification",
+        "inputType": "text",
+        "placeholder":"Qualification",
+         "dropdownData" :[
+          { value: 'hot', label: 'Hot' },
+          { value: 'cold', label: 'Cold' },
+          { value: 'warm', label: 'Warm' },
+         ],
+         "sectionName":"General"
+      },
+   {
+        "name": "job_title",
         "type": "TextInput",
         "title": "Job Title",
         "inputType": "text",
         "placeholder": "Job Title",
+        "sectionName":"General"
        
       }, 
       {
-        "name": "u_description",
+        "name": "description",
         "type": "TextInput",
         "title": "Description",
         "inputType": "text",
         "placeholder": "Description",
+        "sectionName":"General",
+        "icon":"logo-facebook"
        
       }, 
       {
@@ -88,6 +99,7 @@ export const formData = {
         "title": "Street",
         "inputType": "text",
         "placeholder": "Street",
+        "sectionName":"Address"
        
       }, 
       {
@@ -96,22 +108,25 @@ export const formData = {
         "title": "City",
         "inputType": "text",
         "placeholder": "City",
+        "sectionName":"Address"
        
       }, 
       {
-        "name":"state",
+        "name":"state_province",
         "type": "TextInput",
         "title": "State",
         "inputType": "text",
         "placeholder": "State",
+        "sectionName":"Address"
        
       }, 
       {
-        "name":"zip",
+        "name":"zip_postalcode",
         "type": "TextInput",
         "title": "Zip",
         "inputType": "text",
         "placeholder": "Zip",
+        "sectionName":"Address"
        
       }, 
       {
@@ -120,6 +135,7 @@ export const formData = {
         "title": "Country",
         "inputType": "text",
         "placeholder": "Country",
+        "sectionName":"Address"
        
       }, 
       {
@@ -134,7 +150,8 @@ export const formData = {
           { value: 'consulting', label: 'Consulting' },
           { value: 'customer_services', label: 'Customer Services'},
           { value: 'financial', label: 'Financial' },
-         ]
+         ],
+         "sectionName":"Company"
         
        
       },
@@ -147,33 +164,34 @@ export const formData = {
          "dropdownData" :[
           { value: 'inr', label: 'INR' },
           { value: 'usd', label: 'USD' },
-         ]
+         ],
+         "sectionName":"Company"
 
 
 
       },
+      
       {
-        "name": "u_label",
-        "type": "dropdown",
-        "title": "Label",
-        "inputType": "text",
-        "placeholder":"Label",
-         "dropdownData" :[
-          { value: 'hot', label: 'Hot' },
-          { value: 'cold', label: 'Cold' },
-          { value: 'warm', label: 'Warm' },
-        
-        
-         ]
-      },
-      {
-        "name": "u_company",
+        "name": "company",
         "type": "TextInput",
         "title": "Company Name",
-        "description": "Enter company name",
+        "description": "Enter Company name",
         "inputType": "text",
         "placeholder":"Company Name",
         "isRequired": true,
+        "sectionName":"Company"
+
+      },
+      {
+        "name": "no_of_employees",
+        "type": "TextInput",
+        "title": "Number Of Employees",
+        "description": "Enter the number of employees",
+        "inputType": "text",
+        "placeholder":"No of employees",
+        "sectionName":"Company"
+
+     
       },
       {
         "name":"website",
@@ -183,80 +201,148 @@ export const formData = {
         "inputType": "text",
         "placeholder":"Website",
         "isRequired": true,
+        "sectionName":"Company"
+
        
       },
       {
-        "name":"u_annual_revenue",
+        "name":"annual_revenue",
         "type": "TextInput",
         "title": "Annual Revenue",
         "description": "Enter annual revenue",
         "inputType": "number",
         "placeholder":"Annual Revenue",
         "isRequired": true,
-       
+        "sectionName":"Company"
       },
   
       
       {
-        "name": "u_business_phone",
-        "type": "PhoneNumber",
+        "name": "business_phone",
+        "type": "TextInput",
         "title": "Business Phone",
-        "inputType": "phone",
+        
+        "inputType": "numeric",
         "placeholder":"Business Phone",
         "isRequired": true,
+        "sectionName":"Contact"
+
        
       },
       {
-        "name": "u_mobile_phone",
-        "type": "PhoneNumber",
+        "name": "mobile_phone",
+        "type": "TextInput",
         "title": "Mobile Phone",
-        "inputType": "phone",
+        "inputType": "numeric",
         "placeholder":"Mobile Phone",
         "isRequired": true,
+        "sectionName":"Contact",
+        
+
        
       },
       {
-        "name": "u_home_phone",
-        "type": "PhoneNumber",
+        "name": "home_phone",
+        "type": "TextInput",
         "title": "Home Phone",
-        "inputType": "phone",
+       
+        "inputType": "numeric",
         "placeholder":"Home Phone",
         "isRequired": true,
+        "sectionName":"Contact"
+
        
       },
       {
-        "name": "u_boolean_5",
+        "name": "boolean_5",
         "type": "Switch",
         "title": "Do Not Call",
+        "sectionName":"ContactMethod"
+
       },
       {
-        "name": "u_email_1",
-        "type": "TextInput",
+        "name": "email",
+         "type":"email",
         "title": "Email",
         "placeholder":"Email",
         "isRequired": true,
+        "sectionName":"Contact" 
+      },
+
+      {
+        "name": "preffered_method",
+        "type": "dropdown",
+        "title": "Preferred",
+        "placeholder":"Preferred",
+        "dropdownData" :[
+          { value: 'any', label: 'Any' },
+          { value: 'email', label: 'Email' },
+          { value: 'bulk_email', label: 'Web' },
+          { value: 'phone', label: 'Phone' },
+          { value: 'whatsapp', label: 'Whatsapp' },
+          
+         ],
+         "sectionName":"ContactMethod"
+      },
+      // {
+      //   "name": "u_alternate_email_1",
+      //   "type": "TextInput",
        
+      //   "title": "Alternate Email",
+      //   "placeholder":"Alternate Email 1",
+      //   "isRequired": true,
+      //   "sectionName":"Contact"
+      // },
+      // {
+      //   "name": "u_alternate_email_2",
+      //   "type": "email",
+      
+      //   "title": "Alternate Email",
+      //   "placeholder":"Alternate Email 2",
+      //   "isRequired": true,
+      //   "sectionName":"Contact"
+       
+      // },
+      {
+        "name": "u_email",
+        "type": "dropdown",
+        "title": "Email subscription",
+        "placeholder":"Email subscription",
+        "dropdownData" :[
+          { value: 'allow', label: 'Allow' },
+          { value: 'do_not_allow', label: 'Do not allow' },
+         ],
+         "sectionName":"ContactMethod"
+
       },
       {
-        "name": "u_alternate_email_1",
-        "type": "TextInput",
-        "title": "Alternate Email",
-        "placeholder":"Alternate Email 1",
-        "isRequired": true,
-       
+        "name": "phone",
+        "type": "dropdown",
+        "title": "Phone subscription",
+        "placeholder":"Phone subscription",
+        "dropdownData" :[
+          { value: 'allow', label: 'Allow' },
+          { value: 'do_not_allow', label: 'Do not allow' },
+         ],
+         "sectionName":"ContactMethod"
       },
       {
-        "name": "u_alternate_email_2",
-        "type": "TextInput",
-        "title": "Alternate Email",
-        "placeholder":"Alternate Email 2",
-        "isRequired": true,
-       
+        "name": "whatsapp",
+        "type": "dropdown",
+        "title": "Whatsapp subscription",
+        "placeholder":"whatsapp subscription",
+        "dropdownData" :[
+          { value: 'allow', label: 'Allow' },
+          { value: 'do_not_allow', label: 'Do not allow' },
+         ],
+         "sectionName":"ContactMethod"
       },
+  
       {
-        "name": "u_email_opt_out",
+        "name": "email_opt_out",
         "type": "Switch",
         "title": "Email Opt Out",
+        "sectionName":"ContactMethod"
       },
   
       {
@@ -266,18 +352,41 @@ export const formData = {
         "inputType": "text",
         "placeholder":"FAX",
         "isRequired": true,
+        "sectionName":"Contact"
        
       },
       {
         "name": "company_duns_number",
         "type": "TextInput",
         "title": "Company DUNS Number",
-        "inputType": "text",
+        "inputType": "number",
         "placeholder":"Number",
         "isRequired": true,
+        "sectionName":"Company"
       },
       {
-        "name": "u_lead_source",
+        "name": "title",
+        "type": "TextInput",
+        "title": "Lead Title",
+        "placeholder":"Lead Title",
+        "isRequired": true,
+        "sectionName":"General"
+      },
+
+      {
+        "name": "lead_currency",
+        "type": "dropdown",
+        "title": "Lead Currency",
+        "placeholder":"Currency",
+        "dropdownData" :[
+          { value: 'inr', label: 'INR' },
+          { value: 'usd', label: 'USD' },
+          
+         ],
+         "sectionName":"company"
+      },
+      {
+        "name": "lead_source",
         "type": "dropdown",
         "title": "Lead Source",
         "inputType": "text",
@@ -286,20 +395,25 @@ export const formData = {
           { value: 'advertisement', label: 'Advertisement' },
           { value: 'partner', label: 'Partner' },
           { value: 'web', label: 'Web' },
-         ]
+          { value: 'campaign', label: 'Campaign' },
+         ],
+         "sectionName":"General"
       },
-      {
-        "name": "u_lead_status",
-        "type": "dropdown",
-        "title": "Lead Status",
-        "inputType": "text",
-        "placeholder":"Lead Status",
-         "dropdownData" :[
-          { value: 'open', label: 'Open' },
-          { value: 'contacted', label: 'Contacted' },
-          { value: 'qualified', label: 'Qualified' },
-         ]
-      },
+      // {
+      //   "name": "u_lead_status",
+      //   "type": "dropdown",
+      //   "title": "Lead Status",
+      //   "inputType": "text",
+      //   "placeholder":"Lead Status",
+      //    "dropdownData" :[
+      //     { value: 'new', label: 'New' },
+      //     { value: 'Contacted', label: 'Contacted' },
+      //     { value: 'qualified', label: 'Qualified' },
+      //     { value: 'converted', label: 'Converted' },
+      //     { value: 'closed-not_converted', label: 'Closed-Not Converted' },
+      //    ],
+      //    "sectionName":"Additional"
+      // },
       {
         "name": "u_owner_type",
         "type": "dropdown",
@@ -309,8 +423,8 @@ export const formData = {
          "dropdownData" :[
           { value: 'team', label: 'Team' },
           { value: 'user', label: 'User' },
-       
-         ]
+         ],
+         "sectionName":"Additional"
       },
       {
         "name": "u_owner",
@@ -318,6 +432,65 @@ export const formData = {
         "title": "Owner",
         "inputType": "text",
         "placeholder":"Owner",
+        "sectionName":"Additional"
+
+      },
+      {
+        "name": "instagram",
+        "type": "socialMediaInput",
+        "logo":"logo-instagram",
+        "title": "Instagram",
+        "inputType": "text",
+        "placeholder":"Instagram",
+        "sectionName":"Social"
+      },
+      {
+        "name": "linkedin",
+        "type": "socialMediaInput",
+        "logo":"logo-linkedin",
+        "title": "LinkedIn",
+        "inputType": "text",
+        "placeholder":"LinkedIn",
+        "sectionName":"Social"
+      },
+      {
+        "name": "facebook",
+        "type": "socialMediaInput",
+        "logo":"logo-facebook",
+        "title": "Facebook",
+        "inputType": "text",
+        "placeholder":"Facebook",
+        "sectionName":"Social"
+      },
+      {
+        "name": "twitter",
+        "type": "socialMediaInput",
+        "logo":"logo-twitter",
+        "title": "Twitter",
+        "inputType": "text",
+        "placeholder":"Twitter",
+        "sectionName":"Social"
+      },
+      {
+        "name": "assigned_to",
+        "type": "TextInput",
+        "title": "Assigned To",
+        "inputType": "text",
+        "placeholder":"Assigned To",
+        "readonly":true,
+        "sectionName":"Additional"
+      },
+      {
+        "name": "assignment_group",
+        "type": "dropdown",
+        "title": "Assignment group",
+        "inputType": "text",
+        "placeholder":"Assigned Group",
+        "dropdownData": [
+          { "value": 1, "label": "" },
+
+        ],
+        "sectionName":"Additional"
       },
   ],
   };
@@ -416,16 +589,14 @@ export const formData = {
           { "value": 8, "label": "William Henry" }
         ]
       },
-      {
-        "name": "leads",
-        "type": "leadDropdown",
-        "title": "Leads",
-        "inputType": "text",
-        
-         
-        
-      }
-    ]
+    //   {
+    //     "name": "leads",
+    //     "type": "leadDropdown",
+    //     "title": "Leads",
+    //     "inputType": "text",
+
+    //   }
+     ]
   }
   
   export const leadData =
@@ -467,9 +638,9 @@ export const formData = {
       "BulkEmail":"Allow",
       "Phone":"8076845632",
       "Whatsapp":"9985435678",
-      "Label":"hot",
+      "label":"hot",
       "Id":"1",
-      "Stage":"New Lead"
+      "Status":"New Lead"
    
     },
    
@@ -507,9 +678,9 @@ export const formData = {
       "BulkEmail": "Not allowed",
       "Phone": "9876543210",
       "Whatsapp": "Unavailable",
-      "Label": "cold",
+      "label": "cold",
       "Id": "2",
-      "Stage": "Qualified"
+      "Status": "Qualified"
     },
     {
       "LeadType": "International",
@@ -522,7 +693,7 @@ export const formData = {
       "Owner": "Maria Garcia",
       "LeadSource": "Web",
       "LeadCurrency": "EUR 400000",
-      "Description": "Daniel Brown contacted us through our website seeking information about our products.",
+      "Description": "Daniel Brown Contacted us through our website seeking information about our products.",
       "ScoringProfile": "Profile 3",
       "Company": "ABC Ltd",
       "NoOfEmployees": "20",
@@ -545,9 +716,9 @@ export const formData = {
       "BulkEmail": "Allow",
       "Phone": "9876543210",
       "Whatsapp": "Unavailable",
-      "Label": "warm",
+      "label": "warm",
       "Id": "3",
-      "Stage": "Contacted"
+      "Status": "Contacted"
     },
     {
       "LeadType": "Domestic",
@@ -560,7 +731,7 @@ export const formData = {
       "Owner": "Jennifer Rodriguez",
       "LeadSource": "Web",
       "LeadCurrency": "GBP 200000",
-      "Description": "Michael Wilson inquired about our services through our online contact form.",
+      "Description": "Michael Wilson inquired about our services through our online Contact form.",
       "ScoringProfile": "Profile 4",
       "Company": "PQR Inc",
       "NoOfEmployees": "100",
@@ -583,9 +754,9 @@ export const formData = {
       "BulkEmail": "Not allowed",
       "Phone": "9876543210",
       "Whatsapp": "Unavailable",
-      "Label": "hot",
+      "label": "hot",
       "Id": "4",
-      "Stage": "New Lead"
+      "Status": "New Lead"
     },
     {
       "LeadType": "International",
@@ -621,9 +792,9 @@ export const formData = {
       "BulkEmail": "Allow",
       "Phone": "9876543210",
       "Whatsapp": "Unavailable",
-      "Label": "cold",
+      "label": "cold",
       "Id": "5",
-      "Stage": "Qualified"
+      "Status": "Qualified"
     },
     {
       "LeadType": "Domestic",
@@ -636,7 +807,7 @@ export const formData = {
       "Owner": "Karen Thompson",
       "LeadSource": "Advertisement",
       "LeadCurrency": "CAD 300000",
-      "Description": "James Clark saw our ad in a local newspaper and contacted us for more information.",
+      "Description": "James Clark saw our ad in a local newspaper and Contacted us for more information.",
       "ScoringProfile": "Profile 6",
       "Company": "QRS Enterprises",
       "NoOfEmployees": "40",
@@ -659,9 +830,9 @@ export const formData = {
     "BulkEmail": "Not allowed",
     "Phone": "9876543210",
     "Whatsapp": "Unavailable",
-    "Label": "hot",
+    "label": "hot",
     "Id": "6",
-    "Stage": "Contacted"
+    "Status": "Contacted"
   },
   {
     "LeadType": "International",
@@ -697,9 +868,9 @@ export const formData = {
     "BulkEmail": "Not allowed",
     "Phone": "8765432109",
     "Whatsapp": "Unavailable",
-    "Label": "hot",
+    "label": "hot",
     "Id": "7",
-    "Stage": "Closed"
+    "Status": "Closed"
 },
   ]
 
@@ -725,7 +896,6 @@ export const meetingItemsData = {
       status: 'Confirmed',
       Date:"2024-12-04",
       organizer: 'John Steve',
-  
       location: 'Chennai',
       timezone: 'UTC+0',
       from: '2024-03-20T09:00:00',
@@ -902,14 +1072,14 @@ export const leadNoteData = {
 
 export const meetingData = {
   "elements": [
-    {
-      "name": "lead",
-      "type": "leadDropdown",
-      "title": "Lead",
-      "inputType": "text",
-      "placeholder": "Select",
-      "dropdownData": leadData
-    },
+    // {
+    //   "name": "lead",
+    //   "type": "leadDropdown",
+    //   "title": "Lead",
+    //   "inputType": "text",
+    //   "placeholder": "Select",
+    //   "dropdownData": leadData
+    // },
     {
       "name": "Title",
       "type": "TextInput",
@@ -1228,7 +1398,7 @@ export const callLogFormData= {
     //   "inputType": "text",
     //   "placeholder":'Select',
     //   "dropdownData": [
-    //     { "value": 1, "label": "contact" },
+    //     { "value": 1, "label": "Contact" },
     //     { "value": 2, "label": "Lead" },
        
     //   ]
@@ -1302,7 +1472,7 @@ export const leadScoreFormData={
   "leadId":[
     {
     "questionId":"1",
-    "questionLabel":"Return on investment?",
+    "questionlabel":"Return on investment?",
     "questionDescription":"ROI estimation",
     "order":"1",
     "ansId":[
@@ -1332,6 +1502,25 @@ export const activityFormData = {
     },
   }
   ]
+}
+
+export const statusFormData = {
+  "elements": [
+    {
+      "name": "reason",
+      "type": "multiLineText",
+      "title": "Reason",
+      "inputType": "text",
+      "placeholder":'Enter the reason', 
+    },
+    {
+      "name": "remarks",
+      "type": "multiLineText",
+      "title": "Remarks",
+      "inputType": "text",
+      "placeholder":"Enter the Remarks"
+    },
+   ]
 }
 
 

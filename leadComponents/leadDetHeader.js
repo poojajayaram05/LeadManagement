@@ -198,7 +198,7 @@ import ArrowBack from '../customComponents/arrowBack';
 const LeadDet = () => {
   const leadId = useIdStore((state) => state.leadId);
   const lead = leadData.find((lead) => lead.Id === leadId);
-  const { FirstName, LastName, Phone, Email, Stage, Label, Id, Gender} = lead || {};
+  const { FirstName, LastName, Phone, Email, Status, label, Id, Gender} = lead || {};
  
   const handleBack = () => {
     router.navigate('/DrawerScreens/leadList');
@@ -225,7 +225,8 @@ const handleEmail = () => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.backButton} onPress={handleBack}>
-        <ArrowBack/>
+        {/* <ArrowBack/> */}
+        <Ionicons name="chevron-back" size={24} color="white" />
         {/* <View style={styles.backButtonContainer}>
           <Text style={styles.backButtonText}>Back</Text>
         </View> */}
@@ -243,11 +244,11 @@ const handleEmail = () => {
       <View style={styles.lifestyleContainer}>
         <View style={styles.lifecycleStage}>
           <Text style={styles.lifecycleHeading}>Stage</Text>
-          <Text style={styles.lifecycleText}>{Stage}</Text>
+          <Text style={styles.lifecycleText}>{Status}</Text>
         </View>
         <View style={styles.tempContainer}>
           <Text style={styles.tempHeading}>Label</Text>
-          <Text style={styles.tempText}>{Label}</Text>
+          <Text style={styles.tempText}>{label}</Text>
         </View>
         <View style={styles.scoreContainer}>
           <Text style={styles.scoreHeading}>Score</Text>
@@ -271,13 +272,11 @@ const handleEmail = () => {
           <Ionicons name="location" size={24} color="white" />
           {/* <Text style={styles.buttonLabel}>Direction</Text> */}
         </TouchableOpacity>
- 
         {/* <TouchableOpacity style={styles.actionButton} onPress={handleAttachment}>
           <Ionicons name="attach" size={24} color="white" />
           <Text style={styles.buttonLabel}>Add file</Text>
         </TouchableOpacity> */}
       </View>
-     
     </View>
   );
 };
@@ -309,7 +308,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   backButtonText: {
-    color: '#555',
+    color: 'white',
     fontSize: 16,
   },
   // userDetailsContainer: {

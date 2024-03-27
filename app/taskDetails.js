@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput, Button, Alert } from "react-native";
-//import { formData } from "../jsonData";
-import ArrowBack from "../customComponents/arrowBack";
-import { TouchableOpacity } from "react-native";
-import { router } from "expo-router";
-import useIdStore from "./leadStore";
-import DetailCard from "../customComponents/detailCard";
-import { taskData } from "../customComponents/formData";
+// import React, { useState } from "react";
+// import { View, Text, StyleSheet, TextInput, Button, Alert } from "react-native";
+// //import { formData } from "../jsonData";
+// import ArrowBack from "../customComponents/arrowBack";
+// import { TouchableOpacity } from "react-native";
+// import { router } from "expo-router";
+// import useIdStore from "./leadStore";
+// import DetailCard from "../customComponents/detailCard";
+// import { taskData } from "../customComponents/formData";
 // export const taskData = {
 //     elements: [
 //       {
@@ -124,102 +124,145 @@ import { taskData } from "../customComponents/formData";
 //     ],
 //   };
  
-function TaskDetailsPage() {
-  //const taskId = useIdStore((state) => state.taskId);
- //const taskId= useIdStore.getState().setTaskId('taskID');
- const taskId = useIdStore((state) => state.taskId);
- console.log("id retrieved", taskId);
+// function TaskDetailsPage() {
+//   //const taskId = useIdStore((state) => state.taskId);
+//  //const taskId= useIdStore.getState().setTaskId('taskID');
+//  const taskId = useIdStore((state) => state.taskId);
+//  console.log("id retrieved", taskId);
 
-  console.log(taskId);
-  const task = taskData.find(item => item.id === taskId);
- console.log(task);
-  // const handleSubmit = () => {
-  //   Alert.alert("Task Completed");
-  // };
-  const goBack=()=>{
+//   console.log(taskId);
+//   const task = taskData.find(item => item.id === taskId);
+//  console.log(task);
+//   // const handleSubmit = () => {
+//   //   Alert.alert("Task Completed");
+//   // };
+//   const goBack=()=>{
+//     router.back();
+//   }
+ 
+//   return (
+//     <View style={styles.container}>
+//       <Text style={styles.title}>Task details</Text>
+//     <DetailCard obj = {task}/>
+//     <TouchableOpacity onPress={goBack}>
+//         <ArrowBack />
+//       </TouchableOpacity>
+//     {/* <DetailCard firstname={lead.firstname} lastname={lead.lastname} email={lead.email} phone={lead.phone} jobTitle={lead.jobTitle}
+//     temperature={lead.temperature} stage={lead.stage} gender={lead.gender}/> */}
+//   </View>
+//   );
+// };
+ 
+
+ 
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//         marginTop:40,
+//         marginHorizontal: 10,
+     
+   
+//   },
+//   title: {
+//     fontSize: 24,
+//     fontWeight: 'bold',
+//     marginBottom: 10,
+//     textAlign: 'center',
+// },
+//   detailBox: {
+//     marginBottom: 10,
+//   },
+//   taskName: {
+//     fontSize: 24,
+//     fontWeight: "bold",
+//     color:'white'
+//   },
+//   heading: {
+//     marginBottom: 15,
+//     backgroundColor: "#023B5E",
+//     paddingHorizontal: 10,
+//     paddingVertical: 8,
+//     borderRadius: 10,
+//     width:'80%',
+//   },
+//   detailItem: {
+//     flexDirection: "row",
+//     alignItems: "center",
+//     marginBottom: 5,
+//   },
+//   labelBox: {
+//     flex: 1,
+//     borderWidth: 1,
+//     borderColor: "#F6FBF8",
+//     padding: 5,
+//     marginRight: 10,
+//     borderRadius: 5,
+//   },
+//   valueBox: {
+//     flex: 2,
+//     borderWidth: 1,
+//     borderColor: "#F6FBF8",
+//     padding: 5,
+//     borderRadius: 5,
+//   },
+//   key: {
+//     fontWeight: "bold",
+//     textAlign: "left",
+//     color: "#023B5E",
+//   },
+//   value: {
+//     color: "#023B5E",
+//   },
+//   buttonContainer:{
+//     flex: 1,
+//     flexDirection: 'row', // Align items horizontally
+//     alignItems: 'flex-end', // Align items to the start (left)
+//     justifyContent: 'flex-end', // Align items to the start (left)
+//     padding: 10,
+//     },
+// });
+ 
+// export default TaskDetailsPage;
+
+
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import useIdStore from "./leadStore";
+import ArrowBack from "../customComponents/arrowBack";
+import DetailCard from "../customComponents/detailCard";
+import { taskData } from "../customComponents/formData";
+import { router } from "expo-router";
+ 
+const TaskDetailsPage = () => {
+  const taskId = useIdStore((state) => state.taskId);
+  console.log("id retrieved", taskId);
+ 
+  const task = taskData.find((item) => item.id === taskId);
+  console.log(task);
+ 
+  const goBack = () => {
     router.back();
-  }
+  };
  
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Task details</Text>
-    <DetailCard obj = {task}/>
-    <TouchableOpacity onPress={goBack}>
+      <DetailCard obj={task} title="Task details" />
+ 
+      <TouchableOpacity onPress={goBack}>
         <ArrowBack />
       </TouchableOpacity>
-    {/* <DetailCard firstname={lead.firstname} lastname={lead.lastname} email={lead.email} phone={lead.phone} jobTitle={lead.jobTitle}
-    temperature={lead.temperature} stage={lead.stage} gender={lead.gender}/> */}
-  </View>
+    </View>
   );
 };
- 
-
  
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-        marginTop:40,
-        marginHorizontal: 10,
-     
-   
+    backgroundColor:"#f2f6ff",
+    marginTop: 40,
+    marginHorizontal: 10,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    textAlign: 'center',
-},
-  detailBox: {
-    marginBottom: 10,
-  },
-  taskName: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color:'white'
-  },
-  heading: {
-    marginBottom: 15,
-    backgroundColor: "#023B5E",
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    borderRadius: 10,
-    width:'80%',
-  },
-  detailItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 5,
-  },
-  labelBox: {
-    flex: 1,
-    borderWidth: 1,
-    borderColor: "#F6FBF8",
-    padding: 5,
-    marginRight: 10,
-    borderRadius: 5,
-  },
-  valueBox: {
-    flex: 2,
-    borderWidth: 1,
-    borderColor: "#F6FBF8",
-    padding: 5,
-    borderRadius: 5,
-  },
-  key: {
-    fontWeight: "bold",
-    textAlign: "left",
-    color: "#023B5E",
-  },
-  value: {
-    color: "#023B5E",
-  },
-  buttonContainer:{
-    flex: 1,
-    flexDirection: 'row', // Align items horizontally
-    alignItems: 'flex-end', // Align items to the start (left)
-    justifyContent: 'flex-end', // Align items to the start (left)
-    padding: 10,
-    },
 });
  
 export default TaskDetailsPage;
+ 

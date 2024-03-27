@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons'
 export default function ArrowBack() {
   return (
    
-     <Ionicons name="arrow-back-circle" size={27} color="black" />
+     <Ionicons name="chevron-back" size={27} color="#023B5E" />
    
   )
 }

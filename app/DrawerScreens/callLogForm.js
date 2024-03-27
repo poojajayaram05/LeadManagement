@@ -230,10 +230,10 @@ const renderFormElement = (element) => {
                     <LDropdown
   label="Associated Leads"
   data={leadData.map((lead) => {
-    console.log(lead.id); // Log lead object
+    console.log(lead.Id); // Log lead object
     return {
-      value: lead.id,
-      label: `${lead.id} - ${lead.firstname} ${lead.lastname}`,
+      value: lead.Id,
+      label: `${lead.Id} - ${lead.FirstName} ${lead.LastName}`,
     };
   })}
   onSelect={handleSelect}
@@ -286,11 +286,11 @@ const renderFormElement = (element) => {
             </View>
 
             <Button title="Submit" onPress={onSubmit} color='#023B5E' />
-             <View style={styles.buttonContainer}>
+             {/* <View style={styles.buttonContainer}>
       <TouchableOpacity onPress={goBack}>
         <ArrowBack />
       </TouchableOpacity>
-    </View>
+    </View> */}
         </View>
         
         </GestureHandlerRootView>
