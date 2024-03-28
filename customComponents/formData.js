@@ -979,23 +979,15 @@ export const OpportunityData= {
       "dataType": "string"
     },
 
-      {
-      "name": "profession",
-      "type": "dropdown",
-      "title": "Profession",
+    {
+      "name": "probability",
+      "type": "TextInput",
+      "title": "Probability",
       "inputType": "text",
-      "placeholder": "---none---",
-      "dropdownData": [
-        { "value": "Asia/taipei", "label": "Doctor" },
-        { "value": "america/toronto", "label": "Engg" },
-        { "value": "america/toronto", "label": "self emplyoyed" },
-        { "value": "america/toronto", "label": "business" },
-
-      ],
-      "dataType": "string"
-    },
+      "placeholder": "Enter probability (0-100%)",
+      "dataType": "percentage"
+    }
     
-  
   ]
 }
 

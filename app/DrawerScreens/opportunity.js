@@ -16,13 +16,17 @@ export default function CreateOpportunity() {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const handleDateChange = (event, selectedDate) => {
+
+const handleDateChange = (event, selectedDate) => {
     if (selectedDate) {
       setShowDatePicker(false);
+      const formattedDate = selectedDate.toLocaleDateString('en-US');
       setSelectedDate(selectedDate instanceof Date ? selectedDate : new Date(selectedDate));
-      setFormValues({ ...formValues, "selectedDate": selectedDate });
+      setFormValues({ ...formValues, "dateInput": formattedDate });
     }
   };
+  
+  
   
   const handleSelect = (item) => {
     setSelectedValue(item);
@@ -103,33 +107,34 @@ export default function CreateOpportunity() {
           </View>
         );
   
-      case "dateInput":
-        return (
-          <View style={styles.inputContainer}>
-            <Text style={styles.label}>{element.title}</Text>
-            <View style={styles.dateInput}>
-              <TouchableOpacity onPress={() => setShowDatePicker(true)}>
-                <Text style={styles.dateText}>
-                  {formValues[element.name] || "Select Date"}
-                </Text>
-              </TouchableOpacity>
-              <Ionicons
-                name="calendar-outline"
-                size={24}
-                color="black"
-                style={styles.calendarIcon}
-              />
-            </View>
-            {showDatePicker && (
-              <RNDateTimePicker
-                value={selectedDate}
-                mode="date"
-                display="default"
-                onChange={handleDateChange}
-              />
-            )}
-          </View>
-        );
+        case "dateInput":
+            return (
+              <View style={styles.inputContainer}>
+                <Text style={styles.label}>{element.title}</Text>
+                <View style={styles.dateInput}>
+                  <TouchableOpacity onPress={() => setShowDatePicker(true)}>
+                    <Text style={styles.dateText}>
+                      {formValues["dateInput"] || "Select Date"}
+                    </Text>
+                  </TouchableOpacity>
+                  {/* <Ionicons
+                    name="calendar-outline"
+                    size={24}
+                    color="black"
+                    style={styles.calendarIcon}
+                  /> */}
+                </View>
+                {showDatePicker && (
+                  <RNDateTimePicker
+                    value={selectedDate}
+                    mode="date"
+                    display="default"
+                    onChange={handleDateChange}
+                  />
+                )}
+              </View>
+            );
+          
     }
   };
   

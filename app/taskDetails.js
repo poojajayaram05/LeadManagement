@@ -242,8 +242,8 @@ const styles = StyleSheet.create({
     // borderColor: "#F6FBF8",
     padding: 5,
     borderRadius: 5,
-    position:'relative',
-    left:28,
+    // position:'relative',
+    // left:18,
     // borderRightWidth:1,
     // borderRightColor:'red'
   },
