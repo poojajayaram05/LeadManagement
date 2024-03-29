@@ -111,19 +111,19 @@ export default function Notes() {
   const data = [
     {
       "name": "Notes 1",
-      "description": "Meeting with client to discuss project requirements",
+      "description": "Meeting with client",
       "created_at": "2024-03-22T10:30:00",
       "created_by": "John Doe"
     },
     {
       "name": "Notes 2",
-      "description": "Prepare presentation slides for the sales pitch",
+      "description": "Prepare presentation slides",
       "created_at": "2024-03-23T14:00:00",
       "created_by": "Jane Smith"
     },
     {
       "name": "Notes 3",
-      "description": "Review and finalize the budget proposal",
+      "description": "Finalize the budget proposal",
       "created_at": "2024-03-24T09:00:00",
       "created_by": "Alex Johnson"
     }
@@ -149,7 +149,7 @@ export default function Notes() {
 }
   return (
     <View style={styles.container}>
-          <View style={{ height:'30%' }}>
+          <View style={{ height:'26%' }}>
            <LeadDet/>
       </View>
       <FlatList

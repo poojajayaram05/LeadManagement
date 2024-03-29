@@ -132,7 +132,7 @@ export default function Meeting() {
  
   return (
     <View style={styles.container}>
-        <View style={{ height:'30%' }}>
+        <View style={{ height:'26%' }}>
            <LeadDet/>
         </View>
       <FlatList

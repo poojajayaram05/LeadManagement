@@ -201,10 +201,10 @@ export default function Layout() {
 
 
 <Drawer.Screen
-    name='My Activities'
+    name='activityPage'
     options={{
-      drawerLabel:'Activity Page',
-      headerTitle:'Activity Page',
+      drawerLabel:'Activties',
+      headerTitle:'Activities',
       headerShown:true,
       headerRight: () => (
         <TouchableOpacity onPress={goBack} style={{ marginRight: 10 }}>

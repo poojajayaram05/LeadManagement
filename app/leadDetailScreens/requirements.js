@@ -45,7 +45,7 @@ export default function Requirements() {
  
   return (
     <View style={styles.container}>
-          <View style={{ height:'30%' }}>
+          <View style={{ height:'26%' }}>
            <LeadDet/>
       </View>
       <FlatList

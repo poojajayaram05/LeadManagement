@@ -96,6 +96,16 @@ export default function AppLayout() {
           ),
         }}
       />
+
+       <Stack.Screen
+        name="activity"
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="tasks" size={size} color={color} />
+          ),
+        }}
+      />
       {/* <Stack.Screen
         name="task"
         // component={Task} // Assuming you have a TaskScreen component
