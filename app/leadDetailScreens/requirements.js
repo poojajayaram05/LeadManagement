@@ -24,25 +24,20 @@ export default function Requirements() {
     }
   ];
  
- 
   const goToCreateRequirement = () => {
     router.navigate('/formComponents/createRequirement')
   }
  
   const renderItem = ({ item }) => {
     const { requirement, description, product } = item;
-    const reqData = {requirement, description, product};
+    const reqData = { description, product};
     
-    
-
-
     return(
     <View>
-      <View>
-        <Text>{item.requirement}</Text>
+      <View style={styles.title}>
+        <Text style={styles.titletext}>{item.requirement}</Text>
       </View>
         <LeadDetailCard obj={reqData} name="list-alt" />
-      
       <View style={styles.divider} />
     </View>
     )
@@ -50,7 +45,7 @@ export default function Requirements() {
  
   return (
     <View style={styles.container}>
-          <View style={{ height:'27%' }}>
+          <View style={{ height:'30%' }}>
            <LeadDet/>
       </View>
       <FlatList
@@ -64,6 +59,20 @@ export default function Requirements() {
 }
  
 const styles = StyleSheet.create({
+  title:{
+    alignItems: 'center',
+    padding: 10,
+    marginHorizontal: 20,
+    flexDirection:'row',
+    maxWidth: '90%', 
+    padding: 5, 
+    borderRadius: 10,
+    //  backgroundColor:'#023B5E',
+  },
+  titletext:{
+    fontWeight:'bold',
+    color:'#023B5E',
+   },
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -91,5 +100,6 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: 'black',
     marginHorizontal: 20,
+    marginBottom:10,
   },
 });

@@ -6,6 +6,8 @@ import Scrollcard from '../../dashboardComponents/scrollCard';
 import Bigcard from '../../dashboardComponents/bigCard';
 import ChartLine from '../../dashboardComponents/lineChart';
 import TabMenu from '../tabsMenu';
+// import TabFooter from '../../customComponents/tabFooter';
+import { Stack } from 'expo-router';
  
 const total_leads = 0;
 const total_calls = 1;
@@ -15,8 +17,13 @@ const sales = 3;
 const Dashboard = () => {
   const [selectedCard, setSelectedCard] = useState(total_leads);
  
+  const [category, setCategory] = useState('Tiny homes');
+
   const handleCardPress = (cardIndex) => {
     setSelectedCard(cardIndex === selectedCard ? null : cardIndex);
+  };
+  const onDataChanged = (category) => {
+    setCategory(category);
   };
  
   return (
@@ -97,8 +104,14 @@ const Dashboard = () => {
         )}
       </ScrollView>
 
+
+
       {/* <View> 
-        <TabMenu/>
+      <Stack.Screen
+        options={{
+          header: () => <TabFooter onCategoryChanged={onDataChanged} />,
+        }}
+      />
         </View> */}
      
  

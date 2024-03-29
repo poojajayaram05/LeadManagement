@@ -129,7 +129,7 @@ export default function Notes() {
     }
   ];
   const goToCreateNotes = () => {
-    router.navigate('/formComponents/createLeadNote')
+    router.navigate('/DrawerScreens/createNotes')
   }
  
   const renderItem = ({ item }) => {
@@ -137,9 +137,9 @@ export default function Notes() {
     const noteData = {  description };
     return(
     <View>
-      <View>
-        <Text>{item.name}</Text>
-        <Text>{item.description}</Text>
+      <View style={styles.title} >
+        <Text style={styles.titletext}>{item.name}</Text>
+        {/* <Text>{item.description}</Text> */}
       </View>
        <LeadDetailCard obj={noteData} name="book" />
    
@@ -149,7 +149,7 @@ export default function Notes() {
 }
   return (
     <View style={styles.container}>
-          <View style={{ height:'27%' }}>
+          <View style={{ height:'30%' }}>
            <LeadDet/>
       </View>
       <FlatList
@@ -167,6 +167,20 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
+  title:{
+    alignItems: 'center',
+    padding: 10,
+    marginHorizontal: 20,
+    flexDirection:'row',
+    maxWidth: '90%', 
+    padding: 5, 
+    borderRadius: 10,
+    //  backgroundColor:'#023B5E',
+  },
+  titletext:{
+    fontWeight:'bold',
+    color:'#023B5E',
+   },
   boldText: {
     fontWeight: 'bold',
   },
@@ -193,6 +207,7 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: 'black',
     marginHorizontal: 20,
+    marginBottom:10,
   },
   floatingButton: {
     position: 'absolute',

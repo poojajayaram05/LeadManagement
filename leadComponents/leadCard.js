@@ -13,8 +13,7 @@ import { set } from 'zod';
 import { Ionicons } from '@expo/vector-icons';
 import { avatarPic } from '../assets/images';
 
- 
-const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temperature, id, stage,gender }) => {
+const LeadItem = ({ FirstName, LastName, Email, Phone, onViewPress, Status, Qualification, Id, Gender }) => {
    
     const [showSecondImage, setShowSecondImage] = useState(false);
     const[selectedStar, setSelectedStar]=useState(false);
@@ -22,7 +21,7 @@ const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temp
     const [showDropdown, setShowDropdown] = useState(false);
 
     const goToEditLead = () => {
-        setLeadId(id);
+        setLeadId(Id);
         router.navigate('formComponents/editLead');
 
         closeDropdown();
@@ -48,46 +47,49 @@ const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temp
  
 // const Selected = require('../../assets/images/starrOne.jpg');
 // const UnSelected = require('../../assets/images/starTwo.png');
-    const renderBadge = (stage) => {
+const renderBadge = () => {
  
-        if (status === 'open') {
-            //return <Badge value={<Text> Sale </Text>} status="success" badgeStyle={styles.badge} />;
-           return <BadgeLead label={stage} color={'#857471'} textColor="white"/>
-        } else if (status === 'contacted') {
-            // return <Badge value={<Text> Closed </Text>} status="error" badgeStyle={styles.badge} />;
-            return <BadgeLead label={stage} color={'#C02DD9'} textColor="white"/>
-        } else if (status === 'qualified') {
-            // return <Badge value={<Text> New Lead </Text>} status="primary" badgeStyle={styles.badge} />;
-            return <BadgeLead label={stage} color={'maroon'} textColor="white"/>
-        } else if (status === 'accepted') {
-            // return <Badge value={<Text >Negotiating </Text>} status="warning" badgeStyle={styles.badge} />;
-            return <BadgeLead label={stage} color={'green'} textColor="white"/>
-        }  
-        return null;
-    };
+    if (Status === 'New Lead') {
+        //return <Badge value={<Text> Sale </Text>} status="success" badgeStyle={styles.badge} />;
+       return <BadgeLead label={'New Lead'} color={'#857471'} textColor="white"/>
+    } else if (Status === 'Qualified') {
+        // return <Badge value={<Text> Closed </Text>} status="error" badgeStyle={styles.badge} />;
+        return <BadgeLead label={'Qualified'} color={'#C02DD9'} textColor="white"/>
+    } else if (Status === 'Contacted') {
+        // return <Badge value={<Text> New Lead </Text>} status="primary" badgeStyle={styles.badge} />;
+        return <BadgeLead label={'Contacted'} color={'maroon'} textColor="white"/>
+    } else if (Status === 'Closed-not converted') {
+        // return <Badge value={<Text >Negotiating </Text>} status="warning" badgeStyle={styles.badge} />;
+        return <BadgeLead label={'Closed-not converted'} color={'#a86725'} textColor="white"/>
+    }  else if (Status === 'Converted') {
+        // return <Badge value={<Text >Negotiating </Text>} status="warning" badgeStyle={styles.badge} />;
+        return <BadgeLead label={'Converted'} color={'#08664a'} textColor="white"/>
+    }
+    return null;
+};
  
-    const renderTemperatureBadge = () => {
-        let temperatureBadgeColor;
-        switch (temperature) {
-          case 'hot':
-            temperatureBadgeColor = 'red';
-            txtColor="white";
-            break;
-          case 'warm':
-            temperatureBadgeColor = 'orange';
-            txtColor="white";
-            break;
-          case 'cold':
-            temperatureBadgeColor = '#448DD0';
-            txtColor="white";
-            break;
-          default:
-            temperatureBadgeColor = 'grey';
-            txtColor="white";
-        }
+const renderQualificationBadge = () => {
+    let QualificationBadgeColor;
+    switch (Qualification) {
+      case 'hot':
+        QualificationBadgeColor = 'red';
+        txtColor="white";
+        break;
+      case 'warm':
+        QualificationBadgeColor = 'orange';
+        txtColor="white";
+        break;
+      case 'cold':
+        QualificationBadgeColor = '#448DD0';
+        txtColor="white";
+        break;
+      default:
+        QualificationBadgeColor = 'grey';
+        txtColor="white";
+    }
       
     //return <Badge value={<Text>{temperature}</Text>} status={temperatureBadgeColor} badgeStyle={styles.badge} />;
-    return <BadgeLead color={temperatureBadgeColor} label={temperature} textColor={txtColor} />
+    return <BadgeLead color={QualificationBadgeColor} label={Qualification} textColor={txtColor} />
       };
 
     //   const displayScreen = () => {
@@ -111,11 +113,11 @@ const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temp
 
 const handleNavigateToLeadDetails = () => {
     router.navigate(`/leadDetailScreens/notes`);
-    setLeadId(id);
+    setLeadId(Id);
 };
 const handleChangeStage = () => {
     router.navigate('/formComponents/changeStage');
-    setLeadId(id);
+    setLeadId(Id);
     closeDropdown(); // Close the dropdown after action
 };
  
@@ -142,12 +144,12 @@ return (
                   />
               </View>
               <View style={styles.textContainer}>
-                  <Text style={styles.title}>{`${firstName} ${lastName}`}</Text>
-                  <Text style={styles.subtitle}>{email}</Text>
-                  <Text style={styles.subtitle}>{phone}</Text>
+                  <Text style={styles.title}>{`${FirstName} ${LastName}`}</Text>
+                  <Text style={styles.subtitle}>{Email}</Text>
+                  <Text style={styles.subtitle}>{Phone}</Text>
                   <View style={styles.badgeBox}>
-                      <View>{renderBadge(stage)}</View>
-                      <View style={styles.badgeSecond}>{renderTemperatureBadge()}</View>
+                      <View>{renderBadge()}</View>
+                      <View style={styles.badgeSecond}>{renderQualificationBadge()}</View>
                   </View>
               </View>
               <View style={styles.actionsContainer}>

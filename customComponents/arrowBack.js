@@ -1,11 +1,11 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import { Ionicons } from '@expo/vector-icons'
+import React from 'react';
+import { View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function ArrowBack() {
   return (
-   
-     <Ionicons name="arrow-back-circle" size={27} color="black" />
-   
-  )
+    <View style={{ marginLeft: 10 }}>
+      <Ionicons name="chevron-back" size={25} color="#023B5E" />
+    </View>
+  );
 }

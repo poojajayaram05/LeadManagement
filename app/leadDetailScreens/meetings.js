@@ -98,26 +98,32 @@ import useMeetingStore from '../../meetingComponents/meetingStore';
  
 export default function Meeting() {
 
-  const goToMeetingDetails=()=>{
-    router.navigate('/meetingDetails')
-  }
+  // const goToMeetingDetails=()=>{
+  //   router.navigate('/meetingDetails')
+  // }
  
-  const goToCreateMeeting = () => {
+  // const goToCreateMeeting = () => {
+  //   router.navigate('/DrawerScreens/createMeeting')
+  // }
+   
+  const goToCreateMeetingForm =()=>{
     router.navigate('/DrawerScreens/createMeeting')
   }
-   
+
   const renderItem = ({ item }) => {
     const goToMeetingDetails=()=>{
       useMeetingStore.getState().setMeetingId(item.id);
       router.navigate('/meetingDetails')
     }
     // Extracting only the required properties
-    const { title, Description, status,Date } = item;
-    const simplifiedItem = { Description, status,Date };
+    const { title, Description, status, Date } = item;
+    const simplifiedItem = {Date, status, Description };
 
     return (
       <TouchableOpacity onPress={goToMeetingDetails}>
-        <View><Text>{item.title}</Text></View>
+        <View style={styles.title}>
+          <Text style={styles.titletext}>{item.title}</Text>
+          </View>
         <LeadDetailCard obj={simplifiedItem} name="calendar" />
         <View style={styles.divider} />
       </TouchableOpacity>
@@ -126,7 +132,7 @@ export default function Meeting() {
  
   return (
     <View style={styles.container}>
-        <View style={{ height:'27%' }}>
+        <View style={{ height:'30%' }}>
            <LeadDet/>
         </View>
       <FlatList
@@ -134,14 +140,30 @@ export default function Meeting() {
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
-     
-      <FloatingButton onPress={goToCreateMeeting} />
-     
+      <FloatingButton onPress={goToCreateMeetingForm} />
     </View>
   );
 }
  
 const styles = StyleSheet.create({
+  title: {
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    // flex: 1,
+    alignItems: 'center',
+    padding: 10,
+    marginHorizontal: 20,
+    flexDirection:'row',
+    maxWidth: '90%', 
+    padding: 5, 
+    borderRadius: 10,
+    //  backgroundColor:'#023B5E',
+  },
+  
+  titletext:{
+    fontWeight:'bold',
+    color:'#023B5E',
+   },
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -153,11 +175,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 10,
-    marginHorizontal: 20,
   },
   text: {
     fontSize: 14,
     marginBottom: 5,
+    
   },
   iconContainer: {
     marginRight: 10,
@@ -169,10 +191,8 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: 'black',
     marginHorizontal: 20,
+    marginBottom:10,
   },
   floatingButtonContainer: {
-   
-   
-   
   },
 });

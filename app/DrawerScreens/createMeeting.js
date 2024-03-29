@@ -23,6 +23,9 @@ import CustomSwitch from '../../customComponents/customSwitch';
 import ArrowBack from '../../customComponents/arrowBack';
 import { activityFormData } from '../../customComponents/formData';
 import { router } from 'expo-router';
+
+
+
 export default function CreateMeeting() {
   // const { control, handleSubmit, formState: { errors } } = useForm();
   const [isSection1Collapsed, setIsSection1Collapsed] = useState(false);
@@ -398,9 +401,9 @@ onSelect={handleSelect}
              
             <Button title="Submit" onPress={onSubmit} color='#023B5E' />
             <View style={styles.buttonContainer}>
-      <TouchableOpacity onPress={goBack}>
+      {/* <TouchableOpacity onPress={goBack}>
         <ArrowBack />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
             {/* <MultiSelectItems/> */}
             

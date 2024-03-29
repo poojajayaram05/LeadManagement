@@ -313,11 +313,11 @@ const renderFormElement = (element) => {
             {/* Repeat the same structure for other sections (Company Information and Contact Information) */}
 
             <Button title="Submit" onPress={onSubmit} color='#023B5E' />
-             <View style={styles.buttonContainer}>
+             {/* <View style={styles.buttonContainer}>
       <TouchableOpacity onPress={goBack}>
         <ArrowBack />
       </TouchableOpacity>
-    </View>
+    </View> */}
         </View>
         
         </GestureHandlerRootView>

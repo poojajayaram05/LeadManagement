@@ -115,31 +115,26 @@ export default function Task() {
   const goToCreateTask = () => {
     router.navigate('/DrawerScreens/createTask')
   }
- 
-
- 
   const renderItem = ({ item }) => {
     const goToTaskDetail=()=>{
       useIdStore.getState().setTaskId(item.id);
-    
       router.navigate('/taskDetails')
     }
     const { taskType, state, taskName, ownerName,id } = item;
     const taskItem = { taskType, state, taskName, ownerName };
    // useIdStore.getState().setTaskId(item.id);
     return(
-   
         <TouchableOpacity onPress={goToTaskDetail}>
-          <View onPress={goToTaskDetail}><Text>{item.taskName}</Text></View>
+          <View onPress={goToTaskDetail} style={styles.title}>
+            <Text style={styles.titletext}>{item.taskName}</Text>
+            </View>
        <LeadDetailCard obj={taskItem} name="list" />
         <View style={styles.divider} />
       </TouchableOpacity>
-
 )}
- 
   return (
     <View style={styles.container}>
-        <View style={{ height:'27%' }}>
+        <View style={{ height:'30%' }}>
            <LeadDet/>
       </View>
       <FlatList
@@ -153,6 +148,20 @@ export default function Task() {
 }
  
 const styles = StyleSheet.create({
+  title:{
+    alignItems: 'center',
+    padding: 10,
+    marginHorizontal: 20,
+    flexDirection:'row',
+    maxWidth: '90%', 
+    padding: 5, 
+    borderRadius: 10,
+    //  backgroundColor:'#023B5E',
+  },
+  titletext:{
+    fontWeight:'bold',
+    color:'#023B5E',
+   },
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -180,5 +189,6 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: 'black',
     marginHorizontal: 20,
+    marginBottom:10
   },
 });

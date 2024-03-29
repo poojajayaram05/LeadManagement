@@ -50,12 +50,11 @@ const onSelectRadio = (item) => {
     console.log('Selected value:', item.id);
 }
 
-const goBack=()=>{
-    router.back()
+// const goBack=()=>{
+//     router.back()
     
-}
-      
-
+// }
+    
     const onSubmit = async () => {
         const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_management`;
         const token = SecureStore.getItem('token');
@@ -234,6 +233,7 @@ const goBack=()=>{
     return (
       
         <View style={styles.cardContainer}>
+           
         <ScrollView>
             <View style={styles.card}>
               
@@ -294,11 +294,11 @@ const goBack=()=>{
                 {/* Repeat the same structure for other sections (Company Information and Contact Information) */}
                 <Button title="Submit" onPress={onSubmit} color='#023B5E' />
              
-                <View style={styles.buttonContainer}>
+                {/* <View style={styles.buttonContainer}>
       <TouchableOpacity onPress={goBack}>
-        <ArrowBack />
+        <ArrowBack/>
       </TouchableOpacity>
-    </View>
+    </View> */}
                 
                
                 </View>

@@ -15,192 +15,192 @@ import {
   StatusBar,
   Button,
 } from 'react-native';
-
+import {leadData} from '../../customComponents/formData';
  
- const leadData =
-[
+//  const leadData =
+// [
  
-  {
+//   {
  
-    "firstname": "John",
+//     "firstname": "John",
  
-    "lastname": "Smith",
+//     "lastname": "Smith",
  
-    "email": "johnsmith1@gmail.com",
+//     "email": "johnsmith1@gmail.com",
  
-    "job-title": "Engineer",
+//     "job-title": "Engineer",
  
-    "phone": "8884763231",
-    "status":"open",
-    "temperature":"hot",
-    "id":"1",
-    "stage":"New Lead"
+//     "phone": "8884763231",
+//     "status":"open",
+//     "temperature":"hot",
+//     "id":"1",
+//     "stage":"New Lead"
  
-  },
+//   },
  
-  {
+//   {
  
-    "firstname": "Jane",
+//     "firstname": "Jane",
  
-    "lastname": "Johnson",
+//     "lastname": "Johnson",
  
-    "email": "janejohnson2@yahoo.com",
+//     "email": "janejohnson2@yahoo.com",
  
-    "job-title": "Designer",
+//     "job-title": "Designer",
  
-    "phone": "8891234567",
-    "status":"contacted",
-    "temperature":"cold",
-    "id":"2",
-    "stage":"New Lead"
+//     "phone": "8891234567",
+//     "status":"contacted",
+//     "temperature":"cold",
+//     "id":"2",
+//     "stage":"New Lead"
  
-  },
+//   },
  
-  {
+//   {
  
-    "firstname": "Michael",
+//     "firstname": "Michael",
  
-    "lastname": "Brown",
+//     "lastname": "Brown",
  
-    "email": "michaelbrown3@hotmail.com",
+//     "email": "michaelbrown3@hotmail.com",
  
-    "job-title": "Manager",
+//     "job-title": "Manager",
  
-    "phone": "8902345678",
-    "status":"qualified",
-    "temperature":"warm",
-    "id":"3",
-    "stage":"New Lead"
+//     "phone": "8902345678",
+//     "status":"qualified",
+//     "temperature":"warm",
+//     "id":"3",
+//     "stage":"New Lead"
  
-  },
+//   },
  
-  {
+//   {
  
-    "firstname": "Emily",
+//     "firstname": "Emily",
  
-    "lastname": "Jones",
+//     "lastname": "Jones",
  
-    "email": "emilyjones4@outlook.com",
+//     "email": "emilyjones4@outlook.com",
  
-    "job-title": "Developer",
+//     "job-title": "Developer",
  
-    "phone": "8913456789",
-    "status":"accepted",
-    "temperature":"cold",
-    "id":"4",
-    "stage":"Closed"
+//     "phone": "8913456789",
+//     "status":"accepted",
+//     "temperature":"cold",
+//     "id":"4",
+//     "stage":"Closed"
  
-  },
+//   },
  
-  {
+//   {
  
-    "firstname": "William",
+//     "firstname": "William",
  
-    "lastname": "Garcia",
+//     "lastname": "Garcia",
  
-    "email": "williamgarcia5@gmail.com",
+//     "email": "williamgarcia5@gmail.com",
  
-    "job-title": "Analyst",
+//     "job-title": "Analyst",
  
-    "phone": "8924567890",  
-    "status":"accepted",
-    "temperature":"hot",
-    "id":"5",
-    "stage":"Closed"
+//     "phone": "8924567890",  
+//     "status":"accepted",
+//     "temperature":"hot",
+//     "id":"5",
+//     "stage":"Closed"
  
-  },
+//   },
  
-  {
+//   {
  
-    "firstname": "Olivia",
+//     "firstname": "Olivia",
  
-    "lastname": "Miller",
+//     "lastname": "Miller",
  
-    "email": "oliviamiller6@yahoo.com",
+//     "email": "oliviamiller6@yahoo.com",
  
-    "job-title": "Consultant",
+//     "job-title": "Consultant",
  
-    "phone": "8935678901",
-    "status":"qualified",
-    "temperature":"hot",
-    "id":"6",
-    "stage":"Qualified"
+//     "phone": "8935678901",
+//     "status":"qualified",
+//     "temperature":"hot",
+//     "id":"6",
+//     "stage":"Qualified"
     
  
-  },
+//   },
  
-  {
+//   {
  
-    "firstname": "James",
+//     "firstname": "James",
  
-    "lastname": "Davis",
+//     "lastname": "Davis",
  
-    "email": "jamesdavis7@hotmail.com",
+//     "email": "jamesdavis7@hotmail.com",
  
-    "job-title": "Coordinator",
+//     "job-title": "Coordinator",
  
-    "phone": "8946789012",
-    "status":"qualified",
-    "temperature":"cold",
-    "id":"7",
-    "stage":"Qualified"
+//     "phone": "8946789012",
+//     "status":"qualified",
+//     "temperature":"cold",
+//     "id":"7",
+//     "stage":"Qualified"
  
-  },
+//   },
  
-  {
+//   {
  
-    "firstname": "Sophia",
+//     "firstname": "Sophia",
  
-    "lastname": "Rodriguez",
+//     "lastname": "Rodriguez",
  
-    "email": "sophiarodriguez8@outlook.com",
+//     "email": "sophiarodriguez8@outlook.com",
  
-    "job-title": "Administrator",
+//     "job-title": "Administrator",
  
-    "phone": "8957890123",
-    "status":"qualified",
-    "temperature":"warm",
-    "id":"8",
-    "stage":"Contacted"
+//     "phone": "8957890123",
+//     "status":"qualified",
+//     "temperature":"warm",
+//     "id":"8",
+//     "stage":"Contacted"
  
-  },
+//   },
  
-  {
+//   {
  
-    "firstname": "Benjamin",
+//     "firstname": "Benjamin",
  
-    "lastname": "Martinez",
+//     "lastname": "Martinez",
  
-    "email": "benjaminmartinez9@gmail.com",
+//     "email": "benjaminmartinez9@gmail.com",
  
-    "job-title": "Engineer",
+//     "job-title": "Engineer",
  
-    "phone": "8968901234",
-    "status":"qualified",
-    "temperature":"warm",
-    "id":"9",
-    "stage":"Closed"
+//     "phone": "8968901234",
+//     "status":"qualified",
+//     "temperature":"warm",
+//     "id":"9",
+//     "stage":"Closed"
  
-  },
+//   },
  
-  {
+//   {
  
-    "firstname": "Emma",
+//     "firstname": "Emma",
  
-    "lastname": "Hernandez",
+//     "lastname": "Hernandez",
  
-    "email": "emmahernandez10@yahoo.com",
+//     "email": "emmahernandez10@yahoo.com",
  
-    "job-title": "Designer",
+//     "job-title": "Designer",
  
-    "phone": "8979012345",
-    "status":"qualified",
-    "temperature":"cold",
-    "id":"10",
-    "stage":"Closed"
+//     "phone": "8979012345",
+//     "status":"qualified",
+//     "temperature":"cold",
+//     "id":"10",
+//     "stage":"Closed"
  
-  }
-]
+//   }
+// ]
 const LeadList = () => {
   const [routes] = useState([
     { key: 'allLeads', title: 'All Leads' },
@@ -228,18 +228,15 @@ const LeadList = () => {
 
   const renderItem = ({ item }) => (
     <TouchableOpacity>
-    <LeadItem
-      firstName={item.firstname}
-      lastName={item.lastname}
-      email={item.email}
-      phone={item.phone}
-      status={item.status}
-      id={item.id}
-      temperature={item.temperature}
-      gender={item.gender}
-      onStarPress={toggleStarredLead}
-      isStarred={starredLeads.includes(item.id)}
-      stage={item.stage}
+   <LeadItem
+      FirstName={item.FirstName}
+      LastName={item.LastName}
+      Email={item.Email}
+      Phone={item.Phone}
+      Status={item.Status}
+      Id={item.Id}
+      Qualification={item.Qualification}
+      Gender={item.Gender}
     />
   </TouchableOpacity>
   );

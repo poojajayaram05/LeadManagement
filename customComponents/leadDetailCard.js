@@ -33,15 +33,14 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     // borderColor: 'gray',
     borderRadius: 5,
-    marginBottom: 10, // Add margin bottom to separate cards
-    backgroundColor: '#ffffff', // Set background color
+    // marginBottom: 10, // Add margin bottom to separate cards
+    // backgroundColor: 'red', 
   },
   boldText: {
     fontWeight: 'bold',
   },
   text: {
     fontSize: 14,
-    marginBottom: 5,
     color: '#333333', // Set text color
   },
   iconContainer: {
@@ -51,7 +50,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   detailContainer: {
-    marginBottom: 5,
     flexDirection:'row',
+    // backgroundColor:'yellow',
+    maxWidth: '84%', // Set maximum width for detailContainer
+    borderRadius: 5, // Optional: Add borderRadius to match the red box
+    padding: 5, // Optional: Add padding for better visualization
   },
 });
+
