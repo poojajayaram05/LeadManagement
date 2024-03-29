@@ -134,7 +134,7 @@ export default function Requirements() {
         <Text style={styles.titletext}>{item.requirement}</Text>
       </View>
         <LeadDetailCard obj={reqData} name="list-alt" />
-      {/* <View style={styles.divider} /> */}
+      <View style={styles.divider} />
     </View>
     )
   }
@@ -163,11 +163,11 @@ const styles = StyleSheet.create({
     maxWidth: '90%',
     padding: 5,
     borderRadius: 10,
-     backgroundColor:'#023B5E',
+    //  backgroundColor:'#023B5E',
   },
   titletext:{
     fontWeight:'bold',
-    color:'white'
+    color:'#023B5E'
    },
   container: {
     flex: 1,

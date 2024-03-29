@@ -250,12 +250,12 @@ const styles = StyleSheet.create({
     maxWidth: '90%',
     padding: 5,
     borderRadius: 10,
-     backgroundColor:'#023B5E',
+    //  backgroundColor:'#023B5E',
   },
  
   titletext:{
     fontWeight:'bold',
-    color:'white'
+    color:'#023B5E'
    },
   container: {
     flex: 1,
@@ -281,10 +281,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   divider: {
-    // height: 1,
-    // backgroundColor: 'black',
-    // marginHorizontal: 20,
-    // marginBottom:10,
+    height: 1,
+    backgroundColor: 'black',
+    marginHorizontal: 20,
+    marginBottom:10,
   },
   floatingButtonContainer: {
   },

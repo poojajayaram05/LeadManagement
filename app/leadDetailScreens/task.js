@@ -213,7 +213,7 @@ export default function Task() {
             <Text style={styles.titletext}>{item.taskName}</Text>
             </View>
        <LeadDetailCard obj={taskItem} name="list" />
-        {/* <View style={styles.divider} /> */}
+        <View style={styles.divider} />
       </TouchableOpacity>
 )}
   return (
@@ -240,11 +240,11 @@ const styles = StyleSheet.create({
     maxWidth: '90%',
     padding: 5,
     borderRadius: 10,
-     backgroundColor:'#023B5E',
+    //  backgroundColor:'#023B5E',
   },
   titletext:{
     fontWeight:'bold',
-    color:'white'
+    color:'#023B5E'
    },
   container: {
     flex: 1,

@@ -655,7 +655,7 @@ export const formData = {
       "Owner": "David Brown",
       "LeadSource": "Advertisement",
       "LeadCurrency": "USD 250000",
-      "Description": "Emily Johnson is interested in our services after attending our webinar.",
+      "Description": "Emily Johnson is interested in our services after attending our webinar.", 
       "ScoringProfile": "Profile 2",
       "Company": "XYZ Corp",
       "NoOfEmployees": "50",
@@ -1508,10 +1508,16 @@ export const statusFormData = {
   "elements": [
     {
       "name": "reason",
-      "type": "multiLineText",
+      "type": "dropdown",
       "title": "Reason",
-      "inputType": "text",
       "placeholder":'Enter the reason', 
+      "dropdownData":[
+        { "value":1, "label":"Not Reachable"},
+        { "value":2, "label":"Ringing"},
+        { "value":3, "label":"Wrong Number"},
+        {"value":4, "label":"Busy"},
+        {"value":5, "label":"Appointment fixed"},
+      ]
     },
     {
       "name": "remarks",
@@ -1522,6 +1528,142 @@ export const statusFormData = {
     },
    ]
 }
+
+export const emailData = {
+  "elements": [
+    {
+      "name": "leadId",
+      "type": "dropdown",
+      "title": "Lead",
+      "inputType": "text",
+      "placeholder": "Select",
+      "dropdownData": leadData
+    },
+    {
+      "name": "Email",
+      "type": "multiLineText",
+      "title": "Email",
+      "inputType": "text",
+      "placeholder": "Enter email-Id"
+    },
+    {
+      "name": "description",
+      "type": "multiLineText",
+      "title": "email description ",
+      "inputType": "text",
+      "placeholder": "Enter email-description"
+    },
+    {
+      "name": "subject",
+      "type": "multiLineText",
+      "title": "email subject",
+      "inputType": "text",
+      "placeholder": "Enter email-subject"
+    },
+  ],
+};
+
+
+export const phoneFormData= {
+  "elements": [
+    {
+      "name": "associatedLeads",
+      "type": "leadDropdown",
+      "title": "Associated Lead",
+      "inputType": "text",
+      "placeholder": "Select",
+      "dropdownData": leadData
+    },
+
+
+    {
+      "name": "phone",
+      "type": "TextInputNumber",
+      "title": "Phone Number",
+      "inputType": 'number',
+      "placeholder":"Enter the number",
+      "keyboardType":"numeric"
+    },
+    {
+      "name": "description",
+      "type": "multiLineText",
+      "title": "phone description ",
+      "inputType": "text",
+      "placeholder": "Enter phone-description"
+    },
+   
+   
+ 
+    {
+      "name": "time",
+      "type": "timeInput",
+      "title": "Start Time",
+      "placeholder": "Enter the time"
+    },
+    {
+      "name": "date",
+      "type": "Date",
+      "title": "Date",
+      "placeholder": "Date"
+    },
+    {
+      "name": "recoring",
+      "type": "document",
+      "title": "Recording File",
+      "placeholder":"Upload Recording"
+    },
+ 
+  ]
+}
+
+export const callLogData=
+[
+
+  {
+    "PhoneNumber":"9903746532",
+    "Type":"Incoming",
+    "Outcome":"Missed Call",
+    "Time":"9:00 AM",
+    "Date":"29-03-2024"
+  },
+
+  {
+    "PhoneNumber": "9334567890",
+    "Type": "Incoming",
+    "Outcome": "Missed Call",
+    "Time": "10:15 AM",
+    "Date": "2024-03-30"
+  },
+  {
+    "PhoneNumber": "9876543210",
+    "Type": "Outgoing",
+    "Outcome": "No Answer",
+    "Time": "2:30 PM",
+    "Date": "2024-03-30"
+  },
+  {
+    "PhoneNumber": "8088222333",
+    "Type": "Incoming",
+    "Outcome": "Connected",
+    "Time": "5:45 PM",
+    "Date": "2024-03-3"
+  },
+  {
+    "PhoneNumber": "8045556666",
+    "Type": "Outgoing",
+    "Outcome": "Busy",
+    "Time": "11:00 AM",
+    "Date": "2024-03-31"
+  },
+  {
+    "PhoneNumber": "9078889999",
+    "Type": "Incoming",
+    "Outcome": "Rejected",
+    "Time": "3:20 PM",
+    "Date": "2024-03-31"
+  }
+];
+
 
 
 

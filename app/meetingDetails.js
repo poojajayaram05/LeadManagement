@@ -87,41 +87,122 @@
  
 // export default LeadMeetingCard;
 
-import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import useMeetingStore from '../meetingComponents/meetingStore';
-import { meetingItemsData } from '../customComponents/formData';
-import ArrowBack from '../customComponents/arrowBack';
-import DetailCard from '../customComponents/detailCard';
-import { router } from 'expo-router';
+// import React from 'react';
+// import { View, StyleSheet, TouchableOpacity } from 'react-native';
+// import useMeetingStore from '../meetingComponents/meetingStore';
+// import { meetingItemsData } from '../customComponents/formData';
+// import ArrowBack from '../customComponents/arrowBack';
+// // import DetailCard from '../customComponents/detailCard';
+// import { router } from 'expo-router';
 
  
+// const goBack = () => {
+//     router.back();
+// };
+ 
+// const LeadMeetingCard = () => {
+//     const meetingId = useMeetingStore((state) => state.meetingId);
+//     const meeting = meetingItemsData.elements.find((meeting) => meeting.id === meetingId);
+ 
+//     return (
+//         <View style={styles.container}>
+//             {/* <DetailCard obj={meeting} title="Meeting details" /> */}
+ 
+//             <TouchableOpacity onPress={goBack}>
+//                 <ArrowBack />
+//             </TouchableOpacity>
+//         </View>
+//     );
+// };
+ 
+// const styles = StyleSheet.create({
+//     container: {
+//         flex: 1,
+//         backgroundColor:"#f2f6ff",
+//         marginTop: 40,
+//         marginHorizontal: 10,
+//     },
+// });
+ 
+// export default LeadMeetingCard;
+
+
+import React from 'react';
+import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import useMeetingStore from '../meetingComponents/meetingStore';
+import ArrowBack from '../customComponents/arrowBack';
+import { router } from 'expo-router';
+import LeadDet from "../leadComponents/leadDetHeader";
+import { meetingItemsData } from '../customComponents/formData';
+
 const goBack = () => {
     router.back();
 };
- 
-const LeadMeetingCard = () => {
+
+const MeetingDetailsPage = () => {
     const meetingId = useMeetingStore((state) => state.meetingId);
-    const meeting = meetingItemsData.elements.find((meeting) => meeting.id === meetingId);
- 
+    // Replace meetingData with your actual meeting data source
+    const meeting = meetingItemsData.find((meeting) => meeting.id === meetingId);
+
     return (
         <View style={styles.container}>
-            <DetailCard obj={meeting} title="Meeting details" />
- 
-            <TouchableOpacity onPress={goBack}>
+            {/* Render meeting details */}
+            <Text>Meeting Details</Text>
+
+            <View style={styles.leadDet}>
+        <LeadDet />
+      </View>
+            {/* Example rendering of meeting details */}
+            <View style={styles.row}>
+                <Text style={[styles.data, styles.label]}>Titel:</Text>
+                <Text style={styles.detail}>{meeting.title}</Text>
+            </View>
+            <View style={styles.row}>
+                <Text style={[styles.data, styles.label]}>Description:</Text>
+                <Text style={styles.detail}>{meeting.Description}</Text>
+            </View>
+            <View style={styles.row}>
+                <Text style={[styles.data, styles.label]}>Status:</Text>
+                <Text style={styles.detail}>{meeting.status}</Text>
+            </View>
+            <View style={styles.row}>
+                <Text style={[styles.data, styles.label]}>Organizer:</Text>
+                <Text style={styles.detail}>{meeting.organizer}</Text>
+            </View>
+
+            {/* Back Button */}
+            <TouchableOpacity onPress={goBack} style={styles.backButton}>
                 <ArrowBack />
             </TouchableOpacity>
         </View>
     );
 };
- 
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor:"#f2f6ff",
+        backgroundColor: '#f2f6ff',
         marginTop: 40,
         marginHorizontal: 10,
     },
+    row: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+    detail: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#023B5E',
+    },
+    label: {
+        color: 'black',
+        marginRight: 10,
+    },
+    backButton: {
+        alignSelf: 'flex-end',
+    },
 });
- 
-export default LeadMeetingCard;
+
+export default MeetingDetailsPage;

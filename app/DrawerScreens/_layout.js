@@ -200,6 +200,18 @@ export default function Layout() {
     }}
     ></Drawer.Screen>
 
+<Drawer.Screen
+    name='callLogList'
+    options={{
+      drawerLabel:'Call logs',
+      headerTitle:'Call logs',
+      headerShown:true,
+      drawerIcon:({}) =>(
+        <Ionicons name='call-outline' size={20} color='black' />
+      )
+    }}
+    ></Drawer.Screen>
+
 
 
 <Drawer.Screen

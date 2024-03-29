@@ -243,7 +243,7 @@ const handleEmail = () => {
  
       <View style={styles.lifestyleContainer}>
         <View style={styles.lifecycleStage}>
-          <Text style={styles.lifecycleHeading}>Stage</Text>
+          <Text style={styles.lifecycleHeading}>Status</Text>
           <Text style={styles.lifecycleText}>{Status}</Text>
         </View>
         <View style={styles.tempContainer}>
@@ -326,7 +326,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    marginLeft: 0, // Adjust as needed for the desired distance from the left edge
+    marginLeft: 0,
   },
   // userInfo: {
   //   marginLeft: 10,

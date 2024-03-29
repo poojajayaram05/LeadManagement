@@ -36,68 +36,6 @@ const LeadItem = ({ FirstName, LastName, Email, Phone, onViewPress, Status, labe
     // setLeadId(id);
 
  
- 
-    const handleSelectStar=()=>{
-        setSelectedStar(!selectedStar)
-       
-        // setLeadId(id);
-         //console.log("star selecteddddd",leadId)
-
- 
-}
- 
-// const Selected = require('../../assets/images/starrOne.jpg');
-// const UnSelected = require('../../assets/images/starTwo.png');
-
-const renderBadge = () => {
- 
-    if (Status === 'New Lead') {
-        //return <Badge value={<Text> Sale </Text>} status="success" badgeStyle={styles.badge} />;
-       return <BadgeLead label={'New Lead'} color={'#857471'} textColor="white"/>
-    } else if (Status === 'Qualified') {
-        // return <Badge value={<Text> Closed </Text>} status="error" badgeStyle={styles.badge} />;
-        return <BadgeLead label={'Qualified'} color={'#C02DD9'} textColor="white"/>
-    } else if (Status === 'Contacted') {
-        // return <Badge value={<Text> New Lead </Text>} status="primary" badgeStyle={styles.badge} />;
-        return <BadgeLead label={'Contacted'} color={'maroon'} textColor="white"/>
-    } else if (Status === 'Closed') {
-        // return <Badge value={<Text >Negotiating </Text>} status="warning" badgeStyle={styles.badge} />;
-        return <BadgeLead label={'Closed'} color={'green'} textColor="white"/>
-    }  
-    return null;
-};
-const renderLabelBadge = () => {
-    let labelBadgeColor;
-    switch (label) {
-      case 'hot':
-        labelBadgeColor = 'red';
-        txtColor="white";
-        break;
-      case 'warm':
-        labelBadgeColor = 'orange';
-        txtColor="white";
-        break;
-      case 'cold':
-        labelBadgeColor = '#448DD0';
-        txtColor="white";
-        break;
-      default:
-        labelBadgeColor = 'grey';
-        txtColor="white";
-    }
-      
-    //return <Badge value={<Text>{temperature}</Text>} status={temperatureBadgeColor} badgeStyle={styles.badge} />;
-    return <BadgeLead color={labelBadgeColor} label={label} textColor={txtColor} />
-      };
-
-    //   const displayScreen = () => {
-    //     console.log(leadId);
-    //     setLeadId(id);
-       
-    //     router.replace(`leadDetailScreens/notes`);
-    //     // useIdStore((state) => state.setId(id));
-    //     console.log('ID set:', leadId);
-    // };
 
  
     const toggleDropdown = () => {
@@ -145,8 +83,9 @@ return (
                   <Text style={styles.subtitle}>{Email}</Text>
                   <Text style={styles.subtitle}>{Phone}</Text>
                   <View style={styles.badgeBox}>
-                      <View>{renderBadge(Status)}</View>
-                      <View style={styles.badgeSecond}>{renderLabelBadge()}</View>
+                      <BadgeLead  label={Status}   />
+                      <BadgeLead label={label}   />
+                      
                   </View>
               </View>
               <View style={styles.actionsContainer}>
@@ -192,7 +131,7 @@ const styles = {
         justifyContent: 'space-between',
         backgroundColor: 'white',
         padding: 20,
-        marginVertical: 8,
+        marginVertical: 1,
         marginHorizontal: 16,
         borderRadius: 8,
         elevation: 2,
@@ -203,14 +142,17 @@ const styles = {
     },
     badgeBox:{
         flexDirection:'row',
+        justifyContent: 'space-between',
+        marginTop: 6,
+      
         
-        width:300
+         
        
  
     },
     badgeSecond:{
        
-        marginLeft:-70,
+        marginLeft:20,
        
     },
     textContainer: {
@@ -219,11 +161,14 @@ const styles = {
     },
     title: {
         fontSize: 18,
-        marginBottom: 5,
+        marginBottom: 2,
+        color:"#000000",
     },
     subtitle: {
-        fontSize: 16,
-        color: '#555',
+        fontSize: 14,
+        marginBottom: 3,
+        color:"#999999",
+
     },
     avatarContainer: {
         marginRight: 10,
@@ -241,7 +186,7 @@ const styles = {
     badgeContainer: {
         flexDirection: 'column',
         alignItems: 'center',
-        marginTop: 5,
+        marginTop: 20,
       },
       badge: {
         marginBottom: 1,

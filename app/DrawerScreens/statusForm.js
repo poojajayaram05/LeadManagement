@@ -45,6 +45,21 @@ export default function StatusForm({ navigation }) {
 const renderFormElement = (element) => {
     switch (element.type) {
 
+      case 'dropdown':
+        return (
+            <View>
+            <View style = {styles.inputContainer}>
+            <Text style={styles.label}>{element.title}</Text>
+                <Dropdown style={styles.inputContainer}
+                    // label={selectedValue ? selectedValue.label : 'Select'}
+                    data={element.dropdownData}
+                    // value={selectedValue}
+                    onSelect={handleSelect}
+                />
+            </View>
+            </View>
+        );
+
   
         
     case 'multiLineText':
@@ -138,7 +153,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 20,
     paddingBottom: 15,
-    backgroundColor: '#d1e0ed',
+    backgroundColor: 'white',
+    width:"100%",
   },
   backButton: {
     alignSelf: 'flex-end',
@@ -146,8 +162,8 @@ const styles = StyleSheet.create({
     color:'#023B5E',
   },
   card: {
-    backgroundColor: '#FFFFFF', 
-    borderRadius: 10,
+    backgroundColor: '#FFFFFF',
+    borderRadius:2,
     padding: 20,
     shadowColor: '#000000',
     shadowOpacity: 0.2,
