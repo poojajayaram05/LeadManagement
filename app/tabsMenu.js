@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Dashboard from "./DrawerScreens/dashboard";
 import LeadList from "./DrawerScreens/leadList";
 import { Lead } from "../assets/images";
-import TaskCard from "./DrawerScreens/taskList";
+import TaskCard from "../customComponents/taskList";
 import { View } from "@/components/Themed";
 
 function TabMenu(){

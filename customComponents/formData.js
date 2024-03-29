@@ -11,7 +11,8 @@ export const formData = {
           { value: 'person', label: 'Person' },
           {value:'company', label:'Company'}
         ],
-        "sectionName":"General"
+        "sectionName":"General",
+        "isRequired":true
         
       },
   
@@ -61,19 +62,19 @@ export const formData = {
         'isRequired': true,
         "sectionName":"General"
       }, 
-      {
-        "name": "qualification",
-        "type": "dropdown",
-        "title": "Qualification",
-        "inputType": "text",
-        "placeholder":"Qualification",
-         "dropdownData" :[
-          { value: 'hot', label: 'Hot' },
-          { value: 'cold', label: 'Cold' },
-          { value: 'warm', label: 'Warm' },
-         ],
-         "sectionName":"General"
-      },
+      // {
+      //   "name": "qualification",
+      //   "type": "dropdown",
+      //   "title": "Qualification",
+      //   "inputType": "text",
+      //   "placeholder":"Qualification",
+      //    "dropdownData" :[
+      //     { value: 'hot', label: 'Hot' },
+      //     { value: 'cold', label: 'Cold' },
+      //     { value: 'warm', label: 'Warm' },
+      //    ],
+      //    "sectionName":"General"
+      // },
    {
         "name": "job_title",
         "type": "TextInput",
@@ -108,16 +109,18 @@ export const formData = {
         "title": "City",
         "inputType": "text",
         "placeholder": "City",
-        "sectionName":"Address"
+        "sectionName":"Address",
+        "isRequired":true
        
       }, 
       {
         "name":"state_province",
         "type": "TextInput",
-        "title": "State",
+        "title": "State",   
         "inputType": "text",
         "placeholder": "State",
-        "sectionName":"Address"
+        "sectionName":"Address",
+        "isRequired":true
        
       }, 
       {
@@ -135,7 +138,8 @@ export const formData = {
         "title": "Country",
         "inputType": "text",
         "placeholder": "Country",
-        "sectionName":"Address"
+        "sectionName":"Address",
+        "isRequired":true
        
       }, 
       {
@@ -178,7 +182,6 @@ export const formData = {
         "description": "Enter Company name",
         "inputType": "text",
         "placeholder":"Company Name",
-        "isRequired": true,
         "sectionName":"Company"
 
       },
@@ -200,7 +203,6 @@ export const formData = {
         "description": "Enter a valid website",
         "inputType": "text",
         "placeholder":"Website",
-        "isRequired": true,
         "sectionName":"Company"
 
        
@@ -212,7 +214,6 @@ export const formData = {
         "description": "Enter annual revenue",
         "inputType": "number",
         "placeholder":"Annual Revenue",
-        "isRequired": true,
         "sectionName":"Company"
       },
   
@@ -225,7 +226,11 @@ export const formData = {
         "inputType": "numeric",
         "placeholder":"Business Phone",
         "isRequired": true,
-        "sectionName":"Contact"
+        "sectionName":"Contact",
+        "validation": {
+          "regex": /^\d{10}$/,
+          "message": "Please enter a valid 10-digit phone number."
+        },
 
        
       },
@@ -237,6 +242,10 @@ export const formData = {
         "placeholder":"Mobile Phone",
         "isRequired": true,
         "sectionName":"Contact",
+        "validation": {
+          "regex": /^\d{10}$/,
+          "message": "Please enter a valid 10-digit phone number."
+        },
         
 
        
@@ -245,16 +254,19 @@ export const formData = {
         "name": "home_phone",
         "type": "TextInput",
         "title": "Home Phone",
+        "validation": {
+          "regex": /^\d{10}$/,
+          "message": "Please enter a valid 10-digit phone number."
+        },
        
         "inputType": "numeric",
         "placeholder":"Home Phone",
-        "isRequired": true,
         "sectionName":"Contact"
 
        
       },
       {
-        "name": "boolean_5",
+        "name": "do_not_call",
         "type": "Switch",
         "title": "Do Not Call",
         "sectionName":"ContactMethod"
@@ -266,7 +278,11 @@ export const formData = {
         "title": "Email",
         "placeholder":"Email",
         "isRequired": true,
-        "sectionName":"Contact" 
+        "sectionName":"Contact",
+        "validation": {
+          "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+          "message": "Please enter a valid email address."
+        },
       },
 
       {
@@ -351,7 +367,6 @@ export const formData = {
         "title": "Fax",
         "inputType": "text",
         "placeholder":"FAX",
-        "isRequired": true,
         "sectionName":"Contact"
        
       },
@@ -361,7 +376,6 @@ export const formData = {
         "title": "Company DUNS Number",
         "inputType": "number",
         "placeholder":"Number",
-        "isRequired": true,
         "sectionName":"Company"
       },
       {
@@ -396,6 +410,7 @@ export const formData = {
           { value: 'partner', label: 'Partner' },
           { value: 'web', label: 'Web' },
           { value: 'campaign', label: 'Campaign' },
+          { value: 'self_sourced', label: 'Self Sourced' },
          ],
          "sectionName":"General"
       },
@@ -1025,41 +1040,30 @@ export const meetingItemsData = {
 export const leadNoteData = {
   "elements": [
     {
-      "name": "account",
-      "type": "dropdown",
-      "title": "Account",
+      "name": "first_name",
+      "type": "TextInput",
+      "title": "Lead Name",
       "inputType": "text",
-      "placeholder": "Select",
-      "dropdownData":[
-        { "value": "lead", "label": "Lead" },
-        { "value": "task", "label": "Task" },
-        { "value": "meeting", "label": "Meeting" },  
-      ]
+      "placeholder": "Name",
+     
     },
+    // {
+    //   "name": "lead",
+    //   "type": "dropdown",
+    //   "title": "Lead",
+    //   "inputType": "text",
+    //   "placeholder": "Select",
+    //   "dropdownData": leadData
+    // },
     {
-      "name": "lead",
-      "type": "dropdown",
-      "title": "Lead",
+      "name": "note_title",
+      "type": "multiLineText",
+      "title": "Note title",
       "inputType": "text",
-      "placeholder": "Select",
-      "dropdownData": leadData
+      "placeholder": "Note title"
     },
-    {
-      "name": "task",
-      "type": "dropdown",
-      "title": "Task",
-      "inputType": "text",
-      "placeholder": "Select",
-      "dropdownData": taskData
-    },
-    {
-      "name": "meeting",
-      "type": "dropdown",
-      "title": "Meeting",
-      "inputType": "text",
-      "placeholder": "Select",
-      "dropdownData": meetingItemsData
-    },
+
+ 
     {
       "name": "notes",
       "type": "multiLineText",
@@ -1469,40 +1473,117 @@ export const callLogFormData= {
   ]
 }
 export const leadScoreFormData={
-  "leadId":[
+  "elements":[
     {
     "questionId":"1",
-    "questionlabel":"Return on investment?",
-    "questionDescription":"ROI estimation",
-    "order":"1",
-    "ansId":[
+    "questionlabel":"Age",
+    "name":"age",
+    "questionType":"dropdown",
+    "questionDescription":"age of the lead",
+    "placeholder": "Select",
+                "dropdownData": [
+                    { "value": 1, "label": "20-30 years" },
+                    { "value": 2, "label": "30-40 years" },
+                    { "value": 3, "label": "40-50 years" },
+                    { "value": 4, "label": "50-60 years" },
+                    { "value": 5, "label": "60-70 years" }
+                ],
+                'isRequired': true,
+    
+    },
+    {
+      "questionId":"2",
+      "questionlabel":"Family Income",
+      "name":"familyIncome",
+      "questionType":"dropdown",
+      "questionDescription":"income of the whole family",
+      "placeholder": "Select",
+                  "dropdownData": [
+                      { "value": 1, "label": "4 - 6 Lakhs" },
+                      { "value": 2, "label": "6 - 10 Lakhs" },
+                      { "value": 3, "label": "10 - 15 Lakhs" },
+                      { "value": 4, "label": "15+ Lakhs" },
+                     
+                  ],
+                  'isRequired': true,
+      
+      },
       {
-
-      }
-    ]
-    }
-
+        "questionId":"3",
+        "questionlabel":"Occupation",
+        "name":"occupation",
+        "questionType":"dropdown",
+        "questionDescription":"occupation of the lead",
+        "placeholder": "Select",
+                    "dropdownData": [
+                        { "value": 1, "label": "Self-Employed" },
+                        { "value": 2, "label": "Business" },
+                        { "value": 4, "label": "Employee" },
+                    ],
+                    'isRequired': true,
+        },
+        {
+          "questionId":"4",
+          "questionlabel":"Gender",
+          "type":"RadioButton",
+          "questionDescription":"gender of the lead",
+          "rdata" : [
+            { label: "Male", id: 'male' },
+            { label: "Female", id: 'female' },
+            { label: "Other", id: 'other' },
+          ],
+          'isRequired': true,
+          },
+          
+          {
+            "questionId":"4",
+            "questionlabel":"Education Qualification",
+            "name":"qualification",
+            "questionType":"dropdown",
+            "questionDescription":"qualification of the lead",
+            "placeholder": "Select",
+                        "dropdownData": [
+                            { "value": 1, "label": "Graduate/Postgraduate/MBA/CA" },
+                            { "value": 2, "label": "Undergraduate/Diploma/12th" },
+                           
+                        ],
+                        'isRequired': true,
+            },
+            {
+              "questionId":"5",
+              "questionlabel":"Lead Category",
+              "name":"leadCategory",
+              "questionType":"dropdown",
+              "questionDescription":"Category of the lead",
+              "placeholder": "Select",
+              "dropdownData" :[
+                    { value: 'new', label: 'New' },
+                    { value: 'Contacted', label: 'Contacted' },
+                    { value: 'qualified', label: 'Qualified' },
+                    { value: 'converted', label: 'Converted' },
+                    { value: 'closed-not_converted', label: 'Closed-Not Converted' },
+                   ],
+                          'isRequired': true,
+              },
+            {
+              "questionId":"6",
+              "questionlabel":"Expected FYWP",
+              "name":"fywp",
+              "questionType":"dropdown",
+              "questionDescription":"fywp of the lead",
+              "placeholder": "Select",
+                          "dropdownData": [
+                              { "value": 1, "label": "<50K" },
+                              { "value": 2, "label": ">50K" },
+                             
+                          ],
+                          'isRequired': true,
+              },
 
   ]
 }
 
-export const activityFormData = {
-  "taskType":[
-    {
-  "task":
-    {
-      "tFormData":taskFormData
-    },
 
-    "meeting":{
-      "mFormData":meetingData
-    },
-    "phone":{
-      "pFormData":''
-    },
-  }
-  ]
-}
 
 export const statusFormData = {
   "elements": [
@@ -1524,5 +1605,429 @@ export const statusFormData = {
 }
 
 
+export const activityFormData = [
+  {
+    activityId: '1', 
+    activityType: 'task', 
+    Data: {
+        "elements": [
+           
+            {
+                "name": "due_date",
+                "type": "Date",
+                "title": "Due Date",
+                "inputType": "text",
+                "placeholder": "Select",
+                "isRequired":true
+               
+            },
+            {
+                "name": "title",
+                "type": "TextInput",
+                "title": "Title",
+                "inputType": "text",
+                "placeholder": "Enter the title",
+                "isRequired":true
+            },
+            {
+                "name": "description",
+                "type": "TextInput",
+                "title": "Description",
+                "inputType": "text",
+                "placeholder": "Enter the description"
+            },
+            {
+                "name": "status",
+                "type": "dropdown",
+                "title": "Status",
+                "placeholder": "Select",
+                "dropdownData": [
+                    { "value": "1", "label": "In-progress" },
+                    { "value": "2", "label": "Completed" },
+                    { "value": "3", "label": "Not Started" }
+                ]
+            },
+            {
+                "name": "time",
+                "type": "timeInput",
+                "title": "Time",
+                "placeholder": "",
+                "isRequired":true
+            },
+            {
+                "name": "repeat",
+                "type": "dropdown",
+                "title": "Repeat",
+                "inputType": "text",
+                "placeholder": "Select",
+                "dropdownData": [
+                    { "value": "daily", "label": "Daily" },
+                    { "value": "weekly", "label": "Weekly" },
+                    { "value": "monthly", "label": "Monthly" },
+                    { "value": "yearly", "label": "Yearly" },
+                    { "value": "dont_repeat", "label": "Don't Repeat" }
+                ]
+            },
+            {
+                "name": "owner",
+                "type": "dropdown",
+                "title": "Owner",
+                "inputType": "text",
+                "placeholder": "Select",
+                "dropdownData": [
+                    { "value": 1, "label": "John Doe" },
+                    { "value": 2, "label": "Jane Smith" },
+                    { "value": 3, "label": "Alice Mark" },
+                    { "value": 4, "label": "Kate Winslet" },
+                    { "value": 5, "label": "William Henry" },
+                    { "value": 6, "label": "Jane Peter" },
+                    { "value": 7, "label": "Carley Wilson" },
+                    { "value": 8, "label": "William Henry" }
+                ]
+            }
+        ]
+    }
+  },
+  {
+    activityId: '2', 
+    activityType: 'meeting', 
+    Data: {
+        "elements": [
+            {
+                "name": "title",
+                "type": "TextInput",
+                "title": "Title",
+                "inputType": "text",
+                "placeholder": "Title",
+                "isRequired":true
+
+            },
+            {
+              "name": "meeting_link",
+              "type": "TextInput",
+              "title": "Meeting Link",
+              "inputType": "text",
+              "placeholder": "Link"
+          },
+            {
+                "name": "location",
+                "type": "TextInput",
+                "title": "Location",
+                "inputType": "text",
+                "placeholder": "Location"
+            },
+            {
+                "name": "description",
+                "type": "TextInput",
+                "title": "Description",
+                "inputType": "text",
+                "placeholder": "Description"
+            },
+        
+            {
+                "name": "attendees",
+                "type": "MultipleSelect",
+                "title": "Attendees",
+                "inputType": "text",
+                "placeholder": "Select",
+                "dropdownData": [
+                    { "value": 1, "label": "John Doe" },
+                    { "value": 2, "label": "Jane Smith" },
+                    { "value": 3, "label": "Alice Mark" },
+                    { "value": 4, "label": "Kate Winslet" },
+                    { "value": 5, "label": "William Henry" },
+                    { "value": 6, "label": "Jane Peter" },
+                    { "value": 7, "label": "Carley Wilson" }
+                ]
+            },
+            {
+                "name": "time_zone",
+                "type": "dropdown",
+                "title": "Time Zone",
+                "inputType": "text",
+                "placeholder": "Select",
+                "dropdownData": [
+                    { "value": "utc", "label": "Coordinated Universal Time (UTC)" },
+                    { "value": "est", "label": "Eastern Standard Time (EST)" },
+                    { "value": "cet", "label": "Central European Time (CET)" },
+                    { "value": "pst", "label": "Pacific Standard Time (PST)" },
+                    { "value": "ist", "label": "India Standard Time (IST)" },
+                    { "value": "cst", "label": "China Standard Time (CST)" }
+                ]
+            },
+            {
+                "name": "from_date",
+                "type": "Date",
+                "title": "From Date",
+                "placeholder": "From Date"
+            },
+            {
+                "name": "to_date",
+                "type": "Date",
+                "title": "To Date",
+                "placeholder": "To Date"
+            },
+            {
+                "name": "from_time",
+                "type": "timeInput",
+                "title": "From time",
+                "placeholder": "Select Time"
+            },
+        
+            {
+                "name": "allDay",
+                "type": "Switch",
+                "title": "Time Spans"
+            },
+            {
+              "name": "allDay",
+              "type": "Switch",
+              "title": "Time Spans"
+          }
+        ]
+    }
+  },
+  {
+    activityId: '3', 
+    activityType: 'call', 
+    Data: {
+      "elements": [
+        {
+          "name": "associatedLeads",
+          "type": "leadDropdown",
+          "title": "Associated Lead",
+          "inputType": "text",
+          "placeholder": "Select",
+          "dropdownData": leadData
+        },
+     
+     
+        {
+          "name": "number",
+          "type": "TextInput",
+          "title": "Phone Number",
+          "inputType": 'numeric',
+          "placeholder":"Enter the number",
+          "keyboardType":"numeric",
+          "isRequired":true
+        },
+        {
+          "name": "description",
+          "type": "multiLineText",
+          "title": "Description ",
+          "inputType": "text",
+          "placeholder": "Enter description",
+          "isRequired":true
+        },
+
+        {
+          "name": "start_time",
+          "type": "timeInput",
+          "title": "Start Time",
+          "placeholder": "Enter the time"
+        },
+        {
+          "name": "date",
+          "type": "Date",
+          "title": "Date",
+          "placeholder": "Date",
+          "isRequired":true
+        },
+     
+     
+      ]
+  }
+
+  },
+  {
+    activityId: '4', 
+    activityType: 'follow_up', 
+    Data: {
+      "elements": [
+        {
+          "name": "associatedLeads",
+          "type": "leadDropdown",
+          "title": "Associated Lead",
+          "inputType": "text",
+          "placeholder": "Select",
+          "dropdownData": leadData
+        },
+     
+     
+        {
+          "name": "time",
+          "type": "timeInput",
+          "title": "Start Time",
+          "placeholder": "Enter the time"
+        },
+        {
+          "name": "date",
+          "type": "Date",
+          "title": "Date",
+          "placeholder": "Date"
+        },
+        {
+          "name": "follow_up_notes",
+          "type": "multilineText",
+          "title": "Follow up notes",
+          "placeholder": "Notes",
+          "isRequired":true
+        },
+       
+
+      ]
+  }
+
+  },
+  {
+    activityId: '5', 
+    activityType: 'appointment', 
+    Data: {
+      "elements": [
+        {
+          "name": "associatedLeads",
+          "type": "leadDropdown",
+          "title": "Associated Lead",
+          "inputType": "text",
+          "placeholder": "Select",
+          "dropdownData": leadData
+        },
+     
+     
+        {
+          "name": "time",
+          "type": "timeInput",
+          "title": "Start Time",
+          "placeholder": "Enter the time"
+        },
+        {
+          "name": "date",
+          "type": "Date",
+          "title": "Date",
+          "placeholder": "Date"
+        },
+        {
+          "name": "notes",
+          "type": "multilineText",
+          "title": "Follow up notes",
+          "placeholder": "Notes"
+        },
+        {
+          "name": "location",
+          "type": "TextInput",
+          "title": "Appointment location",
+          "placeholder": "location"
+        },
+
+       
+
+      ]
+  }
+
+  },
+
+  {
+    activityId: '6', 
+    activityType: 'email', 
+    Data: {
+      "elements": [
+        {
+          "name": "associatedLeads",
+          "type": "leadDropdown",
+          "title": "Associated Lead",
+          "inputType": "text",
+          "placeholder": "Select",
+          "dropdownData": leadData
+        },
+     
+     
+        {
+          "name": "time",
+          "type": "timeInput",
+          "title": "Start Time",
+          "placeholder": "Enter the time"
+        },
+        {
+          "name": "date",
+          "type": "Date",
+          "title": "Date",
+          "placeholder": "Date"
+        },
+        {
+          "name": "description",
+          "type": "multilineText",
+          "title": "Email description",
+          "placeholder": "description"
+        },
+        {
+          "name": "subject",
+          "type": "TextInput",
+          "title": "Subject",
+          "placeholder": "subject"
+        },
+        {
+          "name": "email",
+          "type": "TextInput",
+          "title": "email id",
+          "placeholder": "email",  
+          "isRequired":true
+        },
+
+       
+
+      ]
+  }
+
+  }
+
+  
+];
 
 
+export const callLogData=
+[
+ 
+  {
+    "PhoneNumber":"9903746532",
+    "Type":"Incoming",
+    "Outcome":"Missed Call",
+    "Time":"9:00 AM",
+    "Date":"29-03-2024"
+  },
+ 
+  {
+    "PhoneNumber": "9334567890",
+    "Type": "Incoming",
+    "Outcome": "Missed Call",
+    "Time": "10:15 AM",
+    "Date": "2024-03-30"
+  },
+  {
+    "PhoneNumber": "9876543210",
+    "Type": "Outgoing",
+    "Outcome": "No Answer",
+    "Time": "2:30 PM",
+    "Date": "2024-03-30"
+  },
+  {
+    "PhoneNumber": "8088222333",
+    "Type": "Incoming",
+    "Outcome": "Connected",
+    "Time": "5:45 PM",
+    "Date": "2024-03-3"
+  },
+  {
+    "PhoneNumber": "8045556666",
+    "Type": "Outgoing",
+    "Outcome": "Busy",
+    "Time": "11:00 AM",
+    "Date": "2024-03-31"
+  },
+  {
+    "PhoneNumber": "9078889999",
+    "Type": "Incoming",
+    "Outcome": "Rejected",
+    "Time": "3:20 PM",
+    "Date": "2024-03-31"
+  }
+];

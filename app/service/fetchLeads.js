@@ -5,10 +5,10 @@ export const FetchLeads = async () => {
     const stoken = JSON.parse(token);
     const apiToken = stoken.accessToken;
     console.log(apiToken);  
-    const getLeadURL="https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_management" ;
+    const getLeadURL="https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_c?sysparm_fields=first_name,last_name,mobile_phone,email,qualification,lead_status,number" ;
     try {
         const response = await fetch(getLeadURL, {
-            method: 'POST',
+            method: 'GET',
             headers: {
               'Content-Type': 'application/json',
               'Authorization' : 'Bearer ' + apiToken
@@ -16,7 +16,8 @@ export const FetchLeads = async () => {
             },
 
           })
-          console.log(response.data);
+          const data = await response.json();
+          return data;
 
          
         //   router.replace('/DrawerScreens/leadList')

@@ -189,6 +189,7 @@ import LeadDetailCard from '../../customComponents/leadDetailCard';
 import { meetingItemsData } from '../../customComponents/formData';
 import useMeetingStore from '../../meetingComponents/meetingStore';
  
+ 
 export default function Meeting() {
  
   // const goToMeetingDetails=()=>{
@@ -225,7 +226,7 @@ export default function Meeting() {
  
   return (
     <View style={styles.container}>
-        <View style={{ height:'30%' }}>
+        <View style={{ height:'26%' }}>
            <LeadDet/>
         </View>
       <FlatList
@@ -250,12 +251,12 @@ const styles = StyleSheet.create({
     maxWidth: '90%',
     padding: 5,
     borderRadius: 10,
-     backgroundColor:'#023B5E',
+    //  backgroundColor:'#023B5E',
   },
  
   titletext:{
     fontWeight:'bold',
-    color:'white'
+    color:'#023B5E',
    },
   container: {
     flex: 1,
@@ -281,10 +282,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   divider: {
-    // height: 1,
-    // backgroundColor: 'black',
-    // marginHorizontal: 20,
-    // marginBottom:10,
+    height: 1,
+    backgroundColor: 'black',
+    marginHorizontal: 20,
+    marginBottom:10,
   },
   floatingButtonContainer: {
   },

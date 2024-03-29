@@ -46,7 +46,7 @@
 
 import { Tabs } from 'expo-router/tabs';
 import { Stack } from 'expo-router';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
  
 export default function AppLayout() {
   return (
@@ -93,6 +93,15 @@ export default function AppLayout() {
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="tasks" size={size} color={color} />
+          ),
+        }}
+      />
+         <Stack.Screen
+        name="callLogs"
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="call-outline" size={size} color={color} />
           ),
         }}
       />

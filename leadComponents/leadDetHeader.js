@@ -169,7 +169,7 @@
  
 // export default LeadDet;
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Linking } from 'react-native';
@@ -180,7 +180,7 @@ import * as DocumentPicker from 'expo-document-picker';
 import useIdStore from '../app/leadStore';
 import InitialsAvatar from '../customComponents/initialAvatar';
 import ArrowBack from '../customComponents/arrowBack';
- 
+import { FetchLeads } from '../app/service/fetchLeads'; 
  
  
 // const handleAttachment = async () => {
@@ -196,9 +196,27 @@ import ArrowBack from '../customComponents/arrowBack';
  
  
 const LeadDet = () => {
-  const leadId = useIdStore((state) => state.leadId);
-  const lead = leadData.find((lead) => lead.Id === leadId);
-  const { FirstName, LastName, Phone, Email, Status, label, Id, Gender} = lead || {};
+  const[leadData, setLeadData]=useState([]);
+  
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const ldata = await FetchLeads(); // Call FetchLeads and wait for the result
+        setLeadData(ldata.result); // Set the state with the fetched data
+        console.log("this is the lead data", ldata); // Log the fetched data
+      } catch (error) {
+        // Handle errors if any
+        console.error('Error in fetching leads:', error);
+      }
+    };
+
+    fetchData(); // Call the fetchData function when the component mounts
+  }, []); 
+
+  const leadId = useIdStore((state) => state.number);
+  const lead = leadData.find((lead) => lead.number === leadId);
+  const { first_name, last_name, email, qualification, status, number, gender} = lead || {};
  
   const handleBack = () => {
     router.navigate('/DrawerScreens/leadList');
@@ -218,7 +236,7 @@ const LeadDet = () => {
  
  
 const handleEmail = () => {
-  const emailid = Email;
+  const emailid = email;
   Linking.openURL(`mailto:${emailid}`);
 };
  
@@ -234,21 +252,21 @@ const handleEmail = () => {
       </TouchableOpacity>
  
       <View style={styles.userDetailsContainer}>
-        <InitialsAvatar name={`${FirstName} ${LastName}`} />
+        <InitialsAvatar name={`${first_name} ${last_name}`} />
         <View style={styles.userInfo}>
-          <Text style={styles.name}>{FirstName} {LastName}</Text>
+          <Text style={styles.name}>{first_name} {last_name}</Text>
           {/* <Text style={styles.title}>{jobTitle}</Text> */}
         </View>
       </View>
  
       <View style={styles.lifestyleContainer}>
         <View style={styles.lifecycleStage}>
-          <Text style={styles.lifecycleHeading}>Stage</Text>
-          <Text style={styles.lifecycleText}>{Status}</Text>
+          <Text style={styles.lifecycleHeading}>status</Text>
+          <Text style={styles.lifecycleText}>{status}</Text>
         </View>
         <View style={styles.tempContainer}>
           <Text style={styles.tempHeading}>Label</Text>
-          <Text style={styles.tempText}>{label}</Text>
+          <Text style={styles.tempText}>{qualification}</Text>
         </View>
         <View style={styles.scoreContainer}>
           <Text style={styles.scoreHeading}>Score</Text>

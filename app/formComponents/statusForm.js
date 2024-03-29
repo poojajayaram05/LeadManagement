@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Button, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { leadNoteData, meetingData, taskData } from '../../customComponents/formData';
 import Dropdown from '../../customComponents/customDropdown';
@@ -18,7 +18,7 @@ export default function StatusForm({ navigation }) {
   const [taskId, setTaskId] = useState('');
   const [meetingId, setMeetingId] = useState('');
   const [notes, setNotes] = useState('');
-
+ 
   const handleSelectAccount = (account) => {
     setSelectedAccount(account);
     console.log(selectedAccount);
@@ -27,26 +27,41 @@ export default function StatusForm({ navigation }) {
     setTaskId('');
     setMeetingId('');
   };
-
+ 
   const onSubmit = () => {
     // Submit logic here
   };
-
+ 
   const goBack=()=>{
     router.back();
   }
-
+ 
   const handleSelect = (item) => {
     // setSelectedValue(item);
     // setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: item.value }));
     console.log('Selected value:', item);
 };
-
+ 
 const renderFormElement = (element) => {
     switch (element.type) {
-
-  
-        
+ 
+      case 'dropdown':
+        return (
+            <View>
+            <View style = {styles.inputContainer}>
+            <Text style={styles.label}>{element.title}</Text>
+                <Dropdown style={styles.inputContainer}
+                    // label={selectedValue ? selectedValue.label : 'Select'}
+                    data={element.dropdownData}
+                    // value={selectedValue}
+                    onSelect={handleSelect}
+                />
+            </View>
+            </View>
+        );
+ 
+ 
+       
     case 'multiLineText':
       return (
         <View style={styles.inputContainer}>
@@ -58,26 +73,26 @@ const renderFormElement = (element) => {
               />
             </View>
       );
-      
-  
+     
+ 
 };
 }
-
-
+ 
+ 
   return (
     <View style={styles.cardContainer}>
        
-      
-      
+     
+     
     <ScrollView>
-  
+ 
    
         <View style={styles.card}>
             <View style={styles.section}>
            
                 <TouchableOpacity onPress={() => toggleSection('section1')}>
                     <Text style={styles.title}>Status</Text>
-                  
+                 
                     {/* <Image
                         source={isSection1Collapsed ? DropdownIcon : DropupIcon}
                         resizeMode="contain"
@@ -85,7 +100,7 @@ const renderFormElement = (element) => {
                     /> */}
                      
                 </TouchableOpacity>
-              
+             
                     {statusFormData.elements.slice(0, 11).map((element, index) => (
                         <View key={index} style={styles.inputContainer}>
                             {renderFormElement(element)}
@@ -93,7 +108,7 @@ const renderFormElement = (element) => {
                     ))}
                
             </View>
-
+ 
            {/* <View style={styles.section}>
                 <TouchableOpacity onPress={() => toggleSection('section2')}>
                     <Text style={styles.sectionTitle}>Schedule Information</Text>
@@ -111,7 +126,7 @@ const renderFormElement = (element) => {
                     ))}
                 </Collapsible>
             </View>  */}
-          
+         
              
             <Button title="Submit" onPress={onSubmit} color='#023B5E' />
             <View style={styles.buttonContainer}>
@@ -120,25 +135,26 @@ const renderFormElement = (element) => {
       </TouchableOpacity>
     </View>
             {/* <MultiSelectItems/> */}
-            
+           
         </View>
-      
+     
     </ScrollView>
    
-  
+ 
    
 </View>
-
+ 
   );
 }
-
+ 
 const styles = StyleSheet.create({
   cardContainer: {
     flex: 1,
     paddingHorizontal: 20,
     paddingTop: 20,
     paddingBottom: 15,
-    backgroundColor: '#d1e0ed',
+    backgroundColor: 'white',
+    width:"100%",
   },
   backButton: {
     alignSelf: 'flex-end',
@@ -146,17 +162,17 @@ const styles = StyleSheet.create({
     color:'#023B5E',
   },
   card: {
-    backgroundColor: '#FFFFFF', 
-    borderRadius: 10,
+    backgroundColor: '#FFFFFF',
+    borderRadius:2,
     padding: 20,
     shadowColor: '#000000',
     shadowOpacity: 0.2,
     shadowRadius: 5,
-    elevation: 5, 
+    elevation: 5,
   },
   backButtonText: {
     fontSize: 12,
-    color: '#007AFF', 
+    color: '#007AFF',
   },
   section: {
     marginBottom: 20,

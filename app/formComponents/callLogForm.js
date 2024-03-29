@@ -286,11 +286,11 @@ const renderFormElement = (element) => {
             </View>
 
             <Button title="Submit" onPress={onSubmit} color='#023B5E' />
-             {/* <View style={styles.buttonContainer}>
+             <View style={styles.buttonContainer}>
       <TouchableOpacity onPress={goBack}>
         <ArrowBack />
       </TouchableOpacity>
-    </View> */}
+    </View>
         </View>
         
         </GestureHandlerRootView>

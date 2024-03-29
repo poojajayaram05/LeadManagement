@@ -1,12 +1,5 @@
 import React, { useRef, useState } from 'react';
-import {
-    FlatList,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    Modal,
-    View,
-} from 'react-native';
+import { FlatList, StyleSheet, Text, TouchableOpacity, Modal, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Colors from '../utils/Colors';
 import DimensionUtils from '../utils/DimensionUtils';
@@ -55,6 +48,7 @@ const Dropdown = ({ label, data, onSelect }) => {
         </View>
     );
 };
+
  
 const styles = StyleSheet.create({
     container: {

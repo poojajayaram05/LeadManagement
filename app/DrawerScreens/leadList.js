@@ -16,46 +16,86 @@ import {
   StatusBar,
   Button,
 } from 'react-native';
-import {leadData} from '../../customComponents/formData';
+// import {leadData} from '../../customComponents/formData';
+import * as SecureStore from 'expo-secure-store';
  
 
 const LeadList = () => {
 
   const goToLeadCreate=()=>{
     console.log("inside navigation")
-    router.navigate('/DrawerScreens/createLead');
+    router.navigate('/formComponents/createLead');
     console.log("after natigation")
   }
   const [index, setIndex] = useState(0);
   const [starredLeads, setStarredLeads] = useState([]);
+  const[leadData, setleadData]=useState([]);
  
 
   useEffect(() => {
    
-    FetchLeads()
-      .then(data => {
-       
-        console.log('Data received:', data);
-      })
-      .catch(error => {
-       
-        console.error('Error fetching leads:', error);
-      });
-  }, []);
+  //   const FetchLeads = async () => {
+  //     const token = SecureStore.getItem('token');
+  //     const stoken = JSON.parse(token);
+  //     const apiToken = stoken.accessToken;
+  //     console.log(apiToken);  
+  //     const getLeadURL="https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_c" ;
+  //     try {
+  //         const response = await fetch(getLeadURL, {
+  //             method: 'GET',
+  //             headers: {
+  //               'Content-Type': 'application/json',
+  //               'Authorization' : 'Bearer ' + apiToken
+               
+  //             },
+  
+  //           })
+
+  //           const data = await response.json();
+  //           console.log("leads data is",data.result);
+  //           setleadData(data.result);
+  
+           
+  //         //   router.replace('/DrawerScreens/leadList')
+  //     } catch (error) {
+  //         console.error('Error fetching leads:', error);
+  //         throw error; // You can handle the error further or throw it for the caller to handle
+  //     }
+  // };
+ 
+    const fetchData = async () => {
+        try {
+            const ldata = await FetchLeads(); // Call FetchLeads and wait for the result
+            setleadData(ldata.result); // Set the state with the fetched data
+            console.log("this is the lead data",ldata.result);
+            setleadData(ldata.result);
+            console.log(leadData) // Log the fetched data
+        } catch (error) {
+            // Handle errors if any
+            console.error('Error in fetching leads:', error);
+        }
+    };
+
+    fetchData(); // Call the fetchData function defined above
+}, []); // Empty dependency array means it will run only once on mount
+
+
+
+ 
 
  
 
   const renderItem = ({ item }) => (
     <TouchableOpacity>
    <LeadItem
-      FirstName={item.FirstName}
-      LastName={item.LastName}
-      Email={item.Email}
-      Phone={item.Phone}
-      Status={item.Status}
-      Id={item.Id}
-      label={item.label}
-      Gender={item.Gender}
+      FirstName={item.first_name}
+      LastName={item.last_name}
+      Email={item.email}
+      Phone={item.mobile_phone}
+      status={item.lead_status}
+      number={item.number}
+      qualification={item.qualification}
+      Gender={item.gender}
      
      
     />

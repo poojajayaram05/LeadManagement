@@ -15,7 +15,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import TaskItem from '../../taskComponents/taskCard'
+import TaskItem from '../taskComponents/taskCard'
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 // import {DATA} from '../../taskData';
 const DATA = [

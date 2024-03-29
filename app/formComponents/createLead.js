@@ -12,6 +12,7 @@ import { router } from 'expo-router';
 import ArrowBack from '../../customComponents/arrowBack';
 import * as SecureStore from 'expo-secure-store';
 import { CustomInputSocial } from '../../customComponents/customSocialField';
+import CustomSwitch from '../../customComponents/customSwitch';
 // Form component
 export default function CreateLead() {
     // const { control, handleSubmit, formState: { errors } } = useForm();
@@ -38,14 +39,15 @@ export default function CreateLead() {
         
       };
     
-
-  
+ 
+    const [validationErrors, setValidationErrors] = useState({});
     const [formValues, setFormValues] = useState([]);
     const [selectedValue, setSelectedValue] = useState(null); 
     const[radioSelect, setradioSelect]=useState(null);
     const [phoneNumbers, setPhoneNumbers] = useState(['']);
     const[testValues, setTestValues]=useState([]);
     const [isAddButtonDisabled, setIsAddButtonDisabled] = useState(false);
+    const [isSwitchOn, setIsSwitchOn] = useState(false);
     
 
 
@@ -54,6 +56,8 @@ export default function CreateLead() {
 //     setFormValues(prevFormValues => ({ ...prevFormValues, selectedValue: item.value }));
 //     console.log('Selected value:', item.value);
 // };
+
+
 
 const onSelectRadio = (item) => {
     setradioSelect(item.value);
@@ -65,9 +69,39 @@ const goBack=()=>{
     router.back()
     
 }
-      
+
+
+
+  const validateForm = () => {
+    const errors = {};
+    formData.elements.forEach((element) => {
+      // Check if the field is visible based on lead type
+      if (element.sectionName === "General" && formValues["lead_type"] === "company") {
+        // Skip validation for hidden fields
+        if (element.name === "salutation" || element.name === "first_name" || element.name === "last_name"|| element.name==="gender") {
+          return;
+        }
+      }
+      // Perform validation for visible fields
+      if (element.isRequired && !formValues[element.name]) {
+        errors[element.name] = `${element.title} is required`;
+      }
+      if (element.validation && element.validation.regex && !element.validation.regex.test(formValues[element.name])) {
+        errors[element.name] = element.validation.message;
+      }
+    });
+    return errors;
+  };
+
 
     const onSubmit = async () => {
+      const errors = validateForm();
+      if (Object.keys(errors).length > 0) {
+        // If there are validation errors, set them in state
+        setValidationErrors(errors);
+        console.log(validationErrors);
+      }
+      else{
         const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_c`;
         const token = SecureStore.getItem('token');
         const stoken = JSON.parse(token);
@@ -99,6 +133,7 @@ const goBack=()=>{
             catch(err){
                 console.log("error");
             }
+          }
 
         }
     // const toggleSection = (section) => {
@@ -122,16 +157,25 @@ const goBack=()=>{
           .map((element, index) => (
             <View key={index} style={styles.formElement}>
               {renderFormElement(element)}
+              {validationErrors[element.name] && <Text style={styles.error}>{validationErrors[element.name]}</Text>}
             </View>
           ));
       };
 
     const renderFormElement = (element) => {
         const handleSelect = (item) => {
-            setSelectedValue(item);
+            //setSelectedValue(item);
             setFormValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item.value }));
             console.log(element.name, item.value);
         };
+        const handleSwitch=(item)=>{
+          setFormValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item}));
+          console.log(element.name, item);
+
+        }
+
+        const starMark = element.isRequired ? <Text style={{ color: 'red' }}> *</Text> : null;
+
         
         if (element.sectionName === "General" && formValues["lead_type"] === "company") {
             // If lead type is company and the element is related to personal information, skip rendering
@@ -143,11 +187,14 @@ const goBack=()=>{
         switch (element.type) {
             case 'TextInput':
                 return (
+                  <View>
+                      <Text style={styles.label}>{element.title}{starMark} </Text>
                     <CustomInput
                         key={element.name}
-                        title={element.title}
+                        // title={element.title}
                         placeholder={element.placeholder}
                         // control={control}
+                        isRequired={element.isRequired}
                         inputType={element.inputType}
                         name={element.name}
                         rules={{ required: element.isRequired ? `${element.title} is required` : false }}
@@ -155,13 +202,15 @@ const goBack=()=>{
                         onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
                         value={formValues[element.name] || ''} 
                     />
+                    </View>
                 );
                 case 'email':
                     return (
                       <View key={element.name}>
+                          <Text style={styles.label}>{element.title}{starMark}</Text>
                         <CustomInput
                           key={element.name}
-                          title={element.title}
+                          // title={element.title}
                           placeholder={element.placeholder}
                           name={element.name}
                           onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
@@ -207,7 +256,7 @@ const goBack=()=>{
                 return (
                     <View>
                     <View style = {styles.inputContainer}>
-                    <Text style={styles.label}>{element.title}</Text>
+                    <Text style={styles.label}>{element.title}{starMark}</Text>
                         <Dropdown style={styles.inputContainer}
                             label={selectedValue ? selectedValue.label : 'Select'}
                             data={element.dropdownData}
@@ -220,6 +269,8 @@ const goBack=()=>{
                
                     case 'RadioButton':
                         return( 
+                          <View style = {styles.inputContainer}>
+                          <Text style={styles.label}>{element.title}{starMark}</Text>
                             
                                 <RadioButton style={styles.inputContainer}
                                      onSelect={onSelectRadio}
@@ -231,7 +282,24 @@ const goBack=()=>{
                                      title={element.title}
                                      // Pass the data prop here
                                 />
+                                </View>
+
                         )
+                        case 'Switch':
+                        return( 
+                          <View style={styles.inputContainer}>
+        
+                          <View style={styles.switchContainer}>
+                          <Text style={styles.label}>{element.title}</Text>
+                          <View style={styles.switch}>
+                            <CustomSwitch onToggle={handleSwitch}
+
+                          /></View>
+                          </View>
+                         
+                       </View>
+                        )
+              
               
     };
 }
@@ -263,7 +331,7 @@ const goBack=()=>{
       
             <View style={styles.buttonContainer}>
               <TouchableOpacity onPress={goBack}>
-                {/* <ArrowBack /> */}
+                <ArrowBack />
               </TouchableOpacity>
             </View>
           </View>
@@ -350,5 +418,8 @@ const styles = StyleSheet.create({
         color: 'red',
         fontSize: 12,
     },
+    switch:{
+      alignItems:'flex-start'
+      },
     
 });

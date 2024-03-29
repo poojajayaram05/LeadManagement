@@ -1,235 +1,46 @@
-// import React from 'react';
-// import { View, Text, StyleSheet, ScrollView } from 'react-native';
-// import LeadDetail from '../../leadComponents/leadDetailHeader';
-// import LeadDet from '../../leadComponents/leadDetHeader';
  
-// const Info = () => {
-//     return (
-//         <View style={styles.body}>
-//           <View style={{ height:'27%' }}>
-//            <LeadDet/>
-//       </View>
-//         <ScrollView contentContainerStyle={styles.scrollViewContent}>
-//             <View style={styles.container}>
-               
-//                 {/* <Text style={styles.title}>Lead details</Text>
-//                 <Text style={styles.data}>Lead Name: </Text>
-//                 <Text style={styles.detail}>---</Text>
- 
-//                 <View style={styles.divider} /> */}
- 
-//                 <Text style={styles.title}>Communication</Text>
-//                 <Text style={styles.data}>Emails: </Text>
-//                 <Text style={styles.detail}>---</Text>
-//                 <Text style={styles.data}>Phone Number: </Text>
-//                 <Text style={styles.detail}>---</Text>
- 
-//                 <View style={styles.divider} />
- 
-//                 <Text style={styles.title}>Location</Text>
-//                 <Text style={styles.data}>Address: </Text>
-//                 <Text style={styles.detail}>---</Text>
-//                 <Text style={styles.data}>City: </Text>
-//                 <Text style={styles.detail}>---</Text>
-//                 <Text style={styles.data}>State: </Text>
-//                 <Text style={styles.detail}>----</Text>
-//                 <Text style={styles.data}>Country:</Text>
-//                 <Text style={styles.detail}>----</Text>
-//                 <Text style={styles.data}>Zipcode: </Text>
-//                 <Text style={styles.detail}>---</Text>
- 
-//                 <View style={styles.divider} />
- 
-//                 <Text style={styles.title}>Professional</Text>
-//                 <Text style={styles.data}>Company Name: </Text>
-//                 <Text style={styles.detail}>---</Text>
-//                 <Text style={styles.data}>Designation: </Text>
-//                 <Text style={styles.detail}>---</Text>
-//                 <Text style={styles.data}>Company City: </Text>
-//                 <Text style={styles.detail}>---</Text>
-//                 <Text style={styles.data}>Company Country: </Text>
-//                 <Text style={styles.detail}>---</Text>
-               
-//             </View>
-//         </ScrollView>
-//         </View>
-//     );
-// };
- 
-// const styles = StyleSheet.create({
-//     scrollViewContent: {
-//         flexGrow: 1,
-//     },
-//     body:{
-//         backgroundColor: 'white',
-//         flex: 1,
-//     },
-//     container: {
-//         flex: 1,
-       
-//         marginHorizontal: 30,
-//         backgroundColor: 'white',
-//         flex: 1,
-//     },
-//     title: {
-//         fontSize: 16,
-//         fontWeight: 'bold',
-//         marginBottom: 10,
-//         // textAlign: 'center',
-//     },
-//     detail: {
-//         fontSize: 14,
-//         marginBottom: 15,
-//     },
-//     data: {
-//         color: '#023B5E',
-//         fontSize: 14,
-//         fontWeight: 'bold',
-//     },
-//     divider: {
-//         borderBottomColor: 'black',
-//         borderBottomWidth: 1,
-//         marginBottom: 10,
-//     },
-// });
- 
-// export default Info;
-
-// import React from 'react';
-// import { View, Text, StyleSheet, ScrollView } from 'react-native';
-// import LeadDet from '../../leadComponents/leadDetHeader';
-// import useIdStore from '../leadStore';
-// import { leadData } from '../../customComponents/formData';
- 
- 
-// const Info = () => {
- 
-//      const leadId = useIdStore((state) => state.leadId);
-//   const lead = leadData.find((lead) => lead.id === leadId);
-// //   const { firstname, lastname, status, temperature, } = lead || {};
-// const { firstname, lastname, phone, email, status, temperature, id, jobTitle,} = lead || {};
-//     return (
-//         <View style={styles.body}>
-//           <View style={{ height:'30%' }}>
-//            <LeadDet/>
-//       </View>
-//         <ScrollView contentContainerStyle={styles.scrollViewContent}>
-//         <View style={styles.container}>
-//     <Text style={styles.title}>Lead Information</Text>
- 
-//     <View style={styles.row}>
-//         <Text style={styles.data}>Lead Stage:</Text>
-//         <Text style={styles.detail}>{status}</Text>
-//     </View>
- 
-//     <View style={styles.row}>
-//         <Text style={styles.data}>Lead Owner:</Text>
-//         <Text style={styles.detail}>Darwin</Text>
-//     </View>
- 
-//     <View style={styles.divider} />
- 
-//     <Text style={styles.title}>Communication</Text>
-   
-//     <View style={styles.row}>
-//         <Text style={styles.data}>Emails:</Text>
-//         <Text style={styles.detail}>{email}</Text>
-//     </View>
- 
-//     <View style={styles.row}>
-//         <Text style={styles.data}>Phone Number:</Text>
-//         <Text style={styles.detail}>{phone}</Text>
-//     </View>
- 
-//     <View style={styles.row}>
-//         <Text style={styles.data}>Address:</Text>
-//         <Text style={styles.detail}>---</Text>
-//     </View>
- 
-//     <View style={styles.divider} />
- 
-//     <Text style={styles.title}>Professional</Text>
-   
-//     <View style={styles.row}>
-//         <Text style={styles.data}>Company:</Text>
-//         <Text style={styles.detail}>Mega groups</Text>
-//     </View>
- 
-//     <View style={styles.row}>
-//         <Text style={styles.data}>Designation:</Text>
-//         <Text style={styles.detail}>{jobTitle}</Text>
-//     </View>
- 
-//     <View style={styles.row}>
-//         <Text style={styles.data}>Company City:</Text>
-//         <Text style={styles.detail}>---</Text>
-//     </View>
- 
-//     <View style={styles.row}>
-//         <Text style={styles.data}>Company Country:</Text>
-//         <Text style={styles.detail}>---</Text>
-//     </View>
-// </View>
- 
-//         </ScrollView>
-//         </View>
-//     );
-// };
- 
-// const styles = StyleSheet.create({
-//     scrollViewContent: {
-//         flexGrow: 1,
-//     },
-//     body:{
-//         backgroundColor: 'white',
-//         flex: 1,
-//     },
-//     container: {
-//         flex: 1,
-//         marginTop:10,
-//         marginHorizontal: 30,
-//         backgroundColor: 'white',
-//         flex: 1,
-//     },
-//     title: {
-//         fontSize: 16,
-//         fontWeight: 'bold',
-//         marginBottom: 10,
-//     },
-//     row:{
-//        flexDirection:'row',
-     
-//     },
-//     detail: {
-//         fontSize: 14,
-//         marginBottom: 15,
-//         textAlign: 'right',
-//     },
-//     data: {
-//         color: '#023B5E',
-//         fontSize: 14,
-//         fontWeight: 'bold',
-       
-//     },
-//     divider: {
-//         borderBottomColor: 'black',
-//         borderBottomWidth: 1,
-//         marginBottom: 10,
-//     },
-// });
- 
-// export default Info;
-
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import LeadDet from '../../leadComponents/leadDetHeader';
 import useIdStore from '../leadStore';
-import { leadData } from '../../customComponents/formData';
+//import { leadData } from '../../customComponents/formData';
+import { FetchLeads } from '../service/fetchLeads';
+import { useEffect } from 'react';
  
 const Info = () => {
-    const leadId = useIdStore((state) => state.leadId);
-    const lead = leadData.find((lead) => lead.Id === leadId);
+
+    const[leadData, setLeadData]=useState([])
+
+    useEffect(() => {
+
+
+      
+
+       
+          const fetchData = async () => {
+              try {
+                  const ldata = await FetchLeads(); // Call FetchLeads and wait for the result
+                  setLeadData(ldata.result); // Set the state with the fetched data
+                  //console.log("this is the lead data",ldata.result);
+                  setLeadData(ldata.result);
+                  console.log(leadData) // Log the fetched data
+              } catch (error) {
+                  // Handle errors if any
+                  console.error('Error in fetching leads:', error);
+              }
+          };
+      
+          fetchData(); // Call the fetchData function defined above
+      }, []); // Empty dependency array means it will run only once on mount
+
+      
+      
+
+    const { first_name, last_name, email, qualification, status, number, gender} = lead || {};
+    const leadId = useIdStore((state) => state.number);
+    const lead = leadData.find((lead) => lead.number === leadId);
     const [openSections, setOpenSections] = useState(['leadInfo']);
+
  
     const toggleSection = (section) => {
         const isOpen = openSections.includes(section);
@@ -242,7 +53,7 @@ const Info = () => {
  
     return (
         <View style={styles.body}>
-            <View style={{ height: '30%' }}>
+            <View style={{ height: '26%' }}>
                 <LeadDet/>
             </View>
             <ScrollView contentContainerStyle={styles.scrollViewContent}>
@@ -254,23 +65,23 @@ const Info = () => {
 >
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Lead Type:</Text>
-        <Text style={styles.detail}>{lead?.LeadType}</Text>
+        <Text style={styles.detail}>{lead?.lead_type}</Text>
     </View>
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Number:</Text>
-        <Text style={styles.detail}>{lead?.Number}</Text>
+        <Text style={styles.detail}>{lead?.number}</Text>
     </View>
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Name:</Text>
-        <Text style={styles.detail}>{lead?.FirstName} {lead?.LastName}</Text>
+        <Text style={styles.detail}>{lead?.first_name} {lead?.last_name}</Text>
     </View>
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Gender:</Text>
-        <Text style={styles.detail}>{lead?.Gender}</Text>
+        <Text style={styles.detail}>{lead?.gender}</Text>
     </View>
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Email:</Text>
-        <Text style={styles.detail}>{lead?.Email}</Text>
+        <Text style={styles.detail}>{lead?.email}</Text>
     </View>
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Score:</Text>
@@ -398,10 +209,10 @@ const Info = () => {
         <Text style={[styles.data, styles.label]}>Whatsapp Number:</Text>
         <Text style={styles.detail}>{lead?.Whatsapp}</Text>
     </View>
-    {/* <View style={styles.row}>
+    <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Qualification:</Text>
         <Text style={styles.detail}>{lead?.Qualification}</Text>
-    </View> */}
+    </View>
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Status:</Text>
         <Text style={styles.detail}>{lead?.Status}</Text>
@@ -459,18 +270,15 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         // textAlign: 'left',
         textAlign: 'right',
-        fontWeight: 'bold',
-        color: '#023B5E',
         // backgroundColor: 'yellow',
+        fontWeight: 'bold',
     },
     data: {
-        color: 'black',
+        color: '#023B5E',
         fontSize: 14,
        
         textAlign: 'left',
         // backgroundColor: 'red',
- 
-     
     },
     divider: {
         borderBottomColor: 'black',

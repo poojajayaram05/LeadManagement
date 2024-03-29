@@ -199,7 +199,7 @@ onSelect={handleSelect}
                       <View style={styles.dateInput}>
                         <Pressable onPress={() => setShowCalendarModal(true)}>
                           <Text style={styles.dateText}>
-                            {customDate ? customDate.toLocaleDateString() : 'Select date '}
+                            {selectedDate ? selectedDate.toLocaleDateString() : 'Select date '}
                             <Ionicons name='calendar' size={20} color='black' />
                           </Text>
                         </Pressable>
@@ -286,38 +286,50 @@ onSelect={handleSelect}
         </View>
        
       );
-      case 'timeInputTo':
-       
-        return (
-             <View style={styles.timeInput}>
-        <Pressable onPress={() => setShowTimeModal(true)}>
-          <Text style={styles.label}>
-            {element.title}
-          </Text>
-          <View style={styles.dateInput}>
+     
+          return (
+            <View style={styles.inputContainer}>
+            
+               <View style={styles.switchContainer}>
+               <Text style={styles.labelswitch}>All day</Text>
+               <View style={styles.switch}><CustomSwitch/></View>
+               </View>
+              
+            </View>
+           
+          );
+          case 'timeInputTo':
+           
+            return (
+                 <View style={styles.timeInput}>
             <Pressable onPress={() => setShowTimeModal(true)}>
-              <Text style={styles.dateText}>
-                {toTime ? formatTime(toTime) : 'Select time '}
-                <Ionicons name='time' size={20} color='black' /> 
+              <Text style={styles.label}>
+                {element.title}
               </Text>
+              <View style={styles.dateInput}>
+                <Pressable onPress={() => setShowTimeModal(true)}>
+                  <Text style={styles.dateText}>
+                    {toTime ? formatTime(toTime) : 'Select time '}
+                    <Ionicons name='time' size={20} color='black' /> 
+                  </Text>
+                </Pressable>
+                {showTimeModal && (
+                  <RNDateTimePicker
+                    value={ toTime || new Date()}
+                    mode="time"
+                    display="default"
+                    onChange={(event, selectedTime) => {
+                      if (selectedTime) {
+                        setShowTimeModal(false);
+                        setToTime(selectedTime);
+                      }
+                    }}
+                  />
+                )}
+              </View>
             </Pressable>
-            {showTimeModal && (
-              <RNDateTimePicker
-                value={ toTime || new Date()}
-                mode="time"
-                display="default"
-                onChange={(event, selectedTime) => {
-                  if (selectedTime) {
-                    setShowTimeModal(false);
-                    setToTime(selectedTime);
-                  }
-                }}
-              />
-            )}
           </View>
-        </Pressable>
-      </View>
-        )
+            )
       
      
                   // case 'leadDropdown':
@@ -363,7 +375,7 @@ onSelect={handleSelect}
                      
                 </TouchableOpacity>
                 <Collapsible collapsed={isSection1Collapsed}>
-                    {meetingData.elements.slice(0, 11).map((element, index) => (
+                    {meetingData.elements.slice(0, 12).map((element, index) => (
                         <View key={index} style={styles.inputContainer}>
                             {renderFormElement(element)}
                         </View>

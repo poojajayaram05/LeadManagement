@@ -118,7 +118,7 @@ export default function RadioButton({ onSelect, disableLine, title, value, data 
  
   return (
     <>
-      <Text style={styles.label}>{title}</Text>
+
       <View style={styles.radioButtonContainer}>
         <FlatList
           horizontal

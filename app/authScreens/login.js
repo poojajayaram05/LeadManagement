@@ -110,6 +110,8 @@ const LoginScreen = ({ navigation }) => {
 
 
   const getToken= async(username,password)=>{
+
+    await SecureStore.setItemAsync("username", username);
     let options = {
       "client_id" : "71d7bed90b0d0a50cd2f237b791c9ac0",
       "client_secret" : "yb2:p1#4.N",

@@ -86,7 +86,7 @@ const onSubmit = async () => {
 
 const renderFormElement = (element) => {
   const handleSelect = (item) => {
-    setSelectedValue(item);
+   
     setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: item.value }));
     console.log('Selected value:', item);
 };
