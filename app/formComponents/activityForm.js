@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet, ScrollView, Image, Button, Pressable } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, Image, Button, Pressable, TextInput } from 'react-native'
 import { GestureHandlerRootView, TouchableOpacity } from 'react-native-gesture-handler';
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 //mport { taskFormData } from '../../../customComponents/formData';
 import Collapsible from 'react-native-collapsible';
 import Dropdown from '../../customComponents/customDropdown';
@@ -8,7 +8,7 @@ import { isEnabled } from 'react-native/Libraries/Performance/Systrace';
 import { DropdownIcon, DropupIcon } from '../../assets/images';
 import { CustomInput } from '../../customComponents/customInput';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
-import { date } from 'zod';
+import { date, number } from 'zod';
 import { Ionicons } from '@expo/vector-icons';
 import MultilineTextInput from '../../customComponents/customMultilineInput';
 import CustomMultipleSelect from '../../customComponents/cutsomMultipleSelect';
@@ -20,6 +20,9 @@ import ArrowBack from '../../customComponents/arrowBack';
 import MultiSelectItems from '../../customComponents/cutsomMultipleSelect';
 import * as SecureStore from 'expo-secure-store';
 import CustomSwitch from '../../customComponents/customSwitch';
+import LeadDet from '../../leadComponents/leadDetHeader';
+import useIdStore from '../leadStore';
+import { FetchLeads } from '../service/fetchLeads';
 
 
 export default function CreateActivity() {
@@ -41,6 +44,7 @@ export default function CreateActivity() {
   const [toDate, setToDate] = useState(null);
   const [fromTime, setFromTime] = useState(null);
   const [toTime, setToTime] = useState(null);
+  const[leadData, setLeadData]=useState([])
 
   const [selectedActivity, setSelectedActivity] = useState(null);
 
@@ -54,9 +58,92 @@ export default function CreateActivity() {
       setIsModalVisible(false);
   };
 
+  function extractDate(timestamp) {
+    const dateObject = new Date(timestamp);
+    const year = dateObject.getFullYear();
+    const month = dateObject.getMonth() + 1;
+    const date = dateObject.getDate();
+    const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${date < 10 ? '0' + date : date}`;
+    return formattedDate;
+  }
+  
+  function extractTime(timestamp) {
+    const dateObject = new Date(timestamp);
+    const hours = dateObject.getHours();
+    const minutes = dateObject.getMinutes();
+    const seconds = dateObject.getSeconds();
+    const formattedTime = `${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+    return formattedTime;
+  }
 
 
   
+
+
+  useEffect(() => {
+   
+    //   const FetchLeads = async () => {
+    //     const token = SecureStore.getItem('token');
+    //     const stoken = JSON.parse(token);
+    //     const apiToken = stoken.accessToken;
+    //     console.log(apiToken);  
+    //     const getLeadURL="https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_c" ;
+    //     try {
+    //         const response = await fetch(getLeadURL, {
+    //             method: 'GET',
+    //             headers: {
+    //               'Content-Type': 'application/json',
+    //               'Authorization' : 'Bearer ' + apiToken
+                 
+    //             },
+    
+    //           })
+  
+    //           const data = await response.json();
+    //           console.log("leads data is",data.result);
+    //           setleadData(data.result);
+    
+             
+    //         //   router.replace('/DrawerScreens/leadList')
+    //     } catch (error) {
+    //         console.error('Error fetching leads:', error);
+    //         throw error; // You can handle the error further or throw it for the caller to handle
+    //     }
+    // };
+   
+      const fetchData = async () => {
+          try {
+              const ldata = await FetchLeads(); // Call FetchLeads and wait for the result
+              setLeadData(ldata.result); // Set the state with the fetched data
+              console.log("this is the lead data",ldata.result);
+              setLeadData(ldata.result);
+              console.log(leadData) // Log the fetched data
+          } catch (error) {
+              // Handle errors if any
+              console.error('Error in fetching leads:', error);
+          }
+      };
+  
+      fetchData(); // Call the fetchData function defined above
+  }, []); // Empty dependency array means it will run only once on mount
+  
+  
+  useEffect(() => {
+    if (leadData.length > 0) {
+        const lead = leadData.find((lead) => lead.number === leadId);
+        const leadNumber = lead ? lead.number : '';
+        setLeadNumber(leadNumber);
+        setFormValues(prevFormValues => ({ ...prevFormValues, ['associated_lead']: leadNumber }));
+    }
+}, [leadNumber, leadData]);
+
+
+  const leadId = useIdStore((state) => state.number);
+  // const lead = leadData.find((lead) => lead.number === leadId);
+  // const{number}=lead||'';
+  // console.log("leaaaaad", number);
+  const[leadNumber, setLeadNumber]=useState('');
+  // setLeadNumber(number);
 
   const renderForm = () => {
     if (selectedActivity) {
@@ -82,6 +169,23 @@ export default function CreateActivity() {
     return time.toLocaleString('en-US', options);
   };
 
+  const validateForm = () => {
+    let isValid = true;
+  
+    // Check if any required field is empty
+    Object.keys(formValues).forEach(key => {
+      const element = activityFormData.flatMap(activity => activity.Data.elements)
+                                      .find(element => element.name === key);
+      if (element?.isRequired && !formValues[key]) {
+        isValid = false;
+      }
+    });
+  
+    // Additional validation checks can be added here
+  
+    return isValid;
+  };
+
 
 
 const handleSelectDate = (date) => {
@@ -95,6 +199,11 @@ const goBack=()=>{
 }
 
 const onSubmit = async () => {
+  const isFormValid = validateForm();
+
+  if (isFormValid) {
+  setFormValues(prevFormValues => ({ ...prevFormValues, ['associated_lead']: leadNumber }));
+  
     const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_activity_c`;
         const token = SecureStore.getItem('token');
         const stoken = JSON.parse(token);
@@ -119,17 +228,22 @@ const onSubmit = async () => {
           })
 
           console.log("Successfully posted",response);
-          router.replace('/DrawerScreens/taskList')
+          router.back();
         }
         
     
             catch(err){
                 console.log("error");
             }
-          
+  }
 
 
   console.log("Form data", formValues);
+  }
+
+
+  const leadNumberSubmit=()=>{
+    setFormValues(prevFormValues => ({ ...prevFormValues, ['associated_lead']: leadNumber }));
   }
 
 
@@ -145,23 +259,33 @@ const handleNotes = ()=>{
     setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: item.value }));
 }
 const handleDateChange = (selectedDate, element) => {
-    if (selectedDate) {
-      setShowCalendarModal(false);
-      // Check which date input is being changed
-      if (element.name === 'fromDate') {
-        setFromDate(selectedDate);
-      } else if (element.name === 'toDate') {
-        setToDate(selectedDate);
+  if (selectedDate) {
+    setShowCalendarModal(false);
+    
+    // Check which date input is being changed
+    console.log("dateeeeee", extractDate(selectedDate))
+    if (element.name === 'from_date') {
+      setFromDate(selectedDate);
+      
+        setFormValues(prevFormValues => ({ ...prevFormValues, ['from_date']: extractDate(selectedDate) }));
+    
       }
-      // Update the respective form value
-      setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: selectedDate }));
+    else if (element.name === 'to_date') {
+      setToDate(selectedDate);
+     
+        setFormValues(prevFormValues => ({ ...prevFormValues, ['to_date']: extractDate(selectedDate) }));
+     
+      }
+      setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: extractDate(selectedDate) }));
     }
-  };
-  
+  }
+
   const handleSelectTime = (time) => {
     console.log('Selected time:', time);
     setSelectedTime(time);
-    setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: time }));
+    const atime = extractTime(time)
+    console.log("timeeee", atime);
+    setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: atime }));
   };
   const handleSwitch=(item)=>{
     setFormValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item}));
@@ -171,6 +295,25 @@ const handleDateChange = (selectedDate, element) => {
 
 
     switch (element.type) {
+      case 'TextInputLead':
+        return (
+          <View>
+             <CustomInput
+                    key={element.name}
+                    title={element.title}
+                    placeholder={leadNumber}
+                    // control={control}
+                    name={element.name}
+                   
+                    // errors={errors}
+                    
+                    value={leadNumber}
+                    readOnly={true}
+                />
+             
+
+            </View>
+        );
         case 'TextInput':
             return (
               <View>
@@ -187,6 +330,7 @@ const handleDateChange = (selectedDate, element) => {
                     onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
                     value={formValues[element.name] || ''}
                 />
+                {element.isRequired && !leadNumber && <Text style={styles.errorMessage}>Error: {element.title} is required</Text>}
                 </View>
             );
             case 'Date':
@@ -196,7 +340,7 @@ const handleDateChange = (selectedDate, element) => {
                     <Pressable onPress={() => setShowCalendarModal(true)}>
                       <View style={styles.dateInput}>
                         <Text style={styles.dateText}>
-                          {formValues[element.name] ? formValues[element.name].toLocaleDateString() : 'Select date '}
+                        {formValues[element.name] ? extractDate(formValues[element.name]) : 'Select date '}
                           <Ionicons name='calendar' size={20} color='black' />
                         </Text>
                       </View>
@@ -210,7 +354,9 @@ const handleDateChange = (selectedDate, element) => {
                         onChange={(event, selectedDate) => handleDateChange(selectedDate, element)}
                       />
                     )}
+                    {element.isRequired && !leadNumber && <Text style={styles.errorMessage}>Error: {element.title} is required</Text>}
                   </View>
+                  
                 );
               
         // case 'dropdown':
@@ -244,6 +390,7 @@ const handleDateChange = (selectedDate, element) => {
                             onSelect={handleSelect}
                         />
                     </View>
+                    {element.isRequired && !leadNumber && <Text style={styles.errorMessage}>Error: {element.title} is required</Text>}
                   
 
 
@@ -280,6 +427,7 @@ const handleDateChange = (selectedDate, element) => {
       />
     )}
 </View>
+{element.isRequired && !leadNumber && <Text style={styles.errorMessage}>Error: {element.title} is required</Text>}
                  
                  
                   
@@ -311,23 +459,7 @@ const handleDateChange = (selectedDate, element) => {
                     />
                       </View>
                     );
-                case 'leadDropdown':
-                  return (
-                    <View style={styles.inputContainer}>
-                    <Text style={styles.label}>Select Lead</Text>
-                    <LDropdown
-  label="Select Lead"
-  data={leadData.map((lead) => {
-    console.log(lead.Id); // Log lead object
-    return {
-      value: lead.Id,
-      label: `${lead.Id} - ${lead.FirstName} ${lead.LastName}`,
-    };
-  })}
-  onSelect={handleSelect}
-/>
-                </View>
-                  );
+               
                   case 'Switch':
                         return( 
                           <View style={styles.inputContainer}>
@@ -349,9 +481,13 @@ const handleDateChange = (selectedDate, element) => {
 };
 }
   return (
-    <View style={styles.cardContainer}>
+    <View style={styles.container}>
+      <View style={styles.header}>
+      <LeadDet/>
+      </View>
     <ScrollView>
             <View style={styles.card}>
+              
                 <Text style={styles.label}>Select Activity Type</Text>
                 <View style={styles.Dropdown}> 
                 <Dropdown
@@ -379,105 +515,83 @@ const handleDateChange = (selectedDate, element) => {
 }
 
 const styles = StyleSheet.create({
-cardContainer: {
+  container: {
+    flex: 1,
+    flexDirection:'column',
+    backgroundColor: '#cad5e8',
+ 
+  },
+  header: {
+    height:210,
+    paddingHorizontal: 5,
+    paddingTop: 5,
+    paddingBottom: 5,
+    backgroundColor: '#d1e0ed',
+  },
+  backButton: {
+    alignSelf: 'flex-end',
+    marginRight: 'auto',
+    color: '#023B5E',
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: '#333',
+  },
+  scrollContainer: {
     flex: 1,
     paddingHorizontal: 20,
     paddingTop: 20,
-    paddingBottom:15,
-     
-        backgroundColor: '#d1e0ed'
-},
-card: {
-    backgroundColor: '#FFFFFF', // White card background
+  },
+  card: {
+    backgroundColor: '#FFFFFF',
     borderRadius: 10,
     padding: 20,
     shadowColor: '#000000',
     shadowOpacity: 0.2,
     shadowRadius: 5,
-    elevation: 5, // For Android shadow
-},
-Dropdown:{
-    marginTop:20,
-    marginBottom:15
-
-},
-container: {
-    flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 20,
-    backgroundColor:'#cad5e8'
-},
-section: {
+    elevation: 5,
     marginBottom: 20,
-    
-},
-sectionTitle: {
-    fontSize: 20, // Increase font size for emphasis
+  },
+  label: {
+    marginBottom: 3,
+    fontSize: 12,
     fontWeight: 'bold',
-    marginBottom: 15, // Increase margin for better separation
-    color: '#333', // Use a darker color for better readability
-    
-    paddingBottom: 5, // Add padding to space out the underline from the text
-},
-inputContainer: {
-    marginBottom:8
-
-},
-buttonContainer:{
-  flex: 1,
-  flexDirection: 'row', // Align items horizontally
-  alignItems: 'flex-end', // Align items to the start (left)
-  justifyContent: 'flex-end', // Align items to the start (left)
-  padding: 10,
   },
-  backButton: {
-    alignSelf: 'flex-end', // Align button to the start (left)
-    marginRight: 'auto',
-    color:'#023B5E'
-     // Push button to the leftmost corner
+  buttonContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    padding: 10,
   },
-dropdownIcon: {
+  dropdownIcon: {
     width: 20,
     height: 20,
     position: 'absolute',
     right: 10,
     top: 9,
-},
-label: {
-    marginBottom: 3,
-    fontSize: 12,
-    fontWeight: 'bold',
-},
-input: {
+  },
+  inputContainer: {
+    marginBottom: 8,
+  },
+  dateInput: {
+    flexDirection: 'row',
+    alignItems: 'center',
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,
-    backgroundColor:'white',
     paddingVertical: 10,
     paddingHorizontal: 15,
+  },
+  dateText: {
+    flex: 1,
     fontSize: 16,
-},
-error: {
-    color: 'red',
-    fontSize: 12,
-},
-dateInput: {
-  flexDirection: 'row',
-  alignItems: 'center',
-  borderWidth: 1,
-  borderColor: '#ccc',
-  borderRadius: 5,
-  paddingVertical: 10,
-  paddingHorizontal: 15,
-},
-dateText: {
-  flex: 1,
-  fontSize: 16,
-},
-calendarIcon: {
-  width: 20,
-  height: 20,
-  marginLeft: 10, // Adjust the margin as needed
-},
-
+  },
+  calendarIcon: {
+    width: 20,
+    height: 20,
+    marginLeft: 10,
+  },
 });
+

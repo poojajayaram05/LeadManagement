@@ -51,8 +51,9 @@ const handleNavigateToLeadDetails = () => {
     setLeadId(number);
 };
 const handleChangeStatus = () => {
-    setLeadId(number);
     router.navigate('/formComponents/changeStatus');
+    setLeadId(number);
+    
  
     closeDropdown(); // Close the dropdown after action
 };

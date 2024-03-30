@@ -1106,24 +1106,24 @@ export const meetingData = {
       "placeholder": "Description"
     },
 
-    {
-      "name": "attendees",
-      "type": "MultipleSelect",
-      "title": "Attendees",
-      "inputType": "text",
-      "placeholder":'Select',
-      "dropdownData": [
-        { "value": 1, "label": "John Doe" },
-        { "value": 2, "label": "Jane Smith" },
-        { "value": 3, "label": "Alice Mark" },
-        { "value": 4, "label": "Kate Winslet" },
-        { "value": 5, "label": "William Henry" },
-        { "value": 6, "label": "Jane Peter" },
-        { "value": 7, "label": "Carley Wilson" },
+    // {
+    //   "name": "attendees",
+    //   "type": "MultipleSelect",
+    //   "title": "Attendees",
+    //   "inputType": "text",
+    //   "placeholder":'Select',
+    //   "dropdownData": [
+    //     { "value": 1, "label": "John Doe" },
+    //     { "value": 2, "label": "Jane Smith" },
+    //     { "value": 3, "label": "Alice Mark" },
+    //     { "value": 4, "label": "Kate Winslet" },
+    //     { "value": 5, "label": "William Henry" },
+    //     { "value": 6, "label": "Jane Peter" },
+    //     { "value": 7, "label": "Carley Wilson" },
       
         
-      ]
-    },
+    //   ]
+    // },
     {
       "name": "timeZone",
       "type": "dropdown",
@@ -1611,6 +1611,14 @@ export const activityFormData = [
     activityType: 'task', 
     Data: {
         "elements": [
+          {
+            "name": "associated_lead",
+            "type":"TextInputLead",
+            "title": "Associated Lead",
+            "inputType": "text",
+            
+            
+          },
            
             {
                 "name": "due_date",
@@ -1668,23 +1676,14 @@ export const activityFormData = [
                     { "value": "dont_repeat", "label": "Don't Repeat" }
                 ]
             },
-            {
-                "name": "owner",
-                "type": "dropdown",
-                "title": "Owner",
-                "inputType": "text",
-                "placeholder": "Select",
-                "dropdownData": [
-                    { "value": 1, "label": "John Doe" },
-                    { "value": 2, "label": "Jane Smith" },
-                    { "value": 3, "label": "Alice Mark" },
-                    { "value": 4, "label": "Kate Winslet" },
-                    { "value": 5, "label": "William Henry" },
-                    { "value": 6, "label": "Jane Peter" },
-                    { "value": 7, "label": "Carley Wilson" },
-                    { "value": 8, "label": "William Henry" }
-                ]
-            }
+            // {
+            //     "name": "owner",
+            //     "type": "dropdown",
+            //     "title": "Owner",
+            //     "inputType": "text",
+            //     "placeholder": "Select",
+               
+            // }
         ]
     }
   },
@@ -1693,6 +1692,14 @@ export const activityFormData = [
     activityType: 'meeting', 
     Data: {
         "elements": [
+          {
+            "name": "associated_lead",
+            "type":"TextInputLead",
+            "title": "Associated Lead",
+            "inputType": "text",
+            
+            
+          },
             {
                 "name": "title",
                 "type": "TextInput",
@@ -1724,22 +1731,22 @@ export const activityFormData = [
                 "placeholder": "Description"
             },
         
-            {
-                "name": "attendees",
-                "type": "MultipleSelect",
-                "title": "Attendees",
-                "inputType": "text",
-                "placeholder": "Select",
-                "dropdownData": [
-                    { "value": 1, "label": "John Doe" },
-                    { "value": 2, "label": "Jane Smith" },
-                    { "value": 3, "label": "Alice Mark" },
-                    { "value": 4, "label": "Kate Winslet" },
-                    { "value": 5, "label": "William Henry" },
-                    { "value": 6, "label": "Jane Peter" },
-                    { "value": 7, "label": "Carley Wilson" }
-                ]
-            },
+            // {
+            //     "name": "attendees",
+            //     "type": "MultipleSelect",
+            //     "title": "Attendees",
+            //     "inputType": "text",
+            //     "placeholder": "Select",
+            //     "dropdownData": [
+            //         { "value": 1, "label": "John Doe" },
+            //         { "value": 2, "label": "Jane Smith" },
+            //         { "value": 3, "label": "Alice Mark" },
+            //         { "value": 4, "label": "Kate Winslet" },
+            //         { "value": 5, "label": "William Henry" },
+            //         { "value": 6, "label": "Jane Peter" },
+            //         { "value": 7, "label": "Carley Wilson" }
+            //     ]
+            // },
             {
                 "name": "time_zone",
                 "type": "dropdown",
@@ -1767,23 +1774,24 @@ export const activityFormData = [
                 "title": "To Date",
                 "placeholder": "To Date"
             },
-            {
-                "name": "from_time",
-                "type": "timeInput",
-                "title": "From time",
-                "placeholder": "Select Time"
-            },
+           
         
             {
-                "name": "allDay",
+                "name": "all_day",
                 "type": "Switch",
-                "title": "Time Spans"
+                "title": "All Day"
             },
             {
-              "name": "allDay",
+              "name": "remainder_required",
               "type": "Switch",
-              "title": "Time Spans"
-          }
+              "title": "Remainder Required"
+          },
+          {
+            "name": "remainder_before",
+            "type": "timeInput",
+            "title": "Remainder Before",
+            "placeholder": "Remainder before"
+        },
         ]
     }
   },
@@ -1793,13 +1801,14 @@ export const activityFormData = [
     Data: {
       "elements": [
         {
-          "name": "associatedLeads",
-          "type": "leadDropdown",
+          "name": "associated_lead",
+          "type":"TextInputLead",
           "title": "Associated Lead",
           "inputType": "text",
-          "placeholder": "Select",
-          "dropdownData": leadData
+          
+          
         },
+       
      
      
         {
@@ -1813,7 +1822,7 @@ export const activityFormData = [
         },
         {
           "name": "description",
-          "type": "multiLineText",
+          "type": "TextInput",
           "title": "Description ",
           "inputType": "text",
           "placeholder": "Enter description",
@@ -1844,18 +1853,18 @@ export const activityFormData = [
     activityType: 'follow_up', 
     Data: {
       "elements": [
+       
         {
-          "name": "associatedLeads",
-          "type": "leadDropdown",
+          "name": "associated_lead",
+          "type":"TextInputLead",
           "title": "Associated Lead",
           "inputType": "text",
-          "placeholder": "Select",
-          "dropdownData": leadData
+          
+          
         },
      
-     
         {
-          "name": "time",
+          "name": "start_time",
           "type": "timeInput",
           "title": "Start Time",
           "placeholder": "Enter the time"
@@ -1868,7 +1877,7 @@ export const activityFormData = [
         },
         {
           "name": "follow_up_notes",
-          "type": "multilineText",
+          "type": "TextInput",
           "title": "Follow up notes",
           "placeholder": "Notes",
           "isRequired":true
@@ -1885,17 +1894,17 @@ export const activityFormData = [
     Data: {
       "elements": [
         {
-          "name": "associatedLeads",
-          "type": "leadDropdown",
+          "name": "associated_lead",
+          "type":"TextInputLead",
           "title": "Associated Lead",
           "inputType": "text",
-          "placeholder": "Select",
-          "dropdownData": leadData
+          
+          
         },
      
      
         {
-          "name": "time",
+          "name": "start_time",
           "type": "timeInput",
           "title": "Start Time",
           "placeholder": "Enter the time"
@@ -1907,8 +1916,8 @@ export const activityFormData = [
           "placeholder": "Date"
         },
         {
-          "name": "notes",
-          "type": "multilineText",
+          "name": "appointment_notes",
+          "type": "TextInput",
           "title": "Follow up notes",
           "placeholder": "Notes"
         },
@@ -1932,17 +1941,16 @@ export const activityFormData = [
     Data: {
       "elements": [
         {
-          "name": "associatedLeads",
-          "type": "leadDropdown",
+          "name": "associated_lead",
+          "type":"TextInputLead",
           "title": "Associated Lead",
           "inputType": "text",
-          "placeholder": "Select",
-          "dropdownData": leadData
+         
+          
         },
      
-     
         {
-          "name": "time",
+          "name": "start_time",
           "type": "timeInput",
           "title": "Start Time",
           "placeholder": "Enter the time"
@@ -1955,7 +1963,7 @@ export const activityFormData = [
         },
         {
           "name": "description",
-          "type": "multilineText",
+          "type": "TextInput",
           "title": "Email description",
           "placeholder": "description"
         },

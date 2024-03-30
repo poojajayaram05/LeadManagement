@@ -216,7 +216,7 @@ const LeadDet = () => {
 
   const leadId = useIdStore((state) => state.number);
   const lead = leadData.find((lead) => lead.number === leadId);
-  const { first_name, last_name, email, qualification, status, number, gender} = lead || {};
+  const { first_name, last_name, email, qualification, lead_status, number, gender} = lead || {};
  
   const handleBack = () => {
     router.navigate('/DrawerScreens/leadList');
@@ -262,7 +262,7 @@ const handleEmail = () => {
       <View style={styles.lifestyleContainer}>
         <View style={styles.lifecycleStage}>
           <Text style={styles.lifecycleHeading}>status</Text>
-          <Text style={styles.lifecycleText}>{status}</Text>
+          <Text style={styles.lifecycleText}>{lead_status}</Text>
         </View>
         <View style={styles.tempContainer}>
           <Text style={styles.tempHeading}>Label</Text>

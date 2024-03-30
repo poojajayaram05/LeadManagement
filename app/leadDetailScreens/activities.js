@@ -179,7 +179,7 @@
 
 
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import FloatingButton from '../../customComponents/floatingButton';
 import { Ionicons } from '@expo/vector-icons';
@@ -188,36 +188,54 @@ import { router } from 'expo-router';
 import LeadDetailCard from '../../customComponents/leadDetailCard';
 import { meetingItemsData } from '../../customComponents/formData';
 import useMeetingStore from '../../meetingComponents/meetingStore';
+import useIdStore from '../leadStore';
+import { FetchActivities } from '../service/fetchActivities';
+
+
  
  
 export default function Meeting() {
- 
-  // const goToMeetingDetails=()=>{
-  //   router.navigate('/meetingDetails')
-  // }
- 
-  // const goToCreateMeeting = () => {
-  //   router.navigate('/DrawerScreens/createMeeting')
-  // }
-   
+  const [activityData, setActivityData] = useState([]);
+  const [activityItems, setActivityItems] = useState([]);
+  const leadId = useIdStore((state) => state.number);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const ldata = await FetchActivities();
+        setActivityData(ldata.result);
+      } catch (error) {
+        console.error('Error in fetching leads:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    console.log("leadiddd", leadId);
+    const activities = activityData.filter((lead) => lead.associated_lead === leadId);
+    setActivityItems(activities);
+    console.log("this is activvity, ", activityItems);
+  }, [activityData, leadId]);
+  
   const goToCreateMeetingForm =()=>{
-    router.navigate('/DrawerScreens/createMeeting')
+    router.navigate('/formComponents/activityForm')
   }
  
   const renderItem = ({ item }) => {
-    const goToMeetingDetails=()=>{
-      useMeetingStore.getState().setMeetingId(item.id);
-      router.navigate('/meetingDetails')
-    }
     // Extracting only the required properties
-    const { title, Description, status, Date } = item;
-    const simplifiedItem = {Date, status, Description };
- 
+    const { activity_type, email, start_time, due_date, date } = item;
+    const simplifiedItem = { activity_type, email, start_time, due_date, date };
+  
     return (
-      <TouchableOpacity onPress={goToMeetingDetails}>
+      <TouchableOpacity >
+        <View>
+         
+        </View>
         <View style={styles.title}>
           <Text style={styles.titletext}>{item.title}</Text>
-          </View>
+        </View>
         <LeadDetailCard obj={simplifiedItem} name="calendar" />
         <View style={styles.divider} />
       </TouchableOpacity>
@@ -230,7 +248,7 @@ export default function Meeting() {
            <LeadDet/>
         </View>
       <FlatList
-        data={meetingItemsData.elements}
+        data={activityItems}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />

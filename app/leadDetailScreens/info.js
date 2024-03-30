@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-nati
 import LeadDet from '../../leadComponents/leadDetHeader';
 import useIdStore from '../leadStore';
 //import { leadData } from '../../customComponents/formData';
-import { FetchLeads } from '../service/fetchLeads';
+import { FetchLeadDetails } from '../service/fetchLeadDetails';
 import { useEffect } from 'react';
  
 const Info = () => {
@@ -19,7 +19,7 @@ const Info = () => {
        
           const fetchData = async () => {
               try {
-                  const ldata = await FetchLeads(); // Call FetchLeads and wait for the result
+                  const ldata = await FetchLeadDetails(); // Call FetchLeads and wait for the result
                   setLeadData(ldata.result); // Set the state with the fetched data
                   //console.log("this is the lead data",ldata.result);
                   setLeadData(ldata.result);
@@ -36,7 +36,8 @@ const Info = () => {
       
       
 
-    const { first_name, last_name, email, qualification, status, number, gender} = lead || {};
+    const { first_name,last_name,mobile_phone,email,qualification,lead_status,number,city,street,country,company,email_opt_out,business_phone,home_phone,gender,owner,annual_revenue,lead_source,no_of_employees,industry,company_duns_number,alternate_email1,alternate_email2,zip,lead_type,description,job_title,title,
+        sys_updated_by, sys_created_on, sys_created_by, sys_updated_on,preffered_method,zip_postalcode,state_province} = lead || {};
     const leadId = useIdStore((state) => state.number);
     const lead = leadData.find((lead) => lead.number === leadId);
     const [openSections, setOpenSections] = useState(['leadInfo']);
@@ -68,6 +69,15 @@ const Info = () => {
         <Text style={styles.detail}>{lead?.lead_type}</Text>
     </View>
     <View style={styles.row}>
+        <Text style={[styles.data, styles.label]}>Title:</Text>
+        <Text style={styles.detail}>{lead?.title}</Text>
+    </View>
+    <View style={styles.row}>
+        <Text style={[styles.data, styles.label]}>Description:</Text>
+        <Text style={styles.detail}>{lead?.description}</Text>
+    </View>
+
+    <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Number:</Text>
         <Text style={styles.detail}>{lead?.number}</Text>
     </View>
@@ -83,22 +93,19 @@ const Info = () => {
         <Text style={[styles.data, styles.label]}>Email:</Text>
         <Text style={styles.detail}>{lead?.email}</Text>
     </View>
-    <View style={styles.row}>
+    {/* <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Score:</Text>
         <Text style={styles.detail}>{lead?.Score}</Text>
     </View>
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Owner:</Text>
         <Text style={styles.detail}>{lead?.Owner}</Text>
-    </View>
+    </View> */}
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Lead Source:</Text>
-        <Text style={styles.detail}>{lead?.LeadSource}</Text>
+        <Text style={styles.detail}>{lead?.lead_source}</Text>
     </View>
-    <View style={styles.row}>
-        <Text style={[styles.data, styles.label]}>Lead Amount:</Text>
-        <Text style={styles.detail}>{lead?.LeadCurrency}</Text>
-    </View>
+    
     {/* <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Description:</Text>
         <Text style={styles.detail}>{lead?.Description}</Text>
@@ -118,23 +125,27 @@ const Info = () => {
 >
     <View style={styles.row}>
         <Text style={[styles.data]}>Company:</Text>
-        <Text style={styles.detail}>{lead?.Company}</Text>
+        <Text style={styles.detail}>{lead?.company}</Text>
     </View>
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>No Of Employees:</Text>
-        <Text style={styles.detail}>{lead?.NoOfEmployees}</Text>
+        <Text style={styles.detail}>{lead?.no_of_employees}</Text>
     </View>
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Annual Revenue:</Text>
-        <Text style={styles.detail}>{lead?.AnnualRevenue}</Text>
+        <Text style={styles.detail}>{lead?.annual_revenue}</Text>
+    </View>
+    <View style={styles.row}>
+        <Text style={[styles.data, styles.label]}>Job Title:</Text>
+        <Text style={styles.detail}>{lead?.job_title}</Text>
     </View>
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Company DUNS Number:</Text>
-        <Text style={styles.detail}>{lead?.CompanyDUNSNumber}</Text>
+        <Text style={styles.detail}>{lead?.company_duns_number}</Text>
     </View>
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Industry:</Text>
-        <Text style={styles.detail}>{lead?.Industry}</Text>
+        <Text style={styles.detail}>{lead?.industry}</Text>
     </View>
 </Section>
  
@@ -145,27 +156,27 @@ const Info = () => {
 >
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Alternate Email 1:</Text>
-        <Text style={styles.detail}>{lead?.AlternateEmail1}</Text>
+        <Text style={styles.detail}>{lead?.alternate_email1}</Text>
     </View>
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Alternate Email 2:</Text>
-        <Text style={styles.detail}>{lead?.AlternateEmail2}</Text>
+        <Text style={styles.detail}>{lead?.alternate_email2}</Text>
     </View>
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Email OtpOut:</Text>
-        <Text style={styles.detail}>{lead?.EmailOtpOut}</Text>
+        <Text style={styles.detail}>{lead?.email_opt_out}</Text>
     </View>
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Business Phone:</Text>
-        <Text style={styles.detail}>{lead?.BusinessPhone}</Text>
+        <Text style={styles.detail}>{lead?.business_phone}</Text>
     </View>
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Mobile Phone:</Text>
-        <Text style={styles.detail}>{lead?.MobilePhone}</Text>
+        <Text style={styles.detail}>{lead?.mobile_phone}</Text>
     </View>
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Home Phone:</Text>
-        <Text style={styles.detail}>{lead?.HomePhone}</Text>
+        <Text style={styles.detail}>{lead?.home_phone}</Text>
     </View>
 </Section>
  
@@ -176,23 +187,23 @@ const Info = () => {
 >
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Street:</Text>
-        <Text style={styles.detail}>{lead?.Street}</Text>
+        <Text style={styles.detail}>{lead?.street}</Text>
     </View>
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>City:</Text>
-        <Text style={styles.detail}>{lead?.City}</Text>
+        <Text style={styles.detail}>{lead?.city}</Text>
     </View>
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>State:</Text>
-        <Text style={styles.detail}>{lead?.State}</Text>
+        <Text style={styles.detail}>{lead?.state_province}</Text>
     </View>
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Zip:</Text>
-        <Text style={styles.detail}>{lead?.Zip}</Text>
+        <Text style={styles.detail}>{lead?.zip_postalcode}</Text>
     </View>
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Country:</Text>
-        <Text style={styles.detail}>{lead?.Country}</Text>
+        <Text style={styles.detail}>{lead?.country}</Text>
     </View>
 </Section>
  
@@ -202,8 +213,8 @@ const Info = () => {
     onPress={() => toggleSection('ContactMethods')}
 >
     <View style={styles.row}>
-        <Text style={[styles.data, styles.label]}>Preferred Method To Call:</Text>
-        <Text style={styles.detail}>{lead?.Preferred}</Text>
+        <Text style={[styles.data, styles.label]}>Preferred Method To Contact:</Text>
+        <Text style={styles.detail}>{lead?.preffered_method}</Text>
     </View>
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Whatsapp Number:</Text>
@@ -211,12 +222,35 @@ const Info = () => {
     </View>
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Qualification:</Text>
-        <Text style={styles.detail}>{lead?.Qualification}</Text>
+        <Text style={styles.detail}>{lead?.qualification}</Text>
     </View>
     <View style={styles.row}>
         <Text style={[styles.data, styles.label]}>Status:</Text>
-        <Text style={styles.detail}>{lead?.Status}</Text>
+        <Text style={styles.detail}>{lead?.lead_status}</Text>
     </View>
+</Section>
+<Section
+    title="System Information"
+    isOpen={openSections.includes('systemDetails')}
+    onPress={() => toggleSection('systemDetails')}
+>
+    <View style={styles.row}>
+        <Text style={[styles.data]}>Created by:</Text>
+        <Text style={styles.detail}>{lead?.sys_created_by}</Text>
+    </View>
+    <View style={styles.row}>
+        <Text style={[styles.data, styles.label]}>Created On:</Text>
+        <Text style={styles.detail}>{lead?.sys_created_on}</Text>
+    </View>
+    <View style={styles.row}>
+        <Text style={[styles.data, styles.label]}>Updated By:</Text>
+        <Text style={styles.detail}>{lead?.sys_updated_by}</Text>
+    </View>
+    <View style={styles.row}>
+        <Text style={[styles.data, styles.label]}>Last Updated On:</Text>
+        <Text style={styles.detail}>{lead?.sys_updated_on}</Text>
+    </View>
+    
 </Section>
  
  

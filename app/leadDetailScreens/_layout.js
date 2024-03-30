@@ -61,7 +61,7 @@ export default function AppLayout() {
         }}
       />
       <Stack.Screen
-        name="meetings"
+        name="activities"
         options={{
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
@@ -87,15 +87,7 @@ export default function AppLayout() {
           ),
         }}
       />
-      <Stack.Screen
-        name="task"
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="tasks" size={size} color={color} />
-          ),
-        }}
-      />
+    
          <Stack.Screen
         name="callLogs"
         options={{
