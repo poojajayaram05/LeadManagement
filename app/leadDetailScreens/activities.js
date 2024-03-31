@@ -225,22 +225,49 @@ export default function Meeting() {
  
   const renderItem = ({ item }) => {
     // Extracting only the required properties
-    const { activity_type, email, start_time, due_date, date } = item;
-    const simplifiedItem = { activity_type, email, start_time, due_date, date };
+    const { activity_type, email, start_time, due_date, date, time, status } = item;
+    const simplifiedItem = { activity_type, email, start_time, due_date, date, time };
   
-    return (
-      <TouchableOpacity >
+    let renderedContent;
+    let activitySpecificData;
+  
+    switch (activity_type) {
+      case 'meeting':
+        activitySpecificData = { meeting_link: item.meeting_link, location: item.location, from_date: item.from_date, to_date: item.to_date };
+        break;
+      case 'task':
+        activitySpecificData = { status: item.status, time:item.time, description: item.description, status:item.status, };
+        break;
+      case 'call':
+        activitySpecificData = { description: item.description, phone_number: item.number,date:item.date, time:item.time };
+        break;
+        case 'email':
+        activitySpecificData = { email: item.email, description: item.description,subject:item.subject, date:item.date, time:item.start_time };
+        break;
+        case 'appointment':
+          activitySpecificData = { date: item.date, Notes: item.appointment_notes,startTime:item.start_time, location:item.location };
+          break;
+      // Add cases for other activity types as needed
+      default:
+        activitySpecificData = {};
+    }
+  
+    renderedContent = (
+      <TouchableOpacity>
         <View>
-         
+          {/* Render additional activity-specific content */}
         </View>
         <View style={styles.title}>
-          <Text style={styles.titletext}>{item.title}</Text>
+          <Text style={styles.titletext}>{item.activity_type}</Text>
         </View>
-        <LeadDetailCard obj={simplifiedItem} name="calendar" />
+        <LeadDetailCard obj={activitySpecificData } name="calendar" />
         <View style={styles.divider} />
       </TouchableOpacity>
     );
+  
+    return renderedContent;
   };
+  
  
   return (
     <View style={styles.container}>
