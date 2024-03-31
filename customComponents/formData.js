@@ -1918,7 +1918,7 @@ export const activityFormData = [
         {
           "name": "appointment_notes",
           "type": "TextInput",
-          "title": "Follow up notes",
+          "title": "Appointment notes",
           "placeholder": "Notes"
         },
         {

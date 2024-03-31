@@ -45,6 +45,7 @@ export default function CreateActivity() {
   const [fromTime, setFromTime] = useState(null);
   const [toTime, setToTime] = useState(null);
   const[leadData, setLeadData]=useState([])
+  const[validationErrors, setValidationErrors]=useState([])
 
   const [selectedActivity, setSelectedActivity] = useState(null);
 
@@ -168,24 +169,34 @@ export default function CreateActivity() {
   
     return time.toLocaleString('en-US', options);
   };
-
-  const validateForm = () => {
-    let isValid = true;
+  const errors = {};
   
-    // Check if any required field is empty
-    Object.keys(formValues).forEach(key => {
-      const element = activityFormData.flatMap(activity => activity.Data.elements)
-                                      .find(element => element.name === key);
-      if (element?.isRequired && !formValues[key]) {
-        isValid = false;
+  const validateForm = () => {
+    
+
+    
+  
+    activityFormData.forEach((formData) => {
+      // Check if the selected activity matches the current formData activityType
+      if (selectedActivity && formData.activityType === selectedActivity.value) {
+        formData.Data.elements.forEach((element) => {
+          // Perform validation for visible fields
+          if (element.isRequired && !formValues[element.name]) {
+            errors[element.name] = `${element.title} is required`;
+          }
+          if (element.validation && element.validation.regex && !element.validation.regex.test(formValues[element.name])) {
+            errors[element.name] = element.validation.message;
+           
+          }
+        });
       }
     });
-  
+ 
     // Additional validation checks can be added here
   
-    return isValid;
+    return errors;
   };
-
+  
 
 
 const handleSelectDate = (date) => {
@@ -199,10 +210,14 @@ const goBack=()=>{
 }
 
 const onSubmit = async () => {
-  const isFormValid = validateForm();
+  const errors = validateForm();
+  if (Object.keys(errors).length > 0) {
+    // If there are validation errors, set them in state
+    setValidationErrors(errors);
+    console.log(validationErrors);
+  }
 
-  if (isFormValid) {
-  setFormValues(prevFormValues => ({ ...prevFormValues, ['associated_lead']: leadNumber }));
+  else {  setFormValues(prevFormValues => ({ ...prevFormValues, ['associated_lead']: leadNumber }));
   
     const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_activity_c`;
         const token = SecureStore.getItem('token');
@@ -252,6 +267,7 @@ const renderFormElement = (element) => {
    
     setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: item.value }));
     console.log('Selected value:', item);
+    
 };
 
 const handleNotes = ()=>{
@@ -294,6 +310,7 @@ const handleDateChange = (selectedDate, element) => {
   }
 
 
+
     switch (element.type) {
       case 'TextInputLead':
         return (
@@ -317,20 +334,25 @@ const handleDateChange = (selectedDate, element) => {
         case 'TextInput':
             return (
               <View>
+                 <Text style={styles.label}>
+                {element.title}
+                {element.isRequired && <Text style={{ color: 'red' }}> *</Text>} {/* Add star mark if required */}
+            </Text>
                   {/* <RNDateTimePicker mode="time" value={new Date()} /> */}
                 <CustomInput
                     key={element.name}
-                    title={element.title}
+                    
                     placeholder={element.placeholder}
                     // control={control}
+
                     inputType={element.inputType}
                     name={element.name}
-                    rules={{ required: element.isRequired ? `${element.title} is required` : false }}
-                    // errors={errors}
+                   
+                    errors={errors}
                     onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
                     value={formValues[element.name] || ''}
                 />
-                {element.isRequired && !leadNumber && <Text style={styles.errorMessage}>Error: {element.title} is required</Text>}
+                 {validationErrors[element.name] && <Text style={styles.errorMessage}>{validationErrors[element.name]}</Text>}
                 </View>
             );
             case 'Date':
@@ -354,7 +376,7 @@ const handleDateChange = (selectedDate, element) => {
                         onChange={(event, selectedDate) => handleDateChange(selectedDate, element)}
                       />
                     )}
-                    {element.isRequired && !leadNumber && <Text style={styles.errorMessage}>Error: {element.title} is required</Text>}
+                   {validationErrors[element.name] && <Text style={styles.errorMessage}>{validationErrors[element.name]}</Text>}
                   </View>
                   
                 );
@@ -390,7 +412,7 @@ const handleDateChange = (selectedDate, element) => {
                             onSelect={handleSelect}
                         />
                     </View>
-                    {element.isRequired && !leadNumber && <Text style={styles.errorMessage}>Error: {element.title} is required</Text>}
+                    {validationErrors[element.name] && <Text style={styles.errorMessage}>{validationErrors[element.name]}</Text>}
                   
 
 
@@ -427,9 +449,7 @@ const handleDateChange = (selectedDate, element) => {
       />
     )}
 </View>
-{element.isRequired && !leadNumber && <Text style={styles.errorMessage}>Error: {element.title} is required</Text>}
-                 
-                 
+{validationErrors[element.name] && <Text style={styles.errorMessage}>{validationErrors[element.name]}</Text>}
                   
                 </Pressable>
               </View>
@@ -593,5 +613,10 @@ const styles = StyleSheet.create({
     height: 20,
     marginLeft: 10,
   },
+  errorMessage: {
+    color: 'red',
+    fontSize:12
+    // Add any other necessary styles
+}
 });
 
