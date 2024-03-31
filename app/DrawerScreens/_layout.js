@@ -53,8 +53,8 @@ export default function Layout() {
     <Drawer.Screen
     name='leadList'
     options={{
-      drawerLabel:'Leads',
-      headerTitle:'Leads',
+      drawerLabel:'Lead',
+      headerTitle:'Lead',
       headerShown:true,
       drawerIcon:({}) =>(
         <Ionicons name='apps-sharp' size={32} color='black' /> 
@@ -80,6 +80,7 @@ export default function Layout() {
       )
     }}
 
+    //
     
     ></Drawer.Screen>
 
@@ -148,7 +149,7 @@ export default function Layout() {
 <Drawer.Screen
     name='createProduct'
     options={{
-      drawerLabel:'',
+      drawerLabel:'Froms Screen',
       headerTitle:'',
       headerShown:true,
       drawerIcon:({}) =>(
@@ -161,10 +162,6 @@ export default function Layout() {
    </Drawer>
 </GestureHandlerRootView>
 </>
-  //   >
-  //     <MainPage/>
-  //  </Drawer>
-  //   </GestureHandlerRootView>
    
   );
 }

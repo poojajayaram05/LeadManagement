@@ -716,8 +716,8 @@ export const ContactData= {
       "title": "Mobile phone | mobile_phone",
       "inputType": "numeric",
       "placeholder": "Enter the phone number",
-      "dataType": "number"
-    },
+      "dataType": 'number'
+    }, 
     {
       "name": "time_zone",
       "type": "dropdown",
@@ -990,5 +990,89 @@ export const OpportunityData= {
     
   ]
 }
+
+export const listOfAccounts = [
+  {
+    "accountName": "Smith Industries",
+    "email": "info@smithindustries.com",
+    "phone": "8884763231",
+    "status": "open",
+    "temperature": "hot",
+    "id": "1"
+  },
+  {
+    "accountName": "Johnson Designs",
+    "email": "contact@johnsondesigns.com",
+    "phone": "8891234567",
+    "status": "contacted",
+    "temperature": "cold",
+    "id": "2"
+  },
+  {
+    "accountName": "Brown Management",
+    "email": "contact@brownmanagement.com",
+    "phone": "8902345678",
+    "status": "qualified",
+    "temperature": "warm",
+    "id": "3"
+  },
+  {
+    "accountName": "Jones Software",
+    "email": "contact@jonessoftware.com",
+    "phone": "8913456789",
+    "status": "accepted",
+    "temperature": "cold",
+    "id": "4"
+  },
+  {
+    "accountName": "Garcia Analytics",
+    "email": "contact@garciaanalytics.com",
+    "phone": "8924567890",
+    "status": "accepted",
+    "temperature": "hot",
+    "id": "5"
+  },
+  {
+    "accountName": "Miller Consulting",
+    "email": "contact@millerconsulting.com",
+    "phone": "8935678901",
+    "status": "qualified",
+    "temperature": "hot",
+    "id": "6"
+  },
+  {
+    "accountName": "Davis Coordinators",
+    "email": "contact@daviscoordinators.com",
+    "phone": "8946789012",
+    "status": "qualified",
+    "temperature": "cold",
+    "id": "7"
+  },
+  {
+    "accountName": "Rodriguez Admin Solutions",
+    "email": "contact@rodriguezadminsolutions.com",
+    "phone": "8957890123",
+    "status": "qualified",
+    "temperature": "warm",
+    "id": "8"
+  },
+  {
+    "accountName": "Martinez Engineering",
+    "email": "contact@martinezengineering.com",
+    "phone": "8968901234",
+    "status": "qualified",
+    "temperature": "warm",
+    "id": "9"
+  },
+  {
+    "accountName": "Hernandez Designs",
+    "email": "contact@hernandezdesigns.com",
+    "phone": "8979012345",
+    "status": "qualified",
+    "temperature": "cold",
+    "id": "10"
+  }
+]
+
 
 

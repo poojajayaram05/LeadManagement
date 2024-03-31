@@ -43,7 +43,7 @@ function TabMenu(){
           }}
           />
           <Tab.Screen 
-          name="Leads" 
+          name="Accounts" 
           component={LeadList} 
           options={{
             tabBarIcon: ({focused})=>{

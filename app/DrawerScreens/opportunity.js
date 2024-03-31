@@ -8,6 +8,7 @@ import { CustomInput } from "../../customComponents/customInput";
 import { OpportunityData } from "../../customComponents/formData";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 import { Ionicons } from "@expo/vector-icons";
+import AccountSelectionModal from "./AccountSelectionModal";
 
 export default function CreateOpportunity() {
   const [isSection1Collapsed, setIsSection1Collapsed] = useState(false);
@@ -242,4 +243,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
 });
+
 

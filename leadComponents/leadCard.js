@@ -41,103 +41,103 @@ const LeadItem = ({ firstName, lastName, email, phone, onViewPress, status, temp
  
 // const Selected = require('../../assets/images/starrOne.jpg');
 // const UnSelected = require('../../assets/images/starTwo.png');
-    const renderBadge = () => {
+    // const renderBadge = () => {
  
-        if (status === 'open') {
-            //return <Badge value={<Text> Sale </Text>} status="success" badgeStyle={styles.badge} />;
-           return <BadgeLead label={'Sale'} color={'#857471'} textColor="white"/>
-        } else if (status === 'contacted') {
-            // return <Badge value={<Text> Closed </Text>} status="error" badgeStyle={styles.badge} />;
-            return <BadgeLead label={'Closed'} color={'#C02DD9'} textColor="white"/>
-        } else if (status === 'qualified') {
-            // return <Badge value={<Text> New Lead </Text>} status="primary" badgeStyle={styles.badge} />;
-            return <BadgeLead label={'New Lead'} color={'maroon'} textColor="white"/>
-        } else if (status === 'accepted') {
-            // return <Badge value={<Text >Negotiating </Text>} status="warning" badgeStyle={styles.badge} />;
-            return <BadgeLead label={'Negotiating'} color={'green'} textColor="white"/>
-        }  
-        return null;
-    };
+    //     if (status === 'open') {
+    //         //return <Badge value={<Text> Sale </Text>} status="success" badgeStyle={styles.badge} />;
+    //        return <BadgeLead label={'Sale'} color={'#857471'} textColor="white"/>
+    //     } else if (status === 'contacted') {
+    //         // return <Badge value={<Text> Closed </Text>} status="error" badgeStyle={styles.badge} />;
+    //         return <BadgeLead label={'Closed'} color={'#C02DD9'} textColor="white"/>
+    //     } else if (status === 'qualified') {
+    //         // return <Badge value={<Text> New Lead </Text>} status="primary" badgeStyle={styles.badge} />;
+    //         return <BadgeLead label={'New Lead'} color={'maroon'} textColor="white"/>
+    //     } else if (status === 'accepted') {
+    //         // return <Badge value={<Text >Negotiating </Text>} status="warning" badgeStyle={styles.badge} />;
+    //         return <BadgeLead label={'Negotiating'} color={'green'} textColor="white"/>
+    //     }  
+    //     return null;
+    // };
  
-    const renderTemperatureBadge = () => {
-        let temperatureBadgeColor;
-        switch (temperature) {
-          case 'hot':
-            temperatureBadgeColor = 'red';
-            txtColor="white";
-            break;
-          case 'warm':
-            temperatureBadgeColor = 'orange';
-            txtColor="white";
-            break;
-          case 'cold':
-            temperatureBadgeColor = '#448DD0';
-            txtColor="white";
-            break;
-          default:
-            temperatureBadgeColor = 'grey';
-            txtColor="white";
-        }
+//     const renderTemperatureBadge = () => {
+//         let temperatureBadgeColor;
+//         switch (temperature) {
+//           case 'hot':
+//             temperatureBadgeColor = 'red';
+//             txtColor="white";
+//             break;
+//           case 'warm':
+//             temperatureBadgeColor = 'orange';
+//             txtColor="white";
+//             break;
+//           case 'cold':
+//             temperatureBadgeColor = '#448DD0';
+//             txtColor="white";
+//             break;
+//           default:
+//             temperatureBadgeColor = 'grey';
+//             txtColor="white";
+//         }
       
-    //return <Badge value={<Text>{temperature}</Text>} status={temperatureBadgeColor} badgeStyle={styles.badge} />;
-    return <BadgeLead color={temperatureBadgeColor} label={temperature} textColor={txtColor} />
-      };
+//     //return <Badge value={<Text>{temperature}</Text>} status={temperatureBadgeColor} badgeStyle={styles.badge} />;
+//     return <BadgeLead color={temperatureBadgeColor} label={temperature} textColor={txtColor} />
+//       };
 
-      const displayScreen = () => {
-        console.log(leadId);
-        setLeadId(id);
+//       const displayScreen = () => {
+//         console.log(leadId);
+//         setLeadId(id);
        
-        router.replace(`leadDetailScreens/notes`);
-        // useIdStore((state) => state.setId(id));
-        console.log('ID set:', leadId);
-    };
+//         router.replace(`leadDetailScreens/notes`);
+//         // useIdStore((state) => state.setId(id));
+//         console.log('ID set:', leadId);
+//     };
  
 
 
  
-    const toggleDropdown = () => {
-      setShowDropdown(!showDropdown);
-  };
-  const closeDropdown = () => {
-    setShowDropdown(false);
-};
-const handleChangeState = () => {
-    // Add your logic to change the state of the lead
-    closeDropdown(); // Close the dropdown after action
-};
+//     const toggleDropdown = () => {
+//       setShowDropdown(!showDropdown);
+//   };
+//   const closeDropdown = () => {
+//     setShowDropdown(false);
+// };
+// const handleChangeState = () => {
+//     // Add your logic to change the state of the lead
+//     closeDropdown(); // Close the dropdown after action
+// };
 
-const handleConvertLead = () => {
-    // Add your logic to convert the lead
-    closeDropdown(); // Close the dropdown after action
-};
+// const handleConvertLead = () => {
+//     // Add your logic to convert the lead
+//     closeDropdown(); // Close the dropdown after action
+// };
 
-const handleReassign = () => {
-    // Add your logic to reassign the lead
-    closeDropdown(); // Close the dropdown after action
-};
+// const handleReassign = () => {
+//     // Add your logic to reassign the lead
+//     closeDropdown(); // Close the dropdown after action
+// };
 
 
 return (
-  <TouchableOpacity onPress={closeDropdown}>
+  <TouchableOpacity>
       <View style={{ flex: 1 }}>
           <View style={styles.item}>
               <View style={styles.avatarContainer}>
-                  <Image
+                  {/* <Image
                       source={avatarPic}
                       style={{ width: 40, height: 40, borderRadius: 20, marginBottom: 10 }}
-                  />
+                  /> */}
               </View>
               <View style={styles.textContainer}>
                   <Text style={styles.title}>{`${firstName} ${lastName}`}</Text>
                   <Text style={styles.subtitle}>{email}</Text>
                   <Text style={styles.subtitle}>{phone}</Text>
                   <View style={styles.badgeBox}>
-                      <View>{renderBadge()}</View>
-                      <View style={styles.badgeSecond}>{renderTemperatureBadge()}</View>
+                      {/* <View>{renderBadge()}</View> */}
+                      {/* <View style={styles.badgeSecond}>{renderTemperatureBadge()}</View> */}
                   </View>
               </View>
               <View style={styles.actionsContainer}>
-                  <TouchableOpacity onPress={toggleDropdown} style={styles.dropdownIcon}>
+                  <TouchableOpacity style={styles.dropdownIcon}>
                       <Ionicons name="ellipsis-vertical" size={24} color="black" />
                   </TouchableOpacity>
               </View>
