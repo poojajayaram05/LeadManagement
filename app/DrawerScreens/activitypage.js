@@ -92,8 +92,6 @@ const filteredMeetings = selectedMeetings.filter(meeting => {
     }
   });
  
- 
- 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
@@ -172,7 +170,7 @@ const filteredMeetings = selectedMeetings.filter(meeting => {
                 {tasksVisible && (
                   <View>
                     {/* <View style={styles.divider}></View> */}
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginBottom: 10 }}>
+                    <View style={styles.tab}>
                       <TouchableOpacity onPress={() => setCurrentTab('all')}>
                         <Text style={[styles.subtitle, currentTab === 'all' && styles.selectedTab]}>All</Text>
                       </TouchableOpacity>
@@ -191,18 +189,10 @@ const filteredMeetings = selectedMeetings.filter(meeting => {
                      renderItem={({ item }) => (
                        <View style={[styles.section, styles.cardContainer]}>
                          <View style={styles.detailBoxLeft}>
-                           <Text style={[styles.title1, { color: "black" }]}>
-                             {item.taskName}
-                           </Text>
-                           <Text style={[styles.detailText, { color: "grey" }]}>
-                             {item.ownerName}
-                           </Text>
-                           <Text style={[styles.detailText, { color: "grey" }]}>
-                             {item.dueDate}
-                           </Text>
-                           <Text style={[styles.detailText, { color: "grey" }]}>
-                             {item.description}
-                           </Text>
+                         <Text style={styles.title1}>{item.taskName}</Text>
+                          <Text style={styles.detailText}>{item.ownerName}</Text>
+                          <Text style={styles.detailText}>{item.dueDate}</Text>
+                          <Text style={styles.detailText}>{item.description}</Text>
                          </View>
                          <View style={styles.detailBoxRight}>
                            <View style={styles.meetProg}>
@@ -225,20 +215,17 @@ const filteredMeetings = selectedMeetings.filter(meeting => {
                     )}
                   </View>
                 )}
-            <View style={[styles.row]}>
+            
   <TouchableOpacity onPress={() => setMeetingsVisible(!meetingsVisible)}>
     <View style={[styles.titleContainer, { justifyContent: 'space-between' }]}>
       <Text style={styles.title}>Meetings</Text>
       <Ionicons name={meetingsVisible ? 'caret-up' : 'caret-down'} size={24} color="black" style={{ marginLeft: 5, marginTop: 12 }}/>
     </View>
   </TouchableOpacity>
-</View>
- 
- 
- 
+
                 {meetingsVisible && (
-                  <View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginBottom: 10 }}>
+                  <View >
+                    <View style={styles.tab}>
                       <TouchableOpacity onPress={() => setCurrentMeetingTab('all')}>
                         <Text style={[styles.subtitle, currentMeetingTab === 'all' && styles.selectedTab]}>All</Text>
                       </TouchableOpacity>
@@ -256,18 +243,10 @@ const filteredMeetings = selectedMeetings.filter(meeting => {
                         renderItem={({ item }) => (
                           <View style={[styles.section, styles.cardContainer]}>
                             <View style={styles.detailBox}>
-                              <Text style={[styles.title1, { color: "black" }]}>
-                                {item.title}
-                              </Text>
-                              <Text style={[styles.detailText, { color: "grey" }]}>
-                                {item.Date}
-                              </Text>
-                              <Text style={[styles.detailText, { color: "grey" }]}>
-                                {item.organizer}
-                              </Text>
-                              <Text style={[styles.detailText, { color: "grey" }]}>
-                                {item.Description}
-                              </Text>
+                            <Text style={styles.title1}>{item.title}</Text>
+                          <Text style={styles.detailText}>{item.Date}</Text>
+                          <Text style={styles.detailText}>{item.organizer}</Text>
+                          <Text style={styles.detailText}>{item.Description}</Text>
                               {/* <View style={styles.meetProg}>
                                 <Text style={styles.statusTxt}>{item.status}</Text>
                               </View> */}
@@ -297,6 +276,12 @@ const styles = StyleSheet.create({
         borderBottomColor: 'lightgrey',
         // marginBottom: 10,
       },
+      tab:{ 
+        flexDirection: 'row', 
+        justifyContent: 'space-around', 
+
+        backgroundColor:'#023B5E',
+       },
      
     detailBoxLeft: {
         flex: 1,
@@ -307,7 +292,6 @@ const styles = StyleSheet.create({
         minWidth: 100, // Adjust minimum width as needed
       },
   row: {
-    // backgroundColor: "#023B5E",
     flexDirection: "row",
   },
   meetProg: {
@@ -334,12 +318,9 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-   
     justifyContent: 'space-between', // Add this line
     paddingRight: 10, // Add paddingRight to create space between the title and the icon
   },
- 
- 
   bgColor: {
     backgroundColor: 'white',
     borderColor: 'grey',
@@ -369,7 +350,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    paddingVertical: 24,
+    // paddingVertical: 24,
     backgroundColor: "white"
   },
   picker: {
@@ -380,12 +361,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   subtitle: {
-    fontSize: 17,
+    fontSize: 14,
     fontWeight: '600',
-    color: '#023B5E',
+    color: 'grey',
     marginBottom: 10,
     marginTop: 10,
-    // backgroundColor: '#023B5E',
+    // backgroundColor: 'red',
     paddingHorizontal: 10,
     paddingVertical: 5,
     borderRadius: 5,
@@ -393,7 +374,8 @@ const styles = StyleSheet.create({
   },
   selectedTab: {
     borderRadius: 50,
-    backgroundColor: 'lightgrey',
+    color: 'white',
+    // backgroundColor: 'lightgrey',
   },
   title: {
     fontSize: 20,

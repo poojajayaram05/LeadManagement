@@ -17,8 +17,8 @@ const InitialsAvatar = ({ name }) => {
  
 const styles = StyleSheet.create({
   avatar: {
-    width: 70,
-    height: 70,
+    width: 50,
+    height: 50,
     borderRadius: 50,
     backgroundColor: 'white',
     justifyContent: 'center',
