@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput, Button, Alert } from "react-native";
-//import { formData } from "../jsonData";
-// import ArrowBack from "../customComponents/arrowBack";
 import { TouchableOpacity } from "react-native";
 import { router } from "expo-router";
 
@@ -17,13 +15,6 @@ export const accountData = {
         annualRevenue: "$1,000,000",
         website: "www.clientabc.com",
         phone: "+1 (123) 456-7890",
-        // address: {
-        //   street: "123 Main Street",
-        //   city: "Anytown",
-        //   state: "California",
-        //   postalCode: "12345",
-        //   country: "USA"
-        // },
       },
       {
         id: "2",
@@ -60,7 +51,6 @@ export const accountData = {
             </View>
             <DetailView label="Owner Name" value={task.accountOwner} />
             <DetailView label="accountType" value={task.accountType} />
-            {/* <DetailView label="Owner Name" value={task.accountOwner} /> */}
             <DetailView label="region" value={task.region} />
             <DetailView label="annualRevenue" value={task.annualRevenue} />
             <DetailView label="website" value={task.website} />

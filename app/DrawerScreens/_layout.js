@@ -106,12 +106,8 @@ export default function Layout() {
 
       drawerIcon:({}) =>(
         <Ionicons name='add-circle' size={32} color='black' /> 
-        
-
       )
     }}
-
-    
     ></Drawer.Screen>
          <Drawer.Screen
     name='createMeeting'
@@ -122,8 +118,6 @@ export default function Layout() {
 
       drawerIcon:({}) =>(
         <Ionicons name='add-circle' size={32} color='black' /> 
-        
-
       )
     }}
 
@@ -154,8 +148,6 @@ export default function Layout() {
       headerShown:true,
       drawerIcon:({}) =>(
         <Ionicons name='add-circle' size={32} color='black' /> 
-        
-
       )
     }}
     ></Drawer.Screen>

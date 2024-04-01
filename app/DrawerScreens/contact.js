@@ -77,14 +77,12 @@ import {
                 title={element.title}
                 inputType={element.inputType}
                 placeholder={element.placeholder}
-                // control={control}
                 name={element.name}
                 rules={{
                   required: element.isRequired
                     ? `${element.title} is required`
                     : false,
                 }}
-                // errors={errors}
                 onChange={(value) =>
                   setFormValues({ ...formValues, [element.name]: value })
                 }
@@ -113,7 +111,6 @@ import {
           return (
             <View style={styles.inputContainer}>
               <Text style={styles.label}>Enter a note</Text>
-              {/* <MultiSelectExample/> */}
               <MultilineTextInput />
             </View>
           );
@@ -124,7 +121,7 @@ import {
               <LDropdown
                 label="Select Lead"
                 data={leadData.map((lead) => {
-                  console.log(lead.id); // Log lead object
+                  console.log(lead.id); 
                   return {
                     value: lead.id,
                     label: `${lead.id} - ${lead.firstname} ${lead.lastname}`,
@@ -196,7 +193,6 @@ import {
                   onChange={(event, selectedTime) => {
                     if (selectedTime) {
                       setShowTimeModal(false);
-                      //setFromTime(selectedTime);
                     }
                   }}
                 />

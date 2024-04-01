@@ -569,7 +569,6 @@ export const meetingData = {
 
 export const productData=
 [
- 
   {
  
     "id":"1",
@@ -749,40 +748,48 @@ export const ContactData= {
   ]
 }
 
-
-export const AccountData= {
+export const AccountData = {
   "elements": [
     {
-      "name": "account_number",
-      "type": "TextInput",
-      "title": "Account number",
-      "inputType": "numeric",
-      "placeholder": "Enter a/c number",
-      "dataType": "string"
-    },
-
-    {
-      "name": "account_currency",
+      "name": "type",
       "type": "dropdown",
-      "title": "Account currency",
+      "title": "Type",
       "inputType": "text",
       "placeholder": "---none---",
       "dropdownData": [
-        { "value": "Asia/taipei", "label": "USD" },
-        { "value": "america/toronto", "label": "EUR" },
-        { "value": "america/toronto", "label": "JPY" },
-        { "value": "america/toronto", "label": "INR" },
+        { "value": "personObject", "label": "person" },
+        { "value": "corporateObject", "label": "corporate" }
       ],
       "dataType": "string"
     },
-    
+  
+  
+  ]
+  
+}
+
+
+export const PersonData = {
+  "elements": [
     {
-      "name": "title",
-      "type": "TextInput",
-      "title": "Title",
+      "name": "type",
+      "type": "dropdown",
+      "title": "Type",
       "inputType": "text",
-      "placeholder": "Enter phone number",
-      "dataType": "number"
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "person" },
+        { "value": "america/toronto", "label": "corporate" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "account_name",
+      "type": "TextInput",
+      "title": "Account name",
+      "inputType": "text",
+      "placeholder": "Enter name",
+      "dataType": "string"
     },
     {
       "name": "first_name",
@@ -805,7 +812,443 @@ export const AccountData= {
       "type": "TextInput",
       "title": "Last name",
       "inputType": "text",
-      "placeholder": "Enter middle name",
+      "placeholder": "Enter last name",
+      "dataType": "string"
+    },
+    {
+      "name": "birth_date",
+      "type": "dateInput",
+      "title": "Birth Date",
+      "inputType": "date",
+      "placeholder": "Select date"
+    },
+    {
+      "name": "email",
+      "type": "TextInput",
+      "title": "Email",
+      "inputType": "text",
+      "placeholder": "Enter email"
+    },
+    {
+      "name": "mobile",
+      "type": "TextInput",
+      "title": "Mobile",
+      "inputType": "numeric",
+      "placeholder": "Enter number",
+      "dataType": "number"
+    },
+    {
+      "name": "title",
+      "type": "TextInput",
+      "title": "Title",
+      "inputType": "text",
+      "placeholder": "Enter title"
+    },
+
+    {
+      "name": "crn",
+      "type": "TextInput",
+      "title": "CRN",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "external_code",
+      "type": "TextInput",
+      "title": "External Code",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "marital_status",
+      "type": "dropdown",
+      "title": "Marital Status",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "Married" },
+        { "value": "america/toronto", "label": "Divorced" },
+        { "value": "america/toronto", "label": "Separated" },
+        { "value": "america/toronto", "label": "Single" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "customer_category",
+      "type": "dropdown",
+      "title": "Customer Category",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "1" },
+        { "value": "america/toronto", "label": "2" },
+        { "value": "america/toronto", "label": "3" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "mothers_first_name",
+      "type": "TextInput",
+      "title": "Mother first name",
+      "inputType": "text",
+      "placeholder": "Enter mother's name",
+      "dataType": "string"
+    },
+    {
+      "name": "mothers_middle_name",
+      "type": "TextInput",
+      "title": "Mother middle name",
+      "inputType": "text",
+      "placeholder": "Enter mother's name",
+      "dataType": "string"
+    },
+    {
+      "name": "mothers_last_name",
+      "type": "TextInput",
+      "title": "Mother last name",
+      "inputType": "text",
+      "placeholder": "Enter mother's name",
+      "dataType": "string"
+    },
+    {
+      "name": "father_first_name",
+      "type": "TextInput",
+      "title": "Father first name",
+      "inputType": "text",
+      "placeholder": "Enter father's first name",
+      "dataType": "string"
+    },
+    {
+      "name": "father_middle_name",
+      "type": "TextInput",
+      "title": "Father middle name",
+      "inputType": "text",
+      "placeholder": "Enter father's middle name",
+      "dataType": "string"
+    },
+    {
+      "name": "father_last_name",
+      "type": "TextInput",
+      "title": "Father last name",
+      "inputType": "text",
+      "placeholder": "Enter father's last name",
+      "dataType": "string"
+    },
+    {
+      "name": "spouse_first_name",
+      "type": "TextInput",
+      "title": "Spouse first name",
+      "inputType": "text",
+      "placeholder": "Enter spouse first name",
+      "dataType": "string"
+    },
+    {
+      "name": "spouse_middle_name",
+      "type": "TextInput",
+      "title": "Spouse middle name",
+      "inputType": "text",
+      "placeholder": "Enter spouse middle name",
+      "dataType": "string"
+    },
+    {
+      "name": "spouse_last_name",
+      "type": "TextInput",
+      "title": "Spouse last name",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "suffix",
+      "type": "TextInput",
+      "title": "Spouse last name",
+      "inputType": "text",
+      "placeholder": "Enter spouse last name",
+      "dataType": "string"
+    },
+    {
+      "name": "other_phone",
+      "type": "TextInput",
+      "title": "Other phone",
+      "inputType": "text",
+      "placeholder": "Enter other phone number",
+      "dataType": "string"
+    },
+    {
+      "name": "email_verification_status",
+      "type": "TextInput",
+      "title": "Email verification status",
+      "inputType": "text",
+      "placeholder": "Enter email verification status",
+      "dataType": "string"
+    },
+    {
+      "name": "ckyc_number",
+      "type": "TextInput",
+      "title": "CKYC number",
+      "inputType": "text",
+      "placeholder": "Enter ckyc number",
+      "dataType": "string"
+    },
+    {
+      "name": "religion",
+      "type": "TextInput",
+      "title": "Religion",
+      "inputType": "text",
+      "placeholder": "Enter religion",
+      "dataType": "string"
+    },
+    {
+      "name": "minority_community",
+      "type": "dropdown",
+      "title": "Minority Community",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "Hindu" },
+        { "value": "america/toronto", "label": "muslim" },
+        { "value": "america/toronto", "label": "sikh" },
+        { "value": "america/toronto", "label": "cristian" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "category",
+      "type": "dropdown",
+      "title": "Category",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "Hindu" },
+        { "value": "america/toronto", "label": "muslim" },
+        { "value": "america/toronto", "label": "sikh" },
+        { "value": "america/toronto", "label": "cristian" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "country_of_birth",
+      "type": "TextInput",
+      "title": "Country of birth",
+      "inputType": "text",
+      "placeholder": "Enter birth place",
+      "dataType": "string"
+    },
+    {
+      "name": "account_owner",
+      "type": "TextInput",
+      "title": "Account owner",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "account_number",
+      "type": "TextInput",
+      "title": "Account number",
+      "inputType": "numeric",
+      "placeholder": "Enter a/c number",
+      "dataType": "number"
+    },
+    {
+      "name": "account_site",
+      "type": "TextInput",
+      "title": "Account site",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "account_source",
+      "type": "dropdown",
+      "title": "Account source",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "1" },
+        { "value": "america/toronto", "label": "2" },
+        { "value": "america/toronto", "label": "3" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "annual_revenue",
+      "type": "TextInput",
+      "title": "Annual revenue",
+      "inputType": "numeric",
+      "placeholder": "Enter revenue",
+      "dataType": "number"
+    },
+    {
+      "name": "assistant",
+      "type": "TextInput",
+      "title": "Assistant",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "asst_phone",
+      "type": "TextInput",
+      "title": "Asst phone",
+      "inputType": "numeric",
+      "dataType": "number"
+    },
+    {
+      "name": "billing_address",
+      "type": "dropdown",
+      "title": "Billing address",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "address 1" },
+        { "value": "america/toronto", "label": "address 2" },
+        { "value": "america/toronto", "label": "state" },
+        { "value": "america/toronto", "label": "pincode" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "chanel_program_level_name",
+      "type": "TextInput",
+      "title": "Chanel program level name",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "chanel_program_name",
+      "type": "TextInput",
+      "title": "Chanel program name",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "department",
+      "type": "TextInput",
+      "title": "Department",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "description",
+      "type": "TextInput",
+      "title": "Description",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "donot_call",
+      "type": "checkbox",
+      "title": "Do not Call",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "email_opt_out",
+      "type": "TextInput",
+      "title": "Email opt out",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "emloyees",
+      "type": "TextInput",
+      "title": "Employees",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "fax",
+      "type": "TextInput",
+      "title": "Fax",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "fax_opt_out",
+      "type": "TextInput",
+      "title": "Fax Opt Out",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "home_phone",
+      "type": "TextInput",
+      "title": "Home phone",
+      "inputType": "numeric",
+      "dataType": "number"
+    },
+    {
+      "name": "industry",
+      "type": "dropdown",
+      "title": "Salutation",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "one" },
+        { "value": "america/toronto", "label": "two" },
+        { "value": "america/toronto", "label": "three" },
+        { "value": "america/toronto", "label": "four" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "last_stay_in_touch_request_date",
+      "type": "dateInput",
+      "title": "Last Stay In Touch Request Date",
+      "inputType": "date",
+      "placeholder": "Select date"
+    },
+    {
+      "name": "lead_source",
+      "type": "dropdown",
+      "title": "Lead source",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "one" },
+        { "value": "america/toronto", "label": "two" },
+        { "value": "america/toronto", "label": "three" },
+        { "value": "america/toronto", "label": "four" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "mailing_address",
+      "type": "dropdown",
+      "title": "Mailing address",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "one" },
+        { "value": "america/toronto", "label": "two" },
+        { "value": "america/toronto", "label": "three" },
+        { "value": "america/toronto", "label": "four" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "other_address",
+      "type": "dropdown",
+      "title": "Other address",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "one" },
+        { "value": "america/toronto", "label": "two" },
+        { "value": "america/toronto", "label": "three" },
+        { "value": "america/toronto", "label": "four" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "ownership",
+      "type": "dropdown",
+      "title": "Ownership",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "one" },
+        { "value": "america/toronto", "label": "two" },
+        { "value": "america/toronto", "label": "three" },
+        { "value": "america/toronto", "label": "four" }
+      ],
       "dataType": "string"
     },
     {
@@ -818,7 +1261,7 @@ export const AccountData= {
         { "value": "Asia/taipei", "label": "Mr." },
         { "value": "america/toronto", "label": "Ms." },
         { "value": "america/toronto", "label": "Dr." },
-        { "value": "america/toronto", "label": "Prof" },
+        { "value": "america/toronto", "label": "Prof" }
       ],
       "dataType": "string"
     },
@@ -830,7 +1273,7 @@ export const AccountData= {
       "placeholder": "---none---",
       "dropdownData": [
         { "value": "Asia/taipei", "label": "Male" },
-        { "value": "america/toronto", "label": "Female" },
+        { "value": "america/toronto", "label": "Female" }
       ],
       "dataType": "string"
     },
@@ -843,7 +1286,7 @@ export const AccountData= {
         { "value": "Asia/taipei", "label": "Acer one" },
         { "value": "america/toronto", "label": "Adam Haro" },
         { "value": "america/toronto", "label": "Adobe user-A" },
-        { "value": "america/toronto", "label": "Adobe user-B" },
+        { "value": "america/toronto", "label": "Adobe user-B" }
       ],
       "dataType": "string"
     },
@@ -854,7 +1297,7 @@ export const AccountData= {
       "inputType": "text",
       "dropdownData": [
         { "value": "Asia/taipei", "label": "User" },
-        { "value": "america/toronto", "label": "Team" },
+        { "value": "america/toronto", "label": "Team" }
       ],
       "dataType": "string"
     },
@@ -865,15 +1308,13 @@ export const AccountData= {
       "inputType": "text",
       "dataType": "string"
     },
-    {
-      "name": "anniversary",
-      "type": "dateInput",
-      "title": "Anniversary",
-      "inputType": "date",
-      "placeholder": "Select date",
-      
-    },
-    
+    // {
+    //   "name": "anniversary",
+    //   "type": "dateInput",
+    //   "title": "Anniversary",
+    //   "inputType": "date",
+    //   "placeholder": "Select date"
+    // },
     {
       "name": "assistant_name",
       "type": "TextInput",
@@ -881,7 +1322,6 @@ export const AccountData= {
       "inputType": "text",
       "dataType": "string"
     },
-
     {
       "name": "account_source",
       "type": "dropdown",
@@ -891,22 +1331,884 @@ export const AccountData= {
         { "value": "Asia/taipei", "label": "Advertisement" },
         { "value": "america/toronto", "label": "Partner" },
         { "value": "america/toronto", "label": "Web" },
-        { "value": "america/toronto", "label": "Campaing" },
+        { "value": "america/toronto", "label": "Campaing" }
       ],
       "dataType": "string"
     },
-
     {
       "name": "parent_account",
-      "type": "TextInput",
-      "title": "Parent Account",
+      "type": "dropdown",
+      "title": "Parent account",
+      "inputType": "text",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "p1" },
+        { "value": "america/toronto", "label": "p2" },
+        { "value": "america/toronto", "label": "p3" },
+        { "value": "america/toronto", "label": "p4" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "is_partner",
+      "type": "checkbox",
+      "title": "Is Partner",
       "inputType": "text",
       "dataType": "string"
     },
-    
-  
+    {
+      "name": "phone",
+      "type": "TextInput",
+      "title": "Phone",
+      "inputType": "numeric",
+      "dataType": "number"
+    },
+    {
+      "name": "rating",
+      "type": "dropdown",
+      "title": "Rating",
+      "inputType": "text",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "1" },
+        { "value": "america/toronto", "label": "2" },
+        { "value": "america/toronto", "label": "3" },
+        { "value": "america/toronto", "label": "p4" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "shipping_address",
+      "type": "multilineInput",
+      "title": "Shipping address",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "sic_code",
+      "type": "TextInput",
+      "title": "SIC Code",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "sic_description",
+      "type": "TextInput",
+      "title": "SIC description",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "ticker_symbol",
+      "type": "TextInput",
+      "title": "Ticker Symbol",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "web_sites",
+      "type": "TextInput",
+      "title": "Web Site",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "affidavit_charges",
+      "type": "TextInput",
+      "title": "Affidavit charges",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "age",
+      "type": "TextInput",
+      "title": "Age",
+      "inputType": "numeric",
+      "dataType": "number"
+    },
+    {
+      "name": "connector_id",
+      "type": "TextInput",
+      "title": "Connector",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "message",
+      "type": "multilineInput",
+      "title": "Message",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "processing_fees",
+      "type": "TextInput",
+      "title": "Processing Fees",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "stamp_duty",
+      "type": "TextInput",
+      "title": "Stamp duty",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "stamp_code",
+      "type": "TextInput",
+      "title": "State Code",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "contact_verified",
+      "type": "checkbox",
+      "title": "Contact Verified",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "ekyc_otp",
+      "type": "checkbox",
+      "title": "EKYC otp",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "date_inspection",
+      "type": "dateInput",
+      "title": "Date of inspection",
+      "inputType": "date",
+      "placeholder": "Select date",
+      
+    },
+    {
+      "name": "bsr_code",
+      "type": "TextInput",
+      "title": "BSR code",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "mothers_first_name",
+      "type": "TextInput",
+      "title": "Mother first name",
+      "inputType": "text",
+      "placeholder": "Enter mother's name",
+      "dataType": "string"
+    },
   ]
+  
 }
+
+export const CorporateData = {
+  "elements": [
+    {
+      "name": "type",
+      "type": "dropdown",
+      "title": "Type",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "person" },
+        { "value": "america/toronto", "label": "corporate" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "account_name",
+      "type": "TextInput",
+      "title": "Account name",
+      "inputType": "text",
+      "placeholder": "Enter name",
+      "dataType": "string"
+    },
+    {
+      "name": "corporate",
+      "type": "TextInput",
+      "title": "corporation",
+      "inputType": "text",
+      // "placeholder": "Enter first ",
+      "dataType": "string"
+    },
+    {
+      "name": "birth_date",
+      "type": "dateInput",
+      "title": "Birth Date",
+      "inputType": "date",
+      "placeholder": "Select date"
+    },
+    {
+      "name": "email",
+      "type": "TextInput",
+      "title": "Email",
+      "inputType": "text",
+      "placeholder": "Enter email"
+    },
+    {
+      "name": "mobile",
+      "type": "TextInput",
+      "title": "Mobile",
+      "inputType": "numeric",
+      "placeholder": "Enter number",
+      "dataType": "number"
+    },
+    {
+      "name": "title",
+      "type": "TextInput",
+      "title": "Title",
+      "inputType": "text",
+      "placeholder": "Enter title"
+    },
+
+    {
+      "name": "crn",
+      "type": "TextInput",
+      "title": "CRN",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "external_code",
+      "type": "TextInput",
+      "title": "External Code",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "marital_status",
+      "type": "dropdown",
+      "title": "Marital Status",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "Married" },
+        { "value": "america/toronto", "label": "Divorced" },
+        { "value": "america/toronto", "label": "Separated" },
+        { "value": "america/toronto", "label": "Single" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "customer_category",
+      "type": "dropdown",
+      "title": "Customer Category",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "1" },
+        { "value": "america/toronto", "label": "2" },
+        { "value": "america/toronto", "label": "3" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "mothers_first_name",
+      "type": "TextInput",
+      "title": "Mother first name",
+      "inputType": "text",
+      "placeholder": "Enter mother's name",
+      "dataType": "string"
+    },
+    {
+      "name": "mothers_middle_name",
+      "type": "TextInput",
+      "title": "Mother middle name",
+      "inputType": "text",
+      "placeholder": "Enter mother's name",
+      "dataType": "string"
+    },
+    {
+      "name": "mothers_last_name",
+      "type": "TextInput",
+      "title": "Mother last name",
+      "inputType": "text",
+      "placeholder": "Enter mother's name",
+      "dataType": "string"
+    },
+    {
+      "name": "father_first_name",
+      "type": "TextInput",
+      "title": "Father first name",
+      "inputType": "text",
+      "placeholder": "Enter father's first name",
+      "dataType": "string"
+    },
+    {
+      "name": "father_middle_name",
+      "type": "TextInput",
+      "title": "Father middle name",
+      "inputType": "text",
+      "placeholder": "Enter father's middle name",
+      "dataType": "string"
+    },
+    {
+      "name": "father_last_name",
+      "type": "TextInput",
+      "title": "Father last name",
+      "inputType": "text",
+      "placeholder": "Enter father's last name",
+      "dataType": "string"
+    },
+    {
+      "name": "spouse_first_name",
+      "type": "TextInput",
+      "title": "Spouse first name",
+      "inputType": "text",
+      "placeholder": "Enter spouse first name",
+      "dataType": "string"
+    },
+    {
+      "name": "spouse_middle_name",
+      "type": "TextInput",
+      "title": "Spouse middle name",
+      "inputType": "text",
+      "placeholder": "Enter spouse middle name",
+      "dataType": "string"
+    },
+    {
+      "name": "spouse_last_name",
+      "type": "TextInput",
+      "title": "Spouse last name",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "suffix",
+      "type": "TextInput",
+      "title": "Spouse last name",
+      "inputType": "text",
+      "placeholder": "Enter spouse last name",
+      "dataType": "string"
+    },
+    {
+      "name": "other_phone",
+      "type": "TextInput",
+      "title": "Other phone",
+      "inputType": "text",
+      "placeholder": "Enter other phone number",
+      "dataType": "string"
+    },
+    {
+      "name": "email_verification_status",
+      "type": "TextInput",
+      "title": "Email verification status",
+      "inputType": "text",
+      "placeholder": "Enter email verification status",
+      "dataType": "string"
+    },
+    {
+      "name": "ckyc_number",
+      "type": "TextInput",
+      "title": "CKYC number",
+      "inputType": "text",
+      "placeholder": "Enter ckyc number",
+      "dataType": "string"
+    },
+    {
+      "name": "religion",
+      "type": "TextInput",
+      "title": "Religion",
+      "inputType": "text",
+      "placeholder": "Enter religion",
+      "dataType": "string"
+    },
+    {
+      "name": "minority_community",
+      "type": "dropdown",
+      "title": "Minority Community",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "Hindu" },
+        { "value": "america/toronto", "label": "muslim" },
+        { "value": "america/toronto", "label": "sikh" },
+        { "value": "america/toronto", "label": "cristian" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "category",
+      "type": "dropdown",
+      "title": "Category",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "Hindu" },
+        { "value": "america/toronto", "label": "muslim" },
+        { "value": "america/toronto", "label": "sikh" },
+        { "value": "america/toronto", "label": "cristian" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "country_of_birth",
+      "type": "TextInput",
+      "title": "Country of birth",
+      "inputType": "text",
+      "placeholder": "Enter birth place",
+      "dataType": "string"
+    },
+    {
+      "name": "account_owner",
+      "type": "TextInput",
+      "title": "Account owner",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "account_number",
+      "type": "TextInput",
+      "title": "Account number",
+      "inputType": "numeric",
+      "placeholder": "Enter a/c number",
+      "dataType": "number"
+    },
+    {
+      "name": "account_site",
+      "type": "TextInput",
+      "title": "Account site",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "account_source",
+      "type": "dropdown",
+      "title": "Account source",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "1" },
+        { "value": "america/toronto", "label": "2" },
+        { "value": "america/toronto", "label": "3" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "annual_revenue",
+      "type": "TextInput",
+      "title": "Annual revenue",
+      "inputType": "numeric",
+      "placeholder": "Enter revenue",
+      "dataType": "number"
+    },
+    {
+      "name": "assistant",
+      "type": "TextInput",
+      "title": "Assistant",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "asst_phone",
+      "type": "TextInput",
+      "title": "Asst phone",
+      "inputType": "numeric",
+      "dataType": "number"
+    },
+    {
+      "name": "billing_address",
+      "type": "dropdown",
+      "title": "Billing address",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "address 1" },
+        { "value": "america/toronto", "label": "address 2" },
+        { "value": "america/toronto", "label": "state" },
+        { "value": "america/toronto", "label": "pincode" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "chanel_program_level_name",
+      "type": "TextInput",
+      "title": "Chanel program level name",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "chanel_program_name",
+      "type": "TextInput",
+      "title": "Chanel program name",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "department",
+      "type": "TextInput",
+      "title": "Department",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "description",
+      "type": "TextInput",
+      "title": "Description",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "donot_call",
+      "type": "checkbox",
+      "title": "Do not Call",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "email_opt_out",
+      "type": "TextInput",
+      "title": "Email opt out",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "emloyees",
+      "type": "TextInput",
+      "title": "Employees",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "fax",
+      "type": "TextInput",
+      "title": "Fax",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "fax_opt_out",
+      "type": "TextInput",
+      "title": "Fax Opt Out",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "home_phone",
+      "type": "TextInput",
+      "title": "Home phone",
+      "inputType": "numeric",
+      "dataType": "number"
+    },
+    {
+      "name": "industry",
+      "type": "dropdown",
+      "title": "Salutation",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "one" },
+        { "value": "america/toronto", "label": "two" },
+        { "value": "america/toronto", "label": "three" },
+        { "value": "america/toronto", "label": "four" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "last_stay_in_touch_request_date",
+      "type": "dateInput",
+      "title": "Last Stay In Touch Request Date",
+      "inputType": "date",
+      "placeholder": "Select date"
+    },
+    {
+      "name": "lead_source",
+      "type": "dropdown",
+      "title": "Lead source",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "one" },
+        { "value": "america/toronto", "label": "two" },
+        { "value": "america/toronto", "label": "three" },
+        { "value": "america/toronto", "label": "four" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "mailing_address",
+      "type": "dropdown",
+      "title": "Mailing address",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "one" },
+        { "value": "america/toronto", "label": "two" },
+        { "value": "america/toronto", "label": "three" },
+        { "value": "america/toronto", "label": "four" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "other_address",
+      "type": "dropdown",
+      "title": "Other address",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "one" },
+        { "value": "america/toronto", "label": "two" },
+        { "value": "america/toronto", "label": "three" },
+        { "value": "america/toronto", "label": "four" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "ownership",
+      "type": "dropdown",
+      "title": "Ownership",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "one" },
+        { "value": "america/toronto", "label": "two" },
+        { "value": "america/toronto", "label": "three" },
+        { "value": "america/toronto", "label": "four" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "salutation",
+      "type": "dropdown",
+      "title": "Salutation",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "Mr." },
+        { "value": "america/toronto", "label": "Ms." },
+        { "value": "america/toronto", "label": "Dr." },
+        { "value": "america/toronto", "label": "Prof" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "gender",
+      "type": "dropdown",
+      "title": "Gender",
+      "inputType": "text",
+      "placeholder": "---none---",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "Male" },
+        { "value": "america/toronto", "label": "Female" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "owner",
+      "type": "dropdown",
+      "title": "Owner",
+      "inputType": "text",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "Acer one" },
+        { "value": "america/toronto", "label": "Adam Haro" },
+        { "value": "america/toronto", "label": "Adobe user-A" },
+        { "value": "america/toronto", "label": "Adobe user-B" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "owner_type",
+      "type": "dropdown",
+      "title": "Owner Type",
+      "inputType": "text",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "User" },
+        { "value": "america/toronto", "label": "Team" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "description",
+      "type": "multilineInput",
+      "title": "Description",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    // {
+    //   "name": "anniversary",
+    //   "type": "dateInput",
+    //   "title": "Anniversary",
+    //   "inputType": "date",
+    //   "placeholder": "Select date"
+    // },
+    {
+      "name": "assistant_name",
+      "type": "TextInput",
+      "title": "Assistant name",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "account_source",
+      "type": "dropdown",
+      "title": "Account source",
+      "inputType": "text",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "Advertisement" },
+        { "value": "america/toronto", "label": "Partner" },
+        { "value": "america/toronto", "label": "Web" },
+        { "value": "america/toronto", "label": "Campaing" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "parent_account",
+      "type": "dropdown",
+      "title": "Parent account",
+      "inputType": "text",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "p1" },
+        { "value": "america/toronto", "label": "p2" },
+        { "value": "america/toronto", "label": "p3" },
+        { "value": "america/toronto", "label": "p4" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "is_partner",
+      "type": "checkbox",
+      "title": "Is Partner",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "phone",
+      "type": "TextInput",
+      "title": "Phone",
+      "inputType": "numeric",
+      "dataType": "number"
+    },
+    {
+      "name": "rating",
+      "type": "dropdown",
+      "title": "Rating",
+      "inputType": "text",
+      "dropdownData": [
+        { "value": "Asia/taipei", "label": "1" },
+        { "value": "america/toronto", "label": "2" },
+        { "value": "america/toronto", "label": "3" },
+        { "value": "america/toronto", "label": "p4" }
+      ],
+      "dataType": "string"
+    },
+    {
+      "name": "shipping_address",
+      "type": "multilineInput",
+      "title": "Shipping address",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "sic_code",
+      "type": "TextInput",
+      "title": "SIC Code",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "sic_description",
+      "type": "TextInput",
+      "title": "SIC description",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "ticker_symbol",
+      "type": "TextInput",
+      "title": "Ticker Symbol",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "web_sites",
+      "type": "TextInput",
+      "title": "Web Site",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "affidavit_charges",
+      "type": "TextInput",
+      "title": "Affidavit charges",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "age",
+      "type": "TextInput",
+      "title": "Age",
+      "inputType": "numeric",
+      "dataType": "number"
+    },
+    {
+      "name": "connector_id",
+      "type": "TextInput",
+      "title": "Connector",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "message",
+      "type": "multilineInput",
+      "title": "Message",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "processing_fees",
+      "type": "TextInput",
+      "title": "Processing Fees",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "stamp_duty",
+      "type": "TextInput",
+      "title": "Stamp duty",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "stamp_code",
+      "type": "TextInput",
+      "title": "State Code",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "contact_verified",
+      "type": "checkbox",
+      "title": "Contact Verified",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "ekyc_otp",
+      "type": "checkbox",
+      "title": "EKYC otp",
+      "inputType": "text",
+      "dataType": "string"
+    },
+    {
+      "name": "date_inspection",
+      "type": "dateInput",
+      "title": "Date of inspection",
+      "inputType": "date",
+      "placeholder": "Select date",
+      
+    },
+    {
+      "name": "bsr_code",
+      "type": "TextInput",
+      "title": "BSR code",
+      "inputType": "text",
+      "dataType": "string"
+    },
+  ]
+  
+}
+
+
+
 
 
 

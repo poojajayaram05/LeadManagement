@@ -10,9 +10,6 @@ import Dashboard from './DrawerScreens/dashboard';
 import LeadList from './DrawerScreens/leadList';
 import LoginScreen from './authScreens/login';
 
-
-
-
 export default function Root() {
   const goToRegisterPage=()=>{
     router.replace('/authScreens/register');
@@ -23,35 +20,15 @@ export default function Root() {
   }
   return(
     <AuthProvider>
-    
-  
-        
-       
-
       <View style={styles.container}>
 <LoginScreen/>
-   {/* <Dashboard/> */}
-   {/* <LeadList/> */}
-      
-         
-         {/* <Text>Welcome to Lead Management!</Text>
-         <Button title="Register" onPress={goToRegisterPage}></Button>
-         <Text>   </Text>
-         <Button title='Login' onPress={gotoLoginPage}>Login</Button> */}
-   
        </View>
     </AuthProvider>
-    
-   
-    
-
   ) 
 }
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      
-     
     },
   });
 

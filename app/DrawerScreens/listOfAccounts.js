@@ -7,13 +7,10 @@ import { TouchableOpacity } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import {
-  SafeAreaView,
   View,
   FlatList,
   StyleSheet,
   Text,
-  StatusBar,
-  Button,
 } from "react-native";
 
 export const listOfAccounts = [
@@ -166,7 +163,6 @@ const ListOfAccount = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
     backgroundColor: "#f2f2f2",
   },
   filterIcon: {
