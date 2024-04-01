@@ -1,8 +1,15 @@
 import { View, Text, TextInput, StyleSheet } from "react-native";
 
-export const CustomInput = ({ title, placeholder, onChange, value, errors, readOnly,inputType }) => (
+
+export const CustomInput = ({ title, placeholder, onChange, value, errors, readOnly,inputType, isRequired }) => {
+  //const starMark = element.isRequired ? <Text style={{ color: 'red' }}> *</Text> : null;
+
+  return(
+  
   <View style={styles.container}>
-    <Text style={styles.label}>{title}</Text>
+   <Text style={styles.label}>{title}{isRequired && <Text style={{ color: 'red' }}>*</Text>}</Text>
+    
+
     
     <TextInput
       style={styles.input}
@@ -16,7 +23,8 @@ export const CustomInput = ({ title, placeholder, onChange, value, errors, readO
     />
     {/* {errors && <Text style={styles.error}>{errors}</Text>} */}
   </View>
-);
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
