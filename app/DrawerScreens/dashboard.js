@@ -5,7 +5,7 @@ import SmallCard from '../../dashboardComponents/smallCard';
 import Scrollcard from '../../dashboardComponents/scrollCard';
 import Bigcard from '../../dashboardComponents/bigCard';
 import ChartLine from '../../dashboardComponents/lineChart';
-import TabMenu from '../tabsMenu';
+
  
 const total_leads = 0;
 const total_calls = 1;
@@ -97,9 +97,6 @@ const Dashboard = () => {
         )}
       </ScrollView>
 
-      {/* <View> 
-        <TabMenu/>
-        </View> */}
      
  
     </View>

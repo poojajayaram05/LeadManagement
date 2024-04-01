@@ -66,11 +66,6 @@ const onSelectRadio = (item) => {
     console.log('Selected value:', item.id);
 }
 
-const goBack=()=>{
-    router.back()
-    
-}
-
 
 
   const validateForm = () => {
@@ -94,6 +89,10 @@ const goBack=()=>{
     return errors;
   };
 
+
+  const goBack=()=>{
+    router.back();
+  }
 
     const onSubmit = async () => {
       const errors = validateForm();
@@ -189,10 +188,10 @@ const goBack=()=>{
             case 'TextInput':
                 return (
                   <View>
-                      <Text style={styles.label}>{element.title}{starMark} </Text>
+                      {/* <Text style={styles.label}>{element.title}{starMark} </Text> */}
                     <CustomInput
                         key={element.name}
-                        // title={element.title}
+                        title={element.title}
                         placeholder={element.placeholder}
                         // control={control}
                         isRequired={element.isRequired}
@@ -308,12 +307,10 @@ const goBack=()=>{
     return (
       
         <View style={styles.cardContainer}>
-             <CustomHeader
-      title="Create Lead"
-      onSearchPress={() => { /* Handle search press */ }}
-      onNotificationPress={() => { /* Handle notification press */ }}
-    />
-        <ScrollView>
+          <View>
+            <CustomHeader title={"Create Lead"} onPress={goBack}/>
+          </View>
+                     <ScrollView>
           <View style={styles.card}>
             <View style={styles.section}>
               {Object.keys(isCollapsed).map((sectionName, index) => (
@@ -336,9 +333,7 @@ const goBack=()=>{
             <Button title="Submit" onPress={onSubmit} color="#023B5E" />
       
             <View style={styles.buttonContainer}>
-              <TouchableOpacity onPress={goBack}>
-                <ArrowBack />
-              </TouchableOpacity>
+             
             </View>
           </View>
         </ScrollView>
@@ -350,14 +345,14 @@ const goBack=()=>{
 const styles = StyleSheet.create({
     cardContainer: {
         flex: 1,
-        paddingHorizontal: 20,
-        paddingTop: 20,
+        paddingHorizontal: 5,
+        paddingTop: 2,
         paddingBottom:15,
         backgroundColor: '#d1e0ed'
     },
     card: {
         backgroundColor: '#FFFFFF', // White card background
-        borderRadius: 10,
+        borderRadius: 2,
         padding: 20,
         shadowColor: '#000000',
         shadowOpacity: 0.2,
@@ -417,11 +412,12 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         backgroundColor:'white',
         paddingVertical: 10,
-        paddingHorizontal: 15,
+        paddingHorizontal: 11,
         fontSize: 16,
     },
     error: {
         color: 'red',
+        marginBottom:3,
         fontSize: 12,
     },
     switch:{

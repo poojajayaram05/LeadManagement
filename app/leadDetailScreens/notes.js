@@ -201,6 +201,125 @@
 //   },
 // });
 
+// import React from 'react';
+// import { View, Text, FlatList, StyleSheet, ScrollView } from 'react-native';
+// import { Ionicons } from '@expo/vector-icons';
+// import { FontAwesome } from '@expo/vector-icons';
+// import FloatingButton from '../../customComponents/floatingButton';
+// import LeadDet from '../../leadComponents/leadDetHeader';
+// import { router } from 'expo-router';
+// import LeadDetailCard from '../../customComponents/leadDetailCard';
+ 
+ 
+// export default function Notes() {
+//   const data = [
+//     {
+//       "name": "Notes 1",
+//       "description": "Meeting with client to discuss project requirements",
+//       "created_at": "2024-03-22T10:30:00",
+//       "created_by": "John Doe"
+//     },
+//     {
+//       "name": "Notes 2",
+//       "description": "Prepare presentation slides for the sales pitch",
+//       "created_at": "2024-03-23T14:00:00",
+//       "created_by": "Jane Smith"
+//     },
+//     {
+//       "name": "Notes 3",
+//       "description": "Review and finalize the budget proposal",
+//       "created_at": "2024-03-24T09:00:00",
+//       "created_by": "Alex Johnson"
+//     }
+//   ];
+//   const goToCreateNotes = () => {
+//     router.navigate('/formComponents/createNotes')
+//   }
+ 
+//   const renderItem = ({ item }) => {
+//     const {  description } = item;
+//     const noteData = {  description };
+//     return(
+//     <View>
+//       <View style={styles.title} >
+//         <Text style={styles.titletext}>{item.name}</Text>
+//         {/* <Text>{item.description}</Text> */}
+//       </View>
+//        <LeadDetailCard obj={noteData} name="book" />
+   
+//       <View style={styles.divider} />
+//     </View>
+//     )
+// }
+//   return (
+//     <View style={styles.container}>
+//           <View style={{ height:'30%' }}>
+//            <LeadDet/>
+//       </View>
+//       <FlatList
+//         data={data}
+//         renderItem={renderItem}
+//         keyExtractor={(item, index) => index.toString()}
+//       />
+//        <FloatingButton onPress={goToCreateNotes} />
+//     </View>
+//   );
+// }
+ 
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: 'white',
+//   },
+//   title:{
+//     alignItems: 'center',
+//     padding: 10,
+//     marginHorizontal: 20,
+//     flexDirection:'row',
+//     maxWidth: '90%',
+//     padding: 5,
+//     borderRadius: 10,
+//      backgroundColor:'#023B5E',
+//   },
+//   titletext:{
+//     fontWeight:'bold',
+//     color:'white'
+//    },
+//   boldText: {
+//     fontWeight: 'bold',
+//   },
+//   card: {
+//     flexDirection: 'row',
+//     alignItems: 'center',
+//     padding: 10,
+//     marginHorizontal: 20,
+//   },
+//   text: {
+//     fontSize: 14,
+//     marginBottom: 5,
+//   },
+//   iconContainer: {
+//     marginRight: 10,
+//     // borderRadius: 20,
+//     // backgroundColor: 'lightgray',
+//     // padding: 5,
+//   },
+//   textContainer: {
+//     flex: 1,
+//   },
+//   divider: {
+//     // height: 1,
+//     // backgroundColor: 'black',
+//     // marginHorizontal: 20,
+//     // marginBottom:10,
+//   },
+//   floatingButton: {
+//     position: 'absolute',
+//     bottom: 20,
+//     right: 20,
+//   },
+// });
+
 import React from 'react';
 import { View, Text, FlatList, StyleSheet, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -215,25 +334,25 @@ export default function Notes() {
   const data = [
     {
       "name": "Notes 1",
-      "description": "Meeting with client to discuss project requirements",
+      "description": "Meeting with client",
       "created_at": "2024-03-22T10:30:00",
       "created_by": "John Doe"
     },
     {
       "name": "Notes 2",
-      "description": "Prepare presentation slides for the sales pitch",
+      "description": "Prepare presentation slides",
       "created_at": "2024-03-23T14:00:00",
       "created_by": "Jane Smith"
     },
     {
       "name": "Notes 3",
-      "description": "Review and finalize the budget proposal",
+      "description": "Finalize the budget proposal",
       "created_at": "2024-03-24T09:00:00",
       "created_by": "Alex Johnson"
     }
   ];
   const goToCreateNotes = () => {
-    router.navigate('/formComponents/createNotes')
+    router.navigate('/DrawerScreens/createNotes')
   }
  
   const renderItem = ({ item }) => {
@@ -245,15 +364,14 @@ export default function Notes() {
         <Text style={styles.titletext}>{item.name}</Text>
         {/* <Text>{item.description}</Text> */}
       </View>
-       <LeadDetailCard obj={noteData} name="book" />
-   
+       <LeadDetailCard obj={noteData} />
       <View style={styles.divider} />
     </View>
     )
 }
   return (
     <View style={styles.container}>
-          <View style={{ height:'30%' }}>
+          <View style={{ height:'26%' }}>
            <LeadDet/>
       </View>
       <FlatList
@@ -279,39 +397,26 @@ const styles = StyleSheet.create({
     maxWidth: '90%',
     padding: 5,
     borderRadius: 10,
-     backgroundColor:'#023B5E',
+    //  backgroundColor:'yellow',
   },
   titletext:{
     fontWeight:'bold',
-    color:'white'
+    color:'#023B5E',
    },
-  boldText: {
-    fontWeight: 'bold',
-  },
   card: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 10,
-    marginHorizontal: 20,
   },
   text: {
     fontSize: 14,
     marginBottom: 5,
   },
-  iconContainer: {
-    marginRight: 10,
-    // borderRadius: 20,
-    // backgroundColor: 'lightgray',
-    // padding: 5,
-  },
-  textContainer: {
-    flex: 1,
-  },
   divider: {
-    // height: 1,
-    // backgroundColor: 'black',
-    // marginHorizontal: 20,
-    // marginBottom:10,
+    height: 1,
+    backgroundColor: 'black',
+    marginHorizontal: 20,
+    marginBottom:10,
   },
   floatingButton: {
     position: 'absolute',

@@ -236,12 +236,13 @@ authData.append('password', password);
           </View>
         </View>
       </ImageBackground>
- 
+      <View style={styles.logo}>
       <Image
         source={{ uri: "https://i.postimg.cc/FskjFB0Y/rpt.jpg" }} // Replace with your bottom image URL
         style={styles.bottomImage}
        
       />
+      </View>
     </>
   );
 };
@@ -252,6 +253,11 @@ const styles = StyleSheet.create({
     resizeMode: "contian",
     width: "100%",
     height: "50%",
+  },
+  logo:{
+    position:'relative',
+    top:20
+
   },
   container: {
     flex: 1,

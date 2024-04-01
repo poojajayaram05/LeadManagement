@@ -12,6 +12,7 @@ import useIdStore from '../app/leadStore';
 import { set } from 'zod';
 import { Ionicons } from '@expo/vector-icons';
 import { avatarPic } from '../assets/images';
+import { femaleAvatar } from '../assets/images';
 import Colors from '@/constants/Colors';
 
  
@@ -21,6 +22,7 @@ const LeadItem = ({ FirstName, LastName, Email, Phone, onViewPress, status,quali
     const[selectedStar, setSelectedStar]=useState(false);
     const { leadId, setLeadId } = useIdStore();
     const [showDropdown, setShowDropdown] = useState(false);
+    console.log("gendersssssss", gender);
  
     const goToEditLead = () => {
         setLeadId(Id);
@@ -75,10 +77,18 @@ return (
       <View style={{ flex: 1 }}>
           <View style={styles.item}>
               <View style={styles.avatarContainer}>
-                  <Image
-                      source={avatarPic}
-                      style={{ width: 40, height: 40, borderRadius: 20, marginBottom: 10 }}
-                  />
+              
+                     {gender == 'female' ? (
+                            <Image
+                                source={femaleAvatar}
+                                style={{ width: 40, height: 40, borderRadius: 20, marginBottom: 10 }}
+                            />
+                        ) : (
+                            <Image
+                                source={avatarPic}
+                                style={{ width: 40, height: 40, borderRadius: 20, marginBottom: 10 }}
+                            />
+                        )}
               </View>
               <View style={styles.textContainer}>
                   <Text style={styles.title}>{`${FirstName} ${LastName}`}</Text>
@@ -106,9 +116,9 @@ return (
             {/* <TouchableOpacity onPress={() => {displayScreen(); closeDropdown();}}>
                 <Text style={styles.dropdownMenuItem}>View</Text>
             </TouchableOpacity> */}
-            <TouchableOpacity onPress={handleChangeStatus}>
+            {/* <TouchableOpacity onPress={handleChangeStatus}>
                 <Text style={styles.dropdownMenuItem}>Change Status</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity onPress={() => handleConvertLead()}>
                 <Text style={styles.dropdownMenuItem}>Convert Lead</Text>
             </TouchableOpacity>

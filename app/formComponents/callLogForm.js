@@ -17,6 +17,7 @@ import { leadData } from '../../customComponents/formData';
 import LDropdown from '../../customComponents/customLeadDropdown';
 import { router } from 'expo-router';
 import ArrowBack from '../../customComponents/arrowBack';
+import LeadDet from '../../leadComponents/leadDetHeader';
 import { callLogFormData } from '../../customComponents/formData';
 
 export default function CreateCallLog() {
@@ -77,7 +78,7 @@ const onSubmit = async () => {
 
 const renderFormElement = (element) => {
   const handleSelect = (item) => {
-    setSelectedValue(item);
+    
     setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: item.value }));
     console.log('Selected value:', item);
 };
@@ -261,6 +262,9 @@ const renderFormElement = (element) => {
 }
   return (
     <View style={styles.cardContainer}>
+      <View style={styles.header}>
+        <LeadDet/>
+      </View>
     <ScrollView>
       <GestureHandlerRootView>
         <View style={styles.card}>
@@ -287,9 +291,9 @@ const renderFormElement = (element) => {
 
             <Button title="Submit" onPress={onSubmit} color='#023B5E' />
              <View style={styles.buttonContainer}>
-      <TouchableOpacity onPress={goBack}>
+      {/* <TouchableOpacity onPress={goBack}>
         <ArrowBack />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
         </View>
         
@@ -339,6 +343,15 @@ sectionTitle: {
 inputContainer: {
     marginBottom:8
 
+},
+header: {
+    
+  height:210,
+  width:330,
+  //paddingHorizontal: 5,
+  paddingTop: 5,
+  paddingBottom: 5,
+  backgroundColor: '#d1e0ed',
 },
 buttonContainer:{
   flex: 1,

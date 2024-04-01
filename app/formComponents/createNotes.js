@@ -326,6 +326,7 @@ import ArrowBack from '../../customComponents/arrowBack';
 import LDropdown from '../../customComponents/customLeadDropdown';
 import { leadData } from '../../customComponents/formData';
 import { meetingItemsData } from '../../customComponents/formData';
+import LeadDet from '../../leadComponents/leadDetHeader';
 
 export default function CreateLeadNote({ navigation }) {
   const [selectedAccount, setSelectedAccount] = useState('');
@@ -419,18 +420,13 @@ export default function CreateLeadNote({ navigation }) {
 
   return (
     <View style={styles.cardContainer}>
+        <View style={styles.header}>
+      <LeadDet/>
+      </View>
       <ScrollView>
         <View style={styles.card}>
           <View style={styles.section}>
-            <View style={styles.inputContainer}>
-              <Text style={styles.label}>Entity</Text>
-              <Dropdown
-                label="Select"
-                data={leadNoteData.elements[0].dropdownData}
-                value={selectedAccount}
-                onSelect={handleSelectAccount}
-              />
-            </View>
+         
             {renderAdditionalFields()}
             <View style={styles.inputContainer}>
               <Text style={styles.label}>Lead Notes</Text>
@@ -459,6 +455,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 20,
     paddingBottom: 15,
+    backgroundColor: '#d1e0ed',
+  },
+  header: {
+    
+    height:210,
+    width:330,
+    //paddingHorizontal: 5,
+    paddingTop: 5,
+    paddingBottom: 5,
     backgroundColor: '#d1e0ed',
   },
   backButton: {

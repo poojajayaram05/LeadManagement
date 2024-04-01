@@ -5,7 +5,7 @@ export const FetchLeads = async () => {
     const stoken = JSON.parse(token);
     const apiToken = stoken.accessToken;
     console.log(apiToken);  
-    const getLeadURL="https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_c?sysparm_fields=first_name,last_name,mobile_phone,email,qualification,lead_status,number" ;
+    const getLeadURL="https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_c?sysparm_fields=first_name,last_name,mobile_phone,email,qualification,lead_status,number,gender" ;
     try {
         const response = await fetch(getLeadURL, {
             method: 'GET',

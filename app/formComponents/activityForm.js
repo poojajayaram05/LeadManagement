@@ -514,18 +514,18 @@ const handleDateChange = (selectedDate, element) => {
                     label="Select Activity"
                     data={[
                         { value: 'task', label: 'Task' },
-                        { value: 'meeting', label: 'Meeting' },
                         { value: 'call', label: 'Call' },
                         { value: 'appointment', label: 'Appointment' },
                         { value: 'email', label: 'Email' },
                         { value: 'follow_up', label: 'Follow Up' },
+                        { value: 'meeting', label: 'Meeting' },
                         // Add other activity types if needed
                     ]}
                     onSelect={handleActivitySelect}
                 />
                 </View>
                 {renderForm()}
-                <Button title="Submit" onPress={onSubmit} color='#023B5E' />
+                {selectedActivity && <Button title="Submit" onPress={onSubmit} color='#023B5E' />}
             </View>
               
            

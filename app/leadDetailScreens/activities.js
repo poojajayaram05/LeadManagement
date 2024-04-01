@@ -180,7 +180,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import FloatingButton from '../../customComponents/floatingButton';
 import { Ionicons } from '@expo/vector-icons';
 import LeadDet from '../../leadComponents/leadDetHeader';
@@ -198,14 +198,18 @@ export default function Meeting() {
   const [activityData, setActivityData] = useState([]);
   const [activityItems, setActivityItems] = useState([]);
   const leadId = useIdStore((state) => state.number);
+  const[isLoading, setIsLoading]=useState(true)
+  const [expandedItems, setExpandedItems] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const ldata = await FetchActivities();
         setActivityData(ldata.result);
+        setIsLoading(false);
       } catch (error) {
         console.error('Error in fetching leads:', error);
+        setIsLoading(false);
       }
     };
 
@@ -222,63 +226,102 @@ export default function Meeting() {
   const goToCreateMeetingForm =()=>{
     router.navigate('/formComponents/activityForm')
   }
+
+  const renderStartTime = (startTime) => {
+    const date = new Date(startTime);
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const time = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
+    return time;
+  };
  
   const renderItem = ({ item }) => {
     // Extracting only the required properties
     const { activity_type, email, start_time, due_date, date, time, status } = item;
     const simplifiedItem = { activity_type, email, start_time, due_date, date, time };
+    const timee = renderStartTime(start_time);
   
     let renderedContent;
     let activitySpecificData;
   
     switch (activity_type) {
       case 'meeting':
-        activitySpecificData = { meeting_link: item.meeting_link, location: item.location, from_date: item.from_date, to_date: item.to_date };
+        activitySpecificData = { 'Meeing Link': item.meeting_link, Location: item.location, 'From Date': item.from_date, 'To Date': item.to_date };
         break;
       case 'task':
-        activitySpecificData = { status: item.status, time:item.time, description: item.description, status:item.status, };
+        activitySpecificData = { 'Status': item.status,"Due Date":item.due_date, Time:item.time, Description: item.description };
         break;
       case 'call':
-        activitySpecificData = { description: item.description, phone_number: item.number,date:item.date, time:item.time };
+        activitySpecificData = { Description: item.description, 'Phone Number': item.number,Date:item.date, Time:item.time };
         break;
         case 'email':
-        activitySpecificData = { email: item.email, description: item.description,subject:item.subject, date:item.date, time:item.start_time };
+        activitySpecificData = { Email: item.email, Description: item.description,Subject:item.subject, Date:item.date, Time:timee };
         break;
         case 'appointment':
-          activitySpecificData = { date: item.date, Notes: item.appointment_notes,startTime:item.start_time, location:item.location };
+          activitySpecificData = { Date: item.date, Notes: item.appointment_notes,'Start Time':timee, Location:item.location };
           break;
+          case 'follow_up':
+            activitySpecificData = { Date: item.date, Notes: item.follow_up_notes,'Start Time':timee };
+            break;
       // Add cases for other activity types as needed
       default:
         activitySpecificData = {};
     }
+
+    const toggleAccordion = (activityType) => {
+      setExpandedItems((prevExpandedItems) => ({
+        ...prevExpandedItems,
+        [activityType]: !prevExpandedItems[activityType],
+      }));
+    };
+
+
+    const isExpanded = expandedItems[activity_type];
+   
   
     renderedContent = (
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => toggleAccordion(activity_type)}>
+      <View style={styles.title}>
+        <Text style={styles.titletext}>{item.activity_type}</Text>
+        <Ionicons name={isExpanded ? 'caret-up' : 'caret-down'} size={24} color="black" style={{ marginLeft: 5, marginTop: 12 }} />
+      </View>
+      {isExpanded && (
         <View>
-          {/* Render additional activity-specific content */}
+           {/* <LeadActivityCard obj={activitySpecificData} /> */}
+          <LeadDetailCard obj={activitySpecificData} />
+          <View style={styles.divider} />
         </View>
-        <View style={styles.title}>
-          <Text style={styles.titletext}>{item.activity_type}</Text>
-        </View>
-        <LeadDetailCard obj={activitySpecificData } name="calendar" />
-        <View style={styles.divider} />
-      </TouchableOpacity>
+      )}
+    </TouchableOpacity>
     );
   
     return renderedContent;
   };
   
+  if (isLoading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#023B5E" />
+      </View>
+    );
+  }
  
   return (
     <View style={styles.container}>
         <View style={{ height:'26%' }}>
            <LeadDet/>
         </View>
-      <FlatList
-        data={activityItems}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
+        {activityItems.length === 0 ? (
+        <Text style={styles.noActivitiesText}>No activities available</Text>
+      ) : (
+        <FlatList
+          data={activityItems}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+        />
+      )}
+
+    
       <FloatingButton onPress={goToCreateMeetingForm} />
     </View>
   );
@@ -332,6 +375,17 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginBottom:10,
   },
-  floatingButtonContainer: {
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff', // Adjust background color as needed
+  },
+  noActivitiesText: {
+    textAlign: 'center',
+    marginTop: 20,
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'gray',
   },
 });

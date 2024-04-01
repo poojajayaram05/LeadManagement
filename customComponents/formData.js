@@ -120,25 +120,31 @@ export const formData = {
         "inputType": "text",
         "placeholder": "State",
         "sectionName":"Address",
+        "dropdownData" :[
+          { value: '', label: '' },
+         ],
         "isRequired":true
        
       }, 
       {
         "name":"zip_postalcode",
         "type": "TextInput",
-        "title": "Zip",
+        "title": "Postal Code",
         "inputType": "text",
-        "placeholder": "Zip",
+        "placeholder": "Postal Code",
         "sectionName":"Address"
        
       }, 
       {
         "name":"country",
-        "type": "TextInput",
+        "type": "dropdown",
         "title": "Country",
         "inputType": "text",
         "placeholder": "Country",
         "sectionName":"Address",
+        "dropdownData" :[
+          { value: 'india', label: 'India' },
+         ],
         "isRequired":true
        
       }, 
@@ -253,7 +259,7 @@ export const formData = {
       {
         "name": "home_phone",
         "type": "TextInput",
-        "title": "Home Phone",
+        "title": "Alternate Phone",
         "validation": {
           "regex": /^\d{10}$/,
           "message": "Please enter a valid 10-digit phone number."
@@ -448,6 +454,7 @@ export const formData = {
         "inputType": "text",
         "placeholder":"Owner",
         "sectionName":"Additional"
+      
 
       },
       {
@@ -495,18 +502,18 @@ export const formData = {
         "readonly":true,
         "sectionName":"Additional"
       },
-      {
-        "name": "assignment_group",
-        "type": "dropdown",
-        "title": "Assignment group",
-        "inputType": "text",
-        "placeholder":"Assigned Group",
-        "dropdownData": [
-          { "value": 1, "label": "" },
+      // {
+      //   "name": "assignment_group",
+      //   "type": "dropdown",
+      //   "title": "Assignment group",
+      //   "inputType": "text",
+      //   "placeholder":"Assigned Group",
+      //   "dropdownData": [
+      //     { "value": 1, "label": "" },
 
-        ],
-        "sectionName":"Additional"
-      },
+      //   ],
+      //   "sectionName":"Additional"
+      // },
   ],
   };
 
@@ -1176,16 +1183,7 @@ export const meetingData = {
 
 export const requirementFormData={
   "elements":[  
-  {
-    "name": "lead",
-    "type": "TextInput",
-    "title": "Lead",
-    "inputType": "text",
-    "value":"John Smith",
-    "dropdownData": leadData,
-    "readOnly":true,
-    
-  },
+
   {
     "name": "requirement",
     "type": "multiLineText",

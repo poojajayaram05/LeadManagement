@@ -7,6 +7,7 @@ import { TouchableOpacity } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import {FetchLeads} from '../service/fetchLeads';
+import { ActivityIndicator } from 'react-native';
 import {
   SafeAreaView,
   View,
@@ -30,6 +31,7 @@ const LeadList = () => {
   const [index, setIndex] = useState(0);
   const [starredLeads, setStarredLeads] = useState([]);
   const[leadData, setleadData]=useState([]);
+  const [isLoading, setIsLoading] = useState(true);
  
 
   useEffect(() => {
@@ -69,10 +71,12 @@ const LeadList = () => {
             setleadData(ldata.result); // Set the state with the fetched data
             console.log("this is the lead data",ldata.result);
             setleadData(ldata.result);
-            console.log(leadData) // Log the fetched data
+            console.log(leadData)
+            setIsLoading(false); // Log the fetched data
         } catch (error) {
             // Handle errors if any
             console.error('Error in fetching leads:', error);
+            setIsLoading(false);
         }
     };
 
@@ -80,6 +84,13 @@ const LeadList = () => {
 }, []); // Empty dependency array means it will run only once on mount
 
 
+if (isLoading) {
+  return (
+    <View style={styles.loadingContainer}>
+      <ActivityIndicator size="large" color="#023B5E" />
+    </View>
+  );
+}
 
  
 
@@ -95,7 +106,7 @@ const LeadList = () => {
       status={item.lead_status}
       number={item.number}
       qualification={item.qualification}
-      Gender={item.gender}
+      gender={item.gender}
      
      
     />
@@ -167,6 +178,12 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 30,
     elevation: 4,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff', // Adjust background color as needed
   },
 header: {
   backgroundColor: '#023B5E',

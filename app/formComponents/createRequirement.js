@@ -15,6 +15,7 @@ import ArrowBack from '../../customComponents/arrowBack';
 import MultilineTextInput from '../../customComponents/customMultilineInput';
 import { requirementFormData } from '../../customComponents/formData';
 import LDropdown from '../../customComponents/customLeadDropdown';
+import LeadDet from '../../leadComponents/leadDetHeader';
 
 // Form component
 export default function CreateRequirement() {
@@ -147,6 +148,9 @@ const goBack=()=>{
     return (
         
         <View style={styles.cardContainer}>
+             <View style={styles.header}>
+      <LeadDet/>
+      </View>
         <ScrollView>
             <View style={styles.card}>
               
@@ -175,9 +179,9 @@ const goBack=()=>{
                 <Button title="Submit" onPress={onSubmit} color='#023B5E' />
              
                 <View style={styles.buttonContainer}>
-      <TouchableOpacity onPress={goBack}>
+      {/* <TouchableOpacity onPress={goBack}>
         <ArrowBack />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
                 
                
@@ -235,6 +239,13 @@ const styles = StyleSheet.create({
         marginBottom:8
 
     },
+    header: {
+        height:210,
+        paddingHorizontal: 5,
+        paddingTop: 5,
+        paddingBottom: 5,
+        backgroundColor: '#d1e0ed',
+      },
     backButton: {
         alignSelf: 'flex-end', // Align button to the start (left)
         marginRight: 'auto',

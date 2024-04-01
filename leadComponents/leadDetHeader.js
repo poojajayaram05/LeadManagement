@@ -216,15 +216,15 @@ const LeadDet = () => {
 
   const leadId = useIdStore((state) => state.number);
   const lead = leadData.find((lead) => lead.number === leadId);
-  const { first_name, last_name, email, qualification, lead_status, number, gender} = lead || {};
+  const { first_name, last_name, email, qualification, lead_status, number, gender, mobile_phone} = lead || {};
  
   const handleBack = () => {
     router.navigate('/DrawerScreens/leadList');
   };
  
   const handleCall = () => {
-    const phoneNumber = Phone;
-    Linking.openURL(`tel:${phoneNumber}`);
+    
+    Linking.openURL(`tel:${mobile_phone}`);
   };
  
   const handleDirections = () => {
@@ -236,8 +236,8 @@ const LeadDet = () => {
  
  
 const handleEmail = () => {
-  const emailid = email;
-  Linking.openURL(`mailto:${emailid}`);
+  
+  Linking.openURL(`mailto:${email}`);
 };
  
   return (
