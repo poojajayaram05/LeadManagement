@@ -197,36 +197,35 @@ import { FetchActivities } from '../service/fetchActivities';
 export default function Meeting() {
   const [activityData, setActivityData] = useState([]);
   const [activityItems, setActivityItems] = useState([]);
-  const leadId = useIdStore((state) => state.number);
-  const[isLoading, setIsLoading]=useState(true)
   const [expandedItems, setExpandedItems] = useState({});
-
+ 
+  const leadId = useIdStore((state) => state.number);
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const ldata = await FetchActivities();
         setActivityData(ldata.result);
-        setIsLoading(false);
       } catch (error) {
         console.error('Error in fetching leads:', error);
-        setIsLoading(false);
       }
     };
-
+ 
     fetchData();
   }, []);
-
+ 
   useEffect(() => {
-    console.log("leadiddd", leadId);
     const activities = activityData.filter((lead) => lead.associated_lead === leadId);
     setActivityItems(activities);
-    console.log("this is activvity, ", activityItems);
   }, [activityData, leadId]);
-  
-  const goToCreateMeetingForm =()=>{
-    router.navigate('/formComponents/activityForm')
-  }
-
+ 
+  const toggleAccordion = (activityType) => {
+    setExpandedItems((prevExpandedItems) => ({
+      ...prevExpandedItems,
+      [activityType]: !prevExpandedItems[activityType],
+    }));
+  };
+ 
   const renderStartTime = (startTime) => {
     const date = new Date(startTime);
     const hours = date.getHours();
@@ -236,14 +235,32 @@ export default function Meeting() {
   };
  
   const renderItem = ({ item }) => {
-    // Extracting only the required properties
     const { activity_type, email, start_time, due_date, date, time, status } = item;
     const simplifiedItem = { activity_type, email, start_time, due_date, date, time };
     const timee = renderStartTime(start_time);
-  
+ 
     let renderedContent;
     let activitySpecificData;
-  
+ 
+    // switch (activity_type) {
+    //         case 'meeting':
+    //           activitySpecificData = { meeting_link: item.meeting_link, location: item.location, from_date: item.from_date, to_date: item.to_date };
+    //           break;
+    //         case 'task':
+    //           activitySpecificData = { status: item.status, time:item.time, description: item.description, status:item.status, };
+    //           break;
+    //         case 'call':
+    //           activitySpecificData = { description: item.description, phone_number: item.number,date:item.date, time:item.time };
+    //           break;
+    //           case 'email':
+    //           activitySpecificData = { email: item.email, description: item.description,subject:item.subject, date:item.date, time:item.start_time };
+    //           break;
+    //           case 'appointment':
+    //             activitySpecificData = { date: item.date, Notes: item.appointment_notes,startTime:item.start_time, location:item.location };
+    //             break;
+    //         default:
+    //           activitySpecificData = {};
+    //       }
     switch (activity_type) {
       case 'meeting':
         activitySpecificData = { 'Meeing Link': item.meeting_link, Location: item.location, 'From Date': item.from_date, 'To Date': item.to_date };
@@ -267,61 +284,37 @@ export default function Meeting() {
       default:
         activitySpecificData = {};
     }
-
-    const toggleAccordion = (activityType) => {
-      setExpandedItems((prevExpandedItems) => ({
-        ...prevExpandedItems,
-        [activityType]: !prevExpandedItems[activityType],
-      }));
-    };
-
-
     const isExpanded = expandedItems[activity_type];
-   
-  
+ 
     renderedContent = (
       <TouchableOpacity onPress={() => toggleAccordion(activity_type)}>
-      <View style={styles.title}>
-        <Text style={styles.titletext}>{item.activity_type}</Text>
-        <Ionicons name={isExpanded ? 'caret-up' : 'caret-down'} size={24} color="black" style={{ marginLeft: 5, marginTop: 12 }} />
-      </View>
-      {isExpanded && (
-        <View>
-           {/* <LeadActivityCard obj={activitySpecificData} /> */}
-          <LeadDetailCard obj={activitySpecificData} />
-          <View style={styles.divider} />
+        <View style={styles.title}>
+          <Text style={styles.titletext}>{item.activity_type}</Text>
+          <Ionicons name={isExpanded ? 'caret-up' : 'caret-down'} size={18} color="black" style={{ marginLeft: 5, marginTop: 12 }} />
         </View>
-      )}
-    </TouchableOpacity>
+        {isExpanded && (
+          <View>
+             {/* <LeadActivityCard obj={activitySpecificData} /> */}
+            <LeadDetailCard obj={activitySpecificData} />
+            <View style={styles.divider} />
+          </View>
+        )}
+      </TouchableOpacity>
     );
-  
+ 
     return renderedContent;
   };
-  
-  if (isLoading) {
-    return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#023B5E" />
-      </View>
-    );
-  }
+ 
+  const goToCreateMeetingForm = () => {
+    router.navigate('/formComponents/activityForm');
+  };
  
   return (
     <View style={styles.container}>
-        <View style={{ height:'26%' }}>
-           <LeadDet/>
-        </View>
-        {activityItems.length === 0 ? (
-        <Text style={styles.noActivitiesText}>No activities available</Text>
-      ) : (
-        <FlatList
-          data={activityItems}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-        />
-      )}
-
-    
+      <View style={{ height: '26%' }}>
+        <LeadDet />
+      </View>
+      <FlatList data={activityItems} renderItem={renderItem} keyExtractor={(item) => item.id} />
       <FloatingButton onPress={goToCreateMeetingForm} />
     </View>
   );
@@ -329,63 +322,27 @@ export default function Meeting() {
  
 const styles = StyleSheet.create({
   title: {
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // flex: 1,
+    flexDirection: 'row',
     alignItems: 'center',
     padding: 10,
     marginHorizontal: 20,
-    flexDirection:'row',
     maxWidth: '90%',
     padding: 5,
     borderRadius: 10,
-    //  backgroundColor:'#023B5E',
+    backgroundColor: 'white',
   },
  
-  titletext:{
-    fontWeight:'bold',
-    color:'#023B5E',
-   },
+  titletext: {
+    fontWeight: 'bold',
+    color: '#023B5E',
+    flex: 1,
+    fontSize: 18,
+  },
   container: {
     flex: 1,
     backgroundColor: 'white',
   },
-  boldText: {
-    fontWeight: 'bold',
-  },
-  card: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 10,
-  },
-  text: {
-    fontSize: 14,
-    marginBottom: 5,
-   
-  },
-  iconContainer: {
-    marginRight: 10,
-  },
-  textContainer: {
-    flex: 1,
-  },
-  divider: {
-    height: 1,
-    backgroundColor: 'black',
-    marginHorizontal: 20,
-    marginBottom:10,
-  },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff', // Adjust background color as needed
-  },
-  noActivitiesText: {
-    textAlign: 'center',
-    marginTop: 20,
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: 'gray',
-  },
+ 
+ 
 });
+ 
