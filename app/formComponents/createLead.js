@@ -12,6 +12,7 @@ import { router } from 'expo-router';
 import ArrowBack from '../../customComponents/arrowBack';
 import * as SecureStore from 'expo-secure-store';
 import { CustomInputSocial } from '../../customComponents/customSocialField';
+import CustomHeader from '../../customComponents/customHeader';
 // Form component
 export default function CreateLead() {
     // const { control, handleSubmit, formState: { errors } } = useForm();
@@ -239,6 +240,11 @@ const goBack=()=>{
     return (
       
         <View style={styles.cardContainer}>
+           <CustomHeader
+      title="Create Lead"
+      onSearchPress={() => { /* Handle search press */ }}
+      onNotificationPress={() => { /* Handle notification press */ }}
+    />
         <ScrollView>
           <View style={styles.card}>
             <View style={styles.section}>

@@ -1486,23 +1486,23 @@ export const leadScoreFormData={
   ]
 }
 
-export const activityFormData = {
-  "taskType":[
-    {
-  "task":
-    {
-      "tFormData":taskFormData
-    },
+// export const activityFormData = {
+//   "taskType":[
+//     {
+//   "task":
+//     {
+//       "tFormData":taskFormData
+//     },
 
-    "meeting":{
-      "mFormData":meetingData
-    },
-    "phone":{
-      "pFormData":''
-    },
-  }
-  ]
-}
+//     "meeting":{
+//       "mFormData":meetingData
+//     },
+//     "phone":{
+//       "pFormData":''
+//     },
+//   }
+//   ]
+// }
 
 export const statusFormData = {
   "elements": [
@@ -1662,6 +1662,363 @@ export const callLogData=
     "Time": "3:20 PM",
     "Date": "2024-03-31"
   }
+];
+
+
+export const activityFormData = [
+  {
+    activityId: '1',
+    activityType: 'task',
+    Data: {
+        "elements": [
+           
+            {
+                "name": "due_date",
+                "type": "Date",
+                "title": "Due Date",
+                "inputType": "text",
+                "placeholder": "Select",
+                "isRequired":true
+               
+            },
+            {
+                "name": "title",
+                "type": "TextInput",
+                "title": "Title",
+                "inputType": "text",
+                "placeholder": "Enter the title",
+                "isRequired":true
+            },
+            {
+                "name": "description",
+                "type": "TextInput",
+                "title": "Description",
+                "inputType": "text",
+                "placeholder": "Enter the description"
+            },
+            {
+                "name": "status",
+                "type": "dropdown",
+                "title": "Status",
+                "placeholder": "Select",
+                "dropdownData": [
+                    { "value": "1", "label": "In-progress" },
+                    { "value": "2", "label": "Completed" },
+                    { "value": "3", "label": "Not Started" }
+                ]
+            },
+            {
+                "name": "time",
+                "type": "timeInput",
+                "title": "Time",
+                "placeholder": "",
+                "isRequired":true
+            },
+            {
+                "name": "repeat",
+                "type": "dropdown",
+                "title": "Repeat",
+                "inputType": "text",
+                "placeholder": "Select",
+                "dropdownData": [
+                    { "value": "daily", "label": "Daily" },
+                    { "value": "weekly", "label": "Weekly" },
+                    { "value": "monthly", "label": "Monthly" },
+                    { "value": "yearly", "label": "Yearly" },
+                    { "value": "dont_repeat", "label": "Don't Repeat" }
+                ]
+            },
+            // {
+            //     "name": "owner",
+            //     "type": "dropdown",
+            //     "title": "Owner",
+            //     "inputType": "text",
+            //     "placeholder": "Select",
+               
+            // }
+        ]
+    }
+  },
+  {
+    activityId: '2',
+    activityType: 'meeting',
+    Data: {
+        "elements": [
+            {
+                "name": "title",
+                "type": "TextInput",
+                "title": "Title",
+                "inputType": "text",
+                "placeholder": "Title",
+                "isRequired":true
+ 
+            },
+            {
+              "name": "meeting_link",
+              "type": "TextInput",
+              "title": "Meeting Link",
+              "inputType": "text",
+              "placeholder": "Link"
+          },
+            {
+                "name": "location",
+                "type": "TextInput",
+                "title": "Location",
+                "inputType": "text",
+                "placeholder": "Location"
+            },
+            {
+                "name": "description",
+                "type": "TextInput",
+                "title": "Description",
+                "inputType": "text",
+                "placeholder": "Description"
+            },
+       
+            // {
+            //     "name": "attendees",
+            //     "type": "MultipleSelect",
+            //     "title": "Attendees",
+            //     "inputType": "text",
+            //     "placeholder": "Select",
+            //     "dropdownData": [
+            //         { "value": 1, "label": "John Doe" },
+            //         { "value": 2, "label": "Jane Smith" },
+            //         { "value": 3, "label": "Alice Mark" },
+            //         { "value": 4, "label": "Kate Winslet" },
+            //         { "value": 5, "label": "William Henry" },
+            //         { "value": 6, "label": "Jane Peter" },
+            //         { "value": 7, "label": "Carley Wilson" }
+            //     ]
+            // },
+            {
+                "name": "time_zone",
+                "type": "dropdown",
+                "title": "Time Zone",
+                "inputType": "text",
+                "placeholder": "Select",
+                "dropdownData": [
+                    { "value": "utc", "label": "Coordinated Universal Time (UTC)" },
+                    { "value": "est", "label": "Eastern Standard Time (EST)" },
+                    { "value": "cet", "label": "Central European Time (CET)" },
+                    { "value": "pst", "label": "Pacific Standard Time (PST)" },
+                    { "value": "ist", "label": "India Standard Time (IST)" },
+                    { "value": "cst", "label": "China Standard Time (CST)" }
+                ]
+            },
+            {
+                "name": "from_date",
+                "type": "Date",
+                "title": "From Date",
+                "placeholder": "From Date"
+            },
+            {
+                "name": "to_date",
+                "type": "Date",
+                "title": "To Date",
+                "placeholder": "To Date"
+            },
+           
+       
+            {
+                "name": "all_day",
+                "type": "Switch",
+                "title": "All Day"
+            },
+            {
+              "name": "remainder_required",
+              "type": "Switch",
+              "title": "Remainder Required"
+          },
+          {
+            "name": "remainder_before",
+            "type": "timeInput",
+            "title": "Remainder Before",
+            "placeholder": "Remainder before"
+        },
+        ]
+    }
+  },
+  {
+    activityId: '3',
+    activityType: 'call',
+    Data: {
+      "elements": [
+       
+     
+     
+        {
+          "name": "number",
+          "type": "TextInput",
+          "title": "Phone Number",
+          "inputType": 'numeric',
+          "placeholder":"Enter the number",
+          "keyboardType":"numeric",
+          "isRequired":true
+        },
+        {
+          "name": "description",
+          "type": "TextInput",
+          "title": "Description ",
+          "inputType": "text",
+          "placeholder": "Enter description",
+          "isRequired":true
+        },
+ 
+        {
+          "name": "start_time",
+          "type": "timeInput",
+          "title": "Start Time",
+          "placeholder": "Enter the time"
+        },
+        {
+          "name": "date",
+          "type": "Date",
+          "title": "Date",
+          "placeholder": "Date",
+          "isRequired":true
+        },
+     
+     
+      ]
+  }
+ 
+  },
+  {
+    activityId: '4',
+    activityType: 'follow_up',
+    Data: {
+      "elements": [
+       
+     
+     
+        {
+          "name": "start_time",
+          "type": "timeInput",
+          "title": "Start Time",
+          "placeholder": "Enter the time"
+        },
+        {
+          "name": "date",
+          "type": "Date",
+          "title": "Date",
+          "placeholder": "Date"
+        },
+        {
+          "name": "follow_up_notes",
+          "type": "TextInput",
+          "title": "Follow up notes",
+          "placeholder": "Notes",
+          "isRequired":true
+        },
+       
+ 
+      ]
+  }
+ 
+  },
+  {
+    activityId: '5',
+    activityType: 'appointment',
+    Data: {
+      "elements": [
+      //   {
+      //     "name": "associatedLeads",
+      //     "type": "leadDropdown",
+      //     "title": "Associated Lead",
+      //     "inputType": "text",
+      //     "placeholder": "Select",
+      //     "dropdownData": leadData
+      //   },
+     
+     
+        {
+          "name": "start_time",
+          "type": "timeInput",
+          "title": "Start Time",
+          "placeholder": "Enter the time"
+        },
+        {
+          "name": "date",
+          "type": "Date",
+          "title": "Date",
+          "placeholder": "Date"
+        },
+        {
+          "name": "appointment_notes",
+          "type": "TextInput",
+          "title": "Follow up notes",
+          "placeholder": "Notes"
+        },
+        {
+          "name": "location",
+          "type": "TextInput",
+          "title": "Appointment location",
+          "placeholder": "location"
+        },
+ 
+       
+ 
+      ]
+  }
+ 
+  },
+ 
+  {
+    activityId: '6',
+    activityType: 'email',
+    Data: {
+      "elements": [
+        // {
+        //   "name": "associatedLeads",
+        //   "type": "leadDropdown",
+        //   "title": "Associated Lead",
+        //   "inputType": "text",
+        //   "placeholder": "Select",
+        //   "dropdownData": leadData
+        // },
+     
+     
+        {
+          "name": "start_time",
+          "type": "timeInput",
+          "title": "Start Time",
+          "placeholder": "Enter the time"
+        },
+        {
+          "name": "date",
+          "type": "Date",
+          "title": "Date",
+          "placeholder": "Date"
+        },
+        {
+          "name": "description",
+          "type": "TextInput",
+          "title": "Email description",
+          "placeholder": "description"
+        },
+        {
+          "name": "subject",
+          "type": "TextInput",
+          "title": "Subject",
+          "placeholder": "subject"
+        },
+        {
+          "name": "email",
+          "type": "TextInput",
+          "title": "email id",
+          "placeholder": "email",  
+          "isRequired":true
+        },
+ 
+       
+ 
+      ]
+  }
+ 
+  }
+ 
+ 
 ];
 
 

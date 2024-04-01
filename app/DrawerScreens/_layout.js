@@ -17,6 +17,7 @@ import { Tabs } from 'expo-router/tabs';
 import ArrowBack from '../../customComponents/arrowBack';
 import { router } from 'expo-router';
 import { TouchableOpacity } from 'react-native';
+import HeaderRight from '../DrawerScreens/searchIcon';
 
 
 
@@ -50,6 +51,12 @@ export default function Layout() {
       headerShown:true,
       drawerIcon:({}) =>(
         <Ionicons name='home' size={20} color='black' />
+      ),
+      headerRight: () => (
+        <HeaderRight
+          onSearchPress={() => { /* Handle filter press */ }}
+          onNotificationPress={() => { /* Handle notification press */ }}
+        />
       )
     }}
     ></Drawer.Screen>
@@ -64,6 +71,12 @@ export default function Layout() {
       headerShown:true,
       drawerIcon:({}) =>(
         <Ionicons name='apps-sharp' size={20} color='black' />
+      ),
+      headerRight: () => (
+        <HeaderRight
+          onSearchPress={() => { /* Handle filter press */ }}
+          onNotificationPress={() => { /* Handle notification press */ }}
+        />
       )
     }}
     ></Drawer.Screen>
@@ -83,6 +96,12 @@ export default function Layout() {
       ),
       drawerIcon:({}) =>(
         <Ionicons name='add-circle' size={20} color='black' />
+      ),
+      headerRight: () => (
+        <HeaderRight
+          onSearchPress={() => { /* Handle filter press */ }}
+          onNotificationPress={() => { /* Handle notification press */ }}
+        />
       )
     }}
     ></Drawer.Screen>
@@ -96,6 +115,12 @@ export default function Layout() {
       headerShown:true,
       drawerIcon:({}) =>(
         <FontAwesome name='tasks' size={20} color='black'  />
+      ),
+      headerRight: () => (
+        <HeaderRight
+          onSearchPress={() => { /* Handle filter press */ }}
+          onNotificationPress={() => { /* Handle notification press */ }}
+        />
       )
     }}
     ></Drawer.Screen>
@@ -115,6 +140,35 @@ export default function Layout() {
       ),
       drawerIcon:({}) =>(
         <Ionicons name='add-circle' size={20} color='black' />
+      ),
+      headerRight: () => (
+        <HeaderRight
+          onSearchPress={() => { /* Handle filter press */ }}
+          onNotificationPress={() => { /* Handle notification press */ }}
+        />
+      )
+    }}
+    ></Drawer.Screen>
+
+<Drawer.Screen
+    name='createActivity'
+    options={{
+      drawerLabel:'Add a Activity',
+      headerTitle:'Add a Activity',
+      headerShown:true,
+      headerRight: () => (
+        <TouchableOpacity onPress={goBack} style={{ marginRight: 10 }}>
+         <ArrowBack/>
+      </TouchableOpacity>
+      ),
+      drawerIcon:({}) =>(
+        <Ionicons name='add-circle' size={20} color='black' />
+      ),
+      headerRight: () => (
+        <HeaderRight
+          onSearchPress={() => { /* Handle filter press */ }}
+          onNotificationPress={() => { /* Handle notification press */ }}
+        />
       )
     }}
     ></Drawer.Screen>
@@ -128,6 +182,12 @@ export default function Layout() {
       headerShown:true,
       drawerIcon:({}) =>(
         <Ionicons name='calendar' size={20} color='black' />
+      ),
+      headerRight: () => (
+        <HeaderRight
+          onSearchPress={() => { /* Handle filter press */ }}
+          onNotificationPress={() => { /* Handle notification press */ }}
+        />
       )
     }}
     ></Drawer.Screen>
@@ -146,6 +206,12 @@ export default function Layout() {
       ),
       drawerIcon:({}) =>(
         <Ionicons name='add-circle' size={20} color='black' />
+      ),
+      headerRight: () => (
+        <HeaderRight
+          onSearchPress={() => { /* Handle filter press */ }}
+          onNotificationPress={() => { /* Handle notification press */ }}
+        />
       )
     }}
     ></Drawer.Screen>
@@ -159,6 +225,12 @@ export default function Layout() {
       headerShown:true,
       drawerIcon:({}) =>(
         <Ionicons name='list' size={20} color='black' />
+      ),
+      headerRight: () => (
+        <HeaderRight
+          onSearchPress={() => { /* Handle filter press */ }}
+          onNotificationPress={() => { /* Handle notification press */ }}
+        />
       )
     }}
     ></Drawer.Screen>
@@ -178,6 +250,12 @@ export default function Layout() {
       ),
       drawerIcon:({}) =>(
         <Ionicons name='add-circle' size={20} color='black' />
+      ),
+      headerRight: () => (
+        <HeaderRight
+          onSearchPress={() => { /* Handle filter press */ }}
+          onNotificationPress={() => { /* Handle notification press */ }}
+        />
       )
     }}
     ></Drawer.Screen>
@@ -196,6 +274,12 @@ export default function Layout() {
       ),
       drawerIcon:({}) =>(
         <FontAwesome name='sticky-note' size={20} color='black' />
+      ),
+      headerRight: () => (
+        <HeaderRight
+          onSearchPress={() => { /* Handle filter press */ }}
+          onNotificationPress={() => { /* Handle notification press */ }}
+        />
       )
     }}
     ></Drawer.Screen>
@@ -208,6 +292,12 @@ export default function Layout() {
       headerShown:true,
       drawerIcon:({}) =>(
         <Ionicons name='call-outline' size={20} color='black' />
+      ),
+      headerRight: () => (
+        <HeaderRight
+          onSearchPress={() => { /* Handle filter press */ }}
+          onNotificationPress={() => { /* Handle notification press */ }}
+        />
       )
     }}
     ></Drawer.Screen>
@@ -227,6 +317,36 @@ export default function Layout() {
       ),
       drawerIcon:({}) =>(
         <Ionicons name='call' size={20} color='black' />
+      ),
+      headerRight: () => (
+        <HeaderRight
+          onSearchPress={() => { /* Handle filter press */ }}
+          onNotificationPress={() => { /* Handle notification press */ }}
+        />
+      )
+    }}
+    ></Drawer.Screen>
+
+    
+<Drawer.Screen
+    name='activitypage'
+    options={{
+      drawerLabel:'Activities',
+      headerTitle:'Activities',
+      headerShown:true,
+      headerRight: () => (
+        <TouchableOpacity onPress={goBack} style={{ marginRight: 10 }}>
+         <ArrowBack/>
+      </TouchableOpacity>
+      ),
+      drawerIcon:({}) =>(
+        <Ionicons name='call' size={20} color='black' />
+      ),
+      headerRight: () => (
+        <HeaderRight
+          onSearchPress={() => { /* Handle filter press */ }}
+          onNotificationPress={() => { /* Handle notification press */ }}
+        />
       )
     }}
     ></Drawer.Screen>

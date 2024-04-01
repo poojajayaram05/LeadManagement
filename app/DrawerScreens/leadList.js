@@ -22,9 +22,9 @@ import {leadData} from '../../customComponents/formData';
 const LeadList = () => {
 
   const goToLeadCreate=()=>{
-    console.log("inside navigation")
-    router.navigate('/DrawerScreens/createLead');
-    console.log("after natigation")
+    // console.log("inside navigation")
+    router.navigate('../../formComponents/createLead');
+    // console.log("after natigation")
   }
   const [index, setIndex] = useState(0);
   const [starredLeads, setStarredLeads] = useState([]);
