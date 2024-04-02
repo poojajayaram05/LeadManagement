@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
 },
   detail: {
     fontSize: 14,
-    marginBottom: 15,
+    marginBottom: 5,
     textAlign: 'right',
     // backgroundColor: 'yellow',
     fontWeight: 'bold',

@@ -21,11 +21,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
     textAlign: 'right',
+    // backgroundColor:'yellow',
   },
   data: {
     color: '#023B5E',
     fontSize: 14,
     textAlign: 'left',
+    // backgroundColor:'yellow',
   },
  
 });

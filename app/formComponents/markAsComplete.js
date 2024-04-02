@@ -151,7 +151,7 @@ const MarkAsComplete = () => {
   };
  
   const handleTopButtonClick = () => {
-    router.navigate('/DrawerScreens/taskList');
+    router.navigate('/leadDetailScreens/activities');
   };
  
   return (

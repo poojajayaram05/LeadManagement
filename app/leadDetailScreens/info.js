@@ -6,6 +6,7 @@ import useIdStore from '../leadStore';
 //import { leadData } from '../../customComponents/formData';
 import { FetchLeadDetails } from '../service/fetchLeadDetails';
 import { useEffect } from 'react';
+import { Ionicons } from '@expo/vector-icons';
 
 import DataRow from '../../customComponents/dataRow'; 
 const sectionDetails = [
@@ -149,7 +150,7 @@ const Section = ({ title, isOpen, onPress, children }) => {
       <TouchableOpacity onPress={onPress}>
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionHeaderText}>{title}</Text>
-          <Text>{isOpen ? '-' : '+'}</Text>
+          <Ionicons name={isOpen ? 'caret-up' : 'caret-down'} size={18} color="black" style={{ marginLeft: 5, marginTop: 10 }} />
         </View>
       </TouchableOpacity>
       {isOpen && <View>{children}</View>}
