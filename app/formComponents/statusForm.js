@@ -11,7 +11,6 @@ import { meetingItemsData } from '../../customComponents/formData';
 import { DropdownIcon } from '../../assets/images';
 import { DropupIcon } from '../../assets/images';
 
-
 export default function StatusForm({ navigation }) {
   const [selectedAccount, setSelectedAccount] = useState('');
   const [leadId, setLeadId] = useState('');

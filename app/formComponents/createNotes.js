@@ -452,37 +452,37 @@ export default function CreateLeadNote({ navigation }) {
 const styles = StyleSheet.create({
   cardContainer: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 20,
-    paddingBottom: 15,
+    paddingHorizontal: -10,
+    paddingTop: 0,
+    paddingBottom:15,
     backgroundColor: '#d1e0ed',
-  },
-  header: {
-    
-    height:210,
-    width:330,
-    //paddingHorizontal: 5,
-    paddingTop: 5,
-    paddingBottom: 5,
-    backgroundColor: '#d1e0ed',
-  },
+    flexDirection:"column",
+   
+},
+header: {
+  height:200,
+  paddingVertical:0,
+  paddingTop: 0,
+  paddingBottom: 5,
+  backgroundColor: 'white',
+},
   backButton: {
     alignSelf: 'flex-end',
     marginRight: 'auto',
     color:'#023B5E',
   },
   card: {
-    backgroundColor: '#FFFFFF', 
-    borderRadius: 10,
+    backgroundColor: '#FFFFFF',
+    // borderRadius: 10,
     padding: 20,
     shadowColor: '#000000',
     shadowOpacity: 0.2,
     shadowRadius: 5,
-    elevation: 5, 
+    elevation: 5,
   },
   backButtonText: {
     fontSize: 12,
-    color: '#007AFF', 
+    color: '#007AFF',
   },
   section: {
     marginBottom: 20,
@@ -503,3 +503,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+ 

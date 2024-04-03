@@ -279,19 +279,19 @@ const handleDateChange = (selectedDate, element) => {
     setShowCalendarModal(false);
     
     // Check which date input is being changed
-    console.log("dateeeeee", extractDate(selectedDate))
-    if (element.name === 'from_date') {
+     console.log("dateeeeee", extractDate(selectedDate))
+    if (element.name === 'due_date') {
       setFromDate(selectedDate);
       
-        setFormValues(prevFormValues => ({ ...prevFormValues, ['from_date']: extractDate(selectedDate) }));
+        setFormValues(prevFormValues => ({ ...prevFormValues, ['due_date']: extractDate(selectedDate) }));
     
       }
-    else if (element.name === 'to_date') {
-      setToDate(selectedDate);
+    // else if (element.name === 'from_date') {
+    //   setToDate(selectedDate);
      
-        setFormValues(prevFormValues => ({ ...prevFormValues, ['to_date']: extractDate(selectedDate) }));
+    //     setFormValues(prevFormValues => ({ ...prevFormValues, ['from_date']: extractDate(selectedDate) }));
      
-      }
+    //   }
       setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: extractDate(selectedDate) }));
     }
   }
@@ -334,16 +334,17 @@ const handleDateChange = (selectedDate, element) => {
         case 'TextInput':
             return (
               <View>
-                 <Text style={styles.label}>
+                 {/* <Text style={styles.label}>
                 {element.title}
-                {element.isRequired && <Text style={{ color: 'red' }}> *</Text>} {/* Add star mark if required */}
-            </Text>
+                {element.isRequired && <Text style={{ color: 'red' }}> *</Text>} 
+            </Text> */}
                   {/* <RNDateTimePicker mode="time" value={new Date()} /> */}
                 <CustomInput
                     key={element.name}
-                    
+                    title={element.title}
                     placeholder={element.placeholder}
                     // control={control}
+                    isRequired={element.isRequired}
 
                     inputType={element.inputType}
                     name={element.name}
@@ -363,7 +364,9 @@ const handleDateChange = (selectedDate, element) => {
                       <View style={styles.dateInput}>
                         <Text style={styles.dateText}>
                         {formValues[element.name] ? extractDate(formValues[element.name]) : 'Select date '}
+                        <View style={styles.icon}>
                           <Ionicons name='calendar' size={20} color='black' />
+                          </View>
                         </Text>
                       </View>
                     </Pressable>
@@ -424,13 +427,15 @@ const handleDateChange = (selectedDate, element) => {
                 <Pressable onPress={() => setShowTimeModal(true)}>
                   <Text style={styles.label}>
                     {/* {customTime ? customTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : 'Select time'} */}
-                    Select Time
+                    {element.title}
                   </Text>
                   <View style={styles.dateInput}>
   <Pressable onPress={() => setShowTimeModal(true)}>
     <Text style={styles.dateText}>
     {customTime ? formatTime(customTime) : 'Select time '}
+    <View style={styles.icon}>
       <Ionicons name='time' size={20} color='black' /> 
+      </View>
     </Text>
    
   </Pressable>
@@ -515,7 +520,6 @@ const handleDateChange = (selectedDate, element) => {
                     data={[
                         { value: 'task', label: 'Task' },
                         { value: 'call', label: 'Call' },
-                        { value: 'appointment', label: 'Appointment' },
                         { value: 'email', label: 'Email' },
                         { value: 'follow_up', label: 'Follow Up' },
                         { value: 'meeting', label: 'Meeting' },
@@ -538,15 +542,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection:'column',
-    backgroundColor: '#cad5e8',
+    backgroundColor: '#d1e0ed',
+    paddingHorizontal: -10,
+    paddingTop:0,
+    paddingBottom:15,
  
   },
   header: {
-    height:210,
-    paddingHorizontal: 5,
-    paddingTop: 5,
+    height:200,
+    paddingHorizontal: 0,
+    paddingTop: 0,
     paddingBottom: 5,
-    backgroundColor: '#d1e0ed',
+    backgroundColor: '#ffffff',
   },
   backButton: {
     alignSelf: 'flex-end',
@@ -566,7 +573,7 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 10,
+    // borderRadius: 10,
     padding: 20,
     shadowColor: '#000000',
     shadowOpacity: 0.2,
@@ -617,6 +624,12 @@ const styles = StyleSheet.create({
     color: 'red',
     fontSize:12
     // Add any other necessary styles
+},
+icon:{
+  paddingLeft:180
+},
+ticon:{
+  paddingLeft:200
 }
 });
 

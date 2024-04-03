@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView, FlatList, StyleSheet, TouchableOpacity, Text,View } from 'react-native';
-import CallLogCard from '../../customComponents/callLogCard';
-import { callLogData } from '../../customComponents/formData';
+import CallLogCard from './callLogCard';
+import { callLogData } from './formData';
 import { router } from 'expo-router';
  
 const goToCallLogForm =() => {

@@ -261,16 +261,16 @@ const handleEmail = () => {
  
       <View style={styles.lifestyleContainer}>
         <View style={styles.lifecycleStage}>
-          <Text style={styles.lifecycleHeading}>status</Text>
+          <Text style={styles.lifecycleHeading}>Status</Text>
           <Text style={styles.lifecycleText}>{lead_status}</Text>
         </View>
         <View style={styles.tempContainer}>
-          <Text style={styles.tempHeading}>Label</Text>
+          <Text style={styles.tempHeading}>Qualification</Text>
           <Text style={styles.tempText}>{qualification}</Text>
         </View>
         <View style={styles.scoreContainer}>
           <Text style={styles.scoreHeading}>Score</Text>
-          <Text style={styles.scoreText}>78</Text>
+          <Text style={styles.scoreText}>15</Text>
         </View>
       </View>
  

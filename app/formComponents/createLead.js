@@ -126,6 +126,7 @@ const onSelectRadio = (item) => {
           })
 
           console.log("Successfully posted",response);
+          
           router.replace('/DrawerScreens/leadList')
         }
         

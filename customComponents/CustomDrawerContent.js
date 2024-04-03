@@ -3,9 +3,12 @@ import React from 'react'
 import { DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer'
 import { useRouter } from 'expo-router'
 import { HomeProfile } from '../assets/images'
+import * as SecureStore from 'expo-secure-store'
 
 export default function CustomDrawerContent(props) {
+  const username = SecureStore.getItem('username');
   const router = useRouter();
+  
 
   return (
     <View style={{flex:1}}>
@@ -27,7 +30,7 @@ export default function CustomDrawerContent(props) {
     />
     
     <View style={styles.headerInfo}>
-            <Text style={styles.personName}>Bindu B N</Text>
+            <Text style={styles.personName}>{username}</Text>
             <Text style={styles.status}>Active</Text>
           </View>
           </View>

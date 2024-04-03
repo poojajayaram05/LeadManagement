@@ -203,9 +203,9 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons'; // Import FontAwesome for icons
-import LeadDet from '../../leadComponents/leadDetHeader';
-import FloatingButton from '../../customComponents/floatingButton';
-import LeadDetailCard from '../../customComponents/leadDetailCard';
+import LeadDet from '../leadComponents/leadDetHeader';
+import FloatingButton from './floatingButton';
+import LeadDetailCard from './leadDetailCard';
 import { router } from 'expo-router';
  
 export default function Requirements() {

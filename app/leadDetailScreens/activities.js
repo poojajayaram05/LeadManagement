@@ -179,29 +179,55 @@
 
 
 
-import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
-import FloatingButton from '../../customComponents/floatingButton';
+import React, { useState, useEffect} from 'react';
+import { StyleSheet, SafeAreaView, View, Text, TouchableOpacity, FlatList, ScrollView, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import LeadDet from '../../leadComponents/leadDetHeader';
-import { router } from 'expo-router';
-import LeadDetailCard from '../../customComponents/leadDetailCard';
-import { meetingItemsData } from '../../customComponents/formData';
-import useMeetingStore from '../../meetingComponents/meetingStore';
+import FloatingButton from '../../customComponents/floatingButton';
 import useIdStore from '../leadStore';
 import { FetchActivities } from '../service/fetchActivities';
-
+import groupBy from 'lodash/groupBy';
+import { router } from 'expo-router';
+ 
 
  
+const { width } = Dimensions.get('window');
  
-export default function Meeting() {
+export default function Example() {
+  const [currentTab, setCurrentTab] = useState({});
+  const [selectedTasks, setSelectedTasks] = useState([]);
+  const [tasksVisible, setTasksVisible] = useState(true);
+  const [meetingsVisible, setMeetingsVisible] = useState(false);
   const [activityData, setActivityData] = useState([]);
   const [activityItems, setActivityItems] = useState([]);
-  const [expandedItems, setExpandedItems] = useState({});
+  const [tabVisibility, setTabVisibility] = useState({
+    Tasks: true,
+    Meetings: true,
+    'Follow Up': true,
+    Emails: true,
+    Appointment: true,
+    Calls: true
+  });
+ 
+  const activity_type_map = {
+    "task": "Tasks",
+    "meeting":"Meetings",
+    "follow_up":"Follow Up",
+    "email":"Emails",
+    "call":"Calls",
+    "appointment":"Appointments"
+  }
  
   const leadId = useIdStore((state) => state.number);
  
   useEffect(() => {
+    // Initialize currentTab with 'All' for each activity type
+    const initialTabs = {};
+    Object.values(activity_type_map).forEach(type => {
+      initialTabs[type] = 'all';
+    });
+    setCurrentTab(initialTabs);
+ 
     const fetchData = async () => {
       try {
         const ldata = await FetchActivities();
@@ -219,13 +245,6 @@ export default function Meeting() {
     setActivityItems(activities);
   }, [activityData, leadId]);
  
-  const toggleAccordion = (activityType) => {
-    setExpandedItems((prevExpandedItems) => ({
-      ...prevExpandedItems,
-      [activityType]: !prevExpandedItems[activityType],
-    }));
-  };
- 
   const renderStartTime = (startTime) => {
     const date = new Date(startTime);
     const hours = date.getHours();
@@ -234,115 +253,280 @@ export default function Meeting() {
     return time;
   };
  
-  const renderItem = ({ item }) => {
-    const { activity_type, email, start_time, due_date, date, time, status } = item;
-    const simplifiedItem = { activity_type, email, start_time, due_date, date, time };
-    const timee = renderStartTime(start_time);
+  const renderDate = (due_date) => {
+    const date = new Date(due_date);
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Month starts from 0
+    const year = date.getFullYear();
  
-    let renderedContent;
-    let activitySpecificData;
+    // Ensure leading zeros for single-digit values
+    const formattedDay = day < 10 ? `0${day}` : day;
+    const formattedMonth = month < 10 ? `0${month}` : month;
  
-    // switch (activity_type) {
-    //         case 'meeting':
-    //           activitySpecificData = { meeting_link: item.meeting_link, location: item.location, from_date: item.from_date, to_date: item.to_date };
-    //           break;
-    //         case 'task':
-    //           activitySpecificData = { status: item.status, time:item.time, description: item.description, status:item.status, };
-    //           break;
-    //         case 'call':
-    //           activitySpecificData = { description: item.description, phone_number: item.number,date:item.date, time:item.time };
-    //           break;
-    //           case 'email':
-    //           activitySpecificData = { email: item.email, description: item.description,subject:item.subject, date:item.date, time:item.start_time };
-    //           break;
-    //           case 'appointment':
-    //             activitySpecificData = { date: item.date, Notes: item.appointment_notes,startTime:item.start_time, location:item.location };
-    //             break;
-    //         default:
-    //           activitySpecificData = {};
-    //       }
-    switch (activity_type) {
-      case 'meeting':
-        activitySpecificData = { 'Meeing Link': item.meeting_link, Location: item.location, 'From Date': item.from_date, 'To Date': item.to_date };
-        break;
-      case 'task':
-        activitySpecificData = { 'Status': item.status,"Due Date":item.due_date, Time:item.time, Description: item.description };
-        break;
-      case 'call':
-        activitySpecificData = { Description: item.description, 'Phone Number': item.number,Date:item.date, Time:item.time };
-        break;
-        case 'email':
-        activitySpecificData = { Email: item.email, Description: item.description,Subject:item.subject, Date:item.date, Time:timee };
-        break;
-        case 'appointment':
-          activitySpecificData = { Date: item.date, Notes: item.appointment_notes,'Start Time':timee, Location:item.location };
-          break;
-          case 'follow_up':
-            activitySpecificData = { Date: item.date, Notes: item.follow_up_notes,'Start Time':timee };
-            break;
-      // Add cases for other activity types as needed
-      default:
-        activitySpecificData = {};
-    }
-    const isExpanded = expandedItems[activity_type];
+    // Construct the formatted date string
+    const formattedDate = `${formattedDay}/${formattedMonth}/${year}`;
  
-    renderedContent = (
-      <TouchableOpacity onPress={() => toggleAccordion(activity_type)}>
-        <View style={styles.title}>
-          <Text style={styles.titletext}>{item.activity_type}</Text>
-          <Ionicons name={isExpanded ? 'caret-up' : 'caret-down'} size={18} color="black" style={{ marginLeft: 5, marginTop: 12 }} />
-        </View>
-        {isExpanded && (
-          <View>
-             {/* <LeadActivityCard obj={activitySpecificData} /> */}
-            <LeadDetailCard obj={activitySpecificData} />
-            <View style={styles.divider} />
-          </View>
-        )}
-      </TouchableOpacity>
-    );
- 
-    return renderedContent;
+    return formattedDate;
   };
  
-  const goToCreateMeetingForm = () => {
-    router.navigate('/formComponents/activityForm');
+  const goToActivityForm = () => {
+    router.navigate('/formComponents/activityForm')
+  }
+ 
+  const renderItemTask = ({ item }) => {
+    const { activity_type, email,associated_lead,sys_created_on,start_time, due_date , date, time, status , description,priority, subject } = item;
+    const timee = renderStartTime(start_time);
+    const formattedDate =  renderDate(due_date)
+ 
+    const due_on = formattedDate + " "+ timee;
+    return (
+      <View style={[styles.section, styles.cardContainer]}>
+        <View>
+        <View style={styles.row}>
+            <Text style={styles.data}>Subject:</Text>
+            <Text style={styles.detail}>{subject}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.data}>Description:</Text>
+            <Text style={styles.detail}>{description}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.data}>Due Date:</Text>
+            <Text style={styles.detail}>{due_on}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.data}>Priority:</Text>
+            <Text style={styles.detail}>{priority}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.data}>Status:</Text>
+            <Text style={styles.detail}>{status}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.data}>Created On:</Text>
+            <Text style={styles.detail}>{sys_created_on}</Text>
+          </View>
+        </View>
+      </View>
+    );
+  };
+ 
+  const handleTabPress = (activityType, tabName) => {
+    setCurrentTab(prevState => ({
+      ...prevState,
+      [activityType]: tabName
+    }));
   };
  
   return (
-    <View style={styles.container}>
-      <View style={{ height: '26%' }}>
-        <LeadDet />
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <View style={{ height: '26%' }}>
+          <LeadDet />
+        </View>
+        <FloatingButton onPress={goToActivityForm}/>
+ 
+        {Object.entries(groupBy(activityItems, 'activity_type')).length === 0 ? (
+          <Text style={styles.noActivityText}>No recent activities</Text>
+        ) : (
+          <ScrollView style={{ flex: 1 }}>
+            {Object.entries(groupBy(activityItems, 'activity_type')).map(([key, value]) => {
+              const activityType = activity_type_map[key];
+              const isVisible = tabVisibility[activityType];
+              const hasActivities = value.length > 0; // Check if there are any activities for the current type
+              return (
+                <View key={key}>
+                  <TouchableOpacity onPress={() => setTabVisibility(prevState => ({ ...prevState, [activityType]: !isVisible }))}>
+                    <View style={styles.titleContainer}>
+                      <Text style={styles.title}>{activityType}</Text>
+                      <Ionicons name={isVisible ? 'caret-up' : 'caret-down'} size={24} color="black" style={{ marginLeft: 5, marginTop: 12 }}/>
+                    </View>
+                  </TouchableOpacity>
+                  {(!isVisible && !hasActivities) && ( // Only render the message if accordion is not open and there are no activities
+                    <View style={styles.default}>
+                      <Text style={styles.defaultMessage}>No {activityType} found</Text>
+                    </View>
+                  )}
+                  {isVisible && hasActivities && ( // Render the FlatList only if accordion is open and there are activities
+                    <>
+                      <View style={styles.tabContainer}>
+                        <TouchableOpacity onPress={() => handleTabPress(activityType, 'all')}>
+                          <Text style={[styles.tab, currentTab[activityType] === 'all' && styles.selectedTab]}>All</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => handleTabPress(activityType, 'completed')}>
+                          <Text style={[styles.tab, currentTab[activityType] === 'completed' && styles.selectedTab]}>Completed</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => handleTabPress(activityType, 'pending')}>
+                          <Text style={[styles.tab, currentTab[activityType] === 'pending' && styles.selectedTab]}>Pending</Text>
+                        </TouchableOpacity>
+                      </View>
+                      <FlatList
+                        data={value.filter(item => currentTab[activityType] === 'all' || item.status.toLowerCase() === currentTab[activityType])}
+                        renderItem={renderItemTask}
+                        keyExtractor={(item) => item.id}
+                        ListEmptyComponent={() => (
+                          <View style={styles.default}>
+                            <Text style={styles.defaultMessage}>No {activityType} to display</Text>
+                          </View>
+                        )}
+                      />
+                    </>
+                  )}
+                </View>
+              );
+            })}
+          </ScrollView>
+        )}
       </View>
-      <FlatList data={activityItems} renderItem={renderItem} keyExtractor={(item) => item.id} />
-      <FloatingButton onPress={goToCreateMeetingForm} />
-    </View>
+    </SafeAreaView>
   );
-}
+          }  
+ 
+ 
  
 const styles = StyleSheet.create({
-  title: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 10,
-    marginHorizontal: 20,
-    maxWidth: '90%',
-    padding: 5,
-    borderRadius: 10,
-    backgroundColor: 'white',
+  noActivityText:{
+    color: 'grey',
+    marginTop: 20,
+    textAlign: 'center',
+    font:'80',
+    fontWeight:'bold'
   },
  
-  titletext: {
-    fontWeight: 'bold',
-    color: '#023B5E',
-    flex: 1,
-    fontSize: 18,
+  defaultMessage: {
+    color: 'grey',
+    // textAlign: 'center',
+    // backgroundColor: '#FAF9F6',
+    marginTop: 20,
+    marginLeft:100,
+    marginHorizontal: 20, // Add margin on left and right sides
+    marginBottom: 10, // Bring the text down by adding margin at the bottom
   },
+ 
+  default: {
+    color: 'grey',
+    textAlign: 'center',
+    // backgroundColor: '#FAF9F6',
+    marginHorizontal: 20, // Add margin on left and right sides
+    marginBottom: 10, // Bring the text down by adding margin at the bottom
+  },
+ 
   container: {
     flex: 1,
     backgroundColor: 'white',
   },
  
+  tabContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    height: 25,
+    marginTop: 10,
+    marginHorizontal: 20,
+    paddingHorizontal: 10,
+    borderTopWidth: 1, // Add a thin border above
+    borderBottomWidth: 1, // Add a thin border below
+    borderColor: 'black', // You can adjust the color as needed
+},
+
  
+  tab: {
+    flex: 1, // Make the tab flex to occupy available space
+    fontSize: 14,
+    justifyContent: 'space-around',
+    fontWeight: '600',
+    flexDirection: 'row',
+    color: 'grey',
+    borderRadius: 5,
+    paddingHorizontal: 35, // Increase padding to make the green boxes wider
+    // backgroundColor: 'green',
+  },
+  selectedTab: {
+    flex: 1, // Make the selected tab flex to occupy available space
+    // Same background color as the card container
+    color: 'blue',
+    // backgroundColor:'#FAF9F6',
+    borderRadius: 10, // Add border radius to the top corners
+    justifyContent: 'center', // Center the text vertically
+    textAlign: 'center', // Center the text horizontally
+ 
+    paddingHorizontal: 35, // Match the paddingHorizontal value of the green boxes
+  },
+ 
+  title: {
+    fontSize: 16,
+    fontWeight: '600',
+    color:'#023B5E',
+    marginLeft:5,
+    marginTop: 10,
+    // backgroundColor:'red',
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingRight: 10,
+    // backgroundColor:'red',
+    marginHorizontal:20,
+   
+  },
+  section: {
+    flexDirection: 'coloumn',
+    alignItems: 'center',
+    padding: 10,
+    marginHorizontal:'20'
+  },
+  cardContainer: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'lightgrey',
+    flex: 1,
+    height: 140,
+    marginHorizontal:20,
+    // backgroundColor:'#FAF9F6',
+  },
+  detailBoxLeft: {
+    flex: 1,
+    marginRight: 10,
+  },
+  detailBoxRight: {
+    alignItems: 'flex-end',
+    minWidth: 100,
+  },
+  meetProg: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  statusTxt: {
+    backgroundColor: 'white',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    borderRadius: 5,
+    fontSize: 14,
+    color: 'white',
+    fontWeight: '600',
+    minWidth: 80,
+    textAlign: 'center',
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginBottom: 3,
+   
+  },
+  detail: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    textAlign: 'right',
+   
+    // backgroundColor:'yellow',
+  },
+  data: {
+    color: '#023B5E',
+    fontSize: 14,
+    textAlign: 'left',
+   
+   
+  },
 });
- 

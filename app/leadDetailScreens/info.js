@@ -6,6 +6,7 @@ import useIdStore from '../leadStore';
 //import { leadData } from '../../customComponents/formData';
 import { FetchLeadDetails } from '../service/fetchLeadDetails';
 import { useEffect } from 'react';
+import { Ionicons } from '@expo/vector-icons';
 
 import DataRow from '../../customComponents/dataRow'; 
 const sectionDetails = [
@@ -14,15 +15,14 @@ const sectionDetails = [
       id: 'leadInfo',
       fields: [
         {label: 'Lead Type:', value: 'lead_type' },
-        {label:'Gender', value:'gender'},
-        { label: 'Lead Type:', value: 'lead_type' },
+        // {label:'Gender', value:'gender'},
         { label: 'Title:', value: 'title' },
         { label: 'Description:', value: 'description' },
         { label: 'Number:', value: 'number' },
         { label: 'Gender:', value: 'gender' },
         { label: 'Email:', value: 'email' },
         { label: 'Lead Source:', value: 'lead_source' },
-        { label: 'Scoring Profile:', value: 'scoring_profile' }
+   
       ]
     },
     {
@@ -30,7 +30,7 @@ const sectionDetails = [
       id: 'companyDetails',
       fields: [
         { label: 'Company:', value: 'company' },
-        { label: 'Company:', value: 'company' },
+        // { label: 'Company:', value: 'company' },
         { label: 'No Of Employees:', value: 'no_of_employees' },
         { label: 'Annual Revenue:', value: 'annual_revenue' },
         { label: 'Job Title:', value: 'job_title' },
@@ -66,9 +66,9 @@ const sectionDetails = [
         id: 'contactMethods',
         fields: [
           { label: 'Preferred Method To Contact:', value: 'preffered_method' },
-          { label: 'Whatsapp Number:', value: 'Whatsapp' },
-          { label: 'Qualification:', value: 'qualification' },
-          { label: 'Status:', value: 'lead_status' }
+        //   { label: 'Whatsapp Number:', value: 'Whatsapp' },
+        //   { label: 'Qualification:', value: 'qualification' },
+        //   { label: 'Status:', value: 'lead_status' }
         ]
       },
       {
@@ -148,8 +148,8 @@ const Section = ({ title, isOpen, onPress, children }) => {
     <View style={styles.sectionContainer}>
       <TouchableOpacity onPress={onPress}>
         <View style={styles.sectionHeader}>
-          <Text style={styles.sectionHeaderText}>{title}</Text>
-          <Text>{isOpen ? '-' : '+'}</Text>
+        <Text style={styles.sectionHeaderText}>{title}</Text>
+          <Ionicons name={isOpen ? 'caret-up' : 'caret-down'} size={18} color="black" style={{ marginLeft: 5, marginTop: 10 }} />
         </View>
       </TouchableOpacity>
       {isOpen && <View>{children}</View>}

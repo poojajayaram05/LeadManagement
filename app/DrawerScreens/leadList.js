@@ -68,6 +68,7 @@ const LeadList = () => {
     const fetchData = async () => {
         try {
             const ldata = await FetchLeads(); // Call FetchLeads and wait for the result
+            
             setleadData(ldata.result); // Set the state with the fetched data
             console.log("this is the lead data",ldata.result);
             setleadData(ldata.result);
@@ -98,12 +99,13 @@ if (isLoading) {
 
   const renderItem = ({ item }) => (
     <TouchableOpacity>
+      
    <LeadItem
       FirstName={item.first_name}
       LastName={item.last_name}
       Email={item.email}
       Phone={item.mobile_phone}
-      status={item.lead_status}
+      lead_status={item.lead_status}
       number={item.number}
       qualification={item.qualification}
       gender={item.gender}

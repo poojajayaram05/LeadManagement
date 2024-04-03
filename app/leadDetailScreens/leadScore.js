@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView, Image, Button, Pressable } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, Image, Button, Pressable, Alert } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import React, {useState} from 'react'
 //mport { taskFormData } from '../../../customComponents/formData';
@@ -13,7 +13,7 @@ import { date } from 'zod';
 import { Ionicons } from '@expo/vector-icons';
 import MultilineTextInput from '../../customComponents/customMultilineInput';
 import CustomMultipleSelect from '../../customComponents/cutsomMultipleSelect';
-import { leadScoreFormData, taskFormData } from '../../customComponents/formData';
+import { leadScoreFormData } from '../../customComponents/formData';
 import LDropdown from '../../customComponents/customLeadDropdown';
 import { meetingData } from '../../customComponents/formData';
 import GestureHandlerRootView from 'react-native-gesture-handler';
@@ -23,6 +23,10 @@ import MultiSelectItems from '../../customComponents/cutsomMultipleSelect';
 import CustomSwitch from '../../customComponents/customSwitch';
 import ArrowBack from '../../customComponents/arrowBack';
 import { router } from 'expo-router';
+import LeadDet  from '../../leadComponents/leadDetHeader';
+import useIdStore from '../leadStore';
+
+
 export default function LeadScoreForm() {
   // const { control, handleSubmit, formState: { errors } } = useForm();
   const [isSection1Collapsed, setIsSection1Collapsed] = useState(false);
@@ -54,25 +58,8 @@ export default function LeadScoreForm() {
     router.back();
   }
 
+  const leadId = useIdStore((state) => state.number);
 
-
-
-  
-  const toggleSection = (section) => {
-    switch (section) {
-        case 'section1':
-            setIsSection1Collapsed(!isSection1Collapsed);
-            break;
-        case 'section2':
-            setIsSection2Collapsed(!isSection2Collapsed);
-            break;
-        case 'section3':
-            setIsSection3Collapsed(!isSection3Collapsed);
-            break;
-        default:
-            break;
-    }
-};
 
 
 
@@ -87,14 +74,13 @@ const onSubmit = async () => {
 //   };
   //console.log("Form data", formData);
   console.log(formValues);
+  const keys = Object.keys(formValues);
+  if (keys.length > 0) {
+    Alert.alert('Successfully submitted!');
+  } else {
+    Alert.alert('Form is empty!');
+  }
 };
-
-
-const onSelectRadio = (item) => {
-    setradioSelect(item.value);
-    setFormValues(prevFormValues => ({ ...prevFormValues, ['gender']: item.id})); 
-    console.log('Selected value:', item.id);
-}
 
 
 
@@ -107,25 +93,28 @@ const renderFormElement = (element) => {
     };
 
     switch (element.questionType) {
-        // case 'RadioButton':
-        //     return( 
-        //       <View style = {styles.inputContainer}>
-        //       <Text style={styles.label}>{element.questionLabel}{starMark}</Text>
-                
-        //             <RadioButton style={styles.inputContainer}
-        //                  onSelect={onSelectRadio}
-        //                  SelectedData={selectedValue} 
-        //                  disableLine={1}
-        //                  value={selectedValue}
-        //                  onChange={(onSelectRadio) => setFormValues({ ...formValues, [element.name]: onSelectRadio })}
-        //                  data={leadScoreFormData}
-        //                  title={element.title}
-                         
-        //                  // Pass the data prop here
-        //             />
-        //             </View>
 
-        //     )
+      // case 'TextInputLead':
+        // return (
+        //   <View>
+        //      <Text style={styles.qlabel}>{element.questionlabel}</Text>
+        //      <CustomInput
+        //             key={element.name}
+        //             title={element.title}
+        //             placeholder={leadId}
+        //             // control={control}
+        //             name={element.name}
+        //            questionlabel={questionlabel}
+        //             // errors={errors}
+                    
+        //             value={leadId}
+        //             readOnly={true}
+        //         />
+             
+
+        //     </View>
+        // );
+      
             case 'dropdown':
               return (
                   <View>
@@ -142,24 +131,7 @@ const renderFormElement = (element) => {
                   </View>
                   
               );
-            case 'leadDropdown':
-              return (
-                <View style={styles.inputContainer}>
-                <Text style={styles.label}>Select Lead</Text>
-                <LDropdown
-label="Select Lead"
-data={leadData.map((lead) => {
-console.log(lead.Id); // Log lead object
-return {
-  value: lead.Id,
-  label: `${lead.id} - ${lead.Firstname} ${lead.Lastname}`,
-};
-})}
-onSelect={handleSelect}
-/>
-            </View>
-              );
-              
+            
             
                
 
@@ -170,69 +142,50 @@ onSelect={handleSelect}
   return (
    
    
-    <View style={styles.cardContainer}>
+   
+    <View style={styles.container}>
+      <View style={styles.header}>
+      <LeadDet/>
+      </View>
+      <ScrollView>
+            <View style={styles.card}>
        
       
       
-    <ScrollView>
+        
   
    
-        <View style={styles.card}>
-            <View style={styles.section}>
+      
+          
            
-                <TouchableOpacity onPress={() => toggleSection('section1')}>
-                    <Text style={styles.sectionTitle}>Lead Score Information</Text>
+                
                   
-                    <Image
-                        source={isSection1Collapsed ? DropdownIcon : DropupIcon}
-                        resizeMode="contain"
-                        style={styles.dropdownIcon}
-                    />
-                     
-                </TouchableOpacity>
-                <Collapsible collapsed={isSection1Collapsed}>
+                              
                     {leadScoreFormData.elements.slice(0, 11).map((element, index) => (
                         <View key={index} style={styles.inputContainer}>
                             {renderFormElement(element)}
                         </View>
                     ))}
-                </Collapsible>
+        
+        <Button title="Submit" onPress={onSubmit} color='#023B5E' />
             </View>
+          
 
-           {/* <View style={styles.section}>
-                <TouchableOpacity onPress={() => toggleSection('section2')}>
-                    <Text style={styles.sectionTitle}>Schedule Information</Text>
-                    <Image
-                        source={isSection2Collapsed ? DropdownIcon : DropupIcon}
-                        resizeMode="contain"
-                        style={styles.dropdownIcon}
-                    />
-                </TouchableOpacity>
-                <Collapsible collapsed={isSection2Collapsed}>
-                    {taskFormData.elements.slice(9).map((element, index) => (
-                        <View key={index} style={styles.inputContainer}>
-                            {renderFormElement(element)}
-                        </View>
-                    ))}
-                </Collapsible>
-            </View>  */}
+       
           
              
-            <Button title="Submit" onPress={onSubmit} color='#023B5E' />
-            <View style={styles.buttonContainer}>
-      <TouchableOpacity onPress={goBack}>
-        {/* <ArrowBack /> */}
-      </TouchableOpacity>
+           
+            </ScrollView>
+           
     </View>
-            {/* <MultiSelectItems/> */}
-            
-        </View>
+        
       
-    </ScrollView>
+
    
   
    
-</View>
+
+
 
 
 
@@ -240,33 +193,43 @@ onSelect={handleSelect}
 }
 
 const styles = StyleSheet.create({
-cardContainer: {
+  container: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 20,
+    flexDirection:'column',
+    backgroundColor: '#d1e0ed',
+    paddingHorizontal:-10,
+    paddingTop: -20,
     paddingBottom:15,
-    backgroundColor: '#d1e0ed'
-},
+
+ 
+  },
+  qlabel:{
+    fontSize: 12,
+    fontWeight: 'bold'
+
+  },
 card: {
-    backgroundColor: '#FFFFFF', // White card background
-    borderRadius: 10,
-    padding: 20,
-    shadowColor: '#000000',
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 5, // For Android shadow
+  backgroundColor: '#FFFFFF',
+  // borderRadius: 10,
+  padding: 20,
+  shadowColor: '#000000',
+  shadowOpacity: 0.2,
+  shadowRadius: 5,
+  elevation: 5,
+  marginBottom: 20,
 },
+   
 switch:{
 alignItems:'flex-start'
 },
-container: {
-    flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 20,
-    backgroundColor:'#cad5e8'
-},
+// container: {
+//     flex: 1,
+//     paddingHorizontal: 20,
+   
+//     backgroundColor:'#cad5e8'
+// },
 section: {
-    marginBottom: 20,
+    // marginBottom: 20,
     
 },
 switchContainer:{
@@ -340,5 +303,16 @@ calendarIcon: {
   height: 20,
   marginLeft: 10, // Adjust the margin as needed
 },
-
+header: {
+  height:200,
+  // paddingHorizontal: 5,
+  paddingVertical:90,
+  paddingTop: 0,
+  paddingBottom: 5,
+  backgroundColor: '#ffffff',
+},
 });
+
+
+
+

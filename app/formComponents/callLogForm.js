@@ -307,15 +307,16 @@ const renderFormElement = (element) => {
 const styles = StyleSheet.create({
 cardContainer: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 20,
+    paddingHorizontal: -10,
+    paddingTop: 0,
     paddingBottom:15,
+    flexDirection:"column",
      
         backgroundColor: '#d1e0ed'
 },
 card: {
     backgroundColor: '#FFFFFF', // White card background
-    borderRadius: 10,
+    // borderRadius: 10,
     padding: 20,
     shadowColor: '#000000',
     shadowOpacity: 0.2,
@@ -346,12 +347,12 @@ inputContainer: {
 },
 header: {
     
-  height:210,
-  width:330,
+  height:200,
+  // width:330,
   //paddingHorizontal: 5,
-  paddingTop: 5,
+  paddingTop: 0,
   paddingBottom: 5,
-  backgroundColor: '#d1e0ed',
+  backgroundColor: '#ffffff',
 },
 buttonContainer:{
   flex: 1,

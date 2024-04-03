@@ -2,10 +2,10 @@ import {create} from 'zustand';
 
 const useIdStore = create((set) => ({
     number: null,
-    activityId: null,
+    status: null,
 
     setLeadId: (newId) => set({ number: newId }),
-    activityId: (newId) => set({ activityId: newId }),
+    setStatus: (newId) => set({ status: newId }),
 }));
 
 

@@ -17,8 +17,8 @@ export const CustomInput = ({ title, placeholder, onChange, value, errors, readO
       value={value}
       placeholder={placeholder}
       readOnly={readOnly}
-      keyboardType={inputType}
-     
+      inputMode={inputType}
+   
       // error={error}
     />
     {/* {errors && <Text style={styles.error}>{errors}</Text>} */}

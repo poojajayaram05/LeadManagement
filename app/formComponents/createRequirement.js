@@ -119,7 +119,6 @@ const goBack=()=>{
                       <View style={styles.inputContainer}>
                         <Text style={styles.label}>{element.title}</Text>
                         <MultilineTextInput
-                          key={element.name}
                           title={element.title}
                           placeholder={element.placeholder}
                         />
@@ -156,7 +155,7 @@ const goBack=()=>{
               
                 <View style={styles.section}>
                     <TouchableOpacity onPress={() => toggleSection('section1')}>
-                        <Text style={styles.sectionTitle}>Requirement Information</Text>
+                        <Text style={styles.sectionTitle}>Required Products/Services</Text>
                         <Image
                             source={isSection1Collapsed ? DropdownIcon : DropupIcon}
                             resizeMode="contain"
@@ -196,14 +195,16 @@ const goBack=()=>{
 const styles = StyleSheet.create({
     cardContainer: {
         flex: 1,
-        paddingHorizontal: 20,
-        paddingTop: 20,
+        paddingHorizontal: -10,
+        paddingTop: -20,
         paddingBottom:15,
-        backgroundColor: '#d1e0ed'
+        backgroundColor: '#d1e0ed',
+        flexDirection:"column",
+       
     },
     card: {
         backgroundColor: '#FFFFFF', // White card background
-        borderRadius: 10,
+        // borderRadius: 10,
         padding: 20,
         shadowColor: '#000000',
         shadowOpacity: 0.2,
@@ -214,7 +215,8 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 20,
         paddingTop: 20,
-        backgroundColor:'#cad5e8'
+        backgroundColor:'#cad5e8',
+        flexDirection:"column",
     },
     buttonContainer:{
     flex: 1,
@@ -225,26 +227,27 @@ const styles = StyleSheet.create({
     },
     section: {
         marginBottom: 20,
-        
+       
     },
     sectionTitle: {
         fontSize: 20, // Increase font size for emphasis
         fontWeight: 'bold',
         marginBottom: 15, // Increase margin for better separation
         color: '#333', // Use a darker color for better readability
-        
+       
         paddingBottom: 5, // Add padding to space out the underline from the text
     },
     inputContainer: {
-        marginBottom:8
-
+        marginBottom:8,
+ 
     },
     header: {
-        height:210,
-        paddingHorizontal: 5,
-        paddingTop: 5,
+        height:200,
+        // paddingHorizontal: -90,
+        paddingVertical:90,
+        paddingTop: 0,
         paddingBottom: 5,
-        backgroundColor: '#d1e0ed',
+        backgroundColor: 'white',
       },
     backButton: {
         alignSelf: 'flex-end', // Align button to the start (left)
@@ -277,5 +280,7 @@ const styles = StyleSheet.create({
         color: 'red',
         fontSize: 12,
     },
-    
+   
 });
+ 
+

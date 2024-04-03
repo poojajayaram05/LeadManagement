@@ -69,6 +69,15 @@ export default function AppLayout() {
           ),
         }}
       />
+              <Stack.Screen
+        name="products"
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="list" size={size} color={color} />
+          ),
+        }}
+      />
       <Stack.Screen
         name="notes"
         options={{
@@ -78,7 +87,7 @@ export default function AppLayout() {
           ),
         }}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="requirements"
         options={{
           headerShown: false,
@@ -94,6 +103,15 @@ export default function AppLayout() {
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="call-outline" size={size} color={color} />
+          ),
+        }}
+      /> */}
+           <Stack.Screen
+        name="leadScore"
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person" size={size} color={color} />
           ),
         }}
       />

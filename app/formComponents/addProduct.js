@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet, ScrollView, Image, Button, Pressable } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, Image, Button, Pressable, Alert } from 'react-native'
 import { GestureHandlerRootView, TouchableOpacity } from 'react-native-gesture-handler';
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 //mport { taskFormData } from '../../../customComponents/formData';
 import Collapsible from 'react-native-collapsible';
 import Dropdown from '../../customComponents/customDropdown';
@@ -19,7 +19,10 @@ import { router } from 'expo-router';
 import ArrowBack from '../../customComponents/arrowBack';
 import CustomSwitch from '../../customComponents/customSwitch';
 import ImageUpload from '../../customComponents/imageUpload';
-import RadioButton from '../../customComponents/customRadio';
+// import RadioButton from '../../customComponents/customRadio';
+import useIdStore from '../leadStore';
+import LeadDet from '../../leadComponents/leadDetHeader';
+import * as SecureStore from 'expo-secure-store'
 
  
  
@@ -39,6 +42,8 @@ export default function CreateProduct() {
   const[customTime, setCustomTime]=useState(null);
   const [isAddButtonDisabled, setIsAddButtonDisabled] = useState(false);
   const [showTimeModal, setShowTimeModal] = useState(false);
+
+  const leadId = useIdStore((state) => state.number);
  
   const handleCancelClicked = () => {
       setIsModalVisible(false);
@@ -55,7 +60,7 @@ export default function CreateProduct() {
   };
  
   const handleSelect = (item) => {
-    setSelectedValue(item);
+   
     setFormValues(prevFormValues => ({ ...prevFormValues, selectedValue: item }));
     console.log('Selected value:', item);
 };
@@ -78,31 +83,98 @@ const onSelectRadio = (item) => {
  
 // const goBack=()=>{
 //   router.navigate('/DrawerScreens/taskList');
+
+useEffect(() => {
+ 
+      setFormValues(prevFormValues => ({ ...prevFormValues, ['associated_lead']: leadId }));
+  }
+, [leadId]);
 // }
  
 const onSubmit = async () => {
  
+  const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_product_c`;
+  const token = SecureStore.getItem('token');
+  const stoken = JSON.parse(token);
+  const apiToken = stoken.accessToken;
+  console.log(apiToken);   
+  // const token="DeC8cB2g6op02J_9-8cvJDwpA_5QTiL_9x8VnZLmwHy3QcoqoVR7KuhWUs-M0KgzLFLlp1NB8d5kekkbt3mCYQ";
   console.log("Form data", formValues);
+  // try{
+      
+  //     const response = axios.post(`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_management`, formValues);
+  //     console.log('success',response);
+  // }
+  try{
+  const response = await fetch(postUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization' : 'Bearer ' + apiToken
+       
+      },
+    body: JSON.stringify(formValues)  
+    })
+
+    console.log("Successfully posted",response);
+    Alert.alert("Successfully Submitted!")
+    router.replace('/DrawerScreens/leadList')
   }
-  const toggleSection = (section) => {
-    switch (section) {
-        case 'section1':
-            setIsSection1Collapsed(!isSection1Collapsed);
-            break;
-        case 'section2':
-            setIsSection2Collapsed(!isSection2Collapsed);
-            break;
-        case 'section3':
-            setIsSection3Collapsed(!isSection3Collapsed);
-            break;
-        default:
-            break;
+  
+
+      catch(err){
+          console.log("error");
+      }
     }
-};
- 
+
+    function extractDate(timestamp) {
+      const dateObject = new Date(timestamp);
+      const year = dateObject.getFullYear();
+      const month = dateObject.getMonth() + 1;
+      const date = dateObject.getDate();
+      const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${date < 10 ? '0' + date : date}`;
+      return formattedDate;
+    }
+    
+
  
 const renderFormElement = (element) => {
+  const handleDateChange = (selectedDate, element) => {
+    if (selectedDate) {
+      setShowCalendarModal(false);
+      
+      // Check which date input is being changed
+      console.log("dateeeeee", extractDate(selectedDate))
+     
+        setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: extractDate(selectedDate) }));
+      }
+    }
+    const handleSelect = (item) => {
+   
+      setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: item.value }));
+      console.log('Selected value:', item);
+      
+  };
     switch (element.type) {
+      
+      case 'TextInputLead':
+        return (
+          <View>
+             <CustomInput
+                    key={element.name}
+                    title={element.title}
+                    placeholder={leadId}
+                    // control={control}
+                    name={element.name}
+                   
+                    // errors={errors}
+                    value={leadId}
+                    readOnly={true}
+                />
+             
+
+            </View>
+        );
         case 'TextInput':
             return (
               <View>
@@ -112,11 +184,13 @@ const renderFormElement = (element) => {
                     title={element.title}
                     placeholder={element.placeholder}
                     // control={control}
+                    inputType={element.inputType}
                     name={element.name}
                     rules={{ required: element.isRequired ? `${element.title} is required` : false }}
                     // errors={errors}
                     onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
                     value={formValues[element.name] || ''}
+                    readOnly={element.readOnly}
                 />
                 </View>
             );
@@ -138,67 +212,51 @@ const renderFormElement = (element) => {
             );
            
            
-              case 'multilineInput':
-                return (
-                    <View style={styles.inputContainer}>
-                        <Text style={styles.label}>Enter a note</Text>
-                        {/* <MultiSelectExample/> */}
-                        <MultilineTextInput/>
+              // case 'multilineInput':
+              //   return (
+              //       <View style={styles.inputContainer}>
+              //           <Text style={styles.label}>Enter a note</Text>
+              //           {/* <MultiSelectExample/> */}
+              //           <MultilineTextInput/>
                        
-                    </View>
-                );
-                case 'productDropdown':
-                  return (
-                    <View style={styles.inputContainer}>
-                    <Text style={styles.label}>Select Lead</Text>
-                    <LDropdown
-  label="Select Lead"
-  data={leadData.map((lead) => {
-    console.log(lead.id); // Log lead object
-    return {
-      value: lead.id,
-      label: `${lead.id} - ${lead.firstname} ${lead.lastname}`,
-    };
-  })}
-  onSelect={handleSelect}
-/>
-                </View>
-                  );
-                  case 'switch':
-                  return (
+              //       </View>
+              //   );
+               
+                  // case 'switch':
+                  // return (
                    
-                    <View style={styles.switchContainer}>
-                    <Text style={styles.labelswitch}>Active</Text>
-                    <View style={styles.switch}><CustomSwitch/></View>
-                    </View>
-                  );
+                  //   <View style={styles.switchContainer}>
+                  //   <Text style={styles.labelswitch}>Active</Text>
+                  //   <View style={styles.switch}><CustomSwitch/></View>
+                  //   </View>
+                  // );
  
-                  case 'imageUpload':
-                    return (
-                      <View>
-                        <Text style={styles.label}>Product Images</Text>
-                        <ImageUpload />
-                      </View>
-                    );
+                  // case 'imageUpload':
+                  //   return (
+                  //     <View>
+                  //       <Text style={styles.label}>Product Images</Text>
+                  //       <ImageUpload />
+                  //     </View>
+                  //   );
                    
-                    case 'RadioButton':
-                        return(
+                    // case 'RadioButton':
+                    //     return(
                            
                            
-                                <RadioButton style={styles.inputContainer}
-                                     onSelect={onSelectRadio}
-                                     SelectedData={selectedValue}
-                                     disableLine={1}
-                                     value={selectedValue}
-                                     onChange={(onSelectRadio) => setFormValues({ ...formValues, [element.label]: onSelectRadio })}
-                                     title={element.title}
-                                     data={productFormData}
-                                     // Pass the data prop here
-                                />
+                    //             <RadioButton style={styles.inputContainer}
+                    //                  onSelect={onSelectRadio}
+                    //                  SelectedData={selectedValue}
+                    //                  disableLine={1}
+                    //                  value={selectedValue}
+                    //                  onChange={(onSelectRadio) => setFormValues({ ...formValues, [element.label]: onSelectRadio })}
+                    //                  title={element.title}
+                    //                  data={productFormData}
+                    //                  // Pass the data prop here
+                    //             />
                            
                            
  
-                        )
+                    //     )
  
                
  
@@ -220,36 +278,54 @@ const renderFormElement = (element) => {
                   //     </View>
                   //     </View>
                   //   );
+                  case 'date':
+                    return (
+                      <View style={styles.inputContainer}>
+                        <Text style={styles.label}>{element.title}</Text>
+                        <Pressable onPress={() => setShowCalendarModal(true)}>
+                          <View style={styles.dateInput}>
+                            <Text style={styles.dateText}>
+                            {formValues[element.name] ? extractDate(formValues[element.name]) : 'Select date '}
+                            <View style={styles.icon}>
+                              <Ionicons name='calendar' size={20} color='black' />
+                              </View>
+                            </Text>
+                          </View>
+                        </Pressable>
+                        {/* Calendar Modal */}
+                        {showCalendarModal && (
+                          <RNDateTimePicker
+                            value={selectedDate || new Date()}
+                            mode="date"
+                            display="default"
+                            onChange={(event, selectedDate) => handleDateChange(selectedDate, element)}
+                          />
+                        )}
+                    
+                      </View>
+                      
+                    );
                        
 };
 }
   return (
     <View style={styles.cardContainer}>
+        <View style={styles.header}>
+      <LeadDet/>
+      </View>
     <ScrollView>
-      <GestureHandlerRootView>
+     
         <View style={styles.card}>
        
             <View style={styles.section}>
-                <TouchableOpacity onPress={() => toggleSection('section1')}>
-                    <Text style={styles.sectionTitle}>Product Information</Text>
-                    <Text>
- 
-</Text>
-                 
-                    <Image
-                        source={isSection1Collapsed ? DropdownIcon : DropupIcon}
-                        resizeMode="contain"
-                        style={styles.dropdownIcon}
-                    />
-                     
-                </TouchableOpacity>
-                <Collapsible collapsed={isSection1Collapsed}>
+    
+            
                     {productFormData.elements.slice(0, 11).map((element, index) => (
                         <View key={index} style={styles.inputContainer}>
                             {renderFormElement(element)}
                         </View>
                     ))}
-                </Collapsible>
+               
                
                
             </View>
@@ -286,7 +362,7 @@ const renderFormElement = (element) => {
     </View>
         </View>
        
-        </GestureHandlerRootView>
+ 
     </ScrollView>
    
  
@@ -298,15 +374,15 @@ const renderFormElement = (element) => {
 const styles = StyleSheet.create({
 cardContainer: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 20,
+    paddingHorizontal: -10,
+    paddingTop: -20,
     paddingBottom:15,
-     
-        backgroundColor: '#d1e0ed'
+    flexDirection:"column", 
+    backgroundColor: '#d1e0ed',
 },
 card: {
-    backgroundColor: '#FFFFFF', // White card background
-    borderRadius: 10,
+    backgroundColor: '#FFFFFF', 
+    // borderRadius: 10,
     padding: 20,
     shadowColor: '#000000',
     shadowOpacity: 0.2,
@@ -347,6 +423,14 @@ buttonContainer:{
     marginRight: 'auto',
     color:'#023B5E'
      // Push button to the leftmost corner
+  },
+  header: {
+    height:200,
+    // paddingHorizontal: 5,
+    paddingVertical:90,
+    paddingTop: 0,
+    paddingBottom: 5,
+    backgroundColor: '#ffffff',
   },
 dropdownIcon: {
     width: 20,
@@ -398,5 +482,8 @@ switch:{
      switchContainer:{
         flexDirection:'row'
       },
+      icon:{
+        paddingLeft:100
+      }
  
 });

@@ -1304,35 +1304,51 @@ export const productData=
 export const productFormData= {
   "elements": [
     {
-      "name": "type",
-      "type": "RadioButton",
-      "title": "Type",
-      "rdata": [
-        { "value": 1, "label": "Product" },
-        { "value": 2, "label": "Service" }
-      ]
+      "name": "associated_lead",
+      "type":"TextInputLead",
+      "title": "Associated Lead",
+      "inputType": "text",
+      
+      
+    },
+    
+    {
+      "name": "categories",
+      "type": "dropdown",
+      "title": "Categories",
+      "dropdownData": [
+        { "value": "health", "label": "Health" },
+      ]     
     },
  
     {
-      "name": "category",
+      "name": "sub_categories",
       "type": "dropdown",
-      "title": "Category",
+      "title": "Sub Category",
       "inputType": "text",
       "placeholder":'Select',
       "dropdownData": [
-        { "value": 1, "label": "Travel" },
-        { "value": 2, "label": "Medical" },
-        { "value": 3, "label": "Home" },
-        { "value": 4, "label": "Pet" },
-        { "value": 5, "label": "Life" }
+        { "value": "personal_accident", "label": "Personal Accident",  },
+        { "value": "critical_illness", "label": "Critical Illness" },
+        // { "value": "fire_insurance", "label": "Fire Insurance" },
+        // { "value": "marine", "label": "Marine" },
+        { "value": "maternity_insurance", "label": "Maternity Insurance"}
       ]
     },
     {
-      "name": "name",
-      "type": "TextInput",
-      "title": "Name",
+      "name": "products",
+      "type": "dropdown",
+      "title": "Products",
       "inputType": "text",
-      "placeholder":"Enter the name"
+      "placeholder":'Select',
+      "dropdownData": [
+        { "value": "health_first_plan", "label": "Health First Plan",  },
+        { "value": "pearl", "label": "Pearl" },
+        // { "value": "fire_insurance", "label": "Fire Insurance" },
+        // { "value": "marine", "label": "Marine" },
+        { "value": "ruby", "label": "Ruby"},
+        { "value": "saffire", "label": "Saffire"}
+      ]
     },
     {
       "name": "description",
@@ -1341,44 +1357,48 @@ export const productFormData= {
       "inputType": "text",
       "placeholder":"Enter the description"
     },
-    {
-      "name": "currency",
-      "type": "dropdown",
-      "title": "Currency",
-      "inputType": "text",
-      "placeholder":'Select',
-      "dropdownData": [
-        { "value": 1, "label": "INR" },
-        { "value": 2, "label": "USD" }
-      ]
-    },
+    // {
+    //   "name": "currency",
+    //   "type": "TextInput",
+    //   "title": "Currency",
+    //   "inputType": "text",
+    //   "placeholder":'INR',
+    //   "value":"INR",
+    //   "readonly":true
+
+    // },
     {
       "name": "price",
       "type": "TextInput",
-      "title": "Price",
-      "placeholder":"enter value",
+      "title": "Price/Value",
+      "placeholder":"Enter value in INR",
+      "inputType":"numeric"
      
     },
  
     {
-      "name": "code",
+      "name": "quantity",
       "type": "TextInput",
-      "title": "SAC Code",
-      "inputType": "text",
-      "placeholder":"Enter value"
-    },
-    {
-      "name": "active",
-      "type": "switch",
-      "title": "active",
+      "title": "Quantity",
+      "inputType":"numeric",
+      "placeholder":"Enter Quantity",
      
     },
     {
-      "name": "images",
-      "type": "imageUpload",
-      "title": "Product Images",
-      "placeholder":"upload picture images"
+      "name": "expected_purchase_date",
+      "type": "date",
+      "title": "Expected Purchase Date",
+      "placeholder":"Expected Purchase",
+     
     },
+
+ 
+    // {
+    //   "name": "images",
+    //   "type": "imageUpload",
+    //   "title": "Product Images",
+    //   "placeholder":"upload picture images"
+    // },
  
   ]
 }
@@ -1473,6 +1493,15 @@ export const callLogFormData= {
 export const leadScoreFormData={
   "elements":[
     {
+      "questionName": "associated_lead",
+      "questionType":"TextInputLead",
+      "questionlabel": "Associated Lead",
+      "inputType": "text",
+      
+      
+    },
+    
+    {
     "questionId":"1",
     "questionlabel":"Age",
     "name":"age",
@@ -1563,44 +1592,81 @@ export const leadScoreFormData={
                    ],
                           'isRequired': true,
               },
-            {
-              "questionId":"6",
-              "questionlabel":"Expected FYWP",
-              "name":"fywp",
-              "questionType":"dropdown",
-              "questionDescription":"fywp of the lead",
-              "placeholder": "Select",
-                          "dropdownData": [
-                              { "value": 1, "label": "<50K" },
-                              { "value": 2, "label": ">50K" },
+            // {
+            //   "questionId":"6",
+            //   "questionlabel":"Expected FYWP",
+            //   "name":"fywp",
+            //   "questionType":"dropdown",
+            //   "questionDescription":"fywp of the lead",
+            //   "placeholder": "Select",
+            //               "dropdownData": [
+            //                   { "value": 1, "label": "<50K" },
+            //                   { "value": 2, "label": ">50K" },
                              
-                          ],
-                          'isRequired': true,
-              },
+            //               ],
+            //               'isRequired': true,
+            //   },
 
   ]
 }
 
 
 
-export const statusFormData = {
-  "elements": [
-    {
-      "name": "reason",
-      "type": "multiLineText",
-      "title": "Reason",
-      "inputType": "text",
-      "placeholder":'Enter the reason', 
-    },
-    {
-      "name": "remarks",
-      "type": "multiLineText",
-      "title": "Remarks",
-      "inputType": "text",
-      "placeholder":"Enter the Remarks"
-    },
-   ]
-}
+
+
+
+export const activityForm=[
+  {
+    "name": "subject",
+    "type":"TextInput",
+    "title": "Subject",
+    "inputType": "text",
+    
+  },
+  {
+    "name": "description",
+    "type":"TextInput",
+    "title": "Description",
+    "inputType": "text",
+  },
+  {
+    "name": "due_date",
+    "type":"TextInput",
+    "title": "Due Date",
+    "inputType": "text",
+    
+  },
+  {
+    "name": "priority",
+    "type":"TextInput",
+    "title": "Priority",
+    "inputType": "text",
+    
+  },
+  {
+    "name": "created_on",
+    "type":"date",
+    "title": "Created On",
+    "inputType": "text",
+    
+  },
+  {
+    "name": "status",
+    "type": "dropdown",
+    "title": "Status",
+    "placeholder": "Select",
+    "dropdownData": [
+        { "value": "pending", "label": "Pending" },
+        { "value": "completed", "label": "Completed" },
+       
+    ],
+    "isRequired":true
+},
+
+
+ 
+   
+]
 
 
 export const activityFormData = [
@@ -1615,7 +1681,6 @@ export const activityFormData = [
             "title": "Associated Lead",
             "inputType": "text",
             
-            
           },
            
             {
@@ -1628,33 +1693,36 @@ export const activityFormData = [
                
             },
             {
-                "name": "title",
-                "type": "TextInput",
-                "title": "Title",
-                "inputType": "text",
-                "placeholder": "Enter the title",
-                "isRequired":true
+              "name": "subject",
+              "type":"TextInput",
+              "title": "Subject",
+              "inputType": "text",
+              "placeholder":"Enter the subject",
+
+              
             },
             {
                 "name": "description",
                 "type": "TextInput",
                 "title": "Description",
                 "inputType": "text",
-                "placeholder": "Enter the description"
+                "placeholder": "Enter the description",
+                "isRequired":true
             },
             {
-                "name": "status",
-                "type": "dropdown",
-                "title": "Status",
-                "placeholder": "Select",
-                "dropdownData": [
-                    { "value": "1", "label": "In-progress" },
-                    { "value": "2", "label": "Completed" },
-                    { "value": "3", "label": "Not Started" }
-                ]
-            },
+              "name": "status",
+              "type": "dropdown",
+              "title": "Status",
+              "placeholder": "Select",
+              "dropdownData": [
+                  { "value": "pending", "label": "Pending" },
+                  { "value": "completed", "label": "Completed" },
+                 
+              ],
+              "isRequired":true
+          },
             {
-                "name": "time",
+                "name": "start_time",
                 "type": "timeInput",
                 "title": "Time",
                 "placeholder": "",
@@ -1672,7 +1740,21 @@ export const activityFormData = [
                     { "value": "monthly", "label": "Monthly" },
                     { "value": "yearly", "label": "Yearly" },
                     { "value": "dont_repeat", "label": "Don't Repeat" }
-                ]
+                ],
+              
+            },
+            {
+              "name": "priority",
+              "type":"dropdown",
+              "title": "Priority",
+              "dropdownData": [
+                { "value": "high", "label": "High" },
+                { "value": "medium", "label": "Medium" },
+                { "value": "low", "label": "Low" },
+            ],
+        
+              
+              
             },
             // {
             //     "name": "owner",
@@ -1698,15 +1780,77 @@ export const activityFormData = [
             
             
           },
-            {
-                "name": "title",
-                "type": "TextInput",
-                "title": "Title",
-                "inputType": "text",
-                "placeholder": "Title",
-                "isRequired":true
-
-            },
+          {
+            "name": "due_date",
+            "type": "Date",
+            "title": "Due Date",
+            "inputType": "text",
+            "placeholder": "Select",
+            "isRequired":true
+           
+        },
+        {
+          "name": "start_time",
+          "type": "timeInput",
+          "title": "Time",
+          "inputType": "text",
+          "placeholder": "Select",
+         
+         
+      },
+        {
+          "name": "subject",
+          "type":"TextInput",
+          "title": "Subject",
+          "inputType": "text",
+          "placeholder":"Enter the subject",
+          "isRequired":true
+          
+        },
+        {
+            "name": "description",
+            "type": "TextInput",
+            "title": "Description",
+            "inputType": "text",
+            "placeholder": "Enter the description",
+            "isRequired":true
+        },
+        {
+          "name": "priority",
+          "type":"dropdown",
+          "title": "Priority",
+          "dropdownData": [
+            { "value": "high", "label": "High" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "low", "label": "Low" }
+        ],
+    
+          
+          
+        },
+        {
+          "name": "status",
+          "type": "dropdown",
+          "title": "Status",
+          "placeholder": "Select",
+          "dropdownData": [
+              { "value": "pending", "label": "Pending" },
+              { "value": "completed", "label": "Completed" },
+             
+          ],
+          "isRequired":true
+      },
+        {
+          "name": "attendees",
+          "type": "dropdown",
+          "title": "Attendees",
+          "placeholder": "Select",
+          "dropdownData": [
+              { "value": "lead.bhavani", "label": "lead.bhavani" },
+              { "value": "lead.kruthika", "label": "lead.kruthika" },
+              
+          ],
+      },
             {
               "name": "meeting_link",
               "type": "TextInput",
@@ -1714,20 +1858,8 @@ export const activityFormData = [
               "inputType": "text",
               "placeholder": "Link"
           },
-            {
-                "name": "location",
-                "type": "TextInput",
-                "title": "Location",
-                "inputType": "text",
-                "placeholder": "Location"
-            },
-            {
-                "name": "description",
-                "type": "TextInput",
-                "title": "Description",
-                "inputType": "text",
-                "placeholder": "Description"
-            },
+       
+       
         
             // {
             //     "name": "attendees",
@@ -1760,19 +1892,14 @@ export const activityFormData = [
                     { "value": "cst", "label": "China Standard Time (CST)" }
                 ]
             },
-            {
-                "name": "from_date",
-                "type": "Date",
-                "title": "From Date",
-                "placeholder": "From Date"
-            },
-            {
-                "name": "to_date",
-                "type": "Date",
-                "title": "To Date",
-                "placeholder": "To Date"
-            },
-           
+            // {
+            //     "name": "from_date",
+            //     "type": "Date",
+            //     "title": "From Date",
+            //     "placeholder": "From Date",
+            //     "isRequired":true
+            // },
+     
         
             {
                 "name": "all_day",
@@ -1790,6 +1917,7 @@ export const activityFormData = [
             "title": "Remainder Before",
             "placeholder": "Remainder before"
         },
+       
         ]
     }
   },
@@ -1803,9 +1931,28 @@ export const activityFormData = [
           "type":"TextInputLead",
           "title": "Associated Lead",
           "inputType": "text",
-          
+        },
+        {
+          "name": "subject",
+          "type":"TextInput",
+          "title": "Subject",
+          "inputType": "text",
+          "placeholder":"Enter the subject",
+          "isRequired":true
+
           
         },
+        {
+          "name": "status",
+          "type": "dropdown",
+          "title": "Status",
+          "placeholder": "Select",
+          "dropdownData": [
+            { "value": "pending", "label": "Pending" },
+            { "value": "completed", "label": "Completed" },
+          ],
+          "isRequired":true
+      },
        
      
      
@@ -1816,7 +1963,11 @@ export const activityFormData = [
           "inputType": 'numeric',
           "placeholder":"Enter the number",
           "keyboardType":"numeric",
-          "isRequired":true
+          "isRequired":true,
+          "validation": {
+            "regex": /^\d{10}$/,
+            "message": "Please enter a valid 10-digit phone number."
+          },
         },
         {
           "name": "description",
@@ -1831,14 +1982,28 @@ export const activityFormData = [
           "name": "start_time",
           "type": "timeInput",
           "title": "Start Time",
-          "placeholder": "Enter the time"
+          "placeholder": "Enter the time",
+          "isRequired":true
         },
         {
-          "name": "date",
+          "name": "due_date",
           "type": "Date",
           "title": "Date",
           "placeholder": "Date",
           "isRequired":true
+        },
+        {
+          "name": "priority",
+          "type":"dropdown",
+          "title": "Priority",
+          "dropdownData": [
+            { "value": "high", "label": "High" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "low", "label": "Low" }
+        ],
+     
+          
+          
         },
      
      
@@ -1865,13 +2030,15 @@ export const activityFormData = [
           "name": "start_time",
           "type": "timeInput",
           "title": "Start Time",
-          "placeholder": "Enter the time"
+          "placeholder": "Enter the time",
+          "isRequired":true
         },
         {
-          "name": "date",
+          "name": "due_date",
           "type": "Date",
           "title": "Date",
-          "placeholder": "Date"
+          "placeholder": "Date",
+          "isRequired":true
         },
         {
           "name": "follow_up_notes",
@@ -1879,6 +2046,49 @@ export const activityFormData = [
           "title": "Follow up notes",
           "placeholder": "Notes",
           "isRequired":true
+          
+        },
+  
+        {
+          "name": "subject",
+          "type":"TextInput",
+          "title": "Subject",
+          "isRequired":true,
+          
+          "placeholder":"Enter the subject"
+          
+        },
+        {
+            "name": "description",
+            "type": "TextInput",
+            "title": "Description",
+            "inputType": "text",
+            "isRequired":true,
+            "placeholder": "Enter the description"
+        },
+        {
+            "name": "status",
+            "type": "dropdown",
+            "title": "Status",
+            "placeholder": "Select",
+            "dropdownData": [
+              { "value": "pending", "label": "Pending" },
+              { "value": "completed", "label": "Completed" },
+            ],
+            "isRequired":true
+        },
+        {
+          "name": "priority",
+          "type":"dropdown",
+          "title": "Priority",
+          "dropdownData": [
+            { "value": "high", "label": "High" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "low", "label": "Low" }
+        ],
+        
+          
+          
         },
        
 
@@ -1886,52 +2096,52 @@ export const activityFormData = [
   }
 
   },
-  {
-    activityId: '5', 
-    activityType: 'appointment', 
-    Data: {
-      "elements": [
-        {
-          "name": "associated_lead",
-          "type":"TextInputLead",
-          "title": "Associated Lead",
-          "inputType": "text",
+  // {
+  //   activityId: '5', 
+  //   activityType: 'appointment', 
+  //   Data: {
+  //     "elements": [
+  //       {
+  //         "name": "associated_lead",
+  //         "type":"TextInputLead",
+  //         "title": "Associated Lead",
+  //         "inputType": "text",
           
           
-        },
+  //       },
      
      
-        {
-          "name": "start_time",
-          "type": "timeInput",
-          "title": "Start Time",
-          "placeholder": "Enter the time"
-        },
-        {
-          "name": "date",
-          "type": "Date",
-          "title": "Date",
-          "placeholder": "Date"
-        },
-        {
-          "name": "appointment_notes",
-          "type": "TextInput",
-          "title": "Appointment notes",
-          "placeholder": "Notes"
-        },
-        {
-          "name": "location",
-          "type": "TextInput",
-          "title": "Appointment location",
-          "placeholder": "location"
-        },
+  //       {
+  //         "name": "start_time",
+  //         "type": "timeInput",
+  //         "title": "Start Time",
+  //         "placeholder": "Enter the time"
+  //       },
+  //       {
+  //         "name": "date",
+  //         "type": "Date",
+  //         "title": "Date",
+  //         "placeholder": "Date"
+  //       },
+  //       {
+  //         "name": "appointment_notes",
+  //         "type": "TextInput",
+  //         "title": "Appointment notes",
+  //         "placeholder": "Notes"
+  //       },
+  //       {
+  //         "name": "location",
+  //         "type": "TextInput",
+  //         "title": "Appointment location",
+  //         "placeholder": "location"
+  //       },
 
        
 
-      ]
-  }
+  //     ]
+  // }
 
-  },
+  // },
 
   {
     activityId: '6', 
@@ -1942,8 +2152,7 @@ export const activityFormData = [
           "name": "associated_lead",
           "type":"TextInputLead",
           "title": "Associated Lead",
-          "inputType": "text",
-         
+          "inputType": "text",  
           
         },
      
@@ -1951,32 +2160,64 @@ export const activityFormData = [
           "name": "start_time",
           "type": "timeInput",
           "title": "Start Time",
-          "placeholder": "Enter the time"
+          "placeholder": "Enter the time",
+          "isRequired":true
         },
         {
-          "name": "date",
+          "name": "due_date",
           "type": "Date",
           "title": "Date",
-          "placeholder": "Date"
+          "placeholder": "Date",
+          "isRequired":true
         },
         {
           "name": "description",
           "type": "TextInput",
           "title": "Email description",
-          "placeholder": "description"
+          "placeholder": "description",
+          "isRequired":true,
         },
         {
           "name": "subject",
           "type": "TextInput",
           "title": "Subject",
-          "placeholder": "subject"
+          "placeholder": "subject",
+          "isRequired":true,
         },
         {
           "name": "email",
           "type": "TextInput",
           "title": "email id",
           "placeholder": "email",  
-          "isRequired":true
+          "isRequired":true,
+          "validation": {
+            "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+            "message": "Please enter a valid email address."
+          },
+        },
+       
+        {
+            "name": "status",
+            "type": "dropdown",
+            "title": "Status",
+            "placeholder": "Select",
+            "dropdownData": [
+                { "value": "pending", "label": "Pending" },
+                { "value": "completed", "label": "Completed" },
+                
+            ]
+        },
+        {
+          "name": "priority",
+          "type":"dropdown",
+          "title": "Priority",
+          "dropdownData": [
+            { "value": "high", "label": "High" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "low", "label": "Low" }
+        ]
+          
+          
         },
 
        
@@ -2037,3 +2278,28 @@ export const callLogData=
     "Date": "2024-03-31"
   }
 ];
+
+export const statusFormData = {
+  "elements": [
+    {
+      "name": "reason",
+      "type": "dropdown",
+      "title": "Reason",
+      "placeholder":'Enter the reason',
+      "dropdownData":[
+        { "value":1, "label":"Not Reachable"},
+        { "value":2, "label":"Ringing"},
+        { "value":3, "label":"Wrong Number"},
+        {"value":4, "label":"Busy"},
+        {"value":5, "label":"Appointment fixed"},
+      ]
+    },
+    {
+      "name": "remarks",
+      "type": "multiLineText",
+      "title": "Remarks",
+      "inputType": "text",
+      "placeholder":"Enter the Remarks"
+    },
+   ]
+}

@@ -3,10 +3,11 @@ import { SafeAreaView, FlatList, StyleSheet, TouchableOpacity, Text,View } from 
 import ProductCard from '../../productComponents/productCard';
 import { productData } from '../../customComponents/formData';
 import { router } from 'expo-router';
+import AllProductCard from '../../productComponents/allProducts';
  
-const goToCreateProduct =() => {
-  router.navigate('/formComponents/addProduct')
-}
+// const goToCreateProduct =() => {
+//   router.navigate('/formComponents/addProduct')
+// }
  
 const ProductItem = () => {
   return (
@@ -14,7 +15,7 @@ const ProductItem = () => {
       <FlatList
         data={productData}
         renderItem={({ item }) => (
-          <ProductCard
+          <AllProductCard
             productName={item.productName}
             categoryCode={item.categoryCode}
             productDescription={item.productDescription}
@@ -26,11 +27,7 @@ const ProductItem = () => {
         )}
         keyExtractor={(item) => item.id}
       />
- 
-   
-      <TouchableOpacity style={styles.addButton} onPress={goToCreateProduct}>
-        <Text style={styles.plusSymbol}>+</Text>
-      </TouchableOpacity>
+
     </SafeAreaView>
   );
 };

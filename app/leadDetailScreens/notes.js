@@ -352,7 +352,7 @@ export default function Notes() {
     }
   ];
   const goToCreateNotes = () => {
-    router.navigate('/DrawerScreens/createNotes')
+    router.navigate('/formComponents/createNotes')
   }
  
   const renderItem = ({ item }) => {

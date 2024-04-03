@@ -10,7 +10,7 @@ import { Drawer } from 'expo-router/drawer';
 import { Slot } from 'expo-router';
 import { Feeds } from '@/assets/images';
 //import Icon from 'react-native-ionicons'
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome6, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import CustomDrawerContent from '../../customComponents/CustomDrawerContent';
 import { Button, StyleSheet } from 'react-native';
 import { Tabs } from 'expo-router/tabs';
@@ -60,6 +60,41 @@ export default function Layout() {
       )
     }}
     ></Drawer.Screen>
+
+<Drawer.Screen
+    name='accounts'
+    options={{
+      drawerLabel:'Accounts',
+      headerTitle:'Accounts',
+      headerShown:true,
+      drawerIcon:({}) =>(
+        <MaterialIcons name='manage-accounts' size={20} color='black' />
+      ),
+      headerRight: () => (
+        <HeaderRight
+          onSearchPress={() => { /* Handle filter press */ }}
+          onNotificationPress={() => { /* Handle notification press */ }}
+        />
+      )
+    }}
+    ></Drawer.Screen>
+    <Drawer.Screen
+    name='contacts'
+    options={{
+      drawerLabel:'Contacts',
+      headerTitle:'Contacts',
+      headerShown:true,
+      drawerIcon:({}) =>(
+        <FontAwesome6 name='contact-book' size={20} color='black' />
+      ),
+      headerRight: () => (
+        <HeaderRight
+          onSearchPress={() => { /* Handle filter press */ }}
+          onNotificationPress={() => { /* Handle notification press */ }}
+        />
+      )
+    }}
+    ></Drawer.Screen>
        
    
    
@@ -71,6 +106,41 @@ export default function Layout() {
       headerShown:true,
       drawerIcon:({}) =>(
         <Ionicons name='apps-sharp' size={20} color='black' />
+      ),
+      headerRight: () => (
+        <HeaderRight
+          onSearchPress={() => { /* Handle filter press */ }}
+          onNotificationPress={() => { /* Handle notification press */ }}
+        />
+      )
+    }}
+    ></Drawer.Screen>
+           <Drawer.Screen
+    name='deals'
+    options={{
+      drawerLabel:'Deals/Opportunities',
+      headerTitle:'Deals',
+      headerShown:true,
+      drawerIcon:({}) =>(
+        <FontAwesome name='thumbs-o-up' size={20} color='black' />
+      ),
+      headerRight: () => (
+        <HeaderRight
+          onSearchPress={() => { /* Handle filter press */ }}
+          onNotificationPress={() => { /* Handle notification press */ }}
+        />
+      )
+    }}
+    ></Drawer.Screen>
+
+<Drawer.Screen
+    name='activitypage'
+    options={{
+      drawerLabel:'Activities',
+      headerTitle:'Activities',
+      headerShown:true,
+      drawerIcon:({}) =>(
+        <FontAwesome name='tasks' size={20} color='black' />
       ),
       headerRight: () => (
         <HeaderRight
@@ -106,50 +176,14 @@ export default function Layout() {
       )
     }}
     ></Drawer.Screen>
-       <Drawer.Screen
-    name='accounts'
+     <Drawer.Screen
+    name='settings'
     options={{
-      drawerLabel:'Accounts',
-      headerTitle:'Accounts',
+      drawerLabel:'Settings',
+      headerTitle:'Settings',
       headerShown:true,
       drawerIcon:({}) =>(
-        <MaterialIcons name='manage-accounts' size={20} color='black' />
-      ),
-      headerRight: () => (
-        <HeaderRight
-          onSearchPress={() => { /* Handle filter press */ }}
-          onNotificationPress={() => { /* Handle notification press */ }}
-        />
-      )
-    }}
-    ></Drawer.Screen>
-       <Drawer.Screen
-    name='deals'
-    options={{
-      drawerLabel:'Deals/Oppurtunities',
-      headerTitle:'Deals',
-      headerShown:true,
-      drawerIcon:({}) =>(
-        <FontAwesome name='thumbs-o-up' size={20} color='black' />
-      ),
-      headerRight: () => (
-        <HeaderRight
-          onSearchPress={() => { /* Handle filter press */ }}
-          onNotificationPress={() => { /* Handle notification press */ }}
-        />
-      )
-    }}
-    ></Drawer.Screen>
-
-
-<Drawer.Screen
-    name='activitypage'
-    options={{
-      drawerLabel:'Activities',
-      headerTitle:'Activities',
-      headerShown:true,
-      drawerIcon:({}) =>(
-        <FontAwesome name='tasks' size={20} color='black' />
+        <Ionicons name='settings-sharp' size={20} color='black' />
       ),
       headerRight: () => (
         <HeaderRight
@@ -160,18 +194,6 @@ export default function Layout() {
     }}
     ></Drawer.Screen>
  
- 
- 
-
- 
-
-
-
-
-
-
-    
-    
    </Drawer>
 </GestureHandlerRootView>
 </>

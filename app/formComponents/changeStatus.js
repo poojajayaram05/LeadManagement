@@ -281,4 +281,163 @@
 //     }
 //     });
 
+
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
+import ArrowBack from "../../customComponents/arrowBack";
+import RadioButton from "../../customComponents/customRadio";
+import useIdStore from "../leadStore";
+import StatusForm from "../formComponents/statusForm";
+import LeadDet from "../../leadComponents/leadDetHeader";
+import { FetchLeads } from "../service/fetchLeads";
+ 
+const ChangeStatus = () => {
+  const status = useIdStore((state) => state.status);
+  const leadId = useIdStore((state) => state.leadId);
+  const [selectedStatus, setSelectedStatus] = useState(null);
+  const [leadData, setLeadData] = useState([]);
+  console.log("this is the statusss", status);
+ 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const ldata = await FetchLeads();
+        setLeadData(ldata.result);
+        console.log(leadData);
+      } catch (error) {
+        console.error('Error in fetching leads:', error);
+      }
+    };
+    fetchData();
+  }, []);
+ 
+  const lead = leadData.find((lead) => lead.number === leadId);
+  const { first_name, last_name, mobile_phone, lead_status } = lead || {};
+ 
+  const handleStatusChange = (value) => {
+    setSelectedStatus(value);
+  };
+ 
+  const goBackToLeadCard = () => (
+    router.navigate('/DrawerScreens/leadList')
+  );
+ 
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <View style={{ height: '30%' }}>
+          <LeadDet/>
+          {/* <Text>{leadId}{first_name}{last_name}</Text> */}
+        </View>
+      </View>
+ 
+      {/* Replace SwitchSelector with RadioButton */}
+      <View style={styles.radioButtonContainer}>
+        {/* Move the "New" text to the left */}
+        <Text style={styles.statusText}>{lead_status}</Text>
+        {/* Reduce the font size of radio button labels */}
+        <RadioButton
+          title="Select Status"
+          labelStyle={styles.radioButtonLabel} // Custom style for radio button labels
+          data={{
+            elements: [
+              {
+                type: 'RadioButton',
+                rdata: generateOptions(status).options
+              }
+            ]
+          }}
+          onSelect={handleStatusChange}
+        />
+      </View>
+      {selectedStatus && <StatusForm selectedStatus={selectedStatus} />}
+ 
+      {/* <TouchableOpacity style={styles.backButton} onPress={goBackToLeadCard}>
+        <ArrowBack />
+      </TouchableOpacity> */}
+    </View>
+  );
+};
+ 
+const generateOptions = (status) => {
+  switch (status) {
+    case "new":
+      return {
+        options: [
+           
+          { label: 'Qualified', value: 'Qualified' },
+          { label: 'Contacted', value: 'Contacted' },
+          { label: 'Closed-not converted', value: 'Closed-not converted' },
+        ]
+      };
+    case "qualified":
+      return {
+        options: [
+          { label: 'Closed-not converted', value: 'Closed-not converted' },
+          { label: 'Converted', value: 'Converted' },
+        ]
+      };
+    case "contacted":
+      return {
+        options: [
+          { label: 'Qualified', value: 'Qualified' },
+        ]
+      };
+    case "Closed-not converted":
+      return {
+        options: [
+          { label: 'Closed-not converted', value: 'Closed-not converted' },
+        ]
+      };
+    case "Converted":
+      return {
+        options:[
+          { label: 'Converted', value: 'Converted' },
+        ]
+      };
+    default:
+      return [];
+  }
+};
+ 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#F2F6FF",
+    paddingTop: 5,
+    alignItems: "center",
+    width: "100%",
+  },
+  header: {
+    backgroundColor: "#023B5E",
+    paddingBottom:5,
+    // paddingTop:20,
+    width: "100%",
+    marginBottom:5,
+  },
+  backButton: {
+    alignSelf: "flex-end",
+  },
+  radioButtonContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    // marginBottom: 10,
+    marginTop:10,
+  },
+  statusText: {
+    // marginLeft: 120,
+    fontSize: 16,
+    color: "grey",
+    marginBottom:18,
+    marginRight:18,
+  },
+  radioButtonLabel: {
+    fontSize: 3,
+    color: "#000",
+  },
+});
+ 
+export default ChangeStatus;
+
  

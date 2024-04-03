@@ -16,11 +16,12 @@ import { femaleAvatar } from '../assets/images';
 import Colors from '@/constants/Colors';
 
  
-const LeadItem = ({ FirstName, LastName, Email, Phone, onViewPress, status,qualification, label, number, gender }) => {
+const LeadItem = ({ FirstName, LastName, Email, Phone, onViewPress, lead_status,qualification, label, number, gender }) => {
    
     const [showSecondImage, setShowSecondImage] = useState(false);
     const[selectedStar, setSelectedStar]=useState(false);
     const { leadId, setLeadId } = useIdStore();
+    const{status, setStatus}=useIdStore();
     const [showDropdown, setShowDropdown] = useState(false);
     console.log("gendersssssss", gender);
  
@@ -53,8 +54,9 @@ const handleNavigateToLeadDetails = () => {
     setLeadId(number);
 };
 const handleChangeStatus = () => {
-    router.navigate('/formComponents/changeStatus');
+    router.navigate('../../formComponents/changeStatus');
     setLeadId(number);
+    setStatus(lead_status);
     
  
     closeDropdown(); // Close the dropdown after action
@@ -95,9 +97,8 @@ return (
                   <Text style={styles.subtitle}>{Email}</Text>
                   <Text style={styles.subtitle}>{Phone}</Text>
                   <View style={styles.badgeBox}>
-                      <BadgeLead  label={status}   />
+                      <BadgeLead  label={lead_status}   />
                       <BadgeLead label={qualification}   />
-                     
                   </View>
               </View>
               <View style={styles.actionsContainer}>
@@ -116,9 +117,9 @@ return (
             {/* <TouchableOpacity onPress={() => {displayScreen(); closeDropdown();}}>
                 <Text style={styles.dropdownMenuItem}>View</Text>
             </TouchableOpacity> */}
-            {/* <TouchableOpacity onPress={handleChangeStatus}>
+            <TouchableOpacity onPress={handleChangeStatus}>
                 <Text style={styles.dropdownMenuItem}>Change Status</Text>
-            </TouchableOpacity> */}
+            </TouchableOpacity>
             <TouchableOpacity onPress={() => handleConvertLead()}>
                 <Text style={styles.dropdownMenuItem}>Convert Lead</Text>
             </TouchableOpacity>
@@ -156,10 +157,7 @@ const styles = {
         flexDirection:'row',
         justifyContent: 'space-between',
         marginTop: 6,
-     
-       
-         
-       
+ 
  
     },
     badgeSecond:{
