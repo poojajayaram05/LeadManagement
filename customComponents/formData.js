@@ -443,12 +443,15 @@ export const formData = {
          "sectionName":"Additional"
       },
       {
-        "name": "u_owner",
-        "type": "TextInput",
+        "name": "new_owner",
+        "type": "TextInputO",
         "title": "Owner",
         "inputType": "text",
-        "placeholder":"Owner",
-        "sectionName":"Additional"
+          "sectionName":"Additional"
+
+
+
+      
       
 
       },
@@ -488,15 +491,15 @@ export const formData = {
         "placeholder":"Twitter",
         "sectionName":"Social"
       },
-      {
-        "name": "assigned_to",
-        "type": "TextInput",
-        "title": "Assigned To",
-        "inputType": "text",
-        "placeholder":"Assigned To",
-        "readonly":true,
-        "sectionName":"Additional"
-      },
+      // {
+      //   "name": "assigned_to",
+      //   "type": "TextInput",
+      //   "title": "Assigned To",
+      //   "inputType": "text",
+      //   "placeholder":"Assigned To",
+      //   "readonly":true,
+      //   "sectionName":"Additional"
+      // },
       // {
       //   "name": "assignment_group",
       //   "type": "dropdown",

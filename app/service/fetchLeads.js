@@ -7,7 +7,7 @@ export const FetchLeads = async () => {
     const username = SecureStore.getItem('username');
     console.log("from store", username);
     console.log(apiToken);  
-    const getLeadURL=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_c?sysparm_query=owner=${username}&sysparm_fields=first_name,last_name,mobile_phone,email,qualification,lead_status,number,gender`;
+    const getLeadURL=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_c?sysparm_query=new_owner=${username}&sysparm_fields=first_name,last_name,mobile_phone,email,qualification,lead_status,number,gender`;
     console.log(getLeadURL);
     try {
         const response = await fetch(getLeadURL, {

@@ -1,5 +1,5 @@
 import { View, Text, Button, TextInput, StyleSheet, Select, ScrollView, Image} from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { formData } from '../../customComponents/formData'
 import { CustomInput } from '../../customComponents/customInput';
 import Collapsible from 'react-native-collapsible';
@@ -39,8 +39,11 @@ export default function CreateLead() {
           }
         
       };
+
+
+      
     
- 
+      const username= SecureStore.getItem('username');
     const [validationErrors, setValidationErrors] = useState({});
     const [formValues, setFormValues] = useState([]);
     const [selectedValue, setSelectedValue] = useState(null); 
@@ -49,6 +52,7 @@ export default function CreateLead() {
     const[testValues, setTestValues]=useState([]);
     const [isAddButtonDisabled, setIsAddButtonDisabled] = useState(false);
     const [isSwitchOn, setIsSwitchOn] = useState(false);
+    const [userName, setUsername]=useState('');
     
 
 
@@ -94,7 +98,21 @@ const onSelectRadio = (item) => {
     router.back();
   }
 
+
+  useEffect(() => {
+    const getUsername = async () => {
+        const storedUsername = await SecureStore.getItemAsync('username');
+        setUsername(storedUsername);
+        setFormValues(prevFormValues => ({ ...prevFormValues, ['new_owner']: storedUsername }));
+    };
+
+    getUsername();
+}, []);
+
+
     const onSubmit = async () => {
+      console.log("usernameee", username);
+      setFormValues(prevFormValues => ({ ...prevFormValues, ['new_owner']: username}));
       const errors = validateForm();
       if (Object.keys(errors).length > 0) {
         // If there are validation errors, set them in state
@@ -102,7 +120,9 @@ const onSelectRadio = (item) => {
         console.log(validationErrors);
       }
       else{
+       
         const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_c`;
+        console.log(postUrl);
         const token = SecureStore.getItem('token');
         const stoken = JSON.parse(token);
         const apiToken = stoken.accessToken;
@@ -162,6 +182,12 @@ const onSelectRadio = (item) => {
             </View>
           ));
       };
+
+      const saveOwner=()=>{
+        console.log("usernameee", username);
+        setFormValues(prevFormValues => ({ ...prevFormValues, ['new_owner']: username }));
+
+      }
 
     const renderFormElement = (element) => {
         const handleSelect = (item) => {
@@ -300,7 +326,26 @@ const onSelectRadio = (item) => {
                          
                        </View>
                         )
-              
+                        case 'TextInputO':
+                          return( 
+                          <View>
+                          <CustomInput
+                                 key={element.name}
+                                 title={element.title}
+                                 placeholder={username}
+                                 // control={control}
+                                 value={username}
+                                 name={element.name}
+                            
+                                 
+                                 
+                                 // errors={errors}
+                                 
+                                 
+                                //  readOnly={true}
+                             />
+                             </View>
+                          )
               
     };
 }
