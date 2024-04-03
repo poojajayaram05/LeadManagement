@@ -120,9 +120,7 @@ export const formData = {
         "inputType": "text",
         "placeholder": "State",
         "sectionName":"Address",
-        "dropdownData" :[
-          { value: '', label: '' },
-         ],
+       
         "isRequired":true
        
       }, 
@@ -137,14 +135,11 @@ export const formData = {
       }, 
       {
         "name":"country",
-        "type": "dropdown",
+        "type": "TextInput",
         "title": "Country",
         "inputType": "text",
         "placeholder": "Country",
         "sectionName":"Address",
-        "dropdownData" :[
-          { value: 'india', label: 'India' },
-         ],
         "isRequired":true
        
       }, 
@@ -1426,12 +1421,11 @@ export const callLogFormData= {
     //   ]
     // },
     {
-      "name": "associatedLeads",
-      "type": "leadDropdown",
+      "name": "associated_lead",
+      "type":"TextInputLead",
       "title": "Associated Lead",
       "inputType": "text",
-      "placeholder": "Select",
-      "dropdownData": leadData
+      
     },
 
 
@@ -2302,4 +2296,30 @@ export const statusFormData = {
       "placeholder":"Enter the Remarks"
     },
    ]
+}
+
+export const markAsCompletedFormData={
+  "elements": [
+    {
+      "name": "Lead_Id",
+      "type":"TextInputLead",
+      "title": "Lead Id",
+      "inputType": "text",  
+    },
+    {
+      "name": "Task_Id",
+      "type":"TextInputLeadA",
+      "title": "Task Id",
+      "inputType": "text",  
+    },
+    {
+      "name": "notes",
+      "type": "multiLineText",
+      "title": "Completion Notes",
+      "inputType": "text",
+      "placeholder": "Write a note",
+    }
+ 
+  ]
+ 
 }

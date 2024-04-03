@@ -286,10 +286,10 @@ const handleEmail = () => {
           {/* <Text style={styles.buttonLabel}>Email</Text> */}
         </TouchableOpacity>
  
-        <TouchableOpacity style={styles.actionButton} onPress={handleDirections}>
+        {/* <TouchableOpacity style={styles.actionButton} onPress={handleDirections}>
           <Ionicons name="location" size={24} color="white" />
-          {/* <Text style={styles.buttonLabel}>Direction</Text> */}
-        </TouchableOpacity>
+         
+        </TouchableOpacity> */}
         {/* <TouchableOpacity style={styles.actionButton} onPress={handleAttachment}>
           <Ionicons name="attach" size={24} color="white" />
           <Text style={styles.buttonLabel}>Add file</Text>

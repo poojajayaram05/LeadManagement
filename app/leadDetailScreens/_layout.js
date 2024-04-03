@@ -78,15 +78,7 @@ export default function AppLayout() {
           ),
         }}
       />
-      <Stack.Screen
-        name="notes"
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="sticky-note" size={size} color={color} />
-          ),
-        }}
-      />
+ 
       {/* <Stack.Screen
         name="requirements"
         options={{
@@ -112,6 +104,16 @@ export default function AppLayout() {
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person" size={size} color={color} />
+          ),
+        }}
+      />
+           <Stack.Screen
+        name="nearByLeads"
+        options={{
+          headerShown: true,
+          headerTitle:"Near By Leads",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="location" size={size} color={color} />
           ),
         }}
       />

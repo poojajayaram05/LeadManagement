@@ -12,8 +12,8 @@ import {
 } from 'react-native';
 import moment from 'moment';
 import Swiper from 'react-native-swiper';
-import { taskData } from '../../customComponents/formData';
-import { meetingItemsData } from '../../customComponents/formData';
+import { taskData } from './formData';
+import { meetingItemsData } from './formData';
 import { Ionicons } from '@expo/vector-icons'; // Import Ionicons
  
 const getStatusColor = (state) => {

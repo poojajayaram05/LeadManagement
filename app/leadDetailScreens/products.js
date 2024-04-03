@@ -19,8 +19,14 @@ const ProductItem = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
+          
           const ldata = await FetchProducts();
-          setProductData(ldata.result);
+          if (ldata && ldata.result) {
+            setProductItems(ldata.result.filter((lead) => lead.associated_lead === leadId));
+          } else {
+            setProductItems([]);
+          }
+         // setProductData(ldata.result);
           console.log("products", productData);
         } catch (error) {
           console.error('Error in fetching leads:', error);
@@ -37,30 +43,33 @@ const ProductItem = () => {
    
   return (
     <View style={styles.container}>
-    <View style={{ height: '26%' }}>
+      <View style={{ height: '26%' }}>
         <LeadDet />
       </View>
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={productItems}
-        renderItem={({ item }) => (
-          <ProductCard
-            category={item.categories}
-            sub_category={item.sub_categories}
-            description={item.description}
-            product={item.products}
-            price={item.price}
-            quantity={item.quantity}
+      <SafeAreaView style={styles.container}>
+        {productItems.length > 0 ? (
+          <FlatList
+            data={productItems}
+            renderItem={({ item }) => (
+              <ProductCard
+                category={item.categories}
+                sub_category={item.sub_categories}
+                description={item.description}
+                product={item.products}
+                price={item.price}
+                quantity={item.quantity}
+              />
+            )}
+            keyExtractor={(item) => item.id}
           />
+        ) : (
+          <Text>No products available</Text>
         )}
-        keyExtractor={(item) => item.id}
-      />
- 
-   
-      <TouchableOpacity style={styles.addButton} onPress={goToCreateProduct}>
-        <Text style={styles.plusSymbol}>+</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+
+        <TouchableOpacity style={styles.addButton} onPress={goToCreateProduct}>
+          <Text style={styles.plusSymbol}>+</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
     </View>
   );
 };

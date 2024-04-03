@@ -118,7 +118,7 @@ const onSubmit = async () => {
 
     console.log("Successfully posted",response);
     Alert.alert("Successfully Submitted!")
-    router.replace('/DrawerScreens/leadList')
+    router.replace('/leadDetailScreens/products')
   }
   
 
@@ -483,7 +483,7 @@ switch:{
         flexDirection:'row'
       },
       icon:{
-        paddingLeft:100
+        paddingLeft:180,
       }
  
 });

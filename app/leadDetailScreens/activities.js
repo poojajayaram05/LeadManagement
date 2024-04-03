@@ -189,7 +189,7 @@ import { FetchActivities } from '../service/fetchActivities';
 import groupBy from 'lodash/groupBy';
 import { router } from 'expo-router';
  
-
+ 
  
 const { width } = Dimensions.get('window');
  
@@ -201,6 +201,7 @@ export default function Example() {
   const [activityData, setActivityData] = useState([]);
   const [activityItems, setActivityItems] = useState([]);
   const [tabVisibility, setTabVisibility] = useState({
+   
     Tasks: true,
     Meetings: true,
     'Follow Up': true,
@@ -208,6 +209,9 @@ export default function Example() {
     Appointment: true,
     Calls: true
   });
+
+  const { activity_number, setActivityNumber } = useIdStore();
+ 
  
   const activity_type_map = {
     "task": "Tasks",
@@ -252,6 +256,11 @@ export default function Example() {
     const time = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
     return time;
   };
+
+  const goToMarkAsComplete=()=>
+  {
+    router.navigate('/formComponents/markAsComplete')
+  }
  
   const renderDate = (due_date) => {
     const date = new Date(due_date);
@@ -274,11 +283,41 @@ export default function Example() {
   }
  
   const renderItemTask = ({ item }) => {
-    const { activity_type, email,associated_lead,sys_created_on,start_time, due_date , date, time, status , description,priority, subject } = item;
+    //setActivityNumber(activity_number);
+    const { activity_type, email,associated_lead,sys_created_on,start_time, due_date , date, time, status , description,priority, subject, activity_number } = item;
     const timee = renderStartTime(start_time);
     const formattedDate =  renderDate(due_date)
+  //  setActivityNumber(activity_number);
+    let priorityColor = 'black'; // Default color if priority is not recognized
+    let statusColor = 'black';
+  // Determine color based on priority
+  switch (priority.toLowerCase()) {
+    case 'low':
+      priorityColor = 'lightblue';
+      break;
+    case 'medium':
+      priorityColor = 'orange';
+      break;
+    case 'high':
+      priorityColor = 'red';
+      break;
+    default:
+      break;
+  }
+ 
+  switch (status.toLowerCase()) {
+    case 'pending':
+      statusColor = 'green';
+      break;
+    case 'completed':
+      statusColor = 'brown';
+      break;
+    default:
+      break;
+  }
  
     const due_on = formattedDate + " "+ timee;
+
     return (
       <View style={[styles.section, styles.cardContainer]}>
         <View>
@@ -295,17 +334,22 @@ export default function Example() {
             <Text style={styles.detail}>{due_on}</Text>
           </View>
           <View style={styles.row}>
-            <Text style={styles.data}>Priority:</Text>
-            <Text style={styles.detail}>{priority}</Text>
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.data}>Status:</Text>
-            <Text style={styles.detail}>{status}</Text>
-          </View>
+          <Text style={styles.data}>Priority:</Text>
+          <Text style={[styles.detail, { color: priorityColor }]}>{priority}</Text>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.data}>Status:</Text>
+          <Text style={[styles.detail, { color: statusColor }]}>{status}</Text>
+        </View>
           <View style={styles.row}>
             <Text style={styles.data}>Created On:</Text>
             <Text style={styles.detail}>{sys_created_on}</Text>
           </View>
+          {status.toLowerCase() !== 'completed' && ( // Conditionally render the button if status is not completed
+          <TouchableOpacity style={styles.markAsCompleteButton} onPress={goToMarkAsComplete}>
+            <Text>Mark as Complete</Text>
+          </TouchableOpacity>
+          )}
         </View>
       </View>
     );
@@ -342,11 +386,11 @@ export default function Example() {
                       <Ionicons name={isVisible ? 'caret-up' : 'caret-down'} size={24} color="black" style={{ marginLeft: 5, marginTop: 12 }}/>
                     </View>
                   </TouchableOpacity>
-                  {(!isVisible && !hasActivities) && ( // Only render the message if accordion is not open and there are no activities
+                  {/* {(!isVisible && !hasActivities) && ( // Only render the message if accordion is not open and there are no activities
                     <View style={styles.default}>
                       <Text style={styles.defaultMessage}>No {activityType} found</Text>
                     </View>
-                  )}
+                  )} */}
                   {isVisible && hasActivities && ( // Render the FlatList only if accordion is open and there are activities
                     <>
                       <View style={styles.tabContainer}>
@@ -420,14 +464,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     height: 25,
-    marginTop: 10,
+   
     marginHorizontal: 20,
     paddingHorizontal: 10,
     borderTopWidth: 1, // Add a thin border above
     borderBottomWidth: 1, // Add a thin border below
-    borderColor: 'black', // You can adjust the color as needed
+    borderColor: 'grey', // You can adjust the color as needed
 },
-
+ 
  
   tab: {
     flex: 1, // Make the tab flex to occupy available space
@@ -469,20 +513,35 @@ const styles = StyleSheet.create({
     marginHorizontal:20,
    
   },
+  markAsCompleteButtonContainer: {
+    position: 'relative', // Change to relative positioning if needed
+    flexDirection: 'row', // Arrange children horizontally
+    justifyContent: 'flex-end', // Align children to the right
+    width:'10%'
+},
+markAsCompleteButton: {
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 5,
+    marginLeft: 180, 
+},
+
   section: {
     flexDirection: 'coloumn',
     alignItems: 'center',
     padding: 10,
     marginHorizontal:'20'
   },
-  cardContainer: {
-    borderBottomWidth: 1,
-    borderBottomColor: 'lightgrey',
-    flex: 1,
-    height: 140,
-    marginHorizontal:20,
-    // backgroundColor:'#FAF9F6',
-  },
+ cardContainer: {
+  borderBottomWidth: 1,
+  borderBottomColor: 'lightgrey',
+  flex: 1,
+  height: 165,
+  marginHorizontal: 20,
+ 
+  borderColor: 'lightgrey', // Adjust the color to match your design
+},
+ 
   detailBoxLeft: {
     flex: 1,
     marginRight: 10,

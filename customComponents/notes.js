@@ -324,10 +324,10 @@ import React from 'react';
 import { View, Text, FlatList, StyleSheet, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
-import FloatingButton from '../../customComponents/floatingButton';
-import LeadDet from '../../leadComponents/leadDetHeader';
+import FloatingButton from './floatingButton';
+import LeadDet from '../leadComponents/leadDetHeader';
 import { router } from 'expo-router';
-import LeadDetailCard from '../../customComponents/leadDetailCard';
+import LeadDetailCard from './leadDetailCard';
  
  
 export default function Notes() {

@@ -19,8 +19,9 @@ import { router } from 'expo-router';
 import ArrowBack from '../../customComponents/arrowBack';
 import LeadDet from '../../leadComponents/leadDetHeader';
 import { callLogFormData } from '../../customComponents/formData';
-
+import useIdStore from '../leadStore';
 export default function CreateCallLog() {
+  const leadId = useIdStore((state) => state.number);
   // const { control, handleSubmit, formState: { errors } } = useForm();
   const [isSection1Collapsed, setIsSection1Collapsed] = useState(false);
   const [showCalendarModal, setShowCalendarModal] = useState(false); 
@@ -31,6 +32,7 @@ export default function CreateCallLog() {
   const[customDate, setCustomDate]=useState(null);
   const[customTime, setCustomTime]=useState(null);
   const [showTimeModal, setShowTimeModal] = useState(false);
+  //const leadId = useIdStore((state) => state.leadId);
 
   const handleCancelClicked = () => {
       setIsModalVisible(false);
@@ -224,21 +226,22 @@ const renderFormElement = (element) => {
               </View>
       
               )
-                case 'leadDropdown':
+                case 'TextInputLead':
                   return (
                     <View style={styles.inputContainer}>
-                    <Text style={styles.label}>Associated Leads</Text>
-                    <LDropdown
-  label="Associated Leads"
-  data={leadData.map((lead) => {
-    console.log(lead.Id); // Log lead object
-    return {
-      value: lead.Id,
-      label: `${lead.Id} - ${lead.FirstName} ${lead.LastName}`,
-    };
-  })}
-  onSelect={handleSelect}
-/>
+                    <CustomInput
+                    key={element.name}
+                    title={element.title}
+                    placeholder={leadId}
+                    // control={control}
+                    name={element.name}
+                   
+                    // errors={errors}
+                    
+                    value={leadId}
+                    readOnly={true}
+                />
+             
                 </View>
                   );
               

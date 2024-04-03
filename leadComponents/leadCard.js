@@ -14,6 +14,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { avatarPic } from '../assets/images';
 import { femaleAvatar } from '../assets/images';
 import Colors from '@/constants/Colors';
+import { Linking } from 'react-native';
 
  
 const LeadItem = ({ FirstName, LastName, Email, Phone, onViewPress, lead_status,qualification, label, number, gender }) => {
@@ -62,7 +63,9 @@ const handleChangeStatus = () => {
     closeDropdown(); // Close the dropdown after action
 };
  
-const handleConvertLead = () => {
+const handleCallLog = () => {
+    router.navigate('../../formComponents/callLogForm');
+    setLeadId(number);
    
     closeDropdown(); // Close the dropdown after action
 };
@@ -71,6 +74,16 @@ const handleReassign = () => {
     // Add your logic to reassign the lead
     closeDropdown(); // Close the dropdown after action
 };
+
+const handleCall = () => {
+   
+    Linking.openURL(`tel:${Phone}`);
+  };
+ 
+  const handleEmail = () => {
+ 
+    Linking.openURL(`mailto:${Email}`);
+  };
  
  
  
@@ -102,6 +115,14 @@ return (
                   </View>
               </View>
               <View style={styles.actionsContainer}>
+              <View style={styles.iconContainer}>
+                        <TouchableOpacity onPress={handleCall} style={styles.actionIcon}>
+                            <Ionicons name="call" size={24} color="black" />
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={handleEmail} style={styles.actionIcon}>
+                            <Ionicons name="mail" size={24} color="black" />
+                        </TouchableOpacity>
+                    </View>
                   <TouchableOpacity onPress={toggleDropdown} style={styles.dropdownIcon}>
                       <Ionicons name="ellipsis-vertical" size={24} color="black" />
                   </TouchableOpacity>
@@ -120,8 +141,8 @@ return (
             <TouchableOpacity onPress={handleChangeStatus}>
                 <Text style={styles.dropdownMenuItem}>Change Status</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleConvertLead()}>
-                <Text style={styles.dropdownMenuItem}>Convert Lead</Text>
+            <TouchableOpacity onPress={() => handleCallLog()}>
+                <Text style={styles.dropdownMenuItem}>Call Log</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => handleReassign()}>
                 <Text style={styles.dropdownMenuItem}>Reassign</Text>
@@ -215,6 +236,7 @@ const styles = {
       actionsContainer: {
         flexDirection: 'row',
         alignItems: 'center',
+        marginRight:-10,
     },
     dropdownIcon: {
         marginLeft: 10,
@@ -240,6 +262,15 @@ const styles = {
     dropdownMenuItem: {
         fontSize: 16,
         paddingVertical: 8,
+    },
+    actionIcon: {
+        marginRight: 10,
+        marginBottom:70,
+       
+    },
+    iconContainer: {
+        flexDirection: 'row',
+        
     },
      
     //   filterIcon: {

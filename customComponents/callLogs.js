@@ -9,6 +9,7 @@ const goToCallLogForm =() => {
 }
  
 const CallLogItem = () => {
+  
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
