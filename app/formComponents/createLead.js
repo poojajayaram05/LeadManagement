@@ -342,7 +342,7 @@ const onSelectRadio = (item) => {
                                  // errors={errors}
                                  
                                  
-                                //  readOnly={true}
+                                 readOnly={true}
                              />
                              </View>
                           )
