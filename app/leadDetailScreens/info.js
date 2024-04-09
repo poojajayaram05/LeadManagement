@@ -11,18 +11,18 @@ import DataRow from '../../customComponents/dataRow';
 const sectionDetails = [
     {
       title: 'General Information',
-      id: 'leadInfo',
+      id: 'account_info',
       fields: [
-        {label: 'Lead Type:', value: 'lead_type' },
+        {label: 'Account Type:', value: 'lead_type' },
         {label:'Gender', value:'gender'},
-        { label: 'Lead Type:', value: 'lead_type' },
+        // { label: 'Lead Type:', value: 'lead_type' },
         { label: 'Title:', value: 'title' },
         { label: 'Description:', value: 'description' },
         { label: 'Number:', value: 'number' },
-        { label: 'Gender:', value: 'gender' },
+        // { label: 'Gender:', value: 'gender' },
         { label: 'Email:', value: 'email' },
-        { label: 'Lead Source:', value: 'lead_source' },
-        { label: 'Scoring Profile:', value: 'scoring_profile' }
+        { label: 'Account Source:', value: 'lead_source' },
+        // { label: 'Scoring Profile:', value: 'scoring_profile' }
       ]
     },
     {
@@ -63,7 +63,7 @@ const sectionDetails = [
       },
       {
         title: 'Contact Methods',
-        id: 'contactMethods',
+        id: 'contact Methods',
         fields: [
           { label: 'Preferred Method To Contact:', value: 'preffered_method' },
           { label: 'Whatsapp Number:', value: 'Whatsapp' },
@@ -109,9 +109,11 @@ const Info = () => {
       setOpenSections([...openSections, sectionId]);
     }
   };
+
+  const accNumber = useIdStore((state)=>state.account_number);
  
   const renderSectionContent = (sectionId, leadData, leadId) => {
-    const lead = leadData.find((lead) => lead.number === leadId);
+    const lead = leadData.find((lead) => lead.account_number === accNumber);
     const section = sectionDetails.find((section) => section.id === sectionId);
  
     if (!section || !lead) return null;
