@@ -407,7 +407,7 @@ export default function Example() {
                       <FlatList
                         data={value.filter(item => currentTab[activityType] === 'all' || item.status.toLowerCase() === currentTab[activityType])}
                         renderItem={renderItemTask}
-                        keyExtractor={(item) => item.id}
+                        keyExtractor={(item) => item.activity_number}
                         ListEmptyComponent={() => (
                           <View style={styles.default}>
                             <Text style={styles.defaultMessage}>No {activityType} to display</Text>

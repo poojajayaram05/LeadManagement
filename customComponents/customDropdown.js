@@ -45,6 +45,14 @@ const Dropdown = ({ label, data, onSelect }) => {
                     </View>
                 </TouchableOpacity>
             </Modal>
+             {/* <MultipleSelectList 
+             renderItem={renderItem}
+          setSelected={(val) => setSelected(val)} // Update selected values
+        data={data} 
+        save="value"
+        onSelect={() => console.log(selectedValues)} // Log selected values
+
+    /> */}
         </View>
     );
 };

@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         alignItems: 'center', // Center items vertically
         borderWidth: 1,
         borderColor: '#ccc',
-        borderRadius: 3,
+        borderRadius: 20,
       },
       icon: {
         marginLeft: 10, // Adjust as needed

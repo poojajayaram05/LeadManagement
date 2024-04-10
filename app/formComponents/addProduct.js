@@ -23,6 +23,7 @@ import ImageUpload from '../../customComponents/imageUpload';
 import useIdStore from '../leadStore';
 import LeadDet from '../../leadComponents/leadDetHeader';
 import * as SecureStore from 'expo-secure-store'
+import { SelectList } from 'react-native-dropdown-select-list';
 
  
  
@@ -151,7 +152,7 @@ const renderFormElement = (element) => {
     }
     const handleSelect = (item) => {
    
-      setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: item.value }));
+      setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: item }));
       console.log('Selected value:', item);
       
   };
@@ -200,12 +201,23 @@ const renderFormElement = (element) => {
                 <View style = {styles.inputContainer}>
                 <Text style={styles.label}>{element.title}</Text>
                
-                    <Dropdown style={styles.inputContainer}
-                        label={selectedValue ? selectedValue.label : 'Select'}
-                        data={element.dropdownData}
-                        value={selectedValue}
-                        onSelect={handleSelect}
-                    />
+                              <SelectList 
+                boxStyles={{
+                    borderWidth: 1,
+                    borderColor: '#ccc',
+                    borderRadius: 12, // Make the border oval by using a large border radius
+                    paddingVertical: 10,
+                    paddingHorizontal: 10,
+                    fontSize: 16
+                }}
+                setSelected={(label) => {
+                   // handleSelect(label); // Call handleSelect to save the selected value
+                    setSelectedValue(label); // Update selected values
+                }}
+                data={element.dropdownData.map(item => ({ value: item.key, label: item.label }))}
+                save="key"
+                onSelect={() => handleSelect(selectedValue) } // Log selected values
+            />
                 </View>
                 </View>
                

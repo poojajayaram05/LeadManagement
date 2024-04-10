@@ -15,6 +15,7 @@ import { CustomInputSocial } from '../../customComponents/customSocialField';
 import CustomSwitch from '../../customComponents/customSwitch';
 import CustomHeader from '../../customComponents/customLeadHeader';
 // Form component
+import { SelectList } from 'react-native-dropdown-select-list';
 export default function CreateLead() {
     // const { control, handleSubmit, formState: { errors } } = useForm();
     const [isCollapsed, setIsCollapsed] = useState({
@@ -112,6 +113,7 @@ const onSelectRadio = (item) => {
 
     const onSubmit = async () => {
       console.log("usernameee", username);
+      console.log("Form data", formValues);
       setFormValues(prevFormValues => ({ ...prevFormValues, ['new_owner']: username}));
       const errors = validateForm();
       if (Object.keys(errors).length > 0) {
@@ -192,8 +194,8 @@ const onSelectRadio = (item) => {
     const renderFormElement = (element) => {
         const handleSelect = (item) => {
             //setSelectedValue(item);
-            setFormValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item.value }));
-            console.log(element.name, item.value);
+            setFormValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item }));
+            console.log(element.name, item);
         };
         const handleSwitch=(item)=>{
           setFormValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item}));
@@ -284,13 +286,25 @@ const onSelectRadio = (item) => {
                     <View>
                     <View style = {styles.inputContainer}>
                     <Text style={styles.label}>{element.title}{starMark}</Text>
-                        <Dropdown style={styles.inputContainer}
-                            label={selectedValue ? selectedValue.label : 'Select'}
-                            data={element.dropdownData}
-                            value={selectedValue}
-                            onSelect={handleSelect}
-                        />
+                    <SelectList 
+                boxStyles={{
+                    borderWidth: 1,
+                    borderColor: '#ccc',
+                    borderRadius: 12, // Make the border oval by using a large border radius
+                    paddingVertical: 10,
+                    paddingHorizontal: 10,
+                    fontSize: 16
+                }}
+                setSelected={(label) => {
+                   // handleSelect(label); // Call handleSelect to save the selected value
+                    setSelectedValue(label); // Update selected values
+                }}
+                data={element.dropdownData.map(item => ({ value: item.key, label: item.label }))}
+                save="key"
+                onSelect={() => handleSelect(selectedValue) } // Log selected values
+            />
                     </View>
+                    {validationErrors[element.name] && <Text style={styles.errorMessage}>{validationErrors[element.name]}</Text>}
                     </View>
                 );
                
@@ -342,7 +356,7 @@ const onSelectRadio = (item) => {
                                  // errors={errors}
                                  
                                  
-                                 readOnly={true}
+                                //  readOnly={true}
                              />
                              </View>
                           )

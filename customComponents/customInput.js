@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: '#ccc',
-    borderRadius: 3,
-    paddingVertical: 10,
+    borderRadius: 12, // Make the border oval by using a large border radius
+    paddingVertical: 7,
     paddingHorizontal: 10,
     fontSize: 16,
   },

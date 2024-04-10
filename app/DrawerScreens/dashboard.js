@@ -5,6 +5,8 @@ import SmallCard from '../../dashboardComponents/smallCard';
 import Scrollcard from '../../dashboardComponents/scrollCard';
 import Bigcard from '../../dashboardComponents/bigCard';
 import ChartLine from '../../dashboardComponents/lineChart';
+import { router } from 'expo-router';
+import { Modal } from 'react-native';
 
  
 const total_leads = 0;
@@ -14,10 +16,27 @@ const sales = 3;
  
 const Dashboard = () => {
   const [selectedCard, setSelectedCard] = useState(total_leads);
+  const [showDropdown, setShowDropdown] = useState(false);
  
   const handleCardPress = (cardIndex) => {
     setSelectedCard(cardIndex === selectedCard ? null : cardIndex);
   };
+  const onClickPlus=()=>{
+    setShowDropdown(true);
+  }
+  const handleAddLead=()=>{
+    router.navigate('/formComponents/createLead')
+  }
+  const handleAddActivty=()=>{
+    router.navigate('/formComponents/activityForm')
+  }
+  const handleAddAccount=()=>{
+    router.navigate('/formComponents/activityForm')
+  }
+ 
+  const closeDropdown=()=>{
+    setShowDropdown(false);
+  }
  
   return (
     <View style={styles.container}>
@@ -96,6 +115,41 @@ const Dashboard = () => {
           </View>
         )}
       </ScrollView>
+      <TouchableOpacity style={styles.plusButton} onPress={onClickPlus} > 
+   <Ionicons name="add" size={24} color="white" />
+  
+ </TouchableOpacity>
+   {showDropdown && (
+
+    <View style={styles.dropdownContainer}>
+    <ScrollView style={styles.dropdownScrollView}>
+        <View style={styles.dropdownMenu}>
+          <TouchableOpacity onPress={closeDropdown} style={{paddingLeft:285}}>
+            <Ionicons name='close-circle' size={35} />
+          </TouchableOpacity>
+            {/* <TouchableOpacity onPress={() => {router.navigate('DrawerScreens/createLead'); closeDropdown();}}>
+                <Text style={styles.dropdownMenuItem}>Edit lead</Text>
+            </TouchableOpacity> */}
+            {/* <TouchableOpacity onPress={() => {displayScreen(); closeDropdown();}}>
+                <Text style={styles.dropdownMenuItem}>View</Text>
+            </TouchableOpacity> */}
+            <TouchableOpacity onPress={handleAddLead}>
+                <Text style={styles.dropdownMenuItem}>Add a lead</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => handleAddActivty()}>
+                <Text style={styles.dropdownMenuItem}>Add Activity</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => handleAddAccount()}>
+                <Text style={styles.dropdownMenuItem}>Add an account</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => handleAddAccount()}>
+                <Text style={styles.dropdownMenuItem}>Add a Contact</Text>
+            </TouchableOpacity>
+        </View>
+    </ScrollView>
+</View>
+
+          )}
 
      
  
@@ -121,6 +175,15 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
   },
+  plusButton: {
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+    backgroundColor: '#023B5E',
+    padding: 15,
+    borderRadius: 30,
+    elevation: 4,
+  },
   scrollContainer: {
     flex: 1,
     paddingTop: 10,
@@ -138,6 +201,20 @@ const styles = StyleSheet.create({
     width: 350,
     marginBottom: 30,
   },
+  dropdownMenu: {
+    backgroundColor: 'white',
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    elevation: 3,
+    zIndex: 999,
+},
+dropdownMenuItem: {
+    fontSize: 16,
+    paddingVertical: 8,
+    color:'#023B5E',
+    fontWeight:'bold'
+},
   row1: {
     flexDirection: 'row',
     justifyContent: 'space-around',

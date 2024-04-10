@@ -2,44 +2,40 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Dimensions, TextInput } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
-import LeadDet from '../../leadComponents/leadDetHeader';
-import useIdStore from '../leadStore';
 import Dropdown from '../../customComponents/customDropdown';
+import { Lead } from '../../assets/images';
+import { LeadLocation } from '../../assets/images';
 
 const MapScreen = () => {
+  const options = [
+    { value: 1, label: 'Less than 5 kms' },
+    { value: 2, label: 'Less than 10 kms' },
+    { value: 3, label: 'More than 10 Kms' },
+  ];
 
-     const locationFormData={
-        "elements":[  
-      
-        {
-          "name": "requirement",
-          "type": "multiLineText",
-          "title": "Requirement",
-          "inputType": "text",
-          "placeholder": "Notes",
-          "dropdownData": [
-            { "value": 1, "label": "Less than 5 kms" },
-            { "value": 2, "label": "Less than 10 kms" },
-            { "value": 3, "label": "More than 10 Kms" },
-           
-          ]
-          
-        }, ]}
-
-        const options=  [
-            { "value": 1, "label": "Less than 5 kms" },
-            { "value": 2, "label": "Less than 10 kms" },
-            { "value": 3, "label": "More than 10 Kms" },
-           
-          ]
-
-
-
+  const addresses = [
+    {
+      name: 'John',
+      address: 'Kempegowda International Airport, Bangalore, Karnataka, India',
+      latitude: 13.1986,
+      longitude: 77.7066,
+    },
+    {
+      name: 'Jane',
+      address: 'Vidhana Soudha, Bengaluru, Karnataka, India',
+      latitude: 12.9794,
+      longitude: 77.5913,
+    },
+    {
+      name: 'Michael',
+      address: 'Bannerghatta National Park, Bengaluru, Karnataka, India',
+      latitude: 12.8008,
+      longitude: 77.5770,
+    },
+  ];
+  
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
-  const leadNumber = useIdStore((state) => state.number);
-
-  const title = `${leadNumber} is here!!`;
 
   useEffect(() => {
     (async () => {
@@ -56,11 +52,9 @@ const MapScreen = () => {
 
   return (
     <View style={styles.container}>
-      
       <View style={styles.formContainer}>
-      <Text style={styles.label}>Select the radius</Text>
-      <Dropdown label="Select Option" data={options} onSelect={(item) => console.log(item)} />
-        
+        <Text style={styles.label}>Select the radius</Text>
+        <Dropdown label="Select Option" data={options} onSelect={(item) => console.log(item)} />
       </View>
 
       <View style={styles.mapContainer}>
@@ -73,15 +67,14 @@ const MapScreen = () => {
             longitudeDelta: 0.0421,
           }}
         >
-          {location && (
+          {addresses.map((address, index) => (
             <Marker
-              coordinate={{
-                latitude: location.coords.latitude,
-                longitude: location.coords.longitude,
-              }}
-              title={title}
+              key={index}
+              coordinate={{ latitude: address.latitude, longitude: address.longitude }}
+              title={address.name}
+              
             />
-          )}
+          ))}
         </MapView>
       </View>
       {errorMsg && <Text>{errorMsg}</Text>}
@@ -90,16 +83,16 @@ const MapScreen = () => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'flex-start', // Align items to the left
-        justifyContent: 'center',
-        paddingHorizontal: 20, // Add horizontal padding for spacing
-      },
-      label: {
-        fontWeight: 'bold', // Make the text bold
-        marginBottom: 5, // Add bottom margin for spacing
-      },
+  container: {
+    flex: 1,
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+  },
+  label: {
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
   mapContainer: {
     flex: 1,
     width: '100%',
@@ -110,19 +103,6 @@ const styles = StyleSheet.create({
   formContainer: {
     paddingHorizontal: 20,
     marginBottom: 20,
-  },
-  header: {
-    backgroundColor: "#023B5E",
-    paddingBottom: 5,
-    width: "100%",
-    marginBottom: 5,
-  },
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 10,
-    paddingHorizontal: 10,
   },
 });
 

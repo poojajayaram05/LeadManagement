@@ -133,7 +133,7 @@ export default function Layout() {
     }}
     ></Drawer.Screen>
 
-{/* <Drawer.Screen
+ <Drawer.Screen
     name='activitypage'
     options={{
       drawerLabel:'Activities',
@@ -148,7 +148,8 @@ export default function Layout() {
         />
       )
     }}
-    ></Drawer.Screen> */}
+    ></Drawer.Screen> 
+     
    
  
  
@@ -186,8 +187,6 @@ export default function Layout() {
       ),
       headerRight: () => (
         <HeaderRight
-          onSearchPress={() => { /* Handle filter press */ }}
-          onNotificationPress={() => { /* Handle notification press */ }}
         />
       )
     }}

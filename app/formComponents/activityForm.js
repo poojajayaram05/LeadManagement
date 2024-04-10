@@ -13,6 +13,7 @@ import { Ionicons } from '@expo/vector-icons';
 import MultilineTextInput from '../../customComponents/customMultilineInput';
 import CustomMultipleSelect from '../../customComponents/cutsomMultipleSelect';
 import { activityFormData, taskFormData } from '../../customComponents/formData';
+import { MultipleSelectList, SelectList } from 'react-native-dropdown-select-list';
 import { leadData } from '../../customComponents/formData';
 import LDropdown from '../../customComponents/customLeadDropdown';
 import { router } from 'expo-router';
@@ -46,6 +47,7 @@ export default function CreateActivity() {
   const [toTime, setToTime] = useState(null);
   const[leadData, setLeadData]=useState([])
   const[validationErrors, setValidationErrors]=useState([])
+  const[selectedMulti, setSelectedMulti]=useState([]);
 
   const [selectedActivity, setSelectedActivity] = useState(null);
 
@@ -144,6 +146,7 @@ export default function CreateActivity() {
   // const{number}=lead||'';
   // console.log("leaaaaad", number);
   const[leadNumber, setLeadNumber]=useState('');
+  const [selectedValues, setSelectedValues] = useState([]);
   // setLeadNumber(number);
 
   const renderForm = () => {
@@ -265,7 +268,7 @@ const onSubmit = async () => {
 const renderFormElement = (element) => {
   const handleSelect = (item) => {
    
-    setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: item.value }));
+    setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: item }));
     console.log('Selected value:', item);
     
 };
@@ -384,22 +387,24 @@ const handleDateChange = (selectedDate, element) => {
                   
                 );
               
-        // case 'dropdown':
-        //     return (
-        //         <View>
-        //         <View style = {styles.inputContainer}>
-        //         <Text style={styles.label}>{element.title}</Text>
+        case 'multipleSelect':
+            return (
+                <View>
+                <View style = {styles.inputContainer}>
+                <Text style={styles.label}>{element.title}</Text>
                
-        //             <Dropdown style={styles.inputContainer}
-        //                 label={selectedValue ? selectedValue.label : 'Select'}
-        //                 data={element.dropdownData}
-        //                 value={selectedValue}
-        //                 onSelect={handleSelect}
-        //             />
-        //         </View>
-        //         </View>
+                <MultipleSelectList 
+          setSelected={(val) => setSelectedValues(val)} // Update selected values
+        data={element.dropdownData} 
+        save="value"
+        onSelect={() => console.log(selectedValues)} // Log selected values
+
+        label="Attendees"
+    />
+                </View>
+                </View>
                 
-        //     );
+            );
         
             case 'dropdown':
             return (
@@ -407,13 +412,23 @@ const handleDateChange = (selectedDate, element) => {
                     <View style={styles.inputContainer}>
                         <Text style={styles.label}>{element.title}</Text>
                         
-                        <Dropdown
-                            style={styles.inputContainer}
-                            label={selectedDate ? selectedDate.label : 'Select'}
-                            data={element.dropdownData}
-                            value={selectedDate}
-                            onSelect={handleSelect}
-                        />
+                        <SelectList 
+                boxStyles={{
+                    borderWidth: 1,
+                    borderColor: '#ccc',
+                    borderRadius: 12, // Make the border oval by using a large border radius
+                    paddingVertical: 10,
+                    paddingHorizontal: 10,
+                    fontSize: 16
+                }}
+                setSelected={(label) => {
+                   // handleSelect(label); // Call handleSelect to save the selected value
+                    setSelectedValue(label); // Update selected values
+                }}
+                data={element.dropdownData.map(item => ({ value: item.key, label: item.label }))}
+                save="key"
+                onSelect={() => handleSelect(selectedValue) } // Log selected values
+            />
                     </View>
                     {validationErrors[element.name] && <Text style={styles.errorMessage}>{validationErrors[element.name]}</Text>}
                   
@@ -607,7 +622,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
     borderColor: '#ccc',
-    borderRadius: 5,
+    borderRadius: 12,
     paddingVertical: 10,
     paddingHorizontal: 15,
   },

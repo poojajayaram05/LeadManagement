@@ -51,5 +51,6 @@ export {default as starrOne} from './starrOne.png';
 export {default as starTwo} from './starTwo.png';
 export {default as avatarPic} from './avatarPic.png';
 export {default as femaleAvatar} from './femaleAvatar.png';
+import {default as LeadLocation} from './leadLocation.png'
 
 

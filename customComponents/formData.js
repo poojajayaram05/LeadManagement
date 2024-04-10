@@ -2,19 +2,19 @@ export const formData = {
   
     "elements": [
       {
-        "name":"lead_type",
-        "type":"dropdown",
-        "title":"Lead Type",
-        "inputType":"text",
-        "placeholder":"Lead Type",
-        "dropdownData" :[
-          { value: 'person', label: 'Person' },
-          {value:'company', label:'Company'}
+        "name": "lead_type",
+        "type": "dropdown",
+        "title": "Lead Type",
+        "inputType": "text",
+        "placeholder": "Lead Type",
+        "dropdownData": [
+            { "key": 'person', "label": 'Person' },
+            { "key": 'company', "label": 'Company' }
         ],
-        "sectionName":"General",
-        "isRequired":true
-        
-      },
+        "sectionName": "General",
+        "isRequired": true
+    },
+    
   
       {
         "name": "salutation",
@@ -23,10 +23,10 @@ export const formData = {
         "inputType": "text",
         "placeholder":"Salutation",
          "dropdownData" :[
-          { value: 'Mr.', label: 'Mr.' },
-          { value: 'Ms.', label: 'Ms.' },
-          { value: 'Dr.', label: 'Dr.' },
-          { value: 'prof', label: 'Prof' },
+          { key: 'Mr.', value: 'Mr.' },
+          { key: 'Ms.', value: 'Ms.' },
+          { key: 'Dr.', value: 'Dr.' },
+          { key: 'prof', value: 'Prof' },
          ],
          "sectionName":"General"
       },
@@ -69,9 +69,9 @@ export const formData = {
       //   "inputType": "text",
       //   "placeholder":"Qualification",
       //    "dropdownData" :[
-      //     { value: 'hot', label: 'Hot' },
-      //     { value: 'cold', label: 'Cold' },
-      //     { value: 'warm', label: 'Warm' },
+      //     { key: 'hot', value: 'Hot' },
+      //     { key: 'cold', value: 'Cold' },
+      //     { key: 'warm', value: 'Warm' },
       //    ],
       //    "sectionName":"General"
       // },
@@ -150,11 +150,11 @@ export const formData = {
         "inputType": "text",
         "placeholder":"Industry",
          "dropdownData" :[
-          { value: 'accounting', label: 'Accounting' },
-          { value: 'brokers', label: 'Brokers' },
-          { value: 'consulting', label: 'Consulting' },
-          { value: 'customer_services', label: 'Customer Services'},
-          { value: 'financial', label: 'Financial' },
+          { key: 'accounting', value: 'Accounting' },
+          { key: 'brokers', value: 'Brokers' },
+          { key: 'consulting', value: 'Consulting' },
+          { key: 'customer_services', value: 'Customer Services'},
+          { key: 'financial', value: 'Financial' },
          ],
          "sectionName":"Company"
         
@@ -167,8 +167,8 @@ export const formData = {
         "inputType": "text",
         "placeholder":"Currency",
          "dropdownData" :[
-          { value: 'inr', label: 'INR' },
-          { value: 'usd', label: 'USD' },
+          { key: 'inr', value: 'INR' },
+          { key: 'usd', value: 'USD' },
          ],
          "sectionName":"Company"
 
@@ -278,7 +278,7 @@ export const formData = {
          "type":"email",
         "title": "Email",
         "placeholder":"Email",
-        "isRequired": true,
+     
         "sectionName":"Contact",
         "validation": {
           "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -292,11 +292,11 @@ export const formData = {
         "title": "Preferred",
         "placeholder":"Preferred",
         "dropdownData" :[
-          { value: 'any', label: 'Any' },
-          { value: 'email', label: 'Email' },
-          { value: 'bulk_email', label: 'Web' },
-          { value: 'phone', label: 'Phone' },
-          { value: 'whatsapp', label: 'Whatsapp' },
+          { key: 'any', value: 'Any' },
+          { key: 'email', value: 'Email' },
+          { key: 'bulk_email', value: 'Web' },
+          { key: 'phone', value: 'Phone' },
+          { key: 'whatsapp', value: 'Whatsapp' },
           
          ],
          "sectionName":"ContactMethod"
@@ -326,8 +326,8 @@ export const formData = {
         "title": "Email subscription",
         "placeholder":"Email subscription",
         "dropdownData" :[
-          { value: 'allow', label: 'Allow' },
-          { value: 'do_not_allow', label: 'Do not allow' },
+          { key: 'allow', value: 'Allow' },
+          { key: 'do_not_allow', value: 'Do not allow' },
          ],
          "sectionName":"ContactMethod"
 
@@ -338,8 +338,8 @@ export const formData = {
         "title": "Phone subscription",
         "placeholder":"Phone subscription",
         "dropdownData" :[
-          { value: 'allow', label: 'Allow' },
-          { value: 'do_not_allow', label: 'Do not allow' },
+          { key: 'allow', value: 'Allow' },
+          { key: 'do_not_allow', value: 'Do not allow' },
          ],
          "sectionName":"ContactMethod"
       },
@@ -349,8 +349,8 @@ export const formData = {
         "title": "Whatsapp subscription",
         "placeholder":"whatsapp subscription",
         "dropdownData" :[
-          { value: 'allow', label: 'Allow' },
-          { value: 'do_not_allow', label: 'Do not allow' },
+          { key: 'allow', value: 'Allow' },
+          { key: 'do_not_allow', value: 'Do not allow' },
          ],
          "sectionName":"ContactMethod"
       },
@@ -394,8 +394,8 @@ export const formData = {
         "title": "Lead Currency",
         "placeholder":"Currency",
         "dropdownData" :[
-          { value: 'inr', label: 'INR' },
-          { value: 'usd', label: 'USD' },
+          { key: 'inr', value: 'INR' },
+          { key: 'usd', value: 'USD' },
           
          ],
          "sectionName":"company"
@@ -407,11 +407,11 @@ export const formData = {
         "inputType": "text",
         "placeholder":"Lead Source",
          "dropdownData" :[
-          { value: 'advertisement', label: 'Advertisement' },
-          { value: 'partner', label: 'Partner' },
-          { value: 'web', label: 'Web' },
-          { value: 'campaign', label: 'Campaign' },
-          { value: 'self_sourced', label: 'Self Sourced' },
+          { key: 'advertisement', value: 'Advertisement' },
+          { key: 'partner', value: 'Partner' },
+          { key: 'web', value: 'Web' },
+          { key: 'campaign', value: 'Campaign' },
+          { key: 'self_sourced', value: 'Self Sourced' },
          ],
          "sectionName":"General"
       },
@@ -422,11 +422,11 @@ export const formData = {
       //   "inputType": "text",
       //   "placeholder":"Lead Status",
       //    "dropdownData" :[
-      //     { value: 'new', label: 'New' },
-      //     { value: 'Contacted', label: 'Contacted' },
-      //     { value: 'qualified', label: 'Qualified' },
-      //     { value: 'converted', label: 'Converted' },
-      //     { value: 'closed-not_converted', label: 'Closed-Not Converted' },
+      //     { key: 'new', value: 'New' },
+      //     { key: 'Contacted', value: 'Contacted' },
+      //     { key: 'qualified', value: 'Qualified' },
+      //     { key: 'converted', value: 'Converted' },
+      //     { key: 'closed-not_converted', value: 'Closed-Not Converted' },
       //    ],
       //    "sectionName":"Additional"
       // },
@@ -437,8 +437,8 @@ export const formData = {
         "inputType": "text",
         "placeholder":"Owner Type",
          "dropdownData" :[
-          { value: 'team', label: 'Team' },
-          { value: 'user', label: 'User' },
+          { key: 'team', value: 'Team' },
+          { key: 'user', value: 'User' },
          ],
          "sectionName":"Additional"
       },
@@ -507,7 +507,7 @@ export const formData = {
       //   "inputType": "text",
       //   "placeholder":"Assigned Group",
       //   "dropdownData": [
-      //     { "value": 1, "label": "" },
+      //     { "key": 1, "value": "" },
 
       //   ],
       //   "sectionName":"Additional"
@@ -524,11 +524,11 @@ export const formData = {
         "inputType": "text",
         "placeholder":'Select',
         "dropdownData": [
-          { "value": 1, "label": "Call" },
-          { "value": 2, "label": "Email" },
-          { "value": 3, "label": "Message" },
-          { "value": 4, "label": "Follow-Up" },
-          { "value": 5, "label": "Appointment" },
+          { "key": 1, "value": "Call" },
+          { "key": 2, "value": "Email" },
+          { "key": 3, "value": "Message" },
+          { "key": 4, "value": "Follow-Up" },
+          { "key": 5, "value": "Appointment" },
       
         ]
       },
@@ -539,12 +539,12 @@ export const formData = {
         "inputType": "text",
         "placeholder":'Select',
         "dropdownData": [
-          { "value": 1, "label": "Today" },
-          { "value": 2, "label": "Tomorrow" },
-          { "value": 3, "label": "3 Days From Now" },
-          { "value": 4, "label": "One Week From Now" },
-          { "value": 5, "label": "1 Month From Now" },
-          { "value": 6, "label": "Custom Date" }
+          { "key": 1, "value": "Today" },
+          { "key": 2, "value": "Tomorrow" },
+          { "key": 3, "value": "3 Days From Now" },
+          { "key": 4, "value": "One Week From Now" },
+          { "key": 5, "value": "1 Month From Now" },
+          { "key": 6, "value": "Custom Date" }
         ]
       },
       {
@@ -567,9 +567,9 @@ export const formData = {
         "title": "Status",
         "placeholder":'Select',
         "dropdownData": [
-          { "value": 1, "label": "In-progress" },
-          { "value": 2, "label": "Completed" },
-          {"value":3, "label":"Not Started"}
+          { "key": 1, "value": "In-progress" },
+          { "key": 2, "value": "Completed" },
+          {"key":3, "value":"Not Started"}
         ]
       },
       {
@@ -585,11 +585,11 @@ export const formData = {
         "inputType": "text",
         "placeholder":'Select',
         "dropdownData": [
-          { "value": 1, "label": "Daily" },
-          { "value": 2, "label": "Weekly" },
-          { "value": 3, "label": "Monthly" },
-          { "value": 4, "label": "Yearly" },
-          { "value": 5, "label": "Don't Repeat" }
+          { "key": 1, "value": "Daily" },
+          { "key": 2, "value": "Weekly" },
+          { "key": 3, "value": "Monthly" },
+          { "key": 4, "value": "Yearly" },
+          { "key": 5, "value": "Don't Repeat" }
         ]
       },
       {
@@ -599,14 +599,14 @@ export const formData = {
         "inputType": "text",
         "placeholder":'Select',
         "dropdownData": [
-          { "value": 1, "label": "John Doe" },
-          { "value": 2, "label": "Jane Smith" },
-          { "value": 3, "label": "Alice Mark" },
-          { "value": 4, "label": "Kate Winslet" },
-          { "value": 5, "label": "William Henry" },
-          { "value": 6, "label": "Jane Peter" },
-          { "value": 7, "label": "Carley Wilson" },
-          { "value": 8, "label": "William Henry" }
+          { "key": 1, "value": "John Doe" },
+          { "key": 2, "value": "Jane Smith" },
+          { "key": 3, "value": "Alice Mark" },
+          { "key": 4, "value": "Kate Winslet" },
+          { "key": 5, "value": "William Henry" },
+          { "key": 6, "value": "Jane Peter" },
+          { "key": 7, "value": "Carley Wilson" },
+          { "key": 8, "value": "William Henry" }
         ]
       },
     //   {
@@ -658,7 +658,7 @@ export const formData = {
       "BulkEmail":"Allow",
       "Phone":"8076845632",
       "Whatsapp":"9985435678",
-      "label":"hot",
+      "value":"hot",
       "Id":"1",
       "Status":"New Lead"
    
@@ -698,7 +698,7 @@ export const formData = {
       "BulkEmail": "Not allowed",
       "Phone": "9876543210",
       "Whatsapp": "Unavailable",
-      "label": "cold",
+      "value": "cold",
       "Id": "2",
       "Status": "Qualified"
     },
@@ -736,7 +736,7 @@ export const formData = {
       "BulkEmail": "Allow",
       "Phone": "9876543210",
       "Whatsapp": "Unavailable",
-      "label": "warm",
+      "value": "warm",
       "Id": "3",
       "Status": "Contacted"
     },
@@ -774,7 +774,7 @@ export const formData = {
       "BulkEmail": "Not allowed",
       "Phone": "9876543210",
       "Whatsapp": "Unavailable",
-      "label": "hot",
+      "value": "hot",
       "Id": "4",
       "Status": "New Lead"
     },
@@ -812,7 +812,7 @@ export const formData = {
       "BulkEmail": "Allow",
       "Phone": "9876543210",
       "Whatsapp": "Unavailable",
-      "label": "cold",
+      "value": "cold",
       "Id": "5",
       "Status": "Qualified"
     },
@@ -850,7 +850,7 @@ export const formData = {
     "BulkEmail": "Not allowed",
     "Phone": "9876543210",
     "Whatsapp": "Unavailable",
-    "label": "hot",
+    "value": "hot",
     "Id": "6",
     "Status": "Contacted"
   },
@@ -888,7 +888,7 @@ export const formData = {
     "BulkEmail": "Not allowed",
     "Phone": "8765432109",
     "Whatsapp": "Unavailable",
-    "label": "hot",
+    "value": "hot",
     "Id": "7",
     "Status": "Closed"
 },
@@ -1118,13 +1118,13 @@ export const meetingData = {
     //   "inputType": "text",
     //   "placeholder":'Select',
     //   "dropdownData": [
-    //     { "value": 1, "label": "John Doe" },
-    //     { "value": 2, "label": "Jane Smith" },
-    //     { "value": 3, "label": "Alice Mark" },
-    //     { "value": 4, "label": "Kate Winslet" },
-    //     { "value": 5, "label": "William Henry" },
-    //     { "value": 6, "label": "Jane Peter" },
-    //     { "value": 7, "label": "Carley Wilson" },
+    //     { "key": 1, "value": "John Doe" },
+    //     { "key": 2, "value": "Jane Smith" },
+    //     { "key": 3, "value": "Alice Mark" },
+    //     { "key": 4, "value": "Kate Winslet" },
+    //     { "key": 5, "value": "William Henry" },
+    //     { "key": 6, "value": "Jane Peter" },
+    //     { "key": 7, "value": "Carley Wilson" },
       
         
     //   ]
@@ -1136,12 +1136,12 @@ export const meetingData = {
       "inputType": "text",
       "placeholder":'Select',
       "dropdownData": [
-        { "value": 1, "label": "Coordinated Universal Time (UTC)" },
-        { "value": 2, "label": "Eastern Standard Time (EST)" },
-        { "value": 3, "label": "Central European Time (CET)" },
-        { "value": 4, "label": "Pacific Standard Time (PST)" },
-        { "value": 5, "label": "India Standard Time (IST)" },
-        { "value": 6, "label": "China Standard Time (CST)" },
+        { "key": 1, "value": "Coordinated Universal Time (UTC)" },
+        { "key": 2, "value": "Eastern Standard Time (EST)" },
+        { "key": 3, "value": "Central European Time (CET)" },
+        { "key": 4, "value": "Pacific Standard Time (PST)" },
+        { "key": 5, "value": "India Standard Time (IST)" },
+        { "key": 6, "value": "China Standard Time (CST)" },
         
       ]
     },
@@ -1207,18 +1207,18 @@ export const requirementFormData={
     "inputType": "text",
     "placeholder": "Select",
      "dropdownData": [
-      { "value": 1, "label": "1 Week" },
-      { "value": 2, "label": "15 Days" },
-      { "value": 3, "label": "1 Month" },
-      { "value": 4, "label": "6 Months" },
+      { "key": 1, "value": "1 Week" },
+      { "key": 2, "value": "15 Days" },
+      { "key": 3, "value": "1 Month" },
+      { "key": 4, "value": "6 Months" },
     ]
   },
   {
-    "name": "value",
+    "name": "key",
     "type": "TextInput",
-    "title": "Value ($)",
+    "title": "key ($)",
     "inputType": "number",
-    "placeholder": "Value",
+    "placeholder": "key",
     
   },
 
@@ -1315,7 +1315,7 @@ export const productFormData= {
       "type": "dropdown",
       "title": "Categories",
       "dropdownData": [
-        { "value": "health", "label": "Health" },
+        { "key": "health", "value": "Health" },
       ]     
     },
  
@@ -1326,11 +1326,11 @@ export const productFormData= {
       "inputType": "text",
       "placeholder":'Select',
       "dropdownData": [
-        { "value": "personal_accident", "label": "Personal Accident",  },
-        { "value": "critical_illness", "label": "Critical Illness" },
-        // { "value": "fire_insurance", "label": "Fire Insurance" },
-        // { "value": "marine", "label": "Marine" },
-        { "value": "maternity_insurance", "label": "Maternity Insurance"}
+        { "key": "personal_accident", "value": "Personal Accident",  },
+        { "key": "critical_illness", "value": "Critical Illness" },
+        // { "key": "fire_insurance", "value": "Fire Insurance" },
+        // { "key": "marine", "value": "Marine" },
+        { "key": "maternity_insurance", "value": "Maternity Insurance"}
       ]
     },
     {
@@ -1340,12 +1340,12 @@ export const productFormData= {
       "inputType": "text",
       "placeholder":'Select',
       "dropdownData": [
-        { "value": "health_first_plan", "label": "Health First Plan",  },
-        { "value": "pearl", "label": "Pearl" },
-        // { "value": "fire_insurance", "label": "Fire Insurance" },
-        // { "value": "marine", "label": "Marine" },
-        { "value": "ruby", "label": "Ruby"},
-        { "value": "saffire", "label": "Saffire"}
+        { "key": "health_first_plan", "value": "Health First Plan",  },
+        { "key": "pearl", "value": "Pearl" },
+        // { "key": "fire_insurance", "value": "Fire Insurance" },
+        // { "key": "marine", "value": "Marine" },
+        { "key": "ruby", "value": "Ruby"},
+        { "key": "saffire", "value": "Saffire"}
       ]
     },
     {
@@ -1361,15 +1361,15 @@ export const productFormData= {
     //   "title": "Currency",
     //   "inputType": "text",
     //   "placeholder":'INR',
-    //   "value":"INR",
+    //   "key":"INR",
     //   "readonly":true
 
     // },
     {
       "name": "price",
       "type": "TextInput",
-      "title": "Price/Value",
-      "placeholder":"Enter value in INR",
+      "title": "Price/key",
+      "placeholder":"Enter key in INR",
       "inputType":"numeric"
      
     },
@@ -1418,8 +1418,8 @@ export const callLogFormData= {
     //   "inputType": "text",
     //   "placeholder":'Select',
     //   "dropdownData": [
-    //     { "value": 1, "label": "Contact" },
-    //     { "value": 2, "label": "Lead" },
+    //     { "key": 1, "value": "Contact" },
+    //     { "key": 2, "value": "Lead" },
        
     //   ]
     // },
@@ -1447,21 +1447,21 @@ export const callLogFormData= {
       "inputType": "text",
       "placeholder":'Select',
       "dropdownData": [
-        { "value": 1, "label": "OutGoing" },
-        { "value": 2, "label": "Incoming" }
+        { "key": 1, "value": "OutGoing" },
+        { "key": 2, "value": "Incoming" }
       ]
     },
     {
       "name": "outcome",
       "type": "dropdown",
       "title": "Outcome",
-      "placeholder":"enter value",
+      "placeholder":"enter key",
       "dropdownData": [
-        { "value": 1, "label": "Missed Call" },
-        { "value": 2, "label": "No Answer" },
-        { "value": 3, "label": "Busy" },
-        { "value": 3, "label": "Rejected" },
-        { "value": 4, "label": "Connected" }
+        { "key": 1, "value": "Missed Call" },
+        { "key": 2, "value": "No Answer" },
+        { "key": 3, "value": "Busy" },
+        { "key": 3, "value": "Rejected" },
+        { "key": 4, "value": "Connected" }
       ]
      
     },
@@ -1492,7 +1492,7 @@ export const leadScoreFormData={
     {
       "questionName": "associated_lead",
       "questionType":"TextInputLead",
-      "questionlabel": "Associated Lead",
+      "questionvalue": "Associated Lead",
       "inputType": "text",
       
       
@@ -1500,33 +1500,33 @@ export const leadScoreFormData={
     
     {
     "questionId":"1",
-    "questionlabel":"Age",
+    "questionvalue":"Age",
     "name":"age",
     "questionType":"dropdown",
     "questionDescription":"age of the lead",
     "placeholder": "Select",
                 "dropdownData": [
-                    { "value": 1, "label": "20-30 years" },
-                    { "value": 2, "label": "30-40 years" },
-                    { "value": 3, "label": "40-50 years" },
-                    { "value": 4, "label": "50-60 years" },
-                    { "value": 5, "label": "60-70 years" }
+                    { "key": 1, "value": "20-30 years" },
+                    { "key": 2, "value": "30-40 years" },
+                    { "key": 3, "value": "40-50 years" },
+                    { "key": 4, "value": "50-60 years" },
+                    { "key": 5, "value": "60-70 years" }
                 ],
                 'isRequired': true,
     
     },
     {
       "questionId":"2",
-      "questionlabel":"Family Income",
+      "questionvalue":"Family Income",
       "name":"familyIncome",
       "questionType":"dropdown",
       "questionDescription":"income of the whole family",
       "placeholder": "Select",
                   "dropdownData": [
-                      { "value": 1, "label": "4 - 6 Lakhs" },
-                      { "value": 2, "label": "6 - 10 Lakhs" },
-                      { "value": 3, "label": "10 - 15 Lakhs" },
-                      { "value": 4, "label": "15+ Lakhs" },
+                      { "key": 1, "value": "4 - 6 Lakhs" },
+                      { "key": 2, "value": "6 - 10 Lakhs" },
+                      { "key": 3, "value": "10 - 15 Lakhs" },
+                      { "key": 4, "value": "15+ Lakhs" },
                      
                   ],
                   'isRequired': true,
@@ -1534,71 +1534,71 @@ export const leadScoreFormData={
       },
       {
         "questionId":"3",
-        "questionlabel":"Occupation",
+        "questionvalue":"Occupation",
         "name":"occupation",
         "questionType":"dropdown",
         "questionDescription":"occupation of the lead",
         "placeholder": "Select",
                     "dropdownData": [
-                        { "value": 1, "label": "Self-Employed" },
-                        { "value": 2, "label": "Business" },
-                        { "value": 4, "label": "Employee" },
+                        { "key": 1, "value": "Self-Employed" },
+                        { "key": 2, "value": "Business" },
+                        { "key": 4, "value": "Employee" },
                     ],
                     'isRequired': true,
         },
         {
           "questionId":"4",
-          "questionlabel":"Gender",
+          "questionvalue":"Gender",
           "type":"RadioButton",
           "questionDescription":"gender of the lead",
           "rdata" : [
-            { label: "Male", id: 'male' },
-            { label: "Female", id: 'female' },
-            { label: "Other", id: 'other' },
+            { value: "Male", id: 'male' },
+            { value: "Female", id: 'female' },
+            { value: "Other", id: 'other' },
           ],
           'isRequired': true,
           },
           
           {
             "questionId":"4",
-            "questionlabel":"Education Qualification",
+            "questionvalue":"Education Qualification",
             "name":"qualification",
             "questionType":"dropdown",
             "questionDescription":"qualification of the lead",
             "placeholder": "Select",
                         "dropdownData": [
-                            { "value": 1, "label": "Graduate/Postgraduate/MBA/CA" },
-                            { "value": 2, "label": "Undergraduate/Diploma/12th" },
+                            { "key": 1, "value": "Graduate/Postgraduate/MBA/CA" },
+                            { "key": 2, "value": "Undergraduate/Diploma/12th" },
                            
                         ],
                         'isRequired': true,
             },
             {
               "questionId":"5",
-              "questionlabel":"Lead Category",
+              "questionvalue":"Lead Category",
               "name":"leadCategory",
               "questionType":"dropdown",
               "questionDescription":"Category of the lead",
               "placeholder": "Select",
               "dropdownData" :[
-                    { value: 'new', label: 'New' },
-                    { value: 'Contacted', label: 'Contacted' },
-                    { value: 'qualified', label: 'Qualified' },
-                    { value: 'converted', label: 'Converted' },
-                    { value: 'closed-not_converted', label: 'Closed-Not Converted' },
+                    { key: 'new', value: 'New' },
+                    { key: 'Contacted', value: 'Contacted' },
+                    { key: 'qualified', value: 'Qualified' },
+                    { key: 'converted', value: 'Converted' },
+                    { key: 'closed-not_converted', value: 'Closed-Not Converted' },
                    ],
                           'isRequired': true,
               },
             // {
             //   "questionId":"6",
-            //   "questionlabel":"Expected FYWP",
+            //   "questionvalue":"Expected FYWP",
             //   "name":"fywp",
             //   "questionType":"dropdown",
             //   "questionDescription":"fywp of the lead",
             //   "placeholder": "Select",
             //               "dropdownData": [
-            //                   { "value": 1, "label": "<50K" },
-            //                   { "value": 2, "label": ">50K" },
+            //                   { "key": 1, "value": "<50K" },
+            //                   { "key": 2, "value": ">50K" },
                              
             //               ],
             //               'isRequired': true,
@@ -1653,8 +1653,8 @@ export const activityForm=[
     "title": "Status",
     "placeholder": "Select",
     "dropdownData": [
-        { "value": "pending", "label": "Pending" },
-        { "value": "completed", "label": "Completed" },
+        { "key": "pending", "key": "Pending" },
+        { "key": "completed", "key": "Completed" },
        
     ],
     "isRequired":true
@@ -1712,8 +1712,8 @@ export const activityFormData = [
               "title": "Status",
               "placeholder": "Select",
               "dropdownData": [
-                  { "value": "pending", "label": "Pending" },
-                  { "value": "completed", "label": "Completed" },
+                  { "key": "pending", "value": "Pending" },
+                  { "key": "completed", "value": "Completed" },
                  
               ],
               "isRequired":true
@@ -1732,11 +1732,11 @@ export const activityFormData = [
                 "inputType": "text",
                 "placeholder": "Select",
                 "dropdownData": [
-                    { "value": "daily", "label": "Daily" },
-                    { "value": "weekly", "label": "Weekly" },
-                    { "value": "monthly", "label": "Monthly" },
-                    { "value": "yearly", "label": "Yearly" },
-                    { "value": "dont_repeat", "label": "Don't Repeat" }
+                    { "key": "daily", "value": "Daily" },
+                    { "key": "weekly", "value": "Weekly" },
+                    { "key": "monthly", "value": "Monthly" },
+                    { "key": "yearly", "value": "Yearly" },
+                    { "key": "dont_repeat", "value": "Don't Repeat" }
                 ],
               
             },
@@ -1745,9 +1745,9 @@ export const activityFormData = [
               "type":"dropdown",
               "title": "Priority",
               "dropdownData": [
-                { "value": "high", "label": "High" },
-                { "value": "medium", "label": "Medium" },
-                { "value": "low", "label": "Low" },
+                { "key": "high", "value": "High" },
+                { "key": "medium", "value": "Medium" },
+                { "key": "low", "value": "Low" },
             ],
         
               
@@ -1817,9 +1817,9 @@ export const activityFormData = [
           "type":"dropdown",
           "title": "Priority",
           "dropdownData": [
-            { "value": "high", "label": "High" },
-            { "value": "medium", "label": "Medium" },
-            { "value": "low", "label": "Low" }
+            { "key": "high", "value": "High" },
+            { "key": "medium", "value": "Medium" },
+            { "key": "low", "value": "Low" }
         ],
     
           
@@ -1831,20 +1831,20 @@ export const activityFormData = [
           "title": "Status",
           "placeholder": "Select",
           "dropdownData": [
-              { "value": "pending", "label": "Pending" },
-              { "value": "completed", "label": "Completed" },
+              { "key": "pending", "value": "Pending" },
+              { "key": "completed", "value": "Completed" },
              
           ],
           "isRequired":true
       },
         {
           "name": "attendees",
-          "type": "dropdown",
+          "type": "multipleSelect",
           "title": "Attendees",
           "placeholder": "Select",
           "dropdownData": [
-              { "value": "lead.bhavani", "label": "lead.bhavani" },
-              { "value": "lead.kruthika", "label": "lead.kruthika" },
+              { "key": "lead.bhavani", "value": "lead.bhavani" },
+              { "key": "lead.kruthika", "value": "lead.kruthika" },
               
           ],
       },
@@ -1865,13 +1865,13 @@ export const activityFormData = [
             //     "inputType": "text",
             //     "placeholder": "Select",
             //     "dropdownData": [
-            //         { "value": 1, "label": "John Doe" },
-            //         { "value": 2, "label": "Jane Smith" },
-            //         { "value": 3, "label": "Alice Mark" },
-            //         { "value": 4, "label": "Kate Winslet" },
-            //         { "value": 5, "label": "William Henry" },
-            //         { "value": 6, "label": "Jane Peter" },
-            //         { "value": 7, "label": "Carley Wilson" }
+            //         { "key": 1, "value": "John Doe" },
+            //         { "key": 2, "value": "Jane Smith" },
+            //         { "key": 3, "value": "Alice Mark" },
+            //         { "key": 4, "value": "Kate Winslet" },
+            //         { "key": 5, "value": "William Henry" },
+            //         { "key": 6, "value": "Jane Peter" },
+            //         { "key": 7, "value": "Carley Wilson" }
             //     ]
             // },
             {
@@ -1881,12 +1881,12 @@ export const activityFormData = [
                 "inputType": "text",
                 "placeholder": "Select",
                 "dropdownData": [
-                    { "value": "utc", "label": "Coordinated Universal Time (UTC)" },
-                    { "value": "est", "label": "Eastern Standard Time (EST)" },
-                    { "value": "cet", "label": "Central European Time (CET)" },
-                    { "value": "pst", "label": "Pacific Standard Time (PST)" },
-                    { "value": "ist", "label": "India Standard Time (IST)" },
-                    { "value": "cst", "label": "China Standard Time (CST)" }
+                    { "key": "utc", "value": "Coordinated Universal Time (UTC)" },
+                    { "key": "est", "value": "Eastern Standard Time (EST)" },
+                    { "key": "cet", "value": "Central European Time (CET)" },
+                    { "key": "pst", "value": "Pacific Standard Time (PST)" },
+                    { "key": "ist", "value": "India Standard Time (IST)" },
+                    { "key": "cst", "value": "China Standard Time (CST)" }
                 ]
             },
             // {
@@ -1945,8 +1945,8 @@ export const activityFormData = [
           "title": "Status",
           "placeholder": "Select",
           "dropdownData": [
-            { "value": "pending", "label": "Pending" },
-            { "value": "completed", "label": "Completed" },
+            { "key": "pending", "value": "Pending" },
+            { "key": "completed", "value": "Completed" },
           ],
           "isRequired":true
       },
@@ -1994,9 +1994,9 @@ export const activityFormData = [
           "type":"dropdown",
           "title": "Priority",
           "dropdownData": [
-            { "value": "high", "label": "High" },
-            { "value": "medium", "label": "Medium" },
-            { "value": "low", "label": "Low" }
+            { "key": "high", "value": "High" },
+            { "key": "medium", "value": "Medium" },
+            { "key": "low", "value": "Low" }
         ],
      
           
@@ -2069,8 +2069,8 @@ export const activityFormData = [
             "title": "Status",
             "placeholder": "Select",
             "dropdownData": [
-              { "value": "pending", "label": "Pending" },
-              { "value": "completed", "label": "Completed" },
+              { "key": "pending", "value": "Pending" },
+              { "key": "completed", "value": "Completed" },
             ],
             "isRequired":true
         },
@@ -2079,9 +2079,9 @@ export const activityFormData = [
           "type":"dropdown",
           "title": "Priority",
           "dropdownData": [
-            { "value": "high", "label": "High" },
-            { "value": "medium", "label": "Medium" },
-            { "value": "low", "label": "Low" }
+            { "key": "high", "value": "High" },
+            { "key": "medium", "value": "Medium" },
+            { "key": "low", "value": "Low" }
         ],
         
           
@@ -2199,8 +2199,8 @@ export const activityFormData = [
             "title": "Status",
             "placeholder": "Select",
             "dropdownData": [
-                { "value": "pending", "label": "Pending" },
-                { "value": "completed", "label": "Completed" },
+                { "key": "pending", "value": "Pending" },
+                { "key": "completed", "value": "Completed" },
                 
             ]
         },
@@ -2209,9 +2209,9 @@ export const activityFormData = [
           "type":"dropdown",
           "title": "Priority",
           "dropdownData": [
-            { "value": "high", "label": "High" },
-            { "value": "medium", "label": "Medium" },
-            { "value": "low", "label": "Low" }
+            { "key": "high", "value": "High" },
+            { "key": "medium", "value": "Medium" },
+            { "key": "low", "value": "Low" }
         ]
           
           
@@ -2284,11 +2284,11 @@ export const statusFormData = {
       "title": "Reason",
       "placeholder":'Enter the reason',
       "dropdownData":[
-        { "value":1, "label":"Not Reachable"},
-        { "value":2, "label":"Ringing"},
-        { "value":3, "label":"Wrong Number"},
-        {"value":4, "label":"Busy"},
-        {"value":5, "label":"Appointment fixed"},
+        { "key":1, "value":"Not Reachable"},
+        { "key":2, "value":"Ringing"},
+        { "key":3, "value":"Wrong Number"},
+        {"key":4, "value":"Busy"},
+        {"key":5, "value":"Appointment fixed"},
       ]
     },
     {
@@ -2324,5 +2324,401 @@ export const markAsCompletedFormData={
     }
  
   ]
- 
 }
+
+export const contactFormData={
+  "elements": [
+
+  
+    {
+      "name": "account_name",
+      "type":"dropdownAccounts",
+      "title": "Accounts",
+      "inputType": "text", 
+      "sectionName":"General" 
+    },
+    {
+      "name": "alternate_email1",
+      "type": "TextInput",
+      "title": "Alternate Email 1",
+      "inputType": "text",
+      "placeholder": "Enter Email",
+      // "validation": {
+      //   "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      //   "message": "Please enter a valid email address."
+      // },
+      "sectionName":"Contact"
+    },
+    {
+      "name": "alternate_email2",
+      "type": "TextInput",
+      "title": "Alternate Email 2",
+      "inputType": "text",
+      "placeholder": "Enter Email",
+      // "validation": {
+      //   "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      //   "message": "Please enter a valid email address."
+      // },
+      "sectionName":"Contact"
+    },
+    {
+      "name": "alternate_phone1",
+      "type": "TextInput",
+      "title": "Alternate Phone 1",
+      "inputType": "numeric",
+      "placeholder": "Enter Phone Number",
+      // "validation": {
+      //   "regex": /^\d{10}$/,
+      //   "message": "Please enter a valid 10-digit phone number."
+      // },
+      "sectionName":"Contact"
+    },
+    {
+      "name": "alternate_phone2",
+      "type": "TextInput",
+      "title": "Alternate Phone 2",
+      "inputType": "numeric",
+      "placeholder": "Enter Phone Number",
+      // "validation": {
+      //   "regex": /^\d{10}$/,
+      //   "message": "Please enter a valid 10-digit phone number."
+      // },
+      "sectionName":"Contact"
+    },
+    {
+      "name": "assistant",
+      "type": "TextInput",
+      "title": "Assistant",
+      "inputType": "text",
+      "placeholder": "Enter Assistant name",
+      "sectionName":"Personal"
+      
+    },
+    {
+      "name": "assistant_phone",
+      "type": "TextInput",
+      "title": "Assistant Phone",
+      "inputType": "numeric",
+      "placeholder": "Enter Assistant Phone",
+      "sectionName":"Contact"
+      
+    },
+    {
+      "name": "birthdate",
+      "type": "Date",
+      "title": "Birthdate",
+      "placeholder": "Enter birth date",
+      
+      "sectionName":"General"
+      
+    },
+    {
+      "name": "category",
+      "type": "dropdown",
+      "title": "Category",
+      "placeholder": "Enter Category",
+      "dropdownData": [
+        { key: 'general', value: 'General' },
+        { key: 'obc',value: 'OBC' },
+        { key: 'sc', value: 'SC' },
+        { key: 'st', value: 'ST' },
+        { key: 'others', value: 'Others' },
+    ],
+    "sectionName":"General"
+      
+    },
+    {
+      "name": "ckyc_number",
+      "type": "TextInput",
+      "title": "CKYC Number",
+      "placeholder": "Enter CKYC number",
+      "inputType": "text",
+      "sectionName":"General"
+    },
+    {
+      "name": "contact_verfied",
+      "type": "Switch",
+      "title": "Contact Verified",
+      "sectionName":"Contact"
+    },
+    {
+      "name": "department",
+      "type": "dropdown",
+      "title": "Department",
+      "placeholder": "Select Department",
+      "dropdownData": [
+        { key: 'person', value: 'Person' },
+        { key: 'company',value: 'Company' }
+    ],
+    "sectionName":"General"
+    },
+    {
+      "name": "description",
+      "type": "MultilineText",
+      "title": "Description",
+      "placeholder": "Enter Description",
+      "inputType": "text",
+      "sectionName":"General"
+    },
+    {
+      "name": "do_not_call",
+      "type": "Switch",
+      "title": "Do not call",
+      "sectionName":"Contact"
+    },
+    {
+      "name": "ebc_eligibility_date",
+      "type": "Date",
+      "title": "EBC Eligibility date",
+      "sectionName":"General"
+    },
+    {
+      "name": "email",
+      "type": "TextInput",
+      "title": "Email",
+      "placeholder": "Enter Email",
+      "validation": {
+        "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        "message": "Please enter a valid email address.",
+        "sectionName":"Contact"
+      },
+
+    },
+    {
+      "name": "email_opt_out",
+      "type": "Switch",
+      "title": "Email Opt Out",
+      "sectionName":"Contact"
+    },
+    {
+      "name": "father_first_name",
+      "type": "TextInput",
+      "title": "Father First Name",
+      "placeholder": "Enter First Name",
+      "sectionName":"Personal"
+    },
+    {
+      "name": "father_last_name",
+      "type": "TextInput",
+      "title": "Father Last Name",
+      "placeholder": "Enter Last Name",
+      "sectionName":"Personal"
+    },
+    {
+      "name": "father_middle_name",
+      "type": "TextInput",
+      "title": "Father Middle Name",
+      "placeholder": "Enter Middle Name",
+      "sectionName":"Personal"
+    },
+    {
+      "name": "fax",
+      "type": "TextInput",
+      "title": "Fax",
+      "placeholder": "Enter Fax",
+      "sectionName":"Contact"
+    },
+    {
+      "name": "fax_opt_out",
+      "type": "Switch",
+      "title": "Fax Opt Out", 
+      "sectionName":"Contact"
+    },
+    {
+      "name": "first_name",
+      "type": "TextInput",
+      "title": "First Name",
+      "placeholder": "First Name",
+      "sectionName":"General"
+    },
+    {
+      "name": "funding_value_base_loan",
+      "type": "TextInput",
+      "inputType":"numeric",
+      "title": "Funding Value Base Loan",
+      "placeholder": "Funding Value Base Loan",
+      "sectionName":"General"
+    },
+    {
+      "name": "gender",
+      "type":"RadioButton",
+      "title": "Gender",
+      "rdata" : [
+        { label: "Male", id: 'male' },
+        { label: "Female", id: 'female' },
+        { label: "Other", id: 'other' },
+      ],
+      'isRequired': true,
+      "sectionName":"General"
+    }, 
+    {
+      "name": "home_phone",
+      "type": "TextInput",
+      "inputType":"numeric",
+      "title": "Enter Home Phone",
+      "placeholder": "Enter Home Phone",
+      "sectionName":"Contact"
+    },
+    {
+      "name": "last_name",
+      "type": "TextInput",
+      "inputType":"text",
+      "title": "Enter Last Name",
+      "placeholder": "Enter Last Name",
+      "sectionName":"General"
+    },
+    {
+      "name": "middle_name",
+      "type": "TextInput",
+      "inputType":"text",
+      "title": "Enter Middle Name",
+      "placeholder": "Enter Middle Name",
+      "sectionName":"General"
+    },
+    {
+      "name": "mailing_address",
+      "type": "TextInput",
+      "inputType":"text",
+      "title": "Enter Mailing Address",
+      "placeholder": "Enter Mailing Address",
+      "sectionName":"Address"
+    },
+    {
+      "name": "marital_status",
+      "type":"dropdown",
+      "title": "Marital Status",
+      "dropdownData": [
+        { key: 'single', value: 'Single' },
+        { key: 'married', value: 'Married' }
+    ],
+      'isRequired': true,
+      "sectionName":"Personal"
+    }, 
+    {
+      "name": "minority_community",
+      "type":"Switch",
+      "title": "Minority Community",
+      "sectionName":"Personal"
+    }, 
+    {
+      "name": "mobile",
+      "type":"TextInput",
+      "title": "Mobile",
+      'isRequired': true,
+      "sectionName":"Contact",
+      "inputType":"numeric",
+    }, 
+    {
+      "name": "mother_first_name",
+      "type":"TextInput",
+      "title": "Mother First Name",
+      "sectionName":"Personal",
+    },
+    {
+      "name": "mother_last_name",
+      "type":"TextInput",
+      "title": "Mother Last Name",
+      "sectionName":"Personal",
+    },  
+    {
+      "name": "mother_middle_name",
+      "type":"TextInput",
+      "title": "Mother Middle Name",
+      "sectionName":"Personal",
+    },  
+    {
+      "name": "name",
+      "type":"TextInput",
+      "title": "Name",
+      "sectionName":"General",
+    }, 
+    {
+      "name": "other_address",
+      "type":"TextInput",
+      "title": "Other Address",
+      "sectionName":"Address",
+    },
+    {
+      "name": "other_phone",
+      "type":"TextInput",
+      "title": "Other Phone",
+      "sectionName":"Contact",
+      "inputType":"numeric"
+    },
+    {
+      "name": "owner",
+      "type":"TextInputO",
+      "title": "Owner",
+      "sectionName":"General",
+      
+    },
+    {
+      "name": "religion",
+      "type":"dropdown",
+      "title": "Religion",
+      "dropdownData": [
+        { key: 'hinduism', value: 'Hinduism' },
+        { key: 'christianity', value: 'Christianity' },
+        { key: 'sikhism', value: 'Sikhism' },
+        {key: 'jainism', value: 'Jainism' },
+        {key: 'islam', value: 'Islam' },
+
+
+    ],
+    "sectionName":"Personal",
+    },
+    {
+      "name": "salutation",
+      "type": "dropdown",
+      "title": "Salutation",
+      "inputType": "text",
+      "placeholder":"Salutation",
+       "dropdownData" :[
+        { key: 'mr.', value: 'Mr.' },
+        { key: 'ms.', value: 'Ms.' },
+        { key: 'dr.', value: 'Dr.' },
+        { key: 'prof.', value: 'Prof' },
+       ],
+       "sectionName":"General"
+    },
+    {
+      "name": "spouse_first_name",
+      "type":"TextInput",
+      "title": "Spouse First Name",
+      "sectionName":"Personal",
+      
+    },
+    {
+      "name": "Spouse Last Name",
+      "type":"TextInput",
+      "title": "Spouse Last Name",
+      "sectionName":"Personal",
+      
+    },
+    {
+      "name": "Spouse Middle Name",
+      "type":"TextInput",
+      "title": "Spouse Middle Name",
+      "sectionName":"Personal", 
+    },
+    {
+      "name": "title",
+      "type":"TextInput",
+      "title": "Title",
+      "sectionName":"General", 
+    },
+    {
+      "name": "last_stay_in_touch_req_date",
+      "type":"Date",
+      "title": "Last stay in touch ",
+      "sectionName":"General", 
+    },
+    {
+      "name": "last_stay_in_touch_save_date",
+      "type":"Date",
+      "title": "Last stay in touch save",
+      "sectionName":"General", 
+    },
+  ]
+}
+
