@@ -67,6 +67,7 @@ if (isLoading) {
       mobile={item.mobile}
       title={item.title}
       description={item.description}
+      number={item.number}
      
  
     />

@@ -66,7 +66,7 @@ if (isLoading) {
       OpportunityValue={item.opportunity_value}
       ProbabilityValue={item.probability_of_winning}
       ForecastCloseDate={item.forecast_close_date}
- 
+      number={item.number}
     />
   </TouchableOpacity>
   );

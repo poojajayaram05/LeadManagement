@@ -149,15 +149,6 @@ export default function Layout() {
       )
     }}
     ></Drawer.Screen> 
-     
-   
- 
- 
-    
- 
- 
- 
- 
  
      <Drawer.Screen
     name='productList'

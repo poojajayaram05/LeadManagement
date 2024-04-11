@@ -19,7 +19,7 @@ import RNDateTimePicker from '@react-native-community/datetimepicker';
 import AddAccounts from './addAccounts';
 // Form component
 import { SelectList } from 'react-native-dropdown-select-list';
-export default function CreateLead() {
+export default function CreateContact() {
     // const { control, handleSubmit, formState: { errors } } = useForm();
     const [showCalendarModal, setShowCalendarModal] = useState(false); 
     const[selectedDate, setSelectedDate] = useState('');
@@ -56,7 +56,7 @@ export default function CreateLead() {
     const [isAddButtonDisabled, setIsAddButtonDisabled] = useState(false);
     const [isSwitchOn, setIsSwitchOn] = useState(false);
     const [userName, setUsername]=useState('');
-    
+
 
 
 //   const handleSelect = (item) => {a
@@ -97,6 +97,15 @@ const onSelectRadio = (item) => {
   }
 
 
+  function extractDate(timestamp) {
+    const dateObject = new Date(timestamp);
+    const year = dateObject.getFullYear();
+    const month = dateObject.getMonth() + 1;
+    const date = dateObject.getDate();
+    const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${date < 10 ? '0' + date : date}`;
+    return formattedDate;
+  }
+
   useEffect(() => {
     const getUsername = async () => {
         const storedUsername = await SecureStore.getItemAsync('username');
@@ -111,7 +120,7 @@ const onSelectRadio = (item) => {
     const onSubmit = async () => {
       console.log("usernameee", username);
       console.log("Form data", formValues);
-      setFormValues(prevFormValues => ({ ...prevFormValues, ['new_owner']: username}));
+      setFormValues(prevFormValues => ({ ...prevFormValues, ['owner']: username}));
       const errors = validateForm();
       if (Object.keys(errors).length > 0) {
         // If there are validation errors, set them in state
@@ -158,27 +167,7 @@ const onSelectRadio = (item) => {
         }
 
     const renderFormElements = (sectionName) => {
-        const handleDateChange = (selectedDate, element) => {
-            if (selectedDate) {
-              setShowCalendarModal(false);
-              
-              // Check which date input is being changed
-               console.log("dateeeeee", extractDate(selectedDate))
-              if (element.name === 'due_date') {
-                setFromDate(selectedDate);
-                
-                  setFormValues(prevFormValues => ({ ...prevFormValues, ['due_date']: extractDate(selectedDate) }));
-              
-                }
-              // else if (element.name === 'from_date') {
-              //   setToDate(selectedDate);
-               
-              //     setFormValues(prevFormValues => ({ ...prevFormValues, ['from_date']: extractDate(selectedDate) }));
-               
-              //   }
-                setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: extractDate(selectedDate) }));
-              }
-            }
+        
           
         return contactFormData.elements
           .filter((element) => element.sectionName === sectionName)
@@ -193,6 +182,17 @@ const onSelectRadio = (item) => {
    
 
     const renderFormElement = (element) => {
+        const handleDateChange = (selectedDate, element) => {
+            if (selectedDate) {
+              setShowCalendarModal(false);
+              
+              // Check which date input is being changed
+               console.log("dateeeeee", extractDate(selectedDate))
+          
+          
+                setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: extractDate(selectedDate) }));
+              }
+            }
         const handleSelect = (item) => {
             //setSelectedValue(item);
             setFormValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item }));
@@ -227,37 +227,37 @@ const onSelectRadio = (item) => {
                     />
                     </View>
                 );
-                case 'email':
-                    return (
-                      <View key={element.name}>
-                          <Text style={styles.label}>{element.title}{starMark}</Text>
-                        <CustomInput
-                          key={element.name}
-                          // title={element.title}
-                          placeholder={element.placeholder}
-                          name={element.name}
-                          onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
-                          value={formValues[element.name] || ''}
-                          inputType={element.inputType}
-                        />
-                        {/* Render alternate email fields */}
-                        {[...Array(alternateEmailCount)].map((_, i) => (
-                          <CustomInput
-                            key={`alternate_email${i + 1}`}
-                            title={`Alternate Email ${i + 1}`}
-                            placeholder={`Alternate Email ${i + 1}`}
-                            name={`alternate_email${i + 1}`}
-                            onChange={(value) => setFormValues({ ...formValues, [`alternate_email${i + 1}`]: value })}
-                            value={formValues[`alternate_email${i + 1}`] || ''}
-                            inputType={element.inputType}
-                          />
-                        ))}
-                        {/* Plus Button */}
-                        <TouchableOpacity onPress={onAddAlternateEmail}>
-                          <Ionicons name="add-circle" size={24} color="black" style={styles.plusButton} />
-                        </TouchableOpacity>
-                      </View>
-                    );
+                // case 'email':
+                //     return (
+                //       <View key={element.name}>
+                //           <Text style={styles.label}>{element.title}{starMark}</Text>
+                //         <CustomInput
+                //           key={element.name}
+                //           // title={element.title}
+                //           placeholder={element.placeholder}
+                //           name={element.name}
+                //           onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
+                //           value={formValues[element.name] || ''}
+                //           inputType={element.inputType}
+                //         />
+                //         {/* Render alternate email fields */}
+                //         {[...Array(alternateEmailCount)].map((_, i) => (
+                //           <CustomInput
+                //             key={`alternate_email${i + 1}`}
+                //             title={`Alternate Email ${i + 1}`}
+                //             placeholder={`Alternate Email ${i + 1}`}
+                //             name={`alternate_email${i + 1}`}
+                //             onChange={(value) => setFormValues({ ...formValues, [`alternate_email${i + 1}`]: value })}
+                //             value={formValues[`alternate_email${i + 1}`] || ''}
+                //             inputType={element.inputType}
+                //           />
+                //         ))}
+                //         {/* Plus Button */}
+                //         <TouchableOpacity onPress={onAddAlternateEmail}>
+                //           <Ionicons name="add-circle" size={24} color="black" style={styles.plusButton} />
+                //         </TouchableOpacity>
+                //       </View>
+                //     );
 
                 case 'MultilineText':
                     return (
@@ -381,13 +381,8 @@ const onSelectRadio = (item) => {
                                  // control={control}
                                  value={username}
                                  name={element.name}
-                            
-                                 
-                                 
-                                 // errors={errors}
-                                 
-                                 
-                                //  readOnly={true}
+
+                                readOnly={true}
                              />
                              </View>
                           )

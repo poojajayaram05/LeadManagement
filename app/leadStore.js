@@ -12,3 +12,15 @@ const useIdStore = create((set) => ({
 
 
 export default useIdStore;
+
+export const useContactStore= create((set)=>({
+    number:null,
+    setContactId:(newId)=>set({number:newId})
+
+}))
+
+
+export const useOpportunityStore = create((set) => ({
+    number:null,
+    setOpportunityId: (newId) => set({ number: newId }),
+}));

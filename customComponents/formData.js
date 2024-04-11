@@ -2480,8 +2480,9 @@ export const contactFormData={
       "validation": {
         "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
         "message": "Please enter a valid email address.",
-        "sectionName":"Contact"
+        
       },
+      "sectionName":"Contact"
 
     },
     {
@@ -2689,14 +2690,14 @@ export const contactFormData={
       
     },
     {
-      "name": "Spouse Last Name",
+      "name": "spouse_last_name",
       "type":"TextInput",
       "title": "Spouse Last Name",
       "sectionName":"Personal",
       
     },
     {
-      "name": "Spouse Middle Name",
+      "name": "spouse_middle_name",
       "type":"TextInput",
       "title": "Spouse Middle Name",
       "sectionName":"Personal", 

@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Button,Image,ScrollView } from 'react-native';
 import { router } from 'expo-router';
-import useIdStore from '../app/leadStore';
+import { useContactStore } from '../app/leadStore';
+
  
-const ContactItem = ({ first_name, last_name, mobile,title, description }) => {
+const ContactItem = ({ first_name, last_name, mobile,title, description, number }) => {
    
     const [showSecondImage, setShowSecondImage] = useState(false);
     const[selectedStar, setSelectedStar]=useState(false);
-    const { leadId, setLeadId } = useIdStore();
-    const{status, setStatus}=useIdStore();
+   
+    const{contactId,  setContactId}=useContactStore();
     const [showDropdown, setShowDropdown] = useState(false);
  
     const goToEditLead = () => {
@@ -23,13 +24,14 @@ const ContactItem = ({ first_name, last_name, mobile,title, description }) => {
     setShowDropdown(false);
 };
  
-const handleNavigateToLeadDetails = () => {
-    router.navigate(`/leadDetailScreens/info`);
-    setLeadId(number);
+const handleNavigateToContactDetails = () => {
+    router.navigate(`/contactDetailPage/contactDetail`);
+    console.log("cnumber", number);
+    setContactId(number);
 };
  
 return (
-  <TouchableOpacity onPress={handleNavigateToLeadDetails}>
+  <TouchableOpacity onPress={handleNavigateToContactDetails}>
     {/* <TouchableOpacity> */}
       <View style={{ flex: 1 }}>
       <View style={styles.item}>
