@@ -1,184 +1,3 @@
-// import React from 'react';
-// import { View, Text, FlatList, StyleSheet, TouchableOpacity, Linking } from 'react-native';
-// import FloatingButton from '../../customComponents/floatingButton';
-// import { Ionicons } from '@expo/vector-icons';
-// import { router } from 'expo-router';
-// import CreateMeeting from '../DrawerScreens/createMeeting';
- 
-// export default function Meeting() {
-//   const data = [
-//     { id: '1', name: 'Meeting 1', description: 'Meet at central branch', status: 'New Lead', date: '2024-03-14' },
-//     { id: '2', name: 'Meeting 2', description: 'Review Sales', status: 'Sale', date: '2024-03-15' },
-//     { id: '3', name: 'Meeting 3', description: 'Follow-up', status: 'Working', date: '2024-03-16' },
-//   ];
- 
-//   const goToCreateMeeting=()=>{
-//     router.navigate('/DrawerScreens/createMeeting')
-//   }
-//   const renderItem = ({ item }) => (
-//     <TouchableOpacity style={styles.card}>
-//       <View style={styles.iconContainer}>
-//         <Ionicons name="book" size={24} color="black" />
-//       </View>
-//       <View style={styles.textContainer}>
-//         <Text style={styles.boldText}><Text style={styles.text}>{item.name}</Text></Text>
-//         <Text style={styles.boldText}>Description: <Text style={styles.text}>{item.description}</Text></Text>
-//         <Text style={styles.boldText}>Status: <Text style={styles.text}>{item.status}</Text></Text>
-//         <Text style={styles.boldText} >Date: <Text style={styles.text}>{item.date}</Text></Text>
-//       </View>
-//     </TouchableOpacity>
-//   );
- 
-//   return (
-//     <View style={styles.container}>
-//       <View style={styles.cardContainer}>
-//         <FlatList
-//           data={data}
-//           renderItem={renderItem}
-//           keyExtractor={(item) => item.id}
-//         />
-//       </View>
-//       <FloatingButton onPress={goToCreateMeeting}/>
-//     </View>
-//   );
-// }
- 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: 'blue',
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     height: '100%',
-//   },
-//   cardContainer: {
-//     padding: 10,
-//     borderRadius: 10,
-//     marginTop: 400,
-//     width: '100%',
-//     height: 430,
-//   },
-//   card: {
-//     backgroundColor: '#f0f1f2',
-//     marginVertical: 5,
-//     padding: 10,
-//     borderRadius: 8,
-//     // marginBottom: 10,
-//     marginTop: 10,
-//     flexDirection: 'row',
-//   },
-//   text: {
-//     fontSize: 14,
-//     marginBottom: 5,
-//     fontWeight: 'bold',
-//   },
-//   // boldText: {
-//   //   fontWeight: 'bold',
-//   // },
-//   iconContainer: {
-//     marginRight: 10,
-//     marginTop: 25,
-//     marginRight: 20,
-//     alignItems: 'center',
-//   },
-//   textContainer: {
-//     flex: 1,
-//   },
-// });
-
-// import React from 'react';
-// import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
-// import FloatingButton from '../../customComponents/floatingButton';
-// import { Ionicons } from '@expo/vector-icons';
-// import LeadDet from '../../leadComponents/leadDetHeader';
-// import { router } from 'expo-router';
-// import LeadDetailCard from '../../customComponents/leadDetailCard';
-// import { meetingItemsData } from '../../customComponents/formData';
-// import useMeetingStore from '../../meetingComponents/meetingStore';
- 
-// export default function Meeting() {
-
-//   const goToMeetingDetails=()=>{
-//     router.navigate('/meetingDetails')
-//   }
- 
-//   const goToCreateMeeting = () => {
-//     router.navigate('/DrawerScreens/createMeeting')
-//   }
-   
-//   const renderItem = ({ item }) => {
-//     const goToMeetingDetails=()=>{
-//       useMeetingStore.getState().setMeetingId(item.id);
-//       router.navigate('/meetingDetails')
-//     }
-//     // Extracting only the required properties
-//     const { title, Description, status,Date } = item;
-//     const simplifiedItem = { Description, status,Date };
-
-//     return (
-//       <TouchableOpacity onPress={goToMeetingDetails}>
-//         <View><Text>{item.title}</Text></View>
-//         <LeadDetailCard obj={simplifiedItem} name="calendar" />
-//         <View style={styles.divider} />
-//       </TouchableOpacity>
-//     );
-//   };
- 
-//   return (
-//     <View style={styles.container}>
-//         <View style={{ height:'27%' }}>
-//            <LeadDet/>
-//         </View>
-//       <FlatList
-//         data={meetingItemsData.elements}
-//         renderItem={renderItem}
-//         keyExtractor={(item) => item.id}
-//       />
-     
-//       <FloatingButton onPress={goToCreateMeeting} />
-     
-//     </View>
-//   );
-// }
- 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: 'white',
-//   },
-//   boldText: {
-//     fontWeight: 'bold',
-//   },
-//   card: {
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//     padding: 10,
-//     marginHorizontal: 20,
-//   },
-//   text: {
-//     fontSize: 14,
-//     marginBottom: 5,
-//   },
-//   iconContainer: {
-//     marginRight: 10,
-//   },
-//   textContainer: {
-//     flex: 1,
-//   },
-//   divider: {
-//     height: 1,
-//     backgroundColor: 'black',
-//     marginHorizontal: 20,
-//   },
-//   floatingButtonContainer: {
-   
-   
-   
-//   },
-// });
-
-
-
 import React, { useState, useEffect} from 'react';
 import { StyleSheet, SafeAreaView, View, Text, TouchableOpacity, FlatList, ScrollView, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -189,27 +8,26 @@ import { FetchActivities } from '../service/fetchActivities';
 import groupBy from 'lodash/groupBy';
 import { router } from 'expo-router';
  
- 
- 
 const { width } = Dimensions.get('window');
  
 export default function Example() {
-  const [currentTab, setCurrentTab] = useState({});
+  console.reportErrorsAsExceptions = false;
+  const [currentTab, setCurrentTab] = useState('All');
   const [selectedTasks, setSelectedTasks] = useState([]);
   const [tasksVisible, setTasksVisible] = useState(true);
   const [meetingsVisible, setMeetingsVisible] = useState(false);
   const [activityData, setActivityData] = useState([]);
   const [activityItems, setActivityItems] = useState([]);
   const [tabVisibility, setTabVisibility] = useState({
-   
-    Tasks: true,
-    Meetings: true,
-    'Follow Up': true,
-    Emails: true,
-    Appointment: true,
-    Calls: true
+    Tasks: false,
+    Meetings: false,
+    'Follow Up': false,
+    Emails: false,
+    Appointment: false,
+    Calls: false
   });
-
+ 
+ 
   const { activity_number, setActivityNumber } = useIdStore();
  
  
@@ -223,14 +41,9 @@ export default function Example() {
   }
  
   const leadId = useIdStore((state) => state.number);
- 
   useEffect(() => {
-    // Initialize currentTab with 'All' for each activity type
-    const initialTabs = {};
-    Object.values(activity_type_map).forEach(type => {
-      initialTabs[type] = 'all';
-    });
-    setCurrentTab(initialTabs);
+    // Initialize currentTab with 'All' when the component mounts
+    setCurrentTab('All');
  
     const fetchData = async () => {
       try {
@@ -256,7 +69,7 @@ export default function Example() {
     const time = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
     return time;
   };
-
+ 
   const goToMarkAsComplete=()=>
   {
     router.navigate('/formComponents/markAsComplete')
@@ -282,6 +95,11 @@ export default function Example() {
     router.navigate('/formComponents/activityForm')
   }
  
+ 
+  const handleTabPress = (tabName) => {
+    setCurrentTab(tabName); // Set the current tab
+  };
+ 
   const renderItemTask = ({ item }) => {
     //setActivityNumber(activity_number);
     const { activity_type, email,associated_lead,sys_created_on,start_time, due_date , date, time, status , description,priority, subject, activity_number } = item;
@@ -290,7 +108,7 @@ export default function Example() {
   //  setActivityNumber(activity_number);
     let priorityColor = 'black'; // Default color if priority is not recognized
     let statusColor = 'black';
-  // Determine color based on priority
+ 
   switch (priority.toLowerCase()) {
     case 'low':
       priorityColor = 'lightblue';
@@ -317,7 +135,7 @@ export default function Example() {
   }
  
     const due_on = formattedDate + " "+ timee;
-
+ 
     return (
       <View style={[styles.section, styles.cardContainer]}>
         <View>
@@ -355,18 +173,22 @@ export default function Example() {
     );
   };
  
-  const handleTabPress = (activityType, tabName) => {
-    setCurrentTab(prevState => ({
-      ...prevState,
-      [activityType]: tabName
-    }));
-  };
- 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
         <View style={{ height: '26%' }}>
           <LeadDet />
+        </View>
+        <View style={styles.tabContainer}>
+          <TouchableOpacity onPress={() => handleTabPress("All")}>
+          <Text style={[styles.tab, currentTab === 'All' && styles.selectedTab]}>All</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handleTabPress("Completed")}>
+          <Text style={[styles.tab, currentTab === 'Completed' && styles.selectedTab]}>Completed</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handleTabPress("Pending")} >
+          <Text style={[styles.tab, currentTab=== 'Pending' && styles.selectedTab]}>Pending</Text>
+          </TouchableOpacity>
         </View>
         <FloatingButton onPress={goToActivityForm}/>
  
@@ -377,7 +199,7 @@ export default function Example() {
             {Object.entries(groupBy(activityItems, 'activity_type')).map(([key, value]) => {
               const activityType = activity_type_map[key];
               const isVisible = tabVisibility[activityType];
-              const hasActivities = value.length > 0; // Check if there are any activities for the current type
+              const hasActivities = value.length > 0;
               return (
                 <View key={key}>
                   <TouchableOpacity onPress={() => setTabVisibility(prevState => ({ ...prevState, [activityType]: !isVisible }))}>
@@ -386,34 +208,26 @@ export default function Example() {
                       <Ionicons name={isVisible ? 'caret-up' : 'caret-down'} size={24} color="black" style={{ marginLeft: 5, marginTop: 12 }}/>
                     </View>
                   </TouchableOpacity>
-                  {/* {(!isVisible && !hasActivities) && ( // Only render the message if accordion is not open and there are no activities
-                    <View style={styles.default}>
-                      <Text style={styles.defaultMessage}>No {activityType} found</Text>
-                    </View>
-                  )} */}
-                  {isVisible && hasActivities && ( // Render the FlatList only if accordion is open and there are activities
+                 
+                  {isVisible && hasActivities && (
                     <>
-                      <View style={styles.tabContainer}>
-                        <TouchableOpacity onPress={() => handleTabPress(activityType, 'all')}>
-                          <Text style={[styles.tab, currentTab[activityType] === 'all' && styles.selectedTab]}>All</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => handleTabPress(activityType, 'completed')}>
-                          <Text style={[styles.tab, currentTab[activityType] === 'completed' && styles.selectedTab]}>Completed</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => handleTabPress(activityType, 'pending')}>
-                          <Text style={[styles.tab, currentTab[activityType] === 'pending' && styles.selectedTab]}>Pending</Text>
-                        </TouchableOpacity>
-                      </View>
                       <FlatList
-                        data={value.filter(item => currentTab[activityType] === 'all' || item.status.toLowerCase() === currentTab[activityType])}
-                        renderItem={renderItemTask}
-                        keyExtractor={(item) => item.activity_number}
-                        ListEmptyComponent={() => (
-                          <View style={styles.default}>
-                            <Text style={styles.defaultMessage}>No {activityType} to display</Text>
-                          </View>
-                        )}
-                      />
+                            data={value.filter(
+                              (item) =>
+                                currentTab === "All" || // Display all activities if "All" tab is selected
+                                (currentTab === "Completed" && item.status === "completed") || // Display completed activities if "Completed" tab is selected
+                                (currentTab === "Pending" && item.status === "pending") // Display pending activities if "Pending" tab is selected
+                            )}
+                            renderItem={renderItemTask}
+                            keyExtractor={(item, index) => item.activity_number + index}
+                            ListEmptyComponent={() => (
+                              <View style={styles.default}>
+                                <Text style={styles.defaultMessage}>
+                                  No {activityType} to display
+                                </Text>
+                              </View>
+                            )}
+                          />
                     </>
                   )}
                 </View>
@@ -433,10 +247,9 @@ const styles = StyleSheet.create({
     color: 'grey',
     marginTop: 20,
     textAlign: 'center',
-    font:'80',
+    
     fontWeight:'bold'
   },
- 
   defaultMessage: {
     color: 'grey',
     // textAlign: 'center',
@@ -446,7 +259,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 20, // Add margin on left and right sides
     marginBottom: 10, // Bring the text down by adding margin at the bottom
   },
- 
   default: {
     color: 'grey',
     textAlign: 'center',
@@ -454,48 +266,38 @@ const styles = StyleSheet.create({
     marginHorizontal: 20, // Add margin on left and right sides
     marginBottom: 10, // Bring the text down by adding margin at the bottom
   },
- 
   container: {
     flex: 1,
     backgroundColor: 'white',
   },
- 
   tabContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     height: 25,
-   
     marginHorizontal: 20,
     paddingHorizontal: 10,
     borderTopWidth: 1, // Add a thin border above
     borderBottomWidth: 1, // Add a thin border below
     borderColor: 'grey', // You can adjust the color as needed
 },
+tab: {
+  flex: 1,
+  fontSize: 14,
+  justifyContent: 'space-around',
+  fontWeight: '600',
+  flexDirection: 'row',
  
- 
-  tab: {
-    flex: 1, // Make the tab flex to occupy available space
-    fontSize: 14,
-    justifyContent: 'space-around',
-    fontWeight: '600',
-    flexDirection: 'row',
-    color: 'grey',
-    borderRadius: 5,
-    paddingHorizontal: 35, // Increase padding to make the green boxes wider
-    // backgroundColor: 'green',
-  },
-  selectedTab: {
-    flex: 1, // Make the selected tab flex to occupy available space
-    // Same background color as the card container
-    color: 'blue',
-    // backgroundColor:'#FAF9F6',
-    borderRadius: 10, // Add border radius to the top corners
-    justifyContent: 'center', // Center the text vertically
-    textAlign: 'center', // Center the text horizontally
- 
-    paddingHorizontal: 35, // Match the paddingHorizontal value of the green boxes
-  },
- 
+  borderRadius: 5,
+  paddingHorizontal: 35,
+},
+selectedTab: {
+  flex: 1,
+  color: 'red', // Set selected tab color to blue
+  borderRadius: 10,
+  justifyContent: 'center',
+  textAlign: 'center',
+  paddingHorizontal: 35,
+},
   title: {
     fontSize: 16,
     fontWeight: '600',
@@ -511,7 +313,6 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     // backgroundColor:'red',
     marginHorizontal:20,
-   
   },
   markAsCompleteButtonContainer: {
     position: 'relative', // Change to relative positioning if needed
@@ -523,9 +324,8 @@ markAsCompleteButton: {
     borderWidth: 1,
     borderColor: 'black',
     borderRadius: 5,
-    marginLeft: 180, 
+    marginLeft: 180,
 },
-
   section: {
     flexDirection: 'coloumn',
     alignItems: 'center',
@@ -538,7 +338,6 @@ markAsCompleteButton: {
   flex: 1,
   height: 165,
   marginHorizontal: 20,
- 
   borderColor: 'lightgrey', // Adjust the color to match your design
 },
  
@@ -572,20 +371,16 @@ markAsCompleteButton: {
     justifyContent: 'space-between',
     width: '100%',
     marginBottom: 3,
-   
   },
   detail: {
     fontSize: 14,
     fontWeight: 'bold',
     textAlign: 'right',
-   
     // backgroundColor:'yellow',
   },
   data: {
     color: '#023B5E',
     fontSize: 14,
     textAlign: 'left',
-   
-   
   },
 });

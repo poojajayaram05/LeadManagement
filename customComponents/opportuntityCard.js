@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Button,Image,ScrollView } from 'react-native';
 import { router } from 'expo-router';
 import { useOpportunityStore } from '../app/leadStore';
+import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
  
 const OpportunityItem = ({  OpportunityName, ProbabilityValue,ForecastCloseDate,OpportunityValue, number }) => {
    
@@ -24,6 +26,7 @@ return (
 <TouchableOpacity onPress={handleNavigateToLeadDetails}>
     <View style={{ flex: 1 }}>
     <View style={styles.item}>
+    <FontAwesome name="dollar" size={24} color="black" style={{ marginRight: 10 }} />
     <View style={styles.textContainer}>
     <Text style={styles.title}>{OpportunityName}</Text>
   <View style={styles.subtitleRow}>

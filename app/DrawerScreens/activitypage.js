@@ -1031,7 +1031,7 @@ const filteredMeetings = selectedMeetings.filter(meeting => {
                    {filteredTasks.length > 0 ? (
   <FlatList
     data={filteredTasks}
-    keyExtractor={item => item.activity_number}
+    keyExtractor={(item, index) => item.activity_number + index}
     renderItem={renderItemTask}
   />
 ) : (
@@ -1056,7 +1056,7 @@ const filteredMeetings = selectedMeetings.filter(meeting => {
                     {filteredMeetings.length > 0 ? (
   <FlatList
     data={filteredMeetings}
-    keyExtractor={item => item.activity_number}
+    keyExtractor={(item, index) => item.activity_number + index}
     renderItem={renderItemTask}
   />
 ) : (<View style={styles.messagedef}>
@@ -1080,7 +1080,7 @@ const filteredMeetings = selectedMeetings.filter(meeting => {
                      {filteredEmails.length > 0 ? (
   <FlatList
     data={filteredEmails}
-    keyExtractor={item => item.activity_number}
+    keyExtractor={(item, index) => item.activity_number + index}
     renderItem={renderItemTask}
   />
 ) : ( <View style={styles.messagedef}>
@@ -1104,7 +1104,7 @@ const filteredMeetings = selectedMeetings.filter(meeting => {
                      {filteredCalls.length > 0 ? (
   <FlatList
     data={filteredCalls}
-    keyExtractor={item => item.activity_number}
+    keyExtractor={(item, index) => item.activity_number + index}
     renderItem={renderItemTask}
   />
 ) : ( <View style={styles.messagedef}>

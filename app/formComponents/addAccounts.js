@@ -38,7 +38,7 @@ const accountNames = accountsData.map(account => ({
   return(
     <ModalSelector
                     data={accountNames}
-                    initValue="Select Accounts!"
+                    initValue="Select Accounts"
                     onChange={(option)=>{ console.log(`${option.label} (${option.key})`) }} />
   )
 

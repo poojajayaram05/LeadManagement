@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Button,Image,ScrollView } from 'react-native';
 import { router } from 'expo-router';
 import { useContactStore } from '../app/leadStore';
+import { HomeProfile } from '../assets/images'
 
  
 const ContactItem = ({ first_name, last_name, mobile,title, description, number }) => {
@@ -34,7 +35,20 @@ return (
   <TouchableOpacity onPress={handleNavigateToContactDetails}>
     {/* <TouchableOpacity> */}
       <View style={{ flex: 1 }}>
+      
       <View style={styles.item}>
+      <Image
+      source={HomeProfile}
+      style={{
+        width: 40,
+        height: 40,
+        alignSelf:'center',
+        marginRight:20,
+
+       
+      }}
+    />
+      {/* <FontAwesome name="dollar" size={24} color="black" style={{ marginRight: 10 }} /> */}
       <View style={styles.textContainer}>
       <Text style={styles.title}>{first_name} {last_name}</Text>
  

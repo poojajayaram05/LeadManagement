@@ -22,11 +22,12 @@ const sectionDetails = [
         { label: 'CKYC Number:', value: 'ckyc_number' },
         { label: 'Department:', value: 'mobile' },
         { label: 'EBC Eligibility Date:', value: 'ebc_eligibility_date' },
-        { label: 'First Name:', value: 'mobile' },
-        { label: 'Funding Value Base Loan:', value: 'mobile' },
-        { label: 'Gender:', value: 'mobile' },
-        { label: 'Last Name:', value: 'mobile' },
-        { label: 'Middle Name:', value: 'mobi' },
+        { label: 'First Name:', value: 'first_name' },
+        { label: 'Last Name:', value: 'last_name' },
+        { label: 'Middle Name:', value: 'middle_name' },
+        { label: 'Funding Value Base Loan:', value: 'funding_value_base_loan' },
+        { label: 'Gender:', value: 'gender' },
+       
         { label: 'Name:', value: 'name' },
         { label: 'Owner:', value: 'owner' },
       ]

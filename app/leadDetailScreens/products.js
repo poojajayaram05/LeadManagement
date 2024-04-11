@@ -60,7 +60,7 @@ const ProductItem = () => {
                 quantity={item.quantity}
               />
             )}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item, index) => item.price + index}
           />
         ) : (
           <Text>No products available</Text>

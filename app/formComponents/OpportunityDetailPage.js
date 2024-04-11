@@ -15,10 +15,15 @@ const sectionDetails = [
       id: 'leadInfo',
       fields: [
         {label: 'Opportunity name:', value: 'opportunity_name' },
-        // { label: 'Account Name:', value: 'account' },
-        // { label: 'Primary Contact:', value: 'contact' },
+        { label: 'Account Name:', value: '' },
+        { label: 'Primary Contact:', value: ''  },
         { label: 'Owner:', value: 'owner' },
-       
+        { label: 'Description:', value: 'description' },
+        { label: 'Next Step:', value: 'next_step' },
+        { label: 'Status:', value: 'states' },
+        { label: 'Sales Pipeline:', value: 'sales_pipeline' },
+        { label: 'Sales Stage', value: 'sales_stage' },
+        { label: 'Category', value: 'category' },
  
       ]
     },
@@ -76,7 +81,7 @@ const Info = () => {
   return (
     <View style={styles.body}>
       <View style={{ height: '26%' }}>
-        {/* <LeadDet /> */}
+        <LeadDet />
       </View>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.container}>

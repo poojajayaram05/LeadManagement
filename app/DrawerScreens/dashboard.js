@@ -31,7 +31,14 @@ const Dashboard = () => {
     router.navigate('/formComponents/activityForm')
   }
   const handleAddAccount=()=>{
-    router.navigate('/formComponents/activityForm')
+    router.navigate('/formComponents/createAccount')
+  }
+  const handleAddContact=()=>{
+    router.navigate('/formComponents/createContact')
+  }
+
+  const handleAddOpportunity=()=>{
+    router.navigate('/formComponents/createOpportunity')
   }
  
   const closeDropdown=()=>{
@@ -142,8 +149,11 @@ const Dashboard = () => {
             <TouchableOpacity onPress={() => handleAddAccount()}>
                 <Text style={styles.dropdownMenuItem}>Add an account</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleAddAccount()}>
+            <TouchableOpacity onPress={() => handleAddContact()}>
                 <Text style={styles.dropdownMenuItem}>Add a Contact</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => handleAddOpportunity()}>
+                <Text style={styles.dropdownMenuItem}>Add an Opportunity</Text>
             </TouchableOpacity>
         </View>
     </ScrollView>
@@ -197,8 +207,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     marginVertical: 10,
     paddingVertical: 10,
-    height: 280,
-    width: 350,
     marginBottom: 30,
   },
   dropdownMenu: {

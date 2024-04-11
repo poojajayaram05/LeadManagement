@@ -79,9 +79,9 @@ if (isLoading) {
               keyExtractor={(item, index) => index.toString()}
             />
      <View>
-  {/* <TouchableOpacity style={styles.plusButton} >
+  <TouchableOpacity style={styles.plusButton} onPress={goToCreateOpportunity}>
     <Ionicons name="add" size={24} color="white" onPress={goToCreateOpportunity}/>
-  </TouchableOpacity> */}
+  </TouchableOpacity>
 </View>
     </View>
   );

@@ -1,0 +1,551 @@
+import { View, Text, Button, TextInput, StyleSheet, Select, ScrollView, Image,  Pressable} from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { formData } from '../../customComponents/formData'
+import { CustomInput } from '../../customComponents/customInput';
+ 
+import Collapsible from 'react-native-collapsible';
+import RNDateTimePicker from '@react-native-community/datetimepicker';
+import { TouchableOpacity } from 'react-native';
+import Dropdown from '../../customComponents/customDropdown';
+import { DropdownIcon, DropupIcon } from '../../assets/images';
+import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
+
+import * as SecureStore from 'expo-secure-store';
+import CustomHeader from '../../customComponents/customLeadHeader';
+import { opportunityFormData } from '../../customComponents/formData';
+import AddAccounts from './addAccounts';
+
+import { SelectList } from 'react-native-dropdown-select-list';
+import { FetchAccounts } from '../service/fetchAccounts';
+ 
+export default function createOpportunity() {
+ 
+    // const [form, setForm] = useState({
+    //     status: 'Open', // Set status to 'NEW' by default
+    //     // other form fields...
+    //   });
+    const [isCollapsed, setIsCollapsed] = useState({
+        General: false,
+       
+        Forecast:false
+      })
+ 
+    const handleSelectDate = (date) => {
+    console.log('Selected Date:', date);
+    setSelectedDate(date);
+};
+ 
+useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const ldata = await FetchAccounts(); // Call FetchLeads and wait for the result
+            setAccountsData(ldata.result); // Set the state with the fetched data
+            console.log("this is the accounts data", ldata.result);
+           // Log the fetched data
+        } catch (error) {
+            // Handle errors if any
+            console.error('Error in fetching leads:', error);
+       
+        }
+    };
+ 
+    fetchData();
+}, []);
+ 
+ 
+ 
+function extractDate(timestamp) {
+    const dateObject = new Date(timestamp);
+    const year = dateObject.getFullYear();
+    const month = dateObject.getMonth() + 1;
+    const date = dateObject.getDate();
+    const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${date < 10 ? '0' + date : date}`;
+    return formattedDate;
+  }
+      const toggleSection = (sectionName) => {
+        setIsCollapsed({ ...isCollapsed, [sectionName]: !isCollapsed[sectionName] });
+      };
+      const [alternateEmailCount, setAlternateEmailCount] = useState(0);
+ 
+      const onAddAlternateEmail = () => {
+        if (alternateEmailCount < 2) {
+            setAlternateEmailCount(prevCount => prevCount + 1);
+          }
+      };
+    const username= SecureStore.getItem('username');
+    const [validationErrors, setValidationErrors] = useState({});
+    const [formValues, setFormValues] = useState([]);
+    const [showCalendarModal, setShowCalendarModal] = useState(false);
+    const [selectedValue, setSelectedValue] = useState(null);
+    const [phoneNumbers, setPhoneNumbers] = useState(['']);
+    const[testValues, setTestValues]=useState([]);
+    const [isAddButtonDisabled, setIsAddButtonDisabled] = useState(false);
+    const [userName, setUsername]=useState('');
+    const[selectedDate, setSelectedDate] = useState('');
+    const[accountsData, setAccountsData]=useState([]);    
+ 
+  const validateForm = () => {
+    const errors = {};
+    opportunityFormData.elements.forEach((element) => {
+      // Check if the field is visible based on lead type
+     
+      // Perform validation for visible fields
+      if (element.isRequired && !formValues[element.name]) {
+        errors[element.name] = `${element.title} is required`;
+      }
+      if (element.validation && element.validation.regex && !element.validation.regex.test(formValues[element.name])) {
+        errors[element.name] = element.validation.message;
+      }
+    });
+    return errors;
+  };
+ 
+  const goBack=()=>{
+    router.back();
+  }
+ 
+  useEffect(() => {
+    const getUsername = async () => {
+        const storedUsername = await SecureStore.getItemAsync('username');
+        setUsername(storedUsername);
+        setFormValues(prevFormValues => ({ ...prevFormValues, ['new_owner']: storedUsername }));
+    };
+    getUsername();
+}, []);
+ 
+ 
+    const onSubmit = async () => {
+      console.log("usernameee", username);
+      console.log(formValues);
+      setFormValues(prevFormValues => ({ ...prevFormValues, ['new_owner']: username}));
+      const errors = validateForm();
+      if (Object.keys(errors).length > 0) {
+        // If there are validation errors, set them in state
+        setValidationErrors(errors);
+        console.log(validationErrors);
+      }
+      else{
+        const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_opportunity_c`;
+        console.log(postUrl);
+        const token = SecureStore.getItem('token');
+        const stoken = JSON.parse(token);
+        const apiToken = stoken.accessToken;
+        console.log(apiToken);  
+        // const token="DeC8cB2g6op02J_9-8cvJDwpA_5QTiL_9x8VnZLmwHy3QcoqoVR7KuhWUs-M0KgzLFLlp1NB8d5kekkbt3mCYQ";
+        console.log("Form data", formValues);
+        // try{
+           
+        //     const response = axios.post(`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_management`, formValues);
+        //     console.log('success',response);
+        // }
+        try{
+        const response = await fetch(postUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization' : 'Bearer ' + apiToken
+            },
+          body: JSON.stringify(formValues)  
+          })
+ 
+          console.log("Successfully posted",response);
+         
+          router.replace('/DrawerScreens/leadList')
+        }
+            catch(err){
+                console.log("error");
+            }
+          }
+        }
+    const renderFormElements = (sectionName) => {
+        return opportunityFormData.elements
+          .filter((element) => element.sectionName === sectionName)
+          .map((element, index) => (
+            <View key={index} style={styles.formElement}>
+              {renderFormElement(element)}
+              {validationErrors[element.name] && <Text style={styles.error}>{validationErrors[element.name]}</Text>}
+            </View>
+          ));
+      };
+ 
+      const saveOwner=()=>{
+        console.log("usernameee", username);
+        setFormValues(prevFormValues => ({ ...prevFormValues, ['new_owner']: username }));
+ 
+      }
+ 
+    const renderFormElement = (element) => {
+        const handleSelect = (item) => {
+            //setSelectedValue(item);
+            setFormValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item }));
+            console.log(element.name, item.value);
+        };
+        const handleSwitch=(item)=>{
+          setFormValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item}));
+          console.log(element.name, item);
+        }
+ 
+        const starMark = element.isRequired ? <Text style={{ color: 'red' }}> *</Text> : null;
+ 
+        if (element.sectionName === "General" && formValues["lead_type"] === "company") {
+            // If lead type is company and the element is related to personal information, skip rendering
+            if (element.name === "salutation" || element.name === "first_name" || element.name === "last_name" || element.name === "gender"|| element.name==="job_title") {
+                return null;
+            }
+           
+        }
+        const handleDateChange = (selectedDate, element) => {
+            if (selectedDate) {
+              setShowCalendarModal(false);
+               console.log("dateeeeee", extractDate(selectedDate))
+              if (element.name === 'due_date') {
+                setFromDate(selectedDate);
+                  setFormValues(prevFormValues => ({ ...prevFormValues, ['due_date']: extractDate(selectedDate) }));
+                }
+                setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: extractDate(selectedDate) }));
+              }
+            }
+        switch (element.type) {
+            case 'TextInput':
+                return (
+                  <View>
+                    <CustomInput
+                        key={element.name}
+                        title={element.title}
+                        placeholder={element.placeholder}
+                        isRequired={element.isRequired}
+                        inputType={element.inputType}
+                        name={element.name}
+                        rules={{ required: element.isRequired ? `${element.title} is required` : false }}
+                        onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
+                        value={formValues[element.name] || ''}
+                    />
+                    </View>
+                );
+ 
+                case 'CurrencyInput':
+                    return (
+                      <View>
+                        <CustomInput
+                            key={element.name}
+                            title={element.title}
+                            placeholder={element.placeholder}
+                            isRequired={element.isRequired}
+                            inputType={element.inputType}
+                            name={element.name}
+                            rules={{ required: element.isRequired ? `${element.title} is required` : false }}
+                            onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
+                            value={formValues[element.name] || ''}
+                        />
+                        </View>
+                    );
+ 
+ 
+ 
+                case 'TextInputMultiLine':
+                    return (
+                      <View>
+                         <Text style={styles.label}>{element.title}</Text>
+                       <TextInput
+  style={[styles.input, styles.multilineInput]} // Add styles for multiline input
+  onChangeText={(value) => setFormValues({ ...formValues, [element.name]: value } )}
+  value={formValues[element.name] || ''}
+  placeholder={element.placeholder}
+  multiline={true} // Set multiline prop to true
+  numberOfLines={4} // Specify the number of lines you want to display
+/>
+                        </View>
+                    );
+ 
+                case 'Adropdown':
+                    return (
+                      <View>
+                        <Text style={styles.label}>Account Name</Text>
+                        <AddAccounts accountsData={accountsData}/>
+                        </View>
+                    );
+                case 'TextInputP':
+                    return (
+                        <View>
+                            <CustomInput
+                                key={element.name}
+                                title={element.title}
+                                placeholder={element.placeholder}
+                                isRequired={element.isRequired}
+                                inputType={element.inputType}
+                                name={element.name}
+                                rules={{
+                                    required: element.isRequired ? `${element.title} is required` : false,
+                                    pattern: {
+                                        value: /^100$|^\d{0,2}(\.\d{1,2})?%?$/, // Regular expression to match percentage
+                                        message: 'Please enter a valid percentage (e.g., 50%, 0.5)'
+                                    }
+                                }}
+                                onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
+                                value={formValues[element.name] || ''}
+                            />
+                        </View>
+                    );
+               
+                case 'TextInputR':
+                    return (
+                      <View>
+                        <CustomInput
+                            key={element.name}
+                            title={element.title}
+                            placeholder={username}
+                            value={username}
+                            readOnly={true}
+                        />
+                        </View>
+                    );
+ 
+ 
+                    case 'Currency':
+  return (
+    <View style={styles.inputContainer}>
+      {/* <Text style={styles.label}>{element.title}</Text> */}
+      {/* <Pressable >
+        <View style={styles.dateInput}>
+          <Text style={styles.dateText}>
+            <View style={styles.icon}>
+              <Text style={styles.inrText}>INR </Text>
+            </View>
+          </Text>
+        </View>
+      </Pressable> */}
+      <CustomInput
+                            key={element.name}
+                            title={element.title}
+                            placeholder={'INR'}
+                            onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
+                            value={formValues[element.name] || 'INR'}
+                           
+                        />
+      {/* <Text style={styles.inrText}>INR</Text> */}
+    </View>
+  );
+ 
+ 
+                   
+ 
+                    case 'Date':
+                        return (
+                          <View style={styles.inputContainer}>
+                            <Text style={styles.label}>{element.title}</Text>
+                            <Pressable onPress={() => setShowCalendarModal(true)}>
+                              <View style={styles.dateInput}>
+                                <Text style={styles.dateText}>
+                                {formValues[element.name] ? extractDate(formValues[element.name]) : 'Select date '}
+                                <View style={styles.icon}>
+                                  <Ionicons name='calendar' size={20} color='black' />
+                                  </View>
+                                </Text>
+                              </View>
+                            </Pressable>
+                            {/* Calendar Modal */}
+                            {showCalendarModal && (
+                              <RNDateTimePicker
+                                value={selectedDate || new Date()}
+                                mode="date"
+                                display="default"
+                                onChange={(event, selectedDate) => handleDateChange(selectedDate, element)}
+                              />
+                            )}
+                           {/* {validationErrors[element.name] && <Text style={styles.errorMessage}>{validationErrors[element.name]}</Text>} */}
+                          </View>
+                         
+                        );
+            case 'dropdown':
+                return (
+                    <View>
+                    <View style = {styles.inputContainer}>
+                <Text style={styles.label}>{element.title}</Text>
+               
+                              <SelectList
+                boxStyles={{
+                    borderWidth: 1,
+                    borderColor: '#ccc',
+                    borderRadius: 12, // Make the border oval by using a large border radius
+                    paddingVertical: 10,
+                    paddingHorizontal: 10,
+                    fontSize: 16
+                }}
+                setSelected={(label) => {
+                   // handleSelect(label); // Call handleSelect to save the selected value
+                    setSelectedValue(label); // Update selected values
+                }}
+                data={element.dropdownData}
+                save="key"
+                onSelect={() => handleSelect(selectedValue) } // Log selected values
+            />
+                </View>
+                    </View>
+                );      
+    };
+}
+ 
+    return (
+     
+        <View style={styles.cardContainer}>
+          <View>
+            <CustomHeader title={"Opportunity"} onPress={goBack}/>
+          </View>
+                     <ScrollView>
+          <View style={styles.card}>
+            <View style={styles.section}>
+              {Object.keys(isCollapsed).map((sectionName, index) => (
+                <View key={index} style={styles.sectionContainer}>
+                  <TouchableOpacity onPress={() => toggleSection(sectionName)}>
+                    <Text style={styles.sectionTitle}>{sectionName}</Text>
+                    <Image
+                      source={isCollapsed[sectionName] ? DropdownIcon : DropupIcon}
+                      resizeMode="contain"
+                      style={styles.dropdownIcon}
+                    />
+                  </TouchableOpacity>
+                  <Collapsible collapsed={isCollapsed[sectionName]}>
+                    {renderFormElements(sectionName)}
+                  </Collapsible>
+                </View>
+              ))}
+            </View>
+     
+            <Button title="Submit" onPress={onSubmit} color="#023B5E" />
+     
+            <View style={styles.buttonContainer}>
+             
+            </View>
+          </View>
+        </ScrollView>
+      </View>
+     
+    );
+}
+ 
+const styles = StyleSheet.create({
+    cardContainer: {
+        flex: 1,
+        paddingHorizontal: 5,
+        paddingTop: 2,
+        paddingBottom:15,
+        backgroundColor: '#d1e0ed'
+    },
+    card: {
+        backgroundColor: '#FFFFFF', // White card background
+        borderRadius: 2,
+        padding: 20,
+        shadowColor: '#000000',
+        shadowOpacity: 0.2,
+        shadowRadius: 5,
+        elevation: 5, // For Android shadow
+    },
+    container: {
+        flex: 1,
+        paddingHorizontal: 20,
+        paddingTop: 20,
+        backgroundColor:'#cad5e8'
+    },
+    buttonContainer:{
+    flex: 1,
+    flexDirection: 'row', // Align items horizontally
+    alignItems: 'flex-end', // Align items to the start (left)
+    justifyContent: 'flex-end', // Align items to the start (left)
+    padding: 10,
+    },
+    section: {
+        marginBottom: 20,
+    },
+    sectionTitle: {
+        fontSize: 20, // Increase font size for emphasis
+        fontWeight: 'bold',
+        marginBottom: 15, // Increase margin for better separation
+        color: 'black', // Use a darker color for better readability
+       
+        paddingBottom: 5, // Add padding to space out the underline from the text
+    },
+    inputContainer: {
+        marginBottom:8
+    },
+    backButton: {
+        alignSelf: 'flex-end', // Align button to the start (left)
+        marginRight: 'auto',
+        color:'#023B5E'
+         // Push button to the leftmost corner
+      },
+    dropdownIcon: {
+        width: 20,
+        height: 20,
+        position: 'absolute',
+        right: 10,
+        top: 9,
+    },
+    label: {
+        marginBottom: 3,
+        fontSize: 12,
+        fontWeight: 'bold',
+    },
+   
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 3,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    fontSize: 16,
+  },
+  multilineInput: {
+    minHeight: 100, // Adjust the minimum height as needed
+    textAlignVertical: 'top', // Set the text alignment to start from the top
+  },
+    input: {
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius: 5,
+        backgroundColor:'white',
+        paddingVertical: 10,
+        paddingHorizontal: 11,
+        fontSize: 16,
+    },
+    error: {
+        color: 'red',
+        marginBottom:3,
+        fontSize: 12,
+    },
+    switch:{
+      alignItems:'flex-start'
+      },
+ 
+      inputContainer: {
+        marginBottom: 8,
+      },
+      dateInput: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius: 5,
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+      },
+      dateText: {
+        flex: 1,
+        fontSize: 14,
+      },
+      calendarIcon: {
+        width: 20,
+        height: 20,
+        marginLeft: 10,
+      },
+      errorMessage: {
+        color: 'red',
+        fontSize:12
+        // Add any other necessary styles
+    },
+    icon:{
+      paddingRight:180,
+    },
+   
+});
+ 

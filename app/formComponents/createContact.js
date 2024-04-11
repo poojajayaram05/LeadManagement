@@ -110,7 +110,7 @@ const onSelectRadio = (item) => {
     const getUsername = async () => {
         const storedUsername = await SecureStore.getItemAsync('username');
         setUsername(storedUsername);
-        setFormValues(prevFormValues => ({ ...prevFormValues, ['new_owner']: storedUsername }));
+        setFormValues(prevFormValues => ({ ...prevFormValues, ['owner']: storedUsername }));
     };
 
     getUsername();

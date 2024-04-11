@@ -189,6 +189,7 @@ const renderFormElement = (element) => {
                     name={element.name}
                     rules={{ required: element.isRequired ? `${element.title} is required` : false }}
                     // errors={errors}
+                    isRequired={element.isRequired}
                     onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
                     value={formValues[element.name] || ''}
                     readOnly={element.readOnly}

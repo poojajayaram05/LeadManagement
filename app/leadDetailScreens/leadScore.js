@@ -25,6 +25,7 @@ import ArrowBack from '../../customComponents/arrowBack';
 import { router } from 'expo-router';
 import LeadDet  from '../../leadComponents/leadDetHeader';
 import useIdStore from '../leadStore';
+import { SelectList } from 'react-native-dropdown-select-list';
 
 
 export default function LeadScoreForm() {
@@ -118,16 +119,27 @@ const renderFormElement = (element) => {
             case 'dropdown':
               return (
                   <View>
-                  <View style = {styles.inputContainer}>
-                  <Text style={styles.label}>{element.questionlabel}{starMark}</Text>
-                 
-                      <Dropdown style={styles.inputContainer}
-                          label={selectedValue ? selectedValue.label : 'Select'}
-                          data={element.dropdownData}
-                          value={selectedValue}
-                          onSelect={handleSelect}
-                      />
-                  </View>
+                        <View style={styles.inputContainer}>
+                        <Text style={styles.label}>{element.questionvalue}{starMark}</Text>
+                        
+                        <SelectList 
+                boxStyles={{
+                    borderWidth: 1,
+                    borderColor: '#ccc',
+                    borderRadius: 12, // Make the border oval by using a large border radius
+                    paddingVertical: 10,
+                    paddingHorizontal: 10,
+                    fontSize: 16
+                }}
+                setSelected={(label) => {
+                   // handleSelect(label); // Call handleSelect to save the selected value
+                    setSelectedValue(label); // Update selected values
+                }}
+                data={element.dropdownData.map(item => ({ value: item.value, label: item.label }))}
+                save="key"
+                onSelect={() => handleSelect(selectedValue) } // Log selected values
+            />
+                    </View>
                   </View>
                   
               );

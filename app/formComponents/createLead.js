@@ -41,6 +41,7 @@ export default function CreateLead() {
         
       };
 
+      console.disableYellowBox = true;
 
       
     
@@ -299,8 +300,8 @@ const onSelectRadio = (item) => {
                    // handleSelect(label); // Call handleSelect to save the selected value
                     setSelectedValue(label); // Update selected values
                 }}
-                data={element.dropdownData.map(item => ({ value: item.key, label: item.label }))}
-                save="key"
+                data={element.dropdownData.map(item => ({ value: item.key, label: item.value }))}
+                save="value"
                 onSelect={() => handleSelect(selectedValue) } // Log selected values
             />
                     </View>
