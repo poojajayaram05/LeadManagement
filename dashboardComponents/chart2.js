@@ -1,6 +1,7 @@
 import { PieChart} from "react-native-chart-kit";
 import React from 'react';
 import { View} from 'react-native';
+
  
   const Chart2 = () => {
    

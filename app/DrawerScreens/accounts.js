@@ -37,6 +37,10 @@ const ListOfAccounts = () => {
     }
   };
 
+  const goToAccountCreate=()=>{
+    router.navigate('/formComponents/createAccount')
+  }
+
   useEffect(() => {
       const fetchData = async () => {
           try {
@@ -79,6 +83,13 @@ const ListOfAccounts = () => {
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
       />
+           <View>
+  <TouchableOpacity style={styles.plusButton} onPress={goToAccountCreate}>
+   
+    <Ionicons name="add" size={24} color="white" onPress={goToAccountCreate}/>
+   
+  </TouchableOpacity>
+</View>
     
     </View>
   );

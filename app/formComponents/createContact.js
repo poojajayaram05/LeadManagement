@@ -16,7 +16,7 @@ import CustomSwitch from '../../customComponents/customSwitch';
 import CustomHeader from '../../customComponents/customLeadHeader';
 import { contactFormData } from '../../customComponents/formData';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
-import AddAccounts from './addAccounts';
+import AddAccounts from './accountsDropdown';
 // Form component
 import { SelectList } from 'react-native-dropdown-select-list';
 export default function CreateContact() {
@@ -155,7 +155,7 @@ const onSelectRadio = (item) => {
 
           console.log("Successfully posted",response);
           
-          router.replace('/DrawerScreens/leadList')
+          router.replace('/DrawerScreens/contacts')
         }
         
     

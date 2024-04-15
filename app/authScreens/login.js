@@ -113,7 +113,7 @@ const LoginScreen = ({ navigation }) => {
 
     await SecureStore.setItemAsync("username", username);
     const usernameFromStore=  await SecureStore.getItemAsync('username');
-    console.log(usernameFromStore,"sdfghjkkjhgfddfghjkjhgchj")
+   // console.log(usernameFromStore,"sdfghjkkjhgfddfghjkjhgchj")
     
     let options = {
       "client_id" : "71d7bed90b0d0a50cd2f237b791c9ac0",

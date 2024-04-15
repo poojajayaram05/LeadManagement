@@ -14,10 +14,11 @@ import { router } from 'expo-router';
 import * as SecureStore from 'expo-secure-store';
 import CustomHeader from '../../customComponents/customLeadHeader';
 import { opportunityFormData } from '../../customComponents/formData';
-import AddAccounts from './addAccounts';
+import AddAccounts from './accountsDropdown';
 
 import { SelectList } from 'react-native-dropdown-select-list';
 import { FetchAccounts } from '../service/fetchAccounts';
+import AddContacts from '../../customComponents/contactsDropdown';
  
 export default function createOpportunity() {
  
@@ -109,7 +110,7 @@ function extractDate(timestamp) {
     const getUsername = async () => {
         const storedUsername = await SecureStore.getItemAsync('username');
         setUsername(storedUsername);
-        setFormValues(prevFormValues => ({ ...prevFormValues, ['new_owner']: storedUsername }));
+        setFormValues(prevFormValues => ({ ...prevFormValues, ['owner']: storedUsername }));
     };
     getUsername();
 }, []);
@@ -118,7 +119,7 @@ function extractDate(timestamp) {
     const onSubmit = async () => {
       console.log("usernameee", username);
       console.log(formValues);
-      setFormValues(prevFormValues => ({ ...prevFormValues, ['new_owner']: username}));
+      setFormValues(prevFormValues => ({ ...prevFormValues, ['owner']: username}));
       const errors = validateForm();
       if (Object.keys(errors).length > 0) {
         // If there are validation errors, set them in state
@@ -151,7 +152,7 @@ function extractDate(timestamp) {
  
           console.log("Successfully posted",response);
          
-          router.replace('/DrawerScreens/leadList')
+          router.replace('/DrawerScreens/deals')
         }
             catch(err){
                 console.log("error");
@@ -169,11 +170,7 @@ function extractDate(timestamp) {
           ));
       };
  
-      const saveOwner=()=>{
-        console.log("usernameee", username);
-        setFormValues(prevFormValues => ({ ...prevFormValues, ['new_owner']: username }));
- 
-      }
+   
  
     const renderFormElement = (element) => {
         const handleSelect = (item) => {
@@ -261,10 +258,17 @@ function extractDate(timestamp) {
                 case 'Adropdown':
                     return (
                       <View>
-                        <Text style={styles.label}>Account Name</Text>
-                        <AddAccounts accountsData={accountsData}/>
+                        <Text style={styles.label}>Accounts</Text>
+                        <AddAccounts/>
                         </View>
                     );
+                    case 'Pdropdown':
+                        return (
+                        <View>
+                          <Text style={styles.label}> Contacts</Text>
+                          <AddContacts/>
+                          </View>
+                      );
                 case 'TextInputP':
                     return (
                         <View>
@@ -297,6 +301,7 @@ function extractDate(timestamp) {
                             placeholder={username}
                             value={username}
                             readOnly={true}
+                            isRequired={element.isRequired}
                         />
                         </View>
                     );
@@ -320,7 +325,7 @@ function extractDate(timestamp) {
                             title={element.title}
                             placeholder={'INR'}
                             onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
-                            value={formValues[element.name] || 'INR'}
+                            value={formValues[element.name]}
                            
                         />
       {/* <Text style={styles.inrText}>INR</Text> */}

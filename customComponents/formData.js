@@ -1,10 +1,10 @@
 export const opportunityFormData = {
   "elements": [
    {
-      "name": "oppurtunity_name",
+      "name": "opportunity_name",
       "type":"TextInput",
       "title": "Oppurtunity Name",
-      "placeholder": "",
+      "placeholder": "Enter Opportunity name",
       "sectionName":"General",
        "isRequired":true
     },
@@ -13,14 +13,14 @@ export const opportunityFormData = {
       "name": "account_name",
       "type": "Adropdown",
       "title": " Account Name",
-      "placeholder": "",
+      "placeholder": "Enter account name",
       "sectionName":"General"
     },
  
  
    {
       "name": "primary_contact",
-      "type": "dropdown",
+      "type": "Pdropdown",
       "title": "Primary Contact",
       "placeholder": "",
       "sectionName":"General"
@@ -121,7 +121,6 @@ export const opportunityFormData = {
       "name": "forecast_close_date",
       "type": "Date",
       "title": "Forecast Close Date",
-      "inputType": "text",
       "placeholder": "Select",
       "sectionName":"Forecast",
        "isRequired":true
@@ -156,7 +155,7 @@ export const opportunityFormData = {
       "name": "probability_of_winning",
       "type": "TextInputP",
       "title": "Probability Of Winning",
-      "placeholder": "",
+      "placeholder": "Probability Of Winning",
       "sectionName":"Forecast",
       "validation": {
         "regex":  /^100$|^\d{0,2}(\.\d{1,2})?%?$/,
@@ -168,8 +167,10 @@ export const opportunityFormData = {
       "name": "opportunity_value",
       "type": "Currency",
       "title": "Opportunity Value",
-      "placeholder": "",
+      "inputType":"numeric",
+      "placeholder": "Opportunity Value",
       "sectionName":"Forecast",
+      "isRequired":true
     },
  
    
@@ -490,25 +491,7 @@ export const formData = {
          ],
          "sectionName":"ContactMethod"
       },
-      // {
-      //   "name": "u_alternate_email_1",
-      //   "type": "TextInput",
-       
-      //   "title": "Alternate Email",
-      //   "placeholder":"Alternate Email 1",
-      //   "isRequired": true,
-      //   "sectionName":"Contact"
-      // },
-      // {
-      //   "name": "u_alternate_email_2",
-      //   "type": "email",
-      
-      //   "title": "Alternate Email",
-      //   "placeholder":"Alternate Email 2",
-      //   "isRequired": true,
-      //   "sectionName":"Contact"
-       
-      // },
+
       {
         "name": "u_email",
         "type": "dropdown",
@@ -808,280 +791,7 @@ export const formData = {
      ]
   }
   
-  export const leadData =
-  [
-   
-    {
-   
-      "LeadType": "Domestic",
-      "Number": "LEA0001509",
-      "FirstName":"John",
-      "LastName":"Smith",
-      "Gender":'M',
-      "Email": "johnsmith1@gmail.com",
-      "Score":"Null",
-      "Owner":"Carla White",
-      "LeadSource":"Partner",
-      "LeadCurrency":"INR 300000",
-      "Description":"John Smith is a potential customer who expressed interest in our services during a recent networking event.",
-      "ScoringProfile":"Profile 1",
-      "Company":"RPT",
-      "NoOfEmployees":"30",
-      "AnnualRevenue":"INR 700000",
-      "CompanyDUNSNumber":"73245",
-      "Industry":"Accounting",
-      "AlternateEmail1":"johnsmith0234@gmail.com",
-      "AlternateEmail2":"johnsmithh987@gmail.com",
-      "EmailOtpOut":"True",
-      "BusinessPhone": "8884763231",
-      "MobilePhone":"9903672637",
-      "HomePhone":"8802374321",
-      "DoNotCall":"True",
-      "Street":"No. 3, 2nd lane",
-      "City":"Boston",
-      "State":"California",
-      "Zip":"230098",
-      "Country":"USA",
-      "Preferred":"Any",
-      "Email":"johnsmith1@gmail.com",
-      "BulkEmail":"Allow",
-      "Phone":"8076845632",
-      "Whatsapp":"9985435678",
-      "value":"hot",
-      "Id":"1",
-      "Status":"New Lead"
-   
-    },
-   
-    {
-      "LeadType": "Domestic",
-      "Number": "LEA0001510",
-      "FirstName": "Emily",
-      "LastName": "Johnson",
-      "Gender": "F",
-      "Email": "emilyjohnson2@gmail.com",
-      "Score": "Null",
-      "Owner": "David Brown",
-      "LeadSource": "Advertisement",
-      "LeadCurrency": "USD 250000",
-      "Description": "Emily Johnson is interested in our services after attending our webinar.",
-      "ScoringProfile": "Profile 2",
-      "Company": "XYZ Corp",
-      "NoOfEmployees": "50",
-      "AnnualRevenue": "USD 900000",
-      "CompanyDUNSNumber": "87213",
-      "Industry": "Financial",
-      "AlternateEmail1": "emily.johnson@xyzcorp.com",
-      "AlternateEmail2": "emilyj123@hotmail.com",
-      "EmailOtpOut": "False",
-      "BusinessPhone": "7894563210",
-      "MobilePhone": "9876543210",
-      "HomePhone": "8765432109",
-      "DoNotCall": "False",
-      "Street": "123 Main St",
-      "City": "New York",
-      "State": "New York",
-      "Zip": "10001",
-      "Country": "USA",
-      "Preferred": "Email",
-      "BulkEmail": "Not allowed",
-      "Phone": "9876543210",
-      "Whatsapp": "Unavailable",
-      "value": "cold",
-      "Id": "2",
-      "Status": "Qualified"
-    },
-    {
-      "LeadType": "International",
-      "Number": "LEA0001511",
-      "FirstName": "Daniel",
-      "LastName": "Brown",
-      "Gender": "M",
-      "Email": "danielbrown@gmail.com",
-      "Score": "Null",
-      "Owner": "Maria Garcia",
-      "LeadSource": "Web",
-      "LeadCurrency": "EUR 400000",
-      "Description": "Daniel Brown Contacted us through our website seeking information about our products.",
-      "ScoringProfile": "Profile 3",
-      "Company": "ABC Ltd",
-      "NoOfEmployees": "20",
-      "AnnualRevenue": "EUR 600000",
-      "CompanyDUNSNumber": "51234",
-      "Industry": "Consulting",
-      "AlternateEmail1": "danielb987@abcltd.com",
-      "AlternateEmail2": "dbrown123@yahoo.com",
-      "EmailOtpOut": "True",
-      "BusinessPhone": "6547893210",
-      "MobilePhone": "9876543210",
-      "HomePhone": "8765432109",
-      "DoNotCall": "True",
-      "Street": "456 Elm St",
-      "City": "Los Angeles",
-      "State": "California",
-      "Zip": "90001",
-      "Country": "USA",
-      "Preferred": "Phone",
-      "BulkEmail": "Allow",
-      "Phone": "9876543210",
-      "Whatsapp": "Unavailable",
-      "value": "warm",
-      "Id": "3",
-      "Status": "Contacted"
-    },
-    {
-      "LeadType": "Domestic",
-      "Number": "LEA0001512",
-      "FirstName": "Michael",
-      "LastName": "Wilson",
-      "Gender": "M",
-      "Email": "michaelwilson@gmail.com",
-      "Score": "Null",
-      "Owner": "Jennifer Rodriguez",
-      "LeadSource": "Web",
-      "LeadCurrency": "GBP 200000",
-      "Description": "Michael Wilson inquired about our services through our online Contact form.",
-      "ScoringProfile": "Profile 4",
-      "Company": "PQR Inc",
-      "NoOfEmployees": "100",
-      "AnnualRevenue": "GBP 800000",
-      "CompanyDUNSNumber": "93215",
-      "Industry": "Customer Services",
-      "AlternateEmail1": "mwilson456@pqrinc.com",
-      "AlternateEmail2": "michael.wilson23@gmail.com",
-      "EmaieOtpOut": "False",
-      "BusinessPhone": "1234567890",
-      "MobilePhone": "9876543210",
-      "HomePhone": "8765432109",
-      "DoNotCall": "False",
-      "Street": "789 Oak St",
-      "City": "Chicago",
-      "State": "Illinois",
-      "Zip": "60001",
-      "Country": "USA",
-      "Preferred": "Any",
-      "BulkEmail": "Not allowed",
-      "Phone": "9876543210",
-      "Whatsapp": "Unavailable",
-      "value": "hot",
-      "Id": "4",
-      "Status": "New Lead"
-    },
-    {
-      "LeadType": "International",
-      "Number": "LEA0001513",
-      "FirstName": "Olivia",
-      "LastName": "Taylor",
-      "Gender": "F",
-      "Email": "oliviataylor@gmail.com",
-      "Score": "Null",
-      "Owner": "Robert Martinez",
-      "LeadSource": "Partner",
-      "LeadCurrency": "AUD 350000",
-      "Description": "Olivia Taylor was referred to us by one of our business partners.",
-      "ScoringProfile": "Profile 5",
-      "Company": "LMN Group",
-      "NoOfEmployees": "75",
-      "AnnualRevenue": "AUD 750000",
-      "CompanyDUNSNumber": "74239",
-      "Industry": "Accounting",
-      "AlternateEmail1": "oliviataylor@lmngroup.com",
-      "AlternateEmail2": "olivia.taylor23@hotmail.com",
-      "EmailOtpOut": "True",
-      "BusinessPhone": "9876543210",
-      "MobilePhone": "8765432109",
-      "HomePhone": "7654321098",
-      "DoNotCall": "True",
-      "Street": "101 Pine St",
-      "City": "Miami",
-      "State": "Florida",
-      "Zip": "33001",
-      "Country": "USA",
-      "Preferred": "Phone",
-      "BulkEmail": "Allow",
-      "Phone": "9876543210",
-      "Whatsapp": "Unavailable",
-      "value": "cold",
-      "Id": "5",
-      "Status": "Qualified"
-    },
-    {
-      "LeadType": "Domestic",
-      "Number": "LEA0001514",
-      "FirstName": "James",
-      "LastName": "Clark",
-      "Gender": "M",
-      "Email": "jamesclark@gmail.com",
-      "Score": "Null",
-      "Owner": "Karen Thompson",
-      "LeadSource": "Advertisement",
-      "LeadCurrency": "CAD 300000",
-      "Description": "James Clark saw our ad in a local newspaper and Contacted us for more information.",
-      "ScoringProfile": "Profile 6",
-      "Company": "QRS Enterprises",
-      "NoOfEmployees": "40",
-    "AnnualRevenue": "CAD 500000",
-    "CompanyDUNSNumber": "61234",
-    "Industry": "Financial",
-    "AlternateEmail1": "jclark@qrsenterprises.com",
-    "AlternateEmail2": "jamesc123@yahoo.com",
-    "EmailOtpOut": "False",
-    "BusinessPhone": "9876543210",
-    "MobilePhone": "8765432109",
-    "HomePhone": "7654321098",
-    "DoNotCall": "False",
-    "Street": "456 Pine St",
-    "City": "Houston",
-    "State": "Texas",
-    "Zip": "77001",
-    "Country": "USA",
-    "Preferred": "Bulk Email",
-    "BulkEmail": "Not allowed",
-    "Phone": "9876543210",
-    "Whatsapp": "Unavailable",
-    "value": "hot",
-    "Id": "6",
-    "Status": "Contacted"
-  },
-  {
-    "LeadType": "International",
-    "Number": "LEA0001515",
-    "FirstName": "Sophia",
-    "LastName": "Lewis",
-    "Gender": "F",
-    "Email": "sophialewis@gmail.com",
-    "Score": "Null",
-    "Owner": "Steven Johnson",
-    "LeadSource": "Web",
-    "LeadCurrency": "EUR 400000",
-    "Description": "Sophia Lewis found our website through an online search and expressed interest in our services.",
-    "ScoringProfile": "Profile 7",
-    "Company": "STU Solutions",
-    "NoOfEmployees": "50",
-    "AnnualRevenue": "EUR 900000",
-    "CompanyDUNSNumber": "95213",
-    "Industry": "Financial",
-    "AlternateEmail1": "sophia.l@stusolutions.com",
-    "AlternateEmail2": "slewis456@yahoo.com",
-    "EmailOtpOut": "False",
-    "BusinessPhone": "2345678901",
-    "MobilePhone": "8765432109",
-    "HomePhone": "7654321098",
-    "DoNotCall": "False",
-    "Street": "456 Elm St",
-    "City": "Los Angeles",
-    "State": "California",
-    "Zip": "90001",
-    "Country": "USA",
-    "Preferred": "Phone",
-    "BulkEmail": "Not allowed",
-    "Phone": "8765432109",
-    "Whatsapp": "Unavailable",
-    "value": "hot",
-    "Id": "7",
-    "Status": "Closed"
-},
-  ]
+
 
 export const meetingItemsData = {
   elements: [
@@ -1406,7 +1116,7 @@ export const requirementFormData={
     "name": "key",
     "type": "TextInput",
     "title": "key ($)",
-    "inputType": "number",
+    "inputType": "numeric",
     "placeholder": "key",
     
   },
@@ -1630,7 +1340,7 @@ export const callLogFormData= {
       "name": "phone",
       "type": "TextInputNumber",
       "title": "Phone Number",
-      "inputType": 'number',
+      "inputType": 'numeric',
       "placeholder":"Enter the number",
       "keyboardType":"numeric"
     },
@@ -2925,6 +2635,71 @@ export const contactFormData={
       "title": "Last stay in touch save",
       "sectionName":"General", 
     },
+    {
+      "name": "do_not_call",
+      "type": "Switch",
+      "title": "Do Not Call",
+      "sectionName":"Contact"
+    },
+
+    {
+      "name": "preffered_method",
+      "type": "dropdown",
+      "title": "Preferred",
+      "placeholder":"Preferred",
+      "dropdownData" :[
+        { key: 'any', value: 'Any' },
+        { key: 'email', value: 'Email' },
+        { key: 'bulk_email', value: 'Web' },
+        { key: 'phone', value: 'Phone' },
+        { key: 'whatsapp', value: 'Whatsapp' },
+        
+       ],
+       "sectionName":"Contact"
+    },
+
+    {
+      "name": "u_email",
+      "type": "dropdown",
+      "title": "Email subscription",
+      "placeholder":"Email subscription",
+      "dropdownData" :[
+        { key: 'allow', value: 'Allow' },
+        { key: 'do_not_allow', value: 'Do not allow' },
+       ],
+       "sectionName":"Contact"
+
+    },
+    {
+      "name": "phone",
+      "type": "dropdown",
+      "title": "Phone subscription",
+      "placeholder":"Phone subscription",
+      "dropdownData" :[
+        { key: 'allow', value: 'Allow' },
+        { key: 'do_not_allow', value: 'Do not allow' },
+       ],
+       "sectionName":"Contact"
+    },
+    {
+      "name": "whatsapp",
+      "type": "dropdown",
+      "title": "Whatsapp subscription",
+      "placeholder":"whatsapp subscription",
+      "dropdownData" :[
+        { key: 'allow', value: 'Allow' },
+        { key: 'do_not_allow', value: 'Do not allow' },
+       ],
+       "sectionName":"Contact"
+    },
+
+    {
+      "name": "email_opt_out",
+      "type": "Switch",
+      "title": "Email Opt Out",
+      "sectionName":"Contact"
+    },
+
   ]
 }
 
@@ -2938,11 +2713,11 @@ export const accountFormData = {
       "inputType":"text",
       "placeholder":"Lead Type",
       "dropdownData" :[
-        { "value": "Asia/taipei", "label": "person" },
-        { "value": "america/toronto", "label": "corporate" }
+        { "key": "person", "value": "person" },
+        { "key": "corporate", "value": "corporate" }
       ],
       "sectionName":"General",
-      // "isRequired":true
+      "isRequired":true
       
     },
     {
@@ -2952,7 +2727,7 @@ export const accountFormData = {
       "placeholder":"account name",
       "maxLength": 25,
       "inputType": "text",
-      // 'isRequired': true,
+      'isRequired': true,
       "sectionName":"General"
     },
     {
@@ -2973,10 +2748,10 @@ export const accountFormData = {
       "inputType": "text",
       "placeholder":"Salutation",
        "dropdownData" :[
-        { value: 'Mr.', label: 'Mr.' },
-        { value: 'Ms.', label: 'Ms.' },
-        { value: 'Dr.', label: 'Dr.' },
-        { value: 'prof', label: 'Prof' },
+        { key: 'Mr.', value: 'Mr.' },
+        { key: 'Ms.', value: 'Ms.' },
+        { key: 'Dr.', value: 'Dr.' },
+        { key: 'prof', value: 'Prof' },
        ],
        "sectionName":"General"
     },
@@ -2988,7 +2763,7 @@ export const accountFormData = {
       "placeholder":"First Name",
       "maxLength": 25,
       "inputType": "text",
-      // 'isRequired': true,
+      'isRequired': true,
       "sectionName":"General"
     },
     {
@@ -2997,7 +2772,7 @@ export const accountFormData = {
       "title": "Last Name",
       "inputType": "text",
       "placeholder": "Last Name",
-      // "isRequired": true,
+      "isRequired": true,
       "autocomplete": "lastname",
       "sectionName":"General"
     },
@@ -3015,6 +2790,7 @@ export const accountFormData = {
       "type": "TextInput",
       "title": "Account number",
       "inputType": "numeric",
+      "isRequired": true,
       "placeholder": "account number",
       "sectionName":"General"
     },
@@ -3023,7 +2799,6 @@ export const accountFormData = {
       "name": "birth-date",
       "type": "dateInput",
       "title": "Birth date",
-      "inputType": "text",
       "placeholder": "birth date",
       "sectionName":"General"
     },
@@ -3035,13 +2810,13 @@ export const accountFormData = {
       "inputType": "text",
       "placeholder":"Salutation",
        "dropdownData" :[
-        { value: 'advertisement_customer', label: 'Advertisement/Customer' },
-        { value: 'adwords_other', label: 'Adwords/Others' },
-        { value: 'event_employee', label: 'Event/Employee' },
-        { value: 'list_trade', label: 'List/Trade' },
-        { value: 'partner_purchased', label: 'Partner/Purchased' },
-        { value: 'referral_google', label: 'Referal/Google' },
-        { value: 'webinar_website', label: 'Webinar/Website' },
+        { key: 'advertisement_customer', value: 'Advertisement/Customer' },
+        { key: 'adwords_other', value: 'Adwords/Others' },
+        { key: 'event_employee', value: 'Event/Employee' },
+        { key: 'list_trade', value: 'List/Trade' },
+        { key: 'partner_purchased', value: 'Partner/Purchased' },
+        { key: 'referral_google', value: 'Referal/Google' },
+        { key: 'webinar_website', value: 'Webinar/Website' }
        ],
        "sectionName":"General"
     },
@@ -3068,11 +2843,11 @@ export const accountFormData = {
       "inputType": "text",
       "placeholder":"Salutation",
        "dropdownData" :[
-        { value: 'Mr.', label: 'Acer Four' },
-        { value: 'Ms.', label: 'Acer One' },
-        { value: 'Dr.', label: 'Adobe User-A' },
-        { value: 'prof', label: 'Adobe User-B' },
-        { value: 'prof', label: 'Adam Haro' },
+        { key: 'Mr.', value: 'Acer Four' },
+        { key: 'Ms.', value: 'Acer One' },
+        { key: 'Dr.', value: 'Adobe User-A' },
+        { key: 'prof', value: 'Adobe User-B' },
+        { key: 'prof', value: 'Adam Haro' }
        ],
        "sectionName":"General"
     },
@@ -3091,8 +2866,8 @@ export const accountFormData = {
       "inputType": "text",
       "placeholder":"parent account",
        "dropdownData" :[
-        { value: 'Mr.', label: 'test-1' },
-        { value: 'Mr.', label: 'test-2' },
+        { key: 'Mr.', value: 'test-1' },
+        { key: 'Mr.', value: 'test-2' },
       
        ],
        "sectionName":"General"
@@ -3132,7 +2907,8 @@ export const accountFormData = {
       "title": "Mailing address",
       "inputType": "text",
       "placeholder": "mailing address",
-      "sectionName":"Address Details"
+      "sectionName":"Address Details",
+      "isRequired": true,
      
     }, 
     {
@@ -3152,7 +2928,7 @@ export const accountFormData = {
       "placeholder": "State",
       "sectionName":"Address",
       "dropdownData" :[
-        { value: '', label: '' },
+        { key: '', value: '' },
        ],
       "isRequired":true
      
@@ -3174,7 +2950,7 @@ export const accountFormData = {
       "placeholder": "Country",
       "sectionName":"Address",
       "dropdownData" :[
-        { value: 'india', label: 'India' },
+        { key: 'india', value: 'India' },
        ],
       "isRequired":true
      
@@ -3257,8 +3033,8 @@ export const accountFormData = {
       "inputType": "text",
       "placeholder":"Currency",
        "dropdownData" :[
-        { value: 'inr', label: 'INR' },
-        { value: 'usd', label: 'USD' },
+        { key: 'inr', value: 'INR' },
+        { key: 'usd', value: 'USD' },
        ],
        "sectionName":"Company"
 
@@ -3303,7 +3079,7 @@ export const accountFormData = {
       "type": "TextInput",
       "title": "Annual Revenue",
       "description": "Enter annual revenue",
-      "inputType": "number",
+      "inputType": "numeric",
       "placeholder":"Annual Revenue",
       "sectionName":"Company"
     },
@@ -3368,12 +3144,12 @@ export const accountFormData = {
       "title": "Mobile",
       "inputType": "numeric",
       "placeholder":"mobile number",
-      // "isRequired": true,
+      "isRequired": true,
       "sectionName":"Contact",
-      // "validation": {
-      //   "regex": /^\d{10}$/,
-      //   "message": "Please enter a valid 10-digit phone number."
-      // },
+      "validation": {
+        "regex": /^\d{10}$/,
+        "message": "Please enter a valid 10-digit phone number."
+      },
     },
     {
       "name": "home_phone",
@@ -3404,10 +3180,10 @@ export const accountFormData = {
       "placeholder":"Phone number",
       // "isRequired": true,
       "sectionName":"Contact",
-      "validation": {
-        "regex": /^\d{10}$/,
-        "message": "Please enter a valid 10-digit phone number."
-      },
+      // "validation": {
+      //   "regex": /^\d{10}$/,
+      //   "message": "Please enter a valid 10-digit phone number."
+      // },
     },
 
     {
@@ -3460,7 +3236,8 @@ export const accountFormData = {
       "name": "email",
       "type": "checkbox",
       "title": "Email opt out",
-      "sectionName":"Contact"
+      "sectionName":"Contact",
+      "isRequired": true,
 
     },
     {
@@ -3484,10 +3261,10 @@ export const accountFormData = {
       "inputType": "text",
       "placeholder":"Industry",
        "dropdownData" :[
-        { value: 'accounting', label: 'Valid' },
-        { value: 'brokers', label: 'Invalid' },
-        { value: 'consulting', label: 'No response' },
-        { value: 'customer_services', label: 'Verified'},
+        { key: 'Valid', value: 'accounting' },
+        { key: 'Invalid', value: 'brokers' },
+        { key: 'No response', value: 'consulting' },
+        { key: 'Verified', value: 'customer_services' }
        ],
        "sectionName":"Contact"
       
@@ -3506,19 +3283,7 @@ export const accountFormData = {
       //   "message": "Please enter a valid 10-digit phone number."
       // },
     },
-    // {
-    //   "name": "email_opt_out",
-    //    "type":"checkbox",
-    //   "title": "Email opt out",
-    //   "placeholder":"Email",
-    //   // "isRequired": true,
-    //   "sectionName":"Contact",
-    //   "validation": {
-    //     "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-    //     "message": "Please enter a valid email address."
-    //   },
-    // },
-
+ 
     {
       "name":"suffix",
       "type": "TextInput",
@@ -3606,8 +3371,8 @@ export const accountFormData = {
       "inputType": "text",
       "placeholder":"Industry",
        "dropdownData" :[
-        { value: 'accounting', label: 'married' },
-        { value: 'brokers', label: 'single' },
+        { key: 'accounting', value: 'married' },
+        { key: 'brokers', value: 'single' },
        ],
        "sectionName":"Personal Details"
     },
@@ -3618,11 +3383,11 @@ export const accountFormData = {
       "inputType": "text",
       "placeholder":"Industry",
        "dropdownData" :[
-        { value: 'accounting', label: 'Islam' },
-        { value: 'brokers', label: 'Buddhism' },
-        { value: 'brokers', label: 'Sikhism' },
-        { value: 'brokers', label: 'Christianity' },
-        { value: 'brokers', label: 'Hinduism' },
+        { key: 'Islam', value: 'accounting' },
+        { key: 'Buddhism', value: 'brokers' },
+         { key: 'Sikhism', value: 'brokers' },
+         { key: 'Christianity', value: 'brokers' },
+         { key: 'Hinduism', value: 'brokers' }
        ],
        "sectionName":"Personal Details"
     },
@@ -3657,8 +3422,8 @@ export const accountFormData = {
       "inputType": "text",
       "placeholder":"Industry",
        "dropdownData" :[
-        { value: 'accounting', label: 'yes' },
-        { value: 'brokers', label: 'no' },
+        { key: 'accounting', value: 'yes' },
+        { key: 'brokers', value: 'no' },
        ],
        "sectionName":"Personal Details"
     },
@@ -3669,8 +3434,8 @@ export const accountFormData = {
       "title": "Email subscription",
       "placeholder":"Email subscription",
       "dropdownData" :[
-        { value: 'allow', label: 'Allow' },
-        { value: 'do_not_allow', label: 'Do not allow' },
+        { key: 'allow', value: 'Allow' },
+        { key: 'do_not_allow', value: 'Do not allow' },
        ],
        "sectionName":"Contact     Method"
 
@@ -3681,8 +3446,8 @@ export const accountFormData = {
       "title": "Phone subscription",
       "placeholder":"Phone subscription",
       "dropdownData" :[
-        { value: 'allow', label: 'Allow' },
-        { value: 'do_not_allow', label: 'Do not allow' },
+        { key: 'allow', value: 'Allow' },
+        { key: 'do_not_allow', value: 'Do not allow' },
        ],
        "sectionName":"ContactMethod"
     },
@@ -3692,8 +3457,8 @@ export const accountFormData = {
       "title": "Whatsapp subscription",
       "placeholder":"whatsapp subscription",
       "dropdownData" :[
-        { value: 'allow', label: 'Allow' },
-        { value: 'do_not_allow', label: 'Do not allow' },
+        { key: 'allow', value: 'Allow' },
+        { key: 'do_not_allow', value: 'Do not allow' },
        ],
        "sectionName":"ContactMethod"
     },
@@ -3705,74 +3470,28 @@ export const accountFormData = {
       "sectionName":"ContactMethod"
     },
 
-    // {
-    //   "name": "fax",
-    //   "type": "TextInput",
-    //   "title": "Fax",
-    //   "inputType": "text",
-    //   "placeholder":"FAX",
-    //   "sectionName":"Contact"
-     
-    // },
     {
       "name": "company_duns_number",
       "type": "TextInput",
       "title": "Company DUNS Number",
-      "inputType": "number",
+      "inputType": "text",
       "placeholder":"Number",
       "sectionName":"Company"
     },
-    // {
-    //   "name": "title",
-    //   "type": "TextInput",
-    //   "title": "Lead Title",
-    //   "placeholder":"Lead Title",
-    //   "isRequired": true,
-    //   "sectionName":"General"
-    // },
-
+  
     {
       "name": "lead_currency",
       "type": "dropdown",
       "title": "Lead Currency",
       "placeholder":"Currency",
       "dropdownData" :[
-        { value: 'inr', label: 'INR' },
-        { value: 'usd', label: 'USD' },
+        { key: 'inr', value: 'INR' },
+        { key: 'usd', value: 'USD' },
         
        ],
        "sectionName":"company"
     },
-    // {
-    //   "name": "lead_source",
-    //   "type": "dropdown",
-    //   "title": "Lead Source",
-    //   "inputType": "text",
-    //   "placeholder":"Lead Source",
-    //    "dropdownData" :[
-    //     { value: 'advertisement', label: 'Advertisement' },
-    //     { value: 'partner', label: 'Partner' },
-    //     { value: 'web', label: 'Web' },
-    //     { value: 'campaign', label: 'Campaign' },
-    //     { value: 'self_sourced', label: 'Self Sourced' },
-    //    ],
-    //    "sectionName":"General"
-    // },
-    // {
-    //   "name": "u_lead_status",
-    //   "type": "dropdown",
-    //   "title": "Lead Status",
-    //   "inputType": "text",
-    //   "placeholder":"Lead Status",
-    //    "dropdownData" :[
-    //     { value: 'new', label: 'New' },
-    //     { value: 'Contacted', label: 'Contacted' },
-    //     { value: 'qualified', label: 'Qualified' },
-    //     { value: 'converted', label: 'Converted' },
-    //     { value: 'closed-not_converted', label: 'Closed-Not Converted' },
-    //    ],
-    //    "sectionName":"Additional"
-    // },
+  
     {
       "name": "industry_classification",
       "type": "TextInput",
@@ -3820,8 +3539,8 @@ export const accountFormData = {
       "inputType": "text",
       "placeholder":"industry",
        "dropdownData" :[
-        { value: 'team', label: 'agriculture' },
-        { value: 'user', label: 'engineering' },
+        { key: 'team', value: 'agriculture' },
+        { key: 'user', value: 'engineering' },
        ],
        "sectionName":"Industry Details"
     },
@@ -3887,18 +3606,7 @@ export const accountFormData = {
       "readonly":true,
       "sectionName":"Additional"
     },
-    // {
-    //   "name": "assignment_group",
-    //   "type": "dropdown",
-    //   "title": "Assignment group",
-    //   "inputType": "text",
-    //   "placeholder":"Assigned Group",
-    //   "dropdownData": [
-    //     { "value": 1, "label": "" },
 
-    //   ],
-    //   "sectionName":"Additional"
-    // },
 ],
 };
 

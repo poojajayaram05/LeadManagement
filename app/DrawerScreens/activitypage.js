@@ -694,7 +694,7 @@ export default function Example() {
   const swiper = useRef();
   const [value, setValue] = useState(new Date());
   const [week, setWeek] = useState(0);
- 
+  console.reportErrorsAsExceptions = false;
   const [selectedTasks, setSelectedTasks] = useState([]);
   const [selectedMeetings, setSelectedMeetings] = useState([]);
   const [selectedCalls, setSelectedCalls] = useState([]);

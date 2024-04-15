@@ -7,6 +7,7 @@ import { useContactStore } from '../leadStore';
 import { FetchContacts } from '../service/fetchContacts';
 import { useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
+import ContactHeader from '../../customComponents/contactDetailHeader';
  
 import DataRow from '../../customComponents/dataRow';
 const sectionDetails = [
@@ -16,42 +17,32 @@ const sectionDetails = [
       fields: [
         {label: 'Title', value: 'title' },
         { label: 'Description:', value: 'description' },
-        { label: 'Account:', value: 'account' },
+        // { label: 'Account:', value: 'account' },
         { label: 'Birthdate:', value: 'birthdate' },
         { label: 'Category:', value: 'category' },
-        { label: 'CKYC Number:', value: 'ckyc_number' },
-        { label: 'Department:', value: 'mobile' },
-        { label: 'EBC Eligibility Date:', value: 'ebc_eligibility_date' },
-        { label: 'First Name:', value: 'first_name' },
-        { label: 'Last Name:', value: 'last_name' },
-        { label: 'Middle Name:', value: 'middle_name' },
-        { label: 'Funding Value Base Loan:', value: 'funding_value_base_loan' },
+        // { label: 'CKYC Number:', value: 'ckyc_number' },
+        { label: 'Department:', value: 'department' },
+        // { label: 'EBC Eligibility Date:', value: 'ebc_eligibility_date' },
+        // { label: 'First Name:', value: 'first_name' },
+        // { label: 'Last Name:', value: 'last_name' },
+        // { label: 'Middle Name:', value: 'middle_name' },
+        // { label: 'Funding Value Base Loan:', value: 'funding_value_base_loan' },
         { label: 'Gender:', value: 'gender' },
-       
         { label: 'Name:', value: 'name' },
         { label: 'Owner:', value: 'owner' },
+        { label: 'Marital Status:', value: 'marital_status' },
       ]
     },
     {
       title: 'Contact',
       id: 'companyDetails',
       fields: [
-        {label: 'Alternate Email 1:', value: 'title' },
-        { label: 'Alternate Email 2:', value: 'description' },
-        { label: 'Alternate Phone 1:', value: 'description' },
-        { label: 'Alternate Phone 2:', value: 'mobile' },
-        { label: 'Assistant Phone:', value: 'mobile' },
-        // { label: 'Category:', value: 'mobile' },
-        // { label: 'CKYC Number:', value: 'mobile' },
-        // { label: 'Department:', value: 'mobile' },
-        // { label: 'EBC Eligibility Date:', value: 'mobile' },
-        // { label: 'First Name:', value: 'mobile' },
-        // { label: 'Funding Value Base Loan:', value: 'mobile' },
-        // { label: 'Gender:', value: 'mobile' },
-        // { label: 'Last Name:', value: 'mobile' },
-        // { label: 'Middle Name:', value: 'mobile' },
-        // { label: 'Name:', value: 'mobile' },
-        // { label: 'Owner:', value: 'mobile' },
+        // {label: 'Alternate Email 1:', value: 'alternate_email1' },
+        {label: 'Alternate Email 1:', value: 'alternate_email1' },
+        { label: 'Alternate Email 2:', value: 'alternate_email2' },
+        { label: 'Alternate Phone 1:', value: 'alternate_phone1' },
+        { label: 'Alternate Phone 2:', value: 'alternate_phone2' },
+        { label: 'Assistant Phone:', value: 'assistant_phone' },
       ]
     },
 
@@ -59,41 +50,29 @@ const sectionDetails = [
         title: 'Address',
         id: 'address',
         fields: [
-          {label: 'Mailing Address:', value: 'title' },
-          { label: 'Other Address:', value: 'title' },
-          // { label: 'Category:', value: 'mobile' },
-          // { label: 'CKYC Number:', value: 'mobile' },
-          // { label: 'Department:', value: 'mobile' },
-          // { label: 'EBC Eligibility Date:', value: 'mobile' },
-          // { label: 'First Name:', value: 'mobile' },
-          // { label: 'Funding Value Base Loan:', value: 'mobile' },
-          // { label: 'Gender:', value: 'mobile' },
-          // { label: 'Last Name:', value: 'mobile' },
-          // { label: 'Middle Name:', value: 'mobile' },
-          // { label: 'Name:', value: 'mobile' },
-          // { label: 'Owner:', value: 'mobile' },
+          {label: 'Mailing Address:', value: 'mailing_address' },
+          { label: 'Other Address:', value: 'other_address' },
         ]
       },
     {
         title: 'Personal',
         id: 'personal',
         fields: [
-          {label: 'Assistant:', value: 'title' },
-          { label: 'Father First Name:', value: 'title' },
-          { label: 'Father Last Name:', value: 'title' },
-          { label: 'Father Middle Name:', value: 'title' },
-          { label: 'Marital Status:', value: 'title' },
-          // { label: 'Category:', value: 'mobile' },
-          // { label: 'CKYC Number:', value: 'mobile' },
-          // { label: 'Department:', value: 'mobile' },
-          // { label: 'EBC Eligibility Date:', value: 'mobile' },
-          // { label: 'First Name:', value: 'mobile' },
-          // { label: 'Funding Value Base Loan:', value: 'mobile' },
-          // { label: 'Gender:', value: 'mobile' },
-          // { label: 'Last Name:', value: 'mobile' },
-          // { label: 'Middle Name:', value: 'mobile' },
-          // { label: 'Name:', value: 'mobile' },
-          // { label: 'Owner:', value: 'mobile' },
+          {label: 'Assistant:', value: 'assistant' },
+          { label: 'Father First Name:', value: 'father_first_name' },
+          { label: 'Father Last Name:', value: 'father_last_name' },
+          { label: 'Father Middle Name:', value: 'father_mddle_name' },
+        ]
+      },
+
+      {
+        title: 'System Information',
+        id: 'systemDetails',
+        fields: [
+          { label: 'Created by:', value: 'sys_created_by' },
+          { label: 'Created On:', value: 'sys_created_on' },
+          { label: 'Updated By:', value: 'sys_updated_by' },
+          { label: 'Last Updated On:', value: 'sys_updated_on' }
         ]
       },
   ];
@@ -140,7 +119,7 @@ const Info = () => {
   return (
     <View style={styles.body}>
       <View style={{ height: '26%' }}>
-        <LeadDet />
+       <ContactHeader/>
       </View>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.container}>
