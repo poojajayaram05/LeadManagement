@@ -5,8 +5,7 @@ export const FetchAccountDetails = async () => {
     const stoken = JSON.parse(token);
     const apiToken = stoken.accessToken;
     console.log(apiToken);  
-    const getLeadURL=
-    "https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_account_c" ;
+    const getLeadURL="https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_account_c" ;
     try {
         const response = await fetch(getLeadURL, {
             method: 'GET',

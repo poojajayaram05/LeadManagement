@@ -1,1153 +1,1119 @@
 export const formData = {
-  
-    "elements": [
-      {
-        "name":"account_type",
-        "type":"dropdown",
-        "title":"Account Type",
-        "inputType":"text",
-        "placeholder":"Lead Type",
-        "dropdownData" :[
-          { "value": "Asia/taipei", "label": "person" },
-          { "value": "america/toronto", "label": "corporate" }
-        ],
-        "sectionName":"General",
-        // "isRequired":true
-        
-      },
-      {
-        "name": "account_name",
-        "type": "TextInput",
-        "title": "Account name",
-        "placeholder":"account name",
-        "maxLength": 25,
-        "inputType": "text",
-        // 'isRequired': true,
-        "sectionName":"General"
-      },
-      {
-        "name": "title",
-        "type": "TextInput",
-        "title": "Title",
-        "placeholder":"title",
-        "maxLength": 25,
-        "inputType": "text",
-        // 'isRequired': true,
-        "sectionName":"General"
-      },
-  
-      {
-        "name": "salutation",
-        "type": "dropdown",
-        "title": "Salutation",
-        "inputType": "text",
-        "placeholder":"Salutation",
-         "dropdownData" :[
-          { value: 'Mr.', label: 'Mr.' },
-          { value: 'Ms.', label: 'Ms.' },
-          { value: 'Dr.', label: 'Dr.' },
-          { value: 'prof', label: 'Prof' },
-         ],
-         "sectionName":"General"
-      },
-     
-      {
-        "name": "first_name",
-        "type": "TextInput",
-        "title": "First Name",
-        "placeholder":"First Name",
-        "maxLength": 25,
-        "inputType": "text",
-        // 'isRequired': true,
-        "sectionName":"General"
-      },
-      {
-        "name": "last_name",
-        "type": "TextInput",
-        "title": "Last Name",
-        "inputType": "text",
-        "placeholder": "Last Name",
-        // "isRequired": true,
-        "autocomplete": "lastname",
-        "sectionName":"General"
-      },
-      {
-        "name": "middle_name",
-        "type": "TextInput",
-        "title": "Middle Name",
-        "inputType": "text",
-        "placeholder": "Last Name",
-        "sectionName":"General"
-      },
+  elements: [
+    {
+      name: "account_type",
+      type: "dropdown",
+      title: "Account Type",
+      inputType: "text",
+      placeholder: "Lead Type",
+      dropdownData: [
+        { value: "Asia/taipei", label: "person" },
+        { value: "america/toronto", label: "corporate" },
+      ],
+      sectionName: "General",
+      // "isRequired":true
+    },
+    {
+      name: "account_name",
+      type: "TextInput",
+      title: "Account name",
+      placeholder: "account name",
+      maxLength: 25,
+      inputType: "text",
+      // 'isRequired': true,
+      sectionName: "General",
+    },
+    {
+      name: "title",
+      type: "TextInput",
+      title: "Title",
+      placeholder: "title",
+      maxLength: 25,
+      inputType: "text",
+      // 'isRequired': true,
+      sectionName: "General",
+    },
 
-      {
-        "name": "account_number",
-        "type": "TextInput",
-        "title": "Account number",
-        "inputType": "numeric",
-        "placeholder": "account number",
-        "sectionName":"General"
-      },
+    {
+      name: "salutation",
+      type: "dropdown",
+      title: "Salutation",
+      inputType: "text",
+      placeholder: "Salutation",
+      dropdownData: [
+        { value: "Mr.", label: "Mr." },
+        { value: "Ms.", label: "Ms." },
+        { value: "Dr.", label: "Dr." },
+        { value: "prof", label: "Prof" },
+      ],
+      sectionName: "General",
+    },
 
-      {
-        "name": "birth-date",
-        "type": "dateInput",
-        "title": "Birth date",
-        "inputType": "text",
-        "placeholder": "birth date",
-        "sectionName":"General"
-      },
+    {
+      name: "first_name",
+      type: "TextInput",
+      title: "First Name",
+      placeholder: "First Name",
+      maxLength: 25,
+      inputType: "text",
+      // 'isRequired': true,
+      sectionName: "General",
+    },
+    {
+      name: "last_name",
+      type: "TextInput",
+      title: "Last Name",
+      inputType: "text",
+      placeholder: "Last Name",
+      // "isRequired": true,
+      autocomplete: "lastname",
+      sectionName: "General",
+    },
+    {
+      name: "middle_name",
+      type: "TextInput",
+      title: "Middle Name",
+      inputType: "text",
+      placeholder: "Last Name",
+      sectionName: "General",
+    },
 
-      {
-        "name": "account_source",
-        "type": "dropdown",
-        "title": "Account source",
-        "inputType": "text",
-        "placeholder":"Salutation",
-         "dropdownData" :[
-          { value: 'advertisement_customer', label: 'Advertisement/Customer' },
-          { value: 'adwords_other', label: 'Adwords/Others' },
-          { value: 'event_employee', label: 'Event/Employee' },
-          { value: 'list_trade', label: 'List/Trade' },
-          { value: 'partner_purchased', label: 'Partner/Purchased' },
-          { value: 'referral_google', label: 'Referal/Google' },
-          { value: 'webinar_website', label: 'Webinar/Website' },
-         ],
-         "sectionName":"General"
+    {
+      name: "account_number",
+      type: "TextInput",
+      title: "Account number",
+      inputType: "numeric",
+      placeholder: "account number",
+      sectionName: "General",
+    },
+
+    {
+      name: "birth-date",
+      type: "dateInput",
+      title: "Birth date",
+      inputType: "text",
+      placeholder: "birth date",
+      sectionName: "General",
+    },
+
+    {
+      name: "account_source",
+      type: "dropdown",
+      title: "Account source",
+      inputType: "text",
+      placeholder: "Salutation",
+      dropdownData: [
+        { value: "advertisement_customer", label: "Advertisement/Customer" },
+        { value: "adwords_other", label: "Adwords/Others" },
+        { value: "event_employee", label: "Event/Employee" },
+        { value: "list_trade", label: "List/Trade" },
+        { value: "partner_purchased", label: "Partner/Purchased" },
+        { value: "referral_google", label: "Referal/Google" },
+        { value: "webinar_website", label: "Webinar/Website" },
+      ],
+      sectionName: "General",
+    },
+    // {
+    //   "name": "account_site",
+    //   "type": "TextInput",
+    //   "title": "Account site",
+    //   "inputType": "text",
+    //   "placeholder": "account site",
+    //   "sectionName":"General"
+    // },
+    {
+      name: "website",
+      type: "TextInput",
+      title: "Website",
+      inputType: "text",
+      placeholder: "url",
+      sectionName: "General",
+    },
+    {
+      name: "account_owner",
+      type: "dropdown",
+      title: "Account owner",
+      inputType: "text",
+      placeholder: "Salutation",
+      dropdownData: [
+        { value: "Mr.", label: "Acer Four" },
+        { value: "Ms.", label: "Acer One" },
+        { value: "Dr.", label: "Adobe User-A" },
+        { value: "prof", label: "Adobe User-B" },
+        { value: "prof", label: "Adam Haro" },
+      ],
+      sectionName: "General",
+    },
+    {
+      name: "description",
+      type: "TextInput",
+      title: "Description",
+      inputType: "text",
+      placeholder: "description",
+      sectionName: "General",
+    },
+    {
+      name: "parent_account",
+      type: "dropdown",
+      title: "Parent account",
+      inputType: "text",
+      placeholder: "parent account",
+      dropdownData: [
+        { value: "Mr.", label: "test-1" },
+        { value: "Mr.", label: "test-2" },
+      ],
+      sectionName: "General",
+    },
+
+    {
+      name: "shipping_address",
+      type: "TextInput",
+      title: "Shipping address",
+      inputType: "text",
+      placeholder: "Street",
+      sectionName: "Address Details",
+    },
+    {
+      name: "state_code",
+      type: "TextInput",
+      title: "State Code",
+      inputType: "numeric",
+      placeholder: "City",
+      sectionName: "Address Details",
+      // "isRequired":true
+    },
+    {
+      name: "other_address",
+      type: "TextInput",
+      title: "Other address",
+      inputType: "text",
+      placeholder: "other address",
+      sectionName: "Address Details",
+    },
+    {
+      name: "mailing_address",
+      type: "TextInput",
+      title: "Mailing address",
+      inputType: "text",
+      placeholder: "mailing address",
+      sectionName: "Address Details",
+    },
+    {
+      name: "billing_address",
+      type: "TextInput",
+      title: "Billing address",
+      inputType: "text",
+      placeholder: "billing address",
+      sectionName: "Address Details",
+    },
+    {
+      name: "state_province",
+      type: "TextInput",
+      title: "State",
+      inputType: "text",
+      placeholder: "State",
+      sectionName: "Address",
+      dropdownData: [{ value: "", label: "" }],
+      isRequired: true,
+    },
+    {
+      name: "zip_postalcode",
+      type: "TextInput",
+      title: "Postal Code",
+      inputType: "text",
+      placeholder: "Postal Code",
+      sectionName: "Address",
+    },
+    {
+      name: "country",
+      type: "dropdown",
+      title: "Country",
+      inputType: "text",
+      placeholder: "Country",
+      sectionName: "Address",
+      dropdownData: [{ value: "india", label: "India" }],
+      isRequired: true,
+    },
+    // {
+    //   "name": "industry",
+    //   "type": "dropdown",
+    //   "title": "Industry",
+    //   "inputType": "text",
+    //   "placeholder":"Industry",
+    //    "dropdownData" :[
+    //     { value: 'accounting', label: 'Accounting' },
+    //     { value: 'brokers', label: 'Brokers' },
+    //     { value: 'consulting', label: 'Consulting' },
+    //     { value: 'customer_services', label: 'Customer Services'},
+    //     { value: 'financial', label: 'Financial' },
+    //    ],
+    //    "sectionName":"Other Information"
+    // },
+    {
+      name: "date_of_inception",
+      type: "dateInput",
+      title: "Date of inception",
+      inputType: "text",
+      placeholder: "date of inception",
+      sectionName: "Other Information",
+    },
+    {
+      name: "bsr_code",
+      type: "TextInput",
+      title: "BSR code",
+      inputType: "numeric",
+      placeholder: "bsr code",
+      sectionName: "Other Information",
+    },
+    {
+      name: "stamp_duty",
+      type: "TextInput",
+      title: "Stamp duty",
+      inputType: "numeric",
+      placeholder: "Stamp duty",
+      sectionName: "Other Information",
+    },
+    {
+      name: "foreign_tin",
+      type: "TextInput",
+      title: "Foreign Tin",
+      inputType: "text",
+      placeholder: "foreign tin",
+      sectionName: "Other Information",
+    },
+    {
+      name: "tin_issuing_country",
+      type: "TextInput",
+      title: "TIN Issuing country",
+      inputType: "text",
+      placeholder: "tin issuing country",
+      sectionName: "Other Information",
+    },
+    {
+      name: "country_of_incorporation",
+      type: "TextInput",
+      title: "Country of Incorporation",
+      inputType: "text",
+      placeholder: "country of incorporation",
+      sectionName: "Other Information",
+    },
+    {
+      name: "country_of_tax_residence",
+      type: "TextInput",
+      title: "Country of tax residence",
+      inputType: "text",
+      placeholder: "country of tax residence",
+      sectionName: "Other Information",
+    },
+    {
+      name: "lead_currency",
+      type: "dropdown",
+      title: "Currency",
+      inputType: "text",
+      placeholder: "Currency",
+      dropdownData: [
+        { value: "inr", label: "INR" },
+        { value: "usd", label: "USD" },
+      ],
+      sectionName: "Company",
+    },
+
+    {
+      name: "company",
+      type: "TextInput",
+      title: "Company Name",
+      description: "Enter Company name",
+      inputType: "text",
+      placeholder: "Company Name",
+      sectionName: "Company",
+    },
+    {
+      name: "no_of_employees",
+      type: "TextInput",
+      title: "Number Of Employees",
+      description: "Enter the number of employees",
+      inputType: "text",
+      placeholder: "No of employees",
+      sectionName: "Company",
+    },
+    {
+      name: "website",
+      type: "TextInput",
+      title: "Website",
+      description: "Enter a valid website",
+      inputType: "text",
+      placeholder: "Website",
+      sectionName: "Company",
+    },
+    {
+      name: "annual_revenue",
+      type: "TextInput",
+      title: "Annual Revenue",
+      description: "Enter annual revenue",
+      inputType: "number",
+      placeholder: "Annual Revenue",
+      sectionName: "Company",
+    },
+
+    // {
+    //   "name": "email",
+    //    "type":"email",
+    //   "title": "Email",
+    //   "placeholder":"Email",
+    //   // "isRequired": true,
+    //   "sectionName":"Contact",
+    //   "validation": {
+    //     "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    //     "message": "Please enter a valid email address."
+    //   },
+    // },
+    {
+      name: "email",
+      type: "TextInput",
+      title: "Email",
+      inputType: "text",
+      placeholder: "email",
+      // "isRequired": true,
+      sectionName: "Contact",
+    },
+    {
+      name: "alternate_email1",
+      type: "TextInput",
+      title: "Alternate Email 1",
+      inputType: "text",
+      placeholder: "email",
+      // "isRequired": true,
+      sectionName: "Contact",
+    },
+    {
+      name: "alternate_email2",
+      type: "TextInput",
+      title: "Alternate Email 2",
+      inputType: "text",
+      placeholder: "email",
+      // "isRequired": true,
+      sectionName: "Contact",
+    },
+    {
+      name: "phone",
+      type: "TextInput",
+      title: "Phone",
+      inputType: "numeric",
+      placeholder: "Phone number",
+      // "isRequired": true,
+      sectionName: "Contact",
+      validation: {
+        regex: /^\d{10}$/,
+        message: "Please enter a valid 10-digit phone number.",
       },
-      // {
-      //   "name": "account_site",
-      //   "type": "TextInput",
-      //   "title": "Account site",
-      //   "inputType": "text",
-      //   "placeholder": "account site",
-      //   "sectionName":"General"
+    },
+    {
+      name: "mobile",
+      type: "TextInput",
+      title: "Mobile",
+      inputType: "numeric",
+      placeholder: "mobile number",
+      // "isRequired": true,
+      sectionName: "Contact",
+      validation: {
+        regex: /^\d{10}$/,
+        message: "Please enter a valid 10-digit phone number.",
+      },
+    },
+    {
+      name: "home_phone",
+      type: "TextInput",
+      title: "Home phone",
+      inputType: "numeric",
+      placeholder: "home number",
+      // "isRequired": true,
+      sectionName: "Contact",
+      validation: {
+        regex: /^\d{10}$/,
+        message: "Please enter a valid 10-digit phone number.",
+      },
+    },
+    {
+      name: "assistant",
+      type: "TextInput",
+      title: "Assistant",
+      inputType: "text",
+      placeholder: "assistant",
+      sectionName: "Contact",
+    },
+    {
+      name: "assistant_phone",
+      type: "TextInput",
+      title: "Assistant phone",
+      inputType: "numeric",
+      placeholder: "Phone number",
+      // "isRequired": true,
+      sectionName: "Contact",
+      validation: {
+        regex: /^\d{10}$/,
+        message: "Please enter a valid 10-digit phone number.",
+      },
+    },
+
+    {
+      name: "do_not_call",
+      type: "checkbox",
+      title: "Do Not Call",
+      sectionName: "Contact",
+    },
+    {
+      name: "business_phone",
+      type: "TextInput",
+      title: "Business phone",
+      inputType: "numeric",
+      placeholder: "business number",
+      // "isRequired": true,
+      sectionName: "Contact",
+      validation: {
+        regex: /^\d{10}$/,
+        message: "Please enter a valid 10-digit phone number.",
+      },
+    },
+    {
+      name: "alternate_phone1",
+      type: "TextInput",
+      title: "Alternate phone 1",
+      inputType: "numeric",
+      placeholder: "alternate phone",
+      // "isRequired": true,
+      sectionName: "Contact",
+      validation: {
+        regex: /^\d{10}$/,
+        message: "Please enter a valid 10-digit phone number.",
+      },
+    },
+    {
+      name: "alternate_phone2",
+      type: "TextInput",
+      title: "Alternate phone 2",
+      inputType: "numeric",
+      placeholder: "alternate phone",
+      // "isRequired": true,
+      sectionName: "Contact",
+      // "validation": {
+      //   "regex": /^\d{10}$/,
+      //   "message": "Please enter a valid 10-digit phone number."
       // },
-      {
-        "name": "website",
-        "type": "TextInput",
-        "title": "Website",
-        "inputType": "text",
-        "placeholder": "url",
-        "sectionName":"General"
-      },
-      {
-        "name": "account_owner",
-        "type": "dropdown",
-        "title": "Account owner",
-        "inputType": "text",
-        "placeholder":"Salutation",
-         "dropdownData" :[
-          { value: 'Mr.', label: 'Acer Four' },
-          { value: 'Ms.', label: 'Acer One' },
-          { value: 'Dr.', label: 'Adobe User-A' },
-          { value: 'prof', label: 'Adobe User-B' },
-          { value: 'prof', label: 'Adam Haro' },
-         ],
-         "sectionName":"General"
-      },
-      {
-        "name": "description",
-        "type": "TextInput",
-        "title": "Description",
-        "inputType": "text",
-        "placeholder": "description",
-        "sectionName":"General"
-      },
-      {
-        "name": "parent_account",
-        "type": "dropdown",
-        "title": "Parent account",
-        "inputType": "text",
-        "placeholder":"parent account",
-         "dropdownData" :[
-          { value: 'Mr.', label: 'test-1' },
-          { value: 'Mr.', label: 'test-2' },
-        
-         ],
-         "sectionName":"General"
-      },
-      
-      {
-        "name":"shipping_address",
-        "type": "TextInput",
-        "title": "Shipping address",
-        "inputType": "text",
-        "placeholder": "Street",
-        "sectionName":"Address Details"
-       
-      }, 
-      {
-        "name":"state_code",
-        "type": "TextInput",
-        "title": "State Code",
-        "inputType": "numeric",
-        "placeholder": "City",
-        "sectionName":"Address Details",
-        // "isRequired":true
-       
-      }, 
-      {
-        "name":"other_address",
-        "type": "TextInput",
-        "title": "Other address",
-        "inputType": "text",
-        "placeholder": "other address",
-        "sectionName":"Address Details"
-       
-      }, 
-      {
-        "name":"mailing_address",
-        "type": "TextInput",
-        "title": "Mailing address",
-        "inputType": "text",
-        "placeholder": "mailing address",
-        "sectionName":"Address Details"
-       
-      }, 
-      {
-        "name":"billing_address",
-        "type": "TextInput",
-        "title": "Billing address",
-        "inputType": "text",
-        "placeholder": "billing address",
-        "sectionName":"Address Details"
-       
-      }, 
-      {
-        "name":"state_province",
-        "type": "TextInput",
-        "title": "State",   
-        "inputType": "text",
-        "placeholder": "State",
-        "sectionName":"Address",
-        "dropdownData" :[
-          { value: '', label: '' },
-         ],
-        "isRequired":true
-       
-      }, 
-      {
-        "name":"zip_postalcode",
-        "type": "TextInput",
-        "title": "Postal Code",
-        "inputType": "text",
-        "placeholder": "Postal Code",
-        "sectionName":"Address"
-       
-      }, 
-      {
-        "name":"country",
-        "type": "dropdown",
-        "title": "Country",
-        "inputType": "text",
-        "placeholder": "Country",
-        "sectionName":"Address",
-        "dropdownData" :[
-          { value: 'india', label: 'India' },
-         ],
-        "isRequired":true
-       
-      }, 
-      // {
-      //   "name": "industry",
-      //   "type": "dropdown",
-      //   "title": "Industry",
-      //   "inputType": "text",
-      //   "placeholder":"Industry",
-      //    "dropdownData" :[
-      //     { value: 'accounting', label: 'Accounting' },
-      //     { value: 'brokers', label: 'Brokers' },
-      //     { value: 'consulting', label: 'Consulting' },
-      //     { value: 'customer_services', label: 'Customer Services'},
-      //     { value: 'financial', label: 'Financial' },
-      //    ],
-      //    "sectionName":"Other Information"
+    },
+    {
+      name: "email",
+      type: "checkbox",
+      title: "Email opt out",
+      sectionName: "Contact",
+    },
+    {
+      name: "ekyc_otp",
+      type: "checkbox",
+      title: "EKYC Otp",
+      sectionName: "Contact",
+    },
+    {
+      name: "contact_verified",
+      type: "checkbox",
+      title: "Contact Verified",
+      sectionName: "Contact",
+    },
+    {
+      name: "email_verification_status",
+      type: "dropdown",
+      title: "Email Verification Status",
+      inputType: "text",
+      placeholder: "Industry",
+      dropdownData: [
+        { value: "accounting", label: "Valid" },
+        { value: "brokers", label: "Invalid" },
+        { value: "consulting", label: "No response" },
+        { value: "customer_services", label: "Verified" },
+      ],
+      sectionName: "Contact",
+    },
+    {
+      name: "other_phone",
+      type: "TextInput",
+      title: "Other phone",
+      inputType: "numeric",
+      placeholder: "Phone number",
+      // "isRequired": true,
+      sectionName: "Contact",
+      // "validation": {
+      //   "regex": /^\d{10}$/,
+      //   "message": "Please enter a valid 10-digit phone number."
       // },
-      {
-        "name": "date_of_inception",
-        "type": "dateInput",
-        "title": "Date of inception",
-        "inputType": "text",
-        "placeholder":'date of inception',
-        "sectionName":"Other Information"
-      },
-      {
-        "name": "bsr_code",
-        "type": "TextInput",
-        "title": "BSR code",
-        "inputType": "numeric",
-        "placeholder":'bsr code',
-        "sectionName":"Other Information"
-      },
-      {
-        "name": "stamp_duty",
-        "type": "TextInput",
-        "title": "Stamp duty",
-        "inputType": "numeric",
-        "placeholder":'Stamp duty',
-        "sectionName":"Other Information"
-      },
-      {
-        "name": "foreign_tin",
-        "type": "TextInput",
-        "title": "Foreign Tin",
-        "inputType": "text",
-        "placeholder":'foreign tin',
-        "sectionName":"Other Information"
-      },
-      {
-        "name": "tin_issuing_country",
-        "type": "TextInput",
-        "title": "TIN Issuing country",
-        "inputType": "text",
-        "placeholder":'tin issuing country',
-        "sectionName":"Other Information"
-      },
-      {
-        "name": "country_of_incorporation",
-        "type": "TextInput",
-        "title": "Country of Incorporation",
-        "inputType": "text",
-        "placeholder":'country of incorporation',
-        "sectionName":"Other Information"
-      },
-      {
-        "name": "country_of_tax_residence",
-        "type": "TextInput",
-        "title": "Country of tax residence",
-        "inputType": "text",
-        "placeholder":'country of tax residence',
-        "sectionName":"Other Information"
-      },
-      {
-        "name": "lead_currency",
-        "type": "dropdown",
-        "title": "Currency",
-        "inputType": "text",
-        "placeholder":"Currency",
-         "dropdownData" :[
-          { value: 'inr', label: 'INR' },
-          { value: 'usd', label: 'USD' },
-         ],
-         "sectionName":"Company"
+    },
+    // {
+    //   "name": "email_opt_out",
+    //    "type":"checkbox",
+    //   "title": "Email opt out",
+    //   "placeholder":"Email",
+    //   // "isRequired": true,
+    //   "sectionName":"Contact",
+    //   "validation": {
+    //     "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    //     "message": "Please enter a valid email address."
+    //   },
+    // },
 
+    {
+      name: "suffix",
+      type: "TextInput",
+      title: "Suffix",
+      inputType: "text",
+      placeholder: "suffix",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "place_of_birth",
+      type: "TextInput",
+      title: "Place of birth",
+      inputType: "text",
+      placeholder: "place of birth",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "country_of_birth",
+      type: "TextInput",
+      title: "Country of birth",
+      inputType: "text",
+      placeholder: "country of birth",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "age",
+      type: "TextInput",
+      title: "Age",
+      inputType: "numeric",
+      placeholder: "age",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "father_first_name",
+      type: "TextInput",
+      title: "Father first name",
+      inputType: "text",
+      placeholder: "father first name",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "father_middle_name",
+      type: "TextInput",
+      title: "Father middle name",
+      inputType: "text",
+      placeholder: "father middle name",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "father_last_name",
+      type: "TextInput",
+      title: "Father last name",
+      inputType: "text",
+      placeholder: "father last name",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "mother_first_name",
+      type: "TextInput",
+      title: "Mother first name",
+      inputType: "text",
+      placeholder: "mother first name",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "mother_middle_name",
+      type: "TextInput",
+      title: "Mother middle name",
+      inputType: "text",
+      placeholder: "mother middle name",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "mother_last_name",
+      type: "TextInput",
+      title: "Mother last name",
+      inputType: "text",
+      placeholder: "mother last name",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "marital_status",
+      type: "dropdown",
+      title: "Marital Status",
+      inputType: "text",
+      placeholder: "Industry",
+      dropdownData: [
+        { value: "accounting", label: "married" },
+        { value: "brokers", label: "single" },
+      ],
+      sectionName: "Personal Details",
+    },
+    {
+      name: "religion",
+      type: "dropdown",
+      title: "Religion",
+      inputType: "text",
+      placeholder: "Industry",
+      dropdownData: [
+        { value: "accounting", label: "Islam" },
+        { value: "brokers", label: "Buddhism" },
+        { value: "brokers", label: "Sikhism" },
+        { value: "brokers", label: "Christianity" },
+        { value: "brokers", label: "Hinduism" },
+      ],
+      sectionName: "Personal Details",
+    },
+    {
+      name: "spouse_first_name",
+      type: "TextInput",
+      title: "Spouse first name",
+      inputType: "text",
+      placeholder: "spouse first name",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "spouse_middle_name",
+      type: "TextInput",
+      title: "Spouse middle name",
+      inputType: "text",
+      placeholder: "spouse middle name",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "spouse_last_name",
+      type: "TextInput",
+      title: "Spouse last name",
+      inputType: "text",
+      placeholder: "spouse last name",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "minority_community",
+      type: "dropdown",
+      title: "Minority Community",
+      inputType: "text",
+      placeholder: "Industry",
+      dropdownData: [
+        { value: "accounting", label: "yes" },
+        { value: "brokers", label: "no" },
+      ],
+      sectionName: "Personal Details",
+    },
 
+    {
+      name: "u_email",
+      type: "dropdown",
+      title: "Email subscription",
+      placeholder: "Email subscription",
+      dropdownData: [
+        { value: "allow", label: "Allow" },
+        { value: "do_not_allow", label: "Do not allow" },
+      ],
+      sectionName: "Contact     Method",
+    },
+    {
+      name: "phone",
+      type: "dropdown",
+      title: "Phone subscription",
+      placeholder: "Phone subscription",
+      dropdownData: [
+        { value: "allow", label: "Allow" },
+        { value: "do_not_allow", label: "Do not allow" },
+      ],
+      sectionName: "ContactMethod",
+    },
+    {
+      name: "whatsapp",
+      type: "dropdown",
+      title: "Whatsapp subscription",
+      placeholder: "whatsapp subscription",
+      dropdownData: [
+        { value: "allow", label: "Allow" },
+        { value: "do_not_allow", label: "Do not allow" },
+      ],
+      sectionName: "ContactMethod",
+    },
 
-      },
-      
-      {
-        "name": "company",
-        "type": "TextInput",
-        "title": "Company Name",
-        "description": "Enter Company name",
-        "inputType": "text",
-        "placeholder":"Company Name",
-        "sectionName":"Company"
+    {
+      name: "email_opt_out",
+      type: "Switch",
+      title: "Email Opt Out",
+      sectionName: "ContactMethod",
+    },
 
-      },
-      {
-        "name": "no_of_employees",
-        "type": "TextInput",
-        "title": "Number Of Employees",
-        "description": "Enter the number of employees",
-        "inputType": "text",
-        "placeholder":"No of employees",
-        "sectionName":"Company"
+    // {
+    //   "name": "fax",
+    //   "type": "TextInput",
+    //   "title": "Fax",
+    //   "inputType": "text",
+    //   "placeholder":"FAX",
+    //   "sectionName":"Contact"
 
-     
-      },
-      {
-        "name":"website",
-        "type": "TextInput",
-        "title": "Website",
-        "description": "Enter a valid website",
-        "inputType": "text",
-        "placeholder":"Website",
-        "sectionName":"Company"
+    // },
+    {
+      name: "company_duns_number",
+      type: "TextInput",
+      title: "Company DUNS Number",
+      inputType: "number",
+      placeholder: "Number",
+      sectionName: "Company",
+    },
+    // {
+    //   "name": "title",
+    //   "type": "TextInput",
+    //   "title": "Lead Title",
+    //   "placeholder":"Lead Title",
+    //   "isRequired": true,
+    //   "sectionName":"General"
+    // },
 
-       
-      },
-      {
-        "name":"annual_revenue",
-        "type": "TextInput",
-        "title": "Annual Revenue",
-        "description": "Enter annual revenue",
-        "inputType": "number",
-        "placeholder":"Annual Revenue",
-        "sectionName":"Company"
-      },
-  
-      
-      // {
-      //   "name": "email",
-      //    "type":"email",
-      //   "title": "Email",
-      //   "placeholder":"Email",
-      //   // "isRequired": true,
-      //   "sectionName":"Contact",
-      //   "validation": {
-      //     "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      //     "message": "Please enter a valid email address."
-      //   },
-      // },
-      {
-        "name": "email",
-        "type": "TextInput",
-        "title": "Email",
-        "inputType": "text",
-        "placeholder":"email",
-        // "isRequired": true,
-        "sectionName":"Contact",
-      },
-      {
-        "name": "alternate_email1",
-        "type": "TextInput",
-        "title": "Alternate Email 1",
-        "inputType": "text",
-        "placeholder":"email",
-        // "isRequired": true,
-        "sectionName":"Contact",
-       
-      },
-      {
-        "name": "alternate_email2",
-        "type": "TextInput",
-        "title": "Alternate Email 2",
-        "inputType": "text",
-        "placeholder":"email",
-        // "isRequired": true,
-        "sectionName":"Contact",
-      },
-      {
-        "name": "phone",
-        "type": "TextInput",
-        "title": "Phone",
-        "inputType": "numeric",
-        "placeholder":"Phone number",
-        // "isRequired": true,
-        "sectionName":"Contact",
-        "validation": {
-          "regex": /^\d{10}$/,
-          "message": "Please enter a valid 10-digit phone number."
-        },
-      },
-      {
-        "name": "mobile",
-        "type": "TextInput",
-        "title": "Mobile",
-        "inputType": "numeric",
-        "placeholder":"mobile number",
-        // "isRequired": true,
-        "sectionName":"Contact",
-        // "validation": {
-        //   "regex": /^\d{10}$/,
-        //   "message": "Please enter a valid 10-digit phone number."
-        // },
-      },
-      {
-        "name": "home_phone",
-        "type": "TextInput",
-        "title": "Home phone",
-        "inputType": "numeric",
-        "placeholder":"home number",
-        // "isRequired": true,
-        "sectionName":"Contact",
-        // "validation": {
-        //   "regex": /^\d{10}$/,
-        //   "message": "Please enter a valid 10-digit phone number."
-        // },
-      },
-      {
-        "name":"assistant",
-        "type": "TextInput",
-        "title": "Assistant",
-        "inputType": "text",
-        "placeholder":"assistant",
-        "sectionName":"Contact"
-      },
-      {
-        "name": "assistant_phone",
-        "type": "TextInput",
-        "title": "Assistant phone",
-        "inputType": "numeric",
-        "placeholder":"Phone number",
-        // "isRequired": true,
-        "sectionName":"Contact",
-        "validation": {
-          "regex": /^\d{10}$/,
-          "message": "Please enter a valid 10-digit phone number."
-        },
-      },
-  
-      {
-        "name": "do_not_call",
-        "type": "checkbox",
-        "title": "Do Not Call",
-        "sectionName":"Contact"
+    {
+      name: "lead_currency",
+      type: "dropdown",
+      title: "Lead Currency",
+      placeholder: "Currency",
+      dropdownData: [
+        { value: "inr", label: "INR" },
+        { value: "usd", label: "USD" },
+      ],
+      sectionName: "company",
+    },
+    // {
+    //   "name": "lead_source",
+    //   "type": "dropdown",
+    //   "title": "Lead Source",
+    //   "inputType": "text",
+    //   "placeholder":"Lead Source",
+    //    "dropdownData" :[
+    //     { value: 'advertisement', label: 'Advertisement' },
+    //     { value: 'partner', label: 'Partner' },
+    //     { value: 'web', label: 'Web' },
+    //     { value: 'campaign', label: 'Campaign' },
+    //     { value: 'self_sourced', label: 'Self Sourced' },
+    //    ],
+    //    "sectionName":"General"
+    // },
+    // {
+    //   "name": "u_lead_status",
+    //   "type": "dropdown",
+    //   "title": "Lead Status",
+    //   "inputType": "text",
+    //   "placeholder":"Lead Status",
+    //    "dropdownData" :[
+    //     { value: 'new', label: 'New' },
+    //     { value: 'Contacted', label: 'Contacted' },
+    //     { value: 'qualified', label: 'Qualified' },
+    //     { value: 'converted', label: 'Converted' },
+    //     { value: 'closed-not_converted', label: 'Closed-Not Converted' },
+    //    ],
+    //    "sectionName":"Additional"
+    // },
+    {
+      name: "industry_classification",
+      type: "TextInput",
+      title: "Industry Classification",
+      inputType: "text",
+      placeholder: "industry classification",
+      sectionName: "Industry Details",
+    },
+    {
+      name: "industry_sub_classification",
+      type: "TextInput",
+      title: "Industry Sub Classification",
+      inputType: "text",
+      placeholder: "industry sub classification",
+      sectionName: "Industry Details",
+    },
+    {
+      name: "no_of_employee",
+      type: "TextInput",
+      title: "No of Employee",
+      inputType: "text",
+      placeholder: "no of employee",
+      sectionName: "Industry Details",
+    },
+    {
+      name: "sic_code",
+      type: "TextInput",
+      title: "SIC Code",
+      inputType: "numeric",
+      placeholder: "sic code",
+      sectionName: "Industry Details",
+    },
+    {
+      name: "sic_description",
+      type: "TextInput",
+      title: "SIC description",
+      inputType: "text",
+      placeholder: "sic description",
+      sectionName: "Industry Details",
+    },
+    {
+      name: "industry",
+      type: "dropdown",
+      title: "Industry",
+      inputType: "text",
+      placeholder: "industry",
+      dropdownData: [
+        { value: "team", label: "agriculture" },
+        { value: "user", label: "engineering" },
+      ],
+      sectionName: "Industry Details",
+    },
+    {
+      name: "annual_revenue",
+      type: "TextInput",
+      title: "Annual Revenue",
+      inputType: "numeric",
+      placeholder: "annual revenue",
+      sectionName: "Industry Details",
+    },
+    {
+      name: "department",
+      type: "TextInput",
+      title: "Department",
+      inputType: "text",
+      placeholder: "department",
+      sectionName: "Industry Details",
+    },
 
-      },
-      {
-        "name": "business_phone",
-        "type": "TextInput",
-        "title": "Business phone",
-        "inputType": "numeric",
-        "placeholder":"business number",
-        // "isRequired": true,
-        "sectionName":"Contact",
-        // "validation": {
-        //   "regex": /^\d{10}$/,
-        //   "message": "Please enter a valid 10-digit phone number."
-        // },
-      },
-      {
-        "name": "alternate_phone1",
-        "type": "TextInput",
-        "title": "Alternate phone 1",
-        "inputType": "numeric",
-        "placeholder":"alternate phone",
-        // "isRequired": true,
-        "sectionName":"Contact",
-        // "validation": {
-        //   "regex": /^\d{10}$/,
-        //   "message": "Please enter a valid 10-digit phone number."
-        // },
-      },
-      {
-        "name": "alternate_phone2",
-        "type": "TextInput",
-        "title": "Alternate phone 2",
-        "inputType": "numeric",
-        "placeholder":"alternate phone",
-        // "isRequired": true,
-        "sectionName":"Contact",
-        // "validation": {
-        //   "regex": /^\d{10}$/,
-        //   "message": "Please enter a valid 10-digit phone number."
-        // },
-      },
-      {
-        "name": "email",
-        "type": "checkbox",
-        "title": "Email opt out",
-        "sectionName":"Contact"
+    {
+      name: "instagram",
+      type: "socialMediaInput",
+      logo: "logo-instagram",
+      title: "Instagram",
+      inputType: "text",
+      placeholder: "Instagram",
+      sectionName: "Social",
+    },
+    {
+      name: "linkedin",
+      type: "socialMediaInput",
+      logo: "logo-linkedin",
+      title: "LinkedIn",
+      inputType: "text",
+      placeholder: "LinkedIn",
+      sectionName: "Social",
+    },
+    {
+      name: "facebook",
+      type: "socialMediaInput",
+      logo: "logo-facebook",
+      title: "Facebook",
+      inputType: "text",
+      placeholder: "Facebook",
+      sectionName: "Social",
+    },
+    {
+      name: "twitter",
+      type: "socialMediaInput",
+      logo: "logo-twitter",
+      title: "Twitter",
+      inputType: "text",
+      placeholder: "Twitter",
+      sectionName: "Social",
+    },
+    {
+      name: "assigned_to",
+      type: "TextInput",
+      title: "Assigned To",
+      inputType: "text",
+      placeholder: "Assigned To",
+      readonly: true,
+      sectionName: "Additional",
+    },
+    // {
+    //   "name": "assignment_group",
+    //   "type": "dropdown",
+    //   "title": "Assignment group",
+    //   "inputType": "text",
+    //   "placeholder":"Assigned Group",
+    //   "dropdownData": [
+    //     { "value": 1, "label": "" },
 
-      },
-      {
-        "name": "ekyc_otp",
-        "type": "checkbox",
-        "title": "EKYC Otp",
-        "sectionName":"Contact"
-
-      },
-      {
-        "name": "contact_verified",
-        "type": "checkbox",
-        "title": "Contact Verified",
-        "sectionName":"Contact"
-
-      },
-      {
-        "name": "email_verification_status",
-        "type": "dropdown",
-        "title": "Email Verification Status",
-        "inputType": "text",
-        "placeholder":"Industry",
-         "dropdownData" :[
-          { value: 'accounting', label: 'Valid' },
-          { value: 'brokers', label: 'Invalid' },
-          { value: 'consulting', label: 'No response' },
-          { value: 'customer_services', label: 'Verified'},
-         ],
-         "sectionName":"Contact"
-        
-       
-      },
-      {
-        "name": "other_phone",
-        "type": "TextInput",
-        "title": "Other phone",
-        "inputType": "numeric",
-        "placeholder":"Phone number",
-        // "isRequired": true,
-        "sectionName":"Contact",
-        // "validation": {
-        //   "regex": /^\d{10}$/,
-        //   "message": "Please enter a valid 10-digit phone number."
-        // },
-      },
-      // {
-      //   "name": "email_opt_out",
-      //    "type":"checkbox",
-      //   "title": "Email opt out",
-      //   "placeholder":"Email",
-      //   // "isRequired": true,
-      //   "sectionName":"Contact",
-      //   "validation": {
-      //     "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      //     "message": "Please enter a valid email address."
-      //   },
-      // },
-
-      {
-        "name":"suffix",
-        "type": "TextInput",
-        "title": "Suffix",
-        "inputType": "text",
-        "placeholder":"suffix",
-        "sectionName":"Personal Details"
-      },
-      {
-        "name":"place_of_birth",
-        "type": "TextInput",
-        "title": "Place of birth",
-        "inputType": "text",
-        "placeholder":"place of birth",
-        "sectionName":"Personal Details"
-      },
-      {
-        "name":"country_of_birth",
-        "type": "TextInput",
-        "title": "Country of birth",
-        "inputType": "text",
-        "placeholder":"country of birth",
-        "sectionName":"Personal Details"
-      },
-      {
-        "name":"age",
-        "type": "TextInput",
-        "title": "Age",
-        "inputType": "numeric",
-        "placeholder":"age",
-        "sectionName":"Personal Details"
-      },
-      {
-        "name":"father_first_name",
-        "type": "TextInput",
-        "title": "Father first name",
-        "inputType": "text",
-        "placeholder":"father first name",
-        "sectionName":"Personal Details"
-      },
-      {
-        "name":"father_middle_name",
-        "type": "TextInput",
-        "title": "Father middle name",
-        "inputType": "text",
-        "placeholder":"father middle name",
-        "sectionName":"Personal Details"
-      },
-      {
-        "name":"father_last_name",
-        "type": "TextInput",
-        "title": "Father last name",
-        "inputType": "text",
-        "placeholder":"father last name",
-        "sectionName":"Personal Details"
-      },
-      {
-        "name":"mother_first_name",
-        "type": "TextInput",
-        "title": "Mother first name",
-        "inputType": "text",
-        "placeholder":"mother first name",
-        "sectionName":"Personal Details"
-      },
-      {
-        "name":"mother_middle_name",
-        "type": "TextInput",
-        "title": "Mother middle name",
-        "inputType": "text",
-        "placeholder":"mother middle name",
-        "sectionName":"Personal Details"
-      },
-      {
-        "name":"mother_last_name",
-        "type": "TextInput",
-        "title": "Mother last name",
-        "inputType": "text",
-        "placeholder":"mother last name",
-        "sectionName":"Personal Details"
-      },
-      {
-        "name": "marital_status",
-        "type": "dropdown",
-        "title": "Marital Status",
-        "inputType": "text",
-        "placeholder":"Industry",
-         "dropdownData" :[
-          { value: 'accounting', label: 'married' },
-          { value: 'brokers', label: 'single' },
-         ],
-         "sectionName":"Personal Details"
-      },
-      {
-        "name": "religion",
-        "type": "dropdown",
-        "title": "Religion",
-        "inputType": "text",
-        "placeholder":"Industry",
-         "dropdownData" :[
-          { value: 'accounting', label: 'Islam' },
-          { value: 'brokers', label: 'Buddhism' },
-          { value: 'brokers', label: 'Sikhism' },
-          { value: 'brokers', label: 'Christianity' },
-          { value: 'brokers', label: 'Hinduism' },
-         ],
-         "sectionName":"Personal Details"
-      },
-      {
-        "name":"spouse_first_name",
-        "type": "TextInput",
-        "title": "Spouse first name",
-        "inputType": "text",
-        "placeholder":"spouse first name",
-        "sectionName":"Personal Details"
-      },
-      {
-        "name":"spouse_middle_name",
-        "type": "TextInput",
-        "title": "Spouse middle name",
-        "inputType": "text",
-        "placeholder":"spouse middle name",
-        "sectionName":"Personal Details"
-      },
-      {
-        "name":"spouse_last_name",
-        "type": "TextInput",
-        "title": "Spouse last name",
-        "inputType": "text",
-        "placeholder":"spouse last name",
-        "sectionName":"Personal Details"
-      },
-      {
-        "name": "minority_community",
-        "type": "dropdown",
-        "title": "Minority Community",
-        "inputType": "text",
-        "placeholder":"Industry",
-         "dropdownData" :[
-          { value: 'accounting', label: 'yes' },
-          { value: 'brokers', label: 'no' },
-         ],
-         "sectionName":"Personal Details"
-      },
-    
-      {
-        "name": "u_email",
-        "type": "dropdown",
-        "title": "Email subscription",
-        "placeholder":"Email subscription",
-        "dropdownData" :[
-          { value: 'allow', label: 'Allow' },
-          { value: 'do_not_allow', label: 'Do not allow' },
-         ],
-         "sectionName":"Contact     Method"
-
-      },
-      {
-        "name": "phone",
-        "type": "dropdown",
-        "title": "Phone subscription",
-        "placeholder":"Phone subscription",
-        "dropdownData" :[
-          { value: 'allow', label: 'Allow' },
-          { value: 'do_not_allow', label: 'Do not allow' },
-         ],
-         "sectionName":"ContactMethod"
-      },
-      {
-        "name": "whatsapp",
-        "type": "dropdown",
-        "title": "Whatsapp subscription",
-        "placeholder":"whatsapp subscription",
-        "dropdownData" :[
-          { value: 'allow', label: 'Allow' },
-          { value: 'do_not_allow', label: 'Do not allow' },
-         ],
-         "sectionName":"ContactMethod"
-      },
-  
-      {
-        "name": "email_opt_out",
-        "type": "Switch",
-        "title": "Email Opt Out",
-        "sectionName":"ContactMethod"
-      },
-  
-      // {
-      //   "name": "fax",
-      //   "type": "TextInput",
-      //   "title": "Fax",
-      //   "inputType": "text",
-      //   "placeholder":"FAX",
-      //   "sectionName":"Contact"
-       
-      // },
-      {
-        "name": "company_duns_number",
-        "type": "TextInput",
-        "title": "Company DUNS Number",
-        "inputType": "number",
-        "placeholder":"Number",
-        "sectionName":"Company"
-      },
-      // {
-      //   "name": "title",
-      //   "type": "TextInput",
-      //   "title": "Lead Title",
-      //   "placeholder":"Lead Title",
-      //   "isRequired": true,
-      //   "sectionName":"General"
-      // },
-
-      {
-        "name": "lead_currency",
-        "type": "dropdown",
-        "title": "Lead Currency",
-        "placeholder":"Currency",
-        "dropdownData" :[
-          { value: 'inr', label: 'INR' },
-          { value: 'usd', label: 'USD' },
-          
-         ],
-         "sectionName":"company"
-      },
-      // {
-      //   "name": "lead_source",
-      //   "type": "dropdown",
-      //   "title": "Lead Source",
-      //   "inputType": "text",
-      //   "placeholder":"Lead Source",
-      //    "dropdownData" :[
-      //     { value: 'advertisement', label: 'Advertisement' },
-      //     { value: 'partner', label: 'Partner' },
-      //     { value: 'web', label: 'Web' },
-      //     { value: 'campaign', label: 'Campaign' },
-      //     { value: 'self_sourced', label: 'Self Sourced' },
-      //    ],
-      //    "sectionName":"General"
-      // },
-      // {
-      //   "name": "u_lead_status",
-      //   "type": "dropdown",
-      //   "title": "Lead Status",
-      //   "inputType": "text",
-      //   "placeholder":"Lead Status",
-      //    "dropdownData" :[
-      //     { value: 'new', label: 'New' },
-      //     { value: 'Contacted', label: 'Contacted' },
-      //     { value: 'qualified', label: 'Qualified' },
-      //     { value: 'converted', label: 'Converted' },
-      //     { value: 'closed-not_converted', label: 'Closed-Not Converted' },
-      //    ],
-      //    "sectionName":"Additional"
-      // },
-      {
-        "name": "industry_classification",
-        "type": "TextInput",
-        "title": "Industry Classification",
-        "inputType": "text",
-        "placeholder":"industry classification",
-        "sectionName":"Industry Details"
-      },
-      {
-        "name": "industry_sub_classification",
-        "type": "TextInput",
-        "title": "Industry Sub Classification",
-        "inputType": "text",
-        "placeholder":"industry sub classification",
-        "sectionName":"Industry Details"
-      },
-      {
-        "name": "no_of_employee",
-        "type": "TextInput",
-        "title": "No of Employee",
-        "inputType": "text",
-        "placeholder":"no of employee",
-        "sectionName":"Industry Details"
-      },
-      {
-        "name": "sic_code",
-        "type": "TextInput",
-        "title": "SIC Code",
-        "inputType": "numeric",
-        "placeholder":"sic code",
-        "sectionName":"Industry Details"
-      },
-      {
-        "name": "sic_description",
-        "type": "TextInput",
-        "title": "SIC description",
-        "inputType": "text",
-        "placeholder":"sic description",
-        "sectionName":"Industry Details"
-      },
-      {
-        "name": "industry",
-        "type": "dropdown",
-        "title": "Industry",
-        "inputType": "text",
-        "placeholder":"industry",
-         "dropdownData" :[
-          { value: 'team', label: 'agriculture' },
-          { value: 'user', label: 'engineering' },
-         ],
-         "sectionName":"Industry Details"
-      },
-      {
-        "name": "annual_revenue",
-        "type": "TextInput",
-        "title": "Annual Revenue",
-        "inputType": "numeric",
-        "placeholder":"annual revenue",
-        "sectionName":"Industry Details"
-      },
-      {
-        "name": "department",
-        "type": "TextInput",
-        "title": "Department",
-        "inputType": "text",
-        "placeholder":"department",
-        "sectionName":"Industry Details"
-      },
-      
-      {
-        "name": "instagram",
-        "type": "socialMediaInput",
-        "logo":"logo-instagram",
-        "title": "Instagram",
-        "inputType": "text",
-        "placeholder":"Instagram",
-        "sectionName":"Social"
-      },
-      {
-        "name": "linkedin",
-        "type": "socialMediaInput",
-        "logo":"logo-linkedin",
-        "title": "LinkedIn",
-        "inputType": "text",
-        "placeholder":"LinkedIn",
-        "sectionName":"Social"
-      },
-      {
-        "name": "facebook",
-        "type": "socialMediaInput",
-        "logo":"logo-facebook",
-        "title": "Facebook",
-        "inputType": "text",
-        "placeholder":"Facebook",
-        "sectionName":"Social"
-      },
-      {
-        "name": "twitter",
-        "type": "socialMediaInput",
-        "logo":"logo-twitter",
-        "title": "Twitter",
-        "inputType": "text",
-        "placeholder":"Twitter",
-        "sectionName":"Social"
-      },
-      {
-        "name": "assigned_to",
-        "type": "TextInput",
-        "title": "Assigned To",
-        "inputType": "text",
-        "placeholder":"Assigned To",
-        "readonly":true,
-        "sectionName":"Additional"
-      },
-      // {
-      //   "name": "assignment_group",
-      //   "type": "dropdown",
-      //   "title": "Assignment group",
-      //   "inputType": "text",
-      //   "placeholder":"Assigned Group",
-      //   "dropdownData": [
-      //     { "value": 1, "label": "" },
-
-      //   ],
-      //   "sectionName":"Additional"
-      // },
+    //   ],
+    //   "sectionName":"Additional"
+    // },
   ],
-  };
+};
 
-  export const PersonData = {
-    "elements": [
-      {
-        "name": "type",
-        "type": "dropdown",
-        "title": "Type",
-        "inputType": "text",
-        "placeholder": "---none---",
-        "dropdownData": [
-          { "value": "Asia/taipei", "label": "person" },
-          { "value": "america/toronto", "label": "corporate" }
-        ],
-        "dataType": "string"
-      },
-      {
-        "name": "account_name",
-        "type": "TextInput",
-        "title": "Account name",
-        "inputType": "text",
-        "placeholder": "Enter name",
-        "dataType": "string"
-      },
-      {
-        "name": "first_name",
-        "type": "TextInput",
-        "title": "First name",
-        "inputType": "text",
-        "placeholder": "Enter first name",
-        "dataType": "string"
-      },
-      {
-        "name": "middle_name",
-        "type": "TextInput",
-        "title": "Middle name",
-        "inputType": "text",
-        "placeholder": "Enter middle name",
-        "dataType": "string"
-      },
-      {
-        "name": "last_name",
-        "type": "TextInput",
-        "title": "Last name",
-        "inputType": "text",
-        "placeholder": "Enter last name",
-        "dataType": "string"
-      }
-    ]
-  }
-  
-  export const CorporateData = {
-    "elements": [
-      {
-        "name": "type",
-        "type": "dropdown",
-        "title": "Type",
-        "inputType": "text",
-        "placeholder": "---none---",
-        "dropdownData": [
-          { "value": "Asia/taipei", "label": "person" },
-          { "value": "america/toronto", "label": "corporate" }
-        ],
-        "dataType": "string"
-      },
-      {
-        "name": "account_name",
-        "type": "TextInput",
-        "title": "corporate ",
-        "inputType": "text",
-        "placeholder": "Enter name",
-        "dataType": "string"
-      },
-      {
-        "name": "corporate",
-        "type": "TextInput",
-        "title": "corporation",
-        "inputType": "text",
-        // "placeholder": "Enter first ",
-        "dataType": "string"
-      }
-    ]
-  }
+export const PersonData = {
+  elements: [
+    {
+      name: "type",
+      type: "dropdown",
+      title: "Type",
+      inputType: "text",
+      placeholder: "---none---",
+      dropdownData: [
+        { value: "Asia/taipei", label: "person" },
+        { value: "america/toronto", label: "corporate" },
+      ],
+      dataType: "string",
+    },
+    {
+      name: "account_name",
+      type: "TextInput",
+      title: "Account name",
+      inputType: "text",
+      placeholder: "Enter name",
+      dataType: "string",
+    },
+    {
+      name: "first_name",
+      type: "TextInput",
+      title: "First name",
+      inputType: "text",
+      placeholder: "Enter first name",
+      dataType: "string",
+    },
+    {
+      name: "middle_name",
+      type: "TextInput",
+      title: "Middle name",
+      inputType: "text",
+      placeholder: "Enter middle name",
+      dataType: "string",
+    },
+    {
+      name: "last_name",
+      type: "TextInput",
+      title: "Last name",
+      inputType: "text",
+      placeholder: "Enter last name",
+      dataType: "string",
+    },
+  ],
+};
 
-  export const taskFormData = {
-    "elements": [
-      {
-        "name": "task-type",
-        "type": "dropdown",
-        "title": "Task Type",
-        "inputType": "text",
-        "placeholder":'Select',
-        "dropdownData": [
-          { "value": 1, "label": "Call" },
-          { "value": 2, "label": "Email" },
-          { "value": 3, "label": "Message" },
-          { "value": 4, "label": "Follow-Up" },
-          { "value": 5, "label": "Appointment" },
-      
-        ]
-      },
-      {
-        "name": "due-date",
-        "type": "calenderDropdown",
-        "title": "Due Date",
-        "inputType": "text",
-        "placeholder":'Select',
-        "dropdownData": [
-          { "value": 1, "label": "Today" },
-          { "value": 2, "label": "Tomorrow" },
-          { "value": 3, "label": "3 Days From Now" },
-          { "value": 4, "label": "One Week From Now" },
-          { "value": 5, "label": "1 Month From Now" },
-          { "value": 6, "label": "Custom Date" }
-        ]
-      },
-      {
-        "name": "title",
-        "type": "TextInput",
-        "title": "Title",
-        "inputType": "text",
-        "placeholder":"Enter the title"
-      },
-      {
-        "name": "description",
-        "type": "TextInput",
-        "title": "Description",
-        "inputType": "text",
-        "placeholder":"Enter the description"
-      },
-      {
-        "name": "status",
-        "type": "dropdown",
-        "title": "Status",
-        "placeholder":'Select',
-        "dropdownData": [
-          { "value": 1, "label": "In-progress" },
-          { "value": 2, "label": "Completed" },
-          {"value":3, "label":"Not Started"}
-        ]
-      },
-      {
-        "name": "time",
-        "type": "timeInput",
-        "title": "Time",
-        "placeholder": ""
-      },
-      {
-        "name": "repeat",
-        "type": "dropdown",
-        "title": "Repeat",
-        "inputType": "text",
-        "placeholder":'Select',
-        "dropdownData": [
-          { "value": 1, "label": "Daily" },
-          { "value": 2, "label": "Weekly" },
-          { "value": 3, "label": "Monthly" },
-          { "value": 4, "label": "Yearly" },
-          { "value": 5, "label": "Don't Repeat" }
-        ]
-      },
-      {
-        "name": "owner",
-        "type": "dropdown",
-        "title": "Owner",
-        "inputType": "text",
-        "placeholder":'Select',
-        "dropdownData": [
-          { "value": 1, "label": "John Doe" },
-          { "value": 2, "label": "Jane Smith" },
-          { "value": 3, "label": "Alice Mark" },
-          { "value": 4, "label": "Kate Winslet" },
-          { "value": 5, "label": "William Henry" },
-          { "value": 6, "label": "Jane Peter" },
-          { "value": 7, "label": "Carley Wilson" },
-          { "value": 8, "label": "William Henry" }
-        ]
-      },
+export const CorporateData = {
+  elements: [
+    {
+      name: "type",
+      type: "dropdown",
+      title: "Type",
+      inputType: "text",
+      placeholder: "---none---",
+      dropdownData: [
+        { value: "Asia/taipei", label: "person" },
+        { value: "america/toronto", label: "corporate" },
+      ],
+      dataType: "string",
+    },
+    {
+      name: "account_name",
+      type: "TextInput",
+      title: "corporate ",
+      inputType: "text",
+      placeholder: "Enter name",
+      dataType: "string",
+    },
+    {
+      name: "corporate",
+      type: "TextInput",
+      title: "corporation",
+      inputType: "text",
+      // "placeholder": "Enter first ",
+      dataType: "string",
+    },
+  ],
+};
+
+export const taskFormData = {
+  elements: [
+    {
+      name: "task-type",
+      type: "dropdown",
+      title: "Task Type",
+      inputType: "text",
+      placeholder: "Select",
+      dropdownData: [
+        { value: 1, label: "Call" },
+        { value: 2, label: "Email" },
+        { value: 3, label: "Message" },
+        { value: 4, label: "Follow-Up" },
+        { value: 5, label: "Appointment" },
+      ],
+    },
+    {
+      name: "due-date",
+      type: "calenderDropdown",
+      title: "Due Date",
+      inputType: "text",
+      placeholder: "Select",
+      dropdownData: [
+        { value: 1, label: "Today" },
+        { value: 2, label: "Tomorrow" },
+        { value: 3, label: "3 Days From Now" },
+        { value: 4, label: "One Week From Now" },
+        { value: 5, label: "1 Month From Now" },
+        { value: 6, label: "Custom Date" },
+      ],
+    },
+    {
+      name: "title",
+      type: "TextInput",
+      title: "Title",
+      inputType: "text",
+      placeholder: "Enter the title",
+    },
+    {
+      name: "description",
+      type: "TextInput",
+      title: "Description",
+      inputType: "text",
+      placeholder: "Enter the description",
+    },
+    {
+      name: "status",
+      type: "dropdown",
+      title: "Status",
+      placeholder: "Select",
+      dropdownData: [
+        { value: 1, label: "In-progress" },
+        { value: 2, label: "Completed" },
+        { value: 3, label: "Not Started" },
+      ],
+    },
+    {
+      name: "time",
+      type: "timeInput",
+      title: "Time",
+      placeholder: "",
+    },
+    {
+      name: "repeat",
+      type: "dropdown",
+      title: "Repeat",
+      inputType: "text",
+      placeholder: "Select",
+      dropdownData: [
+        { value: 1, label: "Daily" },
+        { value: 2, label: "Weekly" },
+        { value: 3, label: "Monthly" },
+        { value: 4, label: "Yearly" },
+        { value: 5, label: "Don't Repeat" },
+      ],
+    },
+    {
+      name: "owner",
+      type: "dropdown",
+      title: "Owner",
+      inputType: "text",
+      placeholder: "Select",
+      dropdownData: [
+        { value: 1, label: "John Doe" },
+        { value: 2, label: "Jane Smith" },
+        { value: 3, label: "Alice Mark" },
+        { value: 4, label: "Kate Winslet" },
+        { value: 5, label: "William Henry" },
+        { value: 6, label: "Jane Peter" },
+        { value: 7, label: "Carley Wilson" },
+        { value: 8, label: "William Henry" },
+      ],
+    },
     //   {
     //     "name": "leads",
     //     "type": "leadDropdown",
@@ -1155,441 +1121,441 @@ export const formData = {
     //     "inputType": "text",
 
     //   }
-     ]
-  }
-  
-  export const leadData =
-  [
-   
-    {
-   
-      "LeadType": "Domestic",
-      "Number": "LEA0001509",
-      "FirstName":"John",
-      "LastName":"Smith",
-      "Gender":'M',
-      "Email": "johnsmith1@gmail.com",
-      "Score":"Null",
-      "Owner":"Carla White",
-      "LeadSource":"Partner",
-      "LeadCurrency":"INR 300000",
-      "Description":"John Smith is a potential customer who expressed interest in our services during a recent networking event.",
-      "ScoringProfile":"Profile 1",
-      "Company":"RPT",
-      "NoOfEmployees":"30",
-      "AnnualRevenue":"INR 700000",
-      "CompanyDUNSNumber":"73245",
-      "Industry":"Accounting",
-      "AlternateEmail1":"johnsmith0234@gmail.com",
-      "AlternateEmail2":"johnsmithh987@gmail.com",
-      "EmailOtpOut":"True",
-      "BusinessPhone": "8884763231",
-      "MobilePhone":"9903672637",
-      "HomePhone":"8802374321",
-      "DoNotCall":"True",
-      "Street":"No. 3, 2nd lane",
-      "City":"Boston",
-      "State":"California",
-      "Zip":"230098",
-      "Country":"USA",
-      "Preferred":"Any",
-      "Email":"johnsmith1@gmail.com",
-      "BulkEmail":"Allow",
-      "Phone":"8076845632",
-      "Whatsapp":"9985435678",
-      "label":"hot",
-      "Id":"1",
-      "Status":"New Lead"
-   
-    },
-   
-    {
-      "LeadType": "Domestic",
-      "Number": "LEA0001510",
-      "FirstName": "Emily",
-      "LastName": "Johnson",
-      "Gender": "F",
-      "Email": "emilyjohnson2@gmail.com",
-      "Score": "Null",
-      "Owner": "David Brown",
-      "LeadSource": "Advertisement",
-      "LeadCurrency": "USD 250000",
-      "Description": "Emily Johnson is interested in our services after attending our webinar.",
-      "ScoringProfile": "Profile 2",
-      "Company": "XYZ Corp",
-      "NoOfEmployees": "50",
-      "AnnualRevenue": "USD 900000",
-      "CompanyDUNSNumber": "87213",
-      "Industry": "Financial",
-      "AlternateEmail1": "emily.johnson@xyzcorp.com",
-      "AlternateEmail2": "emilyj123@hotmail.com",
-      "EmailOtpOut": "False",
-      "BusinessPhone": "7894563210",
-      "MobilePhone": "9876543210",
-      "HomePhone": "8765432109",
-      "DoNotCall": "False",
-      "Street": "123 Main St",
-      "City": "New York",
-      "State": "New York",
-      "Zip": "10001",
-      "Country": "USA",
-      "Preferred": "Email",
-      "BulkEmail": "Not allowed",
-      "Phone": "9876543210",
-      "Whatsapp": "Unavailable",
-      "label": "cold",
-      "Id": "2",
-      "Status": "Qualified"
-    },
-    {
-      "LeadType": "International",
-      "Number": "LEA0001511",
-      "FirstName": "Daniel",
-      "LastName": "Brown",
-      "Gender": "M",
-      "Email": "danielbrown@gmail.com",
-      "Score": "Null",
-      "Owner": "Maria Garcia",
-      "LeadSource": "Web",
-      "LeadCurrency": "EUR 400000",
-      "Description": "Daniel Brown Contacted us through our website seeking information about our products.",
-      "ScoringProfile": "Profile 3",
-      "Company": "ABC Ltd",
-      "NoOfEmployees": "20",
-      "AnnualRevenue": "EUR 600000",
-      "CompanyDUNSNumber": "51234",
-      "Industry": "Consulting",
-      "AlternateEmail1": "danielb987@abcltd.com",
-      "AlternateEmail2": "dbrown123@yahoo.com",
-      "EmailOtpOut": "True",
-      "BusinessPhone": "6547893210",
-      "MobilePhone": "9876543210",
-      "HomePhone": "8765432109",
-      "DoNotCall": "True",
-      "Street": "456 Elm St",
-      "City": "Los Angeles",
-      "State": "California",
-      "Zip": "90001",
-      "Country": "USA",
-      "Preferred": "Phone",
-      "BulkEmail": "Allow",
-      "Phone": "9876543210",
-      "Whatsapp": "Unavailable",
-      "label": "warm",
-      "Id": "3",
-      "Status": "Contacted"
-    },
-    {
-      "LeadType": "Domestic",
-      "Number": "LEA0001512",
-      "FirstName": "Michael",
-      "LastName": "Wilson",
-      "Gender": "M",
-      "Email": "michaelwilson@gmail.com",
-      "Score": "Null",
-      "Owner": "Jennifer Rodriguez",
-      "LeadSource": "Web",
-      "LeadCurrency": "GBP 200000",
-      "Description": "Michael Wilson inquired about our services through our online Contact form.",
-      "ScoringProfile": "Profile 4",
-      "Company": "PQR Inc",
-      "NoOfEmployees": "100",
-      "AnnualRevenue": "GBP 800000",
-      "CompanyDUNSNumber": "93215",
-      "Industry": "Customer Services",
-      "AlternateEmail1": "mwilson456@pqrinc.com",
-      "AlternateEmail2": "michael.wilson23@gmail.com",
-      "EmaieOtpOut": "False",
-      "BusinessPhone": "1234567890",
-      "MobilePhone": "9876543210",
-      "HomePhone": "8765432109",
-      "DoNotCall": "False",
-      "Street": "789 Oak St",
-      "City": "Chicago",
-      "State": "Illinois",
-      "Zip": "60001",
-      "Country": "USA",
-      "Preferred": "Any",
-      "BulkEmail": "Not allowed",
-      "Phone": "9876543210",
-      "Whatsapp": "Unavailable",
-      "label": "hot",
-      "Id": "4",
-      "Status": "New Lead"
-    },
-    {
-      "LeadType": "International",
-      "Number": "LEA0001513",
-      "FirstName": "Olivia",
-      "LastName": "Taylor",
-      "Gender": "F",
-      "Email": "oliviataylor@gmail.com",
-      "Score": "Null",
-      "Owner": "Robert Martinez",
-      "LeadSource": "Partner",
-      "LeadCurrency": "AUD 350000",
-      "Description": "Olivia Taylor was referred to us by one of our business partners.",
-      "ScoringProfile": "Profile 5",
-      "Company": "LMN Group",
-      "NoOfEmployees": "75",
-      "AnnualRevenue": "AUD 750000",
-      "CompanyDUNSNumber": "74239",
-      "Industry": "Accounting",
-      "AlternateEmail1": "oliviataylor@lmngroup.com",
-      "AlternateEmail2": "olivia.taylor23@hotmail.com",
-      "EmailOtpOut": "True",
-      "BusinessPhone": "9876543210",
-      "MobilePhone": "8765432109",
-      "HomePhone": "7654321098",
-      "DoNotCall": "True",
-      "Street": "101 Pine St",
-      "City": "Miami",
-      "State": "Florida",
-      "Zip": "33001",
-      "Country": "USA",
-      "Preferred": "Phone",
-      "BulkEmail": "Allow",
-      "Phone": "9876543210",
-      "Whatsapp": "Unavailable",
-      "label": "cold",
-      "Id": "5",
-      "Status": "Qualified"
-    },
-    {
-      "LeadType": "Domestic",
-      "Number": "LEA0001514",
-      "FirstName": "James",
-      "LastName": "Clark",
-      "Gender": "M",
-      "Email": "jamesclark@gmail.com",
-      "Score": "Null",
-      "Owner": "Karen Thompson",
-      "LeadSource": "Advertisement",
-      "LeadCurrency": "CAD 300000",
-      "Description": "James Clark saw our ad in a local newspaper and Contacted us for more information.",
-      "ScoringProfile": "Profile 6",
-      "Company": "QRS Enterprises",
-      "NoOfEmployees": "40",
-    "AnnualRevenue": "CAD 500000",
-    "CompanyDUNSNumber": "61234",
-    "Industry": "Financial",
-    "AlternateEmail1": "jclark@qrsenterprises.com",
-    "AlternateEmail2": "jamesc123@yahoo.com",
-    "EmailOtpOut": "False",
-    "BusinessPhone": "9876543210",
-    "MobilePhone": "8765432109",
-    "HomePhone": "7654321098",
-    "DoNotCall": "False",
-    "Street": "456 Pine St",
-    "City": "Houston",
-    "State": "Texas",
-    "Zip": "77001",
-    "Country": "USA",
-    "Preferred": "Bulk Email",
-    "BulkEmail": "Not allowed",
-    "Phone": "9876543210",
-    "Whatsapp": "Unavailable",
-    "label": "hot",
-    "Id": "6",
-    "Status": "Contacted"
+  ],
+};
+
+export const leadData = [
+  {
+    LeadType: "Domestic",
+    Number: "LEA0001509",
+    FirstName: "John",
+    LastName: "Smith",
+    Gender: "M",
+    Email: "johnsmith1@gmail.com",
+    Score: "Null",
+    Owner: "Carla White",
+    LeadSource: "Partner",
+    LeadCurrency: "INR 300000",
+    Description:
+      "John Smith is a potential customer who expressed interest in our services during a recent networking event.",
+    ScoringProfile: "Profile 1",
+    Company: "RPT",
+    NoOfEmployees: "30",
+    AnnualRevenue: "INR 700000",
+    CompanyDUNSNumber: "73245",
+    Industry: "Accounting",
+    AlternateEmail1: "johnsmith0234@gmail.com",
+    AlternateEmail2: "johnsmithh987@gmail.com",
+    EmailOtpOut: "True",
+    BusinessPhone: "8884763231",
+    MobilePhone: "9903672637",
+    HomePhone: "8802374321",
+    DoNotCall: "True",
+    Street: "No. 3, 2nd lane",
+    City: "Boston",
+    State: "California",
+    Zip: "230098",
+    Country: "USA",
+    Preferred: "Any",
+    Email: "johnsmith1@gmail.com",
+    BulkEmail: "Allow",
+    Phone: "8076845632",
+    Whatsapp: "9985435678",
+    label: "hot",
+    Id: "1",
+    Status: "New Lead",
+  },
+
+  {
+    LeadType: "Domestic",
+    Number: "LEA0001510",
+    FirstName: "Emily",
+    LastName: "Johnson",
+    Gender: "F",
+    Email: "emilyjohnson2@gmail.com",
+    Score: "Null",
+    Owner: "David Brown",
+    LeadSource: "Advertisement",
+    LeadCurrency: "USD 250000",
+    Description:
+      "Emily Johnson is interested in our services after attending our webinar.",
+    ScoringProfile: "Profile 2",
+    Company: "XYZ Corp",
+    NoOfEmployees: "50",
+    AnnualRevenue: "USD 900000",
+    CompanyDUNSNumber: "87213",
+    Industry: "Financial",
+    AlternateEmail1: "emily.johnson@xyzcorp.com",
+    AlternateEmail2: "emilyj123@hotmail.com",
+    EmailOtpOut: "False",
+    BusinessPhone: "7894563210",
+    MobilePhone: "9876543210",
+    HomePhone: "8765432109",
+    DoNotCall: "False",
+    Street: "123 Main St",
+    City: "New York",
+    State: "New York",
+    Zip: "10001",
+    Country: "USA",
+    Preferred: "Email",
+    BulkEmail: "Not allowed",
+    Phone: "9876543210",
+    Whatsapp: "Unavailable",
+    label: "cold",
+    Id: "2",
+    Status: "Qualified",
   },
   {
-    "LeadType": "International",
-    "Number": "LEA0001515",
-    "FirstName": "Sophia",
-    "LastName": "Lewis",
-    "Gender": "F",
-    "Email": "sophialewis@gmail.com",
-    "Score": "Null",
-    "Owner": "Steven Johnson",
-    "LeadSource": "Web",
-    "LeadCurrency": "EUR 400000",
-    "Description": "Sophia Lewis found our website through an online search and expressed interest in our services.",
-    "ScoringProfile": "Profile 7",
-    "Company": "STU Solutions",
-    "NoOfEmployees": "50",
-    "AnnualRevenue": "EUR 900000",
-    "CompanyDUNSNumber": "95213",
-    "Industry": "Financial",
-    "AlternateEmail1": "sophia.l@stusolutions.com",
-    "AlternateEmail2": "slewis456@yahoo.com",
-    "EmailOtpOut": "False",
-    "BusinessPhone": "2345678901",
-    "MobilePhone": "8765432109",
-    "HomePhone": "7654321098",
-    "DoNotCall": "False",
-    "Street": "456 Elm St",
-    "City": "Los Angeles",
-    "State": "California",
-    "Zip": "90001",
-    "Country": "USA",
-    "Preferred": "Phone",
-    "BulkEmail": "Not allowed",
-    "Phone": "8765432109",
-    "Whatsapp": "Unavailable",
-    "label": "hot",
-    "Id": "7",
-    "Status": "Closed"
-},
-  ]
+    LeadType: "International",
+    Number: "LEA0001511",
+    FirstName: "Daniel",
+    LastName: "Brown",
+    Gender: "M",
+    Email: "danielbrown@gmail.com",
+    Score: "Null",
+    Owner: "Maria Garcia",
+    LeadSource: "Web",
+    LeadCurrency: "EUR 400000",
+    Description:
+      "Daniel Brown Contacted us through our website seeking information about our products.",
+    ScoringProfile: "Profile 3",
+    Company: "ABC Ltd",
+    NoOfEmployees: "20",
+    AnnualRevenue: "EUR 600000",
+    CompanyDUNSNumber: "51234",
+    Industry: "Consulting",
+    AlternateEmail1: "danielb987@abcltd.com",
+    AlternateEmail2: "dbrown123@yahoo.com",
+    EmailOtpOut: "True",
+    BusinessPhone: "6547893210",
+    MobilePhone: "9876543210",
+    HomePhone: "8765432109",
+    DoNotCall: "True",
+    Street: "456 Elm St",
+    City: "Los Angeles",
+    State: "California",
+    Zip: "90001",
+    Country: "USA",
+    Preferred: "Phone",
+    BulkEmail: "Allow",
+    Phone: "9876543210",
+    Whatsapp: "Unavailable",
+    label: "warm",
+    Id: "3",
+    Status: "Contacted",
+  },
+  {
+    LeadType: "Domestic",
+    Number: "LEA0001512",
+    FirstName: "Michael",
+    LastName: "Wilson",
+    Gender: "M",
+    Email: "michaelwilson@gmail.com",
+    Score: "Null",
+    Owner: "Jennifer Rodriguez",
+    LeadSource: "Web",
+    LeadCurrency: "GBP 200000",
+    Description:
+      "Michael Wilson inquired about our services through our online Contact form.",
+    ScoringProfile: "Profile 4",
+    Company: "PQR Inc",
+    NoOfEmployees: "100",
+    AnnualRevenue: "GBP 800000",
+    CompanyDUNSNumber: "93215",
+    Industry: "Customer Services",
+    AlternateEmail1: "mwilson456@pqrinc.com",
+    AlternateEmail2: "michael.wilson23@gmail.com",
+    EmaieOtpOut: "False",
+    BusinessPhone: "1234567890",
+    MobilePhone: "9876543210",
+    HomePhone: "8765432109",
+    DoNotCall: "False",
+    Street: "789 Oak St",
+    City: "Chicago",
+    State: "Illinois",
+    Zip: "60001",
+    Country: "USA",
+    Preferred: "Any",
+    BulkEmail: "Not allowed",
+    Phone: "9876543210",
+    Whatsapp: "Unavailable",
+    label: "hot",
+    Id: "4",
+    Status: "New Lead",
+  },
+  {
+    LeadType: "International",
+    Number: "LEA0001513",
+    FirstName: "Olivia",
+    LastName: "Taylor",
+    Gender: "F",
+    Email: "oliviataylor@gmail.com",
+    Score: "Null",
+    Owner: "Robert Martinez",
+    LeadSource: "Partner",
+    LeadCurrency: "AUD 350000",
+    Description:
+      "Olivia Taylor was referred to us by one of our business partners.",
+    ScoringProfile: "Profile 5",
+    Company: "LMN Group",
+    NoOfEmployees: "75",
+    AnnualRevenue: "AUD 750000",
+    CompanyDUNSNumber: "74239",
+    Industry: "Accounting",
+    AlternateEmail1: "oliviataylor@lmngroup.com",
+    AlternateEmail2: "olivia.taylor23@hotmail.com",
+    EmailOtpOut: "True",
+    BusinessPhone: "9876543210",
+    MobilePhone: "8765432109",
+    HomePhone: "7654321098",
+    DoNotCall: "True",
+    Street: "101 Pine St",
+    City: "Miami",
+    State: "Florida",
+    Zip: "33001",
+    Country: "USA",
+    Preferred: "Phone",
+    BulkEmail: "Allow",
+    Phone: "9876543210",
+    Whatsapp: "Unavailable",
+    label: "cold",
+    Id: "5",
+    Status: "Qualified",
+  },
+  {
+    LeadType: "Domestic",
+    Number: "LEA0001514",
+    FirstName: "James",
+    LastName: "Clark",
+    Gender: "M",
+    Email: "jamesclark@gmail.com",
+    Score: "Null",
+    Owner: "Karen Thompson",
+    LeadSource: "Advertisement",
+    LeadCurrency: "CAD 300000",
+    Description:
+      "James Clark saw our ad in a local newspaper and Contacted us for more information.",
+    ScoringProfile: "Profile 6",
+    Company: "QRS Enterprises",
+    NoOfEmployees: "40",
+    AnnualRevenue: "CAD 500000",
+    CompanyDUNSNumber: "61234",
+    Industry: "Financial",
+    AlternateEmail1: "jclark@qrsenterprises.com",
+    AlternateEmail2: "jamesc123@yahoo.com",
+    EmailOtpOut: "False",
+    BusinessPhone: "9876543210",
+    MobilePhone: "8765432109",
+    HomePhone: "7654321098",
+    DoNotCall: "False",
+    Street: "456 Pine St",
+    City: "Houston",
+    State: "Texas",
+    Zip: "77001",
+    Country: "USA",
+    Preferred: "Bulk Email",
+    BulkEmail: "Not allowed",
+    Phone: "9876543210",
+    Whatsapp: "Unavailable",
+    label: "hot",
+    Id: "6",
+    Status: "Contacted",
+  },
+  {
+    LeadType: "International",
+    Number: "LEA0001515",
+    FirstName: "Sophia",
+    LastName: "Lewis",
+    Gender: "F",
+    Email: "sophialewis@gmail.com",
+    Score: "Null",
+    Owner: "Steven Johnson",
+    LeadSource: "Web",
+    LeadCurrency: "EUR 400000",
+    Description:
+      "Sophia Lewis found our website through an online search and expressed interest in our services.",
+    ScoringProfile: "Profile 7",
+    Company: "STU Solutions",
+    NoOfEmployees: "50",
+    AnnualRevenue: "EUR 900000",
+    CompanyDUNSNumber: "95213",
+    Industry: "Financial",
+    AlternateEmail1: "sophia.l@stusolutions.com",
+    AlternateEmail2: "slewis456@yahoo.com",
+    EmailOtpOut: "False",
+    BusinessPhone: "2345678901",
+    MobilePhone: "8765432109",
+    HomePhone: "7654321098",
+    DoNotCall: "False",
+    Street: "456 Elm St",
+    City: "Los Angeles",
+    State: "California",
+    Zip: "90001",
+    Country: "USA",
+    Preferred: "Phone",
+    BulkEmail: "Not allowed",
+    Phone: "8765432109",
+    Whatsapp: "Unavailable",
+    label: "hot",
+    Id: "7",
+    Status: "Closed",
+  },
+];
 
 export const meetingItemsData = {
   elements: [
     {
-      id: '1',
-      title: 'Meeting 1',
-      Description: 'New lead with potential customers.',
-      status: 'Confirmed',
-      Date:"2024-03-14",
-      organizer: 'Jane Smith',
-      location: 'Bangalore',
-      timezone: 'UTC-5',
-      from: 'all day',
-      to: 'all day',
-      all_day: 'yes',
+      id: "1",
+      title: "Meeting 1",
+      Description: "New lead with potential customers.",
+      status: "Confirmed",
+      Date: "2024-03-14",
+      organizer: "Jane Smith",
+      location: "Bangalore",
+      timezone: "UTC-5",
+      from: "all day",
+      to: "all day",
+      all_day: "yes",
     },
     {
-      id: '2',
-      title: 'Meeting 2',
-      Description: 'High demand lead looking for property at headquarters.',
-      status: 'Confirmed',
-      Date:"2024-12-04",
-      organizer: 'John Steve',
-      location: 'Chennai',
-      timezone: 'UTC+0',
-      from: '2024-03-20T09:00:00',
-      to: '2024-03-20T17:00:00',
-      all_day: 'no',
+      id: "2",
+      title: "Meeting 2",
+      Description: "High demand lead looking for property at headquarters.",
+      status: "Confirmed",
+      Date: "2024-12-04",
+      organizer: "John Steve",
+      location: "Chennai",
+      timezone: "UTC+0",
+      from: "2024-03-20T09:00:00",
+      to: "2024-03-20T17:00:00",
+      all_day: "no",
     },
   ],
 };
 
- export const taskData = [
+export const taskData = [
   {
-    id: '1',
+    id: "1",
     taskType: "Meeting",
-    state: 'follow-up',
-    taskName: 'Carla Demo Lead',
-    ownerName: 'John Doe',
+    state: "follow-up",
+    taskName: "Carla Demo Lead",
+    ownerName: "John Doe",
     dueDate: "2024-03-01",
     dueTime: "10:00 AM",
     description: "Discuss project details with the client",
-    leadName:"John Smith",
-    dueState: 'Today',
-    assignedToMe: 'Carla',
-    assignedByMe: 'Sofia',
+    leadName: "John Smith",
+    dueState: "Today",
+    assignedToMe: "Carla",
+    assignedByMe: "Sofia",
   },
   {
-    id: '2',
+    id: "2",
     taskType: "Assignment",
-    state: 'in-progress',
-    taskName: 'Another Task',
-    ownerName: 'Jane Smith',
+    state: "in-progress",
+    taskName: "Another Task",
+    ownerName: "Jane Smith",
     dueDate: "2024-03-05",
     dueTime: "2:30 PM",
     description: "Implement new features",
-    leadName:"Jane Johnson",
-    dueState: 'Upcoming',
-    assignedToMe: 'Carla',
-    assignedByMe: 'Sara',
+    leadName: "Jane Johnson",
+    dueState: "Upcoming",
+    assignedToMe: "Carla",
+    assignedByMe: "Sara",
   },
   {
-    id: '3',
+    id: "3",
     taskType: "Review",
-    state: 'completed',
-    taskName: 'Final Task',
-    ownerName: 'Bob Johnson',
+    state: "completed",
+    taskName: "Final Task",
+    ownerName: "Bob Johnson",
     dueDate: "2024-03-10",
-   dueTime: "3:45 PM",
+    dueTime: "3:45 PM",
     description: "Review project progress and plan for next steps",
-    leadName:"Michael Brown",
-    dueState: 'Today',
-    assignedToMe: 'Patty',
-    assignedByMe: 'Bhumika',
+    leadName: "Michael Brown",
+    dueState: "Today",
+    assignedToMe: "Patty",
+    assignedByMe: "Bhumika",
   },
   {
-    id: '4',
+    id: "4",
     taskType: "Task",
-    state: 'in-progress',
-    taskName: 'Another Task',
-    ownerName: 'Jane Smith',
+    state: "in-progress",
+    taskName: "Another Task",
+    ownerName: "Jane Smith",
     dueDate: "2024-03-15",
     dueTime: "9:00 AM",
     description: "Start working on the new project",
-    leadName:"Emily Jones",
-    dueState: 'Upcoming',
-    assignedToMe: 'Capy',
-    assignedByMe: 'Nikita',
+    leadName: "Emily Jones",
+    dueState: "Upcoming",
+    assignedToMe: "Capy",
+    assignedByMe: "Nikita",
   },
   {
-    id: '5',
+    id: "5",
     taskType: "Event",
-    state: 'completed',
-    taskName: 'Final Task',
-    ownerName: 'Bob Johnson',
+    state: "completed",
+    taskName: "Final Task",
+    ownerName: "Bob Johnson",
     dueDate: "2024-03-20",
     dueTime: "6:00 PM",
     description: "Team-building activities and dinner",
-    leadName:"William Garcia",
-    dueState: 'Overdue',
-    assignedToMe: 'Arpita',
-    assignedByMe: 'Sahil',
+    leadName: "William Garcia",
+    dueState: "Overdue",
+    assignedToMe: "Arpita",
+    assignedByMe: "Sahil",
   },
   {
-    id: '6',
+    id: "6",
     taskType: "Meeting",
-    state: 'pending',
-    taskName: 'New Project',
-    ownerName: 'Alice Williams',
+    state: "pending",
+    taskName: "New Project",
+    ownerName: "Alice Williams",
     dueDate: "2024-03-25",
     dueTime: "11:30 AM",
     description: "Discuss project updates and challenges",
-    leadName:"Olivia Miller",
-    dueState: 'Overdue',
-    assignedToMe: 'Carla',
-    assignedByMe: 'Sofia',
+    leadName: "Olivia Miller",
+    dueState: "Overdue",
+    assignedToMe: "Carla",
+    assignedByMe: "Sofia",
   },
   {
-    id: '7',
+    id: "7",
     taskType: "Assignment",
-    state: 'follow-up',
-    taskName: 'Client Meeting',
-    ownerName: 'Chris Davis',
+    state: "follow-up",
+    taskName: "Client Meeting",
+    ownerName: "Chris Davis",
     dueDate: "2024-03-20",
     dueTime: "11:35 AM",
     description: "Prepare project documentation",
-    leadName:"James Davis",
-    dueState: 'Upcoming',
-    assignedToMe: 'Ruby',
-    assignedByMe: 'Roxy',
+    leadName: "James Davis",
+    dueState: "Upcoming",
+    assignedToMe: "Ruby",
+    assignedByMe: "Roxy",
   },
   {
-    id: '8',
+    id: "8",
     taskType: "Meeting",
-    state: 'in-progress',
-    taskName: 'Coding Task',
-    ownerName: 'Eva Brown',
+    state: "in-progress",
+    taskName: "Coding Task",
+    ownerName: "Eva Brown",
     dueDate: "2024-03-30",
     dueTime: "4:15 PM",
     description: "Discuss project updates",
-    leadName:"Benjamin Martinez ",
-    dueState: 'Overdue',
-    assignedToMe: 'Dhanush',
-    assignedByMe: 'Yashas',
+    leadName: "Benjamin Martinez ",
+    dueState: "Overdue",
+    assignedToMe: "Dhanush",
+    assignedByMe: "Yashas",
   },
 ];
 
-
-
 export const leadNoteData = {
-  "elements": [
+  elements: [
     {
-      "name": "first_name",
-      "type": "TextInput",
-      "title": "Lead Name",
-      "inputType": "text",
-      "placeholder": "Name",
-     
+      name: "first_name",
+      type: "TextInput",
+      title: "Lead Name",
+      inputType: "text",
+      placeholder: "Name",
     },
     // {
     //   "name": "lead",
@@ -1600,26 +1566,25 @@ export const leadNoteData = {
     //   "dropdownData": leadData
     // },
     {
-      "name": "note_title",
-      "type": "multiLineText",
-      "title": "Note title",
-      "inputType": "text",
-      "placeholder": "Note title"
+      name: "note_title",
+      type: "multiLineText",
+      title: "Note title",
+      inputType: "text",
+      placeholder: "Note title",
     },
 
- 
     {
-      "name": "notes",
-      "type": "multiLineText",
-      "title": "Lead Notes",
-      "inputType": "text",
-      "placeholder": "Write a note"
-    }
-  ]
+      name: "notes",
+      type: "multiLineText",
+      title: "Lead Notes",
+      inputType: "text",
+      placeholder: "Write a note",
+    },
+  ],
 };
 
 export const meetingData = {
-  "elements": [
+  elements: [
     // {
     //   "name": "lead",
     //   "type": "leadDropdown",
@@ -1629,25 +1594,25 @@ export const meetingData = {
     //   "dropdownData": leadData
     // },
     {
-      "name": "Title",
-      "type": "TextInput",
-      "title": "Title",
-      "inputType": "text",
-      "placeholder": "Title"
+      name: "Title",
+      type: "TextInput",
+      title: "Title",
+      inputType: "text",
+      placeholder: "Title",
     },
     {
-      "name": "location",
-      "type": "TextInput",
-      "title": "Location",
-      "inputType": "text",
-      "placeholder": "Location"
+      name: "location",
+      type: "TextInput",
+      title: "Location",
+      inputType: "text",
+      placeholder: "Location",
     },
     {
-      "name": "Description",
-      "type": "TextInput",
-      "title": "Description",
-      "inputType": "text",
-      "placeholder": "Description"
+      name: "Description",
+      type: "TextInput",
+      title: "Description",
+      inputType: "text",
+      placeholder: "Description",
     },
 
     // {
@@ -1664,272 +1629,251 @@ export const meetingData = {
     //     { "value": 5, "label": "William Henry" },
     //     { "value": 6, "label": "Jane Peter" },
     //     { "value": 7, "label": "Carley Wilson" },
-      
-        
+
     //   ]
     // },
     {
-      "name": "timeZone",
-      "type": "dropdown",
-      "title": "Time Zone",
-      "inputType": "text",
-      "placeholder":'Select',
-      "dropdownData": [
-        { "value": 1, "label": "Coordinated Universal Time (UTC)" },
-        { "value": 2, "label": "Eastern Standard Time (EST)" },
-        { "value": 3, "label": "Central European Time (CET)" },
-        { "value": 4, "label": "Pacific Standard Time (PST)" },
-        { "value": 5, "label": "India Standard Time (IST)" },
-        { "value": 6, "label": "China Standard Time (CST)" },
-        
-      ]
+      name: "timeZone",
+      type: "dropdown",
+      title: "Time Zone",
+      inputType: "text",
+      placeholder: "Select",
+      dropdownData: [
+        { value: 1, label: "Coordinated Universal Time (UTC)" },
+        { value: 2, label: "Eastern Standard Time (EST)" },
+        { value: 3, label: "Central European Time (CET)" },
+        { value: 4, label: "Pacific Standard Time (PST)" },
+        { value: 5, label: "India Standard Time (IST)" },
+        { value: 6, label: "China Standard Time (CST)" },
+      ],
     },
     {
-      "name": "fromDate",
-      "type": "Date",
-      "title": "From Date",
-      "placeholder": "From Date"
+      name: "fromDate",
+      type: "Date",
+      title: "From Date",
+      placeholder: "From Date",
     },
     {
-      "name": "toDate",
-      "type": "Date",
-      "title": "To Date",
-      "placeholder": "To Date"
+      name: "toDate",
+      type: "Date",
+      title: "To Date",
+      placeholder: "To Date",
     },
     {
-      "name": "fromTime",
-      "type": "timeInputFrom",
-      "title": "From time",
-      "placeholder": "Select Time"
+      name: "fromTime",
+      type: "timeInputFrom",
+      title: "From time",
+      placeholder: "Select Time",
     },
     {
-      "name": "toTime",
-      "type": "timeInputTo",
-      "title": "To time",
-      "placeholder": "Select Time"
+      name: "toTime",
+      type: "timeInputTo",
+      title: "To time",
+      placeholder: "Select Time",
     },
     {
-      "name": "allDay",
-      "type": "switch",
-      "title": "Time Spans",
-     
+      name: "allDay",
+      type: "switch",
+      title: "Time Spans",
     },
-  ]
+  ],
 };
 
-
-export const requirementFormData={
-  "elements":[  
-
-  {
-    "name": "requirement",
-    "type": "multiLineText",
-    "title": "Requirement",
-    "inputType": "text",
-    "placeholder": "Notes",
-    
-  },
-
-
-  {
-    "name": "product",
-    "type": "Ldropdown",
-    "title": "Product",
-    "inputType": "text",
-    "placeholder": "Select product",
-    "dropdownData":productData
-  },
-  {
-    "name": "expectedDate",
-    "type": "dropdown",
-    "title": "Expected Date",
-    "inputType": "text",
-    "placeholder": "Select",
-     "dropdownData": [
-      { "value": 1, "label": "1 Week" },
-      { "value": 2, "label": "15 Days" },
-      { "value": 3, "label": "1 Month" },
-      { "value": 4, "label": "6 Months" },
-    ]
-  },
-  {
-    "name": "value",
-    "type": "TextInput",
-    "title": "Value ($)",
-    "inputType": "number",
-    "placeholder": "Value",
-    
-  },
-
-]
-
-}
-
-
-export const productData=
-[
- 
-  {
- 
-    "id":"1",
-    "productName":"Topez",
-    "productCategory":"topez",
-    "categoryCode":"Travel",
-    "productDescription":"Topez offers travel insurance, providing coverage for unforeseen events during domestic or international travel.",
-    "supplierCode":"icici",
-    "supplierName":"ICICI",
-    "rate":"INR 500000",
-   
- 
- 
-  },
-  {
-    "id": "2",
-    "productName": "Ruby",
-    "productCategory": "topez",
-    "categoryCode":"Medical",
-    "productDescription": "Ruby provides medical insurance coverage for expenses incurred due to illness or injury.",
-    "supplierCode":"icici",
-    "supplierName":"ICICI",
-    "rate":"INR 400000",
-   
-   
-  },
-  {
-    "id": "3",
-    "productName": "Sapphire",
-    "productCategory": "sapphire",
-    "categoryCode":"Travel",
-    "productDescription": "Sapphire offers auto insurance, providing financial protection against physical damage and bodily injury resulting from traffic collisions.",
-    "supplierCode":"icici",
-    "supplierName":"ICICI",
-    "rate":"USD 600000",
- 
-  },
-  {
-    "id": "4",
-    "productName": "Emerald",
-    "productCategory": "emerald",
-    "categoryCode":"Home",
-    "productDescription": "Emerald provides home insurance coverage for a private residence and its contents.",
-    "supplierCode":"icici",
-    "supplierName":"ICICI",
-    "rate":"USD 700000",
-  },
-  {
-    "id": "5",
-    "productName": "Diamond",
-    "productCategory": "diamond",
-    "categoryCode":"Pet",
-    "productDescription": "Diamond offers pet insurance, providing coverage for veterinary expenses and other costs associated with caring for pets. ",
-    "supplierCode":"icici",
-    "supplierName":"ICICI",
-    "rate":"INR 700000",
-  },
-  {
-    "id": "6",
-    "productName": "Pearl",
-    "productCategory": "pearl",
-    "categoryCode":"Life",
-    "productDescription": "Pearl offers life insurance, providing financial protection to the policyholder's beneficiaries in the event of the insured individual's death.",
-    "supplierCode":"icici",
-    "supplierName":"ICICI",
-    "rate":"INR 300000",
-  },
-]
-
-export const productFormData= {
-  "elements": [
+export const requirementFormData = {
+  elements: [
     {
-      "name": "type",
-      "type": "RadioButton",
-      "title": "Type",
-      "rdata": [
-        { "value": 1, "label": "Product" },
-        { "value": 2, "label": "Service" }
-      ]
+      name: "requirement",
+      type: "multiLineText",
+      title: "Requirement",
+      inputType: "text",
+      placeholder: "Notes",
     },
- 
+
     {
-      "name": "category",
-      "type": "dropdown",
-      "title": "Category",
-      "inputType": "text",
-      "placeholder":'Select',
-      "dropdownData": [
-        { "value": 1, "label": "Travel" },
-        { "value": 2, "label": "Medical" },
-        { "value": 3, "label": "Home" },
-        { "value": 4, "label": "Pet" },
-        { "value": 5, "label": "Life" }
-      ]
+      name: "product",
+      type: "Ldropdown",
+      title: "Product",
+      inputType: "text",
+      placeholder: "Select product",
+      dropdownData: productData,
     },
     {
-      "name": "name",
-      "type": "TextInput",
-      "title": "Name",
-      "inputType": "text",
-      "placeholder":"Enter the name"
+      name: "expectedDate",
+      type: "dropdown",
+      title: "Expected Date",
+      inputType: "text",
+      placeholder: "Select",
+      dropdownData: [
+        { value: 1, label: "1 Week" },
+        { value: 2, label: "15 Days" },
+        { value: 3, label: "1 Month" },
+        { value: 4, label: "6 Months" },
+      ],
     },
     {
-      "name": "description",
-      "type": "TextInput",
-      "title": "Description",
-      "inputType": "text",
-      "placeholder":"Enter the description"
+      name: "value",
+      type: "TextInput",
+      title: "Value ($)",
+      inputType: "number",
+      placeholder: "Value",
+    },
+  ],
+};
+
+export const productData = [
+  {
+    id: "1",
+    productName: "Topez",
+    productCategory: "topez",
+    categoryCode: "Travel",
+    productDescription:
+      "Topez offers travel insurance, providing coverage for unforeseen events during domestic or international travel.",
+    supplierCode: "icici",
+    supplierName: "ICICI",
+    rate: "INR 500000",
+  },
+  {
+    id: "2",
+    productName: "Ruby",
+    productCategory: "topez",
+    categoryCode: "Medical",
+    productDescription:
+      "Ruby provides medical insurance coverage for expenses incurred due to illness or injury.",
+    supplierCode: "icici",
+    supplierName: "ICICI",
+    rate: "INR 400000",
+  },
+  {
+    id: "3",
+    productName: "Sapphire",
+    productCategory: "sapphire",
+    categoryCode: "Travel",
+    productDescription:
+      "Sapphire offers auto insurance, providing financial protection against physical damage and bodily injury resulting from traffic collisions.",
+    supplierCode: "icici",
+    supplierName: "ICICI",
+    rate: "USD 600000",
+  },
+  {
+    id: "4",
+    productName: "Emerald",
+    productCategory: "emerald",
+    categoryCode: "Home",
+    productDescription:
+      "Emerald provides home insurance coverage for a private residence and its contents.",
+    supplierCode: "icici",
+    supplierName: "ICICI",
+    rate: "USD 700000",
+  },
+  {
+    id: "5",
+    productName: "Diamond",
+    productCategory: "diamond",
+    categoryCode: "Pet",
+    productDescription:
+      "Diamond offers pet insurance, providing coverage for veterinary expenses and other costs associated with caring for pets. ",
+    supplierCode: "icici",
+    supplierName: "ICICI",
+    rate: "INR 700000",
+  },
+  {
+    id: "6",
+    productName: "Pearl",
+    productCategory: "pearl",
+    categoryCode: "Life",
+    productDescription:
+      "Pearl offers life insurance, providing financial protection to the policyholder's beneficiaries in the event of the insured individual's death.",
+    supplierCode: "icici",
+    supplierName: "ICICI",
+    rate: "INR 300000",
+  },
+];
+
+export const productFormData = {
+  elements: [
+    {
+      name: "type",
+      type: "RadioButton",
+      title: "Type",
+      rdata: [
+        { value: 1, label: "Product" },
+        { value: 2, label: "Service" },
+      ],
+    },
+
+    {
+      name: "category",
+      type: "dropdown",
+      title: "Category",
+      inputType: "text",
+      placeholder: "Select",
+      dropdownData: [
+        { value: 1, label: "Travel" },
+        { value: 2, label: "Medical" },
+        { value: 3, label: "Home" },
+        { value: 4, label: "Pet" },
+        { value: 5, label: "Life" },
+      ],
     },
     {
-      "name": "currency",
-      "type": "dropdown",
-      "title": "Currency",
-      "inputType": "text",
-      "placeholder":'Select',
-      "dropdownData": [
-        { "value": 1, "label": "INR" },
-        { "value": 2, "label": "USD" }
-      ]
+      name: "name",
+      type: "TextInput",
+      title: "Name",
+      inputType: "text",
+      placeholder: "Enter the name",
     },
     {
-      "name": "price",
-      "type": "TextInput",
-      "title": "Price",
-      "placeholder":"enter value",
-     
-    },
- 
-    {
-      "name": "code",
-      "type": "TextInput",
-      "title": "SAC Code",
-      "inputType": "text",
-      "placeholder":"Enter value"
+      name: "description",
+      type: "TextInput",
+      title: "Description",
+      inputType: "text",
+      placeholder: "Enter the description",
     },
     {
-      "name": "active",
-      "type": "switch",
-      "title": "active",
-     
+      name: "currency",
+      type: "dropdown",
+      title: "Currency",
+      inputType: "text",
+      placeholder: "Select",
+      dropdownData: [
+        { value: 1, label: "INR" },
+        { value: 2, label: "USD" },
+      ],
     },
     {
-      "name": "images",
-      "type": "imageUpload",
-      "title": "Product Images",
-      "placeholder":"upload picture images"
+      name: "price",
+      type: "TextInput",
+      title: "Price",
+      placeholder: "enter value",
     },
- 
-  ]
-}
+
+    {
+      name: "code",
+      type: "TextInput",
+      title: "SAC Code",
+      inputType: "text",
+      placeholder: "Enter value",
+    },
+    {
+      name: "active",
+      type: "switch",
+      title: "active",
+    },
+    {
+      name: "images",
+      type: "imageUpload",
+      title: "Product Images",
+      placeholder: "upload picture images",
+    },
+  ],
+};
 
 export const changeStatusFormData = {
-  "elements":[
-    {
-        
-    }
-  ]
-}
+  elements: [{}],
+};
 
-export const callLogFormData= {
-  "elements": [
+export const callLogFormData = {
+  elements: [
     // {
     //   "name": "category",
     //   "type": "dropdown",
@@ -1939,640 +1883,590 @@ export const callLogFormData= {
     //   "dropdownData": [
     //     { "value": 1, "label": "Contact" },
     //     { "value": 2, "label": "Lead" },
-       
+
     //   ]
     // },
     {
-      "name": "associatedLeads",
-      "type": "leadDropdown",
-      "title": "Associated Lead",
-      "inputType": "text",
-      "placeholder": "Select",
-      "dropdownData": leadData
+      name: "associatedLeads",
+      type: "leadDropdown",
+      title: "Associated Lead",
+      inputType: "text",
+      placeholder: "Select",
+      dropdownData: leadData,
     },
 
+    {
+      name: "phone",
+      type: "TextInputNumber",
+      title: "Phone Number",
+      inputType: "number",
+      placeholder: "Enter the number",
+      keyboardType: "numeric",
+    },
+    {
+      name: "type",
+      type: "dropdown",
+      title: "Type",
+      inputType: "text",
+      placeholder: "Select",
+      dropdownData: [
+        { value: 1, label: "OutGoing" },
+        { value: 2, label: "Incoming" },
+      ],
+    },
+    {
+      name: "outcome",
+      type: "dropdown",
+      title: "Outcome",
+      placeholder: "enter value",
+      dropdownData: [
+        { value: 1, label: "Missed Call" },
+        { value: 2, label: "No Answer" },
+        { value: 3, label: "Busy" },
+        { value: 3, label: "Rejected" },
+        { value: 4, label: "Connected" },
+      ],
+    },
 
     {
-      "name": "phone",
-      "type": "TextInputNumber",
-      "title": "Phone Number",
-      "inputType": 'number',
-      "placeholder":"Enter the number",
-      "keyboardType":"numeric"
+      name: "time",
+      type: "timeInput",
+      title: "Start Time",
+      placeholder: "Enter the time",
     },
     {
-      "name": "type",
-      "type": "dropdown",
-      "title": "Type",
-      "inputType": "text",
-      "placeholder":'Select',
-      "dropdownData": [
-        { "value": 1, "label": "OutGoing" },
-        { "value": 2, "label": "Incoming" }
-      ]
+      name: "date",
+      type: "Date",
+      title: "Date",
+      placeholder: "Date",
     },
     {
-      "name": "outcome",
-      "type": "dropdown",
-      "title": "Outcome",
-      "placeholder":"enter value",
-      "dropdownData": [
-        { "value": 1, "label": "Missed Call" },
-        { "value": 2, "label": "No Answer" },
-        { "value": 3, "label": "Busy" },
-        { "value": 3, "label": "Rejected" },
-        { "value": 4, "label": "Connected" }
-      ]
-     
+      name: "recoring",
+      type: "document",
+      title: "Recording File",
+      placeholder: "Upload Recording",
     },
- 
+  ],
+};
+export const leadScoreFormData = {
+  elements: [
     {
-      "name": "time",
-      "type": "timeInput",
-      "title": "Start Time",
-      "placeholder": "Enter the time"
-    },
-    {
-      "name": "date",
-      "type": "Date",
-      "title": "Date",
-      "placeholder": "Date"
-    },
-    {
-      "name": "recoring",
-      "type": "document",
-      "title": "Recording File",
-      "placeholder":"Upload Recording"
-    },
- 
-  ]
-}
-export const leadScoreFormData={
-  "elements":[
-    {
-    "questionId":"1",
-    "questionlabel":"Age",
-    "name":"age",
-    "questionType":"dropdown",
-    "questionDescription":"age of the lead",
-    "placeholder": "Select",
-                "dropdownData": [
-                    { "value": 1, "label": "20-30 years" },
-                    { "value": 2, "label": "30-40 years" },
-                    { "value": 3, "label": "40-50 years" },
-                    { "value": 4, "label": "50-60 years" },
-                    { "value": 5, "label": "60-70 years" }
-                ],
-                'isRequired': true,
-    
+      questionId: "1",
+      questionlabel: "Age",
+      name: "age",
+      questionType: "dropdown",
+      questionDescription: "age of the lead",
+      placeholder: "Select",
+      dropdownData: [
+        { value: 1, label: "20-30 years" },
+        { value: 2, label: "30-40 years" },
+        { value: 3, label: "40-50 years" },
+        { value: 4, label: "50-60 years" },
+        { value: 5, label: "60-70 years" },
+      ],
+      isRequired: true,
     },
     {
-      "questionId":"2",
-      "questionlabel":"Family Income",
-      "name":"familyIncome",
-      "questionType":"dropdown",
-      "questionDescription":"income of the whole family",
-      "placeholder": "Select",
-                  "dropdownData": [
-                      { "value": 1, "label": "4 - 6 Lakhs" },
-                      { "value": 2, "label": "6 - 10 Lakhs" },
-                      { "value": 3, "label": "10 - 15 Lakhs" },
-                      { "value": 4, "label": "15+ Lakhs" },
-                     
-                  ],
-                  'isRequired': true,
-      
-      },
-      {
-        "questionId":"3",
-        "questionlabel":"Occupation",
-        "name":"occupation",
-        "questionType":"dropdown",
-        "questionDescription":"occupation of the lead",
-        "placeholder": "Select",
-                    "dropdownData": [
-                        { "value": 1, "label": "Self-Employed" },
-                        { "value": 2, "label": "Business" },
-                        { "value": 4, "label": "Employee" },
-                    ],
-                    'isRequired': true,
-        },
-        {
-          "questionId":"4",
-          "questionlabel":"Gender",
-          "type":"RadioButton",
-          "questionDescription":"gender of the lead",
-          "rdata" : [
-            { label: "Male", id: 'male' },
-            { label: "Female", id: 'female' },
-            { label: "Other", id: 'other' },
-          ],
-          'isRequired': true,
-          },
-          
-          {
-            "questionId":"4",
-            "questionlabel":"Education Qualification",
-            "name":"qualification",
-            "questionType":"dropdown",
-            "questionDescription":"qualification of the lead",
-            "placeholder": "Select",
-                        "dropdownData": [
-                            { "value": 1, "label": "Graduate/Postgraduate/MBA/CA" },
-                            { "value": 2, "label": "Undergraduate/Diploma/12th" },
-                           
-                        ],
-                        'isRequired': true,
-            },
-            {
-              "questionId":"5",
-              "questionlabel":"Lead Category",
-              "name":"leadCategory",
-              "questionType":"dropdown",
-              "questionDescription":"Category of the lead",
-              "placeholder": "Select",
-              "dropdownData" :[
-                    { value: 'new', label: 'New' },
-                    { value: 'Contacted', label: 'Contacted' },
-                    { value: 'qualified', label: 'Qualified' },
-                    { value: 'converted', label: 'Converted' },
-                    { value: 'closed-not_converted', label: 'Closed-Not Converted' },
-                   ],
-                          'isRequired': true,
-              },
-            {
-              "questionId":"6",
-              "questionlabel":"Expected FYWP",
-              "name":"fywp",
-              "questionType":"dropdown",
-              "questionDescription":"fywp of the lead",
-              "placeholder": "Select",
-                          "dropdownData": [
-                              { "value": 1, "label": "<50K" },
-                              { "value": 2, "label": ">50K" },
-                             
-                          ],
-                          'isRequired': true,
-              },
+      questionId: "2",
+      questionlabel: "Family Income",
+      name: "familyIncome",
+      questionType: "dropdown",
+      questionDescription: "income of the whole family",
+      placeholder: "Select",
+      dropdownData: [
+        { value: 1, label: "4 - 6 Lakhs" },
+        { value: 2, label: "6 - 10 Lakhs" },
+        { value: 3, label: "10 - 15 Lakhs" },
+        { value: 4, label: "15+ Lakhs" },
+      ],
+      isRequired: true,
+    },
+    {
+      questionId: "3",
+      questionlabel: "Occupation",
+      name: "occupation",
+      questionType: "dropdown",
+      questionDescription: "occupation of the lead",
+      placeholder: "Select",
+      dropdownData: [
+        { value: 1, label: "Self-Employed" },
+        { value: 2, label: "Business" },
+        { value: 4, label: "Employee" },
+      ],
+      isRequired: true,
+    },
+    {
+      questionId: "4",
+      questionlabel: "Gender",
+      type: "RadioButton",
+      questionDescription: "gender of the lead",
+      rdata: [
+        { label: "Male", id: "male" },
+        { label: "Female", id: "female" },
+        { label: "Other", id: "other" },
+      ],
+      isRequired: true,
+    },
 
-  ]
-}
-
-
+    {
+      questionId: "4",
+      questionlabel: "Education Qualification",
+      name: "qualification",
+      questionType: "dropdown",
+      questionDescription: "qualification of the lead",
+      placeholder: "Select",
+      dropdownData: [
+        { value: 1, label: "Graduate/Postgraduate/MBA/CA" },
+        { value: 2, label: "Undergraduate/Diploma/12th" },
+      ],
+      isRequired: true,
+    },
+    {
+      questionId: "5",
+      questionlabel: "Lead Category",
+      name: "leadCategory",
+      questionType: "dropdown",
+      questionDescription: "Category of the lead",
+      placeholder: "Select",
+      dropdownData: [
+        { value: "new", label: "New" },
+        { value: "Contacted", label: "Contacted" },
+        { value: "qualified", label: "Qualified" },
+        { value: "converted", label: "Converted" },
+        { value: "closed-not_converted", label: "Closed-Not Converted" },
+      ],
+      isRequired: true,
+    },
+    {
+      questionId: "6",
+      questionlabel: "Expected FYWP",
+      name: "fywp",
+      questionType: "dropdown",
+      questionDescription: "fywp of the lead",
+      placeholder: "Select",
+      dropdownData: [
+        { value: 1, label: "<50K" },
+        { value: 2, label: ">50K" },
+      ],
+      isRequired: true,
+    },
+  ],
+};
 
 export const statusFormData = {
-  "elements": [
+  elements: [
     {
-      "name": "reason",
-      "type": "multiLineText",
-      "title": "Reason",
-      "inputType": "text",
-      "placeholder":'Enter the reason', 
+      name: "reason",
+      type: "multiLineText",
+      title: "Reason",
+      inputType: "text",
+      placeholder: "Enter the reason",
     },
     {
-      "name": "remarks",
-      "type": "multiLineText",
-      "title": "Remarks",
-      "inputType": "text",
-      "placeholder":"Enter the Remarks"
+      name: "remarks",
+      type: "multiLineText",
+      title: "Remarks",
+      inputType: "text",
+      placeholder: "Enter the Remarks",
     },
-   ]
-}
-
+  ],
+};
 
 export const activityFormData = [
   {
-    activityId: '1', 
-    activityType: 'task', 
+    activityId: "1",
+    activityType: "task",
     Data: {
-        "elements": [
-          {
-            "name": "associated_lead",
-            "type":"TextInputLead",
-            "title": "Associated Lead",
-            "inputType": "text",
-            
-            
-          },
-           
-            {
-                "name": "due_date",
-                "type": "Date",
-                "title": "Due Date",
-                "inputType": "text",
-                "placeholder": "Select",
-                "isRequired":true
-               
-            },
-            {
-                "name": "title",
-                "type": "TextInput",
-                "title": "Title",
-                "inputType": "text",
-                "placeholder": "Enter the title",
-                "isRequired":true
-            },
-            {
-                "name": "description",
-                "type": "TextInput",
-                "title": "Description",
-                "inputType": "text",
-                "placeholder": "Enter the description"
-            },
-            {
-                "name": "status",
-                "type": "dropdown",
-                "title": "Status",
-                "placeholder": "Select",
-                "dropdownData": [
-                    { "value": "1", "label": "In-progress" },
-                    { "value": "2", "label": "Completed" },
-                    { "value": "3", "label": "Not Started" }
-                ]
-            },
-            {
-                "name": "time",
-                "type": "timeInput",
-                "title": "Time",
-                "placeholder": "",
-                "isRequired":true
-            },
-            {
-                "name": "repeat",
-                "type": "dropdown",
-                "title": "Repeat",
-                "inputType": "text",
-                "placeholder": "Select",
-                "dropdownData": [
-                    { "value": "daily", "label": "Daily" },
-                    { "value": "weekly", "label": "Weekly" },
-                    { "value": "monthly", "label": "Monthly" },
-                    { "value": "yearly", "label": "Yearly" },
-                    { "value": "dont_repeat", "label": "Don't Repeat" }
-                ]
-            },
-            // {
-            //     "name": "owner",
-            //     "type": "dropdown",
-            //     "title": "Owner",
-            //     "inputType": "text",
-            //     "placeholder": "Select",
-               
-            // }
-        ]
-    }
+      elements: [
+        {
+          name: "associated_lead",
+          type: "TextInputLead",
+          title: "Associated Lead",
+          inputType: "text",
+        },
+
+        {
+          name: "due_date",
+          type: "Date",
+          title: "Due Date",
+          inputType: "text",
+          placeholder: "Select",
+          isRequired: true,
+        },
+        {
+          name: "title",
+          type: "TextInput",
+          title: "Title",
+          inputType: "text",
+          placeholder: "Enter the title",
+          isRequired: true,
+        },
+        {
+          name: "description",
+          type: "TextInput",
+          title: "Description",
+          inputType: "text",
+          placeholder: "Enter the description",
+        },
+        {
+          name: "status",
+          type: "dropdown",
+          title: "Status",
+          placeholder: "Select",
+          dropdownData: [
+            { value: "1", label: "In-progress" },
+            { value: "2", label: "Completed" },
+            { value: "3", label: "Not Started" },
+          ],
+        },
+        {
+          name: "time",
+          type: "timeInput",
+          title: "Time",
+          placeholder: "",
+          isRequired: true,
+        },
+        {
+          name: "repeat",
+          type: "dropdown",
+          title: "Repeat",
+          inputType: "text",
+          placeholder: "Select",
+          dropdownData: [
+            { value: "daily", label: "Daily" },
+            { value: "weekly", label: "Weekly" },
+            { value: "monthly", label: "Monthly" },
+            { value: "yearly", label: "Yearly" },
+            { value: "dont_repeat", label: "Don't Repeat" },
+          ],
+        },
+        // {
+        //     "name": "owner",
+        //     "type": "dropdown",
+        //     "title": "Owner",
+        //     "inputType": "text",
+        //     "placeholder": "Select",
+
+        // }
+      ],
+    },
   },
   {
-    activityId: '2', 
-    activityType: 'meeting', 
+    activityId: "2",
+    activityType: "meeting",
     Data: {
-        "elements": [
-          {
-            "name": "associated_lead",
-            "type":"TextInputLead",
-            "title": "Associated Lead",
-            "inputType": "text",
-            
-            
-          },
-            {
-                "name": "title",
-                "type": "TextInput",
-                "title": "Title",
-                "inputType": "text",
-                "placeholder": "Title",
-                "isRequired":true
-
-            },
-            {
-              "name": "meeting_link",
-              "type": "TextInput",
-              "title": "Meeting Link",
-              "inputType": "text",
-              "placeholder": "Link"
-          },
-            {
-                "name": "location",
-                "type": "TextInput",
-                "title": "Location",
-                "inputType": "text",
-                "placeholder": "Location"
-            },
-            {
-                "name": "description",
-                "type": "TextInput",
-                "title": "Description",
-                "inputType": "text",
-                "placeholder": "Description"
-            },
-        
-            // {
-            //     "name": "attendees",
-            //     "type": "MultipleSelect",
-            //     "title": "Attendees",
-            //     "inputType": "text",
-            //     "placeholder": "Select",
-            //     "dropdownData": [
-            //         { "value": 1, "label": "John Doe" },
-            //         { "value": 2, "label": "Jane Smith" },
-            //         { "value": 3, "label": "Alice Mark" },
-            //         { "value": 4, "label": "Kate Winslet" },
-            //         { "value": 5, "label": "William Henry" },
-            //         { "value": 6, "label": "Jane Peter" },
-            //         { "value": 7, "label": "Carley Wilson" }
-            //     ]
-            // },
-            {
-                "name": "time_zone",
-                "type": "dropdown",
-                "title": "Time Zone",
-                "inputType": "text",
-                "placeholder": "Select",
-                "dropdownData": [
-                    { "value": "utc", "label": "Coordinated Universal Time (UTC)" },
-                    { "value": "est", "label": "Eastern Standard Time (EST)" },
-                    { "value": "cet", "label": "Central European Time (CET)" },
-                    { "value": "pst", "label": "Pacific Standard Time (PST)" },
-                    { "value": "ist", "label": "India Standard Time (IST)" },
-                    { "value": "cst", "label": "China Standard Time (CST)" }
-                ]
-            },
-            {
-                "name": "from_date",
-                "type": "Date",
-                "title": "From Date",
-                "placeholder": "From Date"
-            },
-            {
-                "name": "to_date",
-                "type": "Date",
-                "title": "To Date",
-                "placeholder": "To Date"
-            },
-           
-        
-            {
-                "name": "all_day",
-                "type": "Switch",
-                "title": "All Day"
-            },
-            {
-              "name": "remainder_required",
-              "type": "Switch",
-              "title": "Remainder Required"
-          },
-          {
-            "name": "remainder_before",
-            "type": "timeInput",
-            "title": "Remainder Before",
-            "placeholder": "Remainder before"
+      elements: [
+        {
+          name: "associated_lead",
+          type: "TextInputLead",
+          title: "Associated Lead",
+          inputType: "text",
         },
-        ]
-    }
+        {
+          name: "title",
+          type: "TextInput",
+          title: "Title",
+          inputType: "text",
+          placeholder: "Title",
+          isRequired: true,
+        },
+        {
+          name: "meeting_link",
+          type: "TextInput",
+          title: "Meeting Link",
+          inputType: "text",
+          placeholder: "Link",
+        },
+        {
+          name: "location",
+          type: "TextInput",
+          title: "Location",
+          inputType: "text",
+          placeholder: "Location",
+        },
+        {
+          name: "description",
+          type: "TextInput",
+          title: "Description",
+          inputType: "text",
+          placeholder: "Description",
+        },
+
+        // {
+        //     "name": "attendees",
+        //     "type": "MultipleSelect",
+        //     "title": "Attendees",
+        //     "inputType": "text",
+        //     "placeholder": "Select",
+        //     "dropdownData": [
+        //         { "value": 1, "label": "John Doe" },
+        //         { "value": 2, "label": "Jane Smith" },
+        //         { "value": 3, "label": "Alice Mark" },
+        //         { "value": 4, "label": "Kate Winslet" },
+        //         { "value": 5, "label": "William Henry" },
+        //         { "value": 6, "label": "Jane Peter" },
+        //         { "value": 7, "label": "Carley Wilson" }
+        //     ]
+        // },
+        {
+          name: "time_zone",
+          type: "dropdown",
+          title: "Time Zone",
+          inputType: "text",
+          placeholder: "Select",
+          dropdownData: [
+            { value: "utc", label: "Coordinated Universal Time (UTC)" },
+            { value: "est", label: "Eastern Standard Time (EST)" },
+            { value: "cet", label: "Central European Time (CET)" },
+            { value: "pst", label: "Pacific Standard Time (PST)" },
+            { value: "ist", label: "India Standard Time (IST)" },
+            { value: "cst", label: "China Standard Time (CST)" },
+          ],
+        },
+        {
+          name: "from_date",
+          type: "Date",
+          title: "From Date",
+          placeholder: "From Date",
+        },
+        {
+          name: "to_date",
+          type: "Date",
+          title: "To Date",
+          placeholder: "To Date",
+        },
+
+        {
+          name: "all_day",
+          type: "Switch",
+          title: "All Day",
+        },
+        {
+          name: "remainder_required",
+          type: "Switch",
+          title: "Remainder Required",
+        },
+        {
+          name: "remainder_before",
+          type: "timeInput",
+          title: "Remainder Before",
+          placeholder: "Remainder before",
+        },
+      ],
+    },
   },
   {
-    activityId: '3', 
-    activityType: 'call', 
+    activityId: "3",
+    activityType: "call",
     Data: {
-      "elements": [
+      elements: [
         {
-          "name": "associated_lead",
-          "type":"TextInputLead",
-          "title": "Associated Lead",
-          "inputType": "text",
-          
-          
-        },
-       
-     
-     
-        {
-          "name": "number",
-          "type": "TextInput",
-          "title": "Phone Number",
-          "inputType": 'numeric',
-          "placeholder":"Enter the number",
-          "keyboardType":"numeric",
-          "isRequired":true
-        },
-        {
-          "name": "description",
-          "type": "TextInput",
-          "title": "Description ",
-          "inputType": "text",
-          "placeholder": "Enter description",
-          "isRequired":true
+          name: "associated_lead",
+          type: "TextInputLead",
+          title: "Associated Lead",
+          inputType: "text",
         },
 
         {
-          "name": "start_time",
-          "type": "timeInput",
-          "title": "Start Time",
-          "placeholder": "Enter the time"
+          name: "number",
+          type: "TextInput",
+          title: "Phone Number",
+          inputType: "numeric",
+          placeholder: "Enter the number",
+          keyboardType: "numeric",
+          isRequired: true,
         },
         {
-          "name": "date",
-          "type": "Date",
-          "title": "Date",
-          "placeholder": "Date",
-          "isRequired":true
+          name: "description",
+          type: "TextInput",
+          title: "Description ",
+          inputType: "text",
+          placeholder: "Enter description",
+          isRequired: true,
         },
-     
-     
-      ]
-  }
 
+        {
+          name: "start_time",
+          type: "timeInput",
+          title: "Start Time",
+          placeholder: "Enter the time",
+        },
+        {
+          name: "date",
+          type: "Date",
+          title: "Date",
+          placeholder: "Date",
+          isRequired: true,
+        },
+      ],
+    },
   },
   {
-    activityId: '4', 
-    activityType: 'follow_up', 
+    activityId: "4",
+    activityType: "follow_up",
     Data: {
-      "elements": [
-       
+      elements: [
         {
-          "name": "associated_lead",
-          "type":"TextInputLead",
-          "title": "Associated Lead",
-          "inputType": "text",
-          
-          
+          name: "associated_lead",
+          type: "TextInputLead",
+          title: "Associated Lead",
+          inputType: "text",
         },
-     
-        {
-          "name": "start_time",
-          "type": "timeInput",
-          "title": "Start Time",
-          "placeholder": "Enter the time"
-        },
-        {
-          "name": "date",
-          "type": "Date",
-          "title": "Date",
-          "placeholder": "Date"
-        },
-        {
-          "name": "follow_up_notes",
-          "type": "TextInput",
-          "title": "Follow up notes",
-          "placeholder": "Notes",
-          "isRequired":true
-        },
-       
 
-      ]
-  }
-
+        {
+          name: "start_time",
+          type: "timeInput",
+          title: "Start Time",
+          placeholder: "Enter the time",
+        },
+        {
+          name: "date",
+          type: "Date",
+          title: "Date",
+          placeholder: "Date",
+        },
+        {
+          name: "follow_up_notes",
+          type: "TextInput",
+          title: "Follow up notes",
+          placeholder: "Notes",
+          isRequired: true,
+        },
+      ],
+    },
   },
   {
-    activityId: '5', 
-    activityType: 'appointment', 
+    activityId: "5",
+    activityType: "appointment",
     Data: {
-      "elements": [
+      elements: [
         {
-          "name": "associated_lead",
-          "type":"TextInputLead",
-          "title": "Associated Lead",
-          "inputType": "text",
-          
-          
-        },
-     
-     
-        {
-          "name": "start_time",
-          "type": "timeInput",
-          "title": "Start Time",
-          "placeholder": "Enter the time"
-        },
-        {
-          "name": "date",
-          "type": "Date",
-          "title": "Date",
-          "placeholder": "Date"
-        },
-        {
-          "name": "appointment_notes",
-          "type": "TextInput",
-          "title": "Appointment notes",
-          "placeholder": "Notes"
-        },
-        {
-          "name": "location",
-          "type": "TextInput",
-          "title": "Appointment location",
-          "placeholder": "location"
+          name: "associated_lead",
+          type: "TextInputLead",
+          title: "Associated Lead",
+          inputType: "text",
         },
 
-       
-
-      ]
-  }
-
+        {
+          name: "start_time",
+          type: "timeInput",
+          title: "Start Time",
+          placeholder: "Enter the time",
+        },
+        {
+          name: "date",
+          type: "Date",
+          title: "Date",
+          placeholder: "Date",
+        },
+        {
+          name: "appointment_notes",
+          type: "TextInput",
+          title: "Appointment notes",
+          placeholder: "Notes",
+        },
+        {
+          name: "location",
+          type: "TextInput",
+          title: "Appointment location",
+          placeholder: "location",
+        },
+      ],
+    },
   },
 
   {
-    activityId: '6', 
-    activityType: 'email', 
+    activityId: "6",
+    activityType: "email",
     Data: {
-      "elements": [
+      elements: [
         {
-          "name": "associated_lead",
-          "type":"TextInputLead",
-          "title": "Associated Lead",
-          "inputType": "text",
-         
-          
-        },
-     
-        {
-          "name": "start_time",
-          "type": "timeInput",
-          "title": "Start Time",
-          "placeholder": "Enter the time"
-        },
-        {
-          "name": "date",
-          "type": "Date",
-          "title": "Date",
-          "placeholder": "Date"
-        },
-        {
-          "name": "description",
-          "type": "TextInput",
-          "title": "Email description",
-          "placeholder": "description"
-        },
-        {
-          "name": "subject",
-          "type": "TextInput",
-          "title": "Subject",
-          "placeholder": "subject"
-        },
-        {
-          "name": "email",
-          "type": "TextInput",
-          "title": "email id",
-          "placeholder": "email",  
-          "isRequired":true
+          name: "associated_lead",
+          type: "TextInputLead",
+          title: "Associated Lead",
+          inputType: "text",
         },
 
-       
-
-      ]
-  }
-
-  }
-
-  
+        {
+          name: "start_time",
+          type: "timeInput",
+          title: "Start Time",
+          placeholder: "Enter the time",
+        },
+        {
+          name: "date",
+          type: "Date",
+          title: "Date",
+          placeholder: "Date",
+        },
+        {
+          name: "description",
+          type: "TextInput",
+          title: "Email description",
+          placeholder: "description",
+        },
+        {
+          name: "subject",
+          type: "TextInput",
+          title: "Subject",
+          placeholder: "subject",
+        },
+        {
+          name: "email",
+          type: "TextInput",
+          title: "email id",
+          placeholder: "email",
+          isRequired: true,
+        },
+      ],
+    },
+  },
 ];
 
+export const callLogData = [
+  {
+    PhoneNumber: "9903746532",
+    Type: "Incoming",
+    Outcome: "Missed Call",
+    Time: "9:00 AM",
+    Date: "29-03-2024",
+  },
 
-export const callLogData=
-[
- 
   {
-    "PhoneNumber":"9903746532",
-    "Type":"Incoming",
-    "Outcome":"Missed Call",
-    "Time":"9:00 AM",
-    "Date":"29-03-2024"
-  },
- 
-  {
-    "PhoneNumber": "9334567890",
-    "Type": "Incoming",
-    "Outcome": "Missed Call",
-    "Time": "10:15 AM",
-    "Date": "2024-03-30"
+    PhoneNumber: "9334567890",
+    Type: "Incoming",
+    Outcome: "Missed Call",
+    Time: "10:15 AM",
+    Date: "2024-03-30",
   },
   {
-    "PhoneNumber": "9876543210",
-    "Type": "Outgoing",
-    "Outcome": "No Answer",
-    "Time": "2:30 PM",
-    "Date": "2024-03-30"
+    PhoneNumber: "9876543210",
+    Type: "Outgoing",
+    Outcome: "No Answer",
+    Time: "2:30 PM",
+    Date: "2024-03-30",
   },
   {
-    "PhoneNumber": "8088222333",
-    "Type": "Incoming",
-    "Outcome": "Connected",
-    "Time": "5:45 PM",
-    "Date": "2024-03-3"
+    PhoneNumber: "8088222333",
+    Type: "Incoming",
+    Outcome: "Connected",
+    Time: "5:45 PM",
+    Date: "2024-03-3",
   },
   {
-    "PhoneNumber": "8045556666",
-    "Type": "Outgoing",
-    "Outcome": "Busy",
-    "Time": "11:00 AM",
-    "Date": "2024-03-31"
+    PhoneNumber: "8045556666",
+    Type: "Outgoing",
+    Outcome: "Busy",
+    Time: "11:00 AM",
+    Date: "2024-03-31",
   },
   {
-    "PhoneNumber": "9078889999",
-    "Type": "Incoming",
-    "Outcome": "Rejected",
-    "Time": "3:20 PM",
-    "Date": "2024-03-31"
-  }
+    PhoneNumber: "9078889999",
+    Type: "Incoming",
+    Outcome: "Rejected",
+    Time: "3:20 PM",
+    Date: "2024-03-31",
+  },
 ];
 // -------------------------------------
 // export const AccountData = {
@@ -2589,10 +2483,9 @@ export const callLogData=
 //       ],
 //       "dataType": "string"
 //     },
-  
-  
+
 //   ]
-  
+
 // }
 // export const PersonData = {
 //   "elements": [
@@ -2676,358 +2569,857 @@ export const callLogData=
 //   ]
 // }
 
-
 export const listOfAccounts = [
   {
-    "accountName": "Smith Industries",
-    "email": "info@smithindustries.com",
-    "phone": "8884763231",
-    "status": "open",
-    "temperature": "hot",
-    "id": "1"
+    accountName: "Smith Industries",
+    email: "info@smithindustries.com",
+    phone: "8884763231",
+    status: "open",
+    temperature: "hot",
+    id: "1",
   },
   {
-    "accountName": "Johnson Designs",
-    "email": "contact@johnsondesigns.com",
-    "phone": "8891234567",
-    "status": "contacted",
-    "temperature": "cold",
-    "id": "2"
+    accountName: "Johnson Designs",
+    email: "contact@johnsondesigns.com",
+    phone: "8891234567",
+    status: "contacted",
+    temperature: "cold",
+    id: "2",
   },
   {
-    "accountName": "Brown Management",
-    "email": "contact@brownmanagement.com",
-    "phone": "8902345678",
-    "status": "qualified",
-    "temperature": "warm",
-    "id": "3"
+    accountName: "Brown Management",
+    email: "contact@brownmanagement.com",
+    phone: "8902345678",
+    status: "qualified",
+    temperature: "warm",
+    id: "3",
   },
   {
-    "accountName": "Jones Software",
-    "email": "contact@jonessoftware.com",
-    "phone": "8913456789",
-    "status": "accepted",
-    "temperature": "cold",
-    "id": "4"
+    accountName: "Jones Software",
+    email: "contact@jonessoftware.com",
+    phone: "8913456789",
+    status: "accepted",
+    temperature: "cold",
+    id: "4",
   },
   {
-    "accountName": "Garcia Analytics",
-    "email": "contact@garciaanalytics.com",
-    "phone": "8924567890",
-    "status": "accepted",
-    "temperature": "hot",
-    "id": "5"
+    accountName: "Garcia Analytics",
+    email: "contact@garciaanalytics.com",
+    phone: "8924567890",
+    status: "accepted",
+    temperature: "hot",
+    id: "5",
   },
   {
-    "accountName": "Miller Consulting",
-    "email": "contact@millerconsulting.com",
-    "phone": "8935678901",
-    "status": "qualified",
-    "temperature": "hot",
-    "id": "6"
+    accountName: "Miller Consulting",
+    email: "contact@millerconsulting.com",
+    phone: "8935678901",
+    status: "qualified",
+    temperature: "hot",
+    id: "6",
   },
   {
-    "accountName": "Davis Coordinators",
-    "email": "contact@daviscoordinators.com",
-    "phone": "8946789012",
-    "status": "qualified",
-    "temperature": "cold",
-    "id": "7"
+    accountName: "Davis Coordinators",
+    email: "contact@daviscoordinators.com",
+    phone: "8946789012",
+    status: "qualified",
+    temperature: "cold",
+    id: "7",
   },
   {
-    "accountName": "Rodriguez Admin Solutions",
-    "email": "contact@rodriguezadminsolutions.com",
-    "phone": "8957890123",
-    "status": "qualified",
-    "temperature": "warm",
-    "id": "8"
+    accountName: "Rodriguez Admin Solutions",
+    email: "contact@rodriguezadminsolutions.com",
+    phone: "8957890123",
+    status: "qualified",
+    temperature: "warm",
+    id: "8",
   },
   {
-    "accountName": "Martinez Engineering",
-    "email": "contact@martinezengineering.com",
-    "phone": "8968901234",
-    "status": "qualified",
-    "temperature": "warm",
-    "id": "9"
+    accountName: "Martinez Engineering",
+    email: "contact@martinezengineering.com",
+    phone: "8968901234",
+    status: "qualified",
+    temperature: "warm",
+    id: "9",
   },
   {
-    "accountName": "Hernandez Designs",
-    "email": "contact@hernandezdesigns.com",
-    "phone": "8979012345",
-    "status": "qualified",
-    "temperature": "cold",
-    "id": "10"
-  }
-]
+    accountName: "Hernandez Designs",
+    email: "contact@hernandezdesigns.com",
+    phone: "8979012345",
+    status: "qualified",
+    temperature: "cold",
+    id: "10",
+  },
+];
 
+// export const ContactData= {
+//   "elements": [
 
-export const ContactData= {
-  "elements": [
-  
+//     {
+//       "name": "name",
+//       "type": "TextInput",
+//       "title": "Name",
+//       "inputType": "text",
+//       "placeholder": "Enter name",
+//       "dataType": "string"
+//     },
+//     {
+//       "name": "account_name",
+//       "type": "dropdown",
+//       "title": "Account name",
+//       "inputType": "text",
+//       "placeholder": "Select account type",
+//       "dropdownData": [
+//         { "value": "saving", "label": "account-1" },
+//         { "value": "current", "label": "account-2" },
+//         { "value": "current", "label": "account-3" },
+//       ],
+//       "dataType": "string"
+//     },
+//     {
+//       "name": "assistant",
+//       "type": "TextInput",
+//       "title": "Assistant",
+//       "inputType": "text",
+//       "placeholder": "Enter assistant name",
+//       "dataType": "string"
+//     },
+//     {
+//       "name": "email",
+//       "type": "TextInput",
+//       "title": "Email",
+//       "inputType": "email",
+//       "placeholder": "Enter email",
+//       "dataType": "string"
+//     },
+//     {
+//       "name": "description",
+//       "type": "TextInput",
+//       "title": "Description",
+//       "inputType": "text",
+//       "placeholder": "Enter description",
+//       "dataType": "string"
+//     },
+//     {
+//       "name": "fax_opt_out",
+//       "type": "checkbox",
+//       "title": "Fax opt out",
+//       "sectionName":"Contact"
+
+//     },
+//     {
+//       "name": "birth_date",
+//       "type": "dateInput",
+//       "title": "Birth Date",
+//       // "inputType": "date",
+//       "placeholder": "Select date",
+
+//     },
+//     {
+//       "name": "email_opt_out",
+//       "type": "checkbox",
+//       "title": "Email opt out",
+//       // "sectionName":"Contact"
+
+//     },
+//     {
+//       "name": "donot_call",
+//       "type": "checkbox",
+//       "title": "Do not call",
+//       // "sectionName":"Contact"
+
+//     },
+//     {
+//       "name": "owner",
+//       "type": "TextInput",
+//       "title": "Owner",
+//       "inputType": "text",
+//       "placeholder": "owner",
+//       "dataType": "string"
+//     },
+//     {
+//       "name": "last_stay_in_touch_request_date",
+//       "type": "dateInput",
+//       "title": "Last stay in touch request date",
+//       // "inputType": "date",
+//       "placeholder": "Select date",
+
+//     },
+//     {
+//       "name": "home_phone",
+//       "type": "TextInput",
+//       "title": "Home phone",
+//       "inputType": "numeric",
+//       "placeholder": "home phone",
+//       "dataType": "string"
+//     },
+//     {
+//       "name": "assistant",
+//       "type": "dropdown",
+//       "title": "Assistant",
+//       "inputType": "text",
+//       "placeholder": "Select account type",
+//       "dropdownData": [
+//         { "value": "saving", "label": "Boexo" },
+//         { "value": "current", "label": "Boexo france" },
+//         { "value": "current", "label": "Advance super routing" },
+//         { "value": "current", "label": "Vector solutions" }
+//       ],
+//       "dataType": "string"
+//     },
+//     {
+//       "name": "title",
+//       "type": "TextInput",
+//       "title": "Title | title",
+//       "inputType": "text",
+//       "dataType": "string"
+//     },
+//     {
+//       "name": "preferred_language",
+//       "type": "dropdown",
+//       "title": "Language | preferred_language",
+//       "inputType": "text",
+//       "placeholder": "System(English)",
+//       "dropdownData": [
+//         { "value": "English", "label": "English" },
+//         { "value": "Hindi", "label": "German" }
+//       ],
+//       "dataType": "string"
+//     },
+//     {
+//       "name": "email",
+//       "type": "TextInput",
+//       "title": "Email | email",
+//       "inputType": "text",
+//       "placeholder": "Enter Email",
+//       "dataType": "email"
+//     },
+//     {
+//       "name": "business_phone",
+//       "type": "TextInput",
+//       "title": "Business phone | business_phone",
+//       "inputType": "number",
+//       "placeholder": "Enter the business number",
+//       "dataType": "string"
+//     },
+//     {
+//       "name": "mobile_phone",
+//       "type": "TextInput",
+//       "title": "Mobile phone | mobile_phone",
+//       "inputType": "numeric",
+//       "placeholder": "Enter the phone number",
+//       "dataType": "number"
+//     },
+//     {
+//       "name": "time_zone",
+//       "type": "dropdown",
+//       "title": "Time zone | time_zone",
+//       "inputType": "text",
+//       "placeholder": "System(America/Los_Angeles)",
+//       "dropdownData": [
+//         { "value": "Asia/taipei", "label": "Asia/taipei" },
+//         { "value": "america/toronto", "label": "America/Toronto" },
+//         { "value": "america/toronto", "label": "caneda/atlantic" },
+//         { "value": "america/toronto", "label": "caneda central" },
+//         { "value": "america/toronto", "label": "US/Arizona" },
+//         { "value": "america/toronto", "label": "GMT" }
+//       ],
+//       "dataType": "string"
+//     },
+//     {
+//       "name": "notification",
+//       "type": "dropdown",
+//       "title": "Notification | notification",
+//       "inputType": "text",
+//       "placeholder": "Enable | 2",
+//       "dropdownData": [
+//         { "value": "test-1", "label": "enable" },
+//         { "value": "test-2", "label": "disable" }
+//       ],
+//       "dataType": "string"
+//     }
+//   ]
+//   }
+
+export const OpportunityData = {
+  elements: [
     {
-      "name": "name",
-      "type": "TextInput",
-      "title": "Name",
-      "inputType": "text",
-      "placeholder": "Enter name",
-      "dataType": "string"
+      name: "account_name",
+      type: "TextInput",
+      title: "Account name",
+      inputType: "text",
+      placeholder: "Enter a/c name",
+      dataType: "string",
+    },
+
+    {
+      name: "ammount",
+      type: "TextInput",
+      title: "Ammount",
+      inputType: "text",
+      placeholder: "Enter ammount",
+      dataType: "number",
     },
     {
-      "name": "account_name",
-      "type": "dropdown",
-      "title": "Account name",
-      "inputType": "text",
-      "placeholder": "Select account type",
-      "dropdownData": [
-        { "value": "saving", "label": "account-1" },
-        { "value": "current", "label": "account-2" },
-        { "value": "current", "label": "account-3" },
+      name: "close_date",
+      type: "dateInput",
+      title: "Close Date",
+      inputType: "date",
+      placeholder: "Select date",
+    },
+    {
+      name: "description",
+      type: "multilineInput",
+      title: "Description",
+      inputType: "text",
+      dataType: "string",
+    },
+    {
+      name: "stage",
+      type: "TextInput",
+      title: "Stage",
+      inputType: "text",
+      placeholder: "New",
+      dataType: "string",
+    },
+    {
+      name: "source",
+      type: "dropdown",
+      title: "Source",
+      inputType: "text",
+      placeholder: "---none---",
+      dropdownData: [
+        { value: "Asia/taipei", label: "Direct" },
+        { value: "america/toronto", label: "Marketing" },
+        { value: "america/toronto", label: "Social Media Campaign" },
+        { value: "america/toronto", label: "Referral Program" },
+        { value: "america/toronto", label: "Email Newsletter" },
       ],
-      "dataType": "string"
+      dataType: "string",
     },
-    {
-      "name": "assistant",
-      "type": "TextInput",
-      "title": "Assistant",
-      "inputType": "text",
-      "placeholder": "Enter assistant name",
-      "dataType": "string"
-    },
-    {
-      "name": "email",
-      "type": "TextInput",
-      "title": "Email",
-      "inputType": "email",
-      "placeholder": "Enter email",
-      "dataType": "string"
-    },
-    {
-      "name": "description",
-      "type": "TextInput",
-      "title": "Description",
-      "inputType": "text",
-      "placeholder": "Enter description",
-      "dataType": "string"
-    },
-    {
-      "name": "fax_opt_out",
-      "type": "checkbox",
-      "title": "Fax opt out",
-      "sectionName":"Contact"
 
+    {
+      name: "owner",
+      type: "TextInput",
+      title: "Owner",
+      inputType: "text",
+      placeholder: "User",
+      value: "User",
+      dataType: "string",
+    },
+
+    {
+      name: "probability",
+      type: "TextInput",
+      title: "Probability",
+      inputType: "text",
+      placeholder: "Enter probability (0-100%)",
+      dataType: "percentage",
+    },
+  ],
+};
+
+export const ContactData = {
+  elements: [
+    {
+      name: "number",
+      type: "TextInput",
+      title: "Number",
+      placeholder: "number",
+      maxLength: 25,
+      inputType: "numeric",
+      // 'isRequired': true,
+      sectionName: "General",
     },
     {
+      name: "name",
+      type: "TextInput",
+      title: "Name",
+      placeholder: "name",
+      maxLength: 25,
+      inputType: "text",
+      // 'isRequired': true,
+      sectionName: "General",
+    },
+    {
+      name: "title",
+      type: "TextInput",
+      title: "Title",
+      placeholder: "title",
+      maxLength: 25,
+      inputType: "text",
+      // 'isRequired': true,
+      sectionName: "General",
+    },
+
+    {
+      name: "account_name",
+      type: "TextInput",
+      title: "Account name",
+      placeholder: "account name",
+      maxLength: 25,
+      inputType: "text",
+      // 'isRequired': true,
+      sectionName: "General",
+    },
+
+    {
+      name: "description",
+      type: "TextInput",
+      title: "Description",
+      placeholder: "description",
+      maxLength: 25,
+      inputType: "text",
+      // 'isRequired': true,
+      sectionName: "General",
+    },
+    {
+      name: "owner",
+      type: "TextInput",
+      title: "Owner",
+      inputType: "text",
+      placeholder: "owner",
+      // "isRequired": true,
+      sectionName: "General",
+    },
+    {
+      name: "last_stay_in_touch_request_date",
+      type: "dateInput",
+      title: "Last stay in touch request date",
+      inputType: "text",
+      placeholder: "last stay in touch request date",
+      sectionName: "General",
+    },
+
+    {
+      name: "department",
+      type: "TextInput",
+      title: "Department",
+      inputType: "text",
+      placeholder: "department",
+      sectionName: "General",
+    },
+    {
+      name: "funding_value_base_load_application_id",
+      type: "TextInput",
+      title: "Funding value base loan application ID",
+      inputType: "text",
+      placeholder: "funding base laon id",
+      sectionName: "General",
+    },
+
+    {
+      name: "category",
+      type: "dropdown",
+      title: "Category",
+      inputType: "text",
+      placeholder: "---none---",
+      dropdownData: [
+        { value: "advertisement_customer", label: "General" },
+        { value: "adwords_other", label: "OBC" },
+        { value: "event_employee", label: "Others" },
+        { value: "list_trade", label: "SC" },
+        { value: "partner_purchased", label: "ST" },
+      ],
+      sectionName: "General",
+    },
+    {
+      name: "ckyc_number",
+      type: "TextInput",
+      title: "CKYC number",
+      inputType: "text",
+      placeholder: "ckyc number",
+      sectionName: "General",
+    },
+
+    {
+      name: "minority_community",
+      type: "checkbox",
+      title: "Minority community",
+      sectionName: "General",
+    },
+    {
+      name: "last_stay_in_touch_stay_date",
+      type: "dateInput",
+      title: "Last stay in touch date",
+      inputType: "text",
+      placeholder: "Last stay in touch date",
+      sectionName: "General",
+    },
+
+    {
+      name: "email",
+      type: "TextInput",
+      title: "Email",
+      inputType: "text",
+      placeholder: "email",
+      // "isRequired": true,
+      sectionName: "Contact",
+    },
+    {
+      name: "alternate_email1",
+      type: "TextInput",
+      title: "Alternate Email 1",
+      inputType: "text",
+      placeholder: "email",
+      // "isRequired": true,
+      sectionName: "Contact",
+    },
+    {
+      name: "alternate_email2",
+      type: "TextInput",
+      title: "Alternate Email 2",
+      inputType: "text",
+      placeholder: "email",
+      // "isRequired": true,
+      sectionName: "Contact",
+    },
+    {
+      name: "email_opt_out",
+      type: "checkbox",
+      title: "Email opt out",
+      sectionName: "Contact",
+    },
+    {
+      name: "assistant",
+      type: "TextInput",
+      title: "Assistant",
+      inputType: "text",
+      placeholder: "assistant",
+      sectionName: "Contact",
+    },
+    {
+      name: "assistant_phone",
+      type: "TextInput",
+      title: "Assistant phone",
+      inputType: "numeric",
+      placeholder: "Phone number",
+      // "isRequired": true,
+      sectionName: "Contact",
+      validation: {
+        regex: /^\d{10}$/,
+        message: "Please enter a valid 10-digit phone number.",
+      },
+    },
+    {
+      name: "fax",
+      type: "TextInput",
+      title: "Fax",
+      inputType: "text",
+      placeholder: "fax",
+      // "isRequired": true,
+      sectionName: "Contact",
+    },
+    {
+      name: "fax_opt_out",
+      type: "checkbox",
+      title: "Fax opt out",
+      sectionName: "Contact",
+    },
+    {
+      name: "ebc_eligibility_date",
+      type: "dateInput",
+      title: "EBC eligibility date",
+      inputType: "text",
+      placeholder: "EBC eligibility date",
+      sectionName: "Contact",
+    },
+    {
+      name: "mobile",
+      type: "TextInput",
+      title: "Mobile",
+      inputType: "numeric",
+      placeholder: "mobile number",
+      // "isRequired": true,
+      sectionName: "Contact",
+      validation: {
+        regex: /^\d{10}$/,
+        message: "Please enter a valid 10-digit phone number.",
+      },
+    },
+    {
+      name: "phone",
+      type: "TextInput",
+      title: "Phone",
+      inputType: "numeric",
+      placeholder: "phone",
+      // "isRequired": true,
+      sectionName: "Contact",
+      validation: {
+        regex: /^\d{10}$/,
+        message: "Please enter a valid 10-digit phone number.",
+      },
+    },
+    {
+      name: "mobile",
+      type: "TextInput",
+      title: "Mobile",
+      inputType: "numeric",
+      placeholder: "mobile",
+      // "isRequired": true,
+      sectionName: "Contact",
+      validation: {
+        regex: /^\d{10}$/,
+        message: "Please enter a valid 10-digit phone number.",
+      },
+    },
+    {
+      name: "home_phone",
+      type: "TextInput",
+      title: "Home phone",
+      inputType: "numeric",
+      placeholder: "home number",
+      // "isRequired": true,
+      sectionName: "Contact",
+      validation: {
+        regex: /^\d{10}$/,
+        message: "Please enter a valid 10-digit phone number.",
+      },
+    },
+
+    {
+      name: "business_phone",
+      type: "TextInput",
+      title: "Business phone",
+      inputType: "numeric",
+      placeholder: "business number",
+      // "isRequired": true,
+      sectionName: "Contact",
+      validation: {
+        regex: /^\d{10}$/,
+        message: "Please enter a valid 10-digit phone number.",
+      },
+    },
+    {
+      name: "alternate_phone1",
+      type: "TextInput",
+      title: "Alternate phone1",
+      inputType: "numeric",
+      placeholder: "alternate phone",
+      // "isRequired": true,
+      sectionName: "Contact",
+      validation: {
+        regex: /^\d{10}$/,
+        message: "Please enter a valid 10-digit phone number.",
+      },
+    },
+    {
+      name: "alternate_phone2",
+      type: "TextInput",
+      title: "Alternate phone2",
+      inputType: "numeric",
+      placeholder: "alternate phone",
+      // "isRequired": true,
+      sectionName: "Contact",
+      validation: {
+        regex: /^\d{10}$/,
+        message: "Please enter a valid 10-digit phone number.",
+      },
+    },
+    {
+      name: "other_phone",
+      type: "TextInput",
+      title: "Other phone",
+      inputType: "numeric",
+      placeholder: "Phone number",
+      // "isRequired": true,
+      sectionName: "Contact",
+      validation: {
+        regex: /^\d{10}$/,
+        message: "Please enter a valid 10-digit phone number.",
+      },
+    },
+    {
+      name: "donot_call",
+      type: "checkbox",
+      title: "Donot Call",
+      sectionName: "Contact",
+    },
+    {
+      name: "contact_verified",
+      type: "checkbox",
+      title: "Contact Verified",
+      sectionName: "Contact",
+    },
+
+    {
+      "name":"first_name",
+      "type": "TextInput",
+      "title": "First name",
+      "inputType": "text",
+      "placeholder":"first name",
+      "sectionName":"Personal Details"
+    },
+    {
+      "name":"middle_name",
+      "type": "TextInput",
+      "title": "Middle name",
+      "inputType": "text",
+      "placeholder":"middle name",
+      "sectionName":"Personal Details"
+    },
+    {
+      "name":"last_name",
+      "type": "TextInput",
+      "title": "Last name",
+      "inputType": "text",
+      "placeholder":"last name",
+      "sectionName":"Personal Details"
+    },
+    {
+      name: "salutation",
+      type: "dropdown",
+      title: "Salutation",
+      inputType: "text",
+      placeholder: "Salutation",
+      dropdownData: [
+        { value: "Mr.", label: "Mr." },
+        { value: "Ms.", label: "Ms." },
+        { value: "Dr.", label: "Dr." },
+        { value: "prof", label: "Prof" },
+      ],
+      sectionName: "Personal Details",
+    },
+    {
+     name:'gender',
+      type: "RadioButton",
+      title: "Gender",
+      rdata: [
+        { label: "Male", id: "male" },
+        { label: "Female", id: "female" },
+        { label: "Other", id: "other" },
+      ],
+      sectionName: "Personal Details",
+      isRequired: true,
+    },
+    {
+      name: "marital_status",
+      type: "dropdown",
+      title: "Marital Status",
+      inputType: "text",
+      placeholder: "marital status",
+      dropdownData: [
+        { value: "Mr.", label: "married" },
+        { value: "Ms.", label: "unmarried" },
+       
+      ],
+      sectionName: "Personal Details",
+    },
+     {
       "name": "birth_date",
       "type": "dateInput",
-      "title": "Birth Date",
-      // "inputType": "date",
-      "placeholder": "Select date",
-      
+      "title": "Birth date",
+      "inputType": "text",
+      "placeholder":'birth date',
+      sectionName: "Personal Details",
     },
     {
-      "name": "email_opt_out",
-      "type": "checkbox",
-      "title": "Email opt out",
-      // "sectionName":"Contact"
+      "name": "religion",
+      "type": "dropdown",
+      "title": "Religion",
+      "inputType": "text",
+      "placeholder":"Industry",
+       "dropdownData" :[
+        { value: 'accounting', label: 'Islam' },
+        { value: 'brokers', label: 'Buddhism' },
+        { value: 'brokers', label: 'Sikhism' },
+        { value: 'brokers', label: 'Christianity' },
+        { value: 'brokers', label: 'Hinduism' },
+       ],
+       "sectionName":"Personal Details"
+    },
+     {
+      "name":"father_first_name",
+      "type": "TextInput",
+      "title": "Father first name",
+      "inputType": "text",
+      "placeholder":"father first name",
+      "sectionName":"Personal Details"
+    },
+    {
+      "name":"father_middle_name",
+      "type": "TextInput",
+      "title": "Father middle name",
+      "inputType": "text",
+      "placeholder":"father middle name",
+      "sectionName":"Personal Details"
+    },
+    {
+      "name":"father_last_name",
+      "type": "TextInput",
+      "title": "Father last name",
+      "inputType": "text",
+      "placeholder":"father last name",
+      "sectionName":"Personal Details"
+    },
+    {
+      "name":"mother_first_name",
+      "type": "TextInput",
+      "title": "Mother first name",
+      "inputType": "text",
+      "placeholder":"mother first name",
+      "sectionName":"Personal Details"
+    },
+    {
+      "name":"mother_middle_name",
+      "type": "TextInput",
+      "title": "Mother middle name",
+      "inputType": "text",
+      "placeholder":"mother middle name",
+      "sectionName":"Personal Details"
+    },
+    {
+      "name":"mother_last_name",
+      "type": "TextInput",
+      "title": "Mother last name",
+      "inputType": "text",
+      "placeholder":"mother last name",
+      "sectionName":"Personal Details"
+    },
+
+  {
+      "name":"spouse_first_name",
+      "type": "TextInput",
+      "title": "Spouse first name",
+      "inputType": "text",
+      "placeholder":"spouse first name",
+      "sectionName":"Personal Details"
+    },
+    {
+      "name":"spouse_middle_name",
+      "type": "TextInput",
+      "title": "Spouse middle name",
+      "inputType": "text",
+      "placeholder":"spouse middle name",
+      "sectionName":"Personal Details"
+    },
+    {
+      "name":"spouse_last_name",
+      "type": "TextInput",
+      "title": "Spouse last name",
+      "inputType": "text",
+      "placeholder":"spouse last name",
+      "sectionName":"Personal Details"
+    },
+    {
+      "name":"mailing_address",
+      "type": "TextInput",
+      "title": "Mailing address",
+      "inputType": "text",
+      "placeholder": "mailing address",
+      "sectionName":"Address Details"
 
     },
-    {
-      "name": "donot_call",
-      "type": "checkbox",
-      "title": "Do not call",
-      // "sectionName":"Contact"
+
+  {
+      "name":"other_address",
+      "type": "TextInput",
+      "title": "Other address",
+      "inputType": "text",
+      "placeholder": "other address",
+      "sectionName":"Address Details"
 
     },
-    {
-      "name": "owner",
-      "type": "TextInput",
-      "title": "Owner",
-      "inputType": "text",
-      "placeholder": "owner",
-      "dataType": "string"
-    },
-    {
-      "name": "last_stay_in_touch_request_date",
-      "type": "dateInput",
-      "title": "Last stay in touch request date",
-      // "inputType": "date",
-      "placeholder": "Select date",
-      
-    },
-    {
-      "name": "home_phone",
-      "type": "TextInput",
-      "title": "Home phone",
-      "inputType": "numeric",
-      "placeholder": "home phone",
-      "dataType": "string"
-    },
-    {
-      "name": "assistant",
-      "type": "dropdown",
-      "title": "Assistant",
-      "inputType": "text",
-      "placeholder": "Select account type",
-      "dropdownData": [
-        { "value": "saving", "label": "Boexo" },
-        { "value": "current", "label": "Boexo france" },
-        { "value": "current", "label": "Advance super routing" },
-        { "value": "current", "label": "Vector solutions" }
-      ],
-      "dataType": "string"
-    },
-    {
-      "name": "title",
-      "type": "TextInput",
-      "title": "Title | title",
-      "inputType": "text",
-      "dataType": "string"
-    },
-    {
-      "name": "preferred_language",
-      "type": "dropdown",
-      "title": "Language | preferred_language",
-      "inputType": "text",
-      "placeholder": "System(English)",
-      "dropdownData": [
-        { "value": "English", "label": "English" },
-        { "value": "Hindi", "label": "German" }
-      ],
-      "dataType": "string"
-    },
-    {
-      "name": "email",
-      "type": "TextInput",
-      "title": "Email | email",
-      "inputType": "text",
-      "placeholder": "Enter Email",
-      "dataType": "email"
-    },
-    {
-      "name": "business_phone",
-      "type": "TextInput",
-      "title": "Business phone | business_phone",
-      "inputType": "number",
-      "placeholder": "Enter the business number",
-      "dataType": "string"
-    },
-    {
-      "name": "mobile_phone",
-      "type": "TextInput",
-      "title": "Mobile phone | mobile_phone",
-      "inputType": "numeric",
-      "placeholder": "Enter the phone number",
-      "dataType": "number"
-    },
-    {
-      "name": "time_zone",
-      "type": "dropdown",
-      "title": "Time zone | time_zone",
-      "inputType": "text",
-      "placeholder": "System(America/Los_Angeles)",
-      "dropdownData": [
-        { "value": "Asia/taipei", "label": "Asia/taipei" },
-        { "value": "america/toronto", "label": "America/Toronto" },
-        { "value": "america/toronto", "label": "caneda/atlantic" },
-        { "value": "america/toronto", "label": "caneda central" },
-        { "value": "america/toronto", "label": "US/Arizona" },
-        { "value": "america/toronto", "label": "GMT" }
-      ],
-      "dataType": "string"
-    },
-    {
-      "name": "notification",
-      "type": "dropdown",
-      "title": "Notification | notification",
-      "inputType": "text",
-      "placeholder": "Enable | 2",
-      "dropdownData": [
-        { "value": "test-1", "label": "enable" },
-        { "value": "test-2", "label": "disable" }
-      ],
-      "dataType": "string"
-    }
-  ]
-  }
 
-
-  export const OpportunityData= {
-    "elements": [
-      {
-        "name": "account_name",
-        "type": "TextInput",
-        "title": "Account name",
-        "inputType": "text",
-        "placeholder": "Enter a/c name",
-        "dataType": "string"
-      },
-      
-      {
-        "name": "ammount",
-        "type": "TextInput",
-        "title": "Ammount",
-        "inputType": "text",
-        "placeholder": "Enter ammount",
-        "dataType": "number"
-      },
-      {
-        "name": "close_date",
-        "type": "dateInput",
-        "title": "Close Date",
-        "inputType": "date",
-        "placeholder": "Select date",
-        
-      },
-      {
-        "name": "description",
-        "type": "multilineInput",
-        "title": "Description",
-        "inputType": "text",
-        "dataType": "string"
-      },
-      {
-        "name": "stage",
-        "type": "TextInput",
-        "title": "Stage",
-        "inputType": "text",
-        "placeholder": "New",
-        "dataType": "string"
-      },
-      {
-        "name": "source",
-        "type": "dropdown",
-        "title": "Source",
-        "inputType": "text",
-        "placeholder": "---none---",
-        "dropdownData": [
-          { "value": "Asia/taipei", "label": "Direct" },
-          { "value": "america/toronto", "label": "Marketing" },
-          { "value": "america/toronto", "label": "Social Media Campaign" },
-          { "value": "america/toronto", "label": "Referral Program" },
-          { "value": "america/toronto", "label": "Email Newsletter" },
-  
-        ],
-        "dataType": "string"
-      },
-  
-      {
-        "name": "owner",
-        "type": "TextInput",
-        "title": "Owner",
-        "inputType": "text",
-        "placeholder": "User",
-        "value" :'User',
-        "dataType": "string"
-      },
-  
-      {
-        "name": "probability",
-        "type": "TextInput",
-        "title": "Probability",
-        "inputType": "text",
-        "placeholder": "Enter probability (0-100%)",
-        "dataType": "percentage"
-      }
-      
-    ]
-  }
+  ],
+};

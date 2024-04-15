@@ -1,0 +1,547 @@
+// import {
+//     View,
+//     Text,
+//     Button,
+//     TextInput,
+//     StyleSheet,
+//     Select,
+//     ScrollView,
+//     Image,
+//   } from "react-native";
+//   import React, { useState } from "react";
+//   import { formData } from "../../customComponents/formData";
+//   import { CustomInput } from "../../customComponents/customInput";
+//   import Collapsible from "react-native-collapsible";
+//   import { TouchableOpacity } from "react-native";
+//   import Dropdown from "../../customComponents/customDropdown";
+//   import RadioButton from "../../customComponents/customRadio";
+//   import { DropdownIcon, DropupIcon } from "../../assets/images";
+//   import { Ionicons } from "@expo/vector-icons";
+//   import { router } from "expo-router";
+//   import ArrowBack from "../../customComponents/arrowBack";
+//   import * as SecureStore from "expo-secure-store";
+//   import { CustomInputSocial } from "../../customComponents/customSocialField";
+//   import CustomSwitch from "../../customComponents/customSwitch";
+//   import CustomHeader from "../../customComponents/customLeadHeader";
+//   import CustomCheckbox from "../../customComponents/CustomCheckbox";
+//   import RNDateTimePicker from "@react-native-community/datetimepicker";
+//   import { PersonData } from "../../customComponents/formData";
+//   import { CorporateData } from "../../customComponents/formData";
+//   // Form component
+//   export default function CreateContact() {
+//     // const { control, handleSubmit, formState: { errors } } = useForm();
+//     const [isCollapsed, setIsCollapsed] = useState({
+//       'General': false,
+//       'Contact': false,
+//       "Personal Details": false,
+//       "Industry Details": false,
+//       "Address Details": false,
+//       "Other Information": false,
+//       // 'Social': false,
+//     });
+//     const [showDatePicker, setShowDatePicker] = useState(false);
+//     const [selectedDate, setSelectedDate] = useState(new Date());
+  
+  
+  
+//     const handleDateChange = (event, selectedDate) => {
+//       if (selectedDate) {
+//         setShowDatePicker(false);
+//         const formattedDate = selectedDate.toLocaleDateString("en-US");
+//         setSelectedDate(
+//           selectedDate instanceof Date ? selectedDate : new Date(selectedDate)
+//         );
+//         setFormValues({ ...formValues, dateInput: formattedDate });
+//       }
+//     };
+  
+//     const toggleSection = (sectionName) => {
+//       setIsCollapsed({
+//         ...isCollapsed,
+//         [sectionName]: !isCollapsed[sectionName],
+//       });
+//     };
+//     const [alternateEmailCount, setAlternateEmailCount] = useState(0);
+  
+//     const onAddAlternateEmail = () => {
+//       if (alternateEmailCount < 2) {
+//         setAlternateEmailCount((prevCount) => prevCount + 1);
+//       }
+//     };
+  
+//     const [validationErrors, setValidationErrors] = useState({});
+//     const [formValues, setFormValues] = useState([]);
+//     const [selectedValue, setSelectedValue] = useState(null);
+//     const [radioSelect, setradioSelect] = useState(null);
+//     const [phoneNumbers, setPhoneNumbers] = useState([""]);
+//     const [testValues, setTestValues] = useState([]);
+//     const [isAddButtonDisabled, setIsAddButtonDisabled] = useState(false);
+//     const [isSwitchOn, setIsSwitchOn] = useState(false);
+//     const [currentData, setCurrentData] = useState(formData);
+  
+//     const onSelectRadio = (item) => {
+//       setradioSelect(item.value);
+//       setFormValues((prevFormValues) => ({
+//         ...prevFormValues,
+//         ["gender"]: item.id,
+//       }));
+//       console.log("Selected value:", item.id);
+//     };
+  
+//     const validateForm = () => {
+//       const errors = {};
+//       formData.elements.forEach((element) => {
+//         // Check if the field is visible based on lead type
+//         if (
+//           element.sectionName === "General" &&
+//           formValues["lead_type"] === "company"
+//         ) {
+//           // Skip validation for hidden fields
+//           if (
+//             element.name === "salutation" ||
+//             element.name === "first_name" ||
+//             element.name === "last_name" ||
+//             element.name === "gender"
+//           ) {
+//             return;
+//           }
+//         }
+//         // Perform validation for visible fields
+//         if (element.isRequired && !formValues[element.name]) {
+//           errors[element.name] = `${element.title} is required`;
+//         }
+//         if (
+//           element.validation &&
+//           element.validation.regex &&
+//           !element.validation.regex.test(formValues[element.name])
+//         ) {
+//           errors[element.name] = element.validation.message;
+//         }
+//       });
+//       return errors;
+//     };
+  
+//     const goBack = () => {
+//       router.back();
+//     };
+  
+//     const handleSelect = (item) => {
+//       setSelectedValue(item);
+//       setFormValues({ ...formValues, selectedValue: item });
+//       console.log("Selected value:", item);
+//       if (item && item.value === "personObject") {
+//         setCurrentData(PersonData);
+//       } else if (item && item.value === "corporateObject") {
+//         setCurrentData(CorporateData);
+//       } else {
+//         setCurrentData(AccountData);
+//       }
+//     };
+  
+//     const onSubmit = async () => {
+//       const errors = validateForm();
+//       console.log("this is the form valuesss", formValues);
+  
+//       console.log("this is the form valuesss", formValues);
+//       const postUrl = `https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_account_c`;
+//       const token = SecureStore.getItem("token");
+//       const stoken = JSON.parse(token);
+//       const apiToken = stoken.accessToken;
+//       console.log(apiToken);
+  
+//       console.log("Form data", formValues);
+  
+//       try {
+//         console.log("in try");
+//         const response = await fetch(postUrl, {
+//           method: "POST",
+//           headers: {
+//             "Content-Type": "application/json",
+//             Authorization: "Bearer " + apiToken,
+//           },
+//           body: JSON.stringify(formValues),
+//         });
+  
+//         console.log("Successfully posted", response);
+//         router.replace("/DrawerScreens/leadList");
+//       } catch (err) {
+//         console.log("error");
+//       }
+//     };
+  
+//     const renderFormElements = (sectionName) => {
+//       return formData.elements
+//         .filter((element) => element.sectionName === sectionName)
+//         .map((element, index) => (
+//           <View key={index} style={styles.formElement}>
+//             {renderFormElement(element)}
+//             {validationErrors[element.name] && (
+//               <Text style={styles.error}>{validationErrors[element.name]}</Text>
+//             )}
+//           </View>
+//         ));
+//     };
+  
+//     const renderFormElement = (element) => {
+//       const handleSelect = (item) => {
+//         //setSelectedValue(item);
+//         setFormValues((prevFormValues) => ({
+//           ...prevFormValues,
+//           [element.name]: item.value,
+//         }));
+//         console.log(element.name, item.value);
+//       };
+//       const handleSwitch = (item) => {
+//         setFormValues((prevFormValues) => ({
+//           ...prevFormValues,
+//           [element.name]: item,
+//         }));
+//         console.log(element.name, item);
+//       };
+  
+//       const starMark = element.isRequired ? (
+//         <Text style={{ color: "red" }}> *</Text>
+//       ) : null;
+  
+//       if (
+//         element.sectionName === "General" &&
+//         formValues["lead_type"] === "company"
+//       ) {
+//         // If lead type is company and the element is related to personal information, skip rendering
+//         if (
+//           element.name === "salutation" ||
+//           element.name === "first_name" ||
+//           element.name === "last_name" ||
+//           element.name === "gender" ||
+//           element.name === "job_title"
+//         ) {
+//           return null;
+//         }
+//       }
+//       switch (element.type) {
+//         case "TextInput":
+//           return (
+//             <View>
+//               {/* <Text style={styles.label}>{element.title}{starMark} </Text> */}
+//               <CustomInput
+//                 key={element.name}
+//                 title={element.title}
+//                 placeholder={element.placeholder}
+//                 // control={control}
+//                 isRequired={element.isRequired}
+//                 inputType={element.inputType}
+//                 name={element.name}
+//                 rules={{
+//                   required: element.isRequired
+//                     ? `${element.title} is required`
+//                     : false,
+//                 }}
+//                 // errors={errors}
+//                 onChange={(value) =>
+//                   setFormValues({ ...formValues, [element.name]: value })
+//                 }
+//                 value={formValues[element.name] || ""}
+//               />
+//             </View>
+//           );
+//         case "email":
+//           return (
+//             <View key={element.name}>
+//               <Text style={styles.label}>
+//                 {element.title}
+//                 {starMark}
+//               </Text>
+//               <CustomInput
+//                 key={element.name}
+//                 // title={element.title}
+//                 placeholder={element.placeholder}
+//                 name={element.name}
+//                 onChange={(value) =>
+//                   setFormValues({ ...formValues, [element.name]: value })
+//                 }
+//                 value={formValues[element.name] || ""}
+//                 inputType={element.inputType}
+//               />
+//               {/* Render alternate email fields */}
+//               {[...Array(alternateEmailCount)].map((_, i) => (
+//                 <CustomInput
+//                   key={`alternate_email${i + 1}`}
+//                   title={`Alternate Email ${i + 1}`}
+//                   placeholder={`Alternate Email ${i + 1}`}
+//                   name={`alternate_email${i + 1}`}
+//                   onChange={(value) =>
+//                     setFormValues({
+//                       ...formValues,
+//                       [`alternate_email${i + 1}`]: value,
+//                     })
+//                   }
+//                   value={formValues[`alternate_email${i + 1}`] || ""}
+//                   inputType={element.inputType}
+//                 />
+//               ))}
+//               {/* Plus Button */}
+//               <TouchableOpacity onPress={onAddAlternateEmail}>
+//                 <Ionicons
+//                   name="add-circle"
+//                   size={24}
+//                   color="black"
+//                   style={styles.plusButton}
+//                 />
+//               </TouchableOpacity>
+//             </View>
+//           );
+  
+//         case "socialMediaInput":
+//           return (
+//             <CustomInputSocial
+//               key={element.name}
+//               title={element.title}
+//               placeholder={element.placeholder}
+//               // control={control}
+//               name={element.name}
+//               rules={{
+//                 required: element.isRequired
+//                   ? `${element.title} is required`
+//                   : false,
+//               }}
+//               // errors={errors}
+//               icon={element.logo}
+//               onChange={(value) =>
+//                 setFormValues({ ...formValues, [element.name]: value })
+//               }
+//               value={formValues[element.name] || ""}
+//             />
+//           );
+//         case "dropdown":
+//           return (
+//             <View>
+//               <View style={styles.inputContainer}>
+//                 <Text style={styles.label}>
+//                   {element.title}
+//                   {starMark}
+//                 </Text>
+//                 <Dropdown
+//                   style={styles.inputContainer}
+//                   label={selectedValue ? selectedValue.label : "Select"}
+//                   data={element.dropdownData}
+//                   value={selectedValue}
+//                   onSelect={handleSelect}
+//                 />
+//               </View>
+//             </View>
+//           );
+  
+//         case "RadioButton":
+//           return (
+//             <View style={styles.inputContainer}>
+//               <Text style={styles.label}>
+//                 {element.title}
+//                 {starMark}
+//               </Text>
+  
+//               <RadioButton
+//                 style={styles.inputContainer}
+//                 onSelect={onSelectRadio}
+//                 SelectedData={selectedValue}
+//                 disableLine={1}
+//                 value={selectedValue}
+//                 onChange={(onSelectRadio) =>
+//                   setFormValues({ ...formValues, [element.name]: onSelectRadio })
+//                 }
+//                 data={formData}
+//                 title={element.title}
+//                 // Pass the data prop here
+//               />
+//             </View>
+//           );
+  
+//         case "checkbox":
+//           return (
+//             <View style={styles.checkboxContainer}>
+//               <Text style={styles.label}>{element.title}</Text>
+//               <CustomCheckbox
+//                 isChecked={formValues[element.name] || false}
+//                 onChange={(value) =>
+//                   setFormValues({ ...formValues, [element.name]: value })
+//                 }
+//               />
+//             </View>
+//           );
+  
+//         case "dateInput":
+//           return (
+//             <View style={styles.inputContainer}>
+//               <Text style={styles.label}>{element.title}</Text>
+//               <View style={styles.dateInputContainer}>
+//                 <TouchableOpacity onPress={() => setShowDatePicker(true)}>
+//                   <Text style={styles.dateText}>
+//                     {formValues["dateInput"] || "Select Date"}
+//                   </Text>
+//                   <View style={styles.icon}>
+//                     <Ionicons name="calendar" size={20} color="black" />
+//                   </View>
+//                 </TouchableOpacity>
+//               </View>
+//               {showDatePicker && (
+//                 <RNDateTimePicker
+//                   value={selectedDate}
+//                   mode="date"
+//                   display="default"
+//                   onChange={handleDateChange}
+//                 />
+//               )}
+//             </View>
+//           );
+  
+//         case "Switch":
+//           return (
+//             <View style={styles.inputContainer}>
+//               <View style={styles.switchContainer}>
+//                 <Text style={styles.label}>{element.title}</Text>
+//                 <View style={styles.switch}>
+//                   <CustomSwitch onToggle={handleSwitch} />
+//                 </View>
+//               </View>
+//             </View>
+//           );
+//       }
+//     };
+  
+//     return (
+//       <View style={styles.cardContainer}>
+//         <View>
+//           <CustomHeader title={"Create Account"} onPress={goBack} />
+//         </View>
+//         <ScrollView>
+//           <View style={styles.card}>
+//             <View style={styles.section}>
+//               {Object.keys(isCollapsed).map((sectionName, index) => (
+//                 <View key={index} style={styles.sectionContainer}>
+//                   <TouchableOpacity onPress={() => toggleSection(sectionName)}>
+//                     <Text style={styles.sectionTitle}>{sectionName}</Text>
+//                     <Image
+//                       source={
+//                         isCollapsed[sectionName] ? DropdownIcon : DropupIcon
+//                       }
+//                       resizeMode="contain"
+//                       style={styles.dropdownIcon}
+//                     />
+//                   </TouchableOpacity>
+//                   <Collapsible collapsed={isCollapsed[sectionName]}>
+//                     {renderFormElements(sectionName)}
+//                   </Collapsible>
+//                 </View>
+//               ))}
+//             </View>
+  
+//             <View style={styles.bgColor}>
+//               <Button title="Submit" onPress={onSubmit} color="grey" />
+//             </View>
+  
+//             <View style={styles.buttonContainer}></View>
+//           </View>
+//         </ScrollView>
+//       </View>
+//     );
+//   }
+  
+//   const styles = StyleSheet.create({
+//     cardContainer: {
+//       flex: 1,
+//       paddingHorizontal: 5,
+//       paddingTop: 2,
+//       paddingBottom: 15,
+//       backgroundColor: "#d1e0ed",
+//     },
+//     card: {
+//       backgroundColor: "#FFFFFF", // White card background
+//       borderRadius: 2,
+//       padding: 20,
+//       shadowColor: "#000000",
+//       shadowOpacity: 0.2,
+//       shadowRadius: 5,
+//       elevation: 5, // For Android shadow
+//     },
+//     container: {
+//       flex: 1,
+//       paddingHorizontal: 20,
+//       paddingTop: 20,
+//       backgroundColor: "#cad5e8",
+//     },
+//     buttonContainer: {
+//       flex: 1,
+//       flexDirection: "row", // Align items horizontally
+//       alignItems: "flex-end", // Align items to the start (left)
+//       justifyContent: "flex-end", // Align items to the start (left)
+//       padding: 10,
+//     },
+//     section: {
+//       marginBottom: 20,
+//     },
+//     sectionTitle: {
+//       fontSize: 20, // Increase font size for emphasis
+//       fontWeight: "bold",
+//       marginBottom: 15, // Increase margin for better separation
+//       color: "black", // Use a darker color for better readability
+  
+//       paddingBottom: 5, // Add padding to space out the underline from the text
+//     },
+//     inputContainer: {
+//       marginBottom: 8,
+//     },
+//     backButton: {
+//       alignSelf: "flex-end", // Align button to the start (left)
+//       marginRight: "auto",
+//       color: "#023B5E",
+//       // Push button to the leftmost corner
+//     },
+//     dropdownIcon: {
+//       width: 20,
+//       height: 20,
+//       position: "absolute",
+//       right: 10,
+//       top: 9,
+//     },
+//     label: {
+//       marginBottom: 3,
+//       fontSize: 12,
+//       fontWeight: "bold",
+//     },
+//     input: {
+//       borderWidth: 1,
+//       borderColor: "#ccc",
+//       borderRadius: 5,
+//       backgroundColor: "white",
+//       paddingVertical: 10,
+//       paddingHorizontal: 11,
+//       fontSize: 16,
+//     },
+//     error: {
+//       color: "red",
+//       marginBottom: 3,
+//       fontSize: 12,
+//     },
+//     switch: {
+//       alignItems: "flex-start",
+//     },
+//     checkboxContainer: {
+//       flexDirection: "row", // Make children elements align horizontally
+//       alignItems: "center", // Align children elements vertically
+//       // Add any additional styling you may need
+//       gap: 10,
+//       marginBottom: 15,
+//     },
+//     label: {
+//       // Add styles for your label
+//     },
+//     bgColor: {
+//       backgroundColor: "lightblue",
+//     },
+//     dateInputContainer: {
+//       borderWidth: 1,
+//       borderColor: "lightgrey",
+//       padding: 10,
+//       marginBottom: 5,
+//     },
+//   });
+  

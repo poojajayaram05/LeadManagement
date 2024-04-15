@@ -31,8 +31,8 @@ import { CorporateData } from "../../customComponents/formData";
 export default function CreateLead() {
   // const { control, handleSubmit, formState: { errors } } = useForm();
   const [isCollapsed, setIsCollapsed] = useState({
-    General: false,
-    Contact: false,
+    'General': false,
+    'Contact': false,
     "Personal Details": false,
     "Industry Details": false,
     "Address Details": false,
@@ -42,13 +42,7 @@ export default function CreateLead() {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  // const handleDateChange = (event, selectedDate) => {
-  //   if (selectedDate) {
-  //     setShowDatePicker(false);
-  //     setSelectedDate(selectedDate instanceof Date ? selectedDate : new Date(selectedDate));
-  //     setFormValues({ ...formValues, "selectedDate": selectedDate });
-  //   }
-  // };
+
 
   const handleDateChange = (event, selectedDate) => {
     if (selectedDate) {
@@ -156,7 +150,7 @@ export default function CreateLead() {
     console.log(apiToken);
 
     console.log("Form data", formValues);
-
+   
     try {
       console.log("in try");
       const response = await fetch(postUrl, {

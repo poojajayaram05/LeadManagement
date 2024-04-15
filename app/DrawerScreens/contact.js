@@ -1,375 +1,529 @@
+
 import {
-    View,
-    Text,
-    StyleSheet,
-    ScrollView,
-    Image,
-    Button,
-    Pressable,
-    TextInput
-  } from "react-native";
-  import {
-    GestureHandlerRootView,
-    TouchableOpacity,
-  } from "react-native-gesture-handler";
-  import React, { useState } from "react";
-  import Collapsible from "react-native-collapsible";
-  import Dropdown from "../../customComponents/customDropdown";
-  import { DropdownIcon, DropupIcon } from "../../assets/images";
-  import { CustomInput } from "../../customComponents/customInput";
-  import RNDateTimePicker from "@react-native-community/datetimepicker";
-  import { Ionicons } from "@expo/vector-icons";
-  import MultilineTextInput from "../../customComponents/customMultilineInput";
-  import CustomSwitch from "../../customComponents/customSwitch";
-  import ImageUpload from "../../customComponents/imageUpload";
-  import { ContactData } from "../../customComponents/formData";
-//   import RNDateTimePicker from "@react-native-community/datetimepicker";
+  View,
+  Text,
+  Button,
+  TextInput,
+  StyleSheet,
+  Select,
+  ScrollView,
+  Image,
+} from "react-native";
+import React, { useState } from "react";
+import { ContactData } from "../../customComponents/formData";
+import { CustomInput } from "../../customComponents/customInput";
+import Collapsible from "react-native-collapsible";
+import { TouchableOpacity } from "react-native";
+import Dropdown from "../../customComponents/customDropdown";
+import RadioButton from "../../customComponents/customRadio";
+import { DropdownIcon, DropupIcon } from "../../assets/images";
+import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
+import ArrowBack from "../../customComponents/arrowBack";
+import * as SecureStore from "expo-secure-store";
+import { CustomInputSocial } from "../../customComponents/customSocialField";
+import CustomSwitch from "../../customComponents/customSwitch";
+import CustomHeader from "../../customComponents/customLeadHeader";
+import CustomCheckbox from "../../customComponents/CustomCheckbox";
+import RNDateTimePicker from "@react-native-community/datetimepicker";
+import { PersonData } from "../../customComponents/formData";
+import { CorporateData } from "../../customComponents/formData";
+
+export default function CreateContact() {
+  const [isCollapsed, setIsCollapsed] = useState({
+    'General': false,
+    'Contact': false,
+    "Personal Details": false,
+    "Address Details": false,
+  });
+
+
   
-  export default function CreateContact() {
-    const [isSection1Collapsed, setIsSection1Collapsed] = useState(false);
-    const [isSection2Collapsed, setIsSection2Collapsed] = useState(false);
-    const [isSection3Collapsed, setIsSection3Collapsed] = useState(false);
-    const [formValues, setFormValues] = useState([]);
-    const [selectedValue, setSelectedValue] = useState(null);
-    const [showTimeModal, setShowTimeModal] = useState(false);
-    
-  
-    // const handleCancelClicked = () => {
-    //   setIsModalVisible(false);
-    // };
-  
-  
-  
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const handleDateChange = (event, selectedDate) => {
+    if (selectedDate) {
+      setShowDatePicker(false);
+      const formattedDate = selectedDate.toLocaleDateString("en-US");
+      setSelectedDate(
+        selectedDate instanceof Date ? selectedDate : new Date(selectedDate)
+      );
+      setFormValues({ ...formValues, dateInput: formattedDate });
+    }
+  };
+
+  const toggleSection = (sectionName) => {
+    setIsCollapsed({
+      ...isCollapsed,
+      [sectionName]: !isCollapsed[sectionName],
+    });
+  };
+  const [alternateEmailCount, setAlternateEmailCount] = useState(0);
+
+  const onAddAlternateEmail = () => {
+    if (alternateEmailCount < 2) {
+      setAlternateEmailCount((prevCount) => prevCount + 1);
+    }
+  };
+
+  const [validationErrors, setValidationErrors] = useState({});
+  const [formValues, setFormValues] = useState([]);
+  const [selectedValue, setSelectedValue] = useState(null);
+  const [radioSelect, setradioSelect] = useState(null);
+  const [phoneNumbers, setPhoneNumbers] = useState([""]);
+  const [testValues, setTestValues] = useState([]);
+  const [isAddButtonDisabled, setIsAddButtonDisabled] = useState(false);
+  const [isSwitchOn, setIsSwitchOn] = useState(false);
+  const [currentData, setCurrentData] = useState(ContactData);
+
+  const onSelectRadio = (item) => {
+    setradioSelect(item.value);
+    setFormValues((prevFormValues) => ({
+      ...prevFormValues,
+      ["gender"]: item.id,
+    }));
+    console.log("Selected value:", item.id);
+  };
+
+  const validateForm = () => {
+    const errors = {};
+    ContactData.elements.forEach((element) => {
+      if (
+        element.sectionName === "General" &&
+        formValues["lead_type"] === "company"
+      ) {
+        if (
+          element.name === "salutation" ||
+          element.name === "first_name" ||
+          element.name === "last_name" ||
+          element.name === "gender"
+        ) {
+          return;
+        }
+      }
+      if (element.isRequired && !formValues[element.name]) {
+        errors[element.name] = `${element.title} is required`;
+      }
+      if (
+        element.validation &&
+        element.validation.regex &&
+        !element.validation.regex.test(formValues[element.name])
+      ) {
+        errors[element.name] = element.validation.message;
+      }
+    });
+    return errors;
+  };
+
+  const goBack = () => {
+    router.back();
+  };
+
+  const handleSelect = (item) => {
+    setSelectedValue(item);
+    setFormValues({ ...formValues, selectedValue: item });
+    console.log("Selected value:", item);
+    if (item && item.value === "personObject") {
+      setCurrentData(PersonData);
+    } else if (item && item.value === "corporateObject") {
+      setCurrentData(CorporateData);
+    } else {
+      setCurrentData(AccountData);
+    }
+  };
+
+  const onSubmit = async () => {
+    const errors = validateForm();
+    console.log("this is the form valuesss", formValues);
+
+    console.log("this is the form valuesss", formValues);
+    const postUrl = `https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_contact_c`;
+    const token = SecureStore.getItem("token");
+    const stoken = JSON.parse(token);
+    const apiToken = stoken.accessToken;
+    console.log(apiToken);
+
+    console.log("Form data", formValues);
+
+    try {
+      console.log("in try");
+      const response = await fetch(postUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + apiToken,
+        },
+        body: JSON.stringify(formValues),
+      });
+
+      console.log("Successfully posted", response);
+      router.replace("/DrawerScreens/leadList");
+    } catch (err) {
+      console.log("error");
+    }
+  };
+
+  const renderFormElements = (sectionName) => {
+    return ContactData.elements
+      .filter((element) => element.sectionName === sectionName)
+      .map((element, index) => (
+        <View key={index} style={styles.formElement}>
+          {renderFormElement(element)}
+          {validationErrors[element.name] && (
+            <Text style={styles.error}>{validationErrors[element.name]}</Text>
+          )}
+        </View>
+      ));
+  };
+
+  const renderFormElement = (element) => {
     const handleSelect = (item) => {
-      setSelectedValue(item);
+      //setSelectedValue(item);
       setFormValues((prevFormValues) => ({
         ...prevFormValues,
-        selectedValue: item,
+        [element.name]: item.value,
       }));
-      console.log("Selected value:", item);
+      console.log(element.name, item.value);
+    };
+    const handleSwitch = (item) => {
+      setFormValues((prevFormValues) => ({
+        ...prevFormValues,
+        [element.name]: item,
+      }));
+      console.log(element.name, item);
     };
 
-    const handleDateChange = (event, selectedDate) => {
-        if (selectedDate) {
-          setShowDatePicker(false);
-          const formattedDate = selectedDate.toLocaleDateString('en-US');
-          setSelectedDate(selectedDate instanceof Date ? selectedDate : new Date(selectedDate));
-          setFormValues({ ...formValues, "dateInput": formattedDate });
-        }
-      };
-  
-  
-    const onSubmit = async () => {
-      console.log("Form data", formValues);
-    };
-    const toggleSection = (section) => {
-      switch (section) {
-        case "section1":
-          setIsSection1Collapsed(!isSection1Collapsed);
-          break;
-        case "section2":
-          setIsSection2Collapsed(!isSection2Collapsed);
-          break;
-        case "section3":
-          setIsSection3Collapsed(!isSection3Collapsed);
-          break;
-        default:
-          break;
+    const starMark = element.isRequired ? (
+      <Text style={{ color: "red" }}> *</Text>
+    ) : null;
+
+    if (
+      element.sectionName === "General" &&
+      formValues["lead_type"] === "company"
+    ) {
+      if (
+        element.name === "salutation" ||
+        element.name === "first_name" ||
+        element.name === "last_name" ||
+        element.name === "gender" ||
+        element.name === "job_title"
+      ) {
+        return null;
       }
-    };
-  
-    const renderFormElement = (element) => {
-      switch (element.type) {
-        case "TextInput":
-          return (
-            <View>
+    }
+    switch (element.type) {
+      case "TextInput":
+        return (
+          <View>
+            <CustomInput
+              key={element.name}
+              title={element.title}
+              placeholder={element.placeholder}
+              isRequired={element.isRequired}
+              inputType={element.inputType}
+              name={element.name}
+              rules={{
+                required: element.isRequired
+                  ? `${element.title} is required`
+                  : false,
+              }}
+              onChange={(value) =>
+                setFormValues({ ...formValues, [element.name]: value })
+              }
+              value={formValues[element.name] || ""}
+            />
+          </View>
+        );
+      case "email":
+        return (
+          <View key={element.name}>
+            <Text style={styles.label}>
+              {element.title}
+              {starMark}
+            </Text>
+            <CustomInput
+              key={element.name}
+              placeholder={element.placeholder}
+              name={element.name}
+              onChange={(value) =>
+                setFormValues({ ...formValues, [element.name]: value })
+              }
+              value={formValues[element.name] || ""}
+              inputType={element.inputType}
+            />
+            {[...Array(alternateEmailCount)].map((_, i) => (
               <CustomInput
-                key={element.name}
-                title={element.title}
-                inputType={element.inputType}
-                placeholder={element.placeholder}
-                // control={control}
-                name={element.name}
-                rules={{
-                  required: element.isRequired
-                    ? `${element.title} is required`
-                    : false,
-                }}
-                // errors={errors}
+                key={`alternate_email${i + 1}`}
+                title={`Alternate Email ${i + 1}`}
+                placeholder={`Alternate Email ${i + 1}`}
+                name={`alternate_email${i + 1}`}
                 onChange={(value) =>
-                  setFormValues({ ...formValues, [element.name]: value })
+                  setFormValues({
+                    ...formValues,
+                    [`alternate_email${i + 1}`]: value,
+                  })
                 }
-                value={formValues[element.name] || ""}
+                value={formValues[`alternate_email${i + 1}`] || ""}
+                inputType={element.inputType}
               />
-            </View>
-          );
-        case "dropdown":
-          return (
-            <View>
-              <View style={styles.inputContainer}>
-                <Text style={styles.label}>{element.title}</Text>
-  
-                <Dropdown
-                  style={styles.inputContainer}
-                  label={selectedValue ? selectedValue.label : element.placeholder}
-                  data={element.dropdownData}
-                  value={selectedValue}
-                  onSelect={handleSelect}
-                />
-              </View>
-            </View>
-          );
-  
-        case "multilineInput":
-          return (
+            ))}
+            <TouchableOpacity onPress={onAddAlternateEmail}>
+              <Ionicons
+                name="add-circle"
+                size={24}
+                color="black"
+                style={styles.plusButton}
+              />
+            </TouchableOpacity>
+          </View>
+        );
+
+      case "socialMediaInput":
+        return (
+          <CustomInputSocial
+            key={element.name}
+            title={element.title}
+            placeholder={element.placeholder}
+            // control={control}
+            name={element.name}
+            rules={{
+              required: element.isRequired
+                ? `${element.title} is required`
+                : false,
+            }}
+            icon={element.logo}
+            onChange={(value) =>
+              setFormValues({ ...formValues, [element.name]: value })
+            }
+            value={formValues[element.name] || ""}
+          />
+        );
+      case "dropdown":
+        return (
+          <View>
             <View style={styles.inputContainer}>
-              <Text style={styles.label}>Enter a note</Text>
-              {/* <MultiSelectExample/> */}
-              <MultilineTextInput />
-            </View>
-          );
-        case "productDropdown":
-          return (
-            <View style={styles.inputContainer}>
-              <Text style={styles.label}>Select Lead</Text>
-              <LDropdown
-                label="Select Lead"
-                data={leadData.map((lead) => {
-                  console.log(lead.id); // Log lead object
-                  return {
-                    value: lead.id,
-                    label: `${lead.id} - ${lead.firstname} ${lead.lastname}`,
-                  };
-                })}
+              <Text style={styles.label}>
+                {element.title}
+                {starMark}
+              </Text>
+              <Dropdown
+                style={styles.inputContainer}
+                label={selectedValue ? selectedValue.label : "Select"}
+                data={element.dropdownData}
+                value={selectedValue}
                 onSelect={handleSelect}
               />
             </View>
-          );
-        case "switch":
-          return (
-            <View style={styles.switchContainer}>
-              <Text style={styles.labelswitch}>Active</Text>
-              <View style={styles.switch}>
-                <CustomSwitch />
-              </View>
-            </View>
-          );
-  
-        case "imageUpload":
-          return (
-            <View>
-              <Text style={styles.label}>Product Images</Text>
-              <ImageUpload />
-            </View>
-          );
-  
-        case "durationInput":
-          return (
-            <View style={styles.inputContainer}>
-              <Text style={styles.label}>{element.title}</Text>
-              <View style={styles.durationContainer}>
-                <TextInput
-                  style={[styles.input, styles.durationInput]}
-                  keyboardType="numeric"
-                  placeholder="Hours"
-                  onChangeText={(text) => handleDurationChange(text, "hours")}
-                />
-                <TextInput
-                  style={[styles.input, styles.durationInput]}
-                  keyboardType="numeric"
-                  placeholder="Minutes"
-                  onChangeText={(text) => handleDurationChange(text, "minutes")}
-                />
-                <TextInput
-                  style={[styles.input, styles.durationInput]}
-                  keyboardType="numeric"
-                  placeholder="Seconds"
-                  onChangeText={(text) => handleDurationChange(text, "seconds")}
-                />
-              </View>
-            </View>
-          );
+          </View>
+        );
 
-          case "dateInput":
-            return (
-              <View style={styles.inputContainer}>
-                <Text style={styles.label}>{element.title}</Text>
-                <View style={styles.dateInput}>
-                  <TouchableOpacity onPress={() => setShowDatePicker(true)}>
-                    <Text style={styles.dateText}>
-                      {formValues["dateInput"] || "Select Date"}
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-                {showDatePicker && (
-                  <RNDateTimePicker
-                    value={selectedDate}
-                    mode="date"
-                    display="default"
-                    onChange={handleDateChange}
-                  />
-                )}
-              </View>
-            );
-  
-        case "timeInput":
-          return (
-            <View>
-              <Pressable onPress={() => setShowTimeModal(true)}>
+      case "RadioButton":
+        return (
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>
+              {element.title}
+              {starMark}
+            </Text>
+
+            <RadioButton
+              style={styles.inputContainer}
+              onSelect={onSelectRadio}
+              SelectedData={selectedValue}
+              disableLine={1}
+              value={selectedValue}
+              onChange={(onSelectRadio) =>
+                setFormValues({ ...formValues, [element.name]: onSelectRadio })
+              }
+              data={ContactData}
+              title={element.title}
+            />
+          </View>
+        );
+
+      case "checkbox":
+        return (
+          <View style={styles.checkboxContainer}>
+            <Text style={styles.label}>{element.title}</Text>
+            <CustomCheckbox
+              isChecked={formValues[element.name] || false}
+              onChange={(value) =>
+                setFormValues({ ...formValues, [element.name]: value })
+              }
+            />
+          </View>
+        );
+
+      case "dateInput":
+        return (
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>{element.title}</Text>
+            <View style={styles.dateInputContainer}>
+              <TouchableOpacity onPress={() => setShowDatePicker(true)}>
                 <Text style={styles.dateText}>
-                  {"Select time "}
-                  <Ionicons name="time" size={20} color="black" />
+                  {formValues["dateInput"] || "Select Date"}
                 </Text>
-              </Pressable>
-              {showTimeModal && (
-                <RNDateTimePicker
-                  value={new Date()}
-                  mode="time"
-                  display="default"
-                  onChange={(event, selectedTime) => {
-                    if (selectedTime) {
-                      setShowTimeModal(false);
-                      //setFromTime(selectedTime);
-                    }
-                  }}
-                />
-              )}
+                <View style={styles.icon}>
+                  <Ionicons name="calendar" size={20} color="black" />
+                </View>
+              </TouchableOpacity>
             </View>
-          );
-      }
-    };
-    return (
-      <View style={styles.cardContainer}>
-        <ScrollView>
-          <GestureHandlerRootView>
-            <View style={styles.card}>
-              <View style={styles.section}>
-                <TouchableOpacity onPress={() => toggleSection("section1")}>
-                  <Text style={styles.sectionTitle}>Contact</Text>
-                  <Text></Text>
-  
+            {showDatePicker && (
+              <RNDateTimePicker
+                value={selectedDate}
+                mode="date"
+                display="default"
+                onChange={handleDateChange}
+              />
+            )}
+          </View>
+        );
+
+      case "Switch":
+        return (
+          <View style={styles.inputContainer}>
+            <View style={styles.switchContainer}>
+              <Text style={styles.label}>{element.title}</Text>
+              <View style={styles.switch}>
+                <CustomSwitch onToggle={handleSwitch} />
+              </View>
+            </View>
+          </View>
+        );
+    }
+  };
+
+  return (
+    <View style={styles.cardContainer}>
+      <View>
+        <CustomHeader title={"Create Contact"} onPress={goBack} />
+      </View>
+      <ScrollView>
+        <View style={styles.card}>
+          <View style={styles.section}>
+            {Object.keys(isCollapsed).map((sectionName, index) => (
+              <View key={index} style={styles.sectionContainer}>
+                <TouchableOpacity onPress={() => toggleSection(sectionName)}>
+                  <Text style={styles.sectionTitle}>{sectionName}</Text>
                   <Image
-                    source={isSection1Collapsed ? DropdownIcon : DropupIcon}
+                    source={
+                      isCollapsed[sectionName] ? DropdownIcon : DropupIcon
+                    }
                     resizeMode="contain"
                     style={styles.dropdownIcon}
                   />
                 </TouchableOpacity>
-                <Collapsible collapsed={isSection1Collapsed}>
-                  {ContactData.elements.slice(0, 11).map((element, index) => (
-                    <View key={index} style={styles.inputContainer}>
-                      {renderFormElement(element)}
-                    </View>
-                  ))}
+                <Collapsible collapsed={isCollapsed[sectionName]}>
+                  {renderFormElements(sectionName)}
                 </Collapsible>
               </View>
-              <Button title="Submit" onPress={onSubmit} color="#023B5E" />
-              <View style={styles.buttonContainer}></View>
-            </View>
-          </GestureHandlerRootView>
-        </ScrollView>
-      </View>
-    );
-  }
-  
-  const styles = StyleSheet.create({
-    cardContainer: {
-      flex: 1,
-      paddingHorizontal: 20,
-      paddingTop: 20,
-      paddingBottom: 15,
-  
-      backgroundColor: "#d1e0ed",
-    },
-    card: {
-      backgroundColor: "#FFFFFF", 
-      borderRadius: 10,
-      padding: 20,
-      shadowColor: "#000000",
-      shadowOpacity: 0.2,
-      shadowRadius: 5,
-      elevation: 5, 
-    },
-    container: {
-      flex: 1,
-      paddingHorizontal: 20,
-      paddingTop: 20,
-      backgroundColor: "#cad5e8",
-    },
-    section: {
-      marginBottom: 20,
-    },
-    sectionTitle: {
-      fontSize: 20, 
-      fontWeight: "bold",
-      marginBottom: 15, 
-      color: "#333", 
-  
-      paddingBottom: 5,
-    },
-    inputContainer: {
-      marginBottom: 8,
-    },
-    buttonContainer: {
-      flex: 1,
-      flexDirection: "row", 
-      alignItems: "flex-end", 
-      justifyContent: "flex-end",
-      padding: 10,
-    },
-    backButton: {
-      alignSelf: "flex-end", 
-      marginRight: "auto",
-      color: "#023B5E",
-    },
-    dropdownIcon: {
-      width: 20,
-      height: 20,
-      position: "absolute",
-      right: 10,
-      top: 9,
-    },
-    label: {
-      marginBottom: 3,
-      fontSize: 12,
-      fontWeight: "bold",
-    },
-    input: {
-      borderWidth: 1,
-      borderColor: "#ccc",
-      borderRadius: 5,
-      backgroundColor: "white",
-      paddingVertical: 10,
-      paddingHorizontal: 15,
-      fontSize: 16,
-    },
-    error: {
-      color: "red",
-      fontSize: 12,
-    },
-    dateInput: {
-      flexDirection: "row",
-      alignItems: "center",
-      borderWidth: 1,
-      borderColor: "#ccc",
-      borderRadius: 5,
-      paddingVertical: 10,
-      paddingHorizontal: 15,
-    },
-    dateText: {
-      flex: 1,
-      fontSize: 16,
-    },
-    calendarIcon: {
-      width: 20,
-      height: 20,
-      marginLeft: 10,
-    },
-    switch: {
-      alignItems: "flex-start",
-      marginTop: -10,
-    },
-    switchContainer: {
-      flexDirection: "row",
-    },
-  });
-  
+            ))}
+          </View>
+
+          <View style={styles.bgColor}>
+            <Button title="Submit" onPress={onSubmit} color="grey" />
+          </View>
+
+          <View style={styles.buttonContainer}></View>
+        </View>
+      </ScrollView>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  cardContainer: {
+    flex: 1,
+    paddingHorizontal: 5,
+    paddingTop: 2,
+    paddingBottom: 15,
+    backgroundColor: "#d1e0ed",
+  },
+  card: {
+    backgroundColor: "#FFFFFF", 
+    borderRadius: 2,
+    padding: 20,
+    shadowColor: "#000000",
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    elevation: 5, 
+  },
+  container: {
+    flex: 1,
+    paddingHorizontal: 20,
+    paddingTop: 20,
+    backgroundColor: "#cad5e8",
+  },
+  buttonContainer: {
+    flex: 1,
+    flexDirection: "row", 
+    alignItems: "flex-end", 
+    justifyContent: "flex-end",
+    padding: 10,
+  },
+  section: {
+    marginBottom: 20,
+  },
+  sectionTitle: {
+    fontSize: 20, 
+    fontWeight: "bold",
+    marginBottom: 15,
+    color: "black", 
+
+    paddingBottom: 5, 
+  },
+  inputContainer: {
+    marginBottom: 8,
+  },
+  backButton: {
+    alignSelf: "flex-end", 
+    marginRight: "auto",
+    color: "#023B5E",
+  },
+  dropdownIcon: {
+    width: 20,
+    height: 20,
+    position: "absolute",
+    right: 10,
+    top: 9,
+  },
+  label: {
+    marginBottom: 3,
+    fontSize: 12,
+    fontWeight: "bold",
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 5,
+    backgroundColor: "white",
+    paddingVertical: 10,
+    paddingHorizontal: 11,
+    fontSize: 16,
+  },
+  error: {
+    color: "red",
+    marginBottom: 3,
+    fontSize: 12,
+  },
+  switch: {
+    alignItems: "flex-start",
+  },
+  checkboxContainer: {
+    flexDirection: "row", 
+    alignItems: "center", 
+    gap: 10,
+    marginBottom: 15,
+  },
+  label: {
+  },
+  bgColor: {
+    backgroundColor: "lightblue",
+  },
+  dateInputContainer: {
+    borderWidth: 1,
+    borderColor: "lightgrey",
+    padding: 10,
+    marginBottom: 5,
+  },
+});

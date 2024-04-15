@@ -1,105 +1,3 @@
-// import React, { useState, useEffect } from "react";
-// import {
-//   View,
-//   Text,
-//   TouchableOpacity,
-//   Button,
-//   Image,
-//   ScrollView,
-// } from "react-native";
-// import { router } from "expo-router";
-
-// //import {handleNewButtonClick} from 'react-native-elements';
-// // import { starTwo,starrOne } from '../assets/images';
-// import { profile } from "../assets/images";
-// import BadgeLead from "./badgeLead";
-// import { FontAwesome } from "@expo/vector-icons";
-// import useIdStore from "../app/leadStore";
-// import { set } from "zod";
-// import { Ionicons } from "@expo/vector-icons";
-// import { avatarPic } from "../assets/images";
-// import Colors from "@/constants/Colors";
-
-// const LeadItem = ({ firstName, lastName, accountName, accountNumber }) => {
-//   const [showSecondImage, setShowSecondImage] = useState(false);
-//   const [selectedStar, setSelectedStar] = useState(false);
-//   const { account_number, setAccountNumber } = useIdStore();
-//   const [showDropdown, setShowDropdown] = useState(false);
-
-//   const goToEditLead = () => {
-//     setLeadId(Id);
-//     router.navigate("formComponents/editLead");
-
-//     closeDropdown();
-//   };
-//   const toggleDropdown = () => {
-//     setShowDropdown(!showDropdown);
-//   };
-//   const closeDropdown = () => {
-//     setShowDropdown(false);
-//   };
-
-//   const handleNavigateToLeadDetails = () => {
-//     router.navigate(`/leadDetailScreens/accountInfo`);
-//     setAccountNumber(accountNumber);
-//   };
-//   const handleChangeStatus = () => {
-//     router.navigate("/formComponents/changeStatus");
-//     setLeadId(number);
-
-//     closeDropdown();
-//   };
-
-//   const handleConvertLead = () => {
-//     closeDropdown();
-//   };
-
-//   const handleReassign = () => {
-//     closeDropdown();
-//   };
-
-//   return (
-//     <TouchableOpacity onPress={handleNavigateToLeadDetails}>
-//       <View style={{ flex: 1 }}>
-//         <View style={styles.item}>
-//           <View style={styles.avatarContainer}>
-//             <Image source={avatarPic} style={styles.avatar} />
-//           </View>
-//           <View style={styles.textContainer}>
-//             <Text style={styles.title}>{accountName}</Text>
-//             <Text style={styles.subtitle}>{`${firstName} ${lastName}`}</Text>
-//             <Text style={styles.subtitle}>{accountNumber}</Text>
-//             <View style={styles.badgeBox}></View>
-//           </View>
-//           <View style={styles.actionsContainer}>
-//             <TouchableOpacity
-//               onPress={toggleDropdown}
-//               style={styles.dropdownIcon}
-//             >
-//               <Ionicons name="ellipsis-vertical" size={24} color="black" />
-//             </TouchableOpacity>
-//           </View>
-//         </View>
-//         {showDropdown && (
-//           <View style={styles.dropdownContainer}>
-//             <ScrollView style={styles.dropdownScrollView}>
-//               <View style={styles.dropdownMenu}>
-//                 <TouchableOpacity onPress={() => handleConvertLead()}>
-//                   <Text style={styles.dropdownMenuItem}>Convert Lead</Text>
-//                 </TouchableOpacity>
-//                 <TouchableOpacity onPress={() => handleReassign()}>
-//                   <Text style={styles.dropdownMenuItem}>Reassign</Text>
-//                 </TouchableOpacity>
-//               </View>
-//             </ScrollView>
-//           </View>
-//         )}
-//       </View>
-//     </TouchableOpacity>
-//   );
-// };
-
-
 
 import React, { useState, useEffect } from "react";
 import {
@@ -193,11 +91,7 @@ const LeadItem = ({ firstName, lastName, accountName, accountNumber, phone, emai
                             <Ionicons name="mail" size={24} color="black" />
                         </TouchableOpacity>
                     </View>
-                  {/* <TouchableOpacity onPress={toggleDropdown} style={styles.dropdownIcon}>
-                      <Ionicons name="ellipsis-vertical" size={24} color="black" />
-                  </TouchableOpacity> */}
               </View>
-
           <View style={styles.actionsContainer}>
             <TouchableOpacity
               onPress={toggleDropdown}
