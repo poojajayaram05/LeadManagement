@@ -1,4 +1,4 @@
-import { View, Text, Button, TextInput, StyleSheet, Select, ScrollView, Image, Pressable} from 'react-native'
+import { View, Text, Button, TextInput, StyleSheet, Select, ScrollView, Image, Pressable, Alert} from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { formData } from '../../customComponents/formData'
 import { CustomInput } from '../../customComponents/customInput';
@@ -30,6 +30,8 @@ export default function CreateContact() {
        Address:false,
        Personal:false
       })
+
+      console.disableYellowBox = true;
 
       const toggleSection = (sectionName) => {
         setIsCollapsed({ ...isCollapsed, [sectionName]: !isCollapsed[sectionName] });
@@ -154,7 +156,7 @@ const onSelectRadio = (item) => {
           })
 
           console.log("Successfully posted",response);
-          
+          Alert.alert("Successfully Submitted!")
           router.replace('/DrawerScreens/contacts')
         }
         
@@ -264,10 +266,10 @@ const onSelectRadio = (item) => {
                         <View>
                         <Text style={styles.label}>{element.title}</Text>
                       <TextInput
- style={[styles.input, styles.multilineInput]} // Add styles for multiline input
- onChangeText={(value) => setFormValues({ ...formValues, [element.name]: value } )}
- value={formValues[element.name] || ''}
- placeholder={element.placeholder}
+                       style={[styles.input, styles.multilineInput]} // Add styles for multiline input
+                    onChangeText={(value) => setFormValues({ ...formValues, [element.name]: value } )}
+                    value={formValues[element.name] || ''}
+                 placeholder={element.placeholder}
  multiline={true} // Set multiline prop to true
  numberOfLines={4} // Specify the number of lines you want to display
 />
@@ -275,7 +277,7 @@ const onSelectRadio = (item) => {
                     );
             case 'dropdown':
                 return (
-                    <View>
+                   
                     <View style = {styles.inputContainer}>
                     <Text style={styles.label}>{element.title}{starMark}</Text>
                     <SelectList 
@@ -295,7 +297,7 @@ const onSelectRadio = (item) => {
                 save="key"
                 onSelect={() => handleSelect(selectedValue) } // Log selected values
             />
-                    </View>
+                   
                     {validationErrors[element.name] && <Text style={styles.errorMessage}>{validationErrors[element.name]}</Text>}
                     </View>
                 );
@@ -347,28 +349,26 @@ const onSelectRadio = (item) => {
                         case 'Date':
                 return (
                   <View style={styles.inputContainer}>
-                    <Text style={styles.label}>{element.title}</Text>
-                    <Pressable onPress={() => setShowCalendarModal(true)}>
-                      <View style={styles.dateInput}>
-                        <Text style={styles.dateText}>
+                  <Text style={styles.label}>{element.title}{starMark}</Text>
+                  <Pressable onPress={() => setShowCalendarModal(true)}>
+                    <View style={styles.dateInput}>
+                      <Text style={styles.dateText}>
                         {formValues[element.name] ? extractDate(formValues[element.name]) : 'Select date '}
-                        <View style={styles.icon}>
-                          <Ionicons name='calendar' size={20} color='black' />
-                          </View>
-                        </Text>
-                      </View>
-                    </Pressable>
-                    {/* Calendar Modal */}
-                    {showCalendarModal && (
-                      <RNDateTimePicker
-                        value={selectedDate || new Date()}
-                        mode="date"
-                        display="default"
-                        onChange={(event, selectedDate) => handleDateChange(selectedDate, element)}
-                      />
-                    )}
-                   {validationErrors[element.name] && <Text style={styles.errorMessage}>{validationErrors[element.name]}</Text>}
-                  </View>
+                      </Text>
+                      <Ionicons name='calendar' size={20} color='black' style={styles.icon} />
+                    </View>
+                  </Pressable>
+                  {/* Calendar Modal */}
+                  {showCalendarModal && (
+                    <RNDateTimePicker
+                      value={selectedDate || new Date()}
+                      mode="date"
+                      display="default"
+                      onChange={(event, selectedDate) => handleDateChange(selectedDate, element)}
+                    />
+                  )}
+                  {validationErrors[element.name] && <Text style={styles.errorMessage}>{validationErrors[element.name]}</Text>}
+                </View>
                   
                 );
                         case 'TextInputO':
@@ -503,14 +503,14 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     dateInput: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 12,
-        paddingVertical: 10,
-        paddingHorizontal: 15,
-      },
+      flexDirection: 'row',
+      alignItems: 'center',
+      borderWidth: 1,
+      borderColor: '#ccc',
+      borderRadius: 12,
+      paddingVertical: 10,
+      paddingHorizontal: 15,
+    },
     error: {
         color: 'red',
         marginBottom:3,
@@ -518,6 +518,9 @@ const styles = StyleSheet.create({
     },
     switch:{
       alignItems:'flex-start'
+      },
+      icon: {
+        marginLeft: 'auto', // Align the icon to the rightmost edge of its container
       },
     
 });

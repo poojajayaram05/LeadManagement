@@ -1,4 +1,4 @@
-import { View, Text, Button, TextInput, StyleSheet, Select, ScrollView, Image,  Pressable} from 'react-native'
+import { View, Text, Button, TextInput, StyleSheet, Select, ScrollView, Image,  Pressable, Alert} from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { formData } from '../../customComponents/formData'
 import { CustomInput } from '../../customComponents/customInput';
@@ -54,7 +54,7 @@ useEffect(() => {
     fetchData();
 }, []);
  
- 
+console.disableYellowBox = true; 
  
 function extractDate(timestamp) {
     const dateObject = new Date(timestamp);
@@ -151,7 +151,7 @@ function extractDate(timestamp) {
           })
  
           console.log("Successfully posted",response);
-         
+          Alert.alert("Successfully Submitted!")
           router.replace('/DrawerScreens/deals')
         }
             catch(err){

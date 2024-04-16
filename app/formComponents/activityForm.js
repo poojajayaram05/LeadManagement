@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView, Image, Button, Pressable, TextInput } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, Image, Button, Pressable, TextInput, Alert } from 'react-native'
 import { GestureHandlerRootView, TouchableOpacity } from 'react-native-gesture-handler';
 import React, {useState, useEffect} from 'react'
 //mport { taskFormData } from '../../../customComponents/formData';
@@ -246,6 +246,7 @@ const onSubmit = async () => {
           })
 
           console.log("Successfully posted",response);
+          Alert.alert("Successfully Submitted!")
           router.back();
         }
         

@@ -172,7 +172,7 @@ const sectionDetails = [
         { label: 'Owner:', value: 'owner' },
         { label: 'Description:', value: 'description' },
         { label: 'Next Step:', value: 'next_step' },
-        { label: 'Status:', value: 'states' },
+  
         { label: 'Sales Pipeline:', value: 'sales_pipeline' },
         { label: 'Sales Stage:', value: 'sales_stage' },
         { label: 'Category:', value: 'category' },

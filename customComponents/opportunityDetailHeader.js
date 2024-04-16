@@ -98,7 +98,7 @@ const fdata = extractDate(forecast_close_date);
         </View>
         <View style={styles.tempContainer}>
           <Text style={styles.tempHeading}>Value</Text>
-          <Text style={styles.tempText}>{opportunity_value}</Text>
+          <Text style={styles.tempText}>INR {opportunity_value}</Text>
         </View>
       </View>
     </View>

@@ -39,7 +39,7 @@ const AccountCard = ({ firstName, lastName, accountName, accountNumber, phone, e
   };
 
   const handleNavigateToLeadDetails = () => {
-    router.navigate(`/leadDetailScreens/accountInfo`);
+    router.navigate(`/formComponents/accountDetailPage`);
     setAccountNumber(accountNumber);
   };
 

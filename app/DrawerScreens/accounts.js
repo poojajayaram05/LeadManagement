@@ -20,11 +20,11 @@ const ListOfAccounts = () => {
     { key: "allLeads", title: "All Leads" },
     { key: "starredLeads", title: "Starred Leads" },
   ]);
-  const goToLeadCreate = () => {
-    console.log("inside navigation");
-    router.navigate("/DrawerScreens/createLead");
-    console.log("after natigation");
-  };
+  // const goToLeadCreate = () => {
+  //   console.log("inside navigation");
+  //   router.navigate("/DrawerScreens/createLead");
+  //   console.log("after natigation");
+  // };
   const [index, setIndex] = useState(0);
   const [starredLeads, setStarredLeads] = useState([]);
   const[accountData, setAccountData]=useState([])

@@ -10,6 +10,8 @@ function AddAccounts() {
   const [selected, setSelected] = useState("");
   const[accountsData, setAccountsData]= useState([]);
 
+  console.disableYellowBox = true;
+
 
   useEffect(() => {
     const fetchData = async () => {

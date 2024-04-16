@@ -1,4 +1,4 @@
-import { View, Text, Button, TextInput, StyleSheet, Select, ScrollView, Image} from 'react-native'
+import { View, Text, Button, TextInput, StyleSheet, Select, ScrollView, Image, Alert} from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { formData } from '../../customComponents/formData'
 import { CustomInput } from '../../customComponents/customInput';
@@ -149,7 +149,7 @@ const onSelectRadio = (item) => {
           })
 
           console.log("Successfully posted",response);
-          
+          Alert.alert("Successfully Submitted!")
           router.replace('/DrawerScreens/leadList')
         }
         
