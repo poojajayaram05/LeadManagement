@@ -101,11 +101,11 @@ if (isLoading) {
     <TouchableOpacity>
       
    <LeadItem
-      FirstName={item.first_name}
-      LastName={item.last_name}
+      FirstName={item.firstname}
+      LastName={item.lastname}
       Email={item.email}
-      Phone={item.mobile_phone}
-      lead_status={item.lead_status}
+      Phone={item.mobilephone}
+      lead_status={item.leadstatus}
       number={item.number}
       qualification={item.qualification}
       gender={item.gender}
