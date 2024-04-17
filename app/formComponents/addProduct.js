@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView, Image, Button, Pressable, Alert } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, Image, Button, Pressable, Alert, LogBox } from 'react-native'
 import { GestureHandlerRootView, TouchableOpacity } from 'react-native-gesture-handler';
 import React, {useState, useEffect} from 'react'
 //mport { taskFormData } from '../../../customComponents/formData';
@@ -49,6 +49,8 @@ export default function CreateProduct() {
   const handleCancelClicked = () => {
       setIsModalVisible(false);
   };
+
+  LogBox.ignoreAllLogs();
  
   const formatTime = (time) => {
     const options = {

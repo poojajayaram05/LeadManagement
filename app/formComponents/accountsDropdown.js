@@ -5,7 +5,7 @@ import { FetchAccounts } from '../service/fetchAccounts';
 
 
 
-function AddAccounts() {
+function AddAccounts({ onSelectAccount }) {
 
   const [selected, setSelected] = useState("");
   const[accountsData, setAccountsData]= useState([]);
@@ -31,7 +31,8 @@ function AddAccounts() {
 
 const accountNames = accountsData.map(account => ({
     key: account.account_number, 
-    label: account.account_name 
+    label: account.account_name ,
+    id:account.sys_id
   }));
 
   
@@ -41,7 +42,12 @@ const accountNames = accountsData.map(account => ({
     <ModalSelector
                     data={accountNames||''}
                     initValue="Select Accounts"
-                    onChange={(option)=>{ console.log(`${option.label} (${option.key})`) }} />
+                    onChange={(option) => {
+                      console.log(`${option.label} (${option.key})`);
+                      onSelectAccount(option.label, option.id); 
+                      // Call the callback function with the selected account name
+                    }}
+                     />
   )
 
 };

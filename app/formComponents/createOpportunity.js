@@ -1,4 +1,4 @@
-import { View, Text, Button, TextInput, StyleSheet, Select, ScrollView, Image,  Pressable, Alert} from 'react-native'
+import { View, Text, Button, TextInput, StyleSheet, Select, ScrollView, Image,  Pressable, Alert,LogBox} from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { formData } from '../../customComponents/formData'
 import { CustomInput } from '../../customComponents/customInput';
@@ -105,6 +105,9 @@ function extractDate(timestamp) {
   const goBack=()=>{
     router.back();
   }
+
+  LogBox.ignoreAllLogs();
+  
  
   useEffect(() => {
     const getUsername = async () => {
@@ -182,6 +185,13 @@ function extractDate(timestamp) {
           setFormValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item}));
           console.log(element.name, item);
         }
+
+        const onSelectAccount = (accountName, sys_id) => {
+          setFormValues(prevFormValues => ({
+            ...prevFormValues,
+            [element.name]: sys_id // Update the accountName field in formValues
+          }));
+        };
  
         const starMark = element.isRequired ? <Text style={{ color: 'red' }}> *</Text> : null;
  
@@ -259,14 +269,14 @@ function extractDate(timestamp) {
                     return (
                       <View>
                         <Text style={styles.label}>Accounts</Text>
-                        <AddAccounts/>
+                        <AddAccounts onSelectAccount={onSelectAccount}/>
                         </View>
                     );
                     case 'Pdropdown':
                         return (
                         <View>
                           <Text style={styles.label}> Contacts</Text>
-                          <AddContacts/>
+                          <AddContacts onSelectAccount={onSelectAccount}/>
                           </View>
                       );
                 case 'TextInputP':
@@ -324,8 +334,10 @@ function extractDate(timestamp) {
                             key={element.name}
                             title={element.title}
                             placeholder={'INR'}
+                            rules={{ required: element.isRequired ? `${element.title} is required` : false }}
                             onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
                             value={formValues[element.name]}
+                            isRequired={element.isRequired}
                            
                         />
       {/* <Text style={styles.inrText}>INR</Text> */}
@@ -338,35 +350,33 @@ function extractDate(timestamp) {
                     case 'Date':
                         return (
                           <View style={styles.inputContainer}>
-                            <Text style={styles.label}>{element.title}</Text>
-                            <Pressable onPress={() => setShowCalendarModal(true)}>
-                              <View style={styles.dateInput}>
-                                <Text style={styles.dateText}>
+                          <Text style={styles.label}>{element.title}{starMark}</Text>
+                          <Pressable onPress={() => setShowCalendarModal(true)}>
+                            <View style={styles.dateInput}>
+                              <Text style={styles.dateText}>
                                 {formValues[element.name] ? extractDate(formValues[element.name]) : 'Select date '}
-                                <View style={styles.icon}>
-                                  <Ionicons name='calendar' size={20} color='black' />
-                                  </View>
-                                </Text>
-                              </View>
-                            </Pressable>
-                            {/* Calendar Modal */}
-                            {showCalendarModal && (
-                              <RNDateTimePicker
-                                value={selectedDate || new Date()}
-                                mode="date"
-                                display="default"
-                                onChange={(event, selectedDate) => handleDateChange(selectedDate, element)}
-                              />
-                            )}
-                           {/* {validationErrors[element.name] && <Text style={styles.errorMessage}>{validationErrors[element.name]}</Text>} */}
-                          </View>
+                              </Text>
+                              <Ionicons name='calendar' size={20} color='black' style={styles.icon} />
+                            </View>
+                          </Pressable>
+                          {/* Calendar Modal */}
+                          {showCalendarModal && (
+                            <RNDateTimePicker
+                              value={selectedDate || new Date()}
+                              mode="date"
+                              display="default"
+                              onChange={(event, selectedDate) => handleDateChange(selectedDate, element)}
+                            />
+                          )}
+                          {/* {validationErrors[element.name] && <Text style={styles.errorMessage}>{validationErrors[element.name]}</Text>} */}
+                        </View>
                          
                         );
             case 'dropdown':
                 return (
                     <View>
                     <View style = {styles.inputContainer}>
-                <Text style={styles.label}>{element.title}</Text>
+                <Text style={styles.label}>{element.title}{starMark}</Text>
                
                               <SelectList
                 boxStyles={{
@@ -430,127 +440,123 @@ function extractDate(timestamp) {
 }
  
 const styles = StyleSheet.create({
-    cardContainer: {
-        flex: 1,
-        paddingHorizontal: 5,
-        paddingTop: 2,
-        paddingBottom:15,
-        backgroundColor: '#d1e0ed'
-    },
-    card: {
-        backgroundColor: '#FFFFFF', // White card background
-        borderRadius: 2,
-        padding: 20,
-        shadowColor: '#000000',
-        shadowOpacity: 0.2,
-        shadowRadius: 5,
-        elevation: 5, // For Android shadow
-    },
-    container: {
-        flex: 1,
-        paddingHorizontal: 20,
-        paddingTop: 20,
-        backgroundColor:'#cad5e8'
-    },
-    buttonContainer:{
-    flex: 1,
-    flexDirection: 'row', // Align items horizontally
-    alignItems: 'flex-end', // Align items to the start (left)
-    justifyContent: 'flex-end', // Align items to the start (left)
-    padding: 10,
-    },
-    section: {
-        marginBottom: 20,
-    },
-    sectionTitle: {
-        fontSize: 20, // Increase font size for emphasis
-        fontWeight: 'bold',
-        marginBottom: 15, // Increase margin for better separation
-        color: 'black', // Use a darker color for better readability
-       
-        paddingBottom: 5, // Add padding to space out the underline from the text
-    },
-    inputContainer: {
-        marginBottom:8
-    },
-    backButton: {
-        alignSelf: 'flex-end', // Align button to the start (left)
-        marginRight: 'auto',
-        color:'#023B5E'
-         // Push button to the leftmost corner
-      },
-    dropdownIcon: {
-        width: 20,
-        height: 20,
-        position: 'absolute',
-        right: 10,
-        top: 9,
-    },
-    label: {
-        marginBottom: 3,
-        fontSize: 12,
-        fontWeight: 'bold',
-    },
-   
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 3,
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    fontSize: 16,
+  cardContainer: {
+      flex: 1,
+      paddingHorizontal: 5,
+      paddingTop: 2,
+      paddingBottom:15,
+      backgroundColor: '#d1e0ed'
   },
-  multilineInput: {
-    minHeight: 100, // Adjust the minimum height as needed
-    textAlignVertical: 'top', // Set the text alignment to start from the top
+  card: {
+      backgroundColor: '#FFFFFF', // White card background
+      borderRadius: 2,
+      padding: 20,
+      shadowColor: '#000000',
+      shadowOpacity: 0.2,
+      shadowRadius: 5,
+      elevation: 5, // For Android shadow
   },
-    input: {
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 5,
-        backgroundColor:'white',
-        paddingVertical: 10,
-        paddingHorizontal: 11,
-        fontSize: 16,
+  container: {
+      flex: 1,
+      paddingHorizontal: 20,
+      paddingTop: 20,
+      backgroundColor:'#cad5e8'
+  },
+  buttonContainer:{
+  flex: 1,
+  flexDirection: 'row', // Align items horizontally
+  alignItems: 'flex-end', // Align items to the start (left)
+  justifyContent: 'flex-end', // Align items to the start (left)
+  padding: 10,
+  },
+  section: {
+      marginBottom: 20,
+  },
+  sectionTitle: {
+      fontSize: 20, // Increase font size for emphasis
+      fontWeight: 'bold',
+      marginBottom: 15, // Increase margin for better separation
+      color: 'black', // Use a darker color for better readability
+     
+      paddingBottom: 5, // Add padding to space out the underline from the text
+  },
+  inputContainer: {
+      marginBottom:8,
+      // borderRadius:12,
+  },
+  backButton: {
+      alignSelf: 'flex-end', // Align button to the start (left)
+      marginRight: 'auto',
+      color:'#023B5E'
+       // Push button to the leftmost corner
     },
-    error: {
-        color: 'red',
-        marginBottom:3,
-        fontSize: 12,
-    },
-    switch:{
-      alignItems:'flex-start'
-      },
+  dropdownIcon: {
+      width: 20,
+      height: 20,
+      position: 'absolute',
+      right: 10,
+      top: 9,
+  },
+  label: {
+      marginBottom: 3,
+      fontSize: 12,
+      fontWeight: 'bold',
+      borderRadius:12,
+  },
  
-      inputContainer: {
-        marginBottom: 8,
-      },
-      dateInput: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 5,
-        paddingVertical: 10,
-        paddingHorizontal: 15,
-      },
-      dateText: {
-        flex: 1,
-        fontSize: 14,
-      },
-      calendarIcon: {
-        width: 20,
-        height: 20,
-        marginLeft: 10,
-      },
-      errorMessage: {
-        color: 'red',
-        fontSize:12
-        // Add any other necessary styles
+input: {
+  borderWidth: 1,
+  borderColor: '#ccc',
+  borderRadius: 12,
+  paddingVertical: 10,
+  paddingHorizontal: 10,
+  fontSize: 16,
+},
+multilineInput: {
+  minHeight: 100, // Adjust the minimum height as needed
+  textAlignVertical: 'top', // Set the text alignment to start from the top
+},
+  input: {
+      borderWidth: 1,
+      borderColor: '#ccc',
+      borderRadius: 12,
+      backgroundColor:'white',
+      paddingVertical: 10,
+      paddingHorizontal: 11,
+      fontSize: 16,
+  },
+  error: {
+      color: 'red',
+      marginBottom:3,
+      fontSize: 12,
+  },
+  switch:{
+    alignItems:'flex-start'
     },
-    icon:{
-      paddingRight:180,
+
+    dateInput: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      borderWidth: 1,
+      borderColor: '#ccc',
+      borderRadius: 12,
+      paddingVertical: 10,
+      paddingHorizontal: 15,
+      justifyContent: 'space-between',
     },
-   
+    dateText: {
+      flex: 1,
+      fontSize: 14,
+    },
+    calendarIcon: {
+      width: 20,
+      height: 20,
+      marginLeft: 10, // Adjust the margin to create space between the date text and the icon
+    },
+    errorMessage: {
+      color: 'red',
+      fontSize:12
+      // Add any other necessary styles
+  },
 });
  

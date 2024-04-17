@@ -13,7 +13,7 @@ import React, { useState, useEffect } from "react";
 import { accountFormData } from "../../customComponents/formData";
 import { CustomInput } from "../../customComponents/customInput";
 import Collapsible from "react-native-collapsible";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, LogBox } from "react-native";
 import Dropdown from "../../customComponents/customDropdown";
 import RadioButton from "../../customComponents/customRadio";
 import { DropdownIcon, DropupIcon } from "../../assets/images";
@@ -91,6 +91,8 @@ const[Username, setUsername]=useState('');
 
     getUsername();
 }, []);
+
+LogBox.ignoreAllLogs();
 
 
   const onSelectRadio = (item) => {
@@ -290,7 +292,9 @@ const[Username, setUsername]=useState('');
         return (
           <View>
           <View style = {styles.inputContainer}>
-          <Text style={{fontWeight:'bold'}}>{element.title}{starMark}</Text>
+          <Text style={{ marginBottom: 3,
+    fontSize: 12,
+    fontWeight: "bold"}}>{element.title}{starMark}</Text>
           <SelectList 
       boxStyles={{
           borderWidth: 1,
@@ -374,7 +378,9 @@ const[Username, setUsername]=useState('');
           case "dateInput":
                       return (
                         <View style={styles.inputContainer}>
-                          <Text style={{fontWeight:'bold'}}>{element.title}{starMark}</Text>
+                          <Text style={{ marginBottom: 3,
+    fontSize: 12,
+    fontWeight: "bold"}}>{element.title}{starMark}</Text>
                           <View style={styles.dateInputContainer}>
                             <TouchableOpacity onPress={() => setShowDatePicker(true)}>
                               <View style={{ flexDirection: 'row', alignItems: 'center' }}>

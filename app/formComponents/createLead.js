@@ -1,4 +1,4 @@
-import { View, Text, Button, TextInput, StyleSheet, Select, ScrollView, Image, Alert} from 'react-native'
+import { View, Text, Button, TextInput, StyleSheet, Select, ScrollView, Image, Alert, LogBox} from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { formData } from '../../customComponents/formData'
 import { CustomInput } from '../../customComponents/customInput';
@@ -41,7 +41,7 @@ export default function CreateLead() {
         
       };
 
-      console.disableYellowBox = true;
+      
 
       
     
@@ -65,6 +65,7 @@ export default function CreateLead() {
 // };
 
 
+LogBox.ignoreAllLogs();
 
 const onSelectRadio = (item) => {
     setradioSelect(item.value);

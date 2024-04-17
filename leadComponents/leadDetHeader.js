@@ -216,7 +216,7 @@ const LeadDet = () => {
 
   const leadId = useIdStore((state) => state.number);
   const lead = leadData.find((lead) => lead.number === leadId);
-  const { first_name, last_name, email, qualification, lead_status, number, gender, mobile_phone} = lead || {};
+  const { firstname, lastname, email, qualification, leadstatus, number, gender, mobilephone} = lead || {};
  
   const handleBack = () => {
     router.navigate('/DrawerScreens/leadList');
@@ -252,9 +252,9 @@ const handleEmail = () => {
       </TouchableOpacity>
  
       <View style={styles.userDetailsContainer}>
-        <InitialsAvatar name={`${first_name} ${last_name}`} />
+        <InitialsAvatar name={`${firstname} ${lastname}`} />
         <View style={styles.userInfo}>
-          <Text style={styles.name}>{first_name} {last_name}</Text>
+          <Text style={styles.name}>{firstname} {lastname}</Text>
           {/* <Text style={styles.title}>{jobTitle}</Text> */}
         </View>
       </View>
@@ -262,7 +262,7 @@ const handleEmail = () => {
       <View style={styles.lifestyleContainer}>
         <View style={styles.lifecycleStage}>
           <Text style={styles.lifecycleHeading}>Status</Text>
-          <Text style={styles.lifecycleText}>{lead_status}</Text>
+          <Text style={styles.lifecycleText}>{leadstatus}</Text>
         </View>
         <View style={styles.tempContainer}>
           <Text style={styles.tempHeading}>Qualification</Text>

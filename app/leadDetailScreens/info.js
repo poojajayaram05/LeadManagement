@@ -66,9 +66,9 @@ const sectionDetails = [
         id: 'contactMethods',
         fields: [
           { label: 'Preferred Method To Contact:', value: 'preffered_method' },
-        //   { label: 'Whatsapp Number:', value: 'Whatsapp' },
-        //   { label: 'Qualification:', value: 'qualification' },
-        //   { label: 'Status:', value: 'lead_status' }
+          { label: 'Whatsapp:', value: 'whatsapp' },
+          { label: 'Email:', value: 'u_email' },
+          { label: 'Phone:', value: 'phone' }
         ]
       },
       {

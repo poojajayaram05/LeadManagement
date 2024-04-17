@@ -1,4 +1,4 @@
-import { View, Text, Button, TextInput, StyleSheet, Select, ScrollView, Image, Pressable, Alert} from 'react-native'
+import { View, Text, Button, TextInput, StyleSheet, Select, ScrollView, Image, Pressable, Alert, LogBox} from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { formData } from '../../customComponents/formData'
 import { CustomInput } from '../../customComponents/customInput';
@@ -92,6 +92,7 @@ const onSelectRadio = (item) => {
     });
     return errors;
   };
+  LogBox.ignoreAllLogs();
 
 
   const goBack=()=>{
@@ -195,6 +196,14 @@ const onSelectRadio = (item) => {
                 setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: extractDate(selectedDate) }));
               }
             }
+            const onSelectAccount = (accountName, sys_id) => {
+              console.log("account sysid", sys_id);
+              setFormValues(prevFormValues => ({
+                ...prevFormValues,
+                [element.name]: sys_id // Update the accountName field in formValues
+              }));
+            };
+          
         const handleSelect = (item) => {
             //setSelectedValue(item);
             setFormValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item }));
@@ -341,7 +350,7 @@ const onSelectRadio = (item) => {
                               
                               <Text style={styles.label}>{element.title}</Text>
                           
-                                <AddAccounts/>
+                                <AddAccounts onSelectAccount={onSelectAccount}/>
     
                               </View>
                        

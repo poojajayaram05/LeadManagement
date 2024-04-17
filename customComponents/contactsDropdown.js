@@ -5,7 +5,7 @@ import { FetchContacts } from '../app/service/fetchContacts';
 
 
 
-function AddContacts() {
+function AddContacts({onSelectAccount}) {
 
   const [selected, setSelected] = useState("");
   const[contactsData, setContactsData]= useState([]);
@@ -31,7 +31,8 @@ function AddContacts() {
 
 const contactNames = contactsData.map(contact => ({
     key: contact.number, 
-    label: contact.first_name + ' '+ contact.last_name
+    label: contact.first_name + ' '+ contact.last_name,
+    id:contact.sys_id
   }));
 
   
@@ -41,7 +42,11 @@ const contactNames = contactsData.map(contact => ({
     <ModalSelector
                     data={contactNames||''}
                     initValue="Select Contacts"
-                    onChange={(option)=>{ console.log(`${option.label} (${option.key})`) }} />
+                    onChange={(option) => {
+                      console.log(`${option.label} (${option.key})`);
+                      onSelectAccount(option.label,option.id); 
+                      // Call the callback function with the selected account name
+                    }} />
   )
 
 };

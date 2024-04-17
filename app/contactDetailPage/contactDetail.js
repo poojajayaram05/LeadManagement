@@ -16,6 +16,7 @@ const sectionDetails = [
       id: 'leadInfo',
       fields: [
         {label: 'Title', value: 'title' },
+        { label: 'Account Name:', value: 'account_name' },
         { label: 'Description:', value: 'description' },
         // { label: 'Account:', value: 'account' },
         { label: 'Birthdate:', value: 'birthdate' },
@@ -31,6 +32,7 @@ const sectionDetails = [
         { label: 'Name:', value: 'name' },
         { label: 'Owner:', value: 'owner' },
         { label: 'Marital Status:', value: 'marital_status' },
+        
       ]
     },
     {
@@ -62,6 +64,11 @@ const sectionDetails = [
           { label: 'Father First Name:', value: 'father_first_name' },
           { label: 'Father Last Name:', value: 'father_last_name' },
           { label: 'Father Middle Name:', value: 'father_mddle_name' },
+    
+ { label: 'Mother First Name:', value: 'mother_first_name' },
+          { label: 'Mother Last Name:', value: 'mother_last_name' },
+          { label: 'Mother Middle Name:', value: 'mother_mddle_name' },
+          { label: 'Religion:', value: 'religion' },
         ]
       },
 

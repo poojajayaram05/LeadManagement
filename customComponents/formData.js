@@ -161,6 +161,7 @@ export const opportunityFormData = {
         "regex":  /^100$|^\d{0,2}(\.\d{1,2})?%?$/,
         "message": "Please enter percentage"
       },
+      "isRequired":true,
     },
  
     {
@@ -2027,6 +2028,32 @@ export const contactFormData={
       "sectionName":"General" 
     },
     {
+      "name": "first_name",
+      "type": "TextInput",
+      "title": "First Name",
+      "placeholder": "First Name",
+      "sectionName":"General",
+      "isRequired":true
+    },
+    {
+      "name": "middle_name",
+      "type": "TextInput",
+      "inputType":"text",
+      "title": "Enter Middle Name",
+      "placeholder": "Enter Middle Name",
+      "sectionName":"General",
+      "isRequired":true
+    },
+    {
+      "name": "last_name",
+      "type": "TextInput",
+      "inputType":"text",
+      "title": "Enter Last Name",
+      "placeholder": "Enter Last Name",
+      "sectionName":"General",
+      "isRequired":true
+    },
+    {
       "name": "alternate_email1",
       "type": "TextInput",
       "title": "Alternate Email 1",
@@ -2116,14 +2143,7 @@ export const contactFormData={
     "sectionName":"General"
       
     },
-    {
-      "name": "ckyc_number",
-      "type": "TextInput",
-      "title": "CKYC Number",
-      "placeholder": "Enter CKYC number",
-      "inputType": "text",
-      "sectionName":"General"
-    },
+
     {
       "name": "contact_verfied",
       "type": "Switch",
@@ -2165,12 +2185,14 @@ export const contactFormData={
       "name": "email",
       "type": "TextInput",
       "title": "Email",
+
       "placeholder": "Enter Email",
       "validation": {
         "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
         "message": "Please enter a valid email address.",
         
       },
+      "isRequired":true,
       "sectionName":"Contact"
 
     },
@@ -2214,13 +2236,7 @@ export const contactFormData={
       "title": "Fax Opt Out", 
       "sectionName":"Contact"
     },
-    {
-      "name": "first_name",
-      "type": "TextInput",
-      "title": "First Name",
-      "placeholder": "First Name",
-      "sectionName":"General"
-    },
+
     {
       "name": "funding_value_base_loan",
       "type": "TextInput",
@@ -2249,22 +2265,8 @@ export const contactFormData={
       "placeholder": "Enter Home Phone",
       "sectionName":"Contact"
     },
-    {
-      "name": "last_name",
-      "type": "TextInput",
-      "inputType":"text",
-      "title": "Enter Last Name",
-      "placeholder": "Enter Last Name",
-      "sectionName":"General"
-    },
-    {
-      "name": "middle_name",
-      "type": "TextInput",
-      "inputType":"text",
-      "title": "Enter Middle Name",
-      "placeholder": "Enter Middle Name",
-      "sectionName":"General"
-    },
+  
+   
     {
       "name": "mailing_address",
       "type": "TextInput",
@@ -2281,7 +2283,6 @@ export const contactFormData={
         { key: 'single', value: 'Single' },
         { key: 'married', value: 'Married' }
     ],
-      'isRequired': true,
       "sectionName":"Personal"
     }, 
     {
@@ -2321,12 +2322,20 @@ export const contactFormData={
       "placeholder":"Mother's Middle Name"
     },  
     {
-      "name": "name",
-      "type":"TextInput",
-      "title": "Name",
-      "sectionName":"General",
-      "placeholder":"Enter name"
-    }, 
+      "name": "ckyc_number",
+      "type": "TextInput",
+      "title": "CKYC Number",
+      "placeholder": "Enter CKYC number",
+      "inputType": "text",
+      "sectionName":"General"
+    },
+    // {
+    //   "name": "name",
+    //   "type":"TextInput",
+    //   "title": "Name",
+    //   "sectionName":"General",
+    //   "placeholder":"Enter name"
+    // }, 
     {
       "name": "other_address",
       "type":"TextInput",
@@ -2758,7 +2767,7 @@ export const accountFormData = {
       type: "TextInput",
       title: "BSR code",
       inputType: "numeric",
-      placeholder: "bsr code",
+      placeholder: "BSR code",
       sectionName: "Other Information",
     },
     {
@@ -2774,7 +2783,7 @@ export const accountFormData = {
       type: "TextInput",
       title: "Foreign Tin",
       inputType: "text",
-      placeholder: "foreign tin",
+      placeholder: "Foreign tin",
       sectionName: "Other Information",
     },
     {
@@ -2782,7 +2791,7 @@ export const accountFormData = {
       type: "TextInput",
       title: "TIN Issuing country",
       inputType: "text",
-      placeholder: "tin issuing country",
+      placeholder: "Tin issuing country",
       sectionName: "Other Information",
     },
     {
@@ -2790,7 +2799,7 @@ export const accountFormData = {
       type: "TextInput",
       title: "Country of Incorporation",
       inputType: "text",
-      placeholder: "country of incorporation",
+      placeholder: "Country of incorporation",
       sectionName: "Other Information",
     },
     {
@@ -2798,7 +2807,7 @@ export const accountFormData = {
       type: "TextInput",
       title: "Country of tax residence",
       inputType: "text",
-      placeholder: "country of tax residence",
+      placeholder: "Country of tax residence",
       sectionName: "Other Information",
     },
     {
@@ -2896,7 +2905,7 @@ export const accountFormData = {
       title: "Phone",
       inputType: "numeric",
       placeholder: "Phone number",
-      // "isRequired": true,
+       "isRequired": true,
       sectionName: "Contact",
       validation: {
         regex: /^\d{10}$/,
@@ -2909,7 +2918,7 @@ export const accountFormData = {
       title: "Mobile",
       inputType: "numeric",
       placeholder: "mobile number",
-      // "isRequired": true,
+       "isRequired": true,
       sectionName: "Contact",
       validation: {
         regex: /^\d{10}$/,
@@ -2922,7 +2931,7 @@ export const accountFormData = {
       title: "Home phone",
       inputType: "numeric",
       placeholder: "home number",
-      // "isRequired": true,
+      "isRequired": true,
       sectionName: "Contact",
       validation: {
         regex: /^\d{10}$/,
@@ -2963,7 +2972,7 @@ export const accountFormData = {
       title: "Business phone",
       inputType: "numeric",
       placeholder: "business number",
-      // "isRequired": true,
+        "isRequired": true,
       sectionName: "Contact",
       validation: {
         regex: /^\d{10}$/,
@@ -2997,7 +3006,7 @@ export const accountFormData = {
       // },
     },
     {
-      name: "email",
+      name: "email_opt_out",
       type: "checkbox",
       title: "Email opt out",
       sectionName: "Contact",
@@ -3209,7 +3218,7 @@ export const accountFormData = {
         { key: "allow", value: "Allow" },
         { key: "do_not_allow", value: "Do not allow" },
       ],
-      sectionName: "Contact     Method",
+      sectionName: "Contact Method",
     },
     {
       name: "phone",
