@@ -175,7 +175,7 @@ function extractDate(timestamp) {
         const apiToken = stoken.accessToken;
         console.log(apiToken);  
    
-        console.log("Form data", formValues);
+        console.log("Form data", editedValue);
         try{
         const response = await fetch(postUrl, {
             method: 'PUT',
@@ -334,7 +334,7 @@ function extractDate(timestamp) {
                         </View>
                     );
                
-                case 'TextInputR':
+                case 'TextInputO':
                     return (
                       <View>
                         <CustomInput
@@ -343,7 +343,7 @@ function extractDate(timestamp) {
                             placeholder={username}
                             value={username}
                             readOnly={true}
-                            isRequired={element.isRequired}
+                          
                         />
                         </View>
                     );
@@ -382,10 +382,10 @@ function extractDate(timestamp) {
                           {showCalendarModal && (
                             <RNDateTimePicker
                             //   value={selectedDate || new Date()}
-                              value={selectedDate}
+                              value={selectedDate} 
                               mode="date"
                               display="default"
-                              onChange={handleDateChange}
+                              onChange={(value) => setEditedValues({ ...editedValue, [element.name]: value })}
                             />
                           )}
                           {/* {validationErrors[element.name] && <Text style={styles.errorMessage}>{validationErrors[element.name]}</Text>} */}

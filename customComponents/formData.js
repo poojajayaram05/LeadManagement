@@ -257,7 +257,7 @@ export const editOpportunityFormData = {
  
     {
       "name": "owner",
-      "type": "TextInputR",
+      "type": "TextInputO",
       "title": "Owner",
       "placeholder": "",
       "sectionName":"General",
