@@ -18,7 +18,7 @@ function AddAccounts({ onSelectAccount }) {
         try {
             const ldata = await FetchAccounts(); 
             setAccountsData(ldata.result); 
-            console.log("this is the accounts data", ldata.result);
+           
           
         } catch (error) {
            

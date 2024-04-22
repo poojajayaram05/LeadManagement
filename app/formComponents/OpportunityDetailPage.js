@@ -158,8 +158,7 @@ import { useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import OpportunityHeader from '../../customComponents/opportunityDetailHeader';
-import { useContactStore } from '../leadStore';
- 
+import { useContactStore } from '../leadStore'; 
 import DataRow from '../../customComponents/dataRow';
  
  

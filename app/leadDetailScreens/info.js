@@ -131,9 +131,7 @@ const Info = () => {
     <View style={styles.body}>
       <View style={{ height: '26%' }}>
         <LeadDet />
-        <View>
-      <Text onPress={goToEdit}>edit lead </Text>
-      </View>
+    
       </View>
       
       <ScrollView contentContainerStyle={styles.scrollViewContent}>

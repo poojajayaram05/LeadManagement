@@ -46,6 +46,9 @@ const{  email,mobile, first_name, last_name}=accounts||'';
   const handleCall = () => {
     Linking.openURL(`tel:${mobile}`);
   };
+  const goToAccountEdit=()=>[
+    router.navigate('formComponents/createAccount')
+  ]
  
   return (
     <View style={styles.container}>
@@ -82,6 +85,7 @@ const{  email,mobile, first_name, last_name}=accounts||'';
           <Text style={styles.lifecycleHeading}>Email</Text>
           <Text style={styles.lifecycleText}>{email}</Text>
         </View>
+
       </View>
  
       <View style={styles.actionButtonsContainer}>
@@ -92,7 +96,9 @@ const{  email,mobile, first_name, last_name}=accounts||'';
         <TouchableOpacity style={styles.actionButton} onPress={handleEmail}>
           <Ionicons name="mail" size={24} color="white" />      
         </TouchableOpacity>
- 
+        <TouchableOpacity style={styles.actionButton} onPress={goToAccountEdit}>
+          <Ionicons name="pencil" size={24} color="white" />
+        </TouchableOpacity>
       </View>
     </View>
   );

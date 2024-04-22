@@ -232,9 +232,11 @@ import useIdStore from '../leadStore';
 import { FetchAccountDetails } from '../service/fetchAccountDetails';
 import { useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
+
  
 import DataRow from '../../customComponents/dataRow';
 import AccountHeader from '../../customComponents/accountDetailHeader';
+import { router } from 'expo-router';
 const sectionDetails = [
     {
       title: 'General Information',
@@ -354,6 +356,10 @@ const sectionDetails = [
     const accNumber = useIdStore((state) => state.account_number);
     const sys_id = useIdStore((state=>state.sys_id))
     console.log("account number", accNumber);
+
+    const goToEditDetails=()=>{
+      router.navigate('formComponents/editAccount')
+    }
  
     useEffect(() => {
       const fetchData = async () => {
@@ -401,6 +407,7 @@ const sectionDetails = [
       <View style={styles.body}>
         <View style={{ height: '26%' }}>
           <AccountHeader />
+          
         </View>
         <ScrollView contentContainerStyle={styles.scrollViewContent}>
           <View style={styles.container}>

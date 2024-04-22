@@ -29,6 +29,9 @@ const OpportunityHeader = () => {
     return formattedDate;
   }
  
+  const goToDealEdit=()=>{
+    router.navigate('formComponents/editOpportunity')
+  }
  
  
 useEffect(() => {
@@ -71,6 +74,13 @@ const fdata = extractDate(forecast_close_date);
         {/* <ArrowBack/> */}
         <Ionicons name="chevron-back" size={24} color="white" />
       </TouchableOpacity>
+      <View style={styles.actionButtonsContainer}>
+      
+        <TouchableOpacity style={styles.actionButton} onPress={goToDealEdit}>
+          <Ionicons name="pencil" size={24} color="white" />
+        </TouchableOpacity>
+
+      </View>
    
 {/*  
       <View style={styles.userDetailsContainer}>

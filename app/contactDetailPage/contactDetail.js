@@ -91,7 +91,8 @@ const Info = () => {
   const [contactData, setContactData] = useState([]);
   const [openSections, setOpenSections] = useState(['leadInfo']);
   const{sys_iid, setSysId}=useIdStore();
-  const sys_id = useIdStore((state=>state.sys_id))
+const sysId = useIdStore(state=>state.sys_id)
+console.log("sys id of the contact", sysId);
 
   const extractSysId = (url) => {
     const parts = url.split('/');
@@ -123,10 +124,11 @@ const Info = () => {
 
   const goToEditDetails=()=>{
     router.navigate('formComponents/editContact');
+    
   }
  
   const renderSectionContent = (sectionId, contactData, contactId) => {
-    const contacts = contactData.find((contact) => contact.sys_id === sys_id);
+    const contacts = contactData.find((contact) => contact.sys_id === sysId);
     const section = sectionDetails.find((section) => section.id === sectionId);
     console.log("contacts", contacts)
  
@@ -164,9 +166,7 @@ const Info = () => {
     <View style={styles.body}>
       <View style={{ height: '26%' }}>
        <ContactHeader/>
-       <View onPress={goToEditDetails}>
-        <Text onPress={goToEditDetails}>edit details</Text>
-      </View>
+      
       </View>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.container}>

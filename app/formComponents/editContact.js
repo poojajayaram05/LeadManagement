@@ -14,9 +14,12 @@ import CustomHeader from '../../customComponents/customLeadHeader';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import AddAccounts from './accountsDropdown';
 import { useContactStore } from '../leadStore';
+import useIdStore from '../leadStore';
 import axios from 'axios';
 // Form component
+// Form component
 import { SelectList } from 'react-native-dropdown-select-list';
+import { CircleFadingPlus } from 'lucide-react-native';
 export default function EditContact() {
     // const { control, handleSubmit, formState: { errors } } = useForm();
     const [showCalendarModal, setShowCalendarModal] = useState(false);
@@ -36,8 +39,16 @@ export default function EditContact() {
       };
       const [alternateEmailCount, setAlternateEmailCount] = useState(0);
  
-    
-
+      const onAddAlternateEmail = () => {
+        if (alternateEmailCount < 2) {
+            setAlternateEmailCount(prevCount => prevCount + 1);
+          }
+       
+      };
+ 
+ 
+     
+   
     const username= SecureStore.getItem('username');
     const [validationErrors, setValidationErrors] = useState({});
     const [formValues, setFormValues] = useState([]);
@@ -48,8 +59,9 @@ export default function EditContact() {
     const [isAddButtonDisabled, setIsAddButtonDisabled] = useState(false);
     const [isSwitchOn, setIsSwitchOn] = useState(false);
     const [userName, setUsername]=useState('');
-    const conId = useContactStore((state)=>state.number);
-    const[sys_id, setSysId]=useState('');
+    //const conId = useContactStore((state)=>state.number);
+    const sysId = useIdStore(state=>state.sys_id)
+    const[SysId, setSysId]=useState('');
     const[ownerId, setOwnerId]=useState('');
     const[editedValue, setEditedValues]=useState({});
  
@@ -61,16 +73,16 @@ export default function EditContact() {
                 const stoken = JSON.parse(token);
                 const apiToken = stoken.accessToken;
  
-                const response = await axios.get(`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_contact_c?sysparm_query=number=${conId}`, {
+                const response = await axios.get(`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_contact_c?sysparm_query=sys_id=${sysId}`, {
                     headers: {
                         'Authorization': 'Bearer ' + apiToken
                     }
                 });
  
                 const contactData = response.data.result[0];
-                console.log("conatctdfff". contactData);
-                let sysid = contactData.sys_id;
-                setSysId(sysid)
+                 let id = contactData.sys_id;
+                 console.log("conatct edit dataaa", contactData)
+                //setSysId(id)
  
                 // Assuming the response.data contains the lead data
                  // Assuming only one lead is returned
@@ -155,8 +167,8 @@ const onSelectRadio = (item) => {
       }
       else{
        
-        const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_contact_c/${sys_id}`;
-        console.log("posturl",postUrl);
+        const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_contact_c/${sysId}`;
+        console.log(postUrl);
         const token = SecureStore.getItem('token');
         const stoken = JSON.parse(token);
         const apiToken = stoken.accessToken;

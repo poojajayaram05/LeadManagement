@@ -54,6 +54,9 @@ const{ ckyc_number, title, mailing_address, email,mobile, first_name, last_name}
   const handleCall = () => {
     Linking.openURL(`tel:${mobile}`);
   };
+  const goToContactEdit=()=>{
+    router.navigate('formComponents/editContact')
+  }
  
   return (
     <View style={styles.container}>
@@ -99,6 +102,9 @@ const{ ckyc_number, title, mailing_address, email,mobile, first_name, last_name}
  
         <TouchableOpacity style={styles.actionButton} onPress={handleEmail}>
           <Ionicons name="mail" size={24} color="white" />      
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.actionButton} onPress={goToContactEdit}>
+          <Ionicons name="pencil" size={24} color="white" />
         </TouchableOpacity>
 
       </View>

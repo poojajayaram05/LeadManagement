@@ -28,7 +28,9 @@ import {
   import { PersonData } from "../../customComponents/formData";
   import { CorporateData } from "../../customComponents/formData";
   import { SelectList } from "react-native-dropdown-select-list";
-  export default function CreateAccount() {
+  import useIdStore from "../leadStore";
+  import axios from "axios";
+  export default function EditAccount() {
     // const { control, handleSubmit, formState: { errors } } = useForm();
     const [isCollapsed, setIsCollapsed] = useState({
       'General': false,
@@ -42,8 +44,9 @@ import {
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [selectedDate, setSelectedDate] = useState(new Date());
   const[Username, setUsername]=useState('');
-  
-  
+  const sysId = useIdStore(state=>state.sys_id)
+ 
+ 
     const handleDateChange = (event, selectedDate) => {
       if (selectedDate) {
         setShowDatePicker(false);
@@ -54,7 +57,7 @@ import {
         setFormValues({ ...formValues, dateInput: formattedDate });
       }
     };
-  
+ 
     const toggleSection = (sectionName) => {
       setIsCollapsed({
         ...isCollapsed,
@@ -62,14 +65,14 @@ import {
       });
     };
     const [alternateEmailCount, setAlternateEmailCount] = useState(0);
-  
+ 
     const onAddAlternateEmail = () => {
       if (alternateEmailCount < 2) {
         setAlternateEmailCount((prevCount) => prevCount + 1);
       }
     };
     const username= SecureStore.getItem('username');
-  
+ 
     const [validationErrors, setValidationErrors] = useState({});
     const [formValues, setFormValues] = useState([]);
     const [selectedValue, setSelectedValue] = useState(null);
@@ -78,23 +81,47 @@ import {
     const [testValues, setTestValues] = useState([]);
     const [isAddButtonDisabled, setIsAddButtonDisabled] = useState(false);
     const [isSwitchOn, setIsSwitchOn] = useState(false);
-    const [currentData, setCurrentData] = useState(accountFormData);
-  
+    const [currentData, setCurrentData] = useState(editAccountFormData);
+    const accId = useIdStore((state)=>state.account_number);
+    const[sys_id, setSysId]=useState('');
+    const[ownerId, setOwnerId]=useState('');
+    const[editedValue, setEditedValues]=useState({});
+ 
+   
+ 
     console.disableYellowBox = true;
-    
+   
     useEffect(() => {
-      const getUsername = async () => {
-          const storedUsername = await SecureStore.getItemAsync('username');
-          setUsername(storedUsername);
-          setFormValues(prevFormValues => ({ ...prevFormValues, ['owner']: storedUsername }));
-      };
-  
-      getUsername();
-  }, []);
-  
+        const fetchData = async () => {
+            try {
+                const token = await SecureStore.getItemAsync('token');
+                const stoken = JSON.parse(token);
+                const apiToken = stoken.accessToken;
+ 
+                const response = await axios.get(`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_account_c?sysparm_query=sys_id=${sysId}`, {
+                    headers: {
+                        'Authorization': 'Bearer ' + apiToken
+                    }
+                });
+ 
+                const accountData = response.data.result[0];
+                let sysid = accountData.sys_id;
+                setSysId(sysid)
+ 
+                // Assuming the response.data contains the lead data
+                 // Assuming only one lead is returned
+                setFormValues(accountData);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+ 
+        fetchData();
+    }, []); // Run only once on component mount
+ 
   LogBox.ignoreAllLogs();
-  
-  
+ 
+ 
     const onSelectRadio = (item) => {
       setradioSelect(item.value);
       setFormValues((prevFormValues) => ({
@@ -102,12 +129,12 @@ import {
         ["gender"]: item.id,
       }));
       console.log("Selected value:", item.id);
-  
+ 
     };
-  
+ 
     const validateForm = () => {
       const errors = {};
-      accountFormData.elements.forEach((element) => {
+      editAccountFormData.elements.forEach((element) => {
         // Check if the field is visible based on lead type
         if (
           element.sectionName === "General" &&
@@ -137,11 +164,11 @@ import {
       });
       return errors;
     };
-  
+ 
     const goBack = () => {
       router.back();
     };
-  
+ 
     const handleSelect = (item) => {
       setSelectedValue(item);
       setFormValues({ ...formValues, selectedValue: item });
@@ -154,9 +181,9 @@ import {
         setCurrentData(AccountData);
       }
     };
-  
+ 
     const onSubmit = async () => {
-  
+ 
       const errors = validateForm();
         if (Object.keys(errors).length > 0) {
           // If there are validation errors, set them in state
@@ -166,36 +193,36 @@ import {
     else{
       console.log("this is the form valuesss", formValues);
       setFormValues(prevFormValues => ({ ...prevFormValues, ['owner']: username}));
-      const postUrl = `https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_account_c`;
+      const postUrl = `https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_account_c/${sysId}`;
       const token = SecureStore.getItem("token");
       const stoken = JSON.parse(token);
       const apiToken = stoken.accessToken;
       console.log(apiToken);
-  
+ 
       console.log("Form data", formValues);
      
       try {
         console.log("in try");
         const response = await fetch(postUrl, {
-          method: "POST",
+          method: "PUT",
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + apiToken,
           },
-          body: JSON.stringify(formValues),
+          body: JSON.stringify(editedValue),
         });
-  
+ 
         console.log("Successfully posted", response);
         Alert.alert("Successfully Submitted!")
-        router.replace("/DrawerScreens/leadList");
+        router.replace("/DrawerScreens/accounts");
       } catch (err) {
         console.log("error");
       }
     }
     };
-  
+ 
     const renderFormElements = (sectionName) => {
-      return accountFormData.elements
+      return editAccountFormData.elements
         .filter((element) => element.sectionName === sectionName)
         .map((element, index) => (
           <View key={index} style={styles.formElement}>
@@ -206,28 +233,28 @@ import {
           </View>
         ));
     };
-  
+ 
     const renderFormElement = (element) => {
       const handleSelect = (item) => {
         //setSelectedValue(item);
-        setFormValues((prevFormValues) => ({
+        setEditedValues((prevFormValues) => ({
           ...prevFormValues,
           [element.name]: item,
         }));
         console.log(element.name, item);
       };
       const handleSwitch = (item) => {
-        setFormValues((prevFormValues) => ({
+        setEditedValues((prevFormValues) => ({
           ...prevFormValues,
           [element.name]: item,
         }));
         console.log(element.name, item);
       };
-  
-      const starMark = element.isRequired ? 
+ 
+      const starMark = element.isRequired ?
         <Text style={{ color: "red" }}> *</Text>
        : null;
-  
+ 
       if (
         element.sectionName === "General" &&
         formValues["lead_type"] === "company"
@@ -250,23 +277,23 @@ import {
               {/* <Text style={styles.label}>{element.title}{starMark} </Text> */}
               <CustomInput
                 key={element.name}
-                title={element.title}
-                placeholder={element.placeholder}
+                title={element.title}    
+                placeholder={formValues[element.name] || ''}
                 // control={control}
                 isRequired={element.isRequired}
-                inputType={element.inputType}
-                name={element.name}
+                inputType={element.inputType}      
+                name={element.name}  
              
                 // errors={errors}
                 onChange={(value) =>
-                  setFormValues({ ...formValues, [element.name]: value })
+                  setEditedValues({ ...editedValue, [element.name]: value })
                 }
-                value={formValues[element.name] || ""}
+               
               />
             </View>
           );
-  
-  
+ 
+ 
         case "socialMediaInput":
           return (
             <CustomInputSocial
@@ -283,9 +310,9 @@ import {
               // errors={errors}
               icon={element.logo}
               onChange={(value) =>
-                setFormValues({ ...formValues, [element.name]: value })
+                setEditedValues({ ...editedValue, [element.name]: value })
               }
-              value={formValues[element.name] || ""}
+             
             />
           );
         case "dropdown":
@@ -295,7 +322,7 @@ import {
             <Text style={{ marginBottom: 3,
       fontSize: 12,
       fontWeight: "bold"}}>{element.title}{starMark}</Text>
-            <SelectList 
+            <SelectList
         boxStyles={{
             borderWidth: 1,
             borderColor: '#ccc',
@@ -308,6 +335,7 @@ import {
            // handleSelect(label); // Call handleSelect to save the selected value
             setSelectedValue(label); // Update selected values
         }}
+        placeholder={formValues[element.name] || ''}
         data={element.dropdownData.map(item => ({ value: item.key, label: item.value }))}
         save="value"
         onSelect={() => handleSelect(selectedValue) } // Log selected values
@@ -316,7 +344,7 @@ import {
             {validationErrors[element.name] && <Text style={styles.errorMessage}>{validationErrors[element.name]}</Text>}
             </View>
           );
-  
+ 
         case "RadioButton":
           return (
             <View style={styles.inputContainer}>
@@ -324,7 +352,7 @@ import {
                 {element.title}
                 {starMark}
               </Text>
-  
+ 
               <RadioButton
                 style={styles.inputContainer}
                 onSelect={onSelectRadio}
@@ -332,15 +360,15 @@ import {
                 disableLine={1}
                 value={selectedValue}
                 onChange={(onSelectRadio) =>
-                  setFormValues({ ...formValues, [element.name]: onSelectRadio })
+                  setEditedValues({ ...editedValue, [element.name]: onSelectRadio })
                 }
-                data={accountFormData}
+                data={editAccountFormData}
                 title={element.title}
                 // Pass the data prop here
               />
             </View>
           );
-  
+ 
         case "checkbox":
           return (
             <View style={styles.checkboxContainer}>
@@ -363,7 +391,7 @@ import {
                      // control={control}
                      value={username}
                      name={element.name}
-                
+               
                      
                      
                      // errors={errors}
@@ -372,9 +400,9 @@ import {
                    readOnly={true}
                  />
                  </View>
-  
+ 
             )
-  
+ 
             case "dateInput":
                         return (
                           <View style={styles.inputContainer}>
@@ -401,7 +429,7 @@ import {
                             )}
                           </View>
                         );
-  
+ 
         case "Switch":
           return (
             <View style={styles.inputContainer}>
@@ -415,11 +443,11 @@ import {
           );
       }
     };
-  
+ 
     return (
       <View style={styles.cardContainer}>
         <View>
-          <CustomHeader title={"Create Account"} onPress={goBack} />
+          <CustomHeader title={"Edit Account"} onPress={goBack} />
         </View>
         <ScrollView>
           <View style={styles.card}>
@@ -442,18 +470,18 @@ import {
                 </View>
               ))}
             </View>
-  
+ 
             <View style={styles.bgColor}>
               <Button title="Submit" onPress={onSubmit} color="#023B5E" />
             </View>
-  
+ 
             <View style={styles.buttonContainer}></View>
           </View>
         </ScrollView>
       </View>
     );
   }
-  
+ 
   const styles = StyleSheet.create({
     cardContainer: {
       flex: 1,
@@ -492,7 +520,7 @@ import {
       fontWeight: "bold",
       marginBottom: 15, // Increase margin for better separation
       color: "black", // Use a darker color for better readability
-  
+ 
       paddingBottom: 5, // Add padding to space out the underline from the text
     },
     inputContainer: {

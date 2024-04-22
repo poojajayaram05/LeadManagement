@@ -93,6 +93,7 @@ if (isLoading) {
       ProbabilityValue={item.probability_of_winning}
       ForecastCloseDate={item.forecast_close_date}
       number={item.number}
+      sys_id={item.sys_id}
     />
   </TouchableOpacity>
   );

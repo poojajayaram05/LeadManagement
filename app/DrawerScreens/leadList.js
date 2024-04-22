@@ -151,7 +151,7 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
         )}  
       />
        */}
-    <SafeAreaView style={{ marginHorizontal:20, flexDirection:'row'}}>
+    {/* <SafeAreaView style={{ marginHorizontal:20, flexDirection:'row'}}>
        <FontAwesome name='search' size={15} color='black' style={{marginTop:10, marginRight:10}}/>
       
         <TextInput 
@@ -160,7 +160,7 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
         style={styles.searchBox}
         value={searchQuery}
         ></TextInput>
-       </SafeAreaView>
+       </SafeAreaView> */}
        <FlatList
               data={leadData}
               renderItem={renderItem}

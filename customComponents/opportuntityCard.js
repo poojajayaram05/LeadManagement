@@ -3,15 +3,17 @@ import { View, Text, TouchableOpacity, Button,Image,ScrollView } from 'react-nat
 import { router } from 'expo-router';
 import { useOpportunityStore } from '../app/leadStore';
 import { Ionicons } from '@expo/vector-icons';
+import useIdStore from '../app/leadStore';
 import { FontAwesome } from '@expo/vector-icons';
  
-const OpportunityItem = ({  OpportunityName, ProbabilityValue,ForecastCloseDate,OpportunityValue, number }) => {
+const OpportunityItem = ({  OpportunityName, ProbabilityValue,ForecastCloseDate,OpportunityValue, number, sys_id }) => {
    
   const [showSecondImage, setShowSecondImage] = useState(false);
   const[selectedStar, setSelectedStar]=useState(false);
 
   const{opportunityId, setOpportunityId}=useOpportunityStore();
   const [showDropdown, setShowDropdown] = useState(false);
+  const{sysId, setSysId}=useIdStore();
 
 
 
@@ -19,7 +21,8 @@ const OpportunityItem = ({  OpportunityName, ProbabilityValue,ForecastCloseDate,
 const handleNavigateToLeadDetails = () => {
   router.navigate(`/formComponents/OpportunityDetailPage`);
   setOpportunityId(number);
-  console.log(number);
+  setSysId(sys_id);
+  console.log(sys_id);
 };
 
 return (

@@ -189,6 +189,197 @@ export const opportunityFormData = {
 }
  
 
+export const editOpportunityFormData = {
+  "elements": [
+   {
+      "name": "opportunity_name",
+      "type":"TextInput",
+      "title": "Oppurtunity Name",
+      "placeholder": "Enter Opportunity name",
+      "sectionName":"General",
+       
+    },
+ 
+    {
+      "name": "account",
+      "type": "Adropdown",
+      "title": " Account Name",
+      "placeholder": "Enter account name",
+      "sectionName":"General"
+    },
+ 
+ 
+   {
+      "name": "contact",
+      "type": "Pdropdown",
+      "title": "Primary Contact",
+      "placeholder": "",
+      "sectionName":"General"
+    },
+ 
+   
+ 
+    // {
+    //   "name": "status",
+    //   "sectionName":"General",
+    //   "type": "dropdown",
+    //   "title": "Status",
+    //   "inputType": "text",
+    //   "placeholder":'Select',
+    //   "dropdownData": [
+    //     { "value": 1, "value": "Open" },
+    //     { "value": 2, "value": "Won" },
+    //     { "value": 3, "value": "Lost" },
+    //     { "value": 4, "value": "Suspended" },
+    //     { "value": 5, "value": "Abandoned" },
+    //   ]
+    // },
+
+    
+ 
+ 
+    {
+      "name": "category",
+      "sectionName":"General",
+      "type": "dropdown",
+      "title": "Category",
+      
+      "placeholder":'Select',
+      "dropdownData": [
+        { key: "new", value: "New" },
+        { key: "up_sell", value: "Up-sell" },
+        { key: "cross_sell", value: "Cross-sell" },
+        { key: "existing", value: "Existing" },
+        { key: "renewal", value: "Renewal" },
+      ],
+       
+    },
+ 
+    {
+      "name": "owner",
+      "type": "TextInputR",
+      "title": "Owner",
+      "placeholder": "",
+      "sectionName":"General",
+    },
+   
+    {
+      "name": "description",
+      "type": "TextInputMultiLine",
+      "title": "Description",
+  
+      "placeholder": "Description",
+      "sectionName":"General",
+    },
+    {
+      "name": "next_step",
+      "type": "TextInput",
+      "title": "Next Step",
+      "placeholder": "Next Step",
+      "sectionName":"General",
+    },
+ 
+    {
+      "name": "sales_pipeline",
+      "sectionName":"General",
+      "type": "dropdown",
+      "title": "Pipeline",
+      "placeholder": "",
+      "dropdownData": [
+        { key: "default_pipeline", value: "Default Pipeline" },
+        { key: "sales_pipeline1", value: "Sales Pipeline 1" },
+        { key: "sales_pipeline2", value: "Sales Pipeline 2" },
+      ]
+     
+    },
+ 
+    {
+      "name": "sales_stage",
+      "sectionName":"General",
+      "type": "dropdown",
+      "title": "Sales Stage",
+   
+      "placeholder":'Select',
+      "dropdownData": [
+        { key: "new", value: "New" },
+        { key: "qualification", value: "Qualification" },
+        { key: "needs_analysis", value: "Needs Analysis" },
+        { key: "proposal", value: "Proposal" },
+        { key: "negotiation", value: "Negotiation" },
+        { key: "closed", value: "Closed" },
+      ]
+    },
+ 
+    {
+      "name": "forecast_close_date",
+      "type": "Date",
+      "title": "Forecast Close Date",
+      "placeholder": "Select",
+      "sectionName":"Forecast",
+  
+     
+  },
+ 
+//   {
+//     "name": "actual_close_date",
+//     "type": "Date",
+//     "title": "Actual Close Date",
+//     "inputType": "text",
+//     "placeholder": "Select",
+//     "sectionName":"Forecast",
+//      "isRequired":true
+   
+// },
+ 
+    // {
+    //   "name": "created_on",
+    //   "type":"TextInput",
+    //   "title": "Created On",
+    //   "inputType": "text",
+    //   "sectionName":"Forecast",
+    // },
+ 
+ 
+   
+ 
+ 
+   
+    {
+      "name": "probability_of_winning",
+      "type": "TextInputP",
+      "title": "Probability Of Winning",
+      "placeholder": "Probability Of Winning",
+      "sectionName":"Forecast",
+      "validation": {
+        "regex":  /^100$|^\d{0,2}(\.\d{1,2})?%?$/,
+        "message": "Please enter percentage"
+      },
+      
+    },
+ 
+    {
+      "name": "opportunity_value",
+      "type": "Currency",
+      "title": "Opportunity Value",
+      "inputType":"numeric",
+      "placeholder": "Opportunity Value",
+      "sectionName":"Forecast",
+    
+    },
+ 
+   
+ 
+    // {
+    //   "name": "assigned-to",
+    //   "type": "TextInputR",
+    //   "title": "Assigned To",
+    //   "placeholder": "",
+    //   "sectionName":"Forecast",
+    // },
+]
+}
+ 
+
 
 export const editLeadformData = {
  
@@ -253,18 +444,18 @@ export const editLeadformData = {
       "autocomplete": "lastname",
       "sectionName":"General"
     },
-    {
-      "name": "gender",
-      "type":"RadioButton",
-      "title": "Gender",
-      "rdata" : [
-        { label: "Male", id: 'male' },
-        { label: "Female", id: 'female' },
-        { label: "Other", id: 'other' },
-      ],
-      'isRequired': true,
-      "sectionName":"General"
-    },
+    // {
+    //   "name": "gender",
+    //   "type":"RadioButton",
+    //   "title": "Gender",
+    //   "rdata" : [
+    //     { label: "Male", id: 'male' },
+    //     { label: "Female", id: 'female' },
+    //     { label: "Other", id: 'other' },
+    //   ],
+    //   'isRequired': true,
+    //   "sectionName":"General"
+    // },
 
  {
       "name": "job_title",
@@ -3966,7 +4157,7 @@ export const editContactFormData={
       "title": "First Name",
       "placeholder": "First Name",
       "sectionName":"General",
-      "isRequired":true
+    
     },
     {
       "name": "middle_name",
@@ -3975,7 +4166,7 @@ export const editContactFormData={
       "title": "Enter Middle Name",
       "placeholder": "Enter Middle Name",
       "sectionName":"General",
-      "isRequired":true
+   
     },
     {
       "name": "last_name",
@@ -3984,7 +4175,7 @@ export const editContactFormData={
       "title": "Enter Last Name",
       "placeholder": "Enter Last Name",
       "sectionName":"General",
-      "isRequired":true
+      
     },
     {
       "name": "alternate_email1",
@@ -4178,18 +4369,18 @@ export const editContactFormData={
       "placeholder":"Funding Value Base Loan",
       "sectionName":"General"
     },
-    {
-      "name": "gender",
-      "type":"RadioButton",
-      "title": "Gender",
-      "rdata" : [
-        { label: "Male", id: 'male' },
-        { label: "Female", id: 'female' },
-        { label: "Other", id: 'other' },
-      ],
-      'isRequired': true,
-      "sectionName":"General"
-    },
+    // {
+    //   "name": "gender",
+    //   "type":"RadioButton",
+    //   "title": "Gender",
+    //   "rdata" : [
+    //     { label: "Male", id: 'male' },
+    //     { label: "Female", id: 'female' },
+    //     { label: "Other", id: 'other' },
+    //   ],
+    //   'isRequired': true,
+    //   "sectionName":"General"
+    // },
     {
       "name": "home_phone",
       "type": "TextInput",
@@ -4444,7 +4635,7 @@ export const editAccountFormData = {
         { key: "corporate", label: "corporate" },
       ],
       sectionName: "General",
-      "isRequired":true
+    
     },
     {
       name: "account_name",
@@ -4453,7 +4644,7 @@ export const editAccountFormData = {
       placeholder: "account name",
       maxLength: 25,
       inputType: "text",
-      'isRequired': true,
+   
       sectionName: "General",
     },
     {
@@ -4463,7 +4654,7 @@ export const editAccountFormData = {
       placeholder: "title",
       maxLength: 25,
       inputType: "text",
-      'isRequired': true,
+     
       sectionName: "General",
     },
 
@@ -4489,7 +4680,7 @@ export const editAccountFormData = {
       placeholder: "First Name",
       maxLength: 25,
       inputType: "text",
-      isRequired: true,
+      
       sectionName: "General",
     },
     {
@@ -4498,7 +4689,7 @@ export const editAccountFormData = {
       title: "Last Name",
       inputType: "text",
       placeholder: "Last Name",
-      "isRequired": true,
+    
       autocomplete: "lastname",
       sectionName: "General",
     },
@@ -4620,7 +4811,7 @@ export const editAccountFormData = {
       title: "State",
       placeholder: "State",
       sectionName: "Address Details",
-      "isRequired":true
+      
     },
     {
       name: "city",
@@ -4628,7 +4819,7 @@ export const editAccountFormData = {
       title: "City",
       placeholder: "City",
       sectionName: "Address Details",
-      "isRequired":true
+     
     },
     {
       name: "other_address",
@@ -4811,7 +5002,7 @@ export const editAccountFormData = {
       title: "Email",
       inputType: "text",
       placeholder: "email",
-      "isRequired": true,
+     
       sectionName: "Contact",
     },
     {
@@ -4838,12 +5029,9 @@ export const editAccountFormData = {
       title: "Phone",
       inputType: "numeric",
       placeholder: "Phone number",
-       "isRequired": true,
+    
       sectionName: "Contact",
-      validation: {
-        regex: /^\d{10}$/,
-        message: "Please enter a valid 10-digit phone number.",
-      },
+     
     },
     {
       name: "mobile",
@@ -4851,12 +5039,9 @@ export const editAccountFormData = {
       title: "Mobile",
       inputType: "numeric",
       placeholder: "mobile number",
-       "isRequired": true,
+    
       sectionName: "Contact",
-      validation: {
-        regex: /^\d{10}$/,
-        message: "Please enter a valid 10-digit phone number.",
-      },
+     
     },
     {
       name: "home_phone",
@@ -4864,12 +5049,9 @@ export const editAccountFormData = {
       title: "Home phone",
       inputType: "numeric",
       placeholder: "home number",
-      "isRequired": true,
+      
       sectionName: "Contact",
-      validation: {
-        regex: /^\d{10}$/,
-        message: "Please enter a valid 10-digit phone number.",
-      },
+      
     },
     {
       name: "assistant",
@@ -4905,12 +5087,9 @@ export const editAccountFormData = {
       title: "Business phone",
       inputType: "numeric",
       placeholder: "business number",
-        "isRequired": true,
+       
       sectionName: "Contact",
-      validation: {
-        regex: /^\d{10}$/,
-        message: "Please enter a valid 10-digit phone number.",
-      },
+    
     },
     {
       name: "alternate_phone1",

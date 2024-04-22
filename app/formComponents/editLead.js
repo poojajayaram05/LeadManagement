@@ -396,7 +396,7 @@ const onSelectRadio = (item) => {
                                  title={element.title}
                                  placeholder={username}
                                 //  onChange={(value) => setFormValues({ ...formValues, ['new_owner']: value })}
-                                  value={ownerId}
+                                  value={username}
                                  name={element.name}
                                  
                              />

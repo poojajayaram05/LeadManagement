@@ -181,7 +181,7 @@ import useIdStore from '../app/leadStore';
 import InitialsAvatar from '../customComponents/initialAvatar';
 import ArrowBack from '../customComponents/arrowBack';
 import { FetchLeads } from '../app/service/fetchLeads'; 
- 
+
  
 // const handleAttachment = async () => {
 //   try {
@@ -217,6 +217,9 @@ const LeadDet = () => {
   const leadId = useIdStore((state) => state.number);
   const lead = leadData.find((lead) => lead.number === leadId);
   const { firstname, lastname, email, qualification, leadstatus, number, gender, mobilephone} = lead || {};
+  const goToleadEdit = () => {
+    router.navigate('/formComponents/editLead')
+  };
  
   const handleBack = () => {
     router.navigate('/DrawerScreens/leadList');
@@ -224,7 +227,7 @@ const LeadDet = () => {
  
   const handleCall = () => {
     
-    Linking.openURL(`tel:${mobile_phone}`);
+    Linking.openURL(`tel:${mobilephone}`);
   };
  
   const handleDirections = () => {
@@ -255,6 +258,7 @@ const handleEmail = () => {
         <InitialsAvatar name={`${firstname} ${lastname}`} />
         <View style={styles.userInfo}>
           <Text style={styles.name}>{firstname} {lastname}</Text>
+  
           {/* <Text style={styles.title}>{jobTitle}</Text> */}
         </View>
       </View>
@@ -284,6 +288,9 @@ const handleEmail = () => {
         <TouchableOpacity style={styles.actionButton} onPress={handleEmail}>
           <Ionicons name="mail" size={24} color="white" />
           {/* <Text style={styles.buttonLabel}>Email</Text> */}
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.actionButton} onPress={goToleadEdit}>
+          <Ionicons name="pencil" size={24} color="white" />
         </TouchableOpacity>
  
         {/* <TouchableOpacity style={styles.actionButton} onPress={handleDirections}>
