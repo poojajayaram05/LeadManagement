@@ -366,32 +366,31 @@ function extractDate(timestamp) {
     </View>
   );
  
-                    case 'Date':
-                        return (
-                          <View style={styles.inputContainer}>
-                          <Text style={styles.label}>{element.title}{starMark}</Text>
-                          <Pressable onPress={() => setShowCalendarModal(true)}>
-                            <View style={styles.dateInput}>
-                              <Text style={styles.dateText}>
-                                {formValues[element.name] ? extractDate(formValues[element.name]) : 'Select date '}
-                              </Text>
-                              <Ionicons name='calendar' size={20} color='black' style={styles.icon} />
-                            </View>
-                          </Pressable>
-                          {/* Calendar Modal */}
-                          {showCalendarModal && (
-                            <RNDateTimePicker
-                            //   value={selectedDate || new Date()}
-                              value={selectedDate} 
-                              mode="date"
-                              display="default"
-                              onChange={(value) => setEditedValues({ ...editedValue, [element.name]: value })}
-                            />
-                          )}
-                          {/* {validationErrors[element.name] && <Text style={styles.errorMessage}>{validationErrors[element.name]}</Text>} */}
-                        </View>
-                         
-                        );
+  case 'Date':
+    return (
+      <View style={styles.inputContainer}>
+      <Text style={styles.label}>{element.title}{starMark}</Text>
+      <Pressable onPress={() => setShowCalendarModal(true)}>
+        <View style={styles.dateInput}>
+          <Text style={styles.dateText}>
+            {formValues[element.name] ? extractDate(formValues[element.name]) : 'Select date '}
+          </Text>
+          <Ionicons name='calendar' size={20} color='black' style={styles.icon} />
+        </View>
+      </Pressable>
+      {/* Calendar Modal */}
+      {showCalendarModal && (
+        <RNDateTimePicker
+          value={selectedDate || new Date()}
+          mode="date"
+          display="default"
+          onChange={(event, selectedDate) => handleDateChange(selectedDate, element)}
+        />
+      )}
+      {validationErrors[element.name] && <Text style={styles.errorMessage}>{validationErrors[element.name]}</Text>}
+    </View>
+     
+    );
             case 'dropdown':
                 return (
                     <View>
