@@ -15,6 +15,8 @@ import {
   Text,
 } from "react-native";
 import AccountCard from "../formComponents/accountCard";
+import { useQuery } from "@tanstack/react-query";
+import { ActivityIndicator } from "react-native";
 const ListOfAccounts = () => {
   const [routes] = useState([
     { key: "allLeads", title: "All Leads" },
@@ -41,22 +43,45 @@ const ListOfAccounts = () => {
     router.navigate('/formComponents/createAccount')
   }
 
-  useEffect(() => {
-      const fetchData = async () => {
-          try {
-              const ldata = await FetchAccounts(); 
-              console.log("this is the account data",ldata.result);
-              setAccountData(ldata.result);
-              console.log(accountData)
+  // useEffect(() => {
+  //     const fetchData = async () => {
+  //         try {
+  //             const ldata = await FetchAccounts(); 
+  //             console.log("this is the account data",ldata.result);
+  //             setAccountData(ldata.result);
+  //             console.log(accountData)
           
-          } catch (error) {
-              console.error('Error in fetching accounts:', error);
+  //         } catch (error) {
+  //             console.error('Error in fetching accounts:', error);
              
-          }
-      };
+  //         }
+  //     };
   
-      fetchData(); 
-  }, []);
+  //     fetchData(); 
+  // }, []);
+  const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: FetchAccounts });
+
+  useEffect(() => {
+    if (data) {
+      setAccountData(data.result);
+    }
+  }, [data]);
+
+  if (isLoading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#023B5E" />
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View style={styles.loadingContainer}>
+        <Text>Error in fetching Accounts</Text>
+      </View>
+    );
+  }
   
   
 
@@ -69,6 +94,7 @@ const ListOfAccounts = () => {
         accountNumber={item.account_number}
         phone={item.phone}
         email={item.email}
+        sys_id={item.sys_id}
        
       />
     </TouchableOpacity>
@@ -130,6 +156,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 5,
     fontWeight:'800'
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff', // Adjust background color as needed
   },
 });
 

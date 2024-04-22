@@ -1,5 +1,5 @@
 import * as SecureStore from 'expo-secure-store'
-
+ 
 export const FetchLeads = async () => {
     const token = SecureStore.getItem('token');
     const stoken = JSON.parse(token);
@@ -17,11 +17,11 @@ export const FetchLeads = async () => {
               'Authorization' : 'Bearer ' + apiToken
              
             },
-
+ 
           })
           const data = await response.json();
           return data;
-
+ 
          
         //   router.replace('/DrawerScreens/leadList')
     } catch (error) {

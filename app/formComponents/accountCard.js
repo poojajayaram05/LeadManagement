@@ -17,10 +17,10 @@ import { Linking } from "react-native";
 // Import the avatar image
 import { avatarPic } from '../../assets/images'
 
-const AccountCard = ({ firstName, lastName, accountName, accountNumber, phone, email }) => {
+const AccountCard = ({ firstName, lastName, accountName, accountNumber, phone, email, sys_id }) => {
   const [showSecondImage, setShowSecondImage] = useState(false);
   const [selectedStar, setSelectedStar] = useState(false);
-  const { account_number, setAccountNumber } = useIdStore();
+  const { sysid, setSysId } = useIdStore();
   const [showDropdown, setShowDropdown] = useState(false);
 
   const goToEditLead = () => {
@@ -40,7 +40,7 @@ const AccountCard = ({ firstName, lastName, accountName, accountNumber, phone, e
 
   const handleNavigateToLeadDetails = () => {
     router.navigate(`/formComponents/accountDetailPage`);
-    setAccountNumber(accountNumber);
+    setSysId(sys_id)
   };
 
   const handleChangeStatus = () => {

@@ -352,6 +352,7 @@ const sectionDetails = [
     const [tfValue, setTfValue] = useState('');
  
     const accNumber = useIdStore((state) => state.account_number);
+    const sys_id = useIdStore((state=>state.sys_id))
     console.log("account number", accNumber);
  
     useEffect(() => {
@@ -381,7 +382,7 @@ const sectionDetails = [
     };
  
     const renderSectionContent = (sectionId, accountData, accNumber) => {
-      const accounts = accountData.find((lead) => lead.account_number === accNumber);
+      const accounts = accountData.find((lead) => lead.sys_id === sys_id);
       const section = sectionDetails.find((section) => section.id === sectionId);
       console.log("this is accountsss", accounts);
  

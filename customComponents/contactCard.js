@@ -3,15 +3,17 @@ import { View, Text, TouchableOpacity, Button,Image,ScrollView } from 'react-nat
 import { router } from 'expo-router';
 import { useContactStore } from '../app/leadStore';
 import { HomeProfile } from '../assets/images'
+import useIdStore from '../app/leadStore';
 
  
-const ContactItem = ({ first_name, last_name, mobile,title, description, number }) => {
+const ContactItem = ({ first_name, last_name, mobile,title, description, number, sys_id }) => {
    
     const [showSecondImage, setShowSecondImage] = useState(false);
     const[selectedStar, setSelectedStar]=useState(false);
    
     const{contactId,  setContactId}=useContactStore();
     const [showDropdown, setShowDropdown] = useState(false);
+    const{sysId, setSysId}=useIdStore();
  
     const goToEditLead = () => {
         setLeadId(Id);
@@ -28,7 +30,7 @@ const ContactItem = ({ first_name, last_name, mobile,title, description, number 
 const handleNavigateToContactDetails = () => {
     router.navigate(`/contactDetailPage/contactDetail`);
     console.log("cnumber", number);
-    setContactId(number);
+    setSysId(sys_id);
 };
  
 return (

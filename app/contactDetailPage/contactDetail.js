@@ -4,19 +4,21 @@ import LeadDet from '../../leadComponents/leadDetHeader';
 import useIdStore from '../leadStore';
 import { useContactStore } from '../leadStore';
 //import { leadData } from '../../customComponents/formData';
-import { FetchContacts } from '../service/fetchContacts';
+import { FetchContactDetail } from '../service/fetchContactDetail';
 import { useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import ContactHeader from '../../customComponents/contactDetailHeader';
+
  
 import DataRow from '../../customComponents/dataRow';
+import { router } from 'expo-router';
 const sectionDetails = [
     {
       title: 'General Information',
       id: 'leadInfo',
       fields: [
         {label: 'Title', value: 'title' },
-        { label: 'Account Name:', value: 'account_name' },
+        { label: 'Account Name:', value: 'account_name.display_value' },
         { label: 'Description:', value: 'description' },
         // { label: 'Account:', value: 'account' },
         { label: 'Birthdate:', value: 'birthdate' },
@@ -88,12 +90,19 @@ const sectionDetails = [
 const Info = () => {
   const [contactData, setContactData] = useState([]);
   const [openSections, setOpenSections] = useState(['leadInfo']);
+  const{sys_iid, setSysId}=useIdStore();
+  const sys_id = useIdStore((state=>state.sys_id))
+
+  const extractSysId = (url) => {
+    const parts = url.split('/');
+    return parts[parts.length - 1];
+  };
  
  
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const odata = await FetchContacts();
+        const odata = await FetchContactDetail();
         setContactData(odata.result);
         console.log("contact data",contactData);
       } catch (error) {
@@ -111,22 +120,53 @@ const Info = () => {
       setOpenSections([...openSections, sectionId]);
     }
   };
+
+  const goToEditDetails=()=>{
+    router.navigate('formComponents/editContact');
+  }
  
   const renderSectionContent = (sectionId, contactData, contactId) => {
-    const lead = contactData.find((contact) => contact.number === contactId);
+    const contacts = contactData.find((contact) => contact.sys_id === sys_id);
     const section = sectionDetails.find((section) => section.id === sectionId);
+    console.log("contacts", contacts)
  
-    if (!section || !lead) return null;
+    if (!section || !contacts) return null;
  
-    return section.fields.map((row, index) => (
-      <DataRow key={index} label={row.label} detail={lead[row.value]} />
-    ));
+    return section.fields.map((row, index) => {
+      if (row.value === 'account_name.display_value') {
+        // return <DataRow key={index} label={row.label} detail={contacts.account_name.display_value} />;
+        return (
+          <TouchableOpacity
+            key={index}
+            onPress={() => {
+              const sysId = extractSysId(contacts.account_name.link);
+              setSysId(sysId);
+             
+              console.log("sys_id",contacts.account_name.link);
+              
+              router.navigate('/formComponents/accountDetailPage');
+       
+            }}>
+            <DataRow color={'blue'} label={row.label} detail={contacts.account_name.display_value} />
+          </TouchableOpacity>
+        
+        // <DataRow label={row.label} detail={contacts.account_name.display_value} />
+    
+        );
+      }
+      else {
+        return <DataRow key={index} label={row.label} detail={contacts[row.value]} />;
+      }
+    });
   };
  
   return (
     <View style={styles.body}>
       <View style={{ height: '26%' }}>
        <ContactHeader/>
+       <View onPress={goToEditDetails}>
+        <Text onPress={goToEditDetails}>edit details</Text>
+      </View>
       </View>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.container}>

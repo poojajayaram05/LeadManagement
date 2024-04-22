@@ -29,8 +29,8 @@ function AddContacts({onSelectAccount}) {
 
 
 
-const contactNames = contactsData.map(contact => ({
-    key: contact.number, 
+const contactNames = contactsData.map((contact, index) => ({
+    key: contact.number+index, 
     label: contact.first_name + ' '+ contact.last_name,
     id:contact.sys_id
   }));
@@ -41,10 +41,11 @@ const contactNames = contactsData.map(contact => ({
   return(
     <ModalSelector
                     data={contactNames||''}
-                    initValue="Select Contacts"
+                    initValue={selected||'Select Contacts'}
                     onChange={(option) => {
                       console.log(`${option.label} (${option.key})`);
                       onSelectAccount(option.label,option.id); 
+                      setSelected(option.label)
                       // Call the callback function with the selected account name
                     }} />
   )

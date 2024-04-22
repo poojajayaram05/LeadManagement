@@ -9,11 +9,14 @@ import { AuthProvider } from '@/context/authContext';
 import Dashboard from './DrawerScreens/dashboard';
 import LeadList from './DrawerScreens/leadList';
 import LoginScreen from './authScreens/login';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+
 
 
 
 
 export default function Root() {
+  const queryClient =  new QueryClient({});
   const goToRegisterPage=()=>{
     router.replace('/authScreens/register');
 
@@ -22,13 +25,14 @@ export default function Root() {
     router.replace('/authScreens/login')
   }
   return(
+    <QueryClientProvider client={queryClient}>
     <AuthProvider>
     
   
         
        
 
-      <View style={styles.container}>
+<View style={styles.container}>
 <LoginScreen/>
    {/* <Dashboard/> */}
    {/* <LeadList/> */}
@@ -41,7 +45,7 @@ export default function Root() {
    
        </View>
     </AuthProvider>
-    
+    </QueryClientProvider>
    
     
 

@@ -6,12 +6,14 @@ import { useContactStore } from '../app/leadStore';
 import {FetchContacts} from '../app/service/fetchContacts'
 import { FontAwesome } from '@expo/vector-icons';
 import { Linking } from 'react-native';
+import useIdStore from '../app/leadStore';
  
  
 const ContactHeader = () => {
 //   const[leadData, setLeadData]=useState([]);
   const [contactData, setContactData] = useState([]);
  const cid= useContactStore((state) => state.number)
+ const sys_id = useIdStore((state=>state.sys_id))
  console.log(cid, "cidddd");
  function extractDate(timestamp) {
     const dateObject = new Date(timestamp);
@@ -37,7 +39,7 @@ useEffect(() => {
     fetchData();
   }, []);
  
-const contact = contactData.find((opportunity) => opportunity.number === cid);
+const contact = contactData.find((opportunity) => opportunity.sys_id === sys_id);
 console.log(contact,"thisisoppdata")
 const{ ckyc_number, title, mailing_address, email,mobile, first_name, last_name}=contact||'';
  

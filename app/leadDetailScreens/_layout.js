@@ -47,9 +47,13 @@
 import { Tabs } from 'expo-router/tabs';
 import { Stack } from 'expo-router';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
  
 export default function AppLayout() {
+  const queryClient =  new QueryClient({});
   return (
+    <QueryClientProvider  client={queryClient}>
     <Tabs>
       <Stack.Screen
         name="info"
@@ -129,5 +133,6 @@ export default function AppLayout() {
         }}
       /> */}
     </Tabs>
+    </QueryClientProvider>
   );
 }

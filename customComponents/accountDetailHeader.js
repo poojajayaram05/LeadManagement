@@ -12,9 +12,11 @@ const AccountHeader = () => {
 //   const[leadData, setLeadData]=useState([]);
 const [openSections, setOpenSections] = useState(['accountInfo']);
 const[accountData, setAccountData]=useState([]);
+
+const sys_id = useIdStore((state=>state.sys_id));
  
 const accNumber = useIdStore((state)=>state.account_number);
-console.log("account number",accNumber);
+//console.log("account number",accNumber);
  
 useEffect(() => {
   const fetchData = async () => {
@@ -29,7 +31,7 @@ useEffect(() => {
   fetchData();
 }, []);
  
-const accounts = accountData.find((lead) => lead.account_number === accNumber);
+const accounts = accountData.find((lead) => lead.sys_id === sys_id);
 console.log(accounts,"thisisoppdata")
 const{  email,mobile, first_name, last_name}=accounts||'';
  

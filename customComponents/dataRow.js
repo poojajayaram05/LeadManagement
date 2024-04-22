@@ -1,11 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
  
-const DataRow = ({ label, detail }) => {
+const DataRow = ({ label, detail, color}) => {
   return (
     <View style={styles.row}>
       <Text style={styles.data}>{label}</Text>
-      <Text style={styles.detail}>{detail}</Text>
+      <Text style={{ fontSize: 14,
+    fontWeight: 'bold',
+    textAlign: 'right',color:color}}>{detail}</Text>
     </View>
   );
 };

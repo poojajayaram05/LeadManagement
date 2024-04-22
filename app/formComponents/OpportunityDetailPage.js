@@ -153,10 +153,12 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-nati
 import useIdStore from '../leadStore';
 import { useOpportunityStore } from '../leadStore';
 //import { leadData } from '../../customComponents/formData';
-import { FetchOpportunities } from '../service/fetchOpportunities';
+import { FetchOpportunitiesDetail } from '../service/fetchOpportunityDetail';
 import { useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import OpportunityHeader from '../../customComponents/opportunityDetailHeader';
+import { useContactStore } from '../leadStore';
  
 import DataRow from '../../customComponents/dataRow';
  
@@ -166,12 +168,13 @@ const sectionDetails = [
       title: 'General Details',
       id: 'leadInfo',
       fields: [
-        // {label: 'Opportunity name:', value: 'opportunity_name' },
-        { label: 'Account Name:', value: 'account' },
-        { label: 'Primary Contact:', value: 'contact'  },
+        { label: 'Opportunity name:', value: 'opportunity_name' },
+        { label: 'Primary Contact:', value: 'contact.display_value'},
+        
         { label: 'Owner:', value: 'owner' },
         { label: 'Description:', value: 'description' },
         { label: 'Next Step:', value: 'next_step' },
+        { label: 'Account Name:', value: 'account.display_value'},
   
         { label: 'Sales Pipeline:', value: 'sales_pipeline' },
         { label: 'Sales Stage:', value: 'sales_stage' },
@@ -196,20 +199,28 @@ const sectionDetails = [
 const Info = () => {
   const [opportunityData, setOpportunityData] = useState([]);
   const [openSections, setOpenSections] = useState(['leadInfo']);
- 
+  const{sys_id, setSysId}=useIdStore();
+  //const{sys_iid, setCSysId}=useContactStore();
  
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const odata = await FetchOpportunities();
+        const odata = await FetchOpportunitiesDetail();
         setOpportunityData(odata.result);
-        console.log("oppp data",opportunityData);
       } catch (error) {
         console.error('Error in fetching opp:', error);
       }
     };
     fetchData();
   }, []);
+
+  const extractSysId = (url) => {
+    const parts = url.split('/');
+    return parts[parts.length - 1];
+  };
+
+  // const csys_id=useContactStore((state) => state.number);
+ 
  
   const toggleSection = (sectionId) => {
     const isOpen = openSections.includes(sectionId);
@@ -222,13 +233,46 @@ const Info = () => {
  
   const renderSectionContent = (sectionId, opportunityData, opportunityId) => {
     const oppData = opportunityData.find((opportunity) => opportunity.number === opportunityId);
+    console.log("oppp data",oppData);
     const section = sectionDetails.find((section) => section.id === sectionId);
  
     if (!section || !oppData) return null;
  
-    return section.fields.map((row, index) => (
-      <DataRow key={index} label={row.label} detail={oppData[row.value]} />
-    ));
+    return section.fields.map((row, index) => {
+      if (row.value === 'account.display_value') {
+        <TouchableOpacity
+        key={index}
+        onPress={() => {
+          const sysId = extractSysId(oppData.account.link);
+          setSysId(sysId);
+         
+          console.log("sys_id",oppData.account.link);
+          
+          router.navigate('/formComponents/accountDetailPage');
+   
+        }}>
+        <DataRow color={'blue'} label={row.label} detail={oppData.account.display_value} />
+      </TouchableOpacity>
+      } else if (row.value === 'contact.display_value') {
+        return(
+          <TouchableOpacity
+          key={index}
+          onPress={() => {
+            const sysId = extractSysId(oppData.contact.link);
+            setSysId(sysId);
+           
+            console.log("sys_id",oppData.contact.link);
+            
+            router.navigate('/contactDetailPage/contactDetail');
+     
+          }}>
+          <DataRow color={'blue'} label={row.label} detail={oppData.contact.display_value} />
+        </TouchableOpacity>
+        )
+      } else {
+        return <DataRow key={index} label={row.label} detail={oppData[row.value]} />;
+      }
+    });
   };
  
   return (

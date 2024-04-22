@@ -29,8 +29,8 @@ function AddAccounts({ onSelectAccount }) {
     fetchData(); 
 }, []); 
 
-const accountNames = accountsData.map(account => ({
-    key: account.account_number, 
+const accountNames = accountsData.map((account, index) => ({
+    key: account.account_number+index, 
     label: account.account_name ,
     id:account.sys_id
   }));
@@ -41,12 +41,16 @@ const accountNames = accountsData.map(account => ({
   return(
     <ModalSelector
                     data={accountNames||''}
-                    initValue="Select Accounts"
+                    initValue={selected||'Select Accounts'}
                     onChange={(option) => {
                       console.log(`${option.label} (${option.key})`);
-                      onSelectAccount(option.label, option.id); 
+                      onSelectAccount(option.label, option.id);
+                      setSelected(option.label)
+                       
+                      
                       // Call the callback function with the selected account name
                     }}
+                    
                      />
   )
 

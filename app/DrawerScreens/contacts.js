@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { ActivityIndicator } from 'react-native';
-
+import { useQuery } from '@tanstack/react-query';
 import { FetchContacts } from '../service/fetchContacts';
 import {
   SafeAreaView,
@@ -29,27 +29,33 @@ const ContactList = () => {
   }
 
   const[contactData, setContactData]=useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+
  
  
+  const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: FetchContacts});
+
   useEffect(() => {
-    const fetchData = async () => {
-        try {
-            const odata = await FetchContacts(); // Call FetchLeads and wait for the result
-            setContactData(odata.result); // Set the state with the fetched data
-            console.log("this is the contacts data",odata.result);
-            setContactData(odata.result);
-            console.log(contactData)
-            setIsLoading(false); // Log the fetched data
-        } catch (error) {
-            // Handle errors if any
-            console.error('Error in fetching leads:', error);
-            setIsLoading(false);
-        }
-    };
- 
-    fetchData(); // Call the fetchData function defined above
-}, []); // Empty dependency array means it will run only once on mount
+    if (data) {
+      setContactData(data.result);
+    }
+  }, [data]);
+
+  if (isLoading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#023B5E" />
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View style={styles.loadingContainer}>
+        <Text>Error in fetching Contacts</Text>
+      </View>
+    );
+  }
+
  
  
 if (isLoading) {
@@ -68,6 +74,7 @@ if (isLoading) {
       title={item.title}
       description={item.description}
       number={item.number}
+      sys_id={item.sys_id}
      
  
     />

@@ -17,6 +17,7 @@ import {
  
 import * as SecureStore from 'expo-secure-store';
 import OpportunityItem from '../../customComponents/opportuntityCard';
+import { useQuery } from '@tanstack/react-query';
  
  
 const Opportunity = () => {
@@ -28,27 +29,52 @@ const Opportunity = () => {
   const [index, setIndex] = useState(0);
   const [starredLeads, setStarredLeads] = useState([]);
   const[OpportunityData, setOpportunityData]=useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+
  
  
+//   useEffect(() => {
+//     const fetchData = async () => {
+//         try {
+//             const odata = await FetchOpportunities(); // Call FetchLeads and wait for the result
+//             setOpportunityData(odata.result); // Set the state with the fetched data
+//             console.log("this is the oppurtunity data",odata.result);
+//             setOpportunityData(odata.result);
+//             console.log(OpportunityData)
+//             setIsLoading(false); // Log the fetched data
+//         } catch (error) {
+//             // Handle errors if any
+//             console.error('Error in fetching leads:', error);
+//             setIsLoading(false);
+//         }
+//     };
+ 
+//     fetchData(); 
+// }, []);
+
+const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: FetchOpportunities});
+
   useEffect(() => {
-    const fetchData = async () => {
-        try {
-            const odata = await FetchOpportunities(); // Call FetchLeads and wait for the result
-            setOpportunityData(odata.result); // Set the state with the fetched data
-            console.log("this is the oppurtunity data",odata.result);
-            setOpportunityData(odata.result);
-            console.log(OpportunityData)
-            setIsLoading(false); // Log the fetched data
-        } catch (error) {
-            // Handle errors if any
-            console.error('Error in fetching leads:', error);
-            setIsLoading(false);
-        }
-    };
- 
-    fetchData(); // Call the fetchData function defined above
-}, []); // Empty dependency array means it will run only once on mount
+    if (data) {
+      setOpportunityData(data.result);
+    }
+  }, [data]);
+
+  if (isLoading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#023B5E" />
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View style={styles.loadingContainer}>
+        <Text>Error in fetching leads</Text>
+      </View>
+    );
+  }
+
  
  
 if (isLoading) {

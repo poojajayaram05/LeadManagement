@@ -143,9 +143,6 @@ const Dashboard = () => {
             <TouchableOpacity onPress={handleAddLead}>
                 <Text style={styles.dropdownMenuItem}>Add a lead</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleAddActivty()}>
-                <Text style={styles.dropdownMenuItem}>Add Activity</Text>
-            </TouchableOpacity>
             <TouchableOpacity onPress={() => handleAddAccount()}>
                 <Text style={styles.dropdownMenuItem}>Add an account</Text>
             </TouchableOpacity>

@@ -20,8 +20,6 @@ export const FetchOpportunities = async () => {
           })
           const data = await response.json();
           return data;
- 
-         
         //   router.replace('/DrawerScreens/leadList')
     } catch (error) {
         console.error('Error fetching leads:', error);

@@ -9,6 +9,8 @@ import { useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 
 import DataRow from '../../customComponents/dataRow'; 
+import { Button } from 'react-native-web';
+import { router } from 'expo-router';
 const sectionDetails = [
     {
       title: 'General Information',
@@ -87,6 +89,10 @@ const sectionDetails = [
 const Info = () => {
   const [leadData, setLeadData] = useState([]);
   const [openSections, setOpenSections] = useState(['leadInfo']);
+
+  const goToEdit=()=>{
+    router.navigate('/formComponents/editLead')
+  }
  
   useEffect(() => {
     const fetchData = async () => {
@@ -125,8 +131,13 @@ const Info = () => {
     <View style={styles.body}>
       <View style={{ height: '26%' }}>
         <LeadDet />
+        <View>
+      <Text onPress={goToEdit}>edit lead </Text>
       </View>
+      </View>
+      
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
+ 
         <View style={styles.container}>
           {sectionDetails.map((section) => (
             <Section

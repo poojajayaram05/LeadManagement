@@ -6,8 +6,10 @@ import { router } from 'expo-router';
 import { TouchableOpacity } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
-import {FetchLeads} from '../service/fetchLeads';
+import {FetchLeads} from '../service/fetchLeads'
 import { ActivityIndicator } from 'react-native';
+import { useQuery } from '@tanstack/react-query';
+
 import {
   SafeAreaView,
   View,
@@ -19,6 +21,7 @@ import {
 } from 'react-native';
 // import {leadData} from '../../customComponents/formData';
 import * as SecureStore from 'expo-secure-store';
+import { TextInput } from 'react-native-gesture-handler';
  
 
 const LeadList = () => {
@@ -31,67 +34,69 @@ const LeadList = () => {
   const [index, setIndex] = useState(0);
   const [starredLeads, setStarredLeads] = useState([]);
   const[leadData, setleadData]=useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  //const [isLoading, setIsLoading] = useState(true);
+  const[searchQuery, setSearchQuery]=useState('')
+
+
+
  
+
+//   useEffect(() => {
+
+//     const fetchData = async () => {
+      
+//         const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: FetchLeads });
+//         console.log("leads",data.result);
+//         setleadData(data.result)
+
+//         if (isLoading) {
+//           return (
+//             <View style={styles.loadingContainer}>
+//               <ActivityIndicator size="large" color="#023B5E" />
+//             </View>
+//           );
+//         }
+//         if (error) {
+//           return (
+//             <View style={styles.loadingContainer}>
+//              <Text>Error in fetching leads</Text>
+//             </View>
+//           );
+//         }
+//     };
+
+  
+
+//     fetchData(); 
+// }, []); 
+
+const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: FetchLeads});
 
   useEffect(() => {
-   
-  //   const FetchLeads = async () => {
-  //     const token = SecureStore.getItem('token');
-  //     const stoken = JSON.parse(token);
-  //     const apiToken = stoken.accessToken;
-  //     console.log(apiToken);  
-  //     const getLeadURL="https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_c" ;
-  //     try {
-  //         const response = await fetch(getLeadURL, {
-  //             method: 'GET',
-  //             headers: {
-  //               'Content-Type': 'application/json',
-  //               'Authorization' : 'Bearer ' + apiToken
-               
-  //             },
-  
-  //           })
+    if (data) {
+      setleadData(data.result);
+    }
+  }, [data]);
 
-  //           const data = await response.json();
-  //           console.log("leads data is",data.result);
-  //           setleadData(data.result);
-  
-           
-  //         //   router.replace('/DrawerScreens/leadList')
-  //     } catch (error) {
-  //         console.error('Error fetching leads:', error);
-  //         throw error; // You can handle the error further or throw it for the caller to handle
-  //     }
-  // };
- 
-    const fetchData = async () => {
-        try {
-            const ldata = await FetchLeads(); // Call FetchLeads and wait for the result
-            
-            setleadData(ldata.result); // Set the state with the fetched data
-            console.log("this is the lead data",ldata.result);
-            setleadData(ldata.result);
-            console.log(leadData)
-            setIsLoading(false); // Log the fetched data
-        } catch (error) {
-            // Handle errors if any
-            console.error('Error in fetching leads:', error);
-            setIsLoading(false);
-        }
-    };
+  if (isLoading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#023B5E" />
+      </View>
+    );
+  }
 
-    fetchData(); // Call the fetchData function defined above
-}, []); // Empty dependency array means it will run only once on mount
+  if (error) {
+    return (
+      <View style={styles.loadingContainer}>
+        <Text>Error in fetching leads</Text>
+      </View>
+    );
+  }
 
 
-if (isLoading) {
-  return (
-    <View style={styles.loadingContainer}>
-      <ActivityIndicator size="large" color="#023B5E" />
-    </View>
-  );
-}
+
+
 
  
 
@@ -146,6 +151,16 @@ if (isLoading) {
         )}  
       />
        */}
+    <SafeAreaView style={{ marginHorizontal:20, flexDirection:'row'}}>
+       <FontAwesome name='search' size={15} color='black' style={{marginTop:10, marginRight:10}}/>
+      
+        <TextInput 
+        placeholder='Search'
+        clearButtonMode='always'
+        style={styles.searchBox}
+        value={searchQuery}
+        ></TextInput>
+       </SafeAreaView>
        <FlatList
               data={leadData}
               renderItem={renderItem}

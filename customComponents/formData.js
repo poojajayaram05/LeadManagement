@@ -10,7 +10,7 @@ export const opportunityFormData = {
     },
  
     {
-      "name": "account_name",
+      "name": "account",
       "type": "Adropdown",
       "title": " Account Name",
       "placeholder": "Enter account name",
@@ -19,7 +19,7 @@ export const opportunityFormData = {
  
  
    {
-      "name": "primary_contact",
+      "name": "contact",
       "type": "Pdropdown",
       "title": "Primary Contact",
       "placeholder": "",
@@ -43,6 +43,8 @@ export const opportunityFormData = {
     //     { "value": 5, "value": "Abandoned" },
     //   ]
     // },
+
+    
  
  
     {
@@ -186,6 +188,425 @@ export const opportunityFormData = {
 ]
 }
  
+
+
+export const editLeadformData = {
+ 
+  "elements": [
+    {
+      "name": "lead_type",
+      "type": "dropdownL",
+      "title": "Lead Type",
+      "placeholder": "Lead Type",
+      "dropdownData": [
+          { "key": 'person', "value": 'Person' },
+          { "key": 'company', "value": 'Company' }
+      ],
+      "sectionName": "General",
+      "isRequired": true,
+      "readonly":true
+  },
+
+  {
+    "name": "leadId",
+    "type": "TextInputL",
+    "title": "Lead ID",
+    "placeholder":"Lead ID",
+    "maxLength": 25,
+    // 'isRequired': true,
+    "sectionName":"General",
+    "readonly":true
+  },
+ 
+
+    {
+      "name": "salutation",
+      "type": "dropdown",
+      "title": "Salutation",
+ 
+      "placeholder":"Salutation",
+       "dropdownData" :[
+        { key: 'Mr.', value: 'Mr.' },
+        { key: 'Ms.', value: 'Ms.' },
+        { key: 'Dr.', value: 'Dr.' },
+        { key: 'prof', value: 'Prof' },
+       ],
+       "sectionName":"General"
+    },
+   
+    {
+      "name": "first_name",
+      "type": "TextInput",
+      "title": "First Name",
+      "placeholder":"First Name",
+      "maxLength": 25,
+      'isRequired': true,
+      "sectionName":"General"
+    },
+    {
+      "name": "last_name",
+      "type": "TextInput",
+      "title": "Last Name",
+
+      "placeholder": "Last Name",
+      "isRequired": true,
+      "autocomplete": "lastname",
+      "sectionName":"General"
+    },
+    {
+      "name": "gender",
+      "type":"RadioButton",
+      "title": "Gender",
+      "rdata" : [
+        { label: "Male", id: 'male' },
+        { label: "Female", id: 'female' },
+        { label: "Other", id: 'other' },
+      ],
+      'isRequired': true,
+      "sectionName":"General"
+    },
+
+ {
+      "name": "job_title",
+      "type": "TextInput",
+      "title": "Job Title",
+   
+      "placeholder": "Job Title",
+      "sectionName":"General"
+     
+    },
+    {
+      "name": "description",
+      "type": "TextInput",
+      "title": "Description",
+   
+      "placeholder": "Description",
+      "sectionName":"General",
+      "icon":"logo-facebook"
+     
+    },
+    {
+      "name":"street",
+      "type": "TextInput",
+      "title": "Street",
+   
+      "placeholder": "Street",
+      "sectionName":"Address"
+     
+    },
+    {
+      "name":"city",
+      "type": "TextInput",
+      "title": "City",
+     
+      "placeholder": "City",
+      "sectionName":"Address",
+      "isRequired":true
+     
+    },
+    {
+      "name":"state_province",
+      "type": "TextInput",
+      "title": "State",  
+   
+      "placeholder": "State",
+      "sectionName":"Address",
+     
+      "isRequired":true
+     
+    },
+    {
+      "name":"zip_postalcode",
+      "type": "TextInput",
+      "title": "Postal Code",
+
+      "placeholder": "Postal Code",
+      "sectionName":"Address"
+     
+    },
+    {
+      "name":"country",
+      "type": "TextInput",
+      "title": "Country",
+   
+      "placeholder": "Country",
+      "sectionName":"Address",
+      "isRequired":true
+     
+    },
+    {
+      "name": "industry",
+      "type": "dropdown",
+      "title": "Industry",
+   
+      "placeholder":"Industry",
+       "dropdownData" :[
+        { key: 'accounting', value: 'Accounting' },
+        { key: 'brokers', value: 'Brokers' },
+        { key: 'consulting', value: 'Consulting' },
+        { key: 'customer_services', value: 'Customer Services'},
+        { key: 'financial', value: 'Financial' },
+       ],
+       "sectionName":"Company"
+     
+     
+    },
+    {
+      "name": "lead_currency",
+      "type": "dropdown",
+      "title": "Currency",
+ 
+      "placeholder":"Currency",
+       "dropdownData" :[
+        { key: 'inr', value: 'INR' },
+        { key: 'usd', value: 'USD' },
+       ],
+       "sectionName":"Company"
+    },
+   
+    {
+      "name": "company",
+      "type": "TextInput",
+      "title": "Company Name",
+      "description": "Enter Company name",
+      "placeholder":"Company Name",
+      "sectionName":"Company"
+    },
+    {
+      "name": "no_of_employees",
+      "type": "TextInput",
+      "title": "Number Of Employees",
+      "description": "Enter the number of employees",
+      "placeholder":"No of employees",
+      "sectionName":"Company"
+    },
+    {
+      "name":"website",
+      "type": "TextInput",
+      "title": "Website",
+      "description": "Enter a valid website",
+      "placeholder":"Website",
+      "sectionName":"Company"
+    },
+    {
+      "name":"annual_revenue",
+      "type": "TextInput",
+      "title": "Annual Revenue",
+      "description": "Enter annual revenue",
+      "inputType": "numeric",
+      "placeholder":"Annual Revenue",
+      "sectionName":"Company"
+    },
+    {
+      "name": "business_phone",
+      "type": "TextInput",
+      "title": "Business Phone",
+      "inputType": "numeric",
+      "placeholder":"Business Phone",
+      "isRequired": true,
+      "sectionName":"Contact",
+      "validation": {
+        "regex": /^\d{10}$/,
+        "message": "Please enter a valid 10-digit phone number."
+      },
+    },
+    {
+      "name": "mobile_phone",
+      "type": "TextInput",
+      "title": "Mobile Phone",
+      "inputType": "numeric",
+      "placeholder":"Mobile Phone",
+      "isRequired": true,
+      "sectionName":"Contact",
+      "validation": {
+        "regex": /^\d{10}$/,
+        "message": "Please enter a valid 10-digit phone number."
+      },
+    },
+    {
+      "name": "home_phone",
+      "type": "TextInput",
+      "title": "Alternate Phone",
+      "inputType": "numeric",
+      "placeholder":"Home Phone",
+      "sectionName":"Contact"
+    },
+    {
+      "name": "do_not_call",
+      "type": "Switch",
+      "title": "Do Not Call",
+      "sectionName":"ContactMethod"
+    },
+    {
+      "name": "email",
+       "type":"email",
+      "title": "Email",
+      "placeholder":"Email",
+      "sectionName":"Contact",
+      "validation": {
+        "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        "message": "Please enter a valid email address."
+      },
+    },
+
+    {
+      "name": "preffered_method",
+      "type": "dropdown",
+      "title": "Preferred",
+      "placeholder":"Preferred",
+      "dropdownData" :[
+        { key: 'any', value: 'Any' },
+        { key: 'email', value: 'Email' },
+        { key: 'bulk_email', value: 'Web' },
+        { key: 'phone', value: 'Phone' },
+        { key: 'whatsapp', value: 'Whatsapp' },
+       ],
+       "sectionName":"ContactMethod"
+    },
+
+    {
+      "name": "u_email",
+      "type": "dropdown",
+      "title": "Email subscription",
+      "placeholder":"Email subscription",
+      "dropdownData" :[
+        { key: 'allow', value: 'Allow' },
+        { key: 'do_not_allow', value: 'Do not allow' },
+       ],
+       "sectionName":"ContactMethod"
+
+    },
+    {
+      "name": "phone",
+      "type": "dropdown",
+      "title": "Phone subscription",
+      "placeholder":"Phone subscription",
+      "dropdownData" :[
+        { key: 'allow', value: 'Allow' },
+        { key: 'do_not_allow', value: 'Do not allow' },
+       ],
+       "sectionName":"ContactMethod"
+    },
+    {
+      "name": "whatsapp",
+      "type": "dropdown",
+      "title": "Whatsapp subscription",
+      "placeholder":"whatsapp subscription",
+      "dropdownData" :[
+        { key: 'allow', value: 'Allow' },
+        { key: 'do_not_allow', value: 'Do not allow' },
+       ],
+       "sectionName":"ContactMethod"
+    },
+
+    {
+      "name": "email_opt_out",
+      "type": "Switch",
+      "title": "Email Opt Out",
+      "sectionName":"ContactMethod"
+    },
+
+    {
+      "name": "fax",
+      "type": "TextInput",
+      "title": "Fax",
+      "placeholder":"FAX",
+      "sectionName":"Contact"
+    },
+    {
+      "name": "company_duns_number",
+      "type": "TextInput",
+      "title": "Company DUNS Number",
+      "inputType": "numeric",
+      "placeholder":"Number",
+      "sectionName":"Company"
+    },
+    {
+      "name": "title",
+      "type": "TextInput",
+      "title": "Lead Title",
+      "placeholder":"Lead Title",
+      "isRequired": true,
+      "sectionName":"General"
+    },
+
+    {
+      "name": "lead_currency",
+      "type": "dropdown",
+      "title": "Lead Currency",
+      "placeholder":"Currency",
+      "dropdownData" :[
+        { key: 'inr', value: 'INR' },
+        { key: 'usd', value: 'USD' },
+       
+       ],
+       "sectionName":"company"
+    },
+    {
+      "name": "lead_source",
+      "type": "dropdown",
+      "title": "Lead Source",
+      "placeholder":"Lead Source",
+       "dropdownData" :[
+        { key: 'advertisement', value: 'Advertisement' },
+        { key: 'partner', value: 'Partner' },
+        { key: 'web', value: 'Web' },
+        { key: 'campaign', value: 'Campaign' },
+        { key: 'self_sourced', value: 'Self Sourced' },
+       ],
+       "sectionName":"General"
+    },
+    {
+      "name": "u_owner_type",
+      "type": "dropdown",
+      "title": "Owner Type",
+      "placeholder":"Owner Type",
+       "dropdownData" :[
+        { key: 'team', value: 'Team' },
+        { key: 'user', value: 'User' },
+       ],
+       "sectionName":"Additional"
+    },
+    {
+      "name": "new_owner",
+      "type": "TextInputO",
+      "title": "Owner",
+        "sectionName":"Additional"
+    },
+    {
+      "name": "instagram",
+      "type": "socialMediaInput",
+      "logo":"logo-instagram",
+      "title": "Instagram",
+      "placeholder":"Instagram",
+      "sectionName":"Social"
+    },
+    {
+      "name": "linkedin",
+      "type": "socialMediaInput",
+      "logo":"logo-linkedin",
+      "title": "LinkedIn",
+      "placeholder":"LinkedIn",
+      "sectionName":"Social"
+    },
+    {
+      "name": "facebook",
+      "type": "socialMediaInput",
+      "logo":"logo-facebook",
+      "title": "Facebook",
+      "placeholder":"Facebook",
+      "sectionName":"Social"
+    },
+    {
+      "name": "twitter",
+      "type": "socialMediaInput",
+      "logo":"logo-twitter",
+      "title": "Twitter",
+      "placeholder":"Twitter",
+      "sectionName":"Social"
+    },
+],
+}
 
 
 
@@ -3527,5 +3948,1436 @@ export const CorporateData = {
     }
   ]
 }
+
+export const editContactFormData={
+  "elements": [
+ 
+ 
+    {
+      "name": "account_name",
+      "type":"dropdownAccounts",
+      "title": "Accounts",
+      "inputType": "text",
+      "sectionName":"General"
+    },
+    {
+      "name": "first_name",
+      "type": "TextInput",
+      "title": "First Name",
+      "placeholder": "First Name",
+      "sectionName":"General",
+      "isRequired":true
+    },
+    {
+      "name": "middle_name",
+      "type": "TextInput",
+      "inputType":"text",
+      "title": "Enter Middle Name",
+      "placeholder": "Enter Middle Name",
+      "sectionName":"General",
+      "isRequired":true
+    },
+    {
+      "name": "last_name",
+      "type": "TextInput",
+      "inputType":"text",
+      "title": "Enter Last Name",
+      "placeholder": "Enter Last Name",
+      "sectionName":"General",
+      "isRequired":true
+    },
+    {
+      "name": "alternate_email1",
+      "type": "TextInput",
+      "title": "Alternate Email 1",
+      "inputType": "text",
+      "placeholder": "Enter Email",
+      // "validation": {
+      //   "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      //   "message": "Please enter a valid email address."
+      // },
+      "sectionName":"Contact"
+    },
+    {
+      "name": "alternate_email2",
+      "type": "TextInput",
+      "title": "Alternate Email 2",
+      "inputType": "text",
+      "placeholder": "Enter Email",
+      // "validation": {
+      //   "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      //   "message": "Please enter a valid email address."
+      // },
+      "sectionName":"Contact"
+    },
+    {
+      "name": "alternate_phone1",
+      "type": "TextInput",
+      "title": "Alternate Phone 1",
+      "inputType": "numeric",
+      "placeholder": "Enter Phone Number",
+      // "validation": {
+      //   "regex": /^\d{10}$/,
+      //   "message": "Please enter a valid 10-digit phone number."
+      // },
+      "sectionName":"Contact"
+    },
+    {
+      "name": "alternate_phone2",
+      "type": "TextInput",
+      "title": "Alternate Phone 2",
+      "inputType": "numeric",
+      "placeholder": "Enter Phone Number",
+      // "validation": {
+      //   "regex": /^\d{10}$/,
+      //   "message": "Please enter a valid 10-digit phone number."
+      // },
+      "sectionName":"Contact"
+    },
+    {
+      "name": "assistant",
+      "type": "TextInput",
+      "title": "Assistant",
+      "inputType": "text",
+      "placeholder": "Enter Assistant name",
+      "sectionName":"Personal"
+     
+    },
+    {
+      "name": "assistant_phone",
+      "type": "TextInput",
+      "title": "Assistant Phone",
+      "inputType": "numeric",
+      "placeholder": "Enter Assistant Phone",
+      "sectionName":"Contact"
+     
+    },
+    {
+      "name": "birthdate",
+      "type": "Date",
+      "title": "Birthdate",
+      "placeholder": "Enter birth date",
+     
+      "sectionName":"General"
+     
+    },
+    {
+      "name": "category",
+      "type": "dropdown",
+      "title": "Category",
+      "placeholder": "Enter Category",
+      "dropdownData": [
+        { key: 'general', value: 'General' },
+        { key: 'obc',value: 'OBC' },
+        { key: 'sc', value: 'SC' },
+        { key: 'st', value: 'ST' },
+        { key: 'others', value: 'Others' },
+    ],
+    "sectionName":"General"
+     
+    },
+ 
+    {
+      "name": "contact_verfied",
+      "type": "Switch",
+      "title": "Contact Verified",
+      "sectionName":"Contact"
+    },
+    {
+      "name": "department",
+      "type": "dropdown",
+      "title": "Department",
+      "placeholder": "Select Department",
+      "dropdownData": [
+        { key: 'person', value: 'Person' },
+        { key: 'company',value: 'Company' }
+    ],
+    "sectionName":"General"
+    },
+    {
+      "name": "description",
+      "type": "MultilineText",
+      "title": "Description",
+      "placeholder": "Enter Description",
+      "inputType": "text",
+      "sectionName":"General"
+    },
+    {
+      "name": "do_not_call",
+      "type": "Switch",
+      "title": "Do not call",
+      "sectionName":"Contact"
+    },
+    {
+      "name": "ebc_eligibility_date",
+      "type": "Date",
+      "title": "EBC Eligibility date",
+      "sectionName":"General"
+    },
+    {
+      "name": "email",
+      "type": "TextInput",
+      "title": "Email",
+ 
+      "placeholder": "Enter Email",
+      "validation": {
+        "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        "message": "Please enter a valid email address.",
+       
+      },
+      "isRequired":true,
+      "sectionName":"Contact"
+ 
+    },
+    {
+      "name": "email_opt_out",
+      "type": "Switch",
+      "title": "Email Opt Out",
+      "sectionName":"Contact"
+    },
+    {
+      "name": "father_first_name",
+      "type": "TextInput",
+      "title": "Father First Name",
+      "placeholder": "Enter First Name",
+      "sectionName":"Personal"
+    },
+    {
+      "name": "father_last_name",
+      "type": "TextInput",
+      "title": "Father Last Name",
+      "placeholder": "Enter Last Name",
+      "sectionName":"Personal"
+    },
+    {
+      "name": "father_middle_name",
+      "type": "TextInput",
+      "title": "Father Middle Name",
+      "placeholder": "Enter Middle Name",
+      "sectionName":"Personal"
+    },
+    {
+      "name": "fax",
+      "type": "TextInput",
+      "title": "Fax",
+      "placeholder": "Enter Fax",
+      "sectionName":"Contact"
+    },
+    {
+      "name": "fax_opt_out",
+      "type": "Switch",
+      "title": "Fax Opt Out",
+      "sectionName":"Contact"
+    },
+ 
+    {
+      "name": "funding_value_base_loan",
+      "type": "TextInput",
+      "inputType":"numeric",
+      "title": "Funding Value Base Loan",
+      "placeholder":"Funding Value Base Loan",
+      "sectionName":"General"
+    },
+    {
+      "name": "gender",
+      "type":"RadioButton",
+      "title": "Gender",
+      "rdata" : [
+        { label: "Male", id: 'male' },
+        { label: "Female", id: 'female' },
+        { label: "Other", id: 'other' },
+      ],
+      'isRequired': true,
+      "sectionName":"General"
+    },
+    {
+      "name": "home_phone",
+      "type": "TextInput",
+      "inputType":"numeric",
+      "title": "Enter Home Phone",
+      "placeholder": "Enter Home Phone",
+      "sectionName":"Contact"
+    },
+ 
+   
+    {
+      "name": "mailing_address",
+      "type": "TextInput",
+      "inputType":"text",
+      "title": "Enter Mailing Address",
+      "placeholder": "Enter Mailing Address",
+      "sectionName":"Address"
+    },
+    {
+      "name": "marital_status",
+      "type":"dropdown",
+      "title": "Marital Status",
+      "dropdownData": [
+        { key: 'single', value: 'Single' },
+        { key: 'married', value: 'Married' }
+    ],
+      "sectionName":"Personal"
+    },
+    {
+      "name": "minority_community",
+      "type":"Switch",
+      "title": "Minority Community",
+      "sectionName":"Personal"
+    },
+    {
+      "name": "mobile",
+      "type":"TextInput",
+      "title": "Mobile",
+      'isRequired': true,
+      "sectionName":"Contact",
+      "inputType":"numeric",
+      "placeholder":"Enter mobile number"
+    },
+    {
+      "name": "mother_first_name",
+      "type":"TextInput",
+      "title": "Mother First Name",
+      "sectionName":"Personal",
+      "placeholder":"Mother's First Name"
+    },
+    {
+      "name": "mother_last_name",
+      "type":"TextInput",
+      "title": "Mother Last Name",
+      "sectionName":"Personal",
+      "placeholder":"Mother's Last Name"
+    },  
+    {
+      "name": "mother_middle_name",
+      "type":"TextInput",
+      "title": "Mother Middle Name",
+      "sectionName":"Personal",
+      "placeholder":"Mother's Middle Name"
+    },  
+    {
+      "name": "ckyc_number",
+      "type": "TextInput",
+      "title": "CKYC Number",
+      "placeholder": "Enter CKYC number",
+      "inputType": "text",
+      "sectionName":"General"
+    },
+    // {
+    //   "name": "name",
+    //   "type":"TextInput",
+    //   "title": "Name",
+    //   "sectionName":"General",
+    //   "placeholder":"Enter name"
+    // },
+    {
+      "name": "other_address",
+      "type":"TextInput",
+      "title": "Other Address",
+      "sectionName":"Address",
+      "placeholder":"Enter other address"
+    },
+    {
+      "name": "other_phone",
+      "type":"TextInput",
+      "title": "Other Phone",
+      "sectionName":"Contact",
+      "inputType":"numeric",
+      "placeholder":"Enter other phone"
+    },
+    {
+      "name": "owner",
+      "type":"TextInputO",
+      "title": "Owner",
+      "sectionName":"General",
+     
+    },
+    {
+      "name": "religion",
+      "type":"dropdown",
+      "title": "Religion",
+      "dropdownData": [
+        { key: 'hinduism', value: 'Hinduism' },
+        { key: 'christianity', value: 'Christianity' },
+        { key: 'sikhism', value: 'Sikhism' },
+        {key: 'jainism', value: 'Jainism' },
+        {key: 'islam', value: 'Islam' },
+ 
+ 
+    ],
+    "sectionName":"Personal",
+    },
+    {
+      "name": "salutation",
+      "type": "dropdown",
+      "title": "Salutation",
+      "inputType": "text",
+      "placeholder":"Salutation",
+       "dropdownData" :[
+        { key: 'mr.', value: 'Mr.' },
+        { key: 'ms.', value: 'Ms.' },
+        { key: 'dr.', value: 'Dr.' },
+        { key: 'prof.', value: 'Prof' },
+       ],
+       "sectionName":"General"
+    },
+    {
+      "name": "spouse_first_name",
+      "type":"TextInput",
+      "title": "Spouse First Name",
+      "sectionName":"Personal",
+      "placeholder":"Spouse First Name"
+     
+    },
+    {
+      "name": "spouse_last_name",
+      "type":"TextInput",
+      "title": "Spouse Last Name",
+      "sectionName":"Personal",
+      "placeholder":"Spouse Last Name"
+     
+    },
+    {
+      "name": "spouse_middle_name",
+      "type":"TextInput",
+      "title": "Spouse Middle Name",
+      "sectionName":"Personal",
+      "placeholder":"Spouse Middle Name"
+    },
+    {
+      "name": "title",
+      "type":"TextInput",
+      "title": "Title",
+      "sectionName":"General",
+      "placeholder":"Enter Title"
+    },
+    {
+      "name": "last_stay_in_touch_req_date",
+      "type":"Date",
+      "title": "Last stay in touch ",
+      "sectionName":"General",
+    },
+    {
+      "name": "last_stay_in_touch_save_date",
+      "type":"Date",
+      "title": "Last stay in touch save",
+      "sectionName":"General",
+    },
+    {
+      "name": "do_not_call",
+      "type": "Switch",
+      "title": "Do Not Call",
+      "sectionName":"Contact"
+    },
+ 
+    {
+      "name": "preffered_method",
+      "type": "dropdown",
+      "title": "Preferred",
+      "placeholder":"Preferred",
+      "dropdownData" :[
+        { key: 'any', value: 'Any' },
+        { key: 'email', value: 'Email' },
+        { key: 'bulk_email', value: 'Web' },
+        { key: 'phone', value: 'Phone' },
+        { key: 'whatsapp', value: 'Whatsapp' },
+       
+       ],
+       "sectionName":"Contact"
+    },
+ 
+    {
+      "name": "u_email",
+      "type": "dropdown",
+      "title": "Email subscription",
+      "placeholder":"Email subscription",
+      "dropdownData" :[
+        { key: 'allow', value: 'Allow' },
+        { key: 'do_not_allow', value: 'Do not allow' },
+       ],
+       "sectionName":"Contact"
+ 
+    },
+    {
+      "name": "phone",
+      "type": "dropdown",
+      "title": "Phone subscription",
+      "placeholder":"Phone subscription",
+      "dropdownData" :[
+        { key: 'allow', value: 'Allow' },
+        { key: 'do_not_allow', value: 'Do not allow' },
+       ],
+       "sectionName":"Contact"
+    },
+    {
+      "name": "whatsapp",
+      "type": "dropdown",
+      "title": "Whatsapp subscription",
+      "placeholder":"whatsapp subscription",
+      "dropdownData" :[
+        { key: 'allow', value: 'Allow' },
+        { key: 'do_not_allow', value: 'Do not allow' },
+       ],
+       "sectionName":"Contact"
+    },
+ 
+    {
+      "name": "email_opt_out",
+      "type": "Switch",
+      "title": "Email Opt Out",
+      "sectionName":"Contact"
+    },
+ 
+  ]
+}
+
+export const editAccountFormData = {
+  
+  elements: [
+    {
+      name: "account_type",
+      type: "dropdown",
+      title: "Account Type",
+      inputType: "text",
+      placeholder: "Lead Type",
+      dropdownData: [
+        { key: "person", label: "person" },
+        { key: "corporate", label: "corporate" },
+      ],
+      sectionName: "General",
+      "isRequired":true
+    },
+    {
+      name: "account_name",
+      type: "TextInput",
+      title: "Account name",
+      placeholder: "account name",
+      maxLength: 25,
+      inputType: "text",
+      'isRequired': true,
+      sectionName: "General",
+    },
+    {
+      name: "title",
+      type: "TextInput",
+      title: "Title",
+      placeholder: "title",
+      maxLength: 25,
+      inputType: "text",
+      'isRequired': true,
+      sectionName: "General",
+    },
+
+    {
+      name: "salutation",
+      type: "dropdown",
+      title: "Salutation",
+      inputType: "text",
+      placeholder: "Salutation",
+      dropdownData: [
+        { key: "Mr.", label: "Mr." },
+        { key: "Ms.", label: "Ms." },
+        { key: "Dr.", label: "Dr." },
+        { key: "prof", label: "Prof" },
+      ],
+      sectionName: "General",
+    },
+
+    {
+      name: "first_name",
+      type: "TextInput",
+      title: "First Name",
+      placeholder: "First Name",
+      maxLength: 25,
+      inputType: "text",
+      isRequired: true,
+      sectionName: "General",
+    },
+    {
+      name: "last_name",
+      type: "TextInput",
+      title: "Last Name",
+      inputType: "text",
+      placeholder: "Last Name",
+      "isRequired": true,
+      autocomplete: "lastname",
+      sectionName: "General",
+    },
+    {
+      name: "middle_name",
+      type: "TextInput",
+      title: "Middle Name",
+      inputType: "text",
+      placeholder: "Last Name",
+      sectionName: "General",
+    },
+
+    {
+      name: "account_number",
+      type: "TextInput",
+      title: "Account number",
+      inputType: "numeric",
+      placeholder: "account number",
+      sectionName: "General",
+    },
+
+    {
+      name: "dob",
+      type: "dateInput",
+      title: "DOB",
+      inputType: "text",
+      placeholder: "birth date",
+      sectionName: "General",
+    },
+
+    {
+      name: "account_source",
+      type: "dropdown",
+      title: "Account source",
+      inputType: "text",
+      placeholder: "Salutation",
+      dropdownData: [
+        { key: "advertisement_customer", value: "Advertisement/Customer" },
+        { key: "adwords_other", value: "Adwords/Others" },
+        { key: "event_employee", value: "Event/Employee" },
+        { key: "list_trade", value: "List/Trade" },
+        { key: "partner_purchased", value: "Partner/Purchased" },
+        { key: "referral_google", value: "Referal/Google" },
+        { key: "webinar_website", value: "Webinar/Website" },
+      ],
+      sectionName: "General",
+    },
+    // {
+    //   "name": "account_site",
+    //   "type": "TextInput",
+    //   "title": "Account site",
+    //   "inputType": "text",
+    //   "placeholder": "account site",
+    //   "sectionName":"General"
+    // },
+    {
+      name: "website",
+      type: "TextInput",
+      title: "Website",
+      inputType: "text",
+      placeholder: "url",
+      sectionName: "General",
+    },
+    {
+      name: "account_owner",
+      type: "dropdown",
+      title: "Account owner",
+      inputType: "text",
+      placeholder: "Salutation",
+      dropdownData: [
+        { key: "acer_four", value: "Acer Four" },
+        { key: "acer_one", value: "Acer One" },
+        { key: "adobe_user_a", value: "Adobe User-A" },
+        { key: "adobe_user_b", value: "Adobe User-B" },
+        { key: "adam_haro", value: "Adam Haro" },
+      ],
+      sectionName: "General",
+    },
+    {
+      name: "description",
+      type: "TextInput",
+      title: "Description",
+      inputType: "text",
+      placeholder: "description",
+      sectionName: "General",
+    },
+    {
+      name: "owner",
+      type: "TextInputO",
+      title: "Owner",
+      inputType: "text",
+      placeholder: "Owner",
+      sectionName: "General",
+    },
+    {
+      name: "parent_account",
+      type: "dropdown",
+      title: "Parent account",
+      inputType: "text",
+      placeholder: "parent account",
+      dropdownData: [
+        { key: "test_1", value: "test-1" },
+        { key: "test_2", value: "test-2" },
+      ],
+      sectionName: "General",
+    },
+
+    {
+      name: "shipping_address",
+      type: "TextInput",
+      title: "Shipping address",
+      inputType: "text",
+      placeholder: "Street",
+      sectionName: "Address Details",
+    },
+    {
+      name: "state",
+      type: "TextInput",
+      title: "State",
+      placeholder: "State",
+      sectionName: "Address Details",
+      "isRequired":true
+    },
+    {
+      name: "city",
+      type: "TextInput",
+      title: "City",
+      placeholder: "City",
+      sectionName: "Address Details",
+      "isRequired":true
+    },
+    {
+      name: "other_address",
+      type: "TextInput",
+      title: "Other address",
+      inputType: "text",
+      placeholder: "other address",
+      sectionName: "Address Details",
+    },
+    {
+      name: "mailing_address",
+      type: "TextInput",
+      title: "Mailing address",
+      inputType: "text",
+      placeholder: "mailing address",
+      sectionName: "Address Details",
+    },
+    {
+      name: "billing_address",
+      type: "TextInput",
+      title: "Billing address",
+      inputType: "text",
+      placeholder: "billing address",
+      sectionName: "Address Details",
+    },
+  
+    {
+      name: "zip_postalcode",
+      type: "TextInput",
+      title: "Postal Code",
+      inputType: "text",
+      placeholder: "Postal Code",
+      sectionName: "Address Details",
+    },
+    {
+      name: "country",
+      type: "TextInput",
+      title: "Country",
+      inputType: "text",
+      placeholder: "Country",
+      sectionName: "Address Details",
+    
+    },
+    // {
+    //   "name": "industry",
+    //   "type": "dropdown",
+    //   "title": "Industry",
+    //   "inputType": "text",
+    //   "placeholder":"Industry",
+    //    "dropdownData" :[
+    //     { value: 'accounting', label: 'Accounting' },
+    //     { value: 'brokers', label: 'Brokers' },
+    //     { value: 'consulting', label: 'Consulting' },
+    //     { value: 'customer_services', label: 'Customer Services'},
+    //     { value: 'financial', label: 'Financial' },
+    //    ],
+    //    "sectionName":"Other Information"
+    // },
+    {
+      name: "date_of_inception",
+      type: "dateInput",
+      title: "Date of inception",
+      inputType: "text",
+      placeholder: "date of inception",
+      sectionName: "Other Information",
+    },
+    {
+      name: "bsr_code",
+      type: "TextInput",
+      title: "BSR code",
+      inputType: "numeric",
+      placeholder: "BSR code",
+      sectionName: "Other Information",
+    },
+    {
+      name: "stamp_duty",
+      type: "TextInput",
+      title: "Stamp duty",
+      inputType: "numeric",
+      placeholder: "Stamp duty",
+      sectionName: "Other Information",
+    },
+    {
+      name: "foreign_tin",
+      type: "TextInput",
+      title: "Foreign Tin",
+      inputType: "text",
+      placeholder: "Foreign tin",
+      sectionName: "Other Information",
+    },
+    {
+      name: "tin_issuing_country",
+      type: "TextInput",
+      title: "TIN Issuing country",
+      inputType: "text",
+      placeholder: "Tin issuing country",
+      sectionName: "Other Information",
+    },
+    {
+      name: "country_of_incorporation",
+      type: "TextInput",
+      title: "Country of Incorporation",
+      inputType: "text",
+      placeholder: "Country of incorporation",
+      sectionName: "Other Information",
+    },
+    {
+      name: "country_of_tax_residence",
+      type: "TextInput",
+      title: "Country of tax residence",
+      inputType: "text",
+      placeholder: "Country of tax residence",
+      sectionName: "Other Information",
+    },
+    {
+      name: "lead_currency",
+      type: "dropdown",
+      title: "Currency",
+      inputType: "text",
+      placeholder: "Currency",
+      dropdownData: [
+        { key: "inr", value: "INR" },
+        { key: "usd", value: "USD" },
+      ],
+      sectionName: "Company",
+    },
+
+    {
+      name: "company",
+      type: "TextInput",
+      title: "Company Name",
+      description: "Enter Company name",
+      inputType: "text",
+      placeholder: "Company Name",
+      sectionName: "Company",
+    },
+    {
+      name: "no_of_employees",
+      type: "TextInput",
+      title: "Number Of Employees",
+      description: "Enter the number of employees",
+      inputType: "text",
+      placeholder: "No of employees",
+      sectionName: "Company",
+    },
+    {
+      name: "website",
+      type: "TextInput",
+      title: "Website",
+      description: "Enter a valid website",
+      inputType: "text",
+      placeholder: "Website",
+      sectionName: "Company",
+    },
+    {
+      name: "annual_revenue",
+      type: "TextInput",
+      title: "Annual Revenue",
+      description: "Enter annual revenue",
+      inputType: "number",
+      placeholder: "Annual Revenue",
+      sectionName: "Company",
+    },
+
+    // {
+    //   "name": "email",
+    //    "type":"email",
+    //   "title": "Email",
+    //   "placeholder":"Email",
+    //   // "isRequired": true,
+    //   "sectionName":"Contact",
+    //   "validation": {
+    //     "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    //     "message": "Please enter a valid email address."
+    //   },
+    // },
+    {
+      name: "email",
+      type: "TextInput",
+      title: "Email",
+      inputType: "text",
+      placeholder: "email",
+      "isRequired": true,
+      sectionName: "Contact",
+    },
+    {
+      name: "alternate_email1",
+      type: "TextInput",
+      title: "Alternate Email 1",
+      inputType: "text",
+      placeholder: "email",
+      // "isRequired": true,
+      sectionName: "Contact",
+    },
+    {
+      name: "alternate_email2",
+      type: "TextInput",
+      title: "Alternate Email 2",
+      inputType: "text",
+      placeholder: "email",
+      // "isRequired": true,
+      sectionName: "Contact",
+    },
+    {
+      name: "phone",
+      type: "TextInput",
+      title: "Phone",
+      inputType: "numeric",
+      placeholder: "Phone number",
+       "isRequired": true,
+      sectionName: "Contact",
+      validation: {
+        regex: /^\d{10}$/,
+        message: "Please enter a valid 10-digit phone number.",
+      },
+    },
+    {
+      name: "mobile",
+      type: "TextInput",
+      title: "Mobile",
+      inputType: "numeric",
+      placeholder: "mobile number",
+       "isRequired": true,
+      sectionName: "Contact",
+      validation: {
+        regex: /^\d{10}$/,
+        message: "Please enter a valid 10-digit phone number.",
+      },
+    },
+    {
+      name: "home_phone",
+      type: "TextInput",
+      title: "Home phone",
+      inputType: "numeric",
+      placeholder: "home number",
+      "isRequired": true,
+      sectionName: "Contact",
+      validation: {
+        regex: /^\d{10}$/,
+        message: "Please enter a valid 10-digit phone number.",
+      },
+    },
+    {
+      name: "assistant",
+      type: "TextInput",
+      title: "Assistant",
+      inputType: "text",
+      placeholder: "assistant",
+      sectionName: "Contact",
+    },
+    {
+      name: "assistant_phone",
+      type: "TextInput",
+      title: "Assistant phone",
+      inputType: "numeric",
+      placeholder: "Phone number",
+      // "isRequired": true,
+      sectionName: "Contact",
+      // validation: {
+      //   regex: /^\d{10}$/,
+      //   message: "Please enter a valid 10-digit phone number.",
+      // },
+    },
+
+    {
+      name: "do_not_call",
+      type: "checkbox",
+      title: "Do Not Call",
+      sectionName: "Contact",
+    },
+    {
+      name: "business_phone",
+      type: "TextInput",
+      title: "Business phone",
+      inputType: "numeric",
+      placeholder: "business number",
+        "isRequired": true,
+      sectionName: "Contact",
+      validation: {
+        regex: /^\d{10}$/,
+        message: "Please enter a valid 10-digit phone number.",
+      },
+    },
+    {
+      name: "alternate_phone1",
+      type: "TextInput",
+      title: "Alternate phone 1",
+      inputType: "numeric",
+      placeholder: "alternate phone",
+      // "isRequired": true,
+      sectionName: "Contact",
+      // validation: {
+      //   regex: /^\d{10}$/,
+      //   message: "Please enter a valid 10-digit phone number.",
+      // },
+    },
+    {
+      name: "alternate_phone2",
+      type: "TextInput",
+      title: "Alternate phone 2",
+      inputType: "numeric",
+      placeholder: "alternate phone",
+      // "isRequired": true,
+      sectionName: "Contact",
+      // "validation": {
+      //   "regex": /^\d{10}$/,
+      //   "message": "Please enter a valid 10-digit phone number."
+      // },
+    },
+    {
+      name: "email_opt_out",
+      type: "checkbox",
+      title: "Email opt out",
+      sectionName: "Contact",
+    },
+    {
+      name: "ekyc_otp",
+      type: "checkbox",
+      title: "EKYC Otp",
+      sectionName: "Contact",
+    },
+    {
+      name: "contact_verified",
+      type: "checkbox",
+      title: "Contact Verified",
+      sectionName: "Contact",
+    },
+    {
+      name: "email_verification_status",
+      type: "dropdown",
+      title: "Email Verification Status",
+      inputType: "text",
+      placeholder: "Industry",
+      dropdownData: [
+        { key: "valid", value: "Valid" },
+        { key: "invalid", value: "Invalid" },
+        { key: "no_response", value: "No response" },
+        { key: "verified", value: "Verified" },
+      ],
+      sectionName: "Contact",
+    },
+    {
+      name: "other_phone",
+      type: "TextInput",
+      title: "Other phone",
+      inputType: "numeric",
+      placeholder: "Phone number",
+      // "isRequired": true,
+      sectionName: "Contact",
+      // "validation": {
+      //   "regex": /^\d{10}$/,
+      //   "message": "Please enter a valid 10-digit phone number."
+      // },
+    },
+    // {
+    //   "name": "email_opt_out",
+    //    "type":"checkbox",
+    //   "title": "Email opt out",
+    //   "placeholder":"Email",
+    //   // "isRequired": true,
+    //   "sectionName":"Contact",
+    //   "validation": {
+    //     "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    //     "message": "Please enter a valid email address."
+    //   },
+    // },
+
+    {
+      name: "suffix",
+      type: "TextInput",
+      title: "Suffix",
+      inputType: "text",
+      placeholder: "suffix",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "place_of_birth",
+      type: "TextInput",
+      title: "Place of birth",
+      inputType: "text",
+      placeholder: "place of birth",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "country_of_birth",
+      type: "TextInput",
+      title: "Country of birth",
+      inputType: "text",
+      placeholder: "country of birth",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "age",
+      type: "TextInput",
+      title: "Age",
+      inputType: "numeric",
+      placeholder: "age",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "father_first_name",
+      type: "TextInput",
+      title: "Father first name",
+      inputType: "text",
+      placeholder: "father first name",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "father_middle_name",
+      type: "TextInput",
+      title: "Father middle name",
+      inputType: "text",
+      placeholder: "father middle name",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "father_last_name",
+      type: "TextInput",
+      title: "Father last name",
+      inputType: "text",
+      placeholder: "father last name",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "mother_first_name",
+      type: "TextInput",
+      title: "Mother first name",
+      inputType: "text",
+      placeholder: "mother first name",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "mother_middle_name",
+      type: "TextInput",
+      title: "Mother middle name",
+      inputType: "text",
+      placeholder: "mother middle name",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "mother_last_name",
+      type: "TextInput",
+      title: "Mother last name",
+      inputType: "text",
+      placeholder: "mother last name",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "marital_status",
+      type: "dropdown",
+      title: "Marital Status",
+      inputType: "text",
+      placeholder: "Industry",
+      dropdownData: [
+        { key: "married", value: "married" },
+        { key: "single", value: "single" },
+      ],
+      sectionName: "Personal Details",
+    },
+    {
+      name: "religion",
+      type: "dropdown",
+      title: "Religion",
+      inputType: "text",
+      placeholder: "Industry",
+      dropdownData: [
+        { key: "hinduism", value: "Hinduism" },
+        { key: "buddhism", value: "Buddhism" },
+        { key: "sikhism", value: "Sikhism" },
+        { key: "christianity", value: "Christianity" },
+        { key: "islam", value: "Islam" },
+        { key: "jainism", value: "Jainism" },
+       
+      ],
+      sectionName: "Personal Details",
+    },
+    {
+      name: "spouse_first_name",
+      type: "TextInput",
+      title: "Spouse first name",
+      inputType: "text",
+      placeholder: "spouse first name",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "spouse_middle_name",
+      type: "TextInput",
+      title: "Spouse middle name",
+      inputType: "text",
+      placeholder: "spouse middle name",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "spouse_last_name",
+      type: "TextInput",
+      title: "Spouse last name",
+      inputType: "text",
+      placeholder: "spouse last name",
+      sectionName: "Personal Details",
+    },
+    {
+      name: "minority_community",
+      type: "Switch",
+      title: "Minority Community",
+      inputType: "text",
+      placeholder: "Industry",
+      dropdownData: [
+        { key: "yes", value: "yes" },
+        { key: "no", value: "no" },
+      ],
+      sectionName: "Personal Details",
+    },
+
+    {
+      name: "u_email",
+      type: "dropdown",
+      title: "Email subscription",
+      placeholder: "Email subscription",
+      dropdownData: [
+        { key: "allow", value: "Allow" },
+        { key: "do_not_allow", value: "Do not allow" },
+      ],
+      sectionName: "Contact Method",
+    },
+    {
+      name: "phone",
+      type: "dropdown",
+      title: "Phone subscription",
+      placeholder: "Phone subscription",
+      dropdownData: [
+        { key: "allow", value: "Allow" },
+        { key: "do_not_allow", value: "Do not allow" },
+      ],
+      sectionName: "ContactMethod",
+    },
+    {
+      name: "whatsapp",
+      type: "dropdown",
+      title: "Whatsapp subscription",
+      placeholder: "whatsapp subscription",
+      dropdownData: [
+        { key: "allow", value: "Allow" },
+        { key: "do_not_allow", value: "Do not allow" },
+      ],
+      sectionName: "ContactMethod",
+    },
+
+    {
+      name: "email_opt_out",
+      type: "Switch",
+      title: "Email Opt Out",
+      sectionName: "ContactMethod",
+    },
+
+    // {
+    //   "name": "fax",
+    //   "type": "TextInput",
+    //   "title": "Fax",
+    //   "inputType": "text",
+    //   "placeholder":"FAX",
+    //   "sectionName":"Contact"
+
+    // },
+    {
+      name: "company_duns_number",
+      type: "TextInput",
+      title: "Company DUNS Number",
+      inputType: "number",
+      placeholder: "Number",
+      sectionName: "Company",
+    },
+    // {
+    //   "name": "title",
+    //   "type": "TextInput",
+    //   "title": "Lead Title",
+    //   "placeholder":"Lead Title",
+    //   "isRequired": true,
+    //   "sectionName":"General"
+    // },
+
+    {
+      name: "lead_currency",
+      type: "dropdown",
+      title: "Lead Currency",
+      placeholder: "Currency",
+      dropdownData: [
+        { key: "inr", value: "INR" },
+        { key: "usd", value: "USD" },
+      ],
+      sectionName: "company",
+    },
+    // {
+    //   "name": "lead_source",
+    //   "type": "dropdown",
+    //   "title": "Lead Source",
+    //   "inputType": "text",
+    //   "placeholder":"Lead Source",
+    //    "dropdownData" :[
+    //     { value: 'advertisement', value: 'Advertisement' },
+    //     { value: 'partner', value: 'Partner' },
+    //     { value: 'web', value: 'Web' },
+    //     { value: 'campaign', value: 'Campaign' },
+    //     { value: 'self_sourced', value: 'Self Sourced' },
+    //    ],
+    //    "sectionName":"General"
+    // },
+    // {
+    //   "name": "u_lead_status",
+    //   "type": "dropdown",
+    //   "title": "Lead Status",
+    //   "inputType": "text",
+    //   "placeholder":"Lead Status",
+    //    "dropdownData" :[
+    //     { value: 'new', value: 'New' },
+    //     { value: 'Contacted', value: 'Contacted' },
+    //     { value: 'qualified', value: 'Qualified' },
+    //     { value: 'converted', value: 'Converted' },
+    //     { value: 'closed-not_converted', value: 'Closed-Not Converted' },
+    //    ],
+    //    "sectionName":"Additional"
+    // },
+    {
+      name: "industry_classification",
+      type: "TextInput",
+      title: "Industry Classification",
+      inputType: "text",
+      placeholder: "industry classification",
+      sectionName: "Industry Details",
+    },
+    {
+      name: "industry_sub_classification",
+      type: "TextInput",
+      title: "Industry Sub Classification",
+      inputType: "text",
+      placeholder: "industry sub classification",
+      sectionName: "Industry Details",
+    },
+    {
+      name: "no_of_employee",
+      type: "TextInput",
+      title: "No of Employee",
+      inputType: "text",
+      placeholder: "no of employee",
+      sectionName: "Industry Details",
+    },
+    {
+      name: "sic_code",
+      type: "TextInput",
+      title: "SIC Code",
+      inputType: "numeric",
+      placeholder: "sic code",
+      sectionName: "Industry Details",
+    },
+    {
+      name: "sic_description",
+      type: "TextInput",
+      title: "SIC description",
+      inputType: "text",
+      placeholder: "sic description",
+      sectionName: "Industry Details",
+    },
+    {
+      name: "industry",
+      type: "dropdown",
+      title: "Industry",
+      inputType: "text",
+      placeholder: "industry",
+      dropdownData: [
+        { key: "agriculture", value: "agriculture" },
+        { key: "engineering", value: "engineering" },
+      ],
+      sectionName: "Industry Details",
+    },
+    {
+      name: "annual_revenue",
+      type: "TextInput",
+      title: "Annual Revenue",
+      inputType: "numeric",
+      placeholder: "annual revenue",
+      sectionName: "Industry Details",
+    },
+    {
+      name: "department",
+      type: "TextInput",
+      title: "Department",
+      inputType: "text",
+      placeholder: "department",
+      sectionName: "Industry Details",
+    },
+
+    {
+      name: "instagram",
+      type: "socialMediaInput",
+      logo: "logo-instagram",
+      title: "Instagram",
+      inputType: "text",
+      placeholder: "Instagram",
+      sectionName: "Social",
+    },
+    {
+      name: "linkedin",
+      type: "socialMediaInput",
+      logo: "logo-linkedin",
+      title: "LinkedIn",
+      inputType: "text",
+      placeholder: "LinkedIn",
+      sectionName: "Social",
+    },
+    {
+      name: "facebook",
+      type: "socialMediaInput",
+      logo: "logo-facebook",
+      title: "Facebook",
+      inputType: "text",
+      placeholder: "Facebook",
+      sectionName: "Social",
+    },
+    {
+      name: "twitter",
+      type: "socialMediaInput",
+      logo: "logo-twitter",
+      title: "Twitter",
+      inputType: "text",
+      placeholder: "Twitter",
+      sectionName: "Social",
+    },
+    {
+      name: "assigned_to",
+      type: "TextInput",
+      title: "Assigned To",
+      inputType: "text",
+      placeholder: "Assigned To",
+      readonly: true,
+      sectionName: "Additional",
+    },
+    // {
+    //   "name": "assignment_group",
+    //   "type": "dropdown",
+    //   "title": "Assignment group",
+    //   "inputType": "text",
+    //   "placeholder":"Assigned Group",
+    //   "dropdownData": [
+    //     { "value": 1, "value": "" },
+
+    //   ],
+    //   "sectionName":"Additional"
+    // },
+  ],
+};
+
 
 

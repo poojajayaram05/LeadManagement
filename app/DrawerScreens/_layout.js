@@ -17,6 +17,7 @@ import { Tabs } from 'expo-router/tabs';
 import ArrowBack from '../../customComponents/arrowBack';
 import { router } from 'expo-router';
 import { TouchableOpacity } from 'react-native';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import HeaderRight from '../../customComponents/searchIcon';
 
 
@@ -28,6 +29,9 @@ export {
 
 
 export default function Layout() {
+  const queryClient =  new QueryClient({});
+  
+  
 
   const goBack=()=>{
     router.back()
@@ -37,6 +41,7 @@ export default function Layout() {
   return (
     // <Drawer/>
    <>
+    <QueryClientProvider client={queryClient}>
     <GestureHandlerRootView style={{ flex: 1 }}>
    {/* <Drawer screenOptions={{ headerShown: true}} /> */}
    
@@ -185,6 +190,7 @@ export default function Layout() {
  
    </Drawer>
 </GestureHandlerRootView>
+</QueryClientProvider>
 </>
   //   >
   //     <MainPage/>
