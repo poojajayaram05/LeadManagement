@@ -1703,13 +1703,13 @@ export const productFormData= {
   ]
 }
 
-export const changeStatusFormData = {
-  "elements":[
-    {
+// export const changeStatusFormData = {
+//   "elements":[
+//     {
         
-    }
-  ]
-}
+//     }
+//   ]
+// }
 
 export const callLogFormData= {
   "elements": [
@@ -2581,16 +2581,23 @@ export const callLogData=
 export const statusFormData = {
   "elements": [
     {
+      "name": "number",
+      "type": "TextInput",
+      "title": "Associated Lead",
+      "inputType": "text",
+      "placeholder":""
+    },
+    {
       "name": "reason",
       "type": "dropdown",
       "title": "Reason",
       "placeholder":'Enter the reason',
       "dropdownData":[
-        { "key":1, "value":"Not Reachable"},
-        { "key":2, "value":"Ringing"},
-        { "key":3, "value":"Wrong Number"},
-        {"key":4, "value":"Busy"},
-        {"key":5, "value":"Appointment fixed"},
+        { "key":"not_reachable", "value":"Not Reachable"},
+        { "key":"ringing", "value":"Ringing"},
+        { "key":"wrong_number", "value":"Wrong Number"},
+        {"key":"busy", "value":"Busy"},
+        {"key":"appointment_fixed", "value":"Appointment fixed"},
       ]
     },
     {
@@ -2600,6 +2607,8 @@ export const statusFormData = {
       "inputType": "text",
       "placeholder":"Enter the Remarks"
     },
+   
+    
    ]
 }
 

@@ -290,10 +290,12 @@ import useIdStore from "../leadStore";
 import StatusForm from "../formComponents/statusForm";
 import LeadDet from "../../leadComponents/leadDetHeader";
 import { FetchLeads } from "../service/fetchLeads";
+
  
 const ChangeStatus = () => {
   const status = useIdStore((state) => state.status);
   const leadId = useIdStore((state) => state.leadId);
+  const taskId = useIdStore((state)=>   state.activity_number);
   const [selectedStatus, setSelectedStatus] = useState(null);
   const [leadData, setLeadData] = useState([]);
   console.log("this is the statusss", status);

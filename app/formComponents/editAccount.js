@@ -391,13 +391,8 @@ import {
                      // control={control}
                      value={username}
                      name={element.name}
-               
-                     
-                     
-                     // errors={errors}
-                     
-                     
-                   readOnly={true}
+  
+                  readOnly={true}
                  />
                  </View>
  

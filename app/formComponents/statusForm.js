@@ -10,22 +10,18 @@ import { leadData } from '../../customComponents/formData';
 import { meetingItemsData } from '../../customComponents/formData';
 import { DropdownIcon } from '../../assets/images';
 import { DropupIcon } from '../../assets/images';
+import { SelectList } from 'react-native-dropdown-select-list';
+import { CustomInput } from '../../customComponents/customInput';
+import useIdStore from '../leadStore';
 
 export default function StatusForm({ navigation }) {
-  const [selectedAccount, setSelectedAccount] = useState('');
-  const [leadId, setLeadId] = useState('');
+  const [selectedValue, setSelectedValue] = useState('');
   const [taskId, setTaskId] = useState('');
   const [meetingId, setMeetingId] = useState('');
   const [notes, setNotes] = useState('');
+  const leadId = useIdStore(state=>state.number)
  
-  const handleSelectAccount = (account) => {
-    setSelectedAccount(account);
-    console.log(selectedAccount);
-    // Reset other input fields when a different account is selected
-    setLeadId('');
-    setTaskId('');
-    setMeetingId('');
-  };
+
  
   const onSubmit = () => {
     // Submit logic here
@@ -36,9 +32,9 @@ export default function StatusForm({ navigation }) {
   }
  
   const handleSelect = (item) => {
-    // setSelectedValue(item);
+     setSelectedValue(item.value);
     // setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: item.value }));
-    console.log('Selected value:', item);
+    console.log('Selected value:', item.value);
 };
  
 const renderFormElement = (element) => {
@@ -49,12 +45,23 @@ const renderFormElement = (element) => {
             <View>
             <View style = {styles.inputContainer}>
             <Text style={styles.label}>{element.title}</Text>
-                <Dropdown style={styles.inputContainer}
-                    // label={selectedValue ? selectedValue.label : 'Select'}
-                    data={element.dropdownData}
-                    // value={selectedValue}
-                    onSelect={handleSelect}
-                />
+            <SelectList
+                boxStyles={{
+                    borderWidth: 1,
+                    borderColor: '#ccc',
+                    borderRadius: 12, // Make the border oval by using a large border radius
+                    paddingVertical: 10,
+                    paddingHorizontal: 10,
+                    fontSize: 16
+                }}
+                setSelected={(label) => {
+                    setSelectedValue(label); // Update selected values
+                }}
+                //placeholder={formValues[element.name] || ''}
+                data={element.dropdownData.map(item => ({ value: item.value, label: item.key }))}
+                save="value"
+                onSelect={() => handleSelect(selectedValue) } // Log selected values
+            />
             </View>
             </View>
         );
@@ -72,6 +79,24 @@ const renderFormElement = (element) => {
               />
             </View>
       );
+      case 'TextInput':
+      return (
+        <View style={styles.inputContainer}>
+             
+              <CustomInput
+                            key={element.name}
+                            title={element.title}
+                            placeholder={leadId}
+                           
+                            // onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
+                            // value={formValues[element.name]}
+                           
+                            
+                            ></CustomInput>
+            </View>
+      );
+      
+      
      
  
 };
