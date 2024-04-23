@@ -335,6 +335,20 @@ const handleDateChange = (selectedDate, element) => {
 
             </View>
         );
+        case 'MultilineText':
+                    return (
+                        <View>
+                        <Text style={styles.label}>{element.title}</Text>
+                      <TextInput
+                       style={[styles.input, styles.multilineInput]} // Add styles for multiline input
+                    onChangeText={(value) => setFormValues({ ...formValues, [element.name]: value } )}
+                    value={formValues[element.name] || ''}
+                 placeholder={element.placeholder}
+ multiline={true} // Set multiline prop to true
+ numberOfLines={4} // Specify the number of lines you want to display
+/>
+                       </View>
+                    );
         case 'TextInput':
             return (
               <View>
@@ -646,6 +660,15 @@ icon:{
 },
 ticon:{
   paddingLeft:200
-}
+},
+input: {
+  borderWidth: 1,
+  borderColor: '#ccc',
+  borderRadius: 5,
+  backgroundColor:'white',
+  paddingVertical: 10,
+  paddingHorizontal: 11,
+  fontSize: 16,
+},
 });
 

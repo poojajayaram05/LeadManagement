@@ -216,4 +216,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: 'bold',
   },
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    backgroundColor:'white',
+    paddingVertical: 10,
+    paddingHorizontal: 11,
+    fontSize: 16,
+},
 });

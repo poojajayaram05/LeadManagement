@@ -370,6 +370,7 @@ const generateOptions = (status) => {
           { label: 'Qualified', value: 'Qualified' },
           { label: 'Contacted', value: 'Contacted' },
           { label: 'Closed-not converted', value: 'Closed-not converted' },
+          { label: 'Converted', value: 'Converted' },
         ]
       };
     case "qualified":

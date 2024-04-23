@@ -26,6 +26,7 @@ export default function Example() {
     Appointment: false,
     Calls: false
   });
+  const[activity_id, setActivityId]=useState('')
  
  
   const { activity_number, setActivityNumber } = useIdStore();
@@ -60,6 +61,9 @@ export default function Example() {
   useEffect(() => {
     const activities = activityData.filter((lead) => lead.associated_lead === leadId);
     setActivityItems(activities);
+    console.log("activity number",activities.activity_number);
+    setActivityId(activities.activity_number)
+    
   }, [activityData, leadId]);
  
   const renderStartTime = (startTime) => {
@@ -73,6 +77,7 @@ export default function Example() {
   const goToMarkAsComplete=()=>
   {
     router.navigate('/formComponents/markAsComplete')
+    
   }
  
   const renderDate = (due_date) => {
@@ -93,6 +98,7 @@ export default function Example() {
  
   const goToActivityForm = () => {
     router.navigate('/formComponents/activityForm')
+    setActivityNumber(activity_id);
   }
  
  

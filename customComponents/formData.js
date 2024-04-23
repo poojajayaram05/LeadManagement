@@ -1924,7 +1924,7 @@ export const activityForm=[
   },
   {
     "name": "description",
-    "type":"TextInput",
+    "type":"MultilineText",
     "title": "Description",
     "inputType": "text",
   },
@@ -2002,7 +2002,7 @@ export const activityFormData = [
             },
             {
                 "name": "description",
-                "type": "TextInput",
+                "type": "MultilineText",
                 "title": "Description",
                 "inputType": "text",
                 "placeholder": "Enter the description",
@@ -2108,7 +2108,7 @@ export const activityFormData = [
         },
         {
             "name": "description",
-            "type": "TextInput",
+            "type": "MultilineText",
             "title": "Description",
             "inputType": "text",
             "placeholder": "Enter the description",
@@ -2270,7 +2270,7 @@ export const activityFormData = [
         },
         {
           "name": "description",
-          "type": "TextInput",
+          "type": "MultilineText",
           "title": "Description ",
           "inputType": "text",
           "placeholder": "Enter description",
@@ -2341,7 +2341,7 @@ export const activityFormData = [
         },
         {
           "name": "follow_up_notes",
-          "type": "TextInput",
+          "type": "MultilineText",
           "title": "Follow up notes",
           "placeholder": "Notes",
           "isRequired":true
@@ -2359,7 +2359,7 @@ export const activityFormData = [
         },
         {
             "name": "description",
-            "type": "TextInput",
+            "type": "MultilineText",
             "title": "Description",
             "inputType": "text",
             "isRequired":true,
@@ -2471,7 +2471,7 @@ export const activityFormData = [
         },
         {
           "name": "description",
-          "type": "TextInput",
+          "type": "MultilineText",
           "title": "Email description",
           "placeholder": "description",
           "isRequired":true,
