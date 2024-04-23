@@ -350,10 +350,10 @@ export const editOpportunityFormData = {
       "title": "Probability Of Winning",
       "placeholder": "Probability Of Winning",
       "sectionName":"Forecast",
-      "validation": {
-        "regex":  /^100$|^\d{0,2}(\.\d{1,2})?%?$/,
-        "message": "Please enter percentage"
-      },
+      // "validation": {
+      //   "regex":  /^100$|^\d{0,2}(\.\d{1,2})?%?$/,
+      //   "message": "Please enter percentage"
+      // },
       
     },
  

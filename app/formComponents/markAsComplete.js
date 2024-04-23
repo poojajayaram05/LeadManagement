@@ -469,15 +469,10 @@ const renderFormElement = (element) => {
                     key={element.name}
                     title={element.title}
                     placeholder={leadId}
-                    // control={control}
                     name={element.name}
-                   
-                    // errors={errors}
                     value={leadId}
                     readOnly={true}
                 />
-             
- 
             </View>
         );
         case 'TextInputLeadA':
@@ -489,8 +484,6 @@ const renderFormElement = (element) => {
                     placeholder={activityNumber}
                     // control={control}
                     name={element.name}
-                   
-                    // errors={errors}
                     value={activityNumber}
                     readOnly={true}
                 />
