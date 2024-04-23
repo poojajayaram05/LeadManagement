@@ -218,11 +218,11 @@ function extractDate(timestamp) {
             console.log(element.name, item.value);
         };
         const handleSwitch=(item)=>{
-          setFormValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item}));
+          setEditedValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item}));
           console.log(element.name, item);
         }
         const onSelectAccount = (accountName, sys_id) => {
-          setFormValues(prevFormValues => ({
+          setEditedValues(prevFormValues => ({
             ...prevFormValues,
             [element.name]: sys_id // Update the accountName field in formValues
           }));
