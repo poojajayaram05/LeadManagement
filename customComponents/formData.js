@@ -1981,6 +1981,13 @@ export const activityFormData = [
             "inputType": "text",
             
           },
+          {
+            "name": "owner",
+            "type":"TextInputO",
+            "title": "Owner",
+          
+            
+          },
            
             {
                 "name": "due_date",
@@ -1997,8 +2004,6 @@ export const activityFormData = [
               "title": "Subject",
               "inputType": "text",
               "placeholder":"Enter the subject",
-
-              
             },
             {
                 "name": "description",
@@ -2077,6 +2082,13 @@ export const activityFormData = [
             "title": "Associated Lead",
             "inputType": "text",
             
+            
+          },
+          {
+            "name": "owner",
+            "type":"TextInputO",
+            "title": "Owner",
+            "sectionName":"General",
             
           },
           {
@@ -2232,6 +2244,13 @@ export const activityFormData = [
           "inputType": "text",
         },
         {
+          "name": "owner",
+          "type":"TextInputO",
+          "title": "Owner",
+          "sectionName":"General",
+          
+        },
+        {
           "name": "subject",
           "type":"TextInput",
           "title": "Subject",
@@ -2321,7 +2340,12 @@ export const activityFormData = [
           "type":"TextInputLead",
           "title": "Associated Lead",
           "inputType": "text",
-          
+        },
+        {
+          "name": "owner",
+          "type":"TextInputO",
+          "title": "Owner",
+          "sectionName":"General",
           
         },
      
@@ -2452,6 +2476,13 @@ export const activityFormData = [
           "type":"TextInputLead",
           "title": "Associated Lead",
           "inputType": "text",  
+          
+        },
+        {
+          "name": "owner",
+          "type":"TextInputO",
+          "title": "Owner",
+          "sectionName":"General",
           
         },
      
@@ -2621,18 +2652,35 @@ export const markAsCompletedFormData={
       "inputType": "text",  
     },
     {
-      "name": "Task_Id",
+      "name": "activity_number",
       "type":"TextInputLeadA",
-      "title": "Task Id",
+      "title": "Activity Number",
       "inputType": "text",  
     },
     {
-      "name": "notes",
+      "name": "completion_notes",
       "type": "multiLineText",
       "title": "Completion Notes",
       "inputType": "text",
       "placeholder": "Write a note",
+    },
+    {
+      "name": "completed_on",
+      "type": "Date",
+      "title": "Completed On",
+      "inputType": "text",
+      "isRequired":true,
+      
+    },
+    {
+      "name": "mark_as_complete",
+      "type": "Switch",
+      "title": "Mark as complete",
+      "inputType": "text",
+      "isRequired":true,
+      
     }
+ 
  
   ]
 }

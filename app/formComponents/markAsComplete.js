@@ -299,7 +299,7 @@
 // export default MarkAsComplete;
 
 
-import { View, Text, StyleSheet, ScrollView, Image, Button, Pressable, Alert } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, Image, Button, Pressable, Alert, TextInput } from 'react-native'
 import { GestureHandlerRootView, TouchableOpacity } from 'react-native-gesture-handler';
 import React, {useState, useEffect} from 'react'
 //mport { taskFormData } from '../../../customComponents/formData';
@@ -362,18 +362,7 @@ export default function markAsCompletedForm() {
     return time.toLocaleString('en-US', options);
   };
  
-  const handleSelect = (item) => {
-   
-    setFormValues(prevFormValues => ({ ...prevFormValues, selectedValue: item }));
-    console.log('Selected value:', item);
-};
- 
-const onSelectRadio = (item) => {
-    setradioSelect(item.label);
-    setFormValues(prevFormValues => ({ ...prevFormValues, radioSelect: item}));
-    console.log('Selected value:', radioSelect);
-}
- 
+
  
 // const handleSelectDate = (date) => {
 //     console.log('Selected Date:', date);
@@ -395,11 +384,14 @@ useEffect(() => {
 // }
  
 const onSubmit = async () => {
+
+  setFormValues(prevFormValues => ({ ...prevFormValues, ['mark_as_complete']: true }));
  
   const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_product_c`;
   const token = SecureStore.getItem('token');
   const stoken = JSON.parse(token);
   const apiToken = stoken.accessToken;
+
   console.log(apiToken);  
   // const token="DeC8cB2g6op02J_9-8cvJDwpA_5QTiL_9x8VnZLmwHy3QcoqoVR7KuhWUs-M0KgzLFLlp1NB8d5kekkbt3mCYQ";
   console.log("Form data", formValues);
@@ -409,6 +401,7 @@ const onSubmit = async () => {
   //     console.log('success',response);
   // }
   try{
+    //setFormValues(prevFormValues => ({ ...prevFormValues, ['mark_as_complete']: true }));
   const response = await fetch(postUrl, {
       method: 'POST',
       headers: {
@@ -439,7 +432,7 @@ const onSubmit = async () => {
       return formattedDate;
     }
  
-   
+ 
    
  
  
@@ -454,12 +447,11 @@ const renderFormElement = (element) => {
         setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: extractDate(selectedDate) }));
       }
     }
-    const handleSelect = (item) => {
-   
-      setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: item.value }));
-      console.log('Selected value:', item);
-     
-  };
+    const handleSwitch=(item)=>{
+      setFormValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item}));
+      console.log(element.name, item);
+
+    }
     switch (element.type) {
      
       case 'TextInputLead':
@@ -510,33 +502,61 @@ const renderFormElement = (element) => {
                 />
                 </View>
             );
-        case 'dropdown':
-            return (
-                <View>
-                <View style = {styles.inputContainer}>
+            case 'Switch':
+              return( 
+                <View style={styles.inputContainer}>
+
+                <View style={styles.switchContainer}>
                 <Text style={styles.label}>{element.title}</Text>
-               
-                    <Dropdown style={styles.inputContainer}
-                        label={selectedValue ? selectedValue.label : 'Select'}
-                        data={element.dropdownData}
-                        value={selectedValue}
-                        onSelect={handleSelect}
-                    />
-                </View>
+                <View style={styles.switch}>
+                  <CustomSwitch onToggle={handleSwitch}
+
+                /></View>
                 </View>
                
+             </View>
+              )
+             case 'Date':
+            return (
+              <View style={styles.inputContainer}>
+              <Text style={styles.label}>{element.title}</Text>
+              <Pressable onPress={() => setShowCalendarModal(true)}>
+                <View style={styles.dateInput}>
+                  <Text style={styles.dateText}>
+                    {formValues[element.name] ? extractDate(formValues[element.name]) : 'Select date '}
+                  </Text>
+                  <Ionicons name='calendar' size={20} color='black' style={styles.icon} />
+                </View>
+              </Pressable>
+              {/* Calendar Modal */}
+              {showCalendarModal && (
+                <RNDateTimePicker
+                  value={selectedDate || new Date()}
+                  mode="date"
+                  display="default"
+                  onChange={(event, selectedDate) => handleDateChange(selectedDate, element)}
+                />
+              )}
+             </View>
+             
             );
+              
            
            
        
               case 'multiLineText':
                 return (
-                    <View style={styles.inputContainer}>
-                        <Text style={styles.label}>Enter a note</Text>
-                        {/* <MultiSelectExample/> */}
-                        <MultilineTextInput/>
-                       
-                    </View>
+                  <View>
+                  <Text style={styles.label}>{element.title}</Text>
+                <TextInput
+                 style={[styles.input, styles.multilineInput]} // Add styles for multiline input
+              onChangeText={(value) => setFormValues({ ...formValues, [element.name]: value } )}
+              value={formValues[element.name] || ''}
+           placeholder={element.placeholder}
+multiline={true} // Set multiline prop to true
+numberOfLines={4} // Specify the number of lines you want to display
+/>
+                 </View>
                 );
                
                   // case 'switch':
@@ -761,7 +781,7 @@ dateInput: {
   alignItems: 'center',
   borderWidth: 1,
   borderColor: '#ccc',
-  borderRadius: 5,
+  borderRadius: 12,
   paddingVertical: 10,
   paddingHorizontal: 15,
 },
@@ -772,7 +792,7 @@ dateText: {
 calendarIcon: {
   width: 20,
   height: 20,
-  marginLeft: 10, // Adjust the margin as needed
+  marginLeft: 10,
 },
 switch:{
     alignItems:'flex-start',

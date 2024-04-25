@@ -246,7 +246,7 @@ const sectionDetails = [
         { label: 'Account name:', value: 'account_name' },
         { label: 'Title', value: 'title' },
         { label: 'Number:', value: 'number' },
-        { label: 'Birth date:', value: 'birth_date' },
+        { label: 'Birth date:', value: 'birthdate' },
         { label: 'Website:', value: 'website' },
         { label: 'Description:', value: 'description' },
       ]
@@ -302,7 +302,7 @@ const sectionDetails = [
         { label: 'Industry classification:', value: 'industry_classification' },
         { label: 'Industry sub classification:', value: 'industry_sub_classification' },
         { label: 'Number of Employees:', value: 'no_of_employees' },
-        // { label: 'SIC code:', value: 'sic_code' },
+        { label: 'Account Source:', value: 'account_source' },
         // { label: 'SIC description:', value: 'sic_description' },
         { label: 'Industry:', value: 'industry' },
         { label: 'Annual revenue:', value: 'annual_revenue' },

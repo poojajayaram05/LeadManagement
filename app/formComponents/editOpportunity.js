@@ -215,7 +215,7 @@ function extractDate(timestamp) {
         const handleSelect = (item) => {
             //setSelectedValue(item);
             setEditedValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item }));
-            console.log(element.name, item.value);
+            console.log(element.name, item);
         };
         const handleSwitch=(item)=>{
           setEditedValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item}));

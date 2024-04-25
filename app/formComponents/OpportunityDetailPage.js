@@ -206,6 +206,7 @@ const Info = () => {
       try {
         const odata = await FetchOpportunitiesDetail();
         setOpportunityData(odata.result);
+        console.log(opportunityData, 'oppppp')
       } catch (error) {
         console.error('Error in fetching opp:', error);
       }

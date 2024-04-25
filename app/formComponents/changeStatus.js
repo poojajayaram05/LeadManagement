@@ -295,11 +295,10 @@ import { FetchLeads } from "../service/fetchLeads";
 const ChangeStatus = () => {
   const status = useIdStore((state) => state.status);
   const leadId = useIdStore((state) => state.leadId);
-  const taskId = useIdStore((state)=>   state.activity_number);
+  const taskId = useIdStore((state)=>  state.activity_number);
   const [selectedStatus, setSelectedStatus] = useState(null);
   const [leadData, setLeadData] = useState([]);
-  console.log("this is the statusss", status);
- 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -318,11 +317,8 @@ const ChangeStatus = () => {
  
   const handleStatusChange = (value) => {
     setSelectedStatus(value);
+    console.log(selectedStatus.value)
   };
- 
-  const goBackToLeadCard = () => (
-    router.navigate('/DrawerScreens/leadList')
-  );
  
   return (
     <View style={styles.container}>
@@ -367,35 +363,35 @@ const generateOptions = (status) => {
       return {
         options: [
            
-          { label: 'Qualified', value: 'Qualified' },
-          { label: 'Contacted', value: 'Contacted' },
-          { label: 'Closed-not converted', value: 'Closed-not converted' },
-          { label: 'Converted', value: 'Converted' },
+          { label: 'Qualified', value: 'qualified' },
+          { label: 'Contacted', value: 'contacted' },
+          { label: 'Closed-not converted', value: 'closed_not_converted' },
+          
         ]
       };
     case "qualified":
       return {
         options: [
-          { label: 'Closed-not converted', value: 'Closed-not converted' },
-          { label: 'Converted', value: 'Converted' },
+          { label: 'Closed-not converted', value: 'closed_not_converted' },
+          { label: 'Converted', value: 'converted' },
         ]
       };
     case "contacted":
       return {
         options: [
-          { label: 'Qualified', value: 'Qualified' },
+          { label: 'Qualified', value: 'qualified' },
         ]
       };
     case "Closed-not converted":
       return {
         options: [
-          { label: 'Closed-not converted', value: 'Closed-not converted' },
+          { label: 'Closed-not converted', value: 'closed_not_converted' },
         ]
       };
     case "Converted":
       return {
         options:[
-          { label: 'Converted', value: 'Converted' },
+          { label: 'Converted', value: 'converted' },
         ]
       };
     default:

@@ -48,8 +48,10 @@ export default function CreateActivity() {
   const[leadData, setLeadData]=useState([])
   const[validationErrors, setValidationErrors]=useState([])
   const[selectedMulti, setSelectedMulti]=useState([]);
+  const [userName, setUsername]=useState('');
 
   const [selectedActivity, setSelectedActivity] = useState(null);
+  const username= SecureStore.getItem('username');
 
   const handleActivitySelect = (activity) => {
     setFormValues(prevFormValues => ({ ...prevFormValues, ['activity_type']: activity.value }));
@@ -212,8 +214,19 @@ const goBack=()=>{
   router.back();
 }
 
+useEffect(() => {
+  const getUsername = async () => {
+      const storedUsername = await SecureStore.getItemAsync('username');
+      setUsername(storedUsername);
+      setFormValues(prevFormValues => ({ ...prevFormValues, ['activity_owner']: storedUsername }));
+  };
+
+  getUsername();
+}, []);
+
 const onSubmit = async () => {
   const errors = validateForm();
+  setFormValues(prevFormValues => ({ ...prevFormValues, ['activity_owner']: username }))
   if (Object.keys(errors).length > 0) {
     // If there are validation errors, set them in state
     setValidationErrors(errors);
@@ -514,6 +527,22 @@ const handleDateChange = (selectedDate, element) => {
                     />
                       </View>
                     );
+                    case 'TextInputO':
+                          return( 
+                          <View>
+                          <CustomInput
+                                 key={element.name}
+                                 title={element.title}
+                                 placeholder={username}
+                                 // control={control}
+                                 value={username}
+                                 name={element.name}
+                                 // errors={errors}
+                                //  readOnly={true}
+                             />
+                             </View>
+                          )
+              
                
                   case 'Switch':
                         return( 

@@ -13,6 +13,7 @@ import {
   FlatList,
   StyleSheet,
   Text,
+  TextInput
 } from "react-native";
 import AccountCard from "../formComponents/accountCard";
 import { useQuery } from "@tanstack/react-query";
@@ -60,6 +61,19 @@ const ListOfAccounts = () => {
   //     fetchData(); 
   // }, []);
   const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: FetchAccounts });
+  const[searchQuery, setSearchQuery]=useState('')
+  const filteredAccounts = accountData.filter((item) => {
+    const fullName = `${item.first_name} ${item.last_name}`.toLowerCase();
+    return fullName.includes(searchQuery.toLowerCase());
+  });
+
+
+ const handleSearch = (text) => {
+    setSearchQuery(text);
+  
+  };
+
+ 
 
   useEffect(() => {
     if (data) {
@@ -102,10 +116,20 @@ const ListOfAccounts = () => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.searchContainer}>
+        <FontAwesome name="search" size={20} color="black" style={styles.searchIcon} />
+        <TextInput
+          placeholder="Search"
+          clearButtonMode="always"
+          style={styles.searchInput}
+          value={searchQuery}
+          onChangeText={handleSearch}
+        />
+      </View>
     
 
       <FlatList
-        data={accountData}
+        data={filteredAccounts}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
       />
@@ -150,6 +174,20 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     marginRight: 280,
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    marginTop: 10,
+  },
+  searchIcon: {
+    marginRight: 10,
+  },
+  searchInput: {
+    flex: 1,
+    height: 40,
+    paddingHorizontal: 10,
   },
   myTasksText: {
     color: "white",

@@ -20,6 +20,7 @@ import ArrowBack from '../../customComponents/arrowBack';
 import LeadDet from '../../leadComponents/leadDetHeader';
 import { callLogFormData } from '../../customComponents/formData';
 import useIdStore from '../leadStore';
+import { SelectList } from 'react-native-dropdown-select-list';
 export default function CreateCallLog() {
   const leadId = useIdStore((state) => state.number);
   // const { control, handleSubmit, formState: { errors } } = useForm();
@@ -127,13 +128,30 @@ const renderFormElement = (element) => {
                 <View>
                 <View style = {styles.inputContainer}>
                 <Text style={styles.label}>{element.title}</Text>
-               
+{/*                
                     <Dropdown style={styles.inputContainer}
                         label={selectedValue ? selectedValue.label : 'Select'}
                         data={element.dropdownData}
                         value={selectedValue}
                         onSelect={handleSelect}
-                    />
+                    /> */}
+                           <SelectList 
+                boxStyles={{
+                    borderWidth: 1,
+                    borderColor: '#ccc',
+                    borderRadius: 12, // Make the border oval by using a large border radius
+                    paddingVertical: 10,
+                    paddingHorizontal: 10,
+                    fontSize: 16
+                }}
+                setSelected={(label) => {
+                   // handleSelect(label); // Call handleSelect to save the selected value
+                    setSelectedValue(label); // Update selected values
+                }}
+                data={element.dropdownData.map(item => ({ value: item.value, label: item.value }))}
+                save="value"
+                onSelect={() => handleSelect(selectedValue) } // Log selected values
+            />
                 </View>
                 </View>
                 

@@ -20,24 +20,27 @@ export default function StatusForm({ navigation }) {
   const [meetingId, setMeetingId] = useState('');
   const [notes, setNotes] = useState('');
   const leadId = useIdStore(state=>state.number)
+  const[formValues, setFormValues]=useState([''])
  
 
  
   const onSubmit = () => {
-    // Submit logic here
+    console.log(formValues);
+   
   };
  
   const goBack=()=>{
     router.back();
   }
  
-  const handleSelect = (item) => {
-     setSelectedValue(item.value);
-    // setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: item.value }));
-    console.log('Selected value:', item.value);
-};
- 
+
 const renderFormElement = (element) => {
+  const handleSelect = (item) => {
+    setSelectedValue(item.value);
+   setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: item }));
+   console.log('Selected value:', item);
+};
+
     switch (element.type) {
  
       case 'dropdown':
@@ -87,11 +90,8 @@ const renderFormElement = (element) => {
                             key={element.name}
                             title={element.title}
                             placeholder={leadId}
-                           
-                            // onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
-                            // value={formValues[element.name]}
-                           
-                            
+                            onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
+                            value={formValues[element.name]}
                             ></CustomInput>
             </View>
       );

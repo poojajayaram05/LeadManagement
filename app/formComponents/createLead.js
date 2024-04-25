@@ -14,10 +14,10 @@ import * as SecureStore from 'expo-secure-store';
 import { CustomInputSocial } from '../../customComponents/customSocialField';
 import CustomSwitch from '../../customComponents/customSwitch';
 import CustomHeader from '../../customComponents/customLeadHeader';
-// Form component
 import { SelectList } from 'react-native-dropdown-select-list';
+
 export default function CreateLead() {
-    // const { control, handleSubmit, formState: { errors } } = useForm();
+
     const [isCollapsed, setIsCollapsed] = useState({
       
         General: false,
@@ -41,11 +41,7 @@ export default function CreateLead() {
         
       };
 
-      
-
-      
-    
-      const username= SecureStore.getItem('username');
+    const username= SecureStore.getItem('username');
     const [validationErrors, setValidationErrors] = useState({});
     const [formValues, setFormValues] = useState([]);
     const [selectedValue, setSelectedValue] = useState(null); 
@@ -352,12 +348,7 @@ const onSelectRadio = (item) => {
                                  // control={control}
                                  value={username}
                                  name={element.name}
-                            
-                                 
-                                 
                                  // errors={errors}
-                                 
-                                 
                                 //  readOnly={true}
                              />
                              </View>
@@ -372,7 +363,7 @@ const onSelectRadio = (item) => {
           <View>
             <CustomHeader title={"Create Lead"} onPress={goBack}/>
           </View>
-                     <ScrollView>
+          <ScrollView>
           <View style={styles.card}>
             <View style={styles.section}>
               {Object.keys(isCollapsed).map((sectionName, index) => (

@@ -37,6 +37,10 @@ const LeadList = () => {
   //const [isLoading, setIsLoading] = useState(true);
   const[searchQuery, setSearchQuery]=useState('')
 
+  const handleSearch=(item)=>{
+    setSearchQuery(item);
+  }
+
 
 
  
@@ -85,6 +89,10 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
       </View>
     );
   }
+  const filteredLeads = leadData.filter((item) => {
+    const fullName = `${item.firstname} ${item.lastname}`.toLowerCase();
+    return fullName.includes(searchQuery.toLowerCase());
+  });
 
   if (error) {
     return (
@@ -93,14 +101,6 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
       </View>
     );
   }
-
-
-
-
-
- 
-
- 
 
   const renderItem = ({ item }) => (
     <TouchableOpacity>
@@ -122,6 +122,7 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
  
   return (
     <View style={styles.container}>
+      
       {/* <View style={styles.header}>
           <Text style={styles.myTasksText}>Leads</Text>
      
@@ -151,18 +152,19 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
         )}  
       />
        */}
-    {/* <SafeAreaView style={{ marginHorizontal:20, flexDirection:'row'}}>
+    <SafeAreaView style={{ marginHorizontal:20, flexDirection:'row'}}>
        <FontAwesome name='search' size={15} color='black' style={{marginTop:10, marginRight:10}}/>
       
         <TextInput 
         placeholder='Search'
-        clearButtonMode='always'
+        //clearButtonMode='always'
         style={styles.searchBox}
         value={searchQuery}
+        onChangeText={handleSearch}
         ></TextInput>
-       </SafeAreaView> */}
+       </SafeAreaView>
        <FlatList
-              data={leadData}
+              data={filteredLeads}
               renderItem={renderItem}
               keyExtractor={(item, index) => index.toString()}
             />

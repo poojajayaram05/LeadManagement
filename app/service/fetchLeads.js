@@ -26,6 +26,6 @@ export const FetchLeads = async () => {
         //   router.replace('/DrawerScreens/leadList')
     } catch (error) {
         console.error('Error fetching leads:', error);
-        throw error; // You can handle the error further or throw it for the caller to handle
+        throw error;
     }
 };

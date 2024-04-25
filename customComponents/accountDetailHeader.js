@@ -47,7 +47,7 @@ const{  email,mobile, first_name, last_name}=accounts||'';
     Linking.openURL(`tel:${mobile}`);
   };
   const goToAccountEdit=()=>[
-    router.navigate('formComponents/createAccount')
+    router.navigate('/formComponents/editAccount')
   ]
  
   return (

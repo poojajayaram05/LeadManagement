@@ -14,6 +14,7 @@ import {
   Text,
   StatusBar,
   Button,
+  TextInput
 } from 'react-native';
  
 import * as SecureStore from 'expo-secure-store';
@@ -29,6 +30,17 @@ const ContactList = () => {
   }
 
   const[contactData, setContactData]=useState([]);
+  const[searchQuery, setSearchQuery]=useState('')
+  const filteredContacts = contactData.filter((item) => {
+    const fullName = `${item.first_name} ${item.last_name}`.toLowerCase();
+    return fullName.includes(searchQuery.toLowerCase());
+  });
+
+
+ const handleSearch = (text) => {
+    setSearchQuery(text);
+  
+  };
 
  
  
@@ -83,8 +95,18 @@ if (isLoading) {
  
   return (
     <View style={styles.container}>
+      <View style={styles.searchContainer}>
+        <FontAwesome name="search" size={20} color="black" style={styles.searchIcon} />
+        <TextInput
+          placeholder="Search"
+          clearButtonMode="always"
+          style={styles.searchInput}
+          value={searchQuery}
+          onChangeText={handleSearch}
+        />
+      </View>
        <FlatList
-              data={contactData}
+              data={filteredContacts}
               renderItem={renderItem}
               keyExtractor={(item, index) => index.toString()}
             />
@@ -127,6 +149,20 @@ header: {
   alignItems: 'center',
   flexDirection: 'row',
   justifyContent: 'space-between',
+},
+searchContainer: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  paddingHorizontal: 20,
+  marginTop: 10,
+},
+searchIcon: {
+  marginRight: 10,
+},
+searchInput: {
+  flex: 1,
+  height: 40,
+  paddingHorizontal: 10,
 },
 headerText: {
   color: 'white',

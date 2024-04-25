@@ -1,8 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Button,Image,ScrollView } from 'react-native';
 import { router } from 'expo-router';
-
 //import {handleNewButtonClick} from 'react-native-elements';
 // import { starTwo,starrOne } from '../assets/images';
 import {profile} from '../assets/images';
@@ -17,11 +15,11 @@ import Colors from '@/constants/Colors';
 import { Linking } from 'react-native';
 
  
-const LeadItem = ({ FirstName, LastName, Email, Phone, onViewPress, lead_status,qualification, label, number, gender }) => {
+const LeadItem = ({ FirstName, LastName, Email, Phone, lead_status,qualification, number, gender }) => {
    
     const [showSecondImage, setShowSecondImage] = useState(false);
     const[selectedStar, setSelectedStar]=useState(false);
-    const { leadId, setLeadId } = useIdStore();
+    const{ leadId, setLeadId } = useIdStore();
     const{status, setStatus}=useIdStore();
     const [showDropdown, setShowDropdown] = useState(false);
     console.log("gendersssssss", gender);
@@ -56,7 +54,7 @@ const handleNavigateToLeadDetails = () => {
 };
 const handleChangeStatus = () => {
     router.navigate('../../formComponents/changeStatus');
-    setLeadId(number);
+    setLeadId(number)
     setStatus(lead_status);
     
  
@@ -131,7 +129,7 @@ return (
           {showDropdown && (
     <View style={styles.dropdownContainer}>
     <ScrollView style={styles.dropdownScrollView}>
-        <View style={styles.dropdownMenu}>
+            <View style={styles.dropdownMenu}>
             {/* <TouchableOpacity onPress={() => {router.navigate('DrawerScreens/createLead'); closeDropdown();}}>
                 <Text style={styles.dropdownMenuItem}>Edit lead</Text>
             </TouchableOpacity> */}
@@ -150,7 +148,6 @@ return (
         </View>
     </ScrollView>
 </View>
- 
           )}
           </View>
       </TouchableOpacity>
@@ -272,7 +269,6 @@ const styles = {
         flexDirection: 'row',
         
     },
-     
     //   filterIcon: {
     //     marginLeft: 10,
     //   },

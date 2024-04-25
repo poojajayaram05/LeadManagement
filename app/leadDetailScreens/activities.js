@@ -3,7 +3,7 @@ import { StyleSheet, SafeAreaView, View, Text, TouchableOpacity, FlatList, Scrol
 import { Ionicons } from '@expo/vector-icons';
 import LeadDet from '../../leadComponents/leadDetHeader';
 import FloatingButton from '../../customComponents/floatingButton';
-import useIdStore from '../leadStore';
+import useIdStore, { useActivityStore } from '../leadStore';
 import { FetchActivities } from '../service/fetchActivities';
 import groupBy from 'lodash/groupBy';
 import { router } from 'expo-router';
@@ -29,7 +29,7 @@ export default function Example() {
   const [activity_id, setActivityId] = useState('')
 
 
-  const { activity_number, setActivityNumber } = useIdStore();
+  const { number, setActivityNumber } = useActivityStore();
 
 
   const activity_type_map = {
@@ -61,8 +61,8 @@ export default function Example() {
   useEffect(() => {
     const activities = activityData.filter((lead) => lead.associated_lead === leadId);
     setActivityItems(activities);
-    console.log("activity number", activities.activity_number);
-    setActivityId(activities.activity_number)
+    console.log("activity number", activities);
+    setActivityNumber(activities.number)
 
   }, [activityData, leadId]);
 
@@ -76,6 +76,7 @@ export default function Example() {
 
   const goToMarkAsComplete = () => {
     router.navigate('/formComponents/markAsComplete')
+    //setActivityNumber(activity_number);
 
   }
 
@@ -97,7 +98,7 @@ export default function Example() {
 
   const goToActivityForm = () => {
     router.navigate('/formComponents/activityForm')
-    setActivityNumber(activity_id);
+
   }
 
 
@@ -107,12 +108,20 @@ export default function Example() {
 
   const renderItemTask = ({ item }) => {
     //setActivityNumber(activity_number);
-    const { activity_type, email, associated_lead, sys_created_on, start_time, due_date, date, time, status, description, priority, subject, activity_number } = item;
+    const { activity_type, email, associated_lead, sys_created_on, start_time, due_date, date, time, status, description, priority, subject, number } = item;
     const timee = renderStartTime(start_time);
+    console.log("activityidnumber", number);
     const formattedDate = renderDate(due_date)
-    //  setActivityNumber(activity_number);
+      //setActivityNumber(activity_number);
     let priorityColor = 'black'; // Default color if priority is not recognized
     let statusColor = 'black';
+
+    const goToMarkAsComplete = () => {
+      router.navigate('/formComponents/markAsComplete')
+      console.log("number", number);
+      setActivityNumber(number);
+  
+    }
 
     switch (priority.toLowerCase()) {
       case 'low':
@@ -148,6 +157,10 @@ export default function Example() {
             <Text style={styles.data}>Subject:</Text>
             <Text style={styles.detail}>{subject}</Text>
           </View>
+          {/* <View style={styles.row}>
+            <Text style={styles.data}>Activity Number:</Text>
+            <Text style={styles.detail}>{number}</Text>
+          </View> */}
           <View style={styles.row}>
             <Text style={styles.description}>Description:</Text>
             <Text style={styles.detail}>{description}</Text>
@@ -158,7 +171,7 @@ export default function Example() {
           </View>
           <View style={styles.row}>
             <Text style={styles.data}>Priority:</Text>
-            <Text style={[styles.detail, { color: priorityColor }]}>{priority}</Text>
+            <Text style={[styles.detail,{color: priorityColor}]}>{priority}</Text>
           </View>
           <View style={styles.row}>
             <Text style={styles.data}>Status:</Text>
