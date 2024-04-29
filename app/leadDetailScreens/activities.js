@@ -28,8 +28,7 @@ export default function Example() {
   });
   const [activity_id, setActivityId] = useState('')
 
-
-  const { number, setActivityNumber } = useActivityStore();
+  const { sys_id,setAsysId  } = useActivityStore();
 
 
   const activity_type_map = {
@@ -62,7 +61,7 @@ export default function Example() {
     const activities = activityData.filter((lead) => lead.associated_lead === leadId);
     setActivityItems(activities);
     console.log("activity number", activities);
-    setActivityNumber(activities.number)
+    //setActivityNumber(activities.number)
 
   }, [activityData, leadId]);
 
@@ -108,9 +107,11 @@ export default function Example() {
 
   const renderItemTask = ({ item }) => {
     //setActivityNumber(activity_number);
-    const { activity_type, email, associated_lead, sys_created_on, start_time, due_date, date, time, status, description, priority, subject, number } = item;
+    const { activity_type, email, associated_lead, sys_created_on, start_time, due_date, date, time, status, description, priority, subject, number, sys_id } = item;
     const timee = renderStartTime(start_time);
     console.log("activityidnumber", number);
+    //setAsysId(sys_id);
+    
     const formattedDate = renderDate(due_date)
       //setActivityNumber(activity_number);
     let priorityColor = 'black'; // Default color if priority is not recognized
@@ -119,7 +120,7 @@ export default function Example() {
     const goToMarkAsComplete = () => {
       router.navigate('/formComponents/markAsComplete')
       console.log("number", number);
-      setActivityNumber(number);
+     setAsysId(sys_id);
   
     }
 

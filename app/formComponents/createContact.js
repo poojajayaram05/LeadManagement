@@ -204,10 +204,10 @@ const onSelectRadio = (item) => {
               }));
             };
           
-        const handleSelect = (item) => {
+        const handleSelect = (key, value) => {
             //setSelectedValue(item);
-            setFormValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item }));
-            console.log(element.name, item);
+            setFormValues(prevFormValues => ({ ...prevFormValues,  [element.name]: key }));
+            console.log(element.name, key);
         };
         const handleSwitch=(item)=>{
           setFormValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item}));
@@ -298,13 +298,13 @@ const onSelectRadio = (item) => {
                     paddingHorizontal: 10,
                     fontSize: 16
                 }}
-                setSelected={(label) => {
+                setSelected={(item) => {
                    // handleSelect(label); // Call handleSelect to save the selected value
-                    setSelectedValue(label); // Update selected values
+                    setSelectedValue(item); // Update selected values
                 }}
-                data={element.dropdownData.map(item => ({ value: item.key, label: item.label }))}
-                save="key"
-                onSelect={() => handleSelect(selectedValue) } // Log selected values
+                data={element.dropdownData.map(item => ({ key: item.key, value: item.value }))}
+                save="value"
+                onSelect={() => handleSelect(key, value) } // Log selected values
             />
                    
                     {validationErrors[element.name] && <Text style={styles.errorMessage}>{validationErrors[element.name]}</Text>}

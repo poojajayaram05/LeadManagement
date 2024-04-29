@@ -11,7 +11,7 @@ const BadgeLead = ({ label, textColor="black" }) => {
  
  
    
-    //         return <BadgeLead label={'New Lead'} color={'rgba(133, 116, 113, 0.2)'} textColor="black"/>
+    //     return <BadgeLead label={'New Lead'} color={'rgba(133, 116, 113, 0.2)'} textColor="black"/>
     //     } else if (Status === 'Qualified') {
     //         return <BadgeLead label={'Qualified'} color={'rgba(192, 45, 217, 0.2)'} textColor="black"/>
     //     } else if (Status === 'Contacted') {
@@ -31,7 +31,7 @@ const BadgeLead = ({ label, textColor="black" }) => {
  
   const styles = StyleSheet.create({
     badges: {
- 
+
       paddingVertical: 1,
       paddingHorizontal: 10,
       borderRadius: 2,

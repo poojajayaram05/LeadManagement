@@ -321,7 +321,7 @@ import ArrowBack from '../../customComponents/arrowBack';
 import CustomSwitch from '../../customComponents/customSwitch';
 import ImageUpload from '../../customComponents/imageUpload';
 // import RadioButton from '../../customComponents/customRadio';
-import useIdStore from '../leadStore';
+import useIdStore, { useActivityStore } from '../leadStore';
 import LeadDet from '../../leadComponents/leadDetHeader';
 import * as SecureStore from 'expo-secure-store'
  
@@ -347,6 +347,7 @@ export default function markAsCompletedForm() {
  
   const leadId = useIdStore((state) => state.number);
   const activityNumber = useIdStore((state)=>state.activity_number);
+  const sysId = useActivityStore((state) => state.sys_id);
  
   const handleCancelClicked = () => {
       setIsModalVisible(false);
@@ -387,11 +388,11 @@ const onSubmit = async () => {
 
   setFormValues(prevFormValues => ({ ...prevFormValues, ['mark_as_complete']: true }));
  
-  const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_product_c`;
+  const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_activity_c/${sysId}`;
   const token = SecureStore.getItem('token');
   const stoken = JSON.parse(token);
   const apiToken = stoken.accessToken;
-
+console.log(postUrl,"mark as complete url");
   console.log(apiToken);  
   // const token="DeC8cB2g6op02J_9-8cvJDwpA_5QTiL_9x8VnZLmwHy3QcoqoVR7KuhWUs-M0KgzLFLlp1NB8d5kekkbt3mCYQ";
   console.log("Form data", formValues);
@@ -403,7 +404,7 @@ const onSubmit = async () => {
   try{
     //setFormValues(prevFormValues => ({ ...prevFormValues, ['mark_as_complete']: true }));
   const response = await fetch(postUrl, {
-      method: 'POST',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
         'Authorization' : 'Bearer ' + apiToken
@@ -414,7 +415,7 @@ const onSubmit = async () => {
  
     console.log("Successfully posted",response);
    
-    router.replace('/DrawerScreens/leadList')
+    router.back();
   }
  
  

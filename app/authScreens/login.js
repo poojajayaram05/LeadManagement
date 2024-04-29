@@ -99,6 +99,7 @@ import { AuthContext } from "../../context/authContext";
 import { Alert } from "react-native";
 import { router } from "expo-router";
 import * as SecureStore from 'expo-secure-store';
+import CheckNetwork from '../checkNetwork'
 // import Spinner from "react-native-loading-spinner-overlay";
  
 const LoginScreen = ({ navigation }) => {
@@ -197,12 +198,14 @@ authData.append('password', password);
  
   return (
     <>
+    
       <ImageBackground
         source={{
           uri: "https://d6xcmfyh68wv8.cloudfront.net/learn-content/uploads/2021/07/small-business-loan-770x515.png",
         }}
         style={styles.background}
       >
+        <CheckNetwork/>
         <View style={styles.container}>
           {/* <Spinner visible={isLoading} /> */}
           <View style={styles.wrapper}>

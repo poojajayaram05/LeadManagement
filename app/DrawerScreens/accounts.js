@@ -18,6 +18,7 @@ import {
 import AccountCard from "../formComponents/accountCard";
 import { useQuery } from "@tanstack/react-query";
 import { ActivityIndicator } from "react-native";
+import {Company} from '../../assets/images'
 const ListOfAccounts = () => {
   const [routes] = useState([
     { key: "allLeads", title: "All Leads" },
@@ -109,6 +110,8 @@ const ListOfAccounts = () => {
         phone={item.phone}
         email={item.email}
         sys_id={item.sys_id}
+        accountType = {item.account_type}
+        gender = {item.gender}
        
       />
     </TouchableOpacity>

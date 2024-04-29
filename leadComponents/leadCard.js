@@ -175,12 +175,15 @@ const styles = {
         flexDirection:'row',
         justifyContent: 'space-between',
         marginTop: 6,
+        
  
  
     },
     badgeSecond:{
        
         marginLeft:20,
+        flexDirection:'row',
+        justifyContent: 'space-between',
        
     },
     textContainer: {
