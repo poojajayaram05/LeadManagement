@@ -42,8 +42,9 @@ export default function CreateAccount() {
   });
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const[selectedAccount, setSelectedAccount]=useState('')
-const[Username, setUsername]=useState('');
+  const[selectedAccount, setSelectedAccount]=useState('');
+  // const [isSectionVisible, setIsSectionVisible] = useState(false);
+  const[Username, setUsername]=useState('');
 
 
   const handleDateChange = (event, selectedDate) => {
@@ -111,123 +112,15 @@ LogBox.ignoreAllLogs();
 
       setFormValues(prevFormValues => ({ ...prevFormValues, ['account_type']: account.value }));
         setSelectedAccount(account.value);
+        // setIsSectionVisible(true);
         console.log("account value is", account.value)
     };
   
-  
-
-  // const validateForm = () => {
-  //   const errors = {};
-  //   personAccountForm.elements.forEach((element) => {
-  //     // Check if the field is visible based on lead type
-    
-  //     // Perform validation for visible fields
-  //     if (element.isRequired && !formValues[element.name]) {
-  //       errors[element.name] = `${element.title} is required`;
-  //     }
-  //     if (
-  //       element.validation &&
-  //       element.validation.regex &&
-  //       !element.validation.regex.test(formValues[element.name])
-  //     ) {
-  //       errors[element.name] = element.validation.message;
-  //     }
-  //   });
-  //   return errors;
-  // };
 
   const goBack = () => {
     router.back();
   };
 
-
-
-  // const onSubmit = async () => {
-
-  // //   const errors = validateForm();
-  // //     if (Object.keys(errors).length > 0) {
-  // //       // If there are validation errors, set them in state
-  // //       setValidationErrors(errors);
-  // //       console.log(validationErrors);
-  // //     }
-  // // else{
-  //   console.log("this is the form valuesss", formValues);
-  //   setFormValues(prevFormValues => ({ ...prevFormValues, ['owner']: username}));
-  //   const postUrl = `https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_account_c`;
-  //   const token = SecureStore.getItem("token");
-  //   const stoken = JSON.parse(token);
-  //   const apiToken = stoken.accessToken;
-  //   console.log(apiToken);
-
-  //   console.log("Form data", formValues);
-   
-  //   try {
-  //     console.log("in try");
-  //     const response = await fetch(postUrl, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: "Bearer " + apiToken,
-  //       },
-  //       body: JSON.stringify(formValues),
-  //     });
-
-  //     console.log("Successfully posted", response);
-  //     Alert.alert("Successfully Submitted!")
-  //     router.replace("/DrawerScreens/leadList");
-  //   } catch (err) {
-  //     console.log("error");
-  //   }
-  // // }
-  // };
-
-  // const renderForm = () => {
-  //   if (selectedAccount) {
-  //       const formData = personAccountForm.find(account => account.account_type == selectedAccount);
-  //       //console.log("form data", formData);
-
-  //     if(selectedAccount=='corporate')
-  //     {
-  //         return formData.Data.map((element, index) => (
-  //           <View key={index} style={styles.formElement}>
-  //           {renderFormElement(element)}
-  //           {validationErrors[element.name] && (
-  //             <Text style={styles.error}>{validationErrors[element.name]}</Text>
-  //           )}
-  //         </View>
-  //           ));
-        
-
-  //     }
-  //     else{
-  //       return formData.Data.map((element, index) => (
-  //         <View key={index} style={styles.formElement}>
-  //         {renderFormElement(element)}
-  //         {validationErrors[element.name] && (
-  //           <Text style={styles.error}>{validationErrors[element.name]}</Text>
-  //         )}
-  //       </View>
-  //     ));
-
-  //     }
-        
-  //           // return formData.Data.elements.map((element, index) => (
-  //           //     <View key={index} style={styles.inputContainer}>
-  //           //         {renderFormElement(element)}
-  //           //     </View>
-  //           // ));
-        
-  //       // else {
-  //       //   return PersonData.elements.map((element, index) => (
-  //       //     <View key={index} style={styles.inputContainer}>
-  //       //         {renderFormElement(element)}
-  //       //     </View>
-  //       // ));
-  
-  //       // }
-  //   }
-  //   return null;
-  // };
   
   const onSubmit = async () => {
     // Validate form data
@@ -271,8 +164,6 @@ LogBox.ignoreAllLogs();
     }
     catch(e){
       console.log("error");
-
-
     }
     // Rest of your code for submitting the form...
   };
@@ -314,18 +205,24 @@ LogBox.ignoreAllLogs();
     return errors;
   };
 
-  // const renderFormElements = (sectionName) => {
-  //   return personAccountForm.elements
-  //     .filter((element) => element.sectionName === sectionName)
-  //     .map((element, index) => (
-  //       <View key={index} style={styles.formElement}>
-  //         {renderFormElement(element)}
-  //         {validationErrors[element.name] && (
-  //           <Text style={styles.error}>{validationErrors[element.name]}</Text>
-  //         )}
-  //       </View>
-  //     ));
-  // };
+// Modify your renderFormElements function to filter and render form elements based on sectionName
+const renderFormElements = (sectionName) => {
+  // if (!isSectionVisible) {
+  //   return null;
+  // }
+  return personAccountForm
+  .filter((account) => account.account_type === selectedAccount) // Filter based on selected account type
+  .flatMap((account) => account.Data) // Flatten the array of form elements
+  .filter((element) => element.sectionName === sectionName) // Filter based on sectionName
+    .map((element, index) => (
+      <View key={index} style={styles.formElement}>
+        {renderFormElement(element)}
+        {validationErrors[element.name] && (
+          <Text style={styles.error}>{validationErrors[element.name]}</Text>
+        )}
+      </View>
+    ));
+};
 
   const renderFormElement = (element) => {
     const handleSelect = (item) => {
@@ -347,8 +244,7 @@ LogBox.ignoreAllLogs();
     const starMark = element.isRequired ? 
       <Text style={{ color: "red" }}> *</Text>
      : null;
-
-    
+     
     switch (element.type) {
       case "TextInput":
         return (
@@ -426,24 +322,7 @@ LogBox.ignoreAllLogs();
           </View>
         );
 
-        // case 'RadioButton':
-        //   return( 
-        //     <View style = {styles.inputContainer}>
-        //     <Text style={styles.label}>{element.title}{starMark}</Text>
-              
-        //           <RadioButton style={styles.inputContainer}
-        //                onSelect={onSelectRadio}
-        //                SelectedData={selectedValue} 
-        //                disableLine={1}
-        //                value={selectedValue}
-        //                onChange={(onSelectRadio) => setFormValues({ ...formValues, [element.name]: onSelectRadio })}
-        //                data={personAccountForm.Data}
-        //                title={element.title}
-        //                // Pass the data prop here
-        //           />
-        //           </View>
-
-        //   )
+      
         case "TextInputO":
           return(
             <View>
@@ -514,66 +393,120 @@ LogBox.ignoreAllLogs();
         );
     }
   };
-
   return (
     <View style={styles.cardContainer}>
       <View>
         <CustomHeader title={"Create Account"} onPress={goBack} />
       </View>
       <ScrollView>
-        {/* <View style={styles.card}>
-          <View style={styles.section}>
-            {Object.keys(isCollapsed).map((sectionName, index) => (
-              <View key={index} style={styles.sectionContainer}>
-                <TouchableOpacity onPress={() => toggleSection(sectionName)}>
-                  <Text style={styles.sectionTitle}>{sectionName}</Text>
-                  <Image
-                    source={
-                      isCollapsed[sectionName] ? DropdownIcon : DropupIcon
-                    }
-                    resizeMode="contain"
-                    style={styles.dropdownIcon}
-                  />
-                </TouchableOpacity>
-                <Collapsible collapsed={isCollapsed[sectionName]}>
-                  {renderFormElements(sectionName)}
-                </Collapsible>
-              </View>
-            ))}
+        {/* Render the selected account dropdown always */}
+        <View style={styles.card}>
+          <Text style={{ marginBottom: 3, fontSize: 12, fontWeight: "bold" }}>
+            Select Account Type
+          </Text>
+          <View style={styles.Dropdown}>
+            <Dropdown
+              label="Select Account"
+              data={[
+                { value: 'corporate', label: 'corporate' },
+                { value: 'person', label: 'person' },
+              ]}
+              onSelect={handleAccountSelect}
+            />
           </View>
+        </View>
 
-          <View style={styles.bgColor}>
-            <Button title="Submit" onPress={onSubmit} color="#023B5E" />
-          </View>
-
-          <View style={styles.buttonContainer}></View>
-        </View> */}
-          <ScrollView>
-            <View style={styles.card}>
-              
-                <Text style={{ marginBottom: 3,
-    fontSize: 12,
-    fontWeight: "bold"}}>Select Account Type</Text>
-                <View style={styles.Dropdown}> 
-                <Dropdown
-                    label="Select Account"
-                    data={[
-                        { value: 'corporate', label: 'corporate' },
-                        { value: 'person', label: 'person' },
-                      
-                    ]}
-                    onSelect={handleAccountSelect}
-                />
+        {/* Conditionally render the sections and submit button based on selected account type */}
+        {selectedAccount && (
+          <View style={styles.card}>
+            <View style={styles.section}>
+              {Object.keys(isCollapsed).map((sectionName, index) => (
+                <View key={index} style={styles.sectionContainer}>
+                  <TouchableOpacity onPress={() => toggleSection(sectionName)}>
+                    <Text style={styles.sectionTitle}>{sectionName}</Text>
+                    <Image
+                      source={
+                        isCollapsed[sectionName] ? DropdownIcon : DropupIcon
+                      }
+                      resizeMode="contain"
+                      style={styles.dropdownIcon}
+                    />
+                  </TouchableOpacity>
+                  <Collapsible collapsed={isCollapsed[sectionName]}>
+                    {renderFormElements(sectionName)}
+                  </Collapsible>
                 </View>
-                {renderForm()}
-                {selectedAccount && <Button title="Submit" onPress={onSubmit} color='#023B5E' />}
+              ))}
             </View>
-              
-           
-        </ScrollView>
+
+            <View style={styles.bgColor}>
+              <Button title="Submit" onPress={onSubmit} color="#023B5E" />
+            </View>
+
+            <View style={styles.buttonContainer}></View>
+          </View>
+        )}
       </ScrollView>
     </View>
   );
+  // return (
+  //   <View style={styles.cardContainer}>
+  //     <View>
+  //       <CustomHeader title={"Create Account"} onPress={goBack} />
+  //     </View>
+  //     <ScrollView>
+  //     <ScrollView>
+  //           <View style={styles.card}>
+              
+  //               <Text style={{ marginBottom: 3,
+  //   fontSize: 12,
+  //   fontWeight: "bold"}}>Select Account Type</Text>
+  //               <View style={styles.Dropdown}> 
+  //               <Dropdown
+  //                   label="Select Account"
+  //                   data={[
+  //                       { value: 'corporate', label: 'corporate' },
+  //                       { value: 'person', label: 'person' },
+                      
+  //                   ]}
+  //                   onSelect={handleAccountSelect}
+  //               />
+  //               </View>
+  //               {/* {renderForm()} */}
+  //               {/* {selectedAccount && <Button title="Submit" onPress={onSubmit} color='#023B5E' />} */}
+  //           </View>
+  //       </ScrollView>
+  //        <View style={styles.card}>
+  //         <View style={styles.section}>
+  //           {Object.keys(isCollapsed).map((sectionName, index) => (
+  //             <View key={index} style={styles.sectionContainer}>
+  //               <TouchableOpacity onPress={() => toggleSection(sectionName)}>
+  //                 <Text style={styles.sectionTitle}>{sectionName}</Text>
+  //                 <Image
+  //                   source={
+  //                     isCollapsed[sectionName] ? DropdownIcon : DropupIcon
+  //                   }
+  //                   resizeMode="contain"
+  //                   style={styles.dropdownIcon}
+  //                 />
+  //               </TouchableOpacity>
+  //               <Collapsible collapsed={isCollapsed[sectionName]}>
+  //                 {renderFormElements(sectionName)}
+  //               </Collapsible>
+  //             </View>
+  //           ))}
+  //         </View>
+
+  //         <View style={styles.bgColor}>
+  //           <Button title="Submit" onPress={onSubmit} color="#023B5E" />
+  //         </View>
+
+  //         <View style={styles.buttonContainer}></View>
+  //       </View> 
+         
+  //     </ScrollView>
+  //   </View>
+  // );
 }
 
 const styles = StyleSheet.create({
