@@ -14,15 +14,17 @@ const OpportunityItem = ({  OpportunityName, ProbabilityValue,ForecastCloseDate,
   const{opportunityId, setOpportunityId}=useOpportunityStore();
   const [showDropdown, setShowDropdown] = useState(false);
   const{sysId, setSysId}=useIdStore();
+  const{flag, setFlag}=useIdStore();
 
 
 
 
 const handleNavigateToLeadDetails = () => {
-  router.navigate(`/formComponents/OpportunityDetailPage`);
+  router.navigate(`/renderDetails/renderDetailPage`);
   setOpportunityId(number);
   setSysId(sys_id);
-  console.log(sys_id);
+  setFlag('opportunity');
+  console.log(sys_id);    
 };
 
 return (

@@ -22,7 +22,7 @@ export const leads_to_render = {
              company: { label: "Company" },
              no_of_employees: { label: "No Of Employees" },
              annual_revenue:{label : "Annual Revenue"},
-             job_title:{label:"Job Title"},
+             job_title:{label:"Job Title"},  
              company_duns_number:{label:"Company DUNS Number"},
              industry:{label:"Industry"},
            },
@@ -342,6 +342,99 @@ export const contacts_to_render={
              alternate_email2:{label : "Alternate Email 2"},
            }
  
+        }
+    }
+ 
+}
+
+
+
+export const opportunity_to_render={
+    sections:{
+        general_details:{
+            title:"General Details",
+            sectionId:1,
+            fields:{
+                opportunity_name:{label:"Opportunity name"},
+                contact_display_value:{label:"Primary Contact"},
+                owner:{label:"Owner"},
+                description:{label:"Description"},
+                next_step:{label:"Next Step"},
+                account_display_value:{label:"Account Name"},
+                sales_pipeline:{label:"Sales Pipeline"},
+                sales_stage:{label:"Sales Stage"},
+                category:{label:"Category"},
+                probability_of_winning:{label:"Probability of winning (%)"},
+ 
+            }
+        }
+    }
+}
+
+export const contact_to_render={
+    sections:{
+        general_details: {
+            title: "General Information",
+            sectionId: 1,
+            fields: {
+                title: { label: "Title" },
+                account_name: { label: "Account Name" },
+                // account_name.display_value: { label: "Account Name" },
+                description: { label: "Description" },
+                birthdate: { label: "Date of birth" },
+                category: { label: "Category" },
+                name:{label:"Name"},
+                gender: { label: "Gender" },
+                owner: { label: "Owner" },
+                marital_status:{label:"Marital Status"},
+            }
+        },
+        contact_details: {
+            title: "Contact Information",
+            sectionId: 2,
+            fields: {
+                // home_phone: { label: "Home Phone" },
+             alternate_email1: { label: "Alternate Email 1" },
+             alternate_email2:{label : "Alternate Email 2"},
+             alternate_phone1:{label:"Alternate Phone 1"},
+             alternate_phone2:{label:"Alternate Phone 2"},
+             assistant_phone:{label:"Assistant Phone"},
+           }
+ 
+        },
+        address_details:{
+            title:"Address Details",
+            sectionId: 3,
+            fields: {
+                mailing_address:{label:"Mailing Address"},
+                other_address:{label:"Other Address"},
+            }
+        },
+        personal_details:{
+            title:"Personal Information",
+            sectionId: 4,
+            fields:{
+                assistant:{label:"Assistant"},
+                father_first_name:{label:"Father First Name"},
+                father_mddle_name:{label:"Father Middle Name"},
+                father_last_name:{label:"Father Last Name"},
+                mother_first_name:{label:"Mother First Name"},
+                mother_mddle_name:{label:"Mother Middle Name"},
+                mother_last_name:{label:"Mother Last Name"},
+                religion:{label:"Religion"},
+               
+ 
+            }
+        },
+        system_details:{
+            titel:"System Information",
+            sectionId: 5,
+            fields:{
+                sys_created_by:{label:"Created by"} ,
+                sys_created_on:{label:"Created On"},
+                sys_updated_by:{label:"Updated By"},
+                sys_updated_on:{label:"Last Updated On"},
+            }
         }
     }
  

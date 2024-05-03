@@ -10,8 +10,8 @@ import { TransformApiData } from '../../displayDataMap/displayDataMap';
 
 import * as SecureStore from 'expo-secure-store';
 import { ActivityIndicator } from 'react-native';
-import { leads_to_render,contacts_to_render, corporateAccounts_to_render, personAccounts_to_render } from '../../detailPagesData';
-import {LEAD_API,CONTACT_API,ACCOUNT_API} from '../../config';
+import { leads_to_render,contact_to_render, corporateAccounts_to_render, personAccounts_to_render,opportunity_to_render } from '../../detailPagesData';
+import {LEAD_API,CONTACT_API,ACCOUNT_API,OPPORTUNITY_API} from '../../config';
 
 const RenderDetail =  () => {
   const [openSections, setOpenSections] = useState([]);
@@ -36,7 +36,7 @@ const RenderDetail =  () => {
       setApi(LEAD_API);
     }
     else if(flag==='contact'){
-      setData(contacts_to_render);
+      setData(contact_to_render);
       setApi(CONTACT_API)
     } 
     else if(flag=='account'){
@@ -47,6 +47,10 @@ const RenderDetail =  () => {
     else
       setData(corporateAccounts_to_render);
       
+    }
+    else if(flag==='opportunity'){
+      setData(opportunity_to_render);
+      setApi(OPPORTUNITY_API);
     }
   } ,[flag]); 
   
