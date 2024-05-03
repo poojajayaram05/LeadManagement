@@ -271,6 +271,7 @@ const AccountCard = ({ firstName, lastName, accountName, accountNumber, phone, e
   const [selectedStar, setSelectedStar] = useState(false);
   const { sysid, setSysId } = useIdStore();
   const [showDropdown, setShowDropdown] = useState(false);
+  const{account_type,setAccountType}=useState('');
 
   const goToEditLead = () => {
     setLeadId(Id);
@@ -289,6 +290,8 @@ const AccountCard = ({ firstName, lastName, accountName, accountNumber, phone, e
   const handleNavigateToLeadDetails = () => {
     router.navigate(`/formComponents/accountDetailPage`);
     setSysId(sys_id)
+    setAccountType(accountType);
+    
   };
 
   const handleChangeStatus = () => {

@@ -225,6 +225,7 @@ const onSelectRadio = (item) => {
                       {/* <Text style={styles.label}>{element.title}{starMark} </Text> */}
                     <CustomInput
                         key={element.name}
+                        style={styles.input}
                         title={element.title}
                         placeholder={element.placeholder}
                         // control={control}
@@ -237,38 +238,7 @@ const onSelectRadio = (item) => {
                         value={formValues[element.name] || ''} 
                     />
                     </View>
-                );
-                // case 'email':
-                //     return (
-                //       <View key={element.name}>
-                //           <Text style={styles.label}>{element.title}{starMark}</Text>
-                //         <CustomInput
-                //           key={element.name}
-                //           // title={element.title}
-                //           placeholder={element.placeholder}
-                //           name={element.name}
-                //           onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
-                //           value={formValues[element.name] || ''}
-                //           inputType={element.inputType}
-                //         />
-                //         {/* Render alternate email fields */}
-                //         {[...Array(alternateEmailCount)].map((_, i) => (
-                //           <CustomInput
-                //             key={`alternate_email${i + 1}`}
-                //             title={`Alternate Email ${i + 1}`}
-                //             placeholder={`Alternate Email ${i + 1}`}
-                //             name={`alternate_email${i + 1}`}
-                //             onChange={(value) => setFormValues({ ...formValues, [`alternate_email${i + 1}`]: value })}
-                //             value={formValues[`alternate_email${i + 1}`] || ''}
-                //             inputType={element.inputType}
-                //           />
-                //         ))}
-                //         {/* Plus Button */}
-                //         <TouchableOpacity onPress={onAddAlternateEmail}>
-                //           <Ionicons name="add-circle" size={24} color="black" style={styles.plusButton} />
-                //         </TouchableOpacity>
-                //       </View>
-                //     );
+                ); 
 
                 case 'MultilineText':
                     return (
@@ -346,15 +316,20 @@ const onSelectRadio = (item) => {
                         case 'dropdownAccounts':
                             return( 
                               <View style={styles.inputContainer}>
-            
-                              
                               <Text style={styles.label}>{element.title}</Text>
-                          
-                                <AddAccounts onSelectAccount={onSelectAccount}/>
-    
+                                <AddAccounts onSelectAccount={onSelectAccount}
+                                style={styles.input}/>
                               </View>
-                       
+                              
                             )
+    //                     case 'dropdownAccounts':
+    // return( 
+    //     <View style={[styles.inputContainer, { borderRadius: 10, borderColor: 'black' }]}>
+    //         <Text style={styles.label}>{element.title}</Text>
+    //         <AddAccounts onSelectAccount={onSelectAccount}/>
+    //     </View>
+    // )
+
                         case 'Date':
                 return (
                   <View style={styles.inputContainer}>
@@ -482,6 +457,7 @@ const styles = StyleSheet.create({
     inputContainer: {
         marginBottom:8,
         borderRadius:12,
+        // backgroundColor:'red'
 
     },
     backButton: {
@@ -504,8 +480,8 @@ const styles = StyleSheet.create({
     },
     input: {
         borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 5,
+        borderColor: 'green',
+        borderRadius: 12,
         backgroundColor:'white',
         paddingVertical: 10,
         paddingHorizontal: 11,

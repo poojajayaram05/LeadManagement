@@ -222,6 +222,14 @@ import {
     };
  
     const renderFormElements = (sectionName) => {
+      // Check if the section should be rendered based on the account type
+      if (
+        (sectionName === "Industry Details" && formValues["account_type"] === "person") ||
+        (sectionName === "Personal Details" && formValues["account_type"] === "corporate")
+      ) {
+        return null; // Skip rendering this section
+      }
+    
       return editAccountFormData.elements
         .filter((element) => element.sectionName === sectionName)
         .map((element, index) => (
@@ -233,6 +241,7 @@ import {
           </View>
         ));
     };
+    
  
     const renderFormElement = (element) => {
       const handleSelect = (item) => {

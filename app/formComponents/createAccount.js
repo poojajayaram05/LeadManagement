@@ -116,7 +116,6 @@ LogBox.ignoreAllLogs();
         console.log("account value is", account.value)
     };
   
-
   const goBack = () => {
     router.back();
   };
@@ -143,9 +142,6 @@ LogBox.ignoreAllLogs();
     console.log("Form data", formValues);
     try{
       console.log("this is the form valuesss", formValues);
-  
-   
- 
       console.log("in try");
       const response = await fetch(postUrl, {
         method: "POST",
@@ -159,8 +155,6 @@ LogBox.ignoreAllLogs();
       console.log("Successfully posted", response);
       Alert.alert("Successfully Submitted!")
       router.replace("/DrawerScreens/leadList");
-    
-
     }
     catch(e){
       console.log("error");
@@ -168,27 +162,6 @@ LogBox.ignoreAllLogs();
     // Rest of your code for submitting the form...
   };
   
-  // Update renderForm function to filter and render form elements
-  const renderForm = () => {
-    if (selectedAccount) {
-      const formData = personAccountForm.find(
-        (account) => account.account_type === selectedAccount
-      );
-      if (formData) {
-        return formData.Data.map((element, index) => (
-          <View key={index} style={styles.formElement}>
-            {renderFormElement(element)}
-            {validationErrors[element.name] && (
-              <Text style={styles.error}>{validationErrors[element.name]}</Text>
-            )}
-          </View>
-        ));
-      }
-    }
-    return null;
-  };
-  
-  // Implement validateForm function
   const validateForm = () => {
     const errors = {};
     personAccountForm.forEach((account) => {
@@ -205,25 +178,25 @@ LogBox.ignoreAllLogs();
     return errors;
   };
 
-// Modify your renderFormElements function to filter and render form elements based on sectionName
-const renderFormElements = (sectionName) => {
-  // if (!isSectionVisible) {
-  //   return null;
-  // }
-  return personAccountForm
-  .filter((account) => account.account_type === selectedAccount) // Filter based on selected account type
-  .flatMap((account) => account.Data) // Flatten the array of form elements
-  .filter((element) => element.sectionName === sectionName) // Filter based on sectionName
-    .map((element, index) => (
-      <View key={index} style={styles.formElement}>
-        {renderFormElement(element)}
-        {validationErrors[element.name] && (
-          <Text style={styles.error}>{validationErrors[element.name]}</Text>
-        )}
-      </View>
-    ));
-};
 
+  const renderFormElements = (sectionName) => {
+    // if (!isSectionVisible) {
+    //   return null;
+    // }
+    return personAccountForm
+    .filter((account) => account.account_type === selectedAccount) // Filter based on selected account type
+    .flatMap((account) => account.Data) // Flatten the array of form elements
+    .filter((element) => element.sectionName === sectionName) // Filter based on sectionName
+      .map((element, index) => (
+        <View key={index} style={styles.formElement}>
+          {renderFormElement(element)}
+          {validationErrors[element.name] && (
+            <Text style={styles.error}>{validationErrors[element.name]}</Text>
+          )}
+        </View>
+      ));
+  };
+  
   const renderFormElement = (element) => {
     const handleSelect = (item) => {
       //setSelectedValue(item);
@@ -330,16 +303,9 @@ const renderFormElements = (sectionName) => {
                    key={element.name}
                    title={element.title}
                    placeholder={username}
-                   // control={control}
                    value={username}
-                   name={element.name}
-              
-                   
-                   
-                   // errors={errors}
-                   
-                   
-                 readOnly={true}
+                   name={element.name} 
+                   readOnly={true}
                />
                      {validationErrors[element.name] && <Text style={styles.errorMessage}>{validationErrors[element.name]}</Text>}
                </View>
@@ -438,7 +404,6 @@ const renderFormElements = (sectionName) => {
                 </View>
               ))}
             </View>
-
             <View style={styles.bgColor}>
               <Button title="Submit" onPress={onSubmit} color="#023B5E" />
             </View>
@@ -449,64 +414,6 @@ const renderFormElements = (sectionName) => {
       </ScrollView>
     </View>
   );
-  // return (
-  //   <View style={styles.cardContainer}>
-  //     <View>
-  //       <CustomHeader title={"Create Account"} onPress={goBack} />
-  //     </View>
-  //     <ScrollView>
-  //     <ScrollView>
-  //           <View style={styles.card}>
-              
-  //               <Text style={{ marginBottom: 3,
-  //   fontSize: 12,
-  //   fontWeight: "bold"}}>Select Account Type</Text>
-  //               <View style={styles.Dropdown}> 
-  //               <Dropdown
-  //                   label="Select Account"
-  //                   data={[
-  //                       { value: 'corporate', label: 'corporate' },
-  //                       { value: 'person', label: 'person' },
-                      
-  //                   ]}
-  //                   onSelect={handleAccountSelect}
-  //               />
-  //               </View>
-  //               {/* {renderForm()} */}
-  //               {/* {selectedAccount && <Button title="Submit" onPress={onSubmit} color='#023B5E' />} */}
-  //           </View>
-  //       </ScrollView>
-  //        <View style={styles.card}>
-  //         <View style={styles.section}>
-  //           {Object.keys(isCollapsed).map((sectionName, index) => (
-  //             <View key={index} style={styles.sectionContainer}>
-  //               <TouchableOpacity onPress={() => toggleSection(sectionName)}>
-  //                 <Text style={styles.sectionTitle}>{sectionName}</Text>
-  //                 <Image
-  //                   source={
-  //                     isCollapsed[sectionName] ? DropdownIcon : DropupIcon
-  //                   }
-  //                   resizeMode="contain"
-  //                   style={styles.dropdownIcon}
-  //                 />
-  //               </TouchableOpacity>
-  //               <Collapsible collapsed={isCollapsed[sectionName]}>
-  //                 {renderFormElements(sectionName)}
-  //               </Collapsible>
-  //             </View>
-  //           ))}
-  //         </View>
-
-  //         <View style={styles.bgColor}>
-  //           <Button title="Submit" onPress={onSubmit} color="#023B5E" />
-  //         </View>
-
-  //         <View style={styles.buttonContainer}></View>
-  //       </View> 
-         
-  //     </ScrollView>
-  //   </View>
-  // );
 }
 
 const styles = StyleSheet.create({

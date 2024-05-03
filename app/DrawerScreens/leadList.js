@@ -43,37 +43,6 @@ const LeadList = () => {
 
 
 
- 
-
-//   useEffect(() => {
-
-//     const fetchData = async () => {
-      
-//         const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: FetchLeads });
-//         console.log("leads",data.result);
-//         setleadData(data.result)
-
-//         if (isLoading) {
-//           return (
-//             <View style={styles.loadingContainer}>
-//               <ActivityIndicator size="large" color="#023B5E" />
-//             </View>
-//           );
-//         }
-//         if (error) {
-//           return (
-//             <View style={styles.loadingContainer}>
-//              <Text>Error in fetching leads</Text>
-//             </View>
-//           );
-//         }
-//     };
-
-  
-
-//     fetchData(); 
-// }, []); 
-
 const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: FetchLeads});
 
   useEffect(() => {
@@ -100,7 +69,7 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
         <Text>Error in fetching leads</Text>
       </View>
     );
-  }
+  }     
 
   const renderItem = ({ item }) => (
     <TouchableOpacity>
@@ -114,6 +83,7 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
       number={item.number}
       qualification={item.qualification}
       gender={item.gender}
+      sys_id={item.sys_id}
      
      
     />

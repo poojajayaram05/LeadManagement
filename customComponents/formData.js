@@ -1966,9 +1966,6 @@ export const activityForm=[
  
    
 ]
-
-
-
 export const personAccountForm =[
   {
 

@@ -15,14 +15,16 @@ import Colors from '@/constants/Colors';
 import { Linking } from 'react-native';
 
  
-const LeadItem = ({ FirstName, LastName, Email, Phone, lead_status,qualification, number, gender }) => {
+const LeadItem = ({ FirstName, LastName, Email, Phone, lead_status,qualification, number, gender,sys_id}) => {
    
     const [showSecondImage, setShowSecondImage] = useState(false);
     const[selectedStar, setSelectedStar]=useState(false);
     const{ leadId, setLeadId } = useIdStore();
     const{status, setStatus}=useIdStore();
     const [showDropdown, setShowDropdown] = useState(false);
-    console.log("gendersssssss", gender);
+ 
+      const{sys_idd, setSysId}=useIdStore();
+      const{flag,setFlag}=useIdStore();
  
     const goToEditLead = () => {
         setLeadId(Id);
@@ -49,14 +51,19 @@ const LeadItem = ({ FirstName, LastName, Email, Phone, lead_status,qualification
 };
  
 const handleNavigateToLeadDetails = () => {
-    router.navigate(`/leadDetailScreens/info`);
     setLeadId(number);
+    setSysId(sys_id);
+    setFlag('lead')
+    router.navigate('/leadDetailScreens/info');
+ 
+   
+    // console.log("sys id", sys_id);
 };
 const handleChangeStatus = () => {
     router.navigate('../../formComponents/changeStatus');
     setLeadId(number)
     setStatus(lead_status);
-    
+   
  
     closeDropdown(); // Close the dropdown after action
 };
@@ -72,7 +79,7 @@ const handleReassign = () => {
     // Add your logic to reassign the lead
     closeDropdown(); // Close the dropdown after action
 };
-
+ 
 const handleCall = () => {
    
     Linking.openURL(`tel:${Phone}`);
@@ -90,7 +97,7 @@ return (
       <View style={{ flex: 1 }}>
           <View style={styles.item}>
               <View style={styles.avatarContainer}>
-              
+             
                      {gender == 'female' ? (
                             <Image
                                 source={femaleAvatar}
@@ -107,6 +114,7 @@ return (
                   <Text style={styles.title}>{`${FirstName} ${LastName}`}</Text>
                   <Text style={styles.subtitle}>{Email}</Text>
                   <Text style={styles.subtitle}>{Phone}</Text>
+           
                   <View style={styles.badgeBox}>
                       <BadgeLead  label={lead_status}   />
                       <BadgeLead label={qualification}   />
@@ -175,7 +183,7 @@ const styles = {
         flexDirection:'row',
         justifyContent: 'space-between',
         marginTop: 6,
-        
+       
  
  
     },
@@ -270,11 +278,11 @@ const styles = {
     },
     iconContainer: {
         flexDirection: 'row',
-        
+       
     },
     //   filterIcon: {
     //     marginLeft: 10,
     //   },
    
 };
-export default LeadItem;  
+export default LeadItem;

@@ -1,19 +1,41 @@
 import {create} from 'zustand';
 
+// const useIdStore = create((set) => ({
+//     number: null,
+//     status: null,
+//     account_number:null,
+//     sys_id:null,
+//     account_type:null,
+    
+
+//     setLeadId: (newId) => set({ number: newId }),
+//     setStatus: (newId) => set({ status: newId }),
+//     setAccountNumber:(newId)=>set({account_number:newId}),
+//     setSysId:(newId)=>set({sys_id:newId}),
+//     setAccountType:(newId)=>set({account_type:newId})
+// }));
+
+
+// export default useIdStore;
 const useIdStore = create((set) => ({
     number: null,
     status: null,
     account_number:null,
     sys_id:null,
-    
-
+    flag:null,
+    account_type:null,
+   
+   
+ 
     setLeadId: (newId) => set({ number: newId }),
     setStatus: (newId) => set({ status: newId }),
+    setFlag:(newId)=>set({flag:newId}),
     setAccountNumber:(newId)=>set({account_number:newId}),
-    setSysId:(newId)=>set({sys_id:newId})
+    setSysId:(newId)=>set({sys_id:newId}),
+    setAccountType:(newId)=>set({account_type:newId}),
 }));
-
-
+ 
+ 
 export default useIdStore;
 
 export const useContactStore= create((set)=>({
