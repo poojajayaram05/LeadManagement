@@ -50,7 +50,7 @@ const RenderDetail =  () => {
     }
     else if(flag==='opportunity'){
       setData(opportunity_to_render);
-      setApi(OPPORTUNITY_API);
+      setApi(OPPORTUNITY_API);  
     }
   } ,[flag]); 
   

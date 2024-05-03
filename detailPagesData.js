@@ -318,35 +318,6 @@ export const accounts_to_render={
 }
 
 
-export const contacts_to_render={
-    sections: {
-        general_details: {
-            title: "General Information",
-            sectionId: 1,
-            fields: {
-                title: { label: "Title" },
-                // account_name: { label: "Account Name" },
-                // account_name.display_value: { label: "Account Name" },
-                description: { label: "Description" },
-                birthdate: { label: "Date of birth" },
-                gender: { label: "Gender" },
-                owner: { label: "Owner" },
-                category: { label: "Category" }
-            },
-        },
-        contact_details: {
-            title: "Contact Information",
-            sectionId: 2,
-            fields: { home_phone: { label: "Home Phone" },
-             alternate_email1: { label: "Alternate Email 1" },
-             alternate_email2:{label : "Alternate Email 2"},
-           }
- 
-        }
-    }
- 
-}
-
 
 
 export const opportunity_to_render={
@@ -378,8 +349,8 @@ export const contact_to_render={
             sectionId: 1,
             fields: {
                 title: { label: "Title" },
-                account_name: { label: "Account Name" },
-                // account_name.display_value: { label: "Account Name" },
+               // account_name: { label: "Account Name" },
+                "account_name.display_value": { label: "Account Name" },
                 description: { label: "Description" },
                 birthdate: { label: "Date of birth" },
                 category: { label: "Category" },
@@ -427,7 +398,7 @@ export const contact_to_render={
             }
         },
         system_details:{
-            titel:"System Information",
+            title:"System Information",
             sectionId: 5,
             fields:{
                 sys_created_by:{label:"Created by"} ,

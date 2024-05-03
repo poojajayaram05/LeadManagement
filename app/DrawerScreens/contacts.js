@@ -89,7 +89,7 @@ if (isLoading) {
       sys_id={item.sys_id}
      
  
-    />
+    />    
   </TouchableOpacity>
   );
  
