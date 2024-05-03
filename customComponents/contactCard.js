@@ -14,6 +14,7 @@ const ContactItem = ({ first_name, last_name, mobile,title, description, number,
     const{contactId,  setContactId}=useContactStore();
     const [showDropdown, setShowDropdown] = useState(false);
     const{sysId, setSysId}=useIdStore();
+    const{flag, setFlag}=useIdStore();
  
     const goToEditLead = () => {
         setLeadId(Id);
@@ -28,9 +29,11 @@ const ContactItem = ({ first_name, last_name, mobile,title, description, number,
 };
  
 const handleNavigateToContactDetails = () => {
-    router.navigate(`/contactDetailPage/contactDetail`);
-    console.log("cnumber", number);
+   
+    console.log("cnumber", sys_id);
+    setFlag('contact')
     setSysId(sys_id);
+    router.navigate('/renderDetails/renderDetailPage');
 };
  
 return (

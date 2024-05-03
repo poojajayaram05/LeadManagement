@@ -232,7 +232,7 @@ import useIdStore from '../leadStore';
 import { FetchAccountDetails } from '../service/fetchAccountDetails';
 import { useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
-
+import { corporateAccounts_to_render, personAccounts_to_render } from '../../detailPagesData';
  
 import DataRow from '../../customComponents/dataRow';
 import AccountHeader from '../../customComponents/accountDetailHeader';
@@ -246,7 +246,7 @@ const sectionDetails = [
         { label: 'Account name:', value: 'account_name' },
         { label: 'Title', value: 'title' },
         { label: 'Number:', value: 'number' },
-        { label: 'Birth date:', value: 'birthdate' },
+        { label: 'Birth date:', value: 'birth_date' },
         { label: 'Website:', value: 'website' },
         { label: 'Description:', value: 'description' },
       ]

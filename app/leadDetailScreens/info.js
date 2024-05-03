@@ -1,171 +1,129 @@
- 
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import LeadDet from '../../leadComponents/leadDetHeader';
 import useIdStore from '../leadStore';
-//import { leadData } from '../../customComponents/formData';
-import { FetchLeadDetails } from '../service/fetchLeadDetails';
-import { useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
+import {DataRow,Section}from '../../customComponents/dataRow'; 
+import { FetchLeadDetails } from '../service/fetchLeadDetails';
+import LeadDataMap from '../../displayDataMap/displayDataMap';
+import { TransformApiData } from '../../displayDataMap/displayDataMap';
+import { FetchData } from '../../displayDataMap/displayDataMap';
+import * as SecureStore from 'expo-secure-store';
+import { ActivityIndicator } from 'react-native';
+import { leads_to_render,contacts_to_render, corporateAccounts_to_render, personAccounts_to_render } from '../../detailPagesData';
+import {LEAD_API,CONTACT_API,ACCOUNT_API} from '../../config';
 
-import DataRow from '../../customComponents/dataRow'; 
-import { Button } from 'react-native-web';
-import { router } from 'expo-router';
-const sectionDetails = [
-    {
-      title: 'General Information',
-      id: 'leadInfo',
-      fields: [
-        {label: 'Lead Type:', value: 'lead_type' },
-        // {label:'Gender', value:'gender'},
-        { label: 'Title:', value: 'title' },
-        { label: 'Description:', value: 'description' },
-        { label: 'Number:', value: 'number' },
-        { label: 'Gender:', value: 'gender' },
-        { label: 'Email:', value: 'email' },
-        { label: 'Lead Source:', value: 'lead_source' },
-   
-      ]
-    },
-    {
-      title: 'Company Details',
-      id: 'companyDetails',
-      fields: [
-        { label: 'Company:', value: 'company' },
-        // { label: 'Company:', value: 'company' },
-        { label: 'No Of Employees:', value: 'no_of_employees' },
-        { label: 'Annual Revenue:', value: 'annual_revenue' },
-        { label: 'Job Title:', value: 'job_title' },
-        { label: 'Company DUNS Number:', value: 'company_duns_number' },
-        { label: 'Industry:', value: 'industry' }
-      ]
-    },
-    {
-      title: 'Contact Details',
-      id: 'contactDetails',
-      fields: [
-        { label: 'Alternate Email 1:', value: 'alternate_email1' },
-        { label: 'Alternate Email 2:', value: 'alternate_email2' },
-        { label: 'Email OtpOut:', value: 'email_opt_out' },
-        { label: 'Business Phone:', value: 'business_phone' },
-        { label: 'Mobile Phone:', value: 'mobile_phone' },
-        { label: 'Home Phone:', value: 'home_phone' }
-      ]
-    },
-    {
-        title: 'Address Details',
-        id: 'addressDetails',
-        fields: [
-          { label: 'Street:', value: 'street' },
-          { label: 'City:', value: 'city' },
-          { label: 'State:', value: 'state_province' },
-          { label: 'Zip:', value: 'zip_postalcode' },
-          { label: 'Country:', value: 'country' }
-        ]
-      },
-      {
-        title: 'Contact Methods',
-        id: 'contactMethods',
-        fields: [
-          { label: 'Preferred Method To Contact:', value: 'preffered_method' },
-          { label: 'Whatsapp:', value: 'whatsapp' },
-          { label: 'Email:', value: 'u_email' },
-          { label: 'Phone:', value: 'phone' }
-        ]
-      },
-      {
-        title: 'System Information',
-        id: 'systemDetails',
-        fields: [
-          { label: 'Created by:', value: 'sys_created_by' },
-          { label: 'Created On:', value: 'sys_created_on' },
-          { label: 'Updated By:', value: 'sys_updated_by' },
-          { label: 'Last Updated On:', value: 'sys_updated_on' }
-        ]
-      },
-  ];
- 
- 
-const Info = () => {
-  const [leadData, setLeadData] = useState([]);
-  const [openSections, setOpenSections] = useState(['leadInfo']);
+const Info =  () => {
+  const [openSections, setOpenSections] = useState([]);
+  const sys_id = useIdStore((state) => state.sys_id); 
+  const [api, setApi] = useState(null);
+  const[leadsObj, setLeadsObj]=useState(null)
+  const token =   SecureStore.getItem('token'); // Use await to get the token asynchronously
+  const stoken = JSON.parse(token);
+  const apiToken = stoken.accessToken;
+  console.log("api token", apiToken);
+  const[data, setData]=useState(null)  
+  const [isLoading, setIsLoading] = useState(true);
+  const [showNoData, setShowNoData] = useState(false);
+  const flag = useIdStore((state)=>state.flag);
+  const account_type=useIdStore((state)=>state.account_type);
+  console.log("flag", flag);
 
-  const goToEdit=()=>{
-    router.navigate('/formComponents/editLead')
-  }
- 
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const ldata = await FetchLeadDetails();
-        setLeadData(ldata.result);
-        console.log(leadData);
-      } catch (error) {
-        console.error('Error in fetching leads:', error);
-      }
-    };
-    fetchData();
-  }, []);
- 
-  const toggleSection = (sectionId) => {
-    const isOpen = openSections.includes(sectionId);
-    if (isOpen) {
-      setOpenSections(openSections.filter((item) => item !== sectionId));
-    } else {
-      setOpenSections([...openSections, sectionId]);
+    if (flag === 'lead') {
+      setData(leads_to_render);
+      setApi(LEAD_API);
+    }
+    else if(flag==='contact'){
+      setData(contacts_to_render);
+      setApi(CONTACT_API)
+    } 
+    else if(flag=='account'){
+     // setData(accounts_to_render); 
+      setApi(ACCOUNT_API);
+      if(account_type=='person')
+      setData(personAccounts_to_render); 
+    else
+      setData(corporateAccounts_to_render);
+      
+    }
+  } ,[flag]); 
+  
+    
+  console.log("data", JSON.stringify(data), api)
+
+
+
+useEffect(() => { 
+  const fetchLeadData = async () => {  
+    try {
+      console.log("INSIDE FETCH LEAD DATA");
+      const leads = await TransformApiData(data, apiToken, api, sys_id);
+      console.log("inside fetch lead data and use effect", leads)
+      setLeadsObj(leads);
+      setIsLoading(false); 
+    } catch (error) {
+      console.error("Error fetching lead data:", error);
+      setIsLoading(false); 
+      setShowNoData(true);
     }
   };
- 
-  const renderSectionContent = (sectionId, leadData, leadId) => {
-    const lead = leadData.find((lead) => lead.number === leadId);
-    const section = sectionDetails.find((section) => section.id === sectionId);
- 
-    if (!section || !lead) return null;
- 
-    return section.fields.map((row, index) => (
-      <DataRow key={index} label={row.label} detail={lead[row.value]} />
-    ));
+
+  fetchLeadData();
+}, []); 
+
+
+
+console.log("outside useEffect", leadsObj)
+    const toggleSection = (sectionId) => {
+    setOpenSections((prevOpenSections) =>
+      prevOpenSections.includes(sectionId)
+        ? prevOpenSections.filter((item) => item !== sectionId)
+        : [...prevOpenSections, sectionId]
+    );
   };
  
-  return (
-    <View style={styles.body}>
-      <View style={{ height: '26%' }}>
-        <LeadDet />
+  console.log("ready data", leadsObj)
+
+    return (
     
-      </View>
-      
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
- 
-        <View style={styles.container}>
-          {sectionDetails.map((section) => (
-            <Section
-              key={section.id}
-              title={section.title}
-              isOpen={openSections.includes(section.id)}
-              onPress={() => toggleSection(section.id)}>
-              {renderSectionContent(section.id, leadData, useIdStore((state) => state.number))}
-            </Section>
-          ))}
+        <View style={styles.body}>
+          <View style={{ height: '26%' }}>
+            <LeadDet />
+          </View>
+          {isLoading ? ( 
+            <View style={styles.loadingContainer}>
+              <ActivityIndicator size="large" color="#0000ff" />
+            </View>
+          ) : leadsObj ? ( // Check if leadsObj is not null
+            <ScrollView contentContainerStyle={styles.scrollViewContent}>
+              <View style={styles.container}>
+                {Object.keys(leadsObj.sections).map((sectionId) => (
+                  <Section
+                    key={sectionId}
+                    title={leadsObj.sections[sectionId].title}
+                    isOpen={openSections.includes(sectionId)}
+                    onPress={() => toggleSection(sectionId)}>
+                    {Object.values(leadsObj.sections[sectionId].fields).map((field, index) => (
+                      <DataRow
+                        key={index}
+                        label={field.label}
+                        detail={field.value}
+                      />
+                    ))}
+                  </Section>
+                ))}
+              </View>
+            </ScrollView>
+          ) : (
+            <Text>No data available</Text> 
+          )}
         </View>
-      </ScrollView>
-    </View>
-  );
+      )
 };
- 
-const Section = ({ title, isOpen, onPress, children }) => {
-  return (
-    <View style={styles.sectionContainer}>
-      <TouchableOpacity onPress={onPress}>
-        <View style={styles.sectionHeader}>
-        <Text style={styles.sectionHeaderText}>{title}</Text>
-          <Ionicons name={isOpen ? 'caret-up' : 'caret-down'} size={18} color="black" style={{ marginLeft: 5, marginTop: 10 }} />
-        </View>
-      </TouchableOpacity>
-      {isOpen && <View>{children}</View>}
-    </View>
-  );
-};
- 
+
 const styles = StyleSheet.create({
   scrollViewContent: {
     flexGrow: 1,
@@ -195,5 +153,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
- 
+
 export default Info;
+
+
+
+
+

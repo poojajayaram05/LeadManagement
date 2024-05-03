@@ -204,7 +204,7 @@ const LeadDet = () => {
       try {
         const ldata = await FetchLeads(); // Call FetchLeads and wait for the result
         setLeadData(ldata.result); // Set the state with the fetched data
-        console.log("this is the lead data", ldata); // Log the fetched data
+        // console.log("this is the lead data", ldata); // Log the fetched data
       } catch (error) {
         // Handle errors if any
         console.error('Error in fetching leads:', error);

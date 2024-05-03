@@ -1,29 +1,29 @@
-import * as SecureStore from 'expo-secure-store'
+import * as SecureStore from 'expo-secure-store';
+import useIdStore from '../leadStore';
+import { useEffect, useState } from 'react'; // Import useEffect and useState if you need them
 
-export const FetchLeadDetails = async () => {
-    const token = SecureStore.getItem('token');
+export const FetchLeadDetails = async (sys_id) => {
+    const token = await SecureStore.getItemAsync('token'); // Use await to get the token asynchronously
     const stoken = JSON.parse(token);
     const apiToken = stoken.accessToken;
-    console.log(apiToken);  
-    const getLeadURL=
-    "https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_c?sysparm_fields=first_name,preffered_method,zip_postalcode,sys_updated_by,sys_created_on,sys_created_by,sys_updated_on,last_name,mobile_phone,email,qualification,lead_status,number,city,street,country,company,email_opt_out,business_phone,home_phone,gender,owner,annual_revenue,lead_source,no_of_employees,industry,company_duns_number,alternate_email1,alternate_email2,zip,lead_type,description,job_title,title,state_province,u_email,phone,whatsapp" ;
+    console.log("fetch details", sys_id)
+    console.log(apiToken);
+
+    const getLeadURL = `https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_c?sys_id=${sys_id}`;
+
     try {
         const response = await fetch(getLeadURL, {
             method: 'GET',
             headers: {
-              'Content-Type': 'application/json',
-              'Authorization' : 'Bearer ' + apiToken
-             
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + apiToken
             },
-
-          })
-          const data = await response.json();
-          return data;
-
-         
-        //   router.replace('/DrawerScreens/leadList')
+        });
+        
+        const data = await response.json();
+        return data;
     } catch (error) {
         console.error('Error fetching leads:', error);
-        throw error; // You can handle the error further or throw it for the caller to handle
+        throw error;
     }
 };

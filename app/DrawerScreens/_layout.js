@@ -19,6 +19,8 @@ import { router } from 'expo-router';
 import { TouchableOpacity } from 'react-native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import HeaderRight from '../../customComponents/searchIcon';
+import NetworkStatus from '../checkNetwork';
+
 
 
 
@@ -45,6 +47,8 @@ export default function Layout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
    {/* <Drawer screenOptions={{ headerShown: true}} /> */}
    
+{/* 
+   <NetworkStatus> */}
    <Drawer drawerContent={CustomDrawerContent} screenOptions={{drawerActiveTintColor:'#fff', drawerActiveBackgroundColor:'#023B5E'}}>
     
  
@@ -189,6 +193,7 @@ export default function Layout() {
     ></Drawer.Screen>
  
    </Drawer>
+   {/* </NetworkStatus> */}
 </GestureHandlerRootView>
 </QueryClientProvider>
 </>

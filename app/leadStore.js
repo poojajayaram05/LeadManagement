@@ -5,12 +5,17 @@ const useIdStore = create((set) => ({
     status: null,
     account_number:null,
     sys_id:null,
+    flag:null,
+    account_type:null,
+    
     
 
     setLeadId: (newId) => set({ number: newId }),
     setStatus: (newId) => set({ status: newId }),
+    setFlag:(newId)=>set({flag:newId}),
     setAccountNumber:(newId)=>set({account_number:newId}),
-    setSysId:(newId)=>set({sys_id:newId})
+    setSysId:(newId)=>set({sys_id:newId}),
+    setAccountType:(newId)=>set({account_type:newId}),
 }));
 
 

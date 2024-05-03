@@ -10,6 +10,8 @@ import Dashboard from './DrawerScreens/dashboard';
 import LeadList from './DrawerScreens/leadList';
 import LoginScreen from './authScreens/login';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import NetworkStatus from './checkNetwork';
+import CheckNetwork from './checkNetwork';
 
 
 
@@ -33,17 +35,19 @@ export default function Root() {
        
 
 <View style={styles.container}>
+
 <LoginScreen/>
    {/* <Dashboard/> */}
    {/* <LeadList/> */}
       
          
-         {/* <Text>Welcome to Lead Management!</Text>
+         {/* <Text>Welcome to Lead Management!</Text>t
          <Button title="Register" onPress={goToRegisterPage}></Button>
          <Text>   </Text>
          <Button title='Login' onPress={gotoLoginPage}>Login</Button> */}
    
        </View>
+{/* <CheckNetwork/> */}
     </AuthProvider>
     </QueryClientProvider>
    

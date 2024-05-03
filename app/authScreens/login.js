@@ -99,7 +99,8 @@ import { AuthContext } from "../../context/authContext";
 import { Alert } from "react-native";
 import { router } from "expo-router";
 import * as SecureStore from 'expo-secure-store';
-import CheckNetwork from '../checkNetwork'
+import CheckNetwork from "../checkNetwork";
+
 // import Spinner from "react-native-loading-spinner-overlay";
  
 const LoginScreen = ({ navigation }) => {

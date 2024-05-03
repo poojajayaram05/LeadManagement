@@ -82,6 +82,8 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
     }
   }, [data]);
 
+  console.log(leadData);
+
   if (isLoading) {
     return (
       <View style={styles.loadingContainer}>
@@ -114,8 +116,7 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
       number={item.number}
       qualification={item.qualification}
       gender={item.gender}
-     
-     
+      sys_id={item.sys_id}
     />
   </TouchableOpacity>
   );

@@ -7,6 +7,7 @@ import Bigcard from '../../dashboardComponents/bigCard';
 import ChartLine from '../../dashboardComponents/lineChart';
 import { router } from 'expo-router';
 import { Modal } from 'react-native';
+import CheckNetwork from '../checkNetwork';
 
  
 const total_leads = 0;
@@ -47,8 +48,9 @@ const Dashboard = () => {
  
   return (
     <View style={styles.container}>
- 
+
       <ScrollView style={styles.scrollContainer} showsHorizontalScrollIndicator={false}>
+      <CheckNetwork/>
         <View style={styles.smallCardGroupContainer}>
           <View style={styles.row1}>
              <SmallCard label1={'Total Leads'} label2={'5'} isSelected={selectedCard === total_leads} onPress={() => handleCardPress(total_leads)} />

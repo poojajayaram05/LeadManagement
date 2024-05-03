@@ -265,14 +265,17 @@ import { Linking } from "react-native";
 import { avatarPic } from '../../assets/images'
 import { Company } from "../../assets/images";
 import { femaleAvatar } from "../../assets/images";
+import { set } from "react-hook-form";
 
 const AccountCard = ({ firstName, lastName, accountName, accountNumber, phone, email, sys_id, accountType, gender }) => {
   const [showSecondImage, setShowSecondImage] = useState(false);
   const [selectedStar, setSelectedStar] = useState(false);
   const { sysid, setSysId } = useIdStore();
+  const{flag, setFlag}=useIdStore();
   const [showDropdown, setShowDropdown] = useState(false);
+  const{account_type, setAccountType}=useIdStore();
 
-  const goToEditLead = () => {
+  const goToEditLead = () => {  
     setLeadId(Id);
     router.navigate("formComponents/editLead");
     closeDropdown();
@@ -286,8 +289,10 @@ const AccountCard = ({ firstName, lastName, accountName, accountNumber, phone, e
     setShowDropdown(false);
   };
 
-  const handleNavigateToLeadDetails = () => {
-    router.navigate(`/formComponents/accountDetailPage`);
+  const handleNavigateToAccountDetails = () => {
+    router.navigate(`/renderDetails/renderDetailPage`);
+    setFlag('account')
+    setAccountType(accountType);
     setSysId(sys_id)
   };
 
@@ -295,11 +300,11 @@ const AccountCard = ({ firstName, lastName, accountName, accountNumber, phone, e
     router.navigate("/formComponents/changeStatus");
     setLeadId(number);
     closeDropdown();
-  };
+  };  
 
   const handleConvertLead = () => {
     closeDropdown();
-  };
+  };  
 
   const handleReassign = () => {
     closeDropdown();
@@ -314,7 +319,7 @@ const AccountCard = ({ firstName, lastName, accountName, accountNumber, phone, e
   };
 
   return (
-    <TouchableOpacity onPress={handleNavigateToLeadDetails}>
+    <TouchableOpacity onPress={handleNavigateToAccountDetails}>
       <View style={styles.item}>
       <View style={styles.avatar}>
   {accountType === 'person' ? (
