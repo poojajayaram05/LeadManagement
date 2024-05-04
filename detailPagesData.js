@@ -377,7 +377,9 @@ export const contact_to_render={
             title:"Address Details",
             sectionId: 3,
             fields: {
-                mailing_address:{label:"Mailing Address"},
+                mailing_address:{
+                    label:"Mailing Address"
+                },
                 other_address:{label:"Other Address"},
             }
         },

@@ -14,7 +14,7 @@ import { leads_to_render,contact_to_render, corporateAccounts_to_render, personA
 import {LEAD_API,CONTACT_API,ACCOUNT_API,OPPORTUNITY_API} from '../../config';
 
 const RenderDetail =  () => {
-  const [openSections, setOpenSections] = useState([]);
+  const [openSections, setOpenSections] = useState(['general_details']);
   const sys_id = useIdStore((state) => state.sys_id); 
   const [api, setApi] = useState(null);
   const[leadsObj, setLeadsObj]=useState(null)
@@ -30,7 +30,7 @@ const RenderDetail =  () => {
   console.log("flag", flag);
 
 
-  useEffect(() => {
+  useEffect(() => { 
     if (flag === 'lead') {
       setData(leads_to_render);
       setApi(LEAD_API);
@@ -53,30 +53,33 @@ const RenderDetail =  () => {
       setApi(OPPORTUNITY_API);  
     }
   } ,[flag]); 
-  
+       
     
   console.log("data", JSON.stringify(data), api)
+       
 
-
-
-useEffect(() => { 
-  const fetchLeadData = async () => {  
-    try {
-      console.log("INSIDE FETCH LEAD DATA");
-      const leads = await TransformApiData(data, apiToken, api, sys_id);
-      console.log("inside fetch lead data and use effect", leads)
-      setLeadsObj(leads);
-      setIsLoading(false); 
-    } catch (error) {
-      console.error("Error fetching lead data:", error);
-      setIsLoading(false); 
-      setShowNoData(true);
+  useEffect(() => {
+    const fetchLeadData = async () => {
+      try {
+        console.log("INSIDE FETCH LEAD DATA");
+        const leads = await TransformApiData(data, apiToken, api, sys_id);
+        console.log("inside fetch lead data and use effect", leads);
+        setLeadsObj(leads);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching lead data:", error);
+        setIsLoading(false);
+        setShowNoData(true);
+      }
+    };
+ 
+    // Fetch data only if it's available
+    if (data) {
+      fetchLeadData();
+    } else {
+      setIsLoading(false); // No data to load, set loading to false
     }
-  };
-
-  fetchLeadData();
-}, []); 
-
+  }, [data]); // Include 'data' as a dependency
 
 
 console.log("outside useEffect", leadsObj)
@@ -121,7 +124,9 @@ console.log("outside useEffect", leadsObj)
               </View>
             </ScrollView>
           ) : (
-            <Text>No data available</Text> 
+            <View style={styles.loadingContainer}>
+            <ActivityIndicator size="large" color="#0000ff" />
+          </View>
           )}
         </View>
       )
