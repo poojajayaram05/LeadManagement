@@ -5,6 +5,7 @@ import LeadDet from '../../leadComponents/leadDetHeader';
 import useIdStore from '../leadStore';
 import { Ionicons } from '@expo/vector-icons';
 import {DataRow,Section}from '../../customComponents/dataRow'; 
+import AccountHeader from '../../customComponents/accountDetailHeader';
 
 import { TransformApiData } from '../../displayDataMap/displayDataMap';
 
@@ -42,8 +43,10 @@ const RenderDetail =  () => {
     else if(flag=='account'){
      // setData(accounts_to_render); 
       setApi(ACCOUNT_API);
-      if(account_type=='person')
+      if(account_type=='person'){
       setData(personAccounts_to_render); 
+      
+      }
     else
       setData(corporateAccounts_to_render);
       
@@ -91,13 +94,15 @@ console.log("outside useEffect", leadsObj)
     );
   };
  
-  console.log("ready data", leadsObj)
+  console.log("ready data", leadsObj);
+  const headerSection = leadsObj ? leadsObj.header_section : {};
+  console.log("header section", headerSection)
 
     return (
     
         <View style={styles.body}>
           <View style={{ height: '26%' }}>
-            <LeadDet />
+            <AccountHeader header={headerSection} />
           </View>
           {isLoading ? ( 
             <View style={styles.loadingContainer}>

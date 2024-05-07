@@ -1,6 +1,14 @@
 
 export const leads_to_render = {
  
+     page_heading: 'Lead Details',
+    header_section:
+    {
+        first_name: "",
+        last_name: "",
+        email: "",
+        phone: ""
+    },
     sections: {
         general_details: {
             title: "General Information",
@@ -72,6 +80,14 @@ export const leads_to_render = {
     }
 }
 export const personAccounts_to_render={
+     page_heading: 'Lead Details',
+    header_section:
+    {
+        first_name: { label: "First Name" },
+        last_name: { label: "Last Name" },
+        email: { label: "Email" },
+        phone: { label: "Phone" },
+    },
     sections: {
         general_details: {
             title: "General Information",
@@ -175,6 +191,14 @@ export const personAccounts_to_render={
 }
  
 export const corporateAccounts_to_render={
+     page_heading: 'Lead Details',
+    header_section:
+    {
+        account_name: { label: "Account Name" },
+       
+        email: { label: "email" },
+        mobile: {label:"Mobile"}
+    },
     sections: {
         general_details: {
             title: "General Information",
@@ -283,6 +307,14 @@ export const corporateAccounts_to_render={
 }
 }
 export const accounts_to_render={
+     page_heading: 'Lead Details',
+    header_section:
+    {
+        first_name: "",
+        last_name: "",
+        email: "",
+        mobile: ""
+    },
     sections: {
         general_details: {
             title: "General Information",
@@ -321,6 +353,14 @@ export const accounts_to_render={
 
 
 export const opportunity_to_render={
+     page_heading: 'Lead Details',
+    header_section:
+    {
+        opportunity_name: { label: "Opportunity Name" },
+        states: { label: "Status" },
+        forecast_close_date: { label: "Forecast Close Date" },
+        opportunity_value: { label: "Opportunity Value" },
+    },
     sections:{
         general_details:{
             title:"General Details",
@@ -343,6 +383,14 @@ export const opportunity_to_render={
 }
 
 export const contact_to_render={
+     page_heading: 'Lead Details',
+    header_section:
+    {
+        first_name:{label:"First Name"},
+        last_name:{label:"Last Name"},
+        email: {label:"Email"},
+        mobile: {label:"Mobile"}
+    },
     sections:{
         general_details: {
             title: "General Information",

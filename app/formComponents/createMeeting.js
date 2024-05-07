@@ -402,7 +402,7 @@ onSelect={handleSelect}
             </View>  */}
           
              
-            <Button title="Submit" onPress={onSubmit} color='#023B5E' />
+            <Button title="Validate" onPress={onSubmit} color='#023B5E' />
             <View style={styles.buttonContainer}>
       <TouchableOpacity onPress={goBack}>
         {/* <ArrowBack /> */}

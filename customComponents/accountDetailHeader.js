@@ -1,218 +1,138 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { Linking } from 'react-native';
+import InitialsAvatar from './initialAvatar';
 import { router } from 'expo-router';
 import useIdStore from '../app/leadStore';
-import { FetchAccounts } from '../app/service/fetchAccounts';
-import { FontAwesome } from '@expo/vector-icons';
-import { Linking } from 'react-native';
- 
- 
-const AccountHeader = () => {
-//   const[leadData, setLeadData]=useState([]);
-const [openSections, setOpenSections] = useState(['accountInfo']);
-const[accountData, setAccountData]=useState([]);
 
-const sys_id = useIdStore((state=>state.sys_id));
- 
-const accNumber = useIdStore((state)=>state.account_number);
-//console.log("account number",accNumber);
- 
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const ldata = await FetchAccounts();
-      setAccountData(ldata.result);
-      console.log(accountData);
-    } catch (error) {
-      console.error('Error in fetching leads:', error);
+
+const AccountHeader = ({ header }) => {
+  const[navigatePath, setNavigatePath]=useState('');
+  let name = {}; // Initialize an empty object to store first_name and last_name
+
+  Object.entries(header).forEach(([key, { label, value }]) => {
+    if (key === 'first_name') {
+      name.first_name = value; // Assign value to first_name property of name object
+    } else if (key === 'last_name') {
+      name.last_name = value; // Assign value to last_name property of name object
     }
-  };
-  fetchData();
-}, []);
- 
-const accounts = accountData.find((lead) => lead.sys_id === sys_id);
-console.log(accounts,"thisisoppdata")
-const{  email,mobile, first_name, last_name}=accounts||'';
- 
+  });
+
+
+  if(flag=='contact')
+  setNavigatePath('formComponents/editContact')
+else if(flag=='account')
+setNavigatePath('formComponents/editAccount')
+else if(flag=='opportunity')
+setNavigatePath('formComponents/editOpportunity')
+  
+  const flag = useIdStore((state)=>state.flag);
+  const accountType = useIdStore((state)=>state.account_type)
+console.log(flag,"flag from header")
   const handleBack = () => {
-    router.navigate('/DrawerScreens/accounts');
+    router.back();
   };
- 
-  const handleEmail = () => {
-    Linking.openURL(`mailto:${email}`);
+
+  const goToEdit=()=>{
+    if(flag=='contact')
+    router.navigate('formComponents/editContact');
+  else if(flag=='account')
+  router.navigate('formComponents/editAccount');
+else if(flag=='opportunity')
+router.navigate('formComponents/editOpportunity')
+  }
+
+  const renderHeaderDetails = () => {
+    return Object.entries(header).map(([key, value]) => {
+      // Skip rendering if the key is 'first_name' or 'last_name'
+      if (key === 'first_name' || key === 'last_name') {
+        return null;
+      }
+  
+      return (
+        <View style={styles.headerDetailContainer} key={key}>
+          <Text style={styles.headerDetailLabel}>{value.label}</Text>
+          <Text style={styles.headerDetailValue}>{value.value}</Text>
+        </View>
+      );
+    });
   };
- 
-  const handleCall = () => {
-    Linking.openURL(`tel:${mobile}`);
-  };
-  const goToAccountEdit=()=>[
-    router.navigate('/formComponents/editAccount')
-  ]
- 
+  
+  
+
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.backButton} onPress={handleBack}>
-        {/* <ArrowBack/> */}
         <Ionicons name="chevron-back" size={30} color="white" />
       </TouchableOpacity>
-   
- 
-      {/* <View style={styles.userDetailsContainer}>
-      <FontAwesome name="user" size={24} color="white" style={{ marginRight: 10 }} />
-          <Text style={styles.name}>{title}</Text>
-      </View> */}
-      <View style={styles.iconContainer}>
-  <View style={styles.circle}>
-    <FontAwesome name="user" size={24} color="#023B5E"  />
-  </View>
-  <Text style={styles.name}>{first_name} {last_name}</Text>
-</View>
- 
- 
-      <View style={styles.subtitle}>
-      {/* <View style={styles.tempContainer}>
-          <Text style={styles.tempHeading}>Title</Text>
-          <Text style={styles.tempText}>{title}</Text>
-        </View> */}
-       
-       
-        <View style={styles.tempContainer}>
-          <Text style={styles.tempHeading}>Phone Number</Text>
-          <Text style={styles.tempText}>{mobile}</Text>
-        </View>
-        <View style={styles.lifecycleStage}>
-          <Text style={styles.lifecycleHeading}>Email</Text>
-          <Text style={styles.lifecycleText}>{email}</Text>
-        </View>
 
+      <View style={styles.userDetailsContainer}>
+      {(flag !== 'opportunity' && accountType !== 'corporate') && <InitialsAvatar name={`${name.first_name} ${name.last_name}`} />}
+        <View style={styles.userInfo}>
+          <Text style={styles.name}>{name.first_name} {name.last_name}</Text>
+        </View>
       </View>
- 
+
+      <View style={styles.headerDetails}>
+        {renderHeaderDetails()}
+      </View>
       <View style={styles.actionButtonsContainer}>
-        <TouchableOpacity style={styles.actionButton} onPress={handleCall}>
-          <Ionicons name="call" size={24} color="white" />
-        </TouchableOpacity>
- 
-        <TouchableOpacity style={styles.actionButton} onPress={handleEmail}>
-          <Ionicons name="mail" size={24} color="white" />      
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.actionButton} onPress={goToAccountEdit}>
+      <TouchableOpacity style={styles.actionButton} onPress={goToEdit}>
           <Ionicons name="pencil" size={24} color="white" />
         </TouchableOpacity>
-      </View>
+        </View>
+
     </View>
   );
 };
- 
+
 const styles = StyleSheet.create({
-    // iconContainer: {
-    //     position: 'absolute',
-    //     top: 2,
-    //     left: 2,
-    //     zIndex: 1,
-    // },
-    iconContainer: {
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-    circle: {
-      width: 40,
-      height: 40,
-      borderRadius: 20, // half of width and height to make it a circle
-      backgroundColor: 'white',
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginRight: 10,
-    },
-    divider: {
-        borderBottomColor: 'white',
-        borderBottomWidth: 1,
-        marginBottom: 10,
-    },
-    container: {
-      flex: 1,
-      marginBottom: 10,
-      backgroundColor: '#023B5E',
-      paddingHorizontal: 20,
-      paddingTop: 30, // Adjust this value to reduce the height of the blue container
-    },
-   
+  container: {
+    flex: 1,
+    marginBottom: 10,
+    backgroundColor: '#023B5E',
+    paddingHorizontal: 20,
+    paddingTop: 30,
+  },
   backButton: {
     position: 'absolute',
     top: 2,
     right: 2,
     zIndex: 1,
   },
-  backButtonContainer: {
-    backgroundColor: '#f0f0f0',
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 10,
-  },
-  backButtonText: {
-    color: 'white',
-    fontSize: 16,
-  },
   userDetailsContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#f0f0f0',
-    justifyContent: 'center',
-   // Adjust as needed for the desired distance from the left edge
   },
- 
-  title: {
-    fontSize: 19,
-    fontWeight: 'bold',
-    color: 'grey',
-    marginTop: 5,
+  userInfo: {
+    marginLeft: 10,
   },
   name: {
     fontSize: 22,
     fontWeight: 'bold',
     color: 'white',
   },
-  subtitle: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 30,
+  headerDetails: {
+    marginTop: 20,
+    flexDirection: 'row', // Display details in a row
+    flexWrap: 'wrap', // Allow wrapping if content exceeds width
   },
-  lifecycleStage: {
-    alignItems: 'center',
-    flex: 1,
+  headerDetailContainer: {
+    marginRight: 20, // Add margin between detail items
+    marginBottom: 10,
+    flexDirection: 'row', // Display label and value in a row
   },
-  lifecycleHeading: {
+  headerDetailLabel: {
     color: 'white',
     fontWeight: 'bold',
     fontSize: 16,
+    marginRight: 5, // Add spacing between label and value
   },
-  lifecycleText: {
+  headerDetailValue: {
     color: 'white',
     marginTop: 5,
   },
-  tempContainer: {
-    alignItems: 'center',
-    flex: 1,
-  },
-  tempHeading: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  tempText: {
-    color: 'white',
-    marginTop: 5,
-  },
- 
- 
-  userInfo: {
-    marginLeft: 3, // Adjust margin as needed
-    width: 140, // Set a fixed width
-    height: 60, // Increase height as needed
-    // backgroundColor: 'red',
-    justifyContent: 'center', // Center vertically
-  },
- 
   actionButtonsContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-end', // Align buttons to the right
@@ -231,11 +151,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#023B5E',
   },
  
-  buttonLabel: {
-    fontSize: 12,
-    textAlign: 'center',
-    color: 'white', // Set text color to white to match the container
-  },
 });
- 
-export default AccountHeader;  
+
+export default AccountHeader;

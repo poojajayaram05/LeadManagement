@@ -11,6 +11,15 @@ function updateValues(fields, api_data) {
         }
     }
 }
+
+
+function updateHeader(fields,leadData) {
+    for (let key in fields) {
+        if (leadData.hasOwnProperty(key)) {
+            fields[key].value = leadData[key];
+        }
+    }
+}
  export const TransformApiData= async( data_to_be_rendered,apiToken1,url1, sys_id)=> {
     console.log("sys id from info page", sys_id)
 
@@ -34,11 +43,15 @@ function updateValues(fields, api_data) {
         console.log("lead data", leadData);
         // return data;
      
- 
+       
     for (let key in data_to_be_rendered.sections) {
         const fields = data_to_be_rendered.sections[key].fields;
         updateValues(fields,leadData);
+        
     }
+    
+
+    updateHeader(data_to_be_rendered.header_section, leadData)
     console.log("7767:",JSON.stringify(data_to_be_rendered))
     return data_to_be_rendered
  
