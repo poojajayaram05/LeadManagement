@@ -38,7 +38,6 @@ export {default as profile} from './profile.png';
 export {default as Calender} from './calendaroption.jpg'
 export {default as Feed} from './feed.jpg'
 export {default as Deals} from './deals.jpg';
-export {default as Companies} from './company.png';
 export {default as Contacts} from './contacts.png';
 export {default as Tasks} from './tasks.png'
 export {default as Feeds} from './feed.jpg';
@@ -53,5 +52,6 @@ export {default as avatarPic} from './avatarPic.png';
 export {default as femaleAvatar} from './femaleAvatar.png';
 export {default as LeadLocation} from './leadLocation.png'
 export {default as Company} from './company.jpg'
+export {default as companyIconn} from './companyIconn.jpg';
 
 

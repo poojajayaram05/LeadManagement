@@ -100,7 +100,7 @@ export const personAccounts_to_render={
                 birthdate: { label: "Birth date" },
                 number:{label:"Number"},
                 website:{label:"Website"},
-                // gender: { label: "gender" },
+                gender: { label: "gender" },
                 // email: { label: "email" },
                 // owner: { label: "owner" }
             },

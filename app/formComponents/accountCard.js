@@ -266,6 +266,7 @@ import { avatarPic } from '../../assets/images'
 import { Company } from "../../assets/images";
 import { femaleAvatar } from "../../assets/images";
 import { set } from "react-hook-form";
+import { companyIconn } from "../../assets/images";
 
 const AccountCard = ({ firstName, lastName, accountName, accountNumber, phone, email, sys_id, accountType, gender }) => {
   const [showSecondImage, setShowSecondImage] = useState(false);
@@ -274,66 +275,66 @@ const AccountCard = ({ firstName, lastName, accountName, accountNumber, phone, e
   const{flag, setFlag}=useIdStore();
   const [showDropdown, setShowDropdown] = useState(false);
   const{account_type, setAccountType}=useIdStore();
-
+ 
   const goToEditLead = () => {  
     setLeadId(Id);
     router.navigate("formComponents/editLead");
     closeDropdown();
   };
-
+ 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
-
+ 
   const closeDropdown = () => {
     setShowDropdown(false);
   };
-
+ 
   const handleNavigateToAccountDetails = () => {
     router.navigate(`/renderDetails/renderDetailPage`);
     setFlag('account')
     setAccountType(accountType);
     setSysId(sys_id)
   };
-
+ 
   const handleChangeStatus = () => {
     router.navigate("/formComponents/changeStatus");
     setLeadId(number);
     closeDropdown();
   };  
-
+ 
   const handleConvertLead = () => {
     closeDropdown();
   };  
-
+ 
   const handleReassign = () => {
     closeDropdown();
   };
-
+ 
   const handleEmail = () => {
     Linking.openURL(`mailto:${email}`);
   };
-
+ 
   const handleCall = () => {
     Linking.openURL(`tel:${phone}`);
   };
-
+ 
   return (
     <TouchableOpacity onPress={handleNavigateToAccountDetails}>
       <View style={styles.item}>
       <View style={styles.avatar}>
   {accountType === 'person' ? (
-    gender === 'male' ? (
+    // gender === 'male' ? (
       <Image
-        source={avatarPic}
+        source={companyIconn}
         style={{ width: 40, height: 40, borderRadius: 20 }}
       />
-    ) : (
-      <Image
-        source={femaleAvatar}
-        style={{ width: 40, height: 40, borderRadius: 20 }}
-      />
-    )
+    // ) : (
+    //   <Image
+    //     source={femaleAvatar}
+    //     style={{ width: 40, height: 40, borderRadius: 20 }}
+    //   />
+    // )
   ) : (
     <Image
       source={Company}
@@ -341,7 +342,7 @@ const AccountCard = ({ firstName, lastName, accountName, accountNumber, phone, e
     />
   )}
 </View>
-
+ 
         <View style={styles.textContainer}>
           <Text style={styles.title}>{accountName}</Text>
           <Text style={styles.subtitle}>{`${firstName} ${lastName}`}</Text>
@@ -362,7 +363,7 @@ const AccountCard = ({ firstName, lastName, accountName, accountNumber, phone, e
     </TouchableOpacity>
   );
 };
-
+ 
 const styles = {
   item: {
     flexDirection: "row",
@@ -406,5 +407,5 @@ const styles = {
     marginLeft: 10,
   },
 };
-
+ 
 export default AccountCard;
