@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { View, Text, Button, StyleSheet, ScrollView, TouchableOpacity, Image, LogBox } from 'react-native';
 import { leadNoteData, meetingData, taskData } from '../../customComponents/formData';
 import Dropdown from '../../customComponents/customDropdown';
 import MultilineTextInput from '../../customComponents/customMultilineInput';
@@ -23,6 +23,7 @@ export default function StatusForm({ navigation }) {
   const[formValues, setFormValues]=useState([''])
  
 
+  LogBox.ignoreAllLogs();
  
   const onSubmit = () => {
     console.log(formValues);

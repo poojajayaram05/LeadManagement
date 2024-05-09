@@ -314,8 +314,8 @@ const onSelectRadio = (item) => {
                       <TextInput
                        style={[styles.input, styles.multilineInput]} // Add styles for multiline input
                     onChangeText={(value) => setEditedValues({ ...editedValue, [element.name]: value } )}
-                    value={formValues[element.name] || ''}
-                 placeholder={element.placeholder}
+                    
+                 placeholder={formValues[element.name] || ''}
  multiline={true} // Set multiline prop to true
  numberOfLines={4} // Specify the number of lines you want to display
 />

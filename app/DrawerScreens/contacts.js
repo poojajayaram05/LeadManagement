@@ -87,6 +87,7 @@ if (isLoading) {
       description={item.description}
       number={item.number}
       sys_id={item.sys_id}
+      email={item.email}
      
  
     />    

@@ -1,4 +1,10 @@
 
+
+const extractSysId = (url) => {
+    const parts = url.split('/');
+    return parts[parts.length - 1];
+  };
+
 export const leads_to_render = {
  
      page_heading: 'Lead Details',
@@ -100,7 +106,7 @@ export const personAccounts_to_render={
                 birthdate: { label: "Birth date" },
                 number:{label:"Number"},
                 website:{label:"Website"},
-                gender: { label: "gender" },
+                // gender: { label: "gender" },
                 // email: { label: "email" },
                 // owner: { label: "owner" }
             },
@@ -366,12 +372,12 @@ export const opportunity_to_render={
             title:"General Details",
             sectionId:1,
             fields:{
+                contact:{label:"Primary Contact"},
+                account:{label:"Account Name"},
                 opportunity_name:{label:"Opportunity name"},
-                contact_display_value:{label:"Primary Contact"},
                 owner:{label:"Owner"},
                 description:{label:"Description"},
                 next_step:{label:"Next Step"},
-                account_display_value:{label:"Account Name"},
                 sales_pipeline:{label:"Sales Pipeline"},
                 sales_stage:{label:"Sales Stage"},
                 category:{label:"Category"},
@@ -396,9 +402,8 @@ export const contact_to_render={
             title: "General Information",
             sectionId: 1,
             fields: {
+                account_name: { label: "Account Name" },
                 title: { label: "Title" },
-               // account_name: { label: "Account Name" },
-                "account_name.display_value": { label: "Account Name" },
                 description: { label: "Description" },
                 birthdate: { label: "Date of birth" },
                 category: { label: "Category" },

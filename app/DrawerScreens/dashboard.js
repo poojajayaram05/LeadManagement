@@ -26,7 +26,7 @@ const Dashboard = () => {
     setShowDropdown(true);
   }
   const handleAddLead=()=>{
-    router.navigate('/formComponents/createLead')
+    router.navigate('/formComponents/addLeadsByDoc')
   }
   const handleAddActivty=()=>{
     router.navigate('/formComponents/activityForm')

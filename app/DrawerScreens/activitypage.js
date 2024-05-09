@@ -42,8 +42,6 @@ export default function Example() {
   const [currentMeetingTab, setCurrentMeetingTab] = useState('all');
   const [currentCallTab, setCurrentCallTab] = useState('all');
   const [currentEmailTab, setCurrentEmailTab] = useState('all');
- 
- 
   const[activityData, setActivityData]=useState('');
   const[activityItems, setActivityItems]=useState('')
  
@@ -258,11 +256,11 @@ const filteredMeetings = selectedMeetings.filter(meeting => {
             <Text style={styles.data}>Created On:</Text>
             <Text style={styles.detail}>{sys_created_on}</Text>
           </View>
-          {status.toLowerCase() !== 'completed' && ( // Conditionally render the button if status is not completed
+          {/* {status.toLowerCase() !== 'completed' && ( // Conditionally render the button if status is not completed
           <TouchableOpacity style={styles.markAsCompleteButton} onPress={goToMarkAsComplete}>
             <Text>Mark as Complete</Text>
           </TouchableOpacity>
-          )}
+          )} */}
         </View>
       </View>
     );

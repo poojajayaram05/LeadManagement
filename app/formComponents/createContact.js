@@ -302,9 +302,9 @@ const onSelectRadio = (item) => {
                    // handleSelect(label); // Call handleSelect to save the selected value
                     setSelectedValue(item); // Update selected values
                 }}
-                data={element.dropdownData.map(item => ({ key: item.key, value: item.value }))}
+                data={element.dropdownData.map(item => ({ value: item.key, label: item.value }))}
                 save="value"
-                onSelect={() => handleSelect(key, value) } // Log selected values
+                onSelect={() => handleSelect(selectedValue) } // Log selected values
             />
                    
                     {validationErrors[element.name] && <Text style={styles.errorMessage}>{validationErrors[element.name]}</Text>}

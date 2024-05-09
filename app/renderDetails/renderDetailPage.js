@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity,LogBox } from 'react-native';
 import LeadDet from '../../leadComponents/leadDetHeader';
 import useIdStore from '../leadStore';
 import { Ionicons } from '@expo/vector-icons';
@@ -22,6 +22,7 @@ const RenderDetail =  () => {
   const token =   SecureStore.getItem('token'); // Use await to get the token asynchronously
   const stoken = JSON.parse(token);
   const apiToken = stoken.accessToken;
+  LogBox.ignoreAllLogs();
   console.log("api token", apiToken);
   const[data, setData]=useState(null)
   const [isLoading, setIsLoading] = useState(true);
@@ -80,9 +81,9 @@ const RenderDetail =  () => {
     if (data) {
       fetchLeadData();
     } else {
-      setIsLoading(false); // No data to load, set loading to false
+      setIsLoading(false); 
     }
-  }, [data]); // Include 'data' as a dependency
+  }, [data]); 
 
 
 console.log("outside useEffect", leadsObj)
@@ -118,11 +119,29 @@ console.log("outside useEffect", leadsObj)
                     isOpen={openSections.includes(sectionId)}
                     onPress={() => toggleSection(sectionId)}>
                     {Object.values(leadsObj.sections[sectionId].fields).map((field, index) => (
+                     (flag === 'opportunity' && field.value && field.value.display_value) ? (
                       <DataRow
                         key={index}
                         label={field.label}
-                        detail={field.value}
+                        detail={field.value.display_value || field.value || ''}
+                        style={{ color: (flag === 'contact' || flag === 'account') && !field.value && field.value.display_value ? 'blue' : 'black' }}
                       />
+                    ) : (flag === 'contact' && field.value && field.value.display_value) ? (
+                      <DataRow
+                        key={index}
+                        label={field.label}
+                        detail={field.value.display_value || field.value || ''}
+                        style={{ color: (flag === 'contact' || flag === 'account') && !field.value && field.value.display_value ? 'blue' : 'black' }}
+                      />
+                    ) : (
+                      <DataRow
+                        key={index}
+                        label={field.label}
+                        detail={field.value || ''}
+                        
+                      />
+                    )
+                    
                     ))}
                   </Section>
                 ))}

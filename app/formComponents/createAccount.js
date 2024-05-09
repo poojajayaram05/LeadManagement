@@ -109,9 +109,9 @@ LogBox.ignoreAllLogs();
 
   const handleAccountSelect=(account)=>{
 
-      setFormValues(prevFormValues => ({ ...prevFormValues, ['account_type']: account.value }));
-        setSelectedAccount(account.value);
-        console.log("account value is", account.value)
+      setFormValues(prevFormValues => ({ ...prevFormValues, ['account_type']: account }));
+        setSelectedAccount(account);
+        console.log("account value is", account)
     };
   
   
@@ -376,7 +376,7 @@ LogBox.ignoreAllLogs();
       case "socialMediaInput":
         return (
           <View>
-            <Text style={styles.label}>{element.title}</Text>
+           
           <CustomInputSocial
             key={element.name}
             title={element.title}
@@ -426,24 +426,7 @@ LogBox.ignoreAllLogs();
           </View>
         );
 
-        // case 'RadioButton':
-        //   return( 
-        //     <View style = {styles.inputContainer}>
-        //     <Text style={styles.label}>{element.title}{starMark}</Text>
-              
-        //           <RadioButton style={styles.inputContainer}
-        //                onSelect={onSelectRadio}
-        //                SelectedData={selectedValue} 
-        //                disableLine={1}
-        //                value={selectedValue}
-        //                onChange={(onSelectRadio) => setFormValues({ ...formValues, [element.name]: onSelectRadio })}
-        //                data={personAccountForm.Data}
-        //                title={element.title}
-        //                // Pass the data prop here
-        //           />
-        //           </View>
-
-        //   )
+        
         case "TextInputO":
           return(
             <View>
@@ -555,15 +538,29 @@ LogBox.ignoreAllLogs();
     fontSize: 12,
     fontWeight: "bold"}}>Select Account Type</Text>
                 <View style={styles.Dropdown}> 
-                <Dropdown
-                    label="Select Account"
+                <SelectList
+                   boxStyles={{
+                    borderWidth: 1,
+                    borderColor: '#ccc',
+                    borderRadius: 12, // Make the border oval by using a large border radius
+                    paddingVertical: 10,
+                    paddingHorizontal: 10,
+                    fontSize: 16
+                }}
+                setSelected={(label) => {
+                   // handleSelect(label); // Call handleSelect to save the selected value
+                    setSelectedValue(label); // Update selected values
+                }}
                     data={[
                         { value: 'corporate', label: 'corporate' },
                         { value: 'person', label: 'person' },
                       
                     ]}
-                    onSelect={handleAccountSelect}
+                    
+                    save="key"
+                onSelect={() => handleAccountSelect(selectedValue) }
                 />
+                
                 </View>
                 {renderForm()}
                 {selectedAccount && <Button title="Submit" onPress={onSubmit} color='#023B5E' />}

@@ -92,8 +92,8 @@ import { MdDashboard } from "react-icons/md";
 
 
 
-export default function RadioButton({ onSelect, disableLine, title, value, data }) {
-  const radioButtonOptions = data.elements.find(element => element.type === 'RadioButton').rdata;
+export default function RadioButton({ onSelect, disableLine, title, value, data, rdata}) {
+  const radioButtonOptions = data.elements.find(element => element.type === 'RadioButton').rdata || rdata;
   const[selectedData, setSelectedData]=useState('');
  
   const renderItems = ({ item }) => {

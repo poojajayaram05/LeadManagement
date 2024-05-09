@@ -283,7 +283,7 @@
 
 
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, LogBox } from "react-native";
 import ArrowBack from "../../customComponents/arrowBack";
 import RadioButton from "../../customComponents/customRadio";
 import useIdStore from "../leadStore";
@@ -298,7 +298,9 @@ const ChangeStatus = () => {
   const taskId = useIdStore((state)=>  state.activity_number);
   const [selectedStatus, setSelectedStatus] = useState(null);
   const [leadData, setLeadData] = useState([]);
-
+  LogBox.ignoreAllLogs();
+  
+  console.reportErrorsAsExceptions = false;
   useEffect(() => {
     const fetchData = async () => {
       try {

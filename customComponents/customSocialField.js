@@ -3,7 +3,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 export const CustomInputSocial = ({ title, placeholder, onChange, value, errors, readOnly, keyboardType, icon }) => (
     <View style={styles.container}>
-    {/* <Text style={styles.label}>{title}</Text> */}
+    <Text style={styles.label}>{title}</Text>
     <View style={styles.inputContainer}>
       {icon&& <Ionicons name={icon} size={24} color="black" style={styles.icon} />} 
       <TextInput
@@ -40,4 +40,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         fontSize: 16,
       },
+      label:{
+        fontWeight:"bold"
+      }
 });

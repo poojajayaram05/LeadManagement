@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity,LogBox } from 'react-native';
 import LeadDet from '../../leadComponents/leadDetHeader';
 import useIdStore from '../leadStore';
 import { Ionicons } from '@expo/vector-icons';
@@ -29,6 +29,9 @@ const Info =  () => {
   const flag = useIdStore((state)=>state.flag);
   const account_type=useIdStore((state)=>state.account_type);
   console.log("flag", flag);
+
+  
+  LogBox.ignoreAllLogs();
 
 
   useEffect(() => {

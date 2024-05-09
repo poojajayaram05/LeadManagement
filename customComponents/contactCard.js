@@ -4,9 +4,11 @@ import { router } from 'expo-router';
 import { useContactStore } from '../app/leadStore';
 import { HomeProfile } from '../assets/images'
 import useIdStore from '../app/leadStore';
+import { Ionicons } from '@expo/vector-icons';
+import { Linking } from 'react-native';
 
- 
-const ContactItem = ({ first_name, last_name, mobile,title, description, number, sys_id }) => {
+
+const ContactItem = ({ first_name, last_name, mobile, email, title, description, number, sys_id }) => {
    
     const [showSecondImage, setShowSecondImage] = useState(false);
     const[selectedStar, setSelectedStar]=useState(false);
@@ -28,6 +30,14 @@ const ContactItem = ({ first_name, last_name, mobile,title, description, number,
     setShowDropdown(false);
 };
  
+const handleEmail = () => {
+    Linking.openURL(`mailto:${email}`);
+  };
+ 
+  const handleCall = () => {
+    Linking.openURL(`tel:${mobile}`);
+  };
+ 
 const handleNavigateToContactDetails = () => {
    
     console.log("cnumber", sys_id);
@@ -35,44 +45,42 @@ const handleNavigateToContactDetails = () => {
     setSysId(sys_id);
     router.navigate('/renderDetails/renderDetailPage');
 };
- 
-return (
-  <TouchableOpacity onPress={handleNavigateToContactDetails}>
-    {/* <TouchableOpacity> */}
-      <View style={{ flex: 1 }}>
-      
-      <View style={styles.item}>
-      <Image
-      source={HomeProfile}
-      style={{
-        width: 40,
-        height: 40,
-        alignSelf:'center',
-        marginRight:20,
-
-       
-      }}
-    />
-      {/* <FontAwesome name="dollar" size={24} color="black" style={{ marginRight: 10 }} /> */}
-      <View style={styles.textContainer}>
-      <Text style={styles.title}>{first_name} {last_name}</Text>
- 
-    <View style={styles.subtitleRow}>
-   <Text style={styles.subtitle}>{description}</Text>
-   <Text style={styles.subtitle}>{title}</Text>
-   
-    
-    </View>
-    <View style={styles.subtitleRow}>
-              <Text style={[styles.subtitle, styles.bottomRight]}>{mobile}</Text>
-    </View>
-</View>
- 
-</View>
-          </View>
-      </TouchableOpacity>
-);
+    return (
+        <TouchableOpacity onPress={handleNavigateToContactDetails}>
+            <View style={styles.item}>
+                <Image
+                    source={HomeProfile}
+                    style={{
+                        width: 40,
+                        height: 40,
+                        alignSelf: 'center',
+                        marginRight: 20,
+                    }}
+                />
+                <View style={styles.textContainer}>
+                    <Text style={styles.title}>{first_name} {last_name}</Text>
+                    <View style={styles.subtitleRow}>
+                        <Text style={styles.subtitle}>{description}</Text>
+                    </View>
+                    <View style={styles.subtitleRow}>
+                        <Text style={[styles.subtitle, styles.bottomRight]}>{mobile}</Text>
+                    </View>
+                </View>
+                <View style={styles.actionsContainer}>
+                    <View style={styles.iconContainer}>
+                        <TouchableOpacity onPress={handleCall} style={styles.actionIcon}>
+                            <Ionicons name="call" size={24} color="black" />
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={handleEmail} style={styles.actionIcon}>
+                            <Ionicons name="mail" size={24} color="black" />
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </View>
+        </TouchableOpacity>
+    );
 };
+ 
 const styles = {
     item: {
         flexDirection: 'row',
@@ -101,11 +109,11 @@ const styles = {
     title: {
         fontSize: 18,
         marginBottom: 9,
-        color:"#000000",
+        color: "#000000",
     },
     subtitle: {
         fontSize: 14,
-        color:"#999999",
+        color: "#999999",
     },
     topRight: {
         alignSelf: 'flex-end', // Align text to the right
@@ -113,7 +121,17 @@ const styles = {
     bottomRight: {
         alignSelf: 'flex-end', // Align text to the right
     },
+    actionsContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginRight: 10, // Align to the right side
+    },
+    actionIcon: {
+        marginRight: 10,
+    },
+    iconContainer: {
+        flexDirection: 'row',
+    },
 };
  
- 
-export default ContactItem;  
+export default ContactItem;

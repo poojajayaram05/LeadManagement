@@ -10,7 +10,7 @@ import {
     Alert
   } from "react-native";
   import React, { useState, useEffect } from "react";
-  import { editAccountFormData } from "../../customComponents/formData";
+  import { editAccountFormData, personAccountForm } from "../../customComponents/formData";
   import { CustomInput } from "../../customComponents/customInput";
   import Collapsible from "react-native-collapsible";
   import { TouchableOpacity, LogBox } from "react-native";
@@ -25,8 +25,8 @@ import {
   import CustomHeader from "../../customComponents/customLeadHeader";
   import CustomCheckbox from "../../customComponents/customCheckBox"
   import RNDateTimePicker from "@react-native-community/datetimepicker";
-  import { PersonData } from "../../customComponents/formData";
-  import { CorporateData } from "../../customComponents/formData";
+import { editCorporateAccount } from "../../customComponents/formData";
+import { editPersonAccount } from "../../customComponents/formData";
   import { SelectList } from "react-native-dropdown-select-list";
   import useIdStore from "../leadStore";
   import axios from "axios";
@@ -106,6 +106,10 @@ import {
  
                 const accountData = response.data.result[0];
                 let sysid = accountData.sys_id;
+                let accountType = accountData.account_type;
+                if(accountType=='person')
+                setCurrentData(editPersonAccount)
+              else setCurrentData(editCorporateAccount)
                 setSysId(sysid)
  
                 // Assuming the response.data contains the lead data
@@ -134,22 +138,9 @@ import {
  
     const validateForm = () => {
       const errors = {};
-      editAccountFormData.elements.forEach((element) => {
+      currentData.elements.forEach((element) => {
         // Check if the field is visible based on lead type
-        if (
-          element.sectionName === "General" &&
-          formValues["lead_type"] === "company"
-        ) {
-          // Skip validation for hidden fields
-          if (
-            element.name === "salutation" ||
-            element.name === "first_name" ||
-            element.name === "last_name" ||
-            element.name === "gender"
-          ) {
-            return;
-          }
-        }
+      
         // Perform validation for visible fields
         if (element.isRequired && !formValues[element.name]) {
           errors[element.name] = `${element.title} is required`;
@@ -222,7 +213,7 @@ import {
     };
  
     const renderFormElements = (sectionName) => {
-      return editAccountFormData.elements
+      return currentData.elements
         .filter((element) => element.sectionName === sectionName)
         .map((element, index) => (
           <View key={index} style={styles.formElement}>
@@ -362,7 +353,7 @@ import {
                 onChange={(onSelectRadio) =>
                   setEditedValues({ ...editedValue, [element.name]: onSelectRadio })
                 }
-                data={editAccountFormData}
+                data={currentData}
                 title={element.title}
                 // Pass the data prop here
               />

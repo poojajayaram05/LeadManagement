@@ -42,13 +42,11 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
  
  
-const DataRow = ({ key,label, detail}) => {
+const DataRow = ({ key,label, detail,style}) => {
   return (
     <View style={styles.row}>
       <Text style={styles.data}>{label}</Text>
-      <Text style={{ fontSize: 14,
-    fontWeight: 'bold',
-    textAlign: 'right'}}>{detail}</Text>
+      <Text style={[styles.detail, style]}>{detail}</Text>
     </View>
   );
 };
@@ -74,6 +72,7 @@ const styles = StyleSheet.create({
     width: '100%',
     marginBottom: 10,
   },
+
   detail: {
     fontSize: 14,
     fontWeight: 'bold',
