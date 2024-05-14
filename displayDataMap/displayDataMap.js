@@ -21,12 +21,11 @@ function updateHeader(fields,leadData) {
     }
 }
  export const TransformApiData= async( data_to_be_rendered,apiToken1,url1, sys_id)=> {
-    console.log("sys id from info page", sys_id)
+   
 
     const apiUrl=url1+`&sys_id=${sys_id}`
    
-    console.log("inside transform data")
-    console.log("api url", apiUrl)
+   
    
  
         const response = await fetch(apiUrl, {
@@ -40,7 +39,7 @@ function updateHeader(fields,leadData) {
         const api_data = await response.json();
         //console.log("api data", api_data.result[0]);
         const leadData = api_data.result[0];
-        console.log("data of all details", leadData);
+        
         // return data;
      
        
@@ -52,7 +51,7 @@ function updateHeader(fields,leadData) {
     
 
     updateHeader(data_to_be_rendered.header_section, leadData)
-    console.log("7767:",JSON.stringify(data_to_be_rendered))
+    
     return data_to_be_rendered
  
 }

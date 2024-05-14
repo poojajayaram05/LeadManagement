@@ -9,7 +9,7 @@ export const FetchLeadDetails = async (sys_id) => {
     console.log("fetch details", sys_id)
     console.log(apiToken);
 
-    const getLeadURL = `https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_c?sys_id=${sys_id}`;
+    const getLeadURL = `https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_leads_c?sys_id=${sys_id}`;
 
     try {
         const response = await fetch(getLeadURL, {

@@ -118,7 +118,7 @@ export default function Layout() {
       ),
       headerRight: () => (
         <HeaderRight
-          onSearchPress={() => { /* Handle filter press */ }}
+          onFilterPress={() => { /* Handle filter press */ }}
           onNotificationPress={() => { /* Handle notification press */ }}
         />
       )
@@ -184,6 +184,21 @@ export default function Layout() {
       headerShown:true,
       drawerIcon:({}) =>(
         <Ionicons name='settings-sharp' size={20} color='black' />
+      ),
+      headerRight: () => (
+        <HeaderRight
+        />
+      )
+    }}
+    ></Drawer.Screen>
+        <Drawer.Screen
+    name='checkInLocation'
+    options={{
+      drawerLabel:'Check In',
+      headerTitle:'ChecK In',
+      headerShown:true,
+      drawerIcon:({}) =>(
+        <Ionicons name='location' size={20} color='black' />
       ),
       headerRight: () => (
         <HeaderRight

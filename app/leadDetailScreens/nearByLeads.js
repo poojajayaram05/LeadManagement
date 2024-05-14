@@ -47,6 +47,7 @@ const MapScreen = () => {
 
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
+      console.log("current location", location)
     })();
   }, []);
 

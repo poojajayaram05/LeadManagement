@@ -31,7 +31,7 @@ export default function EditLead() {
                 const token = await SecureStore.getItemAsync('token');
                 const stoken = JSON.parse(token);
                 const apiToken = stoken.accessToken;
-                const response = await axios.get(`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_c?sysparm_query=number=${leadId}`, {
+                const response = await axios.get(`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_leads_c?sysparm_query=number=${leadId}`, {
                     headers: {
                         'Authorization': 'Bearer ' + apiToken
                     }
@@ -229,6 +229,23 @@ const onSelectRadio = (item) => {
                     />
                     </View>
                 );
+                case 'TextInputAddress':
+                  return (
+                    <View>
+                        {/* <Text style={styles.label}>{element.title}{starMark} </Text> */}
+                      <CustomInput
+                          key={element.name}
+                          title={element.title}
+                          placeholder={formValues[element.name]||""}
+                          isRequired={element.isRequired}
+                          inputType={element.inputType}
+                          name={element.name}
+                          rules={{ required: element.isRequired ? `${element.title} is required` : false }}
+                          onChange={(value) => setEditedValues({ ...editedValue, [element.name]: value })}
+                          
+                      />
+                      </View>
+                  );
  
                 case 'TextInputL':
                   return (

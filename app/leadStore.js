@@ -7,7 +7,7 @@ const useIdStore = create((set) => ({
     sys_id:null,
     flag:null,
     account_type:null,
-    
+    flagCreate:null,
     
 
     setLeadId: (newId) => set({ number: newId }),
@@ -16,6 +16,8 @@ const useIdStore = create((set) => ({
     setAccountNumber:(newId)=>set({account_number:newId}),
     setSysId:(newId)=>set({sys_id:newId}),
     setAccountType:(newId)=>set({account_type:newId}),
+    setFlagCreate:(newId)=>set({flagCreate:newId}),
+    
 }));
 
 
@@ -32,8 +34,10 @@ export const useContactStore= create((set)=>({
 export const useActivityStore= create((set)=>({
     number:null,
     sys_id:null,
+    activity_name: null,
     setActivityNumber:(newId)=>set({number:newId}),
-    setAsysId:(newId)=>set({sys_id:newId})
+    setAsysId:(newId)=>set({sys_id:newId}),
+    setSubject:(newId)=>set({subject:newId})
 
 }))
 

@@ -133,17 +133,17 @@ export default function CreateActivity() {
   }, []); // Empty dependency array means it will run only once on mount
   
   
-  useEffect(() => {
-    if (leadData.length > 0) {
-        const lead = leadData.find((lead) => lead.number === leadId);
-        const leadNumber = lead ? lead.number : '';
-        setLeadNumber(leadNumber);
-        setFormValues(prevFormValues => ({ ...prevFormValues, ['associated_lead']: leadNumber }));
-    }
-}, [leadNumber, leadData]);
+//   useEffect(() => {
+//     if (leadData.length > 0) {
+//         const lead = leadData.find((lead) => lead.number === sysId);
+//         const leadNumber = lead ? lead.number : '';
+//         setLeadNumber(leadNumber);
+//         setFormValues(prevFormValues => ({ ...prevFormValues, ['associated_lead']: leadNumber }));
+//     }
+// }, [leadNumber, leadData]);
 
 
-  const leadId = useIdStore((state) => state.number);
+  const sysId = useIdStore((state) => state.sys_id);
   // const lead = leadData.find((lead) => lead.number === leadId);
   // const{number}=lead||'';
   // console.log("leaaaaad", number);
@@ -226,6 +226,7 @@ useEffect(() => {
 
 const onSubmit = async () => {
   const errors = validateForm();
+  setFormValues(prevFormValues => ({ ...prevFormValues, ['associated_lead']: sysId }));
   setFormValues(prevFormValues => ({ ...prevFormValues, ['activity_owner']: username }))
   if (Object.keys(errors).length > 0) {
     // If there are validation errors, set them in state
@@ -233,7 +234,7 @@ const onSubmit = async () => {
     console.log(validationErrors);
   }
 
-  else {  setFormValues(prevFormValues => ({ ...prevFormValues, ['associated_lead']: leadNumber }));
+  else {  setFormValues(prevFormValues => ({ ...prevFormValues, ['associated_lead']: sysId }));
   
     const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_activity_c`;
         const token = SecureStore.getItem('token');
@@ -335,13 +336,13 @@ const handleDateChange = (selectedDate, element) => {
              <CustomInput
                     key={element.name}
                     title={element.title}
-                    placeholder={leadNumber}
+                    placeholder={sysId}
                     // control={control}
                     name={element.name}
-                   
+                    onChange={(value) => setFormValues({ ...formValues, [element.name]: value } )}
                     // errors={errors}
                     
-                    value={leadNumber}
+                    value={sysId}
                     readOnly={true}
                 />
              

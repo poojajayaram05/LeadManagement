@@ -1,4 +1,4 @@
-import { View, Text, Button, TextInput, StyleSheet, Select, ScrollView, Image, Alert, LogBox} from 'react-native'
+import { View, Text, Button, TextInput, StyleSheet, Select, ScrollView, Image, Alert, LogBox,Modal, ActivityIndicator} from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { formData } from '../../customComponents/formData'
 import { CustomInput } from '../../customComponents/customInput';
@@ -15,19 +15,35 @@ import { CustomInputSocial } from '../../customComponents/customSocialField';
 import CustomSwitch from '../../customComponents/customSwitch';
 import CustomHeader from '../../customComponents/customLeadHeader';
 import { SelectList } from 'react-native-dropdown-select-list';
+import ModalSelector from 'react-native-modal-selector-searchable';
 
 export default function CreateLead() {
 
     const [isCollapsed, setIsCollapsed] = useState({
       
-        General: false,
-        Contact: false,
-        ContactMethod: false,
-        Address: false,
+        Basic: false,
         Additional: false,
-        Company:false,
-        Social: false,
+      
       })
+      const [zipCode, setZipCode] = useState(''); // State to store entered zip code
+    const [modalVisible, setModalVisible] = useState(false); // State to control modal visibility
+    //const [addressInfo, setAddressInfo] = useState({});
+    const[addressInfo, setAddressInfo]=useState()
+    const token = SecureStore.getItem('token');
+ 
+    const stoken = JSON.parse(token);
+    const apiToken = stoken.accessToken;
+
+    const closeModal = () => {
+      setModalVisible(false);
+      setAddressInfo({}); // Reset address information
+  };
+
+  const zipcodeValueSet=(item)=>{
+    setZipCode(item);
+  }
+
+    
 
       const toggleSection = (sectionName) => {
         setIsCollapsed({ ...isCollapsed, [sectionName]: !isCollapsed[sectionName] });
@@ -48,9 +64,14 @@ export default function CreateLead() {
     const[radioSelect, setradioSelect]=useState(null);
     const [phoneNumbers, setPhoneNumbers] = useState(['']);
     const[testValues, setTestValues]=useState([]);
-    const [isAddButtonDisabled, setIsAddButtonDisabled] = useState(false);
-    const [isSwitchOn, setIsSwitchOn] = useState(false);
-    const [userName, setUsername]=useState('');
+    const [country, setCountry] = useState('');
+    const [state, setState] = useState('');
+    const [location, setLocation]=useState('');
+    const[district, setDistrict]=useState('')
+    const [selectedAddress, setSelectedAddress] = useState("");
+  //   this.state = {
+  //     textInputValue: ''
+  // }
     
 
 
@@ -68,6 +89,18 @@ const onSelectRadio = (item) => {
     setFormValues(prevFormValues => ({ ...prevFormValues, ['gender']: item.id})); 
     console.log('Selected value:', item.id);
 }
+let index = 0;
+
+const data = [
+  { key: index++, section: true, label: 'Fruits' },
+  { key: index++, label: 'Red Apples' },
+  { key: index++, label: 'Cherries' },
+  { key: index++, label: 'Cranberries', accessibilityLabel: 'Tap here for cranberries' },
+  // etc...
+  // Can also add additional custom keys which are passed to the onChange callback
+  { key: index++, label: 'Vegetable', customKey: 'Not a fruit' }
+];
+
 
 
 
@@ -109,6 +142,72 @@ const onSelectRadio = (item) => {
 }, []);
 
 
+
+// const addressInfo = 
+//   {
+//     "result": [
+//       {
+//         "country": {
+//           "link": "https://ven06798.service-now.com/api/now/table/x_rptp_los_loan_or_los_countries/a28a5747ffb98a9019a8ffda7c4fd9b5",
+//           "value": "a28a5747ffb98a9019a8ffda7c4fd9b5"
+//         },
+//         "town": "Port Blair",
+//         "sys_mod_count": "0",
+//         "sys_updated_on": "2024-05-13 11:09:42",
+//         "sys_tags": "",
+//         "sys_id": "7741764f47468650e9ddbf66706d43f3",
+//         "sys_updated_by": "bhavani",
+//         "sys_created_on": "2024-05-13 11:09:42",
+//         "district": "South Andaman",
+//         "location": "Haddo",
+//         "state": {
+//           "link": "https://ven06798.service-now.com/api/now/table/x_rptp_los_loan_or_los_state/15148e8f470e4650e9ddbf66706d439b",
+//           "value": "15148e8f470e4650e9ddbf66706d439b"
+//         },
+//         "postal_code": "744102",
+//         "sys_created_by": "bhavani"
+//       }
+//     ]
+//   }
+
+
+const searchAddress = async () => { 
+  setModalVisible(true);
+  console.log("zipcode",zipCode)
+
+ 
+    // setModalVisible(true);
+    //   const response = await axios.get(`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_postal_code?sysparm_query=postal_code=744102&sysparm_display_value=true`); 
+    //   console.log(zipCode)
+    //   setAddressInfo(response.data); 
+    //   //setModalVisible(true); 
+    const getAddressUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_postal_code?sysparm_query=postal_code=${zipCode}&sysparm_display_value=true` ;
+    try {
+      console.log(getAddressUrl)
+        const response = await fetch(getAddressUrl, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization' : 'Bearer ' + apiToken
+             
+            },
+
+          })
+          const data = await response.json();
+          setAddressInfo(data);
+          console.log("data", data)
+          console.log("adressss", addressInfo)
+    }
+   catch (error) {
+      console.error('Error fetching address:', error);
+      
+  }
+}
+
+
+
+
+
     const onSubmit = async () => {
       console.log("usernameee", username);
       console.log("Form data", formValues);
@@ -121,7 +220,7 @@ const onSelectRadio = (item) => {
       }
       else{
        
-        const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_c`;
+        const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_leads_c`;
         console.log(postUrl);
         const token = SecureStore.getItem('token');
         const stoken = JSON.parse(token);
@@ -190,6 +289,8 @@ const onSelectRadio = (item) => {
       }
 
     const renderFormElement = (element) => {
+
+
         const handleSelect = (item) => {
             //setSelectedValue(item);
             setFormValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item }));
@@ -200,18 +301,96 @@ const onSelectRadio = (item) => {
           console.log(element.name, item);
 
         }
+        const saveAddress=(data)=>{
+          //setFormValues({ ...formValues, [element.name]: value })
+          console.log(element.name,data);
+          setFormValues({
+            ...formValues,
+            country: data.country.display_value,
+            state: data.state.display_value,
+            district: data.district,
+            location: data.location,
+            town:data.town,
+            zip_postalcode:data.postal_code
+            
+          });
+          console.log("form values", formValues)
+        }
+        
 
         const starMark = element.isRequired ? <Text style={{ color: 'red' }}> *</Text> : null;
 
-        
-        if (element.sectionName === "General" && formValues["lead_type"] === "company") {
-            // If lead type is company and the element is related to personal information, skip rendering
-            if (element.name === "salutation" || element.name === "first_name" || element.name === "last_name" || element.name === "gender"|| element.name==="job_title") {
-                return null;
-            }
-            
-        }
+
         switch (element.type) {
+          case 'TextInputAddress':
+            return(
+              // Inside your return statement in the CreateLead component
+
+              <View>
+             
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                 <CustomInput
+                        key={element.name}
+                        title={element.title}
+                        placeholder={element.placeholder}
+                        // control={control}
+                        isRequired={element.isRequired}
+                        inputType={element.inputType}
+                        name={element.name}
+                        rules={{ required: element.isRequired ? `${element.title} is required` : false }}
+                        // errors={errors}
+                        onChange= {(text) => zipcodeValueSet(text)} // Update pincode state as user types
+                        value={zipCode||''}
+                        //value={formValues[element.name] || ''} 
+                    />
+                {/* Search icon */}
+                <TouchableOpacity onPress={searchAddress}>
+                  <Ionicons name="search" size={24} />
+                </TouchableOpacity>
+              </View>
+              {/* Modal for address selection */}
+              {modalVisible && (
+       <Modal
+       animationType="slide"
+       transparent={true}
+       visible={modalVisible}
+       onRequestClose={closeModal}
+     >
+       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+       <View style={{ backgroundColor: 'white', padding: 20, borderRadius: 10, borderColor: 'black' }}>
+  <ScrollView style={styles.scrollViewContainer}>
+    {addressInfo && addressInfo.result ? ( // Check if addressInfo and addressInfo.result are available
+      // Display address information
+      addressInfo.result.map((address, index) => (
+        <TouchableOpacity key={index} onPress={() => saveAddress(address)} >
+          <View style={styles.addressContainer}>
+            <Text style={styles.addressLabel}>Town: {address.town}</Text>
+            <Text style={styles.addressLabel}>District: {address.district}</Text>
+            <Text style={styles.addressLabel}>Location: {address.location}</Text>
+            <Text style={styles.addressLabel}>State: {address.state.display_value}</Text>
+            <Text style={styles.addressLabel}>Country: {address.country.display_value}</Text>
+            <Text style={styles.addressLabel}>Zipcode: {address.postal_code} </Text>
+
+          </View>
+        </TouchableOpacity>
+      ))
+    ) : (
+      
+      <ActivityIndicator size="large" color="#0000ff" />
+    )}
+   
+    <TouchableOpacity onPress={closeModal}>
+      <Text style={{ color: 'blue', marginTop: 10 }}>Close</Text>
+    </TouchableOpacity>
+  </ScrollView>
+</View>
+       </View>
+     </Modal>
+     
+              )}
+            </View>
+   
+            )
             case 'TextInput':
                 return (
                   <View>
@@ -229,6 +408,7 @@ const onSelectRadio = (item) => {
                         onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
                         value={formValues[element.name] || ''} 
                     />
+                    
                     </View>
                 );
                 case 'email':
@@ -382,13 +562,30 @@ const onSelectRadio = (item) => {
                 </View>
               ))}
             </View>
-      
+
             <Button title="Submit" onPress={onSubmit} color="#023B5E" />
       
-            <View style={styles.buttonContainer}>
-             
+           
+            {/* <Modal
+              animationType="slide"
+              transparent={true}
+              visible={modalVisible}
+              onRequestClose={closeModal}
+          >
+              <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+                  <View style={{ backgroundColor: 'white', padding: 20, borderRadius: 10 }}>
+                      <Text>Country: {addressInfo.country}</Text>
+                      <Text>State: {addressInfo.state}</Text>
+                      <Text>Address: {addressInfo.address}</Text>
+                      <TouchableOpacity onPress={closeModal}>
+                          <Text style={{ color: 'blue', marginTop: 10 }}>Close</Text>
+                      </TouchableOpacity>
+                  </View>
+              </View>
+          </Modal> */}
+       
             </View>
-          </View>
+          
         </ScrollView>
       </View>
       
@@ -428,6 +625,20 @@ const styles = StyleSheet.create({
     section: {
         marginBottom: 20,
         
+    },
+    scrollViewContainer: {
+      maxHeight: 350, // Set the maximum height for scrolling
+    },
+    addressContainer: {
+      borderWidth: 1,
+      borderColor: '#ccc',
+      borderRadius: 5,
+      padding: 10,
+      marginBottom: 10,
+    },
+    addressLabel: {
+      fontSize: 16,
+      marginBottom: 5,
     },
     sectionTitle: {
         fontSize: 20, // Increase font size for emphasis

@@ -214,7 +214,7 @@ export const corporateAccounts_to_render={
                 account_type: {label:"Account Type"},
                 account_name: { label: "Account Name" },
                 description: { label: "Description" },
-                birthdate: { label: "Birth date" },
+               
                 number:{label:"Number"},
                 website:{label:"Website"},
                 // gender: { label: "gender" },
@@ -231,14 +231,12 @@ export const corporateAccounts_to_render={
              alternate_email1: { label: "Alternate Email 1" },
              alternate_email2:{label : "Alternate Email 2"},
              email_verification_status:{label:"Email verification status"},
-             home_phone:{label:"Home Phone"},
              business_phone:{label:"Business Phone"},
              alternate_phone1:{label:"Alternate phone1"},
              alternate_phone2:{label:"Alternate phone2"},
              contact_verified:{label:"Contact verified"},
              other_phone:{label:"Other phone"},
-             assistant:{label:"Assistant"},
-             assistant_phone:{label:"Assistant phone"},
+   
  
  
            }
@@ -364,8 +362,8 @@ export const opportunity_to_render={
     {
         opportunity_name: { label: "Opportunity Name" },
         states: { label: "Status" },
-        forecast_close_date: { label: "Forecast Close Date" },
-        opportunity_value: { label: "Opportunity Value" },
+        forecast_close_date: { label: "Close Date" },
+        opportunity_value: { label: " Value" },
     },
     sections:{
         general_details:{

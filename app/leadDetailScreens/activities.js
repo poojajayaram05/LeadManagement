@@ -29,7 +29,10 @@ export default function Example() {
   const [activity_id, setActivityId] = useState('')
 
   const { sys_id,setAsysId  } = useActivityStore();
+  const{subject , setSubject}=useActivityStore();
 
+
+  const sysId = useIdStore((state) => state.sys_id);
 
   const activity_type_map = {
     "task": "Tasks",
@@ -47,8 +50,9 @@ export default function Example() {
 
     const fetchData = async () => {
       try {
-        const ldata = await FetchActivities();
+        const ldata = await FetchActivities(sysId);
         setActivityData(ldata.result);
+        console.log("activity data", ldata.result)
       } catch (error) {
         console.error('Error in fetching leads:', error);
       }
@@ -58,7 +62,7 @@ export default function Example() {
   }, []);
 
   useEffect(() => {
-    const activities = activityData.filter((lead) => lead.associated_lead === leadId);
+    const activities = activityData.filter((lead) => lead.associated_lead === sysId);
     setActivityItems(activities);
     console.log("activity number", activities);
     //setActivityNumber(activities.number)
@@ -120,6 +124,7 @@ export default function Example() {
     const goToMarkAsComplete = () => {
       router.navigate('/formComponents/markAsComplete')
       console.log("number", number);
+      setSubject(subject)
      setAsysId(sys_id);
   
     }
@@ -211,11 +216,11 @@ export default function Example() {
         </View>
         <FloatingButton onPress={goToActivityForm} />
 
-        {Object.entries(groupBy(activityItems, 'activity_type')).length === 0 ? (
+        {Object.entries(groupBy(activityData, 'activity_type')).length === 0 ? (
           <Text style={styles.noActivityText}>No recent activities</Text>
         ) : (
           <ScrollView style={{ flex: 1 }}>
-            {Object.entries(groupBy(activityItems, 'activity_type')).map(([key, value]) => {
+            {Object.entries(groupBy(activityData, 'activity_type')).map(([key, value]) => {
               const activityType = activity_type_map[key];
               const isVisible = tabVisibility[activityType];
               const hasActivities = value.length > 0;

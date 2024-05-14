@@ -1,6 +1,8 @@
 import * as SecureStore from 'expo-secure-store'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
  
 export const FetchLeads = async () => {
+
     const token = SecureStore.getItem('token');
     const stoken = JSON.parse(token);
     const apiToken = stoken.accessToken;

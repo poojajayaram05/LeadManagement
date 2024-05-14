@@ -348,6 +348,7 @@ export default function markAsCompletedForm() {
   const leadId = useIdStore((state) => state.number);
   const activityNumber = useIdStore((state)=>state.activity_number);
   const sysId = useActivityStore((state) => state.sys_id);
+  const subject=useActivityStore((state)=>state.subject);
  
   const handleCancelClicked = () => {
       setIsModalVisible(false);
@@ -380,13 +381,15 @@ export default function markAsCompletedForm() {
 useEffect(() => {
  
       setFormValues(prevFormValues => ({ ...prevFormValues, ['associated_lead']: leadId }));
+      setFormValues(prevFormValues => ({ ...prevFormValues, ["status"]: "completed" }));
   }
 , [leadId]);
 // }
  
 const onSubmit = async () => {
 
-  setFormValues(prevFormValues => ({ ...prevFormValues, ['mark_as_complete']: true }));
+  setFormValues(prevFormValues => ({ ...prevFormValues, ["status"]: "completed" }));
+  
  
   const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_activity_c/${sysId}`;
   const token = SecureStore.getItem('token');
@@ -468,16 +471,17 @@ const renderFormElement = (element) => {
                 />
             </View>
         );
-        case 'TextInputLeadA':
+       
+        case 'TextInputLeadS':
         return (
           <View>
              <CustomInput
                     key={element.name}
                     title={element.title}
-                    placeholder={activityNumber}
+                    placeholder={subject}
                     // control={control}
                     name={element.name}
-                    value={activityNumber}
+                    value={subject}
                     readOnly={true}
                 />
              
@@ -493,6 +497,7 @@ const renderFormElement = (element) => {
                     title={element.title}
                     placeholder={element.placeholder}
                     // control={control}
+                    isRequired={element.isRequired}
                     inputType={element.inputType}
                     name={element.name}
                     rules={{ required: element.isRequired ? `${element.title} is required` : false }}
@@ -536,6 +541,7 @@ const renderFormElement = (element) => {
                   mode="date"
                   display="default"
                   onChange={(event, selectedDate) => handleDateChange(selectedDate, element)}
+                  maximumDate={new Date()}
                 />
               )}
              </View>
