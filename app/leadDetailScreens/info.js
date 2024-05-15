@@ -93,7 +93,7 @@ console.log("outside useEffect", leadsObj)
     );
   };
  
-  console.log("ready data", leadsObj)
+  console.log("ready data", JSON.stringify(leadsObj))
 
     return (
     
@@ -109,17 +109,28 @@ console.log("outside useEffect", leadsObj)
             <ScrollView contentContainerStyle={styles.scrollViewContent}>
               <View style={styles.container}>
                 {Object.keys(leadsObj.sections).map((sectionId) => (
+                  
                   <Section
                     key={sectionId}
                     title={leadsObj.sections[sectionId].title}
                     isOpen={openSections.includes(sectionId)}
                     onPress={() => toggleSection(sectionId)}>
                     {Object.values(leadsObj.sections[sectionId].fields).map((field, index) => (
+                         ( field.value && field.value.display_value) ? (
+                          <DataRow
+                            key={index}
+                            label={field.label}
+                            detail={field.value.display_value || field.value || ''}
+                            
+                          />
+                        ):(
+                      
                       <DataRow
                         key={index}
                         label={field.label}
                         detail={field.value}
                       />
+                        )
                     ))}
                   </Section>
                 ))}

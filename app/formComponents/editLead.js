@@ -95,12 +95,7 @@ const onSelectRadio = (item) => {
     const errors = {};
     editLeadformData.elements.forEach((element) => {
       // Check if the field is visible based on lead type
-      if (element.sectionName === "General" && formValues["lead_type"] === "company") {
-        // Skip validation for hidden fields
-        if (element.name === "salutation" || element.name === "first_name" || element.name === "last_name"|| element.name==="gender") {
-          return;
-        }
-      }
+
       // Perform validation for visible fields
       if (element.isRequired && !formValues[element.name]) {
         errors[element.name] = `${element.title} is required`;
@@ -204,13 +199,7 @@ const onSelectRadio = (item) => {
         const starMark = element.isRequired ? <Text style={{ color: 'red' }}> *</Text> : null;
  
        
-        if (element.sectionName === "General" && formValues["lead_type"] === "company") {
-            // If lead type is company and the element is related to personal information, skip rendering
-            if (element.name === "salutation" || element.name === "first_name" || element.name === "last_name" || element.name === "gender"|| element.name==="job_title") {
-                return null;
-            }
-           
-        }
+   
         switch (element.type) {
             case 'TextInput':
                 return (
@@ -229,23 +218,6 @@ const onSelectRadio = (item) => {
                     />
                     </View>
                 );
-                case 'TextInputAddress':
-                  return (
-                    <View>
-                        {/* <Text style={styles.label}>{element.title}{starMark} </Text> */}
-                      <CustomInput
-                          key={element.name}
-                          title={element.title}
-                          placeholder={formValues[element.name]||""}
-                          isRequired={element.isRequired}
-                          inputType={element.inputType}
-                          name={element.name}
-                          rules={{ required: element.isRequired ? `${element.title} is required` : false }}
-                          onChange={(value) => setEditedValues({ ...editedValue, [element.name]: value })}
-                          
-                      />
-                      </View>
-                  );
  
                 case 'TextInputL':
                   return (

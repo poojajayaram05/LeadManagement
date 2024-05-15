@@ -56,11 +56,11 @@ export const leads_to_render = {
             title: "Address Details",
             sectionId: 4,
             fields: {
-             street: { label: "Street" },
-             city: { label: "City" },
-             state_proviance: {label : "State"},
+             u_town: { label: "Street" },
+             u_district: { label: "District" },
+             u_state: {label : "State"},
              zip_postalcode: {label:"Zip"},
-             country: {label:"Country"},
+             u_country: {label:"Country"},
            },
         },
         contact_methods: {

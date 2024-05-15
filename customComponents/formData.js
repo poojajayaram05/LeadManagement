@@ -394,7 +394,7 @@ export const editLeadformData = {
     "maxLength": 25,
     // 'isRequired': true,
     "sectionName":"General",
-    "readonly":true
+
   },
  
 
@@ -419,16 +419,13 @@ export const editLeadformData = {
       "title": "First Name",
       "placeholder":"First Name",
       "maxLength": 25,
-      'isRequired': true,
       "sectionName":"General"
     },
     {
       "name": "last_name",
       "type": "TextInput",
       "title": "Last Name",
-
       "placeholder": "Last Name",
-      "isRequired": true,
       "autocomplete": "lastname",
       "sectionName":"General"
     },
@@ -463,37 +460,43 @@ export const editLeadformData = {
      
     },
     {
-      "name":"district",
-      "type": "TextInputAddress",
+      "name":"u_town",
+      "type": "TextInput",
+      "title": "Town",
+      "placeholder": "Town",
+      "sectionName":"Address"
+     
+    },
+    {
+      "name":"u_district",
+      "type": "TextInput",
       "title": "Street",
       "placeholder": "Street",
       "sectionName":"Address"
      
     },
     {
-      "name":"location",
-      "type": "TextInputAddress",
+      "name":"u_location",
+      "type": "TextInput",
       "title": "City",
-     
       "placeholder": "City",
       "sectionName":"Address",
-      "isRequired":true
+
      
     },
     {
-      "name":"state",
-      "type": "TextInputAddress",
+      "name":"u_state",
+      "type": "TextInput",
       "title": "State",  
    
       "placeholder": "State",
       "sectionName":"Address",
-     
-      "isRequired":true
+
      
     },
     {
-      "name":"postal_code",
-      "type": "TextInputAddress",
+      "name":"zip_postalcode",
+      "type": "TextInput",
       "title": "Postal Code",
 
       "placeholder": "Postal Code",
@@ -501,14 +504,13 @@ export const editLeadformData = {
      
     },
     {
-      "name":"country",
-      "type": "TextInputAddress",
+      "name":"u_country",
+      "type": "TextInput",
       "title": "Country",
    
       "placeholder": "Country",
       "sectionName":"Address",
-      "isRequired":true
-     
+   
     },
     {
       "name": "industry",
@@ -579,12 +581,12 @@ export const editLeadformData = {
       "title": "Business Phone",
       "inputType": "numeric",
       "placeholder":"Business Phone",
-      "isRequired": true,
+      //"isRequired": true,
       "sectionName":"Contact",
-      "validation": {
-        "regex": /^\d{10}$/,
-        "message": "Please enter a valid 10-digit phone number."
-      },
+      // "validation": {
+      //   "regex": /^\d{10}$/,
+      //   "message": "Please enter a valid 10-digit phone number."
+      // },
     },
     {
       "name": "mobile_phone",
@@ -592,12 +594,12 @@ export const editLeadformData = {
       "title": "Mobile Phone",
       "inputType": "numeric",
       "placeholder":"Mobile Phone",
-      "isRequired": true,
+      //"isRequired": true,
       "sectionName":"Contact",
-      "validation": {
-        "regex": /^\d{10}$/,
-        "message": "Please enter a valid 10-digit phone number."
-      },
+      // "validation": {
+      //   "regex": /^\d{10}$/,
+      //   "message": "Please enter a valid 10-digit phone number."
+      // },
     },
     {
       "name": "home_phone",
@@ -702,7 +704,7 @@ export const editLeadformData = {
       "type": "TextInput",
       "title": "Lead Title",
       "placeholder":"Lead Title",
-      "isRequired": true,
+      //"isRequired": true,
       "sectionName":"General"
     },
 
@@ -878,14 +880,14 @@ export const formData = {
        
       }, 
       {
-        "name":"location",
+        "name":"u_location",
         "type": "TextInput",
         "title": "Location",
         "placeholder": "Street",
         "sectionName":"Basic"
       }, 
       {
-        "name":"district",
+        "name":"u_district",
         "type": "TextInput",
         "title": "City",
        
@@ -895,7 +897,7 @@ export const formData = {
        
       }, 
       {
-        "name":"state",
+        "name":"u_state",
         "type": "TextInput",
         "title": "State",   
      
@@ -906,7 +908,7 @@ export const formData = {
        
       }, 
       {
-        "name":"town",
+        "name":"u_town",
         "type": "TextInput",
         "title": "Town",   
         "placeholder": "Town",
@@ -916,7 +918,7 @@ export const formData = {
       }, 
    
       {
-        "name":"country",
+        "name":"u_country",
         "type": "TextInput",
         "title": "Country",
      

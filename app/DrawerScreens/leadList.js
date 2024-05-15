@@ -190,7 +190,7 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
         </TouchableOpacity>
         
         <TouchableOpacity onPress={goToLeadWithFile}>
-            <Text style={styles.dropdownMenuItem}>Upload a CSV</Text>
+            <Text style={styles.dropdownMenuItem}>uploa a CSV</Text>
         </TouchableOpacity>
   
     </View>

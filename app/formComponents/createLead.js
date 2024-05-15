@@ -306,12 +306,12 @@ const searchAddress = async () => {
           console.log(element.name,data);
           setFormValues({
             ...formValues,
-            country: data.country.display_value,
-            state: data.state.display_value,
-            district: data.district,
-            location: data.location,
-            town:data.town,
-            zip_postalcode:data.postal_code
+            u_country: data.country.display_value,
+            u_state: data.state.display_value,
+            u_district: data.district,
+            u_location: data.location,
+            u_town:data.town,
+            u_zip_postalcode:data.postal_code
             
           });
           console.log("form values", formValues)
