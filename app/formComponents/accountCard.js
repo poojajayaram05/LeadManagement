@@ -268,7 +268,7 @@ import { femaleAvatar } from "../../assets/images";
 import { set } from "react-hook-form";
 import { companyIconn } from "../../assets/images";
 
-const AccountCard = ({ firstName, lastName, accountName, accountNumber, phone, email, sys_id, accountType, gender }) => {
+const AccountCard = ({ firstName, lastName, accountName, accountNumber, phone, email, sys_id, accountType, gender, title }) => {
   const [showSecondImage, setShowSecondImage] = useState(false);
   const [selectedStar, setSelectedStar] = useState(false);
   const { sysid, setSysId } = useIdStore();
@@ -345,8 +345,9 @@ const AccountCard = ({ firstName, lastName, accountName, accountNumber, phone, e
  
         <View style={styles.textContainer}>
           <Text style={styles.title}>{accountName}</Text>
-          <Text style={styles.subtitle}>{`${firstName} ${lastName}`}</Text>
+          <Text style={styles.subtitle}>{`${firstName} ${lastName}`}{title}</Text>
           <Text style={styles.subtitle}>{accountNumber}</Text>
+          {/* <Text style={styles.subtitle}>{title}</Text> */}
         </View>
         <View style={styles.actionsContainer}>
           <TouchableOpacity onPress={handleCall} style={styles.actionIcon}>

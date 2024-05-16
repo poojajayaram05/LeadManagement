@@ -138,7 +138,7 @@ const onSelectRadio = (item) => {
       }
       else{
        
-        const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_c/${sys_id}`;
+        const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_leads_c/${sys_id}`;
         console.log(postUrl);
         const token = SecureStore.getItem('token');
         const stoken = JSON.parse(token);

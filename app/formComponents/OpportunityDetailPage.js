@@ -239,7 +239,7 @@ const Info = () => {
     if (!section || !oppData) return null;
  
     return section.fields.map((row, index) => {
-      if (row.value === 'account.display_value') {
+      if (row.value == 'account.display_value') {
         <TouchableOpacity
         key={index}
         onPress={() => {
@@ -253,7 +253,7 @@ const Info = () => {
         }}>
         <DataRow color={'blue'} label={row.label} detail={oppData.account.display_value} />
       </TouchableOpacity>
-      } else if (row.value === 'contact.display_value') {
+      } else if (row.value == 'contact.display_value') {
         return(
           <TouchableOpacity
           key={index}

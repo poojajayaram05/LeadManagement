@@ -32,7 +32,9 @@
     "plugins": [
       "expo-router",
       "expo-build-properties",
-      "@morrowdigital/watermelondb-expo-plugin"
+      "@morrowdigital/watermelondb-expo-plugin",
+      "expo-font",
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true

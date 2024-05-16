@@ -56,7 +56,6 @@ export default function CheckInLocation() {
               
                
             <Button title='Check In' onPress={getCurrentLocation} color={"#023B5E"} />
-            <View><Text>Last checked in time :{lastCheckedTime}</Text></View>
             </View>
             }
             {location.coords && (
@@ -79,11 +78,11 @@ export default function CheckInLocation() {
                     />
                 </MapView>
             )}
-            {location!=='' &&
+           
             <View style={styles.locationButton}>
             <Button title='Check out' onPress={locationCheckOut} color={"#023B5E"}></Button>
             </View>
-                    }
+                    
         
         </View>
     

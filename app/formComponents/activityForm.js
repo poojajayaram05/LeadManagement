@@ -226,6 +226,7 @@ useEffect(() => {
 
 const onSubmit = async () => {
   const errors = validateForm();
+  console.log("form values", formValues)
   setFormValues(prevFormValues => ({ ...prevFormValues, ['associated_lead']: sysId }));
   setFormValues(prevFormValues => ({ ...prevFormValues, ['activity_owner']: username }))
   if (Object.keys(errors).length > 0) {
@@ -234,7 +235,10 @@ const onSubmit = async () => {
     console.log(validationErrors);
   }
 
-  else {  setFormValues(prevFormValues => ({ ...prevFormValues, ['associated_lead']: sysId }));
+  else {  
+   
+    setFormValues(prevFormValues => ({ ...prevFormValues, ['associated_lead']: sysId }));
+    console.log("form values", formValues)
   
     const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_activity_c`;
         const token = SecureStore.getItem('token');
@@ -282,7 +286,7 @@ const onSubmit = async () => {
 
 const renderFormElement = (element) => {
   const handleSelect = (item) => {
-   
+    setFormValues(prevFormValues => ({ ...prevFormValues, ['associated_lead']: sysId }));
     setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: item }));
     console.log('Selected value:', item);
     
@@ -330,25 +334,25 @@ const handleDateChange = (selectedDate, element) => {
 
 
     switch (element.type) {
-      case 'TextInputLead':
-        return (
-          <View>
-             <CustomInput
-                    key={element.name}
-                    title={element.title}
-                    placeholder={sysId}
-                    // control={control}
-                    name={element.name}
-                    onChange={(value) => setFormValues({ ...formValues, [element.name]: value } )}
-                    // errors={errors}
+      // case 'TextInputLead':
+      //   return (
+      //     <View>
+      //        <CustomInput
+      //               key={element.name}
+      //               title={element.title}
+      //               placeholder={sysId}
+      //               // control={control}
+      //               name={element.name}
+      //               onChange={(value) => setFormValues({ ...formValues, [element.name]: value } )}
+      //               // errors={errors}
                     
-                    value={sysId}
-                    readOnly={true}
-                />
+      //               value={sysId}
+      //               readOnly={true}
+      //           />
              
 
-            </View>
-        );
+      //       </View>
+      //   );
         case 'MultilineText':
                     return (
                         <View>

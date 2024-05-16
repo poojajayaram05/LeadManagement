@@ -20,12 +20,12 @@ export const leads_to_render = {
             title: "General Information",
             sectionId: 1,
             fields: {
-                lead_type: { label: "Lead Type" },
-                title: { label: "Title" },
+                
+                // title: { label: "Title" },
                 description: { label: "Description" },
                 number: { label: "Number" },
                 gender: { label: "gender" },
-                email: { label: "email" },
+                email: { label: "Email" },
                 lead_source: { label: "Lead Source" }
             },
         },
@@ -33,7 +33,7 @@ export const leads_to_render = {
             title: "Company Information",
             sectionId: 2,
             fields: {
-             company: { label: "Company" },
+             u_company: { label: "Company" },
              no_of_employees: { label: "No Of Employees" },
              annual_revenue:{label : "Annual Revenue"},
              job_title:{label:"Job Title"},  
@@ -99,7 +99,7 @@ export const personAccounts_to_render={
             title: "General Information",
             sectionId: 1,
             fields: {
-                title: { label: "Title" },
+                // title: { label: "Title" },
                 account_type: {label:"Account Type"},
                 account_name: { label: "Account Name" },
                 description: { label: "Description" },
@@ -162,9 +162,10 @@ export const personAccounts_to_render={
                 shipping_address:{label:"Shipping address"},
                 state_code:{label:"State"},
                 city:{label:"City"},
-                other_address:{label:"Other address"},
-                mailing_address:{label:"Mailing address"},
-                billing_address:{label:"Billing Address"},
+                country:{label:"Country"},
+                // other_address:{label:"Other address"},
+                // mailing_address:{label:"Mailing address"},
+                // billing_address:{label:"Billing Address"},
  
             }
         },

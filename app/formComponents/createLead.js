@@ -311,7 +311,7 @@ const searchAddress = async () => {
             u_district: data.district,
             u_location: data.location,
             u_town:data.town,
-            u_zip_postalcode:data.postal_code
+            zip_postalcode:data.postal_code
             
           });
           console.log("form values", formValues)

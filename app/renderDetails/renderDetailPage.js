@@ -124,14 +124,14 @@ console.log("outside useEffect", leadsObj)
                         key={index}
                         label={field.label}
                         detail={field.value.display_value || field.value || ''}
-                        style={{ color: (flag === 'contact' || flag === 'account') && !field.value && field.value.display_value ? 'blue' : 'black' }}
+                        
                       />
                     ) : (flag === 'contact' && field.value && field.value.display_value) ? (
                       <DataRow
                         key={index}
                         label={field.label}
                         detail={field.value.display_value || field.value || ''}
-                        style={{ color: (flag === 'contact' || flag === 'account') && !field.value && field.value.display_value ? 'blue' : 'black' }}
+                        
                       />
                     ) : (
                       <DataRow

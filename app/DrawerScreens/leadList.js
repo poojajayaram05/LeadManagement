@@ -50,6 +50,7 @@ const LeadList = () => {
   // const [searchQuery, setSearchQuery] = useState('');
   const [filters, setFilters] = useState({});
   const [filterModalVisible, setFilterModalVisible] = useState(false);
+  const[filteredData,setFilteredData]=useState('');
   const [index, setIndex] = useState(0);
   const [starredLeads, setStarredLeads] = useState([]);
   const[leadData, setleadData]=useState([]);
@@ -70,7 +71,17 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
 
   console.log(leadData);
 
-  const handleFilter = (newFilters, close = true) => {
+  // const handleFilter = (newFilters, close = true) => {
+  //   setFilters(newFilters);
+  //   if (close) {
+  //     setFilterModalVisible(false);
+  //   }
+  // };
+
+  const onFilter = (newFilters,updatedData, close=true) => {
+    setFilteredData(updatedData);
+    console.log('...................................Filtered Data:', updatedData);
+    console.log("....................................setFilteredData")
     setFilters(newFilters);
     if (close) {
       setFilterModalVisible(false);
@@ -88,19 +99,8 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
       </View>
     );
   }
-  // const filteredLeads = leadData.filter((item) => {
-  //   const fullName = `${item.firstname} ${item.lastname}`.toLowerCase();
-  //   return fullName.includes(searchQuery.toLowerCase());
-  // });
-  const filteredLeads = leadData.filter((item) => {
-    const fullName = `${item.firstname} ${item.lastname}`.toLowerCase();
-    const statusMatch = !filters.leadStatus || item.lead_status === filters.leadStatus;
-    const qualificationMatch = !filters.qualification || item.qualification === filters.qualification;
-    const genderMatch = !filters.gender || item.gender === filters.gender;
-    const textMatch = fullName.includes(searchQuery.toLowerCase());
-    return statusMatch && qualificationMatch && genderMatch && textMatch;
-  });
 
+  
   if (error) {
     return (
       <View style={styles.loadingContainer}>
@@ -108,6 +108,29 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
       </View>
     );
   }
+  // const filteredLeads = leadData.filter((item) => {
+  //   const fullName = `${item.firstname} ${item.lastname}`.toLowerCase();
+  //   return fullName.includes(searchQuery.toLowerCase());
+  // });
+  // const filteredLeads = leadData.filter((item) => {
+  //   const fullName = `${item.firstname} ${item.lastname}`.toLowerCase();
+  //   const statusMatch = !filters.leadStatus || item.lead_status === filters.leadStatus;
+  //   const qualificationMatch = !filters.qualification || item.qualification === filters.qualification;
+  //   const genderMatch = !filters.gender || item.gender === filters.gender;
+  //   const textMatch = fullName.includes(searchQuery.toLowerCase());
+  //   return statusMatch && qualificationMatch && genderMatch && textMatch;
+  // });
+
+    //search filter
+    const searchFiltered = leadData.filter((item) => {
+      const fullName = `${item.firstname} ${item.lastname}`.toLowerCase();
+      const textMatch = fullName.includes(searchQuery.toLowerCase());
+      console.log(textMatch, "leaddddddfcgvhbnjm mnhgfcgvhbnjm nbv");
+      console.log(searchFiltered, "leaddddddddcghjkl");
+      return textMatch; // Modify this logic to include other filters
+    });
+
+
 
   const renderItem = ({ item }) => (
     <TouchableOpacity>
@@ -120,6 +143,7 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
       number={item.number}
       qualification={item.qualification}
       gender={item.gender}
+      created_on={item.sys_created_on}
       sys_id={item.sys_id}
     />
   </TouchableOpacity>
@@ -129,20 +153,29 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
     <View style={styles.container}>
     <SafeAreaView style={{ marginHorizontal:20, flexDirection:'row'}}>
        <FontAwesome name='search' size={15} color='black' style={{marginTop:10, marginRight:10}}/>
-        <TextInput 
+        {/* <TextInput 
         placeholder='Search'
         //clearButtonMode='always'
         style={styles.searchBox}
         value={searchQuery}
         onChangeText={handleSearch}
-        ></TextInput>
+        ></TextInput> */}
+
+<TextInput
+            placeholder='Search'
+            style={styles.searchBox}
+            value={searchQuery}
+            onChangeText={setSearchQuery}
+          />
         <View>
         <TouchableOpacity onPress={toggleFilterModal}>
-          <FontAwesome name='filter' size={30} color='black' style={{marginLeft:230}} />
+        <View style={styles.filter}>
+          <FontAwesome name='filter' size={20} color='black' style={{marginLeft:240, marginTop:3}} />
+          </View>
         </TouchableOpacity>
       </View>
  
-      <FilterModal
+      {/* <FilterModal
         isVisible={filterModalVisible}
         onClose={() => setFilterModalVisible(false)}
         onFilter={handleFilter}
@@ -163,13 +196,44 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
             dropdownData: ['male', 'female'],
           },
         ]}
+      /> */}
+
+<FilterModal
+        isVisible={filterModalVisible}
+        onClose={() => setFilterModalVisible(false)}
+        onFilter={onFilter}
+        filterOptions={[
+          {
+            title: 'Qualification:',
+            key: 'qualification',
+            dropdownData: ['cold', 'warm', 'hot'],
+          },
+          {
+            title: 'Gender:',
+            key: 'gender',
+            dropdownData: ['male', 'female'],
+          },
+          // {
+          //   title: 'Created Date:',
+          //   key: 'createdDate',
+          //   dropdownData: ['Today', 'Yesterday', 'This Week', 'This Month'],
+          // },
+        ]}
+        //leadData={leadData}
+        dataList={leadData}
+        flag="leadlist"
       />
        </SafeAreaView>
-       <FlatList
+       {/* <FlatList
               data={filteredLeads}
               renderItem={renderItem}
               keyExtractor={(item, index) => index.toString()}
-            />
+            /> */}
+                <FlatList
+        data={filteredData||(leadData&&searchFiltered)}
+        renderItem={renderItem}
+        keyExtractor={(item, index) => index.toString()}
+      />
      <View>
 
   <TouchableOpacity style={styles.plusButton} onPress={onClickPlus} > 
@@ -190,7 +254,7 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
         </TouchableOpacity>
         
         <TouchableOpacity onPress={goToLeadWithFile}>
-            <Text style={styles.dropdownMenuItem}>uploa a CSV</Text>
+            <Text style={styles.dropdownMenuItem}>Add a CSV</Text>
         </TouchableOpacity>
   
     </View>

@@ -53,5 +53,6 @@ export {default as femaleAvatar} from './femaleAvatar.png';
 export {default as LeadLocation} from './leadLocation.png'
 export {default as Company} from './company.jpg'
 export {default as companyIconn} from './companyIconn.jpg';
+export {default as ContactAvatar} from './contactAvatar.png';
 
 

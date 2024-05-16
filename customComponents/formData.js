@@ -543,7 +543,7 @@ export const editLeadformData = {
     },
    
     {
-      "name": "company",
+      "name": "u_company",
       "type": "TextInput",
       "title": "Company Name",
       "description": "Enter Company name",
@@ -961,7 +961,7 @@ export const formData = {
       },
       
       {
-        "name": "company",
+        "name": "u_company",
         "type": "TextInput",
         "title": "Company Name",
         "description": "Enter Company name",
@@ -1958,16 +1958,16 @@ export const personAccountForm =[
       'isRequired': true,
       sectionName: "General",
     },
-    {
-      name: "title",
-      type: "TextInput",
-      title: "Title",
-      placeholder: "title",
-      maxLength: 25,
-      inputType: "text",
-      'isRequired': true,
-      sectionName: "General",
-    },
+    // {
+    //   name: "title",
+    //   type: "TextInput",
+    //   title: "Title",
+    //   placeholder: "title",
+    //   maxLength: 25,
+    //   inputType: "text",
+    //   'isRequired': true,
+    //   sectionName: "General",
+    // },
     {
       "name": "gender",
       "type":"dropdown",
@@ -5095,16 +5095,16 @@ export const editAccountFormData = {
    
       sectionName: "General",
     },
-    {
-      name: "title",
-      type: "TextInput",
-      title: "Title",
-      placeholder: "title",
-      maxLength: 25,
-      inputType: "text",
+    // {
+    //   name: "title",
+    //   type: "TextInput",
+    //   title: "Title",
+    //   placeholder: "title",
+    //   maxLength: 25,
+    //   inputType: "text",
      
-      sectionName: "General",
-    },
+    //   sectionName: "General",
+    // },
 
     {
       name: "salutation",
@@ -6023,15 +6023,15 @@ export const editPersonAccount={
         inputType: "text",
         sectionName: "General",
       },
-      {
-        name: "title",
-        type: "TextInput",
-        title: "Title",
-        placeholder: "title",
-        maxLength: 25,
-        inputType: "text",
-        sectionName: "General",
-      },
+      // {
+      //   name: "title",
+      //   type: "TextInput",
+      //   title: "Title",
+      //   placeholder: "title",
+      //   maxLength: 25,
+      //   inputType: "text",
+      //   sectionName: "General",
+      // },
       {
         "name": "gender",
         "type":"RadioButton",
