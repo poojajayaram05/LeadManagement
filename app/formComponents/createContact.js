@@ -96,7 +96,7 @@ const onSelectRadio = (item) => {
 
 
   const goBack=()=>{
-    router.back();
+    router.navigate('headerScreens/DrawerScreens/contacts');
   }
 
 

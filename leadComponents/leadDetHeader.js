@@ -222,7 +222,7 @@ const LeadDet = () => {
   };
  
   const handleBack = () => {
-    router.navigate('/DrawerScreens/leadList');
+    router.navigate('headerScreens/DrawerScreens/leadList');
   };
  
   const handleCall = () => {

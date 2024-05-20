@@ -2,10 +2,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Dashboard from "./DrawerScreens/dashboard";
-import LeadList from "./DrawerScreens/leadList";
+import Dashboard from './headerScreens/DrawerScreens/dashboard';
+import LeadList from "./headerScreens/DrawerScreens/leadList";
 import { Lead } from "../assets/images";
-import TaskCard from "../customComponents/taskList";
 import { View } from "@/components/Themed";
 
 function TabMenu(){

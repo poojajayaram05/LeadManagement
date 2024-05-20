@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, FlatList, TouchableOpacity, Text, StyleSheet } from 'react-native';
-import SettingCard from '../settingComponent/SettingCard';
-import { settingData } from '../../customComponents/formData';
- 
+// import SettingCard from '../settingComponent/SettingCard';
+import { settingData } from '../../../customComponents/formData'
+import SettingCard from '../../../customComponents/formData';
+// import SettingCard from '../../../customComponents/formData';
 const Setting = () => {
   const renderItem = ({ item }) => (
     <TouchableOpacity onPress={() => console.log(`Clicked on ${item.title}`)}>

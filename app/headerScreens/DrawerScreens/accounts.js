@@ -210,12 +210,13 @@
 
 import React, { useState,useEffect } from "react";
 import { useCallback } from "react";
-import LeadItem from "../../leadComponents/leadCard";
+// import LeadItem from "../../leadComponents/leadCard";
 import { router } from "expo-router";
 import { TouchableOpacity } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
-import { FetchAccounts } from "../service/fetchAccounts";
+// import { FetchAccounts } from "../service/fetchAccounts";
+import { FetchAccounts } from "../../service/fetchAccounts";
 import {
   View,
   FlatList,
@@ -223,11 +224,12 @@ import {
   Text,
   TextInput
 } from "react-native";
-import AccountCard from "../formComponents/accountCard";
+// import AccountCard from "../formComponents/accountCard";
+import AccountCard from "../../formComponents/accountCard";
 import { useQuery } from "@tanstack/react-query";
 import { ActivityIndicator } from "react-native";
-import FilterModal from "../formComponents/filterModal";
- 
+// import FilterModal from "../formComponents/filterModal";
+import FilterModal from "../../formComponents/filterModal"; 
  
 const ListOfAccounts = () => {
   const [routes] = useState([

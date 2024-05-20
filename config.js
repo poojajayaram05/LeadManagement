@@ -4,6 +4,8 @@ export const ACCOUNT_API='https://ven06798.service-now.com/api/now/table/x_rptp_
 export const CONTACT_API='https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_contact_c?sysparm_display_value=true';
 export const ACTIVITY_API='https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_activity_c?sysparm_display_value=true';
 export const OPPORTUNITY_API='https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_opportunity_c?sysparm_display_value=true';
+export const CHECKIN_LOCATION='https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_agent_checkin_info';
+;
 
      
   

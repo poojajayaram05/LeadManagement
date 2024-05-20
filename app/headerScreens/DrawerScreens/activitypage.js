@@ -14,11 +14,12 @@ import {
 } from 'react-native';
 import moment from 'moment';
 import Swiper from 'react-native-swiper';
-import useIdStore from '../leadStore';
+// import useIdStore from '../leadStore';
+import useIdStore from '../../leadStore';
 import { Ionicons } from '@expo/vector-icons';
-import { FetchOwnerActivities } from '../service/fetchOwnerActivities';
+// import { FetchOwnerActivities } from '../service/fetchOwnerActivities';
  import { router } from 'expo-router';
- 
+ import { FetchOwnerActivities} from '../../service/fetchOwnerActivities';
 const { width } = Dimensions.get('window');
  
 export default function Example() {

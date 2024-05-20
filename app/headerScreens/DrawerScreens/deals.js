@@ -169,7 +169,8 @@ import { router } from 'expo-router';
 import { TouchableOpacity } from 'react-native';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { ActivityIndicator } from 'react-native';
-import { FetchOpportunities } from '../service/fetchOpportunities';
+// import { FetchOpportunities } from '../service/fetchOpportunities';
+import {FetchOpportunities} from '../../service/fetchOpportunities';
 import {
   SafeAreaView,
   View,
@@ -181,9 +182,10 @@ import {
 } from 'react-native';
  
 import * as SecureStore from 'expo-secure-store';
-import OpportunityItem from '../../customComponents/opportuntityCard';
+// import OpportunityItem from '../../customComponents/opportuntityCard';
+import OpportunityItem from '../../../customComponents/opportuntityCard';
 import { useQuery } from '@tanstack/react-query';
-import FilterModal from '../formComponents/filterModal';
+import FilterModal from '../../formComponents/filterModal';
  
 const Opportunity = () => {
   const goToCreateOpportunity=()=>{

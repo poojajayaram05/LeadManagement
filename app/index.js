@@ -3,15 +3,15 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Drawer } from 'expo-router/drawer';
 import { Button, View, Text } from 'react-native';
 import { StyleSheet } from 'react-native';
-import RegisterScreen from './authScreens/register';
+// import RegisterScreen from './authScreens/register';
 import { router } from 'expo-router';
 import { AuthProvider } from '@/context/authContext';
-import Dashboard from './DrawerScreens/dashboard';
-import LeadList from './DrawerScreens/leadList';
+// import Dashboard from './DrawerScreens/dashboard';
+
 import LoginScreen from './authScreens/login';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
-import NetworkStatus from './checkNetwork';
-import CheckNetwork from './checkNetwork';
+// import NetworkStatus from './checkNetwork';
+// import CheckNetwork from './checkNetwork';
 
 
 

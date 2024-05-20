@@ -137,7 +137,7 @@ LogBox.ignoreAllLogs();
   // };
 
   const goBack = () => {
-    router.back();
+    router.navigate('headerScreens/DrawerScreens/accounts');
   };
 
 

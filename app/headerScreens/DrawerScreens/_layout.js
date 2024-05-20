@@ -1,25 +1,27 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import { useColorScheme } from '@/components/useColorScheme';
+// import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+// import { useFonts } from 'expo-font';
+// import { Stack } from 'expo-router';
+// import * as SplashScreen from 'expo-splash-screen';
+// import { useEffect } from 'react';
+// import { useColorScheme } from '@/components/useColorScheme';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Drawer } from 'expo-router/drawer';
 import { Slot } from 'expo-router';
 import { Feeds } from '@/assets/images';
 //import Icon from 'react-native-ionicons'
 import { FontAwesome6, Ionicons, MaterialIcons } from '@expo/vector-icons';
-import CustomDrawerContent from '../../customComponents/CustomDrawerContent';
-import { Button, StyleSheet } from 'react-native';
-import { Tabs } from 'expo-router/tabs';
-import ArrowBack from '../../customComponents/arrowBack';
+// import CustomDrawerContent from '../../customComponents/CustomDrawerContent';
+import CustomDrawerContent from '../../../customComponents/CustomDrawerContent';
+// import { Button, StyleSheet } from 'react-native';
+// import { Tabs } from 'expo-router/tabs';
+// import ArrowBack from '../../customComponents/arrowBack';
 import { router } from 'expo-router';
-import { TouchableOpacity } from 'react-native';
+// import { TouchableOpacity } from 'react-native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import HeaderRight from '../../customComponents/searchIcon';
-import NetworkStatus from '../checkNetwork';
+// import HeaderRight from '../../customComponents/searchIcon';
+import HeaderRight from '../../../customComponents/searchIcon';
+// import NetworkStatus from '../checkNetwork';
 
 
 

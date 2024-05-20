@@ -1,15 +1,18 @@
 import React ,{useState, useEffect}from 'react';
 //import { leadData } from './leadData';
 import { useCallback } from 'react';
-import LeadItem from '../../leadComponents/leadCard';
+import LeadItem from '../../../leadComponents/leadCard';
+// import LeadItem from '../../leadComponents/leadCard';
 import { router } from 'expo-router';
 import { TouchableOpacity } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
-import {FetchLeads} from '../service/fetchLeads'
+// import {FetchLeads} from '../service/fetchLeads'
+import {FetchLeads} from '../../service/fetchLeads';
 import { ActivityIndicator } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
-import FilterModal from '../formComponents/filterModal';
+// import FilterModal from '../formComponents/filterModal';
+import FilterModal from '../../formComponents/filterModal';
 import {
   SafeAreaView,
   View,
@@ -23,7 +26,7 @@ import {
 // import {leadData} from '../../customComponents/formData';
 import * as SecureStore from 'expo-secure-store';
 import { TextInput } from 'react-native-gesture-handler';
-import useIdStore from '../leadStore';
+import useIdStore from '../../leadStore';
  
 
 const LeadList = () => {

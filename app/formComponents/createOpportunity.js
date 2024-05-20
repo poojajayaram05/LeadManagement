@@ -103,7 +103,7 @@ function extractDate(timestamp) {
   };
  
   const goBack=()=>{
-    router.back();
+    router.navigate('headerScreens/DrawerScreens/deals');
   }
 
   LogBox.ignoreAllLogs();

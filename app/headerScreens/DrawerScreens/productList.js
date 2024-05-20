@@ -1,10 +1,12 @@
 import React from 'react';
 import { SafeAreaView, FlatList, StyleSheet, TouchableOpacity, Text,View } from 'react-native';
-import ProductCard from '../../productComponents/productCard';
-import { productData } from '../../customComponents/formData';
+// import ProductCard from '../../productComponents/productCard';
+
+// import { productData } from '../../customComponents/formData';
 import { router } from 'expo-router';
-import AllProductCard from '../../productComponents/allProducts';
- 
+// import AllProductCard from '../../productComponents/allProducts';
+import AllProductCard from '../../../productComponents/allProducts';
+import ProductCard from '../../../productComponents/productCard';
 // const goToCreateProduct =() => {
 //   router.navigate('/formComponents/addProduct')
 // }

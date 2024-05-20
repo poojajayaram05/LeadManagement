@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import SmallCard from '../../dashboardComponents/smallCard';
-import Scrollcard from '../../dashboardComponents/scrollCard';
-import Bigcard from '../../dashboardComponents/bigCard';
-import ChartLine from '../../dashboardComponents/lineChart';
+// import SmallCard from '../../dashboardComponents/smallCard';
+// import Scrollcard from '../../dashboardComponents/scrollCard';
+// import Bigcard from '../../dashboardComponents/bigCard';
+// import ChartLine from '../../dashboardComponents/lineChart';
+import SmallCard from '../../../dashboardComponents/bigCard';
+import Scrollcard from '../../../dashboardComponents/scrollCard';
+import ChartLine from '../../../dashboardComponents/lineChart';
+import Bigcard from '../../../dashboardComponents/bigCard';
 import { router } from 'expo-router';
 import { Modal } from 'react-native';
-import CheckNetwork from '../checkNetwork';
-
+// import CheckNetwork from '../checkNetwork';
+import CheckNetwork from '../../checkNetwork';
  
 const total_leads = 0;
 const total_calls = 1;
@@ -159,9 +163,6 @@ const Dashboard = () => {
 </View>
 
           )}
-
-     
- 
     </View>
   );
 };

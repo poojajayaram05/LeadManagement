@@ -186,9 +186,13 @@ import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, FlatList, StyleSheet, Text, ActivityIndicator, View, TextInput } from 'react-native';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { useQuery } from '@tanstack/react-query';
-import { FetchContacts } from '../service/fetchContacts';
-import FilterModal from '../formComponents/filterModal';
-import ContactItem from '../../customComponents/contactCard';
+// import { FetchContacts } from '../service/fetchContacts';
+import {FetchContacts} from '../../service/fetchContacts';
+// import FilterModal from '../formComponents/filterModal';
+import FilterModal from '../../formComponents/filterModal';
+// import ContactItem from '../../formComponents/filterModal';
+// import ContactItem from '../../customComponents/contactCard';
+import ContactItem from '../../../customComponents/contactCard'
 import { router } from 'expo-router';
  
   const ContactList = () => {
