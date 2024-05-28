@@ -73,8 +73,13 @@ import * as DocumentPicker from "expo-document-picker";
 import { CustomInput } from "../../customComponents/customInput";
 import { Ionicons } from "@expo/vector-icons";
 import CustomHeader from "../../customComponents/customLeadHeader";
+import { router } from "expo-router";
 const UploadFile = () => {
   const [result, setResult] = useState({});
+  
+  const goToDashboard=()=>{
+    router.navigate('headerScreens/DrawerScreens/dashboard')
+  }
 
   const pickDocument = async () => {
     let resultDoc = await DocumentPicker.getDocumentAsync({});
@@ -104,7 +109,7 @@ const UploadFile = () => {
 
   return (
     <View style={styles.background}>
-      <CustomHeader title={"Add Leads Using File Upload"}/>
+      <CustomHeader title={"Add Leads Using File Upload"} onPress={goToDashboards}/>
       <View style={styles.container}>
       <Text style={styles.label}>Enter the CSV file to add leads</Text>
       <View style={styles.inputContainer}>

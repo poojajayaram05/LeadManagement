@@ -132,7 +132,7 @@ const onSelectRadio = (item) => {
  
  
   const goBack=()=>{
-    router.back();
+    router.navigate('renderDetails/renderDetailPage');
   }
  
  
@@ -193,7 +193,7 @@ const onSelectRadio = (item) => {
  
           console.log("Successfully posted",response);
           Alert.alert("Successfully Submitted!")
-          router.replace('/DrawerScreens/contacts')
+          router.navigate('renderDetails/renderDetailPage');
         }
        
    

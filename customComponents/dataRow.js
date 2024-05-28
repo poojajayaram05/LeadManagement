@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
     textAlign: 'right',
+    flexShrink: 1
   },
   data: {
     color: '#023B5E',

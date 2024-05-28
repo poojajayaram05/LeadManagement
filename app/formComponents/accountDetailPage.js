@@ -233,7 +233,6 @@ import { FetchAccountDetails } from '../service/fetchAccountDetails';
 import { useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { corporateAccounts_to_render, personAccounts_to_render } from '../../detailPagesData';
- 
 import DataRow from '../../customComponents/dataRow';
 import AccountHeader from '../../customComponents/accountDetailHeader';
 import { router } from 'expo-router';

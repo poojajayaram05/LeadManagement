@@ -82,26 +82,6 @@ export default function AppLayout() {
           ),
         }}
       />
- 
-      {/* <Stack.Screen
-        name="requirements"
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="list-alt" size={size} color={color} />
-          ),
-        }}
-      />
-    
-         <Stack.Screen
-        name="callLogs"
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="call-outline" size={size} color={color} />
-          ),
-        }}
-      /> */}
            <Stack.Screen
         name="leadScore"
         options={{
@@ -121,17 +101,6 @@ export default function AppLayout() {
           ),
         }}
       />
-      {/* <Stack.Screen
-        name="task"
-        // component={Task} // Assuming you have a TaskScreen component
-        options={{
-          headerShown: true,
- 
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="tasks" size={size} color={color} />
-          ),
-        }}
-      /> */}
     </Tabs>
     </QueryClientProvider>
   );

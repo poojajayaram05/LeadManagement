@@ -20,17 +20,13 @@ import ModalSelector from 'react-native-modal-selector-searchable';
 export default function CreateLead() {
 
     const [isCollapsed, setIsCollapsed] = useState({
-      
         Basic: false,
         Additional: false,
-      
       })
-      const [zipCode, setZipCode] = useState(''); // State to store entered zip code
+    const [zipCode, setZipCode] = useState(''); // State to store entered zip code
     const [modalVisible, setModalVisible] = useState(false); // State to control modal visibility
-    //const [addressInfo, setAddressInfo] = useState({});
-    const[addressInfo, setAddressInfo]=useState()
+    const [addressInfo, setAddressInfo]=useState()
     const token = SecureStore.getItem('token');
- 
     const stoken = JSON.parse(token);
     const apiToken = stoken.accessToken;
 
@@ -43,18 +39,14 @@ export default function CreateLead() {
     setZipCode(item);
   }
 
-    
-
       const toggleSection = (sectionName) => {
         setIsCollapsed({ ...isCollapsed, [sectionName]: !isCollapsed[sectionName] });
       };
       const [alternateEmailCount, setAlternateEmailCount] = useState(0);
-
       const onAddAlternateEmail = () => {
         if (alternateEmailCount < 2) {
             setAlternateEmailCount(prevCount => prevCount + 1);
           }
-        
       };
 
     const username= SecureStore.getItem('username');
@@ -69,18 +61,6 @@ export default function CreateLead() {
     const [location, setLocation]=useState('');
     const[district, setDistrict]=useState('')
     const [selectedAddress, setSelectedAddress] = useState("");
-  //   this.state = {
-  //     textInputValue: ''
-  // }
-    
-
-
-//   const handleSelect = (item) => {a
-//     setSelectedValue(item);
-//     setFormValues(prevFormValues => ({ ...prevFormValues, selectedValue: item.value }));
-//     console.log('Selected value:', item.value);
-// };
-
 
 LogBox.ignoreAllLogs();
 
@@ -91,30 +71,15 @@ const onSelectRadio = (item) => {
 }
 let index = 0;
 
-const data = [
-  { key: index++, section: true, label: 'Fruits' },
-  { key: index++, label: 'Red Apples' },
-  { key: index++, label: 'Cherries' },
-  { key: index++, label: 'Cranberries', accessibilityLabel: 'Tap here for cranberries' },
-  // etc...
-  // Can also add additional custom keys which are passed to the onChange callback
-  { key: index++, label: 'Vegetable', customKey: 'Not a fruit' }
-];
-
-
-
-
   const validateForm = () => {
     const errors = {};
     formData.elements.forEach((element) => {
-      // Check if the field is visible based on lead type
       if (element.sectionName === "General" && formValues["lead_type"] === "company") {
-        // Skip validation for hidden fields
+       
         if (element.name === "salutation" || element.name === "first_name" || element.name === "last_name"|| element.name==="gender") {
           return;
         }
       }
-      // Perform validation for visible fields
       if (element.isRequired && !formValues[element.name]) {
         errors[element.name] = `${element.title} is required`;
       }
@@ -125,11 +90,9 @@ const data = [
     return errors;
   };
 
-
   const goBack=()=>{
     router.navigate('headerScreens/DrawerScreens/leadList');
   }
-
 
   useEffect(() => {
     const getUsername = async () => {
@@ -141,46 +104,9 @@ const data = [
     getUsername();
 }, []);
 
-
-
-// const addressInfo = 
-//   {
-//     "result": [
-//       {
-//         "country": {
-//           "link": "https://ven06798.service-now.com/api/now/table/x_rptp_los_loan_or_los_countries/a28a5747ffb98a9019a8ffda7c4fd9b5",
-//           "value": "a28a5747ffb98a9019a8ffda7c4fd9b5"
-//         },
-//         "town": "Port Blair",
-//         "sys_mod_count": "0",
-//         "sys_updated_on": "2024-05-13 11:09:42",
-//         "sys_tags": "",
-//         "sys_id": "7741764f47468650e9ddbf66706d43f3",
-//         "sys_updated_by": "bhavani",
-//         "sys_created_on": "2024-05-13 11:09:42",
-//         "district": "South Andaman",
-//         "location": "Haddo",
-//         "state": {
-//           "link": "https://ven06798.service-now.com/api/now/table/x_rptp_los_loan_or_los_state/15148e8f470e4650e9ddbf66706d439b",
-//           "value": "15148e8f470e4650e9ddbf66706d439b"
-//         },
-//         "postal_code": "744102",
-//         "sys_created_by": "bhavani"
-//       }
-//     ]
-//   }
-
-
 const searchAddress = async () => { 
   setModalVisible(true);
   console.log("zipcode",zipCode)
-
- 
-    // setModalVisible(true);
-    //   const response = await axios.get(`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_postal_code?sysparm_query=postal_code=744102&sysparm_display_value=true`); 
-    //   console.log(zipCode)
-    //   setAddressInfo(response.data); 
-    //   //setModalVisible(true); 
     const getAddressUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_postal_code?sysparm_query=postal_code=${zipCode}&sysparm_display_value=true` ;
     try {
       console.log(getAddressUrl)
@@ -189,7 +115,6 @@ const searchAddress = async () => {
             headers: {
               'Content-Type': 'application/json',
               'Authorization' : 'Bearer ' + apiToken
-             
             },
 
           })
@@ -203,18 +128,12 @@ const searchAddress = async () => {
       
   }
 }
-
-
-
-
-
     const onSubmit = async () => {
       console.log("usernameee", username);
       console.log("Form data", formValues);
       setFormValues(prevFormValues => ({ ...prevFormValues, ['new_owner']: username}));
       const errors = validateForm();
       if (Object.keys(errors).length > 0) {
-        // If there are validation errors, set them in state
         setValidationErrors(errors);
         console.log(validationErrors);
       }
@@ -226,13 +145,7 @@ const searchAddress = async () => {
         const stoken = JSON.parse(token);
         const apiToken = stoken.accessToken;
         console.log(apiToken);   
-        // const token="DeC8cB2g6op02J_9-8cvJDwpA_5QTiL_9x8VnZLmwHy3QcoqoVR7KuhWUs-M0KgzLFLlp1NB8d5kekkbt3mCYQ";
         console.log("Form data", formValues);
-        // try{
-            
-        //     const response = axios.post(`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_management`, formValues);
-        //     console.log('success',response);
-        // }
         try{
         const response = await fetch(postUrl, {
             method: 'POST',
@@ -246,31 +159,14 @@ const searchAddress = async () => {
 
           console.log("Successfully posted",response);
           Alert.alert("Successfully Submitted!")
-          router.replace('/DrawerScreens/leadList')
+          router.navigate('headerScreens/DrawerScreens/leadList');
         }
-        
-    
             catch(err){
                 console.log("error");
             }
           }
 
         }
-    // const toggleSection = (section) => {
-    //     switch (section) {
-    //         case 'section1':
-    //             setIsSection1Collapsed(!isSection1Collapsed);
-    //             break;
-    //         case 'section2':
-    //             setIsSection2Collapsed(!isSection2Collapsed);
-    //             break;
-    //         case 'section3':
-    //             setIsSection3Collapsed(!isSection3Collapsed);
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    // };
     const renderFormElements = (sectionName) => {
         return formData.elements
           .filter((element) => element.sectionName === sectionName)
@@ -289,8 +185,6 @@ const searchAddress = async () => {
       }
 
     const renderFormElement = (element) => {
-
-
         const handleSelect = (item) => {
             //setSelectedValue(item);
             setFormValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item }));
@@ -302,7 +196,6 @@ const searchAddress = async () => {
 
         }
         const saveAddress=(data)=>{
-          //setFormValues({ ...formValues, [element.name]: value })
           console.log(element.name,data);
           setFormValues({
             ...formValues,
@@ -317,17 +210,12 @@ const searchAddress = async () => {
           console.log("form values", formValues)
         }
         
-
         const starMark = element.isRequired ? <Text style={{ color: 'red' }}> *</Text> : null;
-
 
         switch (element.type) {
           case 'TextInputAddress':
             return(
-              // Inside your return statement in the CreateLead component
-
               <View>
-             
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                  <CustomInput
                         key={element.name}
@@ -348,7 +236,6 @@ const searchAddress = async () => {
                   <Ionicons name="search" size={24} />
                 </TouchableOpacity>
               </View>
-              {/* Modal for address selection */}
               {modalVisible && (
        <Modal
        animationType="slide"
@@ -358,7 +245,7 @@ const searchAddress = async () => {
      >
        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
        <View style={{ backgroundColor: 'white', padding: 20, borderRadius: 10, borderColor: 'black' }}>
-  <ScrollView style={styles.scrollViewContainer}>
+      <ScrollView style={styles.scrollViewContainer}>
     {addressInfo && addressInfo.result ? ( // Check if addressInfo and addressInfo.result are available
       // Display address information
       addressInfo.result.map((address, index) => (
@@ -394,7 +281,6 @@ const searchAddress = async () => {
             case 'TextInput':
                 return (
                   <View>
-                      {/* <Text style={styles.label}>{element.title}{starMark} </Text> */}
                     <CustomInput
                         key={element.name}
                         title={element.title}
@@ -424,7 +310,6 @@ const searchAddress = async () => {
                           value={formValues[element.name] || ''}
                           inputType={element.inputType}
                         />
-                        {/* Render alternate email fields */}
                         {[...Array(alternateEmailCount)].map((_, i) => (
                           <CustomInput
                             key={`alternate_email${i + 1}`}
@@ -512,10 +397,8 @@ const searchAddress = async () => {
                           <Text style={styles.label}>{element.title}</Text>
                           <View style={styles.switch}>
                             <CustomSwitch onToggle={handleSwitch}
-
                           /></View>
                           </View>
-                         
                        </View>
                         )
                         case 'TextInputO':
@@ -525,15 +408,12 @@ const searchAddress = async () => {
                                  key={element.name}
                                  title={element.title}
                                  placeholder={username}
-                                 // control={control}
+                              
                                  value={username}
                                  name={element.name}
-                                 // errors={errors}
-                                //  readOnly={true}
                              />
                              </View>
                           )
-              
     };
 }
 
@@ -564,26 +444,6 @@ const searchAddress = async () => {
             </View>
 
             <Button title="Submit" onPress={onSubmit} color="#023B5E" />
-      
-           
-            {/* <Modal
-              animationType="slide"
-              transparent={true}
-              visible={modalVisible}
-              onRequestClose={closeModal}
-          >
-              <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
-                  <View style={{ backgroundColor: 'white', padding: 20, borderRadius: 10 }}>
-                      <Text>Country: {addressInfo.country}</Text>
-                      <Text>State: {addressInfo.state}</Text>
-                      <Text>Address: {addressInfo.address}</Text>
-                      <TouchableOpacity onPress={closeModal}>
-                          <Text style={{ color: 'blue', marginTop: 10 }}>Close</Text>
-                      </TouchableOpacity>
-                  </View>
-              </View>
-          </Modal> */}
-       
             </View>
           
         </ScrollView>
@@ -624,7 +484,6 @@ const styles = StyleSheet.create({
     },
     section: {
         marginBottom: 20,
-        
     },
     scrollViewContainer: {
       maxHeight: 350, // Set the maximum height for scrolling

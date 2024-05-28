@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Button,Image,ScrollView } from 'react-native';
 import { router } from 'expo-router';
 import { useOpportunityStore } from '../app/leadStore';
-import { Ionicons } from '@expo/vector-icons';
 import useIdStore from '../app/leadStore';
 import { FontAwesome } from '@expo/vector-icons';
  
@@ -10,14 +9,10 @@ const OpportunityItem = ({  OpportunityName, ProbabilityValue,ForecastCloseDate,
    
   const [showSecondImage, setShowSecondImage] = useState(false);
   const[selectedStar, setSelectedStar]=useState(false);
-
   const{opportunityId, setOpportunityId}=useOpportunityStore();
   const [showDropdown, setShowDropdown] = useState(false);
   const{sysId, setSysId}=useIdStore();
   const{flag, setFlag}=useIdStore();
-
-
-
 
 const handleNavigateToLeadDetails = () => {
   router.navigate(`/renderDetails/renderDetailPage`);
@@ -43,9 +38,8 @@ return (
       <Text style={[styles.subtitle, styles.bottomRight]}>INR {OpportunityValue}</Text>
   </View>
 </View>
-
 </View>
-        </View>
+</View>
     </TouchableOpacity>
 );
 };

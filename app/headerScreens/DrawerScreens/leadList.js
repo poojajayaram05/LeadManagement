@@ -1,17 +1,11 @@
 import React ,{useState, useEffect}from 'react';
-//import { leadData } from './leadData';
-import { useCallback } from 'react';
 import LeadItem from '../../../leadComponents/leadCard';
-// import LeadItem from '../../leadComponents/leadCard';
 import { router } from 'expo-router';
 import { TouchableOpacity } from 'react-native';
-import { TabView, TabBar } from 'react-native-tab-view';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
-// import {FetchLeads} from '../service/fetchLeads'
 import {FetchLeads} from '../../service/fetchLeads';
 import { ActivityIndicator } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
-// import FilterModal from '../formComponents/filterModal';
 import FilterModal from '../../formComponents/filterModal';
 import {
   SafeAreaView,
@@ -23,12 +17,11 @@ import {
   Button,
   ScrollView
 } from 'react-native';
-// import {leadData} from '../../customComponents/formData';
+
 import * as SecureStore from 'expo-secure-store';
 import { TextInput } from 'react-native-gesture-handler';
 import useIdStore from '../../leadStore';
  
-
 const LeadList = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const{flagCreate, setFlagCreate}=useIdStore();
@@ -49,15 +42,12 @@ const LeadList = () => {
     router.navigate("/formComponents/addLeadsByDoc");
   }
 
-  // const [leadData, setLeadData] = useState([]);
-  // const [searchQuery, setSearchQuery] = useState('');
   const [filters, setFilters] = useState({});
   const [filterModalVisible, setFilterModalVisible] = useState(false);
   const[filteredData,setFilteredData]=useState('');
   const [index, setIndex] = useState(0);
   const [starredLeads, setStarredLeads] = useState([]);
   const[leadData, setleadData]=useState([]);
-  //const [isLoading, setIsLoading] = useState(true);
   const[searchQuery, setSearchQuery]=useState('')
 
   const handleSearch=(item)=>{
@@ -73,13 +63,6 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
   }, [data]);
 
   console.log(leadData);
-
-  // const handleFilter = (newFilters, close = true) => {
-  //   setFilters(newFilters);
-  //   if (close) {
-  //     setFilterModalVisible(false);
-  //   }
-  // };
 
   const onFilter = (newFilters,updatedData, close=true) => {
     setFilteredData(updatedData);
@@ -103,7 +86,6 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
     );
   }
 
-  
   if (error) {
     return (
       <View style={styles.loadingContainer}>
@@ -111,29 +93,13 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
       </View>
     );
   }
-  // const filteredLeads = leadData.filter((item) => {
-  //   const fullName = `${item.firstname} ${item.lastname}`.toLowerCase();
-  //   return fullName.includes(searchQuery.toLowerCase());
-  // });
-  // const filteredLeads = leadData.filter((item) => {
-  //   const fullName = `${item.firstname} ${item.lastname}`.toLowerCase();
-  //   const statusMatch = !filters.leadStatus || item.lead_status === filters.leadStatus;
-  //   const qualificationMatch = !filters.qualification || item.qualification === filters.qualification;
-  //   const genderMatch = !filters.gender || item.gender === filters.gender;
-  //   const textMatch = fullName.includes(searchQuery.toLowerCase());
-  //   return statusMatch && qualificationMatch && genderMatch && textMatch;
-  // });
-
-    //search filter
     const searchFiltered = leadData.filter((item) => {
       const fullName = `${item.firstname} ${item.lastname}`.toLowerCase();
       const textMatch = fullName.includes(searchQuery.toLowerCase());
       console.log(textMatch, "leaddddddfcgvhbnjm mnhgfcgvhbnjm nbv");
       console.log(searchFiltered, "leaddddddddcghjkl");
-      return textMatch; // Modify this logic to include other filters
+      return textMatch; 
     });
-
-
 
   const renderItem = ({ item }) => (
     <TouchableOpacity>
@@ -154,54 +120,22 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
  
   return (
     <View style={styles.container}>
-    <SafeAreaView style={{ marginHorizontal:20, flexDirection:'row'}}>
-       <FontAwesome name='search' size={15} color='black' style={{marginTop:10, marginRight:10}}/>
-        {/* <TextInput 
-        placeholder='Search'
-        //clearButtonMode='always'
-        style={styles.searchBox}
-        value={searchQuery}
-        onChangeText={handleSearch}
-        ></TextInput> */}
-
-<TextInput
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginHorizontal: 20 }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+       <FontAwesome name='search' size={15} color='black' style={{ marginRight:10}}/>
+          <TextInput
             placeholder='Search'
             style={styles.searchBox}
             value={searchQuery}
             onChangeText={setSearchQuery}
           />
-        <View>
+      </View>
         <TouchableOpacity onPress={toggleFilterModal}>
-        <View style={styles.filter}>
-          <FontAwesome name='filter' size={20} color='black' style={{marginLeft:240, marginTop:3}} />
-          </View>
+        <FontAwesome name='filter' size={20} color='black' />
         </TouchableOpacity>
       </View>
- 
-      {/* <FilterModal
-        isVisible={filterModalVisible}
-        onClose={() => setFilterModalVisible(false)}
-        onFilter={handleFilter}
-        filterOptions={[
-          // {
-          //   title: 'Lead Status:',
-          //   key: 'leadStatus',
-          //   dropdownData: ['new', 'converted'],
-          // },
-          {
-            title: 'Qualification:',
-            key: 'qualification',
-            dropdownData: ['cold', 'warm', 'hot'],
-          },
-          {
-            title: 'Gender:',
-            key: 'gender',
-            dropdownData: ['male', 'female'],
-          },
-        ]}
-      /> */}
 
-<FilterModal
+       <FilterModal
         isVisible={filterModalVisible}
         onClose={() => setFilterModalVisible(false)}
         onFilter={onFilter}
@@ -216,68 +150,49 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
             key: 'gender',
             dropdownData: ['male', 'female'],
           },
-          // {
-          //   title: 'Created Date:',
-          //   key: 'createdDate',
-          //   dropdownData: ['Today', 'Yesterday', 'This Week', 'This Month'],
-          // },
         ]}
-        //leadData={leadData}
+        
         dataList={leadData}
         flag="leadlist"
       />
-       </SafeAreaView>
-       {/* <FlatList
-              data={filteredLeads}
-              renderItem={renderItem}
-              keyExtractor={(item, index) => index.toString()}
-            /> */}
-                <FlatList
+      
+        <FlatList
         data={filteredData||(leadData&&searchFiltered)}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
       />
-     <View>
+ 
 
   <TouchableOpacity style={styles.plusButton} onPress={onClickPlus} > 
    <Ionicons name="add" size={24} color="white" />
-  
  </TouchableOpacity>
    {showDropdown && (
 
-<View style={styles.dropdownContainer}>
-<ScrollView style={styles.dropdownScrollView}>
+    <View style={styles.dropdownContainer}>
+    <ScrollView style={styles.dropdownScrollView}>
     <View style={styles.dropdownMenu}>
       <TouchableOpacity onPress={closeDropdown} >
         <Ionicons name='close-circle' size={30} />
       </TouchableOpacity>
-     
         <TouchableOpacity onPress={goToLeadCreate}>
             <Text style={styles.dropdownMenuItem}>Add a lead</Text>
         </TouchableOpacity>
-        
         <TouchableOpacity onPress={goToLeadWithFile}>
             <Text style={styles.dropdownMenuItem}>Add a CSV</Text>
         </TouchableOpacity>
-  
     </View>
-</ScrollView>
-</View>
-
+    </ScrollView>
+    </View>
 )}
 
-     
- 
 </View>
-
-    </View>
+    
   );
 };
  
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  
     backgroundColor:'#f2f2f2'
   },
   dropdownMenu: {
@@ -288,10 +203,6 @@ const styles = StyleSheet.create({
     elevation: 3,
     zIndex: 999,
 },
-
-  filterIcon: {
-    marginLeft: 350,
-  },
   plusButton: {
     position: 'absolute',
     bottom: 20,
@@ -305,7 +216,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff', // Adjust background color as needed
+    backgroundColor: '#fff', 
   },
 header: {
   backgroundColor: '#023B5E',
@@ -328,16 +239,16 @@ myTasksText: {
 dropdownContainer: {
   flex:1,
   position: 'absolute',
-  bottom: 80, // Adjust position as needed
-  right: 20, // Adjust position as needed
+  bottom: 80, 
+  right: 20, 
   backgroundColor: 'white',
   borderRadius: 8,
   elevation: 4,
-  maxHeight: 200, // Set maximum height for dropdown
-  width: 200, // Set width for dropdown
+  maxHeight: 200, 
+  width: 200, 
 },
 dropdownScrollView: {
-  maxHeight: 150, // Set maximum height for dropdown scroll view
+  maxHeight: 150, 
 },
 plusButton: {
   position: 'absolute',
@@ -353,6 +264,14 @@ dropdownMenuItem: {
   paddingVertical: 8,
   color:'#023B5E',
   fontWeight:'bold'
+},
+searchBox: {
+  // flex: 1,
+  height: 40,
+  borderRadius: 5,
+  paddingHorizontal: 10,
+  fontSize: 16,
+  // backgroundColor:'red',
 },
  
 });

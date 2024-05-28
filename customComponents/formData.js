@@ -26,27 +26,6 @@ export const opportunityFormData = {
       "sectionName":"General"
     },
  
-   
- 
-    // {
-    //   "name": "status",
-    //   "sectionName":"General",
-    //   "type": "dropdown",
-    //   "title": "Status",
-    //   "inputType": "text",
-    //   "placeholder":'Select',
-    //   "dropdownData": [
-    //     { "value": 1, "value": "Open" },
-    //     { "value": 2, "value": "Won" },
-    //     { "value": 3, "value": "Lost" },
-    //     { "value": 4, "value": "Suspended" },
-    //     { "value": 5, "value": "Abandoned" },
-    //   ]
-    // },
-
-    
- 
- 
     {
       "name": "category",
       "sectionName":"General",
@@ -129,29 +108,6 @@ export const opportunityFormData = {
      
   },
  
-//   {
-//     "name": "actual_close_date",
-//     "type": "Date",
-//     "title": "Actual Close Date",
-//     "inputType": "text",
-//     "placeholder": "Select",
-//     "sectionName":"Forecast",
-//      "isRequired":true
-   
-// },
- 
-    // {
-    //   "name": "created_on",
-    //   "type":"TextInput",
-    //   "title": "Created On",
-    //   "inputType": "text",
-    //   "sectionName":"Forecast",
-    // },
- 
- 
-   
- 
- 
    
     {
       "name": "probability_of_winning",
@@ -178,13 +134,6 @@ export const opportunityFormData = {
  
    
  
-    // {
-    //   "name": "assigned-to",
-    //   "type": "TextInputR",
-    //   "title": "Assigned To",
-    //   "placeholder": "",
-    //   "sectionName":"Forecast",
-    // },
 ]
 }
  
@@ -217,26 +166,7 @@ export const editOpportunityFormData = {
       "sectionName":"General"
     },
  
-   
- 
-    // {
-    //   "name": "status",
-    //   "sectionName":"General",
-    //   "type": "dropdown",
-    //   "title": "Status",
-    //   "inputType": "text",
-    //   "placeholder":'Select',
-    //   "dropdownData": [
-    //     { "value": 1, "value": "Open" },
-    //     { "value": 2, "value": "Won" },
-    //     { "value": 3, "value": "Lost" },
-    //     { "value": 4, "value": "Suspended" },
-    //     { "value": 5, "value": "Abandoned" },
-    //   ]
-    // },
 
-    
- 
  
     {
       "name": "category",
@@ -319,30 +249,7 @@ export const editOpportunityFormData = {
   
      
   },
- 
-//   {
-//     "name": "actual_close_date",
-//     "type": "Date",
-//     "title": "Actual Close Date",
-//     "inputType": "text",
-//     "placeholder": "Select",
-//     "sectionName":"Forecast",
-//      "isRequired":true
-   
-// },
- 
-    // {
-    //   "name": "created_on",
-    //   "type":"TextInput",
-    //   "title": "Created On",
-    //   "inputType": "text",
-    //   "sectionName":"Forecast",
-    // },
- 
- 
-   
- 
- 
+
    
     {
       "name": "probability_of_winning",
@@ -350,10 +257,7 @@ export const editOpportunityFormData = {
       "title": "Probability Of Winning",
       "placeholder": "Probability Of Winning",
       "sectionName":"Forecast",
-      // "validation": {
-      //   "regex":  /^100$|^\d{0,2}(\.\d{1,2})?%?$/,
-      //   "message": "Please enter percentage"
-      // },
+
       
     },
  
@@ -367,15 +271,6 @@ export const editOpportunityFormData = {
     
     },
  
-   
- 
-    // {
-    //   "name": "assigned-to",
-    //   "type": "TextInputR",
-    //   "title": "Assigned To",
-    //   "placeholder": "",
-    //   "sectionName":"Forecast",
-    // },
 ]
 }
  
@@ -392,7 +287,6 @@ export const editLeadformData = {
     "title": "Lead ID",
     "placeholder":"Lead ID",
     "maxLength": 25,
-    // 'isRequired': true,
     "sectionName":"General",
 
   },
@@ -429,18 +323,6 @@ export const editLeadformData = {
       "autocomplete": "lastname",
       "sectionName":"General"
     },
-    // {
-    //   "name": "gender",
-    //   "type":"RadioButton",
-    //   "title": "Gender",
-    //   "rdata" : [
-    //     { label: "Male", id: 'male' },
-    //     { label: "Female", id: 'female' },
-    //     { label: "Other", id: 'other' },
-    //   ],
-    //   'isRequired': true,
-    //   "sectionName":"General"
-    // },
 
  {
       "name": "job_title",
@@ -488,7 +370,6 @@ export const editLeadformData = {
       "name":"u_state",
       "type": "TextInput",
       "title": "State",  
-   
       "placeholder": "State",
       "sectionName":"Address",
 
@@ -498,7 +379,6 @@ export const editLeadformData = {
       "name":"zip_postalcode",
       "type": "TextInput",
       "title": "Postal Code",
-
       "placeholder": "Postal Code",
       "sectionName":"Address"
      
@@ -507,7 +387,6 @@ export const editLeadformData = {
       "name":"u_country",
       "type": "TextInput",
       "title": "Country",
-   
       "placeholder": "Country",
       "sectionName":"Address",
    
@@ -516,7 +395,6 @@ export const editLeadformData = {
       "name": "industry",
       "type": "dropdown",
       "title": "Industry",
-   
       "placeholder":"Industry",
        "dropdownData" :[
         { key: 'accounting', value: 'Accounting' },
@@ -533,7 +411,6 @@ export const editLeadformData = {
       "name": "lead_currency",
       "type": "dropdown",
       "title": "Currency",
- 
       "placeholder":"Currency",
        "dropdownData" :[
         { key: 'inr', value: 'INR' },
@@ -575,19 +452,16 @@ export const editLeadformData = {
       "placeholder":"Annual Revenue",
       "sectionName":"Company"
     },
+
     {
       "name": "business_phone",
       "type": "TextInput",
       "title": "Business Phone",
       "inputType": "numeric",
       "placeholder":"Business Phone",
-      //"isRequired": true,
       "sectionName":"Contact",
-      // "validation": {
-      //   "regex": /^\d{10}$/,
-      //   "message": "Please enter a valid 10-digit phone number."
-      // },
     },
+
     {
       "name": "mobile_phone",
       "type": "TextInput",
@@ -596,10 +470,6 @@ export const editLeadformData = {
       "placeholder":"Mobile Phone",
       //"isRequired": true,
       "sectionName":"Contact",
-      // "validation": {
-      //   "regex": /^\d{10}$/,
-      //   "message": "Please enter a valid 10-digit phone number."
-      // },
     },
     {
       "name": "home_phone",
@@ -796,7 +666,6 @@ export const formData = {
         "name": "salutation",
         "type": "dropdown",
         "title": "Salutation",
-    
         "placeholder":"Salutation",
          "dropdownData" :[
           { key: 'Mr.', value: 'Mr.' },
@@ -839,19 +708,7 @@ export const formData = {
         'isRequired': true,
         "sectionName":"Basic"
       }, 
-      // {
-      //   "name": "qualification",
-      //   "type": "dropdown",
-      //   "title": "Qualification",
-      //   "inputType": "text",
-      //   "placeholder":"Qualification",
-      //    "dropdownData" :[
-      //     { key: 'hot', value: 'Hot' },
-      //     { key: 'cold', value: 'Cold' },
-      //     { key: 'warm', value: 'Warm' },
-      //    ],
-      //    "sectionName":"General"
-      // },
+   
    {
         "name": "job_title",
         "type": "TextInput",
@@ -1007,17 +864,9 @@ export const formData = {
         "name": "business_phone",
         "type": "TextInput",
         "title": "Business Phone",
-        
         "inputType": "numeric",
         "placeholder":"Business Phone",
-       
         "sectionName":"Additional",
-        // "validation": {
-        //   "regex": /^\d{10}$/,
-        //   "message": "Please enter a valid 10-digit phone number."
-        // },
-
-       
       },
       {
         "name": "mobile_phone",
@@ -1030,32 +879,22 @@ export const formData = {
         "validation": {
           "regex": /^\d{10}$/,
           "message": "Please enter a valid 10-digit phone number."
-        },
-        
-
-       
+        }, 
       },
+
       {
         "name": "home_phone",
         "type": "TextInput",
         "title": "Alternate Phone",
-        // "validation": {
-        //   "regex": /^\d{10}$/,
-        //   "message": "Please enter a valid 10-digit phone number."
-        // },
-       
         "inputType": "numeric",
         "placeholder":"Home Phone",
         "sectionName":"Additional"
-
-       
       },
       {
         "name": "do_not_call",
         "type": "Switch",
         "title": "Do Not Call",
         "sectionName":"ContactMethod"
-
       },
       {
         "name": "email",
@@ -1174,21 +1013,6 @@ export const formData = {
          ],
          "sectionName":"Basic"
       },
-      // {
-      //   "name": "u_lead_status",
-      //   "type": "dropdown",
-      //   "title": "Lead Status",
-      //   "inputType": "text",
-      //   "placeholder":"Lead Status",
-      //    "dropdownData" :[
-      //     { key: 'new', value: 'New' },
-      //     { key: 'Contacted', value: 'Contacted' },
-      //     { key: 'qualified', value: 'Qualified' },
-      //     { key: 'converted', value: 'Converted' },
-      //     { key: 'closed-not_converted', value: 'Closed-Not Converted' },
-      //    ],
-      //    "sectionName":"Additional"
-      // },
       {
         "name": "u_owner_type",
         "type": "dropdown",
@@ -1205,13 +1029,7 @@ export const formData = {
         "name": "new_owner",
         "type": "TextInputO",
         "title": "Owner",
- 
           "sectionName":"Additional"
-
-
-
-      
-      
 
       },
       {
@@ -1250,27 +1068,6 @@ export const formData = {
         "placeholder":"Twitter",
         "sectionName":"Additional"
       },
-      // {
-      //   "name": "assigned_to",
-      //   "type": "TextInput",
-      //   "title": "Assigned To",
-      //   "inputType": "text",
-      //   "placeholder":"Assigned To",
-      //   "readonly":true,
-      //   "sectionName":"Additional"
-      // },
-      // {
-      //   "name": "assignment_group",
-      //   "type": "dropdown",
-      //   "title": "Assignment group",
-      //   "inputType": "text",
-      //   "placeholder":"Assigned Group",
-      //   "dropdownData": [
-      //     { "key": 1, "value": "" },
-
-      //   ],
-      //   "sectionName":"Additional"
-      // },
   ],
   };
 
@@ -1368,13 +1165,6 @@ export const formData = {
           { "key": 8, "value": "William Henry" }
         ]
       },
-    //   {
-    //     "name": "leads",
-    //     "type": "leadDropdown",
-    //     "title": "Leads",
-    //     "inputType": "text",
-
-    //   }
      ]
   }
   
@@ -1422,14 +1212,7 @@ export const leadNoteData = {
       "placeholder": "Name",
      
     },
-    // {
-    //   "name": "lead",
-    //   "type": "dropdown",
-    //   "title": "Lead",
-    //   "inputType": "text",
-    //   "placeholder": "Select",
-    //   "dropdownData": leadData
-    // },
+   
     {
       "name": "note_title",
       "type": "multiLineText",
@@ -1490,7 +1273,6 @@ export const requirementFormData={
     "title": "key ($)",
     "inputType": "numeric",
     "placeholder": "key",
-    
   },
 
 ]
@@ -1511,9 +1293,6 @@ export const productData=
     "supplierCode":"icici",
     "supplierName":"ICICI",
     "rate":"INR 500000",
-   
- 
- 
   },
   {
     "id": "2",
@@ -1524,9 +1303,8 @@ export const productData=
     "supplierCode":"icici",
     "supplierName":"ICICI",
     "rate":"INR 400000",
-   
-   
   },
+
   {
     "id": "3",
     "productName": "Sapphire",
@@ -1577,9 +1355,6 @@ export const productFormData= {
       "type":"TextInputLead",
       "title": "Associated Lead",
       "inputType": "text",
-   
-      
-      
     },
     
     {
@@ -1601,8 +1376,7 @@ export const productFormData= {
       "dropdownData": [
         { "key": "personal_accident", "value": "Personal Accident",  },
         { "key": "critical_illness", "value": "Critical Illness" },
-        // { "key": "fire_insurance", "value": "Fire Insurance" },
-        // { "key": "marine", "value": "Marine" },
+       
         { "key": "maternity_insurance", "value": "Maternity Insurance"}
       ],
       "isRequired":true
@@ -1616,8 +1390,6 @@ export const productFormData= {
       "dropdownData": [
         { "key": "health_first_plan", "value": "Health First Plan",  },
         { "key": "pearl", "value": "Pearl" },
-        // { "key": "fire_insurance", "value": "Fire Insurance" },
-        // { "key": "marine", "value": "Marine" },
         { "key": "ruby", "value": "Ruby"},
         { "key": "saffire", "value": "Saffire"}
       ],
@@ -1631,16 +1403,6 @@ export const productFormData= {
       "placeholder":"Enter the description",
       "isRequired":true 
     },
-    // {
-    //   "name": "currency",
-    //   "type": "TextInput",
-    //   "title": "Currency",
-    //   "inputType": "text",
-    //   "placeholder":'INR',
-    //   "key":"INR",
-    //   "readonly":true
-
-    // },
     {
       "name": "price",
       "type": "TextInput",
@@ -1666,39 +1428,14 @@ export const productFormData= {
      
     },
 
- 
-    // {
-    //   "name": "images",
-    //   "type": "imageUpload",
-    //   "title": "Product Images",
-    //   "placeholder":"upload picture images"
-    // },
- 
   ]
 }
 
-// export const changeStatusFormData = {
-//   "elements":[
-//     {
-        
-//     }
-//   ]
-// }
+
 
 export const callLogFormData= {
   "elements": [
-    // {
-    //   "name": "category",
-    //   "type": "dropdown",
-    //   "title": "Select Entry",
-    //   "inputType": "text",
-    //   "placeholder":'Select',
-    //   "dropdownData": [
-    //     { "key": 1, "value": "Contact" },
-    //     { "key": 2, "value": "Lead" },
-       
-    //   ]
-    // },
+  
     {
       "name": "associated_lead",
       "type":"TextInputLead",
@@ -1769,9 +1506,7 @@ export const leadScoreFormData={
       "questionName": "associated_lead",
       "questionType":"TextInputLead",
       "questionvalue": "Associated Lead",
-      "inputType": "text",
-      
-      
+      "inputType": "text",  
     },
     
     {
@@ -1865,20 +1600,7 @@ export const leadScoreFormData={
                    ],
                           'isRequired': true,
               },
-            // {
-            //   "questionId":"6",
-            //   "questionvalue":"Expected FYWP",
-            //   "name":"fywp",
-            //   "questionType":"dropdown",
-            //   "questionDescription":"fywp of the lead",
-            //   "placeholder": "Select",
-            //               "dropdownData": [
-            //                   { "key": 1, "value": "<50K" },
-            //                   { "key": 2, "value": ">50K" },
-                             
-            //               ],
-            //               'isRequired': true,
-            //   },
+        
 
   ]
 }
@@ -1958,16 +1680,6 @@ export const personAccountForm =[
       'isRequired': true,
       sectionName: "General",
     },
-    // {
-    //   name: "title",
-    //   type: "TextInput",
-    //   title: "Title",
-    //   placeholder: "title",
-    //   maxLength: 25,
-    //   inputType: "text",
-    //   'isRequired': true,
-    //   sectionName: "General",
-    // },
     {
       "name": "gender",
       "type":"dropdown",
@@ -2062,15 +1774,6 @@ export const personAccountForm =[
       sectionName: "General",
     },
 
-    // {
-    //   name: "website",
-    //   type: "TextInput",
-    //   title: "Website",
-    //   inputType: "text",
-    //   placeholder: "url",
-    //   sectionName: "General",
-    // },
-    
     {
       name: "description",
       type: "TextInput",
@@ -2199,19 +1902,6 @@ export const personAccountForm =[
       placeholder: "Annual Revenue",
       sectionName: "Company",
     },
-
-    // {
-    //   "name": "email",
-    //    "type":"email",
-    //   "title": "Email",
-    //   "placeholder":"Email",
-    //   // "isRequired": true,
-    //   "sectionName":"Contact",
-    //   "validation": {
-    //     "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-    //     "message": "Please enter a valid email address."
-    //   },
-    // },
     {
       name: "email",
       type: "TextInput",
@@ -3404,8 +3094,6 @@ export const activityFormData = [
             "name": "owner",
             "type":"TextInputO",
             "title": "Owner",
-          
-            
           },
            
             {
@@ -3475,18 +3163,7 @@ export const activityFormData = [
                 { "key": "medium", "value": "Medium" },
                 { "key": "low", "value": "Low" },
             ],
-        
-              
-              
             },
-            // {
-            //     "name": "owner",
-            //     "type": "dropdown",
-            //     "title": "Owner",
-            //     "inputType": "text",
-            //     "placeholder": "Select",
-               
-            // }
         ]
     }
   },
@@ -3589,24 +3266,6 @@ export const activityFormData = [
               "placeholder": "Link"
           },
        
-       
-        
-            // {
-            //     "name": "attendees",
-            //     "type": "MultipleSelect",
-            //     "title": "Attendees",
-            //     "inputType": "text",
-            //     "placeholder": "Select",
-            //     "dropdownData": [
-            //         { "key": 1, "value": "John Doe" },
-            //         { "key": 2, "value": "Jane Smith" },
-            //         { "key": 3, "value": "Alice Mark" },
-            //         { "key": 4, "value": "Kate Winslet" },
-            //         { "key": 5, "value": "William Henry" },
-            //         { "key": 6, "value": "Jane Peter" },
-            //         { "key": 7, "value": "Carley Wilson" }
-            //     ]
-            // },
             {
                 "name": "time_zone",
                 "type": "dropdown",
@@ -3622,15 +3281,7 @@ export const activityFormData = [
                     { "key": "cst", "value": "China Standard Time (CST)" }
                 ]
             },
-            // {
-            //     "name": "from_date",
-            //     "type": "Date",
-            //     "title": "From Date",
-            //     "placeholder": "From Date",
-            //     "isRequired":true
-            // },
-     
-        
+         
             {
                 "name": "all_day",
                 "type": "Switch",
@@ -4142,15 +3793,61 @@ export const contactFormData={
       "isRequired":true
     },
     {
+      "name":"zip_postalcode",
+      "type": "TextInputAddress",
+      "title": "Postal Code",
+      "isRequired":true,
+      "placeholder": "Postal Code",
+      "sectionName":"Address"
+    }, 
+
+    {
+      "name":"location",
+      "type": "TextInput",
+      "title": "Location",
+      "placeholder": "Street",
+      "sectionName":"Address"
+    }, 
+    {
+      "name":"district",
+      "type": "TextInput",
+      "title": "City",
+      "placeholder": "City",
+      "sectionName":"Address",
+      "isRequired":true
+     
+    }, 
+    {
+      "name":"state",
+      "type": "TextInput",
+      "title": "State",   
+      "placeholder": "State",
+      "sectionName":"Address",
+      "isRequired":true
+    }, 
+    {
+      "name":"town",
+      "type": "TextInput",
+      "title": "Town",   
+      "placeholder": "Town",
+      "sectionName":"Address",
+      "isRequired":true
+    }, 
+ 
+    {
+      "name":"country",
+      "type": "TextInput",
+      "title": "Country",
+      "placeholder": "Country",
+      "sectionName":"Address",
+      "isRequired":true
+    }, 
+    {
       "name": "alternate_email1",
       "type": "TextInput",
       "title": "Alternate Email 1",
       "inputType": "text",
       "placeholder": "Enter Email",
-      // "validation": {
-      //   "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      //   "message": "Please enter a valid email address."
-      // },
       "sectionName":"Contact"
     },
     {
@@ -4159,10 +3856,6 @@ export const contactFormData={
       "title": "Alternate Email 2",
       "inputType": "text",
       "placeholder": "Enter Email",
-      // "validation": {
-      //   "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      //   "message": "Please enter a valid email address."
-      // },
       "sectionName":"Contact"
     },
     {
@@ -4171,10 +3864,6 @@ export const contactFormData={
       "title": "Alternate Phone 1",
       "inputType": "numeric",
       "placeholder": "Enter Phone Number",
-      // "validation": {
-      //   "regex": /^\d{10}$/,
-      //   "message": "Please enter a valid 10-digit phone number."
-      // },
       "sectionName":"Contact"
     },
     {
@@ -4183,10 +3872,6 @@ export const contactFormData={
       "title": "Alternate Phone 2",
       "inputType": "numeric",
       "placeholder": "Enter Phone Number",
-      // "validation": {
-      //   "regex": /^\d{10}$/,
-      //   "message": "Please enter a valid 10-digit phone number."
-      // },
       "sectionName":"Contact"
     },
     {
@@ -4196,7 +3881,6 @@ export const contactFormData={
       "inputType": "text",
       "placeholder": "Enter Assistant name",
       "sectionName":"Personal"
-      
     },
     {
       "name": "assistant_phone",
@@ -4205,16 +3889,13 @@ export const contactFormData={
       "inputType": "numeric",
       "placeholder": "Enter Assistant Phone",
       "sectionName":"Contact"
-      
     },
     {
       "name": "birthdate",
       "type": "Date",
       "title": "Birthdate",
       "placeholder": "Enter birth date",
-      
       "sectionName":"General"
-      
     },
     {
       "name": "category",
@@ -4228,8 +3909,7 @@ export const contactFormData={
         { key: 'st', value: 'ST' },
         { key: 'others', value: 'Others' },
     ],
-    "sectionName":"General"
-      
+    "sectionName":"General" 
     },
 
     {
@@ -4404,21 +4084,7 @@ export const contactFormData={
       "sectionName":"Personal",
       "placeholder":"Mother's Middle Name"
     },  
-    // {
-    //   "name": "ckyc_number",
-    //   "type": "TextInput",
-    //   "title": "CKYC Number",
-    //   "placeholder": "Enter CKYC number",
-    //   "inputType": "text",
-    //   "sectionName":"General"
-    // },
-    // {
-    //   "name": "name",
-    //   "type":"TextInput",
-    //   "title": "Name",
-    //   "sectionName":"General",
-    //   "placeholder":"Enter name"
-    // }, 
+
     {
       "name": "other_address",
       "type":"TextInput",
@@ -4629,10 +4295,6 @@ export const editContactFormData={
       "title": "Alternate Email 1",
       "inputType": "text",
       "placeholder": "Enter Email",
-      // "validation": {
-      //   "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      //   "message": "Please enter a valid email address."
-      // },
       "sectionName":"Contact"
     },
     {
@@ -4815,18 +4477,6 @@ export const editContactFormData={
       "placeholder":"Funding Value Base Loan",
       "sectionName":"General"
     },
-    // {
-    //   "name": "gender",
-    //   "type":"RadioButton",
-    //   "title": "Gender",
-    //   "rdata" : [
-    //     { label: "Male", id: 'male' },
-    //     { label: "Female", id: 'female' },
-    //     { label: "Other", id: 'other' },
-    //   ],
-    //   'isRequired': true,
-    //   "sectionName":"General"
-    // },
     {
       "name": "home_phone",
       "type": "TextInput",
@@ -4899,13 +4549,6 @@ export const editContactFormData={
       "inputType": "text",
       "sectionName":"General"
     },
-    // {
-    //   "name": "name",
-    //   "type":"TextInput",
-    //   "title": "Name",
-    //   "sectionName":"General",
-    //   "placeholder":"Enter name"
-    // },
     {
       "name": "other_address",
       "type":"TextInput",
@@ -5095,16 +4738,7 @@ export const editAccountFormData = {
    
       sectionName: "General",
     },
-    // {
-    //   name: "title",
-    //   type: "TextInput",
-    //   title: "Title",
-    //   placeholder: "title",
-    //   maxLength: 25,
-    //   inputType: "text",
-     
-    //   sectionName: "General",
-    // },
+   
 
     {
       name: "salutation",
@@ -5185,14 +4819,7 @@ export const editAccountFormData = {
       ],
       sectionName: "General",
     },
-    // {
-    //   "name": "account_site",
-    //   "type": "TextInput",
-    //   "title": "Account site",
-    //   "inputType": "text",
-    //   "placeholder": "account site",
-    //   "sectionName":"General"
-    // },
+
     {
       name: "website",
       type: "TextInput",
@@ -5311,21 +4938,7 @@ export const editAccountFormData = {
       sectionName: "Address Details",
     
     },
-    // {
-    //   "name": "industry",
-    //   "type": "dropdown",
-    //   "title": "Industry",
-    //   "inputType": "text",
-    //   "placeholder":"Industry",
-    //    "dropdownData" :[
-    //     { value: 'accounting', label: 'Accounting' },
-    //     { value: 'brokers', label: 'Brokers' },
-    //     { value: 'consulting', label: 'Consulting' },
-    //     { value: 'customer_services', label: 'Customer Services'},
-    //     { value: 'financial', label: 'Financial' },
-    //    ],
-    //    "sectionName":"Other Information"
-    // },
+   
     {
       name: "date_of_inception",
       type: "dateInput",
@@ -5432,18 +5045,6 @@ export const editAccountFormData = {
       sectionName: "Company",
     },
 
-    // {
-    //   "name": "email",
-    //    "type":"email",
-    //   "title": "Email",
-    //   "placeholder":"Email",
-    //   // "isRequired": true,
-    //   "sectionName":"Contact",
-    //   "validation": {
-    //     "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-    //     "message": "Please enter a valid email address."
-    //   },
-    // },
     {
       name: "email",
       type: "TextInput",
@@ -5605,23 +5206,9 @@ export const editAccountFormData = {
       placeholder: "Phone number",
       // "isRequired": true,
       sectionName: "Contact",
-      // "validation": {
-      //   "regex": /^\d{10}$/,
-      //   "message": "Please enter a valid 10-digit phone number."
-      // },
+     
     },
-    // {
-    //   "name": "email_opt_out",
-    //    "type":"checkbox",
-    //   "title": "Email opt out",
-    //   "placeholder":"Email",
-    //   // "isRequired": true,
-    //   "sectionName":"Contact",
-    //   "validation": {
-    //     "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-    //     "message": "Please enter a valid email address."
-    //   },
-    // },
+   
 
     {
       name: "suffix",

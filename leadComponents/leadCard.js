@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Button,Image,ScrollView } from 'react-native';
 import { router } from 'expo-router';
-//import {handleNewButtonClick} from 'react-native-elements';
-// import { starTwo,starrOne } from '../assets/images';
 import {profile} from '../assets/images';
 import BadgeLead from './badgeLead';
 import { FontAwesome } from '@expo/vector-icons';
@@ -29,18 +27,8 @@ const LeadItem = ({ FirstName, LastName, Email, Phone, lead_status,qualification
     const goToEditLead = () => {
         setLeadId(Id);
         router.navigate('formComponents/editLead');
- 
         closeDropdown();
     };
-    // setLeadId(id);
- 
-    // useEffect(() => {
-    //     setLeadId(id);
-    // }, [id, setLeadId]);
-    // console.log(leadId);
-    // setLeadId(id);
- 
- 
  
  
     const toggleDropdown = () => {
@@ -55,42 +43,31 @@ const handleNavigateToLeadDetails = () => {
     setSysId(sys_id);
     setFlag('lead')
     router.navigate('/leadDetailScreens/info');
-
-    
-    // console.log("sys id", sys_id);
 };
 const handleChangeStatus = () => {
     router.navigate('../../formComponents/changeStatus');
     setLeadId(number)
     setStatus(lead_status);
-    
- 
     closeDropdown(); // Close the dropdown after action
 };
  
 const handleCallLog = () => {
     router.navigate('../../formComponents/callLogForm');
     setLeadId(number);
-   
     closeDropdown(); // Close the dropdown after action
 };
  
 const handleReassign = () => {
-    // Add your logic to reassign the lead
-    closeDropdown(); // Close the dropdown after action
+    closeDropdown();
 };
 
 const handleCall = () => {
-   
     Linking.openURL(`tel:${Phone}`);
   };
  
   const handleEmail = () => {
- 
     Linking.openURL(`mailto:${Email}`);
   };
- 
- 
  
 return (
   <TouchableOpacity onPress={handleNavigateToLeadDetails}>
@@ -138,12 +115,6 @@ return (
     <View style={styles.dropdownContainer}>
     <ScrollView style={styles.dropdownScrollView}>
             <View style={styles.dropdownMenu}>
-            {/* <TouchableOpacity onPress={() => {router.navigate('DrawerScreens/createLead'); closeDropdown();}}>
-                <Text style={styles.dropdownMenuItem}>Edit lead</Text>
-            </TouchableOpacity> */}
-            {/* <TouchableOpacity onPress={() => {displayScreen(); closeDropdown();}}>
-                <Text style={styles.dropdownMenuItem}>View</Text>
-            </TouchableOpacity> */}
             <TouchableOpacity onPress={handleChangeStatus}>
                 <Text style={styles.dropdownMenuItem}>Change Status</Text>
             </TouchableOpacity>
@@ -183,16 +154,11 @@ const styles = {
         flexDirection:'row',
         justifyContent: 'space-between',
         marginTop: 6,
-        
- 
- 
     },
     badgeSecond:{
-       
         marginLeft:20,
         flexDirection:'row',
         justifyContent: 'space-between',
-       
     },
     textContainer: {
         flex: 1,
@@ -207,7 +173,6 @@ const styles = {
         fontSize: 14,
         marginBottom: 3,
         color:"#999999",
- 
     },
     avatarContainer: {
         marginRight: 10,
@@ -274,15 +239,11 @@ const styles = {
     actionIcon: {
         marginRight: 10,
         marginBottom:70,
-       
     },
     iconContainer: {
-        flexDirection: 'row',
-        
+        flexDirection: 'row',   
     },
-    //   filterIcon: {
-    //     marginLeft: 10,
-    //   },
+
    
 };
 export default LeadItem;          

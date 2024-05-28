@@ -1,10 +1,8 @@
 export const NEW_LEAD = 'new'
- 
 export const QUALIFIED = 'contacted'
 export const CONTACTED = 'qualified'
 export const CLOSED = 'closed'
 export const CONVERTED ='converted'
- 
 export const HOT = 'hot'
 export const WARM = 'warm'
 export const COLD = 'cold'

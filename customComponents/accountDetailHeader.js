@@ -311,14 +311,6 @@ router.navigate('formComponents/editOpportunity')
           <View style={styles.userInfo1}>
             <Text style={styles.name}>{name.account_name}</Text>
             </View>
- 
-            {/* {(accountType == 'person')&& (flag == 'contact')&&
-        <View style={styles.opportunityIcon}>
-        <Ionicons name="business" size={24} color="white" />
-        </View>}
-          <View style={styles.userInfo1}>
-            <Text style={styles.name}>{name.first_name} {name.last_name}</Text>
-            </View> */}
       </View>
  
  

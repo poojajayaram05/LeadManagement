@@ -157,7 +157,7 @@ import { editPersonAccount } from "../../customComponents/formData";
     };
  
     const goBack = () => {
-      router.back();
+      router.navigate('renderDetails/renderDetailPage');
     };
  
     const handleSelect = (item) => {

@@ -134,7 +134,7 @@ function extractDate(timestamp) {
   };
  
   const goBack=()=>{
-    router.back();
+    router.navigate('renderDetails/renderDetailPage');
   }
  
   LogBox.ignoreAllLogs();

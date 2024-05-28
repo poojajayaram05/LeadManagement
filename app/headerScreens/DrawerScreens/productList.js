@@ -6,6 +6,7 @@ import { SafeAreaView, FlatList, StyleSheet, TouchableOpacity, Text,View } from 
 import { router } from 'expo-router';
 // import AllProductCard from '../../productComponents/allProducts';
 import AllProductCard from '../../../productComponents/allProducts';
+import { productData } from '../../../customComponents/formData';
 import ProductCard from '../../../productComponents/productCard';
 // const goToCreateProduct =() => {
 //   router.navigate('/formComponents/addProduct')

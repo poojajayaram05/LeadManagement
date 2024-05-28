@@ -142,37 +142,16 @@ const renderFormElement = (element) => {
                     </View>
                   </View>
                   
-              );
-            
-            
-               
-
-      
-                        
+              );                       
 };
 }
   return (
-   
-   
-   
     <View style={styles.container}>
       <View style={styles.header}>
       <LeadDet/>
       </View>
       <ScrollView>
-            <View style={styles.card}>
-       
-      
-      
-        
-  
-   
-      
-          
-           
-                
-                  
-                              
+            <View style={styles.card}>          
                     {leadScoreFormData.elements.slice(0, 11).map((element, index) => (
                         <View key={index} style={styles.inputContainer}>
                             {renderFormElement(element)}

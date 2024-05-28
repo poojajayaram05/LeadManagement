@@ -1,18 +1,275 @@
+// import React, { useState } from 'react';
+// import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+// import { Ionicons } from '@expo/vector-icons';
+// // import SmallCard from '../../dashboardComponents/smallCard';
+// // import Scrollcard from '../../dashboardComponents/scrollCard';
+// // import Bigcard from '../../dashboardComponents/bigCard';
+// // import ChartLine from '../../dashboardComponents/lineChart';
+// import SmallCard from '../../../dashboardComponents/bigCard';
+// import Scrollcard from '../../../dashboardComponents/scrollCard';
+// import ChartLine from '../../../dashboardComponents/lineChart';
+// import Bigcard from '../../../dashboardComponents/bigCard';
+// import { router } from 'expo-router';
+// import { Modal } from 'react-native';
+// // import CheckNetwork from '../checkNetwork';
+// import CheckNetwork from '../../checkNetwork';
+ 
+// const total_leads = 0;
+// const total_calls = 1;
+// const total_activites = 2;
+// const sales = 3;
+ 
+// const Dashboard = () => {
+//   const [selectedCard, setSelectedCard] = useState(total_leads);
+//   const [showDropdown, setShowDropdown] = useState(false);
+ 
+//   const handleCardPress = (cardIndex) => {
+//     setSelectedCard(cardIndex === selectedCard ? null : cardIndex);
+//   };
+//   const onClickPlus=()=>{
+//     setShowDropdown(true);
+//   }
+//   const handleAddLead=()=>{
+//     router.navigate('/formComponents/addLeadsByDoc')
+//   }
+//   const handleAddActivty=()=>{
+//     router.navigate('/formComponents/activityForm')
+//   }
+//   const handleAddAccount=()=>{
+//     router.navigate('/formComponents/createAccount')
+//   }
+//   const handleAddContact=()=>{
+//     router.navigate('/formComponents/createContact')
+//   }
+
+//   const handleAddOpportunity=()=>{
+//     router.navigate('/formComponents/createOpportunity')
+//   }
+ 
+//   const closeDropdown=()=>{
+//     setShowDropdown(false);
+//   }
+ 
+//   return (
+//     <View style={styles.container}>
+
+//       <ScrollView style={styles.scrollContainer} showsHorizontalScrollIndicator={false}>
+//       <CheckNetwork/>
+//         <View style={styles.smallCardGroupContainer}>
+//           <View style={styles.row1}>
+//              <SmallCard label1={'Total Leads'} label2={'5'} isSelected={selectedCard === total_leads} onPress={() => handleCardPress(total_leads)} />
+//               <SmallCard label1={'Total Calls'} label2={'2'} isSelected={selectedCard === total_calls} onPress={() => handleCardPress(total_calls)} />
+//           </View>
+//           <View style={styles.row2}>
+//               <SmallCard label1={'Total Activities'} label2={'10'} isSelected={selectedCard === total_activites} onPress={() => handleCardPress(total_activites)} />
+//               <SmallCard label1={'Sales'} label2={'5M'} isSelected={selectedCard === sales} onPress={() => handleCardPress(sales)} />
+//           </View>
+//         </View>
+ 
+//         {selectedCard !== null && (
+//           <View>
+//             {selectedCard === total_leads && (
+//               <View>
+//                 <ChartLine/>
+//                 <Bigcard label1={'Lead by source'} label2={'Lead by Label'}/>
+//               </View>
+//             )}
+ 
+//             {selectedCard === total_calls && (
+//               <View>
+//                 <ScrollView horizontal style={styles.cardScrollContainer} showsHorizontalScrollIndicator={false}>
+//                   <View style={styles.cardContainer}>
+//                     <Scrollcard label={'All'} total={'2 calls'}/>
+//                     <Scrollcard label={'Incoming'} total={'0 calls'}/>
+//                     <Scrollcard label={'Outgoing'} total={'2 calls'}/>
+//                     <Scrollcard label={'Total Answered'} total={'0 calls'} />
+//                     <Scrollcard label={'Total Talktime'} total={'00:00 min:sec'}/>
+//                     <Scrollcard label={'Avg. Talktime'} total={'00:00 min:sec'}/>
+//                   </View>
+//                 </ScrollView>
+//                 <ChartLine/>
+//                 <Bigcard label1={'Lead by source'} label2={'Lead by Label'}/>
+//               </View>
+//             )}
+ 
+//             {selectedCard === total_activites && (
+//                <View>
+//                 <ScrollView horizontal style={styles.cardScrollContainer} showsHorizontalScrollIndicator={false}>
+//                   <View style={styles.cardContainer}>
+//                     <Scrollcard label={'Call'} total={'3'}/>
+//                     <Scrollcard label={'Email'} total={'5'}/>
+//                     <Scrollcard label={'Message'} total={'5'}/>
+//                     <Scrollcard label={'Meeting'} total={'1'}/>
+//                     <Scrollcard label={'CheckIns'} total={'2'} />
+//                     <Scrollcard label={'Share'} total={'0'}/>
+//                     <Scrollcard label={'Status Update'} total={'0'}/>
+//                     <Scrollcard label={'Task Assigned'} total={'0'}/>
+//                     <Scrollcard label={'Task Completed'} total={'0'}/>
+//                     <Scrollcard label={'Task Deleted'} total={'0'}/>
+//                     <Scrollcard label={'Task Updated'} total={'0'}/>
+//                     <Scrollcard label={'Lead Assign'} total={'0'}/>
+//                     <Scrollcard label={'Lead Deleted'} total={'0'}/>
+//                   </View>
+//                 </ScrollView>
+//                 <ChartLine/>
+//                 <Bigcard label1={'Lead by source'} label2={'Lead by Label'}/>
+//                </View>
+//             )}
+ 
+//             {selectedCard === sales && (
+//               <View>
+//                 <View style={styles.totalSalesCard}>
+//                   <Text style={styles.totalSalesText}>Total Sales</Text>
+//                   <Text style={styles.totalSalesText} >5,000,000 INR</Text>
+//                 </View>
+//                 <Bigcard label1={'Lead by source'} label2={'Lead by Label'}/>
+//                </View>
+//             )}
+//           </View>
+//         )}
+//       </ScrollView>
+//       <TouchableOpacity style={styles.plusButton} onPress={onClickPlus} > 
+//    <Ionicons name="add" size={24} color="white" />
+  
+//  </TouchableOpacity>
+//    {showDropdown && (
+
+//     <View style={styles.dropdownContainer}>
+//     <ScrollView style={styles.dropdownScrollView}>
+//         <View style={styles.dropdownMenu}>
+//           <TouchableOpacity onPress={closeDropdown} style={{paddingLeft:285}}>
+//             <Ionicons name='close-circle' size={35} />
+//           </TouchableOpacity>
+//             {/* <TouchableOpacity onPress={() => {router.navigate('DrawerScreens/createLead'); closeDropdown();}}>
+//                 <Text style={styles.dropdownMenuItem}>Edit lead</Text>
+//             </TouchableOpacity> */}
+//             {/* <TouchableOpacity onPress={() => {displayScreen(); closeDropdown();}}>
+//                 <Text style={styles.dropdownMenuItem}>View</Text>
+//             </TouchableOpacity> */}
+//             <TouchableOpacity onPress={handleAddLead}>
+//                 <Text style={styles.dropdownMenuItem}>Add a lead</Text>
+//             </TouchableOpacity>
+//             <TouchableOpacity onPress={() => handleAddAccount()}>
+//                 <Text style={styles.dropdownMenuItem}>Add an account</Text>
+//             </TouchableOpacity>
+//             <TouchableOpacity onPress={() => handleAddContact()}>
+//                 <Text style={styles.dropdownMenuItem}>Add a Contact</Text>
+//             </TouchableOpacity>
+//             <TouchableOpacity onPress={() => handleAddOpportunity()}>
+//                 <Text style={styles.dropdownMenuItem}>Add an Opportunity</Text>
+//             </TouchableOpacity>
+//         </View>
+//     </ScrollView>
+// </View>
+
+//           )}
+//     </View>
+//   );
+// };
+
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#D6DBDF',
+   
+//   },
+//   header: {
+//     flexDirection: 'row',
+//     justifyContent: 'space-between',
+//     paddingHorizontal: 20,
+//     paddingTop: 20,
+//     paddingBottom: 10,
+//   },
+//   headerText: {
+//     fontSize: 24,
+//     fontWeight: 'bold',
+//   },
+//   plusButton: {
+//     position: 'absolute',
+//     bottom: 20,
+//     right: 20,
+//     backgroundColor: '#023B5E',
+//     padding: 15,
+//     borderRadius: 30,
+//     elevation: 4,
+//   },
+//   scrollContainer: {
+//     flex: 1,
+//     paddingTop: 10,
+//   },
+//   smallCardGroupContainer: {
+//     justifyContent: 'space-around',
+//     // backgroundColor: '#ADD8E6',
+//     backgroundColor: '#023B5E',
+//     // backgroundColor:'black',
+//     borderRadius: 10,
+//     marginHorizontal: 5,
+//     marginVertical: 10,
+//     paddingVertical: 10,
+//     marginBottom: 30,
+//   },
+//   dropdownMenu: {
+//     backgroundColor: 'white',
+//     borderRadius: 8,
+//     paddingVertical: 10,
+//     paddingHorizontal: 20,
+//     elevation: 3,
+//     zIndex: 999,
+// },
+// dropdownMenuItem: {
+//     fontSize: 16,
+//     paddingVertical: 8,
+//     color:'#023B5E',
+//     fontWeight:'bold'
+// },
+//   row1: {
+//     flexDirection: 'row',
+//     justifyContent: 'space-around',
+//     marginBottom: 10,
+//   },
+//   row2: {
+//     flexDirection: 'row',
+//     justifyContent: 'space-around',
+//     marginBottom: 20,
+//   },
+ 
+//   totalSalesCard: {
+//     backgroundColor: '#fff',
+//     borderRadius: 10,
+//     borderColor: '#000',
+//     padding: 20,
+//     marginHorizontal: 20,
+//     marginVertical: 10,
+//     marginBottom: 20,
+//   },
+//   totalSalesText: {
+//     fontSize: 18,
+//     textAlign: 'center',
+//   },
+//   cardScrollContainer: {
+//     height: 100,
+//     marginBottom: 20,
+//   },
+//   cardContainer: {
+//     flexDirection: 'row',
+//   },
+  
+// });
+ 
+// export default Dashboard;
+
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-// import SmallCard from '../../dashboardComponents/smallCard';
-// import Scrollcard from '../../dashboardComponents/scrollCard';
-// import Bigcard from '../../dashboardComponents/bigCard';
-// import ChartLine from '../../dashboardComponents/lineChart';
-import SmallCard from '../../../dashboardComponents/bigCard';
+import SmallCard from '../../../dashboardComponents/smallCard';
 import Scrollcard from '../../../dashboardComponents/scrollCard';
+import Bigcard from '../../../dashboardComponents/bigCard'
 import ChartLine from '../../../dashboardComponents/lineChart';
-import Bigcard from '../../../dashboardComponents/bigCard';
 import { router } from 'expo-router';
 import { Modal } from 'react-native';
-// import CheckNetwork from '../checkNetwork';
-import CheckNetwork from '../../checkNetwork';
+import CheckNetwork from '../../checkNetwork'
+import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+
  
 const total_leads = 0;
 const total_calls = 1;
@@ -30,7 +287,7 @@ const Dashboard = () => {
     setShowDropdown(true);
   }
   const handleAddLead=()=>{
-    router.navigate('/formComponents/addLeadsByDoc')
+    router.navigate('/formComponents/createLead')
   }
   const handleAddActivty=()=>{
     router.navigate('/formComponents/activityForm')
@@ -45,6 +302,20 @@ const Dashboard = () => {
   const handleAddOpportunity=()=>{
     router.navigate('/formComponents/createOpportunity')
   }
+
+  const goToLeads = () => {
+    router.navigate('/DrawerScreens/leadList')
+}
+const goToContacts = () => {
+    router.navigate('/DrawerScreens/contacts')
+}
+const goToAccounts = () => {
+    router.navigate('/DrawerScreens/accounts')
+}
+
+
+
+
  
   const closeDropdown=()=>{
     setShowDropdown(false);
@@ -129,9 +400,8 @@ const Dashboard = () => {
         )}
       </ScrollView>
       <TouchableOpacity style={styles.plusButton} onPress={onClickPlus} > 
-   <Ionicons name="add" size={24} color="white" />
-  
- </TouchableOpacity>
+       <Ionicons name="add" size={24} color="white" />
+       </TouchableOpacity>
    {showDropdown && (
 
     <View style={styles.dropdownContainer}>
@@ -140,12 +410,6 @@ const Dashboard = () => {
           <TouchableOpacity onPress={closeDropdown} style={{paddingLeft:285}}>
             <Ionicons name='close-circle' size={35} />
           </TouchableOpacity>
-            {/* <TouchableOpacity onPress={() => {router.navigate('DrawerScreens/createLead'); closeDropdown();}}>
-                <Text style={styles.dropdownMenuItem}>Edit lead</Text>
-            </TouchableOpacity> */}
-            {/* <TouchableOpacity onPress={() => {displayScreen(); closeDropdown();}}>
-                <Text style={styles.dropdownMenuItem}>View</Text>
-            </TouchableOpacity> */}
             <TouchableOpacity onPress={handleAddLead}>
                 <Text style={styles.dropdownMenuItem}>Add a lead</Text>
             </TouchableOpacity>
@@ -163,6 +427,8 @@ const Dashboard = () => {
 </View>
 
           )}
+
+
     </View>
   );
 };
@@ -187,7 +453,7 @@ const styles = StyleSheet.create({
   },
   plusButton: {
     position: 'absolute',
-    bottom: 20,
+    bottom: 60,
     right: 20,
     backgroundColor: '#023B5E',
     padding: 15,
@@ -233,6 +499,25 @@ dropdownMenuItem: {
     justifyContent: 'space-around',
     marginBottom: 20,
   },
+  containerHeader: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: '#ffffff', // Change as per your design
+    borderTopWidth: 1,
+    borderTopColor: '#e0e0e0', // Change as per your design
+    paddingBottom: 10, // Adjust as per your design
+},
+tabItem: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    paddingBottom: 10, // Adjust as per your design
+},
  
   totalSalesCard: {
     backgroundColor: '#fff',
@@ -254,7 +539,6 @@ dropdownMenuItem: {
   cardContainer: {
     flexDirection: 'row',
   },
-  
 });
  
 export default Dashboard;

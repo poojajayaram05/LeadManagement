@@ -265,7 +265,7 @@ LogBox.ignoreAllLogs();
 
       console.log("Successfully posted", response);
       Alert.alert("Successfully Submitted!")
-      router.replace("/DrawerScreens/leadList");
+      router.navigate('headerScreens/DrawerScreens/accounts');
     
 
     }

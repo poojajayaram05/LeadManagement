@@ -17,14 +17,18 @@ import CustomHeader from '../../customComponents/customLeadHeader';
 import { contactFormData } from '../../customComponents/formData';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import AddAccounts from './accountsDropdown';
-// Form component
 import { SelectList } from 'react-native-dropdown-select-list';
+import { Modal } from 'react-native';
+import { ActivityIndicator } from 'react-native';
+
 export default function CreateContact() {
-    // const { control, handleSubmit, formState: { errors } } = useForm();
+    
     const [showCalendarModal, setShowCalendarModal] = useState(false); 
-    const[selectedDate, setSelectedDate] = useState('');
+    const [selectedDate, setSelectedDate] = useState('');
+    const [modalVisible, setModalVisible] = useState(false); // State to control modal visibility
+    const [addressInfo, setAddressInfo]=useState()
+    const [zipCode, setZipCode] = useState('');
     const [isCollapsed, setIsCollapsed] = useState({
-      
         General: false,
         Contact: false,
        Address:false,
@@ -32,6 +36,11 @@ export default function CreateContact() {
       })
 
       console.disableYellowBox = true;
+
+
+      const zipcodeValueSet=(item)=>{
+        setZipCode(item);
+      }
 
       const toggleSection = (sectionName) => {
         setIsCollapsed({ ...isCollapsed, [sectionName]: !isCollapsed[sectionName] });
@@ -45,10 +54,7 @@ export default function CreateContact() {
         
       };
 
-
-      
-    
-      const username= SecureStore.getItem('username');
+    const username= SecureStore.getItem('username');
     const [validationErrors, setValidationErrors] = useState({});
     const [formValues, setFormValues] = useState([]);
     const [selectedValue, setSelectedValue] = useState(null); 
@@ -58,15 +64,9 @@ export default function CreateContact() {
     const [isAddButtonDisabled, setIsAddButtonDisabled] = useState(false);
     const [isSwitchOn, setIsSwitchOn] = useState(false);
     const [userName, setUsername]=useState('');
-
-
-
-//   const handleSelect = (item) => {a
-//     setSelectedValue(item);
-//     setFormValues(prevFormValues => ({ ...prevFormValues, selectedValue: item.value }));
-//     console.log('Selected value:', item.value);
-// };
-
+    const token = SecureStore.getItem('token');
+    const stoken = JSON.parse(token);
+    const apiToken = stoken.accessToken;
 
 
 const onSelectRadio = (item) => {
@@ -75,14 +75,9 @@ const onSelectRadio = (item) => {
     console.log('Selected value:', item.id);
 }
 
-
-
   const validateForm = () => {
     const errors = {};
     contactFormData.elements.forEach((element) => {
-      // Check if the field is visible based on lead type
-     
-      // Perform validation for visible fields
       if (element.isRequired && !formValues[element.name]) {
         errors[element.name] = `${element.title} is required`;
       }
@@ -119,49 +114,67 @@ const onSelectRadio = (item) => {
     getUsername();
 }, []);
 
+const closeModal = () => {
+  setModalVisible(false);
+  setAddressInfo({}); // Reset address information
+};
 
+const searchAddress = async () => { 
+  setModalVisible(true);
+  console.log("zipcode",zipCode)
+    const getAddressUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_postal_code?sysparm_query=postal_code=${zipCode}&sysparm_display_value=true` ;
+    try {
+      console.log(getAddressUrl)
+        const response = await fetch(getAddressUrl, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization' : 'Bearer ' + apiToken
+            },
+
+          })
+          const data = await response.json();
+          setAddressInfo(data);
+          console.log("data", data)
+          console.log("adressss", addressInfo)
+    }
+   catch (error) {
+      console.error('Error fetching address:', error);
+      
+  }
+}
     const onSubmit = async () => {
       console.log("usernameee", username);
       console.log("Form data", formValues);
       setFormValues(prevFormValues => ({ ...prevFormValues, ['owner']: username}));
       const errors = validateForm();
       if (Object.keys(errors).length > 0) {
-        // If there are validation errors, set them in state
         setValidationErrors(errors);
         console.log(validationErrors);
       }
       else{
-       
         const postUrl=`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_contact_c`;
         console.log(postUrl);
         const token = SecureStore.getItem('token');
         const stoken = JSON.parse(token);
         const apiToken = stoken.accessToken;
         console.log(apiToken);   
-        // const token="DeC8cB2g6op02J_9-8cvJDwpA_5QTiL_9x8VnZLmwHy3QcoqoVR7KuhWUs-M0KgzLFLlp1NB8d5kekkbt3mCYQ";
         console.log("Form data", formValues);
-        // try{
-            
-        //     const response = axios.post(`https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_management`, formValues);
-        //     console.log('success',response);
-        // }
         try{
         const response = await fetch(postUrl, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
               'Authorization' : 'Bearer ' + apiToken
-             
             },
           body: JSON.stringify(formValues)  
           })
 
           console.log("Successfully posted",response);
           Alert.alert("Successfully Submitted!")
-          router.replace('/DrawerScreens/contacts')
+          router.navigate('headerScreens/DrawerScreens/contacts');
         }
-        
-    
+      
             catch(err){
                 console.log("error");
             }
@@ -170,8 +183,6 @@ const onSelectRadio = (item) => {
         }
 
     const renderFormElements = (sectionName) => {
-        
-          
         return contactFormData.elements
           .filter((element) => element.sectionName === sectionName)
           .map((element, index) => (
@@ -182,8 +193,6 @@ const onSelectRadio = (item) => {
           ));
       };
 
-   
-
     const renderFormElement = (element) => {
         const handleDateChange = (selectedDate, element) => {
             if (selectedDate) {
@@ -191,8 +200,6 @@ const onSelectRadio = (item) => {
               
               // Check which date input is being changed
                console.log("dateeeeee", extractDate(selectedDate))
-          
-          
                 setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: extractDate(selectedDate) }));
               }
             }
@@ -205,24 +212,101 @@ const onSelectRadio = (item) => {
             };
           
         const handleSelect = (key, value) => {
-            //setSelectedValue(item);
             setFormValues(prevFormValues => ({ ...prevFormValues,  [element.name]: key }));
             console.log(element.name, key);
         };
         const handleSwitch=(item)=>{
           setFormValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item}));
           console.log(element.name, item);
-
         }
+
+        const saveAddress=(data)=>{
+          console.log(element.name,data);
+          setFormValues({
+            ...formValues,
+            country: data.country.display_value,
+            state: data.state.display_value,
+            district: data.district,
+            location: data.location,
+            town:data.town,
+            zip_postalcode:data.postal_code
+            
+          });
+          console.log("form values", formValues)
+        }
+        
 
         const starMark = element.isRequired ? <Text style={{ color: 'red' }}> *</Text> : null;
 
-  
         switch (element.type) {
+          case 'TextInputAddress':
+            return(
+              <View>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                 <CustomInput
+                        key={element.name}
+                        title={element.title}
+                        placeholder={element.placeholder}
+                        // control={control}
+                        isRequired={element.isRequired}
+                        inputType={element.inputType}
+                        name={element.name}
+                        rules={{ required: element.isRequired ? `${element.title} is required` : false }}
+                        // errors={errors}
+                        onChange= {(text) => zipcodeValueSet(text)} // Update pincode state as user types
+                        value={zipCode||''}
+                        //value={formValues[element.name] || ''} 
+                    />
+                {/* Search icon */}
+                <TouchableOpacity onPress={searchAddress}>
+                  <Ionicons name="search" size={24} />
+                </TouchableOpacity>
+              </View>
+              {modalVisible && (
+       <Modal
+       animationType="slide"
+       transparent={true}
+       visible={modalVisible}
+       onRequestClose={closeModal}
+     >
+       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+       <View style={{ backgroundColor: 'white', padding: 20, borderRadius: 10, borderColor: 'black' }}>
+      <ScrollView style={styles.scrollViewContainer}>
+    {addressInfo && addressInfo.result ? ( // Check if addressInfo and addressInfo.result are available
+     
+      addressInfo.result.map((address, index) => (
+        <TouchableOpacity key={index} onPress={() => saveAddress(address)} >
+          <View style={styles.addressContainer}>
+            <Text style={styles.addressLabel}>Town: {address.town}</Text>
+            <Text style={styles.addressLabel}>District: {address.district}</Text>
+            <Text style={styles.addressLabel}>Location: {address.location}</Text>
+            <Text style={styles.addressLabel}>State: {address.state.display_value}</Text>
+            <Text style={styles.addressLabel}>Country: {address.country.display_value}</Text>
+            <Text style={styles.addressLabel}>Zipcode: {address.postal_code} </Text>
+          </View>
+        </TouchableOpacity>
+      ))
+    ) : (
+      
+      <ActivityIndicator size="large" color="#0000ff" />
+    )}
+   
+    <TouchableOpacity onPress={closeModal}>
+      <Text style={{ color: 'blue', marginTop: 10 }}>Close</Text>
+    </TouchableOpacity>
+  </ScrollView>
+</View>
+       </View>
+     </Modal>
+     
+              )}
+            </View>
+   
+            )
+
             case 'TextInput':
                 return (
                   <View>
-                      {/* <Text style={styles.label}>{element.title}{starMark} </Text> */}
                     <CustomInput
                         key={element.name}
                         title={element.title}
@@ -238,37 +322,7 @@ const onSelectRadio = (item) => {
                     />
                     </View>
                 );
-                // case 'email':
-                //     return (
-                //       <View key={element.name}>
-                //           <Text style={styles.label}>{element.title}{starMark}</Text>
-                //         <CustomInput
-                //           key={element.name}
-                //           // title={element.title}
-                //           placeholder={element.placeholder}
-                //           name={element.name}
-                //           onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
-                //           value={formValues[element.name] || ''}
-                //           inputType={element.inputType}
-                //         />
-                //         {/* Render alternate email fields */}
-                //         {[...Array(alternateEmailCount)].map((_, i) => (
-                //           <CustomInput
-                //             key={`alternate_email${i + 1}`}
-                //             title={`Alternate Email ${i + 1}`}
-                //             placeholder={`Alternate Email ${i + 1}`}
-                //             name={`alternate_email${i + 1}`}
-                //             onChange={(value) => setFormValues({ ...formValues, [`alternate_email${i + 1}`]: value })}
-                //             value={formValues[`alternate_email${i + 1}`] || ''}
-                //             inputType={element.inputType}
-                //           />
-                //         ))}
-                //         {/* Plus Button */}
-                //         <TouchableOpacity onPress={onAddAlternateEmail}>
-                //           <Ionicons name="add-circle" size={24} color="black" style={styles.plusButton} />
-                //         </TouchableOpacity>
-                //       </View>
-                //     );
+
 
                 case 'MultilineText':
                     return (
@@ -390,7 +444,6 @@ const onSelectRadio = (item) => {
                                  // control={control}
                                  value={username}
                                  name={element.name}
-
                                 readOnly={true}
                              />
                              </View>
@@ -468,21 +521,33 @@ const styles = StyleSheet.create({
     padding: 10,
     },
     section: {
-        marginBottom: 20,
-        
+        marginBottom: 20, 
     },
+    scrollViewContainer: {
+      maxHeight: 350, // Set the maximum height for scrolling
+    },
+    addressContainer: {
+      borderWidth: 1,
+      borderColor: '#ccc',
+      borderRadius: 5,
+      padding: 10,
+      marginBottom: 10,
+    },
+    addressLabel: {
+      fontSize: 16,
+      marginBottom: 5,
+    },
+  
     sectionTitle: {
         fontSize: 20, // Increase font size for emphasis
         fontWeight: 'bold',
         marginBottom: 15, // Increase margin for better separation
         color: 'black', // Use a darker color for better readability
-        
         paddingBottom: 5, // Add padding to space out the underline from the text
     },
     inputContainer: {
         marginBottom:8,
-        borderRadius:12,
-
+        // borderRadius:12,
     },
     backButton: {
         alignSelf: 'flex-end', // Align button to the start (left)
@@ -531,5 +596,5 @@ const styles = StyleSheet.create({
       icon: {
         marginLeft: 'auto', // Align the icon to the rightmost edge of its container
       },
-    
+ 
 });

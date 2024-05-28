@@ -61,6 +61,7 @@ export const leads_to_render = {
              u_state: {label : "State"},
              zip_postalcode: {label:"Zip"},
              u_country: {label:"Country"},
+            // concatenated_address: { label: "Full Address" }
            },
         },
         contact_methods: {
@@ -99,16 +100,12 @@ export const personAccounts_to_render={
             title: "General Information",
             sectionId: 1,
             fields: {
-                // title: { label: "Title" },
                 account_type: {label:"Account Type"},
                 account_name: { label: "Account Name" },
                 description: { label: "Description" },
                 birthdate: { label: "Birth date" },
                 number:{label:"Number"},
                 website:{label:"Website"},
-                // gender: { label: "gender" },
-                // email: { label: "email" },
-                // owner: { label: "owner" }
             },
  
  
@@ -128,10 +125,7 @@ export const personAccounts_to_render={
              other_phone:{label:"Other phone"},
              assistant:{label:"Assistant"},
              assistant_phone:{label:"Assistant phone"},
- 
- 
            }
- 
         },
         personal_details: {
             title: "Personal Information",
@@ -152,7 +146,6 @@ export const personAccounts_to_render={
                 spouse_middle_name:{label:"Spouse Middle name"},
                 spouse_last_name:{label:"Spouse last name"},
                 tfValue:{label:"Minority community"},
- 
             }
         },
         address_details:{
@@ -163,10 +156,6 @@ export const personAccounts_to_render={
                 state_code:{label:"State"},
                 city:{label:"City"},
                 country:{label:"Country"},
-                // other_address:{label:"Other address"},
-                // mailing_address:{label:"Mailing address"},
-                // billing_address:{label:"Billing Address"},
- 
             }
         },
         company_details:{
@@ -178,7 +167,6 @@ export const personAccounts_to_render={
                 lead_currency:{label:"Currency"},
                 website:{label:"Website"},
                 annual_revenue:{label:"Annual Revenue"},
- 
             }
         },
         system_details:{
@@ -189,7 +177,6 @@ export const personAccounts_to_render={
                 sys_created_on:{label:"Created On"},
                 sys_updated_by:{label:"Updated By"},
                 sys_updated_on:{label:"Last Updated On "},
- 
             }
         }
  
@@ -202,7 +189,6 @@ export const corporateAccounts_to_render={
     header_section:
     {
         account_name: { label: "Account Name" },
-       
         email: { label: "email" },
         mobile: {label:"Mobile"}
     },
@@ -215,15 +201,9 @@ export const corporateAccounts_to_render={
                 account_type: {label:"Account Type"},
                 account_name: { label: "Account Name" },
                 description: { label: "Description" },
-               
                 number:{label:"Number"},
                 website:{label:"Website"},
-                // gender: { label: "gender" },
-                // email: { label: "email" },
-                // owner: { label: "owner" }
             },
- 
- 
         },
         contact_details: {
             title: "Contact Information",
@@ -237,8 +217,6 @@ export const corporateAccounts_to_render={
              alternate_phone2:{label:"Alternate phone2"},
              contact_verified:{label:"Contact verified"},
              other_phone:{label:"Other phone"},
-   
- 
  
            }
  
@@ -254,7 +232,6 @@ export const corporateAccounts_to_render={
                 industry:{label:"Industry"},
                 annual_revenue:{label:"Annual revenue"},
                 department:{label:"Department"},
- 
             }
         },
         address_details:{
@@ -267,7 +244,6 @@ export const corporateAccounts_to_render={
                 other_address:{label:"Other address"},
                 mailing_address:{label:"Mailing address"},
                 billing_address:{label:"Billing Address"},
- 
             }
         },
         company_details:{
@@ -279,7 +255,6 @@ export const corporateAccounts_to_render={
                 lead_currency:{label:"Currency"},
                 website:{label:"Website"},
                 annual_revenue:{label:"Annual Revenue"},
- 
             }
         },
         system_details:{
@@ -306,9 +281,6 @@ export const corporateAccounts_to_render={
  
             }
         }
- 
- 
- 
 }
 }
 export const accounts_to_render={
@@ -345,8 +317,6 @@ export const accounts_to_render={
              business_phone:{label:"Business Phone"},
              home_phone:{label:"Home Phone"},
              email_opt_out:{label:"Email Opt Out"},
-
-
            }
 
         }
@@ -416,7 +386,6 @@ export const contact_to_render={
             title: "Contact Information",
             sectionId: 2,
             fields: {
-                // home_phone: { label: "Home Phone" },
              alternate_email1: { label: "Alternate Email 1" },
              alternate_email2:{label : "Alternate Email 2"},
              alternate_phone1:{label:"Alternate Phone 1"},
@@ -429,9 +398,12 @@ export const contact_to_render={
             title:"Address Details",
             sectionId: 3,
             fields: {
-                mailing_address:{
-                    label:"Mailing Address"
-                },
+                town:{label:"Street"},
+                district:{label:"District"},
+                state:{label:"State"},
+                zip_postalcode:{label:"Zip"},
+                country:{label:"Country"},
+                mailing_address:{label:"Mailing Address"},
                 other_address:{label:"Other Address"},
             }
         },
@@ -447,8 +419,6 @@ export const contact_to_render={
                 mother_mddle_name:{label:"Mother Middle Name"},
                 mother_last_name:{label:"Mother Last Name"},
                 religion:{label:"Religion"},
-               
- 
             }
         },
         system_details:{

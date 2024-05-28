@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import CustomHeader from '../../customComponents/customLeadHeader';
- 
+ import { router } from 'expo-router';
 const MyAccount = () => {
   // Sample data for demonstration
   const userData = {

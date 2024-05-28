@@ -6,9 +6,7 @@ import useIdStore from '../leadStore';
 import { Ionicons } from '@expo/vector-icons';
 import {DataRow,Section}from '../../customComponents/dataRow'; 
 import AccountHeader from '../../customComponents/accountDetailHeader';
-
 import { TransformApiData } from '../../displayDataMap/displayDataMap';
-
 import * as SecureStore from 'expo-secure-store';
 import { ActivityIndicator } from 'react-native';
 import { leads_to_render,contact_to_render, corporateAccounts_to_render, personAccounts_to_render,opportunity_to_render } from '../../detailPagesData';
@@ -46,11 +44,9 @@ const RenderDetail =  () => {
       setApi(ACCOUNT_API);
       if(account_type=='person'){
       setData(personAccounts_to_render); 
-      
       }
     else
       setData(corporateAccounts_to_render);
-      
     }
     else if(flag==='opportunity'){
       setData(opportunity_to_render);
