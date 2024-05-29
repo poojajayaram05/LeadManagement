@@ -205,7 +205,7 @@ import { editPersonAccount } from "../../customComponents/formData";
  
         console.log("Successfully posted", response);
         Alert.alert("Successfully Submitted!")
-        router.replace("/DrawerScreens/accounts");
+        router.replace("renderDetails/renderDetailPage");
       } catch (err) {
         console.log("error");
       }

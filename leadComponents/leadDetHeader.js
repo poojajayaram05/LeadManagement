@@ -216,7 +216,8 @@ const LeadDet = () => {
 
   const leadId = useIdStore((state) => state.number);
   const lead = leadData.find((lead) => lead.number === leadId);
-  const { firstname, lastname, email, qualification, leadstatus, number, gender, mobilephone} = lead || {};
+  const { firstname, lastname, email, qualification, leadstatus, number, gender, mobilephone, score} = lead || {};
+  console.log("score",score)
   const goToleadEdit = () => {
     router.navigate('/formComponents/editLead')
   };
@@ -274,7 +275,7 @@ const handleEmail = () => {
         </View>
         <View style={styles.scoreContainer}>
           <Text style={styles.scoreHeading}>Score</Text>
-          <Text style={styles.scoreText}>15</Text>
+          <Text style={styles.scoreText}>{score}</Text>
         </View>
       </View>
  

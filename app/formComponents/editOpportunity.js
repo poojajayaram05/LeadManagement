@@ -188,7 +188,7 @@ function extractDate(timestamp) {
  
           console.log("Successfully posted",response);
           Alert.alert("Successfully Submitted!")
-          router.replace('/DrawerScreens/deals')
+          router.replace('renderDetails/renderDetailPage')
         }
             catch(err){
                 console.log("error");

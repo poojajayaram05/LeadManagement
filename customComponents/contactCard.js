@@ -6,7 +6,7 @@ import { HomeProfile } from '../assets/images'
 import useIdStore from '../app/leadStore';
 import { Ionicons } from '@expo/vector-icons';
 import { Linking } from 'react-native';
-import { ContactAvatar } from '../assets/images';
+import { companyIconn } from '../assets/images';
 
 
 const ContactItem = ({ first_name, last_name, mobile, email, title, description, number, sys_id }) => {
@@ -50,7 +50,7 @@ const handleNavigateToContactDetails = () => {
         <TouchableOpacity onPress={handleNavigateToContactDetails}>
             <View style={styles.item}>
                 <Image
-                    source={ContactAvatar}
+                    source={companyIconn}
                     style={{
                         width: 45,
                         height: 40,

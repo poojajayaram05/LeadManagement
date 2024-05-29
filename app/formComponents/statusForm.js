@@ -1,203 +1,194 @@
-
+ 
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet, ScrollView, TouchableOpacity, Image, LogBox } from 'react-native';
-import { leadNoteData, meetingData, taskData } from '../../customComponents/formData';
-import Dropdown from '../../customComponents/customDropdown';
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  Alert,
+  LogBox,
+} from 'react-native';
 import MultilineTextInput from '../../customComponents/customMultilineInput';
 import { router } from 'expo-router';
 import { statusFormData } from '../../customComponents/formData';
-import { leadData } from '../../customComponents/formData';
-import { meetingItemsData } from '../../customComponents/formData';
-import { DropdownIcon } from '../../assets/images';
-import { DropupIcon } from '../../assets/images';
 import { SelectList } from 'react-native-dropdown-select-list';
 import { CustomInput } from '../../customComponents/customInput';
 import useIdStore from '../leadStore';
-
-export default function StatusForm({ navigation }) {
-  const [selectedValue, setSelectedValue] = useState('');
-  const [taskId, setTaskId] = useState('');
-  const [meetingId, setMeetingId] = useState('');
-  const [notes, setNotes] = useState('');
-  const leadId = useIdStore(state=>state.number)
-  const[formValues, setFormValues]=useState([''])
+import * as SecureStore from 'expo-secure-store';
  
-
+export default function StatusForm({ selectedStatus }) {
+  const [selectedValue, setSelectedValue] = useState('');
+  const leadId = useIdStore((state) => state.number);
+  const [formValues, setFormValues] = useState({});
+  const sys_id = useIdStore((state) => state.sys_id);
+ 
+  useEffect(() => {
+    const initialFormValues = {};
+    statusFormData.elements.forEach((element) => {
+      initialFormValues[element.name] = '';
+    });
+    setFormValues(initialFormValues);
+  }, []);
+ 
   LogBox.ignoreAllLogs();
  
-  const onSubmit = () => {
-    console.log(formValues);
-   
+  const onSubmit = async () => {
+    const updatedFormValues = {
+      ...formValues,
+      lead_status: selectedStatus,
+      sys_id: sys_id,
+    };
+ 
+    setFormValues(updatedFormValues);
+    console.log('Form values before submit', updatedFormValues);
+ 
+    const postUrl = `https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_leads_c/${sys_id}`;
+    console.log(postUrl);
+ 
+    try {
+      const token = await SecureStore.getItemAsync('token');
+      const stoken = JSON.parse(token);
+      const apiToken = stoken.accessToken;
+      console.log(apiToken);
+ 
+      const response = await fetch(postUrl, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + apiToken,
+        },
+        body: JSON.stringify(updatedFormValues),
+      });
+ 
+      console.log('Successfully posted', response);
+      Alert.alert('Successfully Submitted!');
+      router.navigate('/headerScreens/DrawerScreens/leadList')
+    } catch (err) {
+      console.log('error', err);
+      Alert.alert('Failed to submit');
+    }
   };
  
-  const goBack=()=>{
+  const goBack = () => {
     router.back();
-  }
+  };
  
-
-const renderFormElement = (element) => {
-  const handleSelect = (item) => {
-    setSelectedValue(item.value);
-   setFormValues(prevFormValues => ({ ...prevFormValues, [element.name]: item }));
-   console.log('Selected value:', item);
-};
-
+  const handleSelect = (item, elementName) => {
+    setSelectedValue(item);
+    setFormValues((prevFormValues) => ({
+      ...prevFormValues,
+      [elementName]: item,
+    }));
+ 
+    console.log('Selected value:', item);
+  };
+ 
+  const handleTextChange = (value, elementName) => {
+    setFormValues((prevFormValues) => ({
+      ...prevFormValues,
+      [elementName]: value,
+    }));
+    console.log('Text value:', value);
+  };
+ 
+  const renderFormElement = (element) => {
     switch (element.type) {
- 
       case 'dropdown':
         return (
-            <View>
-            <View style = {styles.inputContainer}>
+          <View key={element.name} style={styles.inputContainer}>
             <Text style={styles.label}>{element.title}</Text>
             <SelectList
-                boxStyles={{
-                    borderWidth: 1,
-                    borderColor: '#ccc',
-                    borderRadius: 12, // Make the border oval by using a large border radius
-                    paddingVertical: 10,
-                    paddingHorizontal: 10,
-                    fontSize: 16
-                }}
-                setSelected={(label) => {
-                    setSelectedValue(label); // Update selected values
-                }}
-                //placeholder={formValues[element.name] || ''}
-                data={element.dropdownData.map(item => ({ value: item.value, label: item.key }))}
-                save="value"
-                onSelect={() => handleSelect(selectedValue) } // Log selected values
+              boxStyles={{
+                borderWidth: 1,
+                borderColor: '#ccc',
+                borderRadius: 12,
+                paddingVertical: 10,
+                paddingHorizontal: 10,
+                fontSize: 16,
+              }}
+              setSelected={(label) => handleSelect(label, element.name)}
+              data={element.dropdownData.map((item) => ({
+                value: item.value,
+                label: item.key,
+              }))}
+              save="value"
             />
-            </View>
-            </View>
+          </View>
         );
  
+      case 'multiLineText':
+        return (
+          <View key={element.name} style={styles.inputContainer}>
+            <Text style={styles.label}>{element.title}</Text>
+            <MultilineTextInput
+              placeholder="Write a note"
+              value={formValues[element.name]}
+              onChange={(value) => handleTextChange(value, element.name)}
+            />
+          </View>
+        );
  
-       
-    case 'multiLineText':
-      return (
-        <View style={styles.inputContainer}>
-              <Text style={styles.label}>{element.name}</Text>
-              <MultilineTextInput
-                placeholder="Write a note"
-                value={notes}
-                onChange={setNotes}
-              />
-            </View>
-      );
-      case 'TextInput':
-      return (
-        <View style={styles.inputContainer}>
-             
-              <CustomInput
-                            key={element.name}
-                            title={element.title}
-                            placeholder={leadId}
-                            onChange={(value) => setFormValues({ ...formValues, [element.name]: value })}
-                            value={formValues[element.name]}
-                            ></CustomInput>
-            </View>
-      );
-      
-      
-     
+      // case 'TextInput':
+      //   return (
+      //     <View key={element.name} style={styles.inputContainer}>
+           
+      //       <CustomInput
+      //         key={element.name}
+      //         title={element.title}
+      //         placeholder={sys_id}
+      //         value={sys_id}
+      //         onChange={(value) => handleTextChange(value, element.name)}
+      //       />
+      //     </View>
+      //   );
  
-};
-}
- 
+      default:
+        return null;
+    }
+  };
  
   return (
     <View style={styles.cardContainer}>
-       
-     
-     
-    <ScrollView>
- 
-   
+      <ScrollView>
         <View style={styles.card}>
-            <View style={styles.section}>
-           
-                <TouchableOpacity onPress={() => toggleSection('section1')}>
-                    <Text style={styles.title}>Status</Text>
-                 
-                    {/* <Image
-                        source={isSection1Collapsed ? DropdownIcon : DropupIcon}
-                        resizeMode="contain"
-                        style={styles.dropdownIcon}
-                    /> */}
-                     
-                </TouchableOpacity>
-             
-                    {statusFormData.elements.slice(0, 11).map((element, index) => (
-                        <View key={index} style={styles.inputContainer}>
-                            {renderFormElement(element)}
-                        </View>
-                    ))}
-               
-            </View>
- 
-           {/* <View style={styles.section}>
-                <TouchableOpacity onPress={() => toggleSection('section2')}>
-                    <Text style={styles.sectionTitle}>Schedule Information</Text>
-                    <Image
-                        source={isSection2Collapsed ? DropdownIcon : DropupIcon}
-                        resizeMode="contain"
-                        style={styles.dropdownIcon}
-                    />
-                </TouchableOpacity>
-                <Collapsible collapsed={isSection2Collapsed}>
-                    {taskFormData.elements.slice(9).map((element, index) => (
-                        <View key={index} style={styles.inputContainer}>
-                            {renderFormElement(element)}
-                        </View>
-                    ))}
-                </Collapsible>
-            </View>  */}
-         
-             
-            <Button title="Submit" onPress={onSubmit} color='#023B5E' />
-            <View style={styles.buttonContainer}>
-      <TouchableOpacity onPress={goBack}>
-        {/* <ArrowBack /> */}
-      </TouchableOpacity>
-    </View>
-            {/* <MultiSelectItems/> */}
-           
+          <View style={styles.section}>
+            {statusFormData.elements.map((element, index) => (
+              <View key={index} style={styles.inputContainer}>
+                {renderFormElement(element)}
+              </View>
+            ))}
+          </View>
+          <Button title="Submit" onPress={onSubmit} color="#023B5E" />
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity onPress={goBack}>
+              {/* <ArrowBack /> */}
+            </TouchableOpacity>
+          </View>
         </View>
-     
-    </ScrollView>
-   
- 
-   
-</View>
- 
+      </ScrollView>
+    </View>
   );
 }
  
 const styles = StyleSheet.create({
   cardContainer: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 20,
+    paddingHorizontal: 10,
+    paddingTop: 10,
     paddingBottom: 15,
     backgroundColor: 'white',
-    width:"100%",
-  },
-  backButton: {
-    alignSelf: 'flex-end',
-    marginRight: 'auto',
-    color:'#023B5E',
+    width: '100%',
   },
   card: {
     backgroundColor: '#FFFFFF',
-    borderRadius:2,
+    borderRadius: 2,
     padding: 20,
     shadowColor: '#000000',
     shadowOpacity: 0.2,
     shadowRadius: 5,
     elevation: 5,
-  },
-  backButtonText: {
-    fontSize: 12,
-    color: '#007AFF',
   },
   section: {
     marginBottom: 20,
@@ -217,13 +208,5 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: 'bold',
   },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    backgroundColor:'white',
-    paddingVertical: 10,
-    paddingHorizontal: 11,
-    fontSize: 16,
-},
 });
+ 

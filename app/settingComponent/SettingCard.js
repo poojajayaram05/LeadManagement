@@ -24,8 +24,9 @@ const SettingCard = ({ title, options, navigation }) => {
   const iconName = iconMap[title] || 'question';
  
   const handleNavigation = () => {
-    console.log(navigation)
-    router.navigate(navigation);
+    console.log(navigation);
+    router.navigate(navigation)
+   
 }
  
   return (

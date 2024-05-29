@@ -183,6 +183,7 @@ export default function Example() {
             <Text style={styles.data}>Status:</Text>
             <Text style={[styles.detail, { color: statusColor }]}>{status}</Text>
           </View>
+          
           <View style={styles.row}>
             <Text style={styles.data}>Created On:</Text>
             <Text style={styles.detail}>{sys_created_on}</Text>

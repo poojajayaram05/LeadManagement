@@ -479,6 +479,24 @@ export const editLeadformData = {
       "placeholder":"Home Phone",
       "sectionName":"Contact"
     },
+
+    {
+      "name": "alternate_email1",
+      "type": "TextInput",
+      "title": "Alternate Email 1",
+      "placeholder": "Alternate Email 1",
+      "sectionName":"Contact"
+     
+    },
+
+    {
+      "name": "alternate_email2",
+      "type": "TextInput",
+      "title": "Alternate Email 2",
+      "placeholder": "Alternate Email 2",
+      "sectionName":"Contact"
+     
+    },
     {
       "name": "do_not_call",
       "type": "Switch",
@@ -487,14 +505,14 @@ export const editLeadformData = {
     },
     {
       "name": "email",
-       "type":"email",
+       "type":"TextInput",
       "title": "Email",
       "placeholder":"Email",
       "sectionName":"Contact",
-      "validation": {
-        "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-        "message": "Please enter a valid email address."
-      },
+      // "validation": {
+      //   "regex": /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      //   "message": "Please enter a valid email address."
+      // },
     },
 
     {
@@ -889,6 +907,24 @@ export const formData = {
         "inputType": "numeric",
         "placeholder":"Home Phone",
         "sectionName":"Additional"
+      },
+
+      {
+        "name": "alternate_email1",
+        "type": "TextInput",
+        "title": "Alternate Email 1",
+        "placeholder": "Alternate Email 1",
+        "sectionName":"Contact"
+       
+      },
+ 
+      {
+        "name": "alternate_email2",
+        "type": "TextInput",
+        "title": "Alternate Email 2",
+        "placeholder": "Alternate Email 2",
+        "sectionName":"Contact"
+       
       },
       {
         "name": "do_not_call",
@@ -1503,10 +1539,11 @@ export const callLogFormData= {
 export const leadScoreFormData={
   "elements":[
     {
-      "questionName": "associated_lead",
+      "name": "associated_lead",
       "questionType":"TextInputLead",
       "questionvalue": "Associated Lead",
-      "inputType": "text",  
+      "inputType": "text",
+      "questionlabel":"Associated Lead"  
     },
     
     {
@@ -1517,11 +1554,11 @@ export const leadScoreFormData={
     "questionDescription":"age of the lead",
     "placeholder": "Select",
                 "dropdownData": [
-                    { key: 1, value: "20-30 years" },
-                    { key: 2, value: "30-40 years" },
-                    { key: 3, value: "40-50 years" },
-                    { key: 4, value: "50-60 years" },
-                    { key: 5, value: "60-70 years" }
+                    { key: "20 - 30 years", value: "20 - 30 years" },
+                    { key: "30 - 40 years", value: "30 - 40 years" },
+                    { key: "40 - 50 years", value: "40 - 50 years" },
+                    { key: "50 - 60 years", value: "50 - 60 years" },
+                    { key: "60 - 70 years", value: "60 - 70 years" }
                 ],
                 'isRequired': true,
     
@@ -1529,15 +1566,15 @@ export const leadScoreFormData={
     {
       "questionId":"2",
       "questionvalue":"Family Income",
-      "name":"familyIncome",
+      "name":"family_income",
       "questionType":"dropdown",
       "questionDescription":"income of the whole family",
       "placeholder": "Select",
                   "dropdownData": [
-                      { key: 1, value: "4 - 6 Lakhs" },
-                      { key: 2, value: "6 - 10 Lakhs" },
-                      { key: 3, value: "10 - 15 Lakhs" },
-                      { key: 4, value: "15+ Lakhs" },
+                      { key: "4 - 6 Lakhs", value: "4 - 6 Lakhs" },
+                      { key: "6 - 10 Lakhs", value: "6 - 10 Lakhs" },
+                      { key: "10 - 15 Lakhs", value: "10 - 15 Lakhs" },
+                      { key: "15+ Lakhs", value: "15+ Lakhs" },
                      
                   ],
                   'isRequired': true,
@@ -1551,21 +1588,22 @@ export const leadScoreFormData={
         "questionDescription":"occupation of the lead",
         "placeholder": "Select",
                     "dropdownData": [
-                        { "key": 1, "value": "Self-Employed" },
-                        { "key": 2, "value": "Business" },
-                        { "key": 4, "value": "Employee" },
+                        { "key": "Self employed", "value": "Self-Employed" },
+                        { "key": "Business", "value": "Business" },
+                        { "key": "Employee", "value": "Employee" },
                     ],
                     'isRequired': true,
         },
         {
           "questionId":"4",
           "questionvalue":"Gender",
+          "name":"gender",
           "type":"RadioButton",
           "questionDescription":"gender of the lead",
           "rdata" : [
-            { value: "Male", id: 'male' },
-            { value: "Female", id: 'female' },
-            { value: "Other", id: 'other' },
+            { value: "Male", key: 'Male' },
+            { value: "Female", key: 'Female' },
+            { value: "Other", key: 'Other' },
           ],
           'isRequired': true,
           },
@@ -1573,13 +1611,13 @@ export const leadScoreFormData={
           {
             "questionId":"4",
             "questionvalue":"Education Qualification",
-            "name":"qualification",
+            "name":"eduaction_qualification",
             "questionType":"dropdown",
             "questionDescription":"qualification of the lead",
             "placeholder": "Select",
                         "dropdownData": [
-                            { "key": 1, "value": "Graduate/Postgraduate/MBA/CA" },
-                            { "key": 2, "value": "Undergraduate/Diploma/12th" },
+                            { "key": "Graduate/Postgraduate/MBA/CA", "value": "Graduate/Postgraduate/MBA/CA" },
+                            { "key": "Undergraduate/Diploma/12th", "value": "Undergraduate/Diploma/12th" },
                            
                         ],
                         'isRequired': true,
@@ -1587,16 +1625,16 @@ export const leadScoreFormData={
             {
               "questionId":"5",
               "questionvalue":"Lead Category",
-              "name":"leadCategory",
+              "name":"lead_category",
               "questionType":"dropdown",
               "questionDescription":"Category of the lead",
               "placeholder": "Select",
               "dropdownData" :[
-                    { key: 'new', value: 'New' },
+                    { key: 'New', value: 'New' },
                     { key: 'Contacted', value: 'Contacted' },
-                    { key: 'qualified', value: 'Qualified' },
-                    { key: 'converted', value: 'Converted' },
-                    { key: 'closed-not_converted', value: 'Closed-Not Converted' },
+                    { key: 'Qualified', value: 'Qualified' },
+                    { key: 'Converted', value: 'Converted' },
+                    { key: 'Closed-not-converted', value: 'Closed-Not Converted' },
                    ],
                           'isRequired': true,
               },
@@ -3679,39 +3717,6 @@ export const callLogData=
   }
 ];
 
-export const statusFormData = {
-  "elements": [
-    {
-      "name": "number",
-      "type": "TextInput",
-      "title": "Associated Lead",
-      "inputType": "text",
-      "placeholder":""
-    },
-    {
-      "name": "reason",
-      "type": "dropdown",
-      "title": "Reason",
-      "placeholder":'Enter the reason',
-      "dropdownData":[
-        { "key":"not_reachable", "value":"Not Reachable"},
-        { "key":"ringing", "value":"Ringing"},
-        { "key":"wrong_number", "value":"Wrong Number"},
-        {"key":"busy", "value":"Busy"},
-        {"key":"appointment_fixed", "value":"Appointment fixed"},
-      ]
-    },
-    {
-      "name": "remarks",
-      "type": "multiLineText",
-      "title": "Remarks",
-      "inputType": "text",
-      "placeholder":"Enter the Remarks"
-    },
-   
-    
-   ]
-}
 
 export const markAsCompletedFormData={
   "elements": [
@@ -6810,31 +6815,38 @@ export const editPersonAccount={
       },
       {
         id: "2",
-        title: "Manage Integration"
+        title: "Manage Integration",
+        navigation: "/settingComponent/generalSetting",
       },
       {
         id: "3",
-        title: "Manage Subscription"
+        title: "Manage Subscription",
+        navigation: "/settingComponent/generalSetting",
       },
       {
         id: "4",
-        title: "Manage Team"
+        title: "Manage Team",
+        navigation: "/settingComponent/generalSetting",
       },
       {
         id: "5",
-        title: "Customization"
+        title: "Customization",
+        navigation: "/settingComponent/generalSetting",
       },
       {
         id: "6",
-        title: "Manage Lead Distribution"
+        title: "Manage Lead Distribution",
+        navigation: "/settingComponent/generalSetting",
       },
       {
         id: "7",
-        title: "Export Data"
+        title: "Export Data",
+        navigation: "/settingComponent/generalSetting",
       },
       {
         id: "8",
-        title: "Disclosure"
+        title: "Disclosure",
+        navigation: "/settingComponent/generalSetting",
       }
     ];
      

@@ -124,11 +124,11 @@
 // import { FetchLeads } from "../service/fetchLeads";
 // import * as SecureStore from 'expo-secure-store';
 // import useIdStore from "../leadStore";
-
+ 
 // export default function ChangeStatus() {
 //   const[leadData, setLeadData]=useState([])
-  
-
+ 
+ 
 // //   const status = Status;
 //   const handleStatusChange = (value) => {
 //     setSelectedStatus(value);
@@ -137,7 +137,7 @@
 //   const goBackToLeadCard = () => (
 //     router.navigate('/DrawerScreens/leadList')
 //   );
-
+ 
 //   useEffect(() => {
    
 //     //   const FetchLeads = async () => {
@@ -154,13 +154,13 @@
 //     //               'Authorization' : 'Bearer ' + apiToken
                  
 //     //             },
-    
+   
 //     //           })
-  
+ 
 //     //           const data = await response.json();
 //     //           console.log("leads data is",data.result);
 //     //           setleadData(data.result);
-    
+   
              
 //     //         //   router.replace('/DrawerScreens/leadList')
 //     //     } catch (error) {
@@ -181,7 +181,7 @@
 //               console.error('Error in fetching leads:', error);
 //           }
 //       };
-  
+ 
 //       fetchData(); // Call the fetchData function defined above
 //   }, []); // Empty dependency array means it will run only once on mount
 //   const leadId = useIdStore((state) => state.number);
@@ -189,7 +189,7 @@
 //   const lead = leadData.find((lead) => lead.number === leadId);
 //   const { first_name, LastName, Phone, Email, lead_status, Label, Id, Gender, LeadType} = lead || {};
 //   console.log("lead statusssssssss", lead_status)
-  
+ 
 //   const generateOptions = (lead_status) => {
 //   switch (lead_status) {
 //     case "new":
@@ -257,7 +257,7 @@
 //       alignItems: 'center',
 //       justifyContent: 'flex-start',
 //       marginLeft: 0,
-
+ 
 //     },
 //     container: {
 //       flex: 1,
@@ -280,8 +280,8 @@
 //       height: "30%", // Adjust height as needed
 //     }
 //     });
-
-
+ 
+ 
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, LogBox } from "react-native";
 import ArrowBack from "../../customComponents/arrowBack";
@@ -290,7 +290,7 @@ import useIdStore from "../leadStore";
 import StatusForm from "../formComponents/statusForm";
 import LeadDet from "../../leadComponents/leadDetHeader";
 import { FetchLeads } from "../service/fetchLeads";
-
+ 
  
 const ChangeStatus = () => {
   const status = useIdStore((state) => state.status);
@@ -298,8 +298,11 @@ const ChangeStatus = () => {
   const taskId = useIdStore((state)=>  state.activity_number);
   const [selectedStatus, setSelectedStatus] = useState(null);
   const [leadData, setLeadData] = useState([]);
+  const sys_id = useIdStore((state) => state.sys_id);
   LogBox.ignoreAllLogs();
-  
+  const[formValues, setFormValues]=useState([]);
+ 
+ 
   console.reportErrorsAsExceptions = false;
   useEffect(() => {
     const fetchData = async () => {
@@ -319,7 +322,13 @@ const ChangeStatus = () => {
  
   const handleStatusChange = (value) => {
     setSelectedStatus(value);
-    console.log(selectedStatus.value)
+    console.log(selectedStatus)
+    setFormValues(prevFormValues => ({
+      ...prevFormValues,
+      ['lead_status']: selectedStatus
+    }));
+ 
+    console.log(formValues);
   };
  
   return (
@@ -350,7 +359,7 @@ const ChangeStatus = () => {
           onSelect={handleStatusChange}
         />
       </View>
-      {selectedStatus && <StatusForm selectedStatus={selectedStatus} />}
+      {selectedStatus && <StatusForm selectedStatus={selectedStatus.value} />}
  
       {/* <TouchableOpacity style={styles.backButton} onPress={goBackToLeadCard}>
         <ArrowBack />
@@ -368,7 +377,7 @@ const generateOptions = (status) => {
           { label: 'Qualified', value: 'qualified' },
           { label: 'Contacted', value: 'contacted' },
           { label: 'Closed-not converted', value: 'closed_not_converted' },
-          
+         
         ]
       };
     case "qualified":
@@ -440,5 +449,3 @@ const styles = StyleSheet.create({
 });
  
 export default ChangeStatus;
-
- 

@@ -20,6 +20,7 @@ import { Ionicons } from '@expo/vector-icons';
 // import { FetchOwnerActivities } from '../service/fetchOwnerActivities';
  import { router } from 'expo-router';
  import { FetchOwnerActivities} from '../../service/fetchOwnerActivities';
+ import { ActivityIndicator } from 'react-native';
 const { width } = Dimensions.get('window');
  
 export default function Example() {
@@ -38,6 +39,7 @@ export default function Example() {
   const [meetingsVisible, setMeetingsVisible] = useState(false);
   const [callsVisible, setCallsVisible] = useState(false);
   const [emailsVisible, setEmailsVisible] = useState(false);
+  const [loading, setLoading] = useState(true); // Add loading state
  
   const [currentTab, setCurrentTab] = useState('all');
   const [currentMeetingTab, setCurrentMeetingTab] = useState('all');
@@ -53,8 +55,10 @@ export default function Example() {
         const ldata = await FetchOwnerActivities();
         setActivityData(ldata.result);
         console.log("activity date", activityData);
+        setLoading(false); // Set loading to false after data is fetched
       } catch (error) {
         console.error('Error in fetching leads:', error);
+        setLoading(false); // Set loading to false after data is fetched
       }
     };
  
@@ -269,6 +273,7 @@ const filteredMeetings = selectedMeetings.filter(meeting => {
  
   return (
     <SafeAreaView style={{ flex: 1 }}>
+      
       <View style={styles.container}>
         <View style={styles.picker}>
           <Swiper

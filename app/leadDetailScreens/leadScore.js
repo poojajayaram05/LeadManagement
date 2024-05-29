@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, ScrollView, Image, Button, Pressable, Alert } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 //mport { taskFormData } from '../../../customComponents/formData';
 import Collapsible from 'react-native-collapsible';
 import Dropdown from '../../customComponents/customDropdown';
@@ -26,9 +26,11 @@ import { router } from 'expo-router';
 import LeadDet  from '../../leadComponents/leadDetHeader';
 import useIdStore from '../leadStore';
 import { SelectList } from 'react-native-dropdown-select-list';
+import * as SecureStore from 'expo-secure-store';
 
 
 export default function LeadScoreForm() {
+
   // const { control, handleSubmit, formState: { errors } } = useForm();
   const [isSection1Collapsed, setIsSection1Collapsed] = useState(false);
   const [isSection2Collapsed, setIsSection2Collapsed] = useState(false);
@@ -36,6 +38,7 @@ export default function LeadScoreForm() {
   const [showCalendarModal, setShowCalendarModal] = useState(false); 
   const [formValues, setFormValues] = useState([]);
   const [selectedValue, setSelectedValue] = useState(null); 
+  const[username, setUsername]=useState(null)
   const[selectedDate, setSelectedDate] = useState('');
   const[selectedTime, setSelectedTime]=useState(null);
   const [phoneNumbers, setPhoneNumbers] = useState(['']);
@@ -50,71 +53,82 @@ export default function LeadScoreForm() {
   const [fromTime, setFromTime] = useState(null);
   const [toTime, setToTime] = useState(null);
   const[radioSelect, setradioSelect]=useState(null);
+  const sys_id = useIdStore((state) => state.sys_id);
+
+  useEffect(() => {
+      const getUsername = async () => {
+          const storedUsername = await SecureStore.getItemAsync('username');
+          setUsername(storedUsername);
+      };
+      getUsername();
+
+      setFormValues(prevFormValues => ({ ...prevFormValues, ['associated_lead']: sys_id }));
+  }, [sys_id]);
 
   const handleCancelClicked = () => {
       setIsModalVisible(false);
   };
 
-  const goBack=()=>{
-    router.back();
-  }
+  const goBack = () => {
+      router.back();
+  };
 
   const leadId = useIdStore((state) => state.number);
 
+  const onSubmit = async () => {
+      const postUrl = `https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_score_form`;
+      const token = await SecureStore.getItemAsync('token');
+      const stoken = JSON.parse(token);
+      const apiToken = stoken.accessToken;
 
+      try {
+          const response = await fetch(postUrl, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer ' + apiToken
+              },
+              body: JSON.stringify(formValues)
+          });
 
-
-const onSubmit = async () => {
-//   const formData = {
-//     age,
-//     familyIncome,
-//     occupation,
-//     qualification,
-//     leadCategory,
-//     fywp,
-//   };
-  //console.log("Form data", formData);
-  console.log(formValues);
-  const keys = Object.keys(formValues);
-  if (keys.length > 0) {
-    Alert.alert('Successfully submitted!');
-  } else {
-    Alert.alert('Form is empty!');
-  }
-};
-
-
+          console.log("Successfully posted", response);
+          Alert.alert("Successfully Submitted!");
+          router.navigate('headerScreens/DrawerScreens/leadList');
+      } catch (err) {
+          console.log("error", err);
+      }
+  };
 
 const renderFormElement = (element) => {
     const starMark = element.isRequired ? <Text style={{ color: 'red' }}> *</Text> : null;
     const handleSelect = (item) => {
         //setSelectedValue(item);
-        setFormValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item.label }));
-        console.log(element.name,item.label);
+        setFormValues(prevFormValues => ({ ...prevFormValues,  [element.name]: item }));
+        console.log(element.name,item);
     };
 
     switch (element.questionType) {
 
-      // case 'TextInputLead':
-        // return (
-        //   <View>
-        //      <Text style={styles.qlabel}>{element.questionlabel}</Text>
-        //      <CustomInput
-        //             key={element.name}
-        //             title={element.title}
-        //             placeholder={leadId}
-        //             // control={control}
-        //             name={element.name}
-        //            questionlabel={questionlabel}
-        //             // errors={errors}
+      case 'TextInputLead':
+        return (
+          <View>
+             <Text style={styles.qlabel}>{element.questionlabel}</Text>
+             <CustomInput
+                    key={element.name}
+                    title={element.title}
+                    placeholder={sys_id}
+                    // control={control}
+                    name={element.name}
+                  //  questionlabel={element.questionlabel}
+                    // errors={errors}
                     
-        //             value={leadId}
-        //             readOnly={true}
-        //         />
+                    value={sys_id}
+                    readOnly={true}
+                />
              
 
-        //     </View>
-        // );
+            </View>
+        );
       
             case 'dropdown':
               return (

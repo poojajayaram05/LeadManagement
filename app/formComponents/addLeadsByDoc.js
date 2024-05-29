@@ -109,7 +109,7 @@ const UploadFile = () => {
 
   return (
     <View style={styles.background}>
-      <CustomHeader title={"Add Leads Using File Upload"} onPress={goToDashboards}/>
+      <CustomHeader title={"Add Leads Using File Upload"} onPress={goToDashboard}/>
       <View style={styles.container}>
       <Text style={styles.label}>Enter the CSV file to add leads</Text>
       <View style={styles.inputContainer}>

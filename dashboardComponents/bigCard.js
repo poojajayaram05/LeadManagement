@@ -9,12 +9,13 @@ const Bigcard=({label1, label2})=>{
         <View>
         <View style={styles.bigCard}>
         <Text style={styles.cardText}> {label1}</Text>
-        <Chart1/>
+        <Chart2/>
          </View>
  
        <View style={styles.bigCard}>
        <Text style={styles.cardText}> {label2}</Text>
-       <Chart2/>
+     
+       <Chart1/>
        {/* <ChartLine/> */}
        </View>
        </View>

@@ -157,7 +157,7 @@ const onSelectRadio = (item) => {
           })
           console.log("Successfully posted",response);
           Alert.alert("Successfully Submitted!")
-          router.replace('/DrawerScreens/leadList')
+          router.replace('leadDetailScreens')
         }
             catch(err){
                 console.log("error");
@@ -248,7 +248,7 @@ const onSelectRadio = (item) => {
                           placeholder={element.placeholder}
                           name={element.name}
                           onChange={(value) => setEditedValues({ ...editedValue, [element.name]: value })}
-                          value={formValues[element.name] || ''}
+                          value={formValues[element.name] || ' '}
                           inputType={element.inputType}
                         />
                         {/* Render alternate email fields */}

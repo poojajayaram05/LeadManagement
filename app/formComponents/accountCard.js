@@ -168,7 +168,7 @@ import {
 import { router } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import useIdStore from "../leadStore";
-import { Company, companyIconn } from "../../assets/images";
+import { Company, ContactAvatar } from "../../assets/images";
 
 const AccountCard = ({ firstName, lastName, number, accountName, accountNumber, phone, email, sys_id, accountType, gender, title }) => {
   const { setSysId, setFlag, setAccountType } = useIdStore();
@@ -194,7 +194,7 @@ const AccountCard = ({ firstName, lastName, number, accountName, accountNumber, 
         <View style={styles.avatarContainer}>
           {accountType === 'person' ? (
             <Image
-              source={companyIconn}
+              source={ContactAvatar}
               style={styles.avatar}
             />
           ) : (

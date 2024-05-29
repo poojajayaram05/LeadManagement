@@ -13,7 +13,7 @@ const GeneralSetting = () => {
   );
  
   const goBack=()=>{
-    router.back();
+    router.navigate('headerScreens/DrawerScreens/settings');
   }
  
   return (

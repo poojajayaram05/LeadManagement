@@ -13,7 +13,8 @@ export const leads_to_render = {
         first_name: "",
         last_name: "",
         email: "",
-        phone: ""
+        phone: "",
+        score:"",
     },
     sections: {
         general_details: {
@@ -70,7 +71,7 @@ export const leads_to_render = {
             fields: {
              preffered_method: { label: "Prefered Method To Contact" },
              whatsapp: { label: "WhatsApp" },
-             u_email:{label : "Email"},
+             bulk_email:{label : "Email"},
              phone:{label:"Phone"},
            },
         },
