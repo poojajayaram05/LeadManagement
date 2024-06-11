@@ -40,19 +40,8 @@ export default function LeadScoreForm() {
   const [selectedValue, setSelectedValue] = useState(null); 
   const[username, setUsername]=useState(null)
   const[selectedDate, setSelectedDate] = useState('');
-  const[selectedTime, setSelectedTime]=useState(null);
-  const [phoneNumbers, setPhoneNumbers] = useState(['']);
-  const[customDate, setCustomDate]=useState(null);
-  const[customTime, setCustomTime]=useState(null);
-  const [isAddButtonDisabled, setIsAddButtonDisabled] = useState(false);
-  const [showTimeModal, setShowTimeModal] = useState(false);
-  const [meetingName, setMeetingName] = useState('');
-  const [meetingDescription, setMeetingDescription] = useState('');
-  const [fromDate, setFromDate] = useState(null);
-  const [toDate, setToDate] = useState(null);
-  const [fromTime, setFromTime] = useState(null);
-  const [toTime, setToTime] = useState(null);
-  const[radioSelect, setradioSelect]=useState(null);
+  
+
   const sys_id = useIdStore((state) => state.sys_id);
 
   useEffect(() => {
@@ -62,7 +51,7 @@ export default function LeadScoreForm() {
       };
       getUsername();
 
-      setFormValues(prevFormValues => ({ ...prevFormValues, ['associated_lead']: sys_id }));
+      setFormValues(prevFormValues => ({ ...prevFormValues, ['associate_lead']: sys_id }));
   }, [sys_id]);
 
   const handleCancelClicked = () => {
@@ -77,6 +66,7 @@ export default function LeadScoreForm() {
 
   const onSubmit = async () => {
       const postUrl = `https://ven06798.service-now.com/api/now/table/x_rptp_lead_mana_0_lead_score_form`;
+      console.log(formValues);
       const token = await SecureStore.getItemAsync('token');
       const stoken = JSON.parse(token);
       const apiToken = stoken.accessToken;
@@ -161,9 +151,9 @@ const renderFormElement = (element) => {
 }
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      {/* <View style={styles.header}>
       <LeadDet/>
-      </View>
+      </View> */}
       <ScrollView>
             <View style={styles.card}>          
                     {leadScoreFormData.elements.slice(0, 11).map((element, index) => (

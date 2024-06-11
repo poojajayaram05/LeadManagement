@@ -141,18 +141,22 @@ const FilterModal = ({ isVisible, onClose, filterOptions, onFilter, leadData, da
     const filteredData = dataList.filter((item) => {
       const genderMatch = !selectedFilters.gender || item.gender === selectedFilters.gender;
       const createdDateMatch = !selectedFilters.createdDate || isDateMatch(selectedFilters.createdDate, new Date(item.sys_created_on));
+      // Pass 'item' to isValueMatch function
+      console.log("selected filters", selectedFilters)
      
       switch (flag) {
         case 'leadlist':
           const qualificationMatch = !selectedFilters.qualification || item.qualification === selectedFilters.qualification;
-          return genderMatch && qualificationMatch && createdDateMatch;
+          const statusMatch=!selectedFilters.leadstatus||item.leadstatus===selectedFilters.leadstatus;
+          return genderMatch && qualificationMatch  && statusMatch;
         case 'contactlist':
           return genderMatch && createdDateMatch;
         case 'opplist':
-            return createdDateMatch;
+          const valueMatch = isValueMatch(selectedFilters.oppValue, item.opportunity_value);
+          return createdDateMatch && valueMatch;
         case 'accountlist':
-              const accountMatch = !selectedFilters.account_type || item.account_type === selectedFilters.account_type;
-              return createdDateMatch && accountMatch;
+          const accountMatch = !selectedFilters.account_type || item.account_type === selectedFilters.account_type;
+          return createdDateMatch && accountMatch;
         default:
           return genderMatch && createdDateMatch;
       }
@@ -160,6 +164,7 @@ const FilterModal = ({ isVisible, onClose, filterOptions, onFilter, leadData, da
     onFilter(selectedFilters, filteredData);
     return filteredData;
   };
+  
  
   // const isDateMatch = (selectedDate, itemDate) => {
   //   switch (selectedDate) {
@@ -224,6 +229,19 @@ const FilterModal = ({ isVisible, onClose, filterOptions, onFilter, leadData, da
         return false;
     }
   };
+
+  const isValueMatch = (selectedValue, oppValue) => {
+
+    switch (selectedValue) {
+      case '<60K':
+        return oppValue > 600000;
+      case '>60K':
+        return oppValue < 600000;
+      default:
+        return false;
+    }
+  };
+  
  
  
   return (
@@ -329,5 +347,6 @@ const styles = StyleSheet.create({
   },
   closeButton: {},
 });
+
  
 export default FilterModal;

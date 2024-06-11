@@ -43,9 +43,9 @@ const ProductItem = () => {
    
   return (
     <View style={styles.container}>
-      <View style={{ height: '26%' }}>
+      {/* <View style={{ height: '26%' }}>
         <LeadDet />
-      </View>
+      </View> */}
       <SafeAreaView style={styles.container}>
         {productItems.length > 0 ? (
           <FlatList

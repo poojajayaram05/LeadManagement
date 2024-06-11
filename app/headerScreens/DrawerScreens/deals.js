@@ -114,6 +114,11 @@ const Opportunity = () => {
             key: 'createdDate',
             dropdownData: ['Today', 'Yesterday', 'This Week', 'This Month'],
           },
+          {
+            title: 'Opportunity Value:',
+            key: 'oppValue',
+            dropdownData: ['<60K', '>60K'],
+          },
         ]}
         dataList={OpportunityData}
         flag="opplist"

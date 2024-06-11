@@ -17,9 +17,9 @@ export const SKYBLUE="#87CEEB"
  
 export const background_color_map = {
     [NEW_LEAD]: AZURE_COLOR,
-    [QUALIFIED]: GREEN,
+    [QUALIFIED]: '#D87C47',
  
-    [CONTACTED]: YELLOWGREEN,
+    [CONTACTED]: '#CEDA42',
     [CLOSED]: DARKGREEN,
     [HOT]: ORANGERED,
     [CONVERTED]:'#86ed80',

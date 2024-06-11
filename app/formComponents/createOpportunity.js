@@ -268,14 +268,14 @@ function extractDate(timestamp) {
                 case 'Adropdown':
                     return (
                       <View>
-                        <Text style={styles.label}>Accounts</Text>
+                        <Text style={styles.label}>Account{starMark}</Text>
                         <AddAccounts onSelectAccount={onSelectAccount}/>
                         </View>
                     );
                     case 'Pdropdown':
                         return (
                         <View>
-                          <Text style={styles.label}> Contacts</Text>
+                          <Text style={styles.label}> Contact{starMark}</Text>
                           <AddContacts onSelectAccount={onSelectAccount}/>
                           </View>
                       );

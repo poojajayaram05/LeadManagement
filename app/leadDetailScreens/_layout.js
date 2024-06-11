@@ -48,12 +48,17 @@ import { Tabs } from 'expo-router/tabs';
 import { Stack } from 'expo-router';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import LeadDet from '../../leadComponents/leadDetHeader';
+import { View } from 'react-native';
 
  
 export default function AppLayout() {
   const queryClient =  new QueryClient({});
   return (
     <QueryClientProvider  client={queryClient}>
+       <View style={{ height: '26%' }}>
+      <LeadDet/>
+      </View>
     <Tabs>
       <Stack.Screen
         name="info"
@@ -94,7 +99,7 @@ export default function AppLayout() {
            <Stack.Screen
         name="nearByLeads"
         options={{
-          headerShown: true,
+          headerShown: false,
           headerTitle:"Near By Leads",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="location" size={size} color={color} />

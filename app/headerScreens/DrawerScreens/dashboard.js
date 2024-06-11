@@ -553,243 +553,160 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import SmallCard from '../../../dashboardComponents/smallCard';
-import Scrollcard from '../../../dashboardComponents/scrollCard';
-import Bigcard from '../../../dashboardComponents/bigCard'
-import ChartLine from '../../../dashboardComponents/lineChart';
+import Bigcard from '../../../dashboardComponents/bigCard';
 import { router } from 'expo-router';
-import { Modal } from 'react-native';
-import CheckNetwork from '../../checkNetwork'
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import { useEffect } from 'react';
-// import { FetchLeadCount } from '../service/fetchLeadCount';
+import CheckNetwork from '../../checkNetwork';
+import { Ionicons } from '@expo/vector-icons';
+import { useQuery } from '@tanstack/react-query';
 import { FetchLeadCount } from '../../service/fetchLeadCount';
 import { FetchOpportunityCount } from '../../service/fetchOpportunityCount';
 import { FetchContactCount } from '../../service/fetchContactCount';
 import { FetchAccountCount } from '../../service/fetchAccountCounts';
 import FetchLeadQualification from '@/app/service/fetchLeadsByQualification';
 import FetchLeadBySource from '../../service/fetchLeadBySource';
- 
+import { ActivityIndicator } from 'react-native';
+
 const total_leads = 0;
 const total_calls = 1;
-const total_activites = 2;
+const total_activities = 2;
 const sales = 3;
- 
+
 const Dashboard = () => {
   const [selectedCard, setSelectedCard] = useState(total_leads);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [leadCount, setLeadCount]=useState([]);
-  const [oppCount, setOppCount]=useState([]);
-  const [contactCount, setContactCount]=useState([]);
-  const [accountCount, setAccountCount]=useState([]);
-  const[qualData, setQualData]=useState([]);
- 
-  useEffect(() => {
-    const fetchData = async () => {
-        try {
-            const countd = await FetchOpportunityCount();
-            setOppCount(countd.result[0].count);
-            console.log("hiii",countd.result);
-            console.log("opportunity count data--------------------------------------", countd.result[0].count);
-        } catch (error) {
-            console.log(error, "error");
-        }
-    };
-    fetchData();
-  }, []);
- 
- 
-  useEffect(() => {
-    const fetchData = async () => {
-        try {
-            const countd = await FetchLeadCount();
-            setLeadCount(countd.result[0].count);
-            console.log("lead count data--------------------------------------", JSON.stringify(countd.result[0].count));
-        } catch (error) {
-            console.log(error, "error");
-        }
-    };
-    fetchData();
-  }, []);
- 
- 
-  useEffect(() => {
-    const fetchData = async () => {
-        try {
-            const countd = await FetchContactCount();
-            setContactCount(countd.result[0].count);
-            console.log("contact count data--------------------------------------", countd.result[0].count);
-        } catch (error) {
-            console.log(error, "error");
-        }
-    };
-    fetchData();
-  }, []);
- 
-  useEffect(() => {
-    const fetchData = async () => {
-        try {
-            const countd = await FetchAccountCount();
-            setAccountCount(countd.result[0].count);
-            console.log("account count data--------------------------------------", countd.result[0].count);
-        } catch (error) {
-            console.log(error, "error");
-        }
-    };
-    fetchData();
-  }, []);
- 
-  useEffect(() => {
-    const fetchData = async () => {
-        try {
-            const qdata = await FetchLeadQualification();
-            setQualData(qdata.result);
-            console.log("chart dataa based on qualification ------------------------------------------------------------------", qdata.result); // Logging the result directly
-        } catch (error) {
-            console.log(error, "error");
-        }
-    };
- 
-    fetchData();
- 
-}, []);
- 
- 
-useEffect(() => {
-  const fetchData = async () => {
-      try {
-          const qdata = await FetchLeadBySource();
-          setQualData(qdata.result);
-          console.log("chart dataa based on source ------------------------------------------------------------------", qdata.result); // Logging the result directly
-      } catch (error) {
-          console.log(error, "error");
-      }
-  };
- 
-  fetchData();
- 
-}, []);
- 
+
+  const { isLoading: isLoadingLeadCount, error: leadCountError, data: leadCount } = useQuery({
+    queryKey: ['leadCount'],
+    queryFn: FetchLeadCount
+  });
+
+  const { isLoading: isLoadingOppCount, error: oppCountError, data: oppCount } = useQuery({
+    queryKey: ['oppCount'],
+    queryFn: FetchOpportunityCount
+  });
+
+  const { isLoading: isLoadingContactCount, error: contactCountError, data: contactCount } = useQuery({
+    queryKey: ['contactCount'],
+    queryFn: FetchContactCount
+  });
+
+  const { isLoading: isLoadingAccountCount, error: accountCountError, data: accountCount } = useQuery({
+    queryKey: ['accountCount'],
+    queryFn: FetchAccountCount
+  });
+
+  const { isLoading: isLoadingQualData, error: qualDataError, data: qualData } = useQuery({
+    queryKey: ['qualData'],
+    queryFn: FetchLeadQualification
+  });
+
+  const { isLoading: isLoadingSourceData, error: sourceDataError, data: sourceData } = useQuery({
+    queryKey: ['sourceData'],
+    queryFn: FetchLeadBySource
+  });
+
   const handleCardPress = (cardIndex) => {
     setSelectedCard(cardIndex === selectedCard ? null : cardIndex);
   };
-  const onClickPlus=()=>{
+
+  const onClickPlus = () => {
     setShowDropdown(true);
-  }
-  const handleAddLead=()=>{
-    router.navigate('/formComponents/createLead')
-  }
-  const handleAddActivty=()=>{
-    router.navigate('/formComponents/activityForm')
-  }
-  const handleAddAccount=()=>{
-    router.navigate('/formComponents/createAccount')
-  }
-  const handleAddContact=()=>{
-    router.navigate('/formComponents/createContact')
-  }
- 
-  const handleAddOpportunity=()=>{
-    router.navigate('/formComponents/createOpportunity')
-  }
- 
+  };
+
+  const handleAddLead = () => {
+    router.navigate('/formComponents/createLead');
+  };
+
+  const handleAddActivity = () => {
+    router.navigate('/formComponents/activityForm');
+  };
+
+  const handleAddAccount = () => {
+    router.navigate('/formComponents/createAccount');
+  };
+
+  const handleAddContact = () => {
+    router.navigate('/formComponents/createContact');
+  };
+
+  const handleAddOpportunity = () => {
+    router.navigate('/formComponents/createOpportunity');
+  };
+
   const goToLeads = () => {
-    router.navigate('/DrawerScreens/leadList')
-}
-const goToContacts = () => {
-    router.navigate('/DrawerScreens/contacts')
-}
-const goToAccounts = () => {
-    router.navigate('/DrawerScreens/accounts')
-}
- 
-  const closeDropdown=()=>{
+    router.navigate('/DrawerScreens/leadList');
+  };
+
+  const goToContacts = () => {
+    router.navigate('/DrawerScreens/contacts');
+  };
+
+  const goToAccounts = () => {
+    router.navigate('/DrawerScreens/accounts');
+  };
+
+  const closeDropdown = () => {
     setShowDropdown(false);
+  };
+
+  if (isLoadingLeadCount || isLoadingOppCount || isLoadingContactCount || isLoadingAccountCount || isLoadingQualData || isLoadingSourceData) {
+    return <ActivityIndicator size={'large'} color="#023B5E" style={styles.loadingIndicator}/>;
   }
- 
+
+  if (leadCountError || oppCountError || contactCountError || accountCountError || qualDataError || sourceDataError) {
+    return <Text>An error has occurred: {leadCountError?.message || oppCountError?.message || contactCountError?.message || accountCountError?.message || qualDataError?.message || sourceDataError?.message}</Text>;
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer} showsHorizontalScrollIndicator={false}>
-      <CheckNetwork/>
+        <CheckNetwork />
         <View style={styles.smallCardGroupContainer}>
           <View style={styles.row1}>
-             <SmallCard label1={'Total       Leads'} label2={leadCount}  onPress={() => handleCardPress(total_leads)} />
-              <SmallCard label1={'Total Accounts'} label2={accountCount}  onPress={() => handleCardPress(total_calls)} />
+            <SmallCard label1={'Total Leads'} label2={leadCount?.result[0]?.count || 0} onPress={() => handleCardPress(total_leads)} />
+            <SmallCard label1={'Total Accounts'} label2={accountCount?.result[0]?.count || 0} onPress={() => handleCardPress(total_calls)} />
           </View>
           <View style={styles.row2}>
-              <SmallCard label1={'Total Contacts'} label2={contactCount}  onPress={() => handleCardPress(total_activites)} />
-              <SmallCard label1={'Total Opportunity'} label2={oppCount}  onPress={() => handleCardPress(sales)} />
+            <SmallCard label1={'Total Contacts'} label2={contactCount?.result[0]?.count || 0} onPress={() => handleCardPress(total_activities)} />
+            <SmallCard label1={'Total Opportunity'} label2={oppCount?.result[0]?.count || 0} onPress={() => handleCardPress(sales)} />
           </View>
         </View>
-        <Bigcard label1={'Lead by Source'} label2={'Lead by Qualification'}/>
-        {/* {selectedCard !== null && (
-          <View>
-            {selectedCard === total_leads && (
-              <View>
-                <Bigcard label1={'Lead by Qualification'} label2={'Lead by Source'}/>
-              </View>
-            )}
- 
-            {selectedCard === total_calls && (
-              <View>
-                <Bigcard label1={'Lead by Qualification'} label2={'Lead by Source'}/>
-              </View>
-            )}
- 
-            {selectedCard === total_activites && (
-               <View>
-                <Bigcard label1={'Lead by Qualification'} label2={'Lead by Source'}/>
-               </View>
-            )}
- 
-            {selectedCard === sales && (
-              <View>
-                <Bigcard label1={'Lead by Qualification'} label2={'Lead by Source'}/>
-               </View>
-            )}
-          </View>
-        )}
-        */}
+        <Bigcard label1={'Lead by Source'} label2={'Lead by Qualification'} />
       </ScrollView>
-      <TouchableOpacity style={styles.plusButton} onPress={onClickPlus} >
-       <Ionicons name="add" size={24} color="white" />
-       </TouchableOpacity>
-   {showDropdown && (
- 
-    <View style={styles.dropdownContainer}>
-    <ScrollView style={styles.dropdownScrollView}>
-        <View style={styles.dropdownMenu}>
-          <TouchableOpacity onPress={closeDropdown} style={{paddingLeft:285}}>
-            <Ionicons name='close-circle' size={35} />
-          </TouchableOpacity>
-            <TouchableOpacity onPress={handleAddLead}>
+      <TouchableOpacity style={styles.plusButton} onPress={onClickPlus}>
+        <Ionicons name="add" size={24} color="white" />
+      </TouchableOpacity>
+      {showDropdown && (
+        <View style={styles.dropdownContainer}>
+          <ScrollView style={styles.dropdownScrollView}>
+            <View style={styles.dropdownMenu}>
+              <TouchableOpacity onPress={closeDropdown} style={{ paddingLeft: 285 }}>
+                <Ionicons name="close-circle" size={35} />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={handleAddLead}>
                 <Text style={styles.dropdownMenuItem}>Add a lead</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleAddAccount()}>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={handleAddAccount}>
                 <Text style={styles.dropdownMenuItem}>Add an account</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleAddContact()}>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={handleAddContact}>
                 <Text style={styles.dropdownMenuItem}>Add a Contact</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleAddOpportunity()}>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={handleAddOpportunity}>
                 <Text style={styles.dropdownMenuItem}>Add an Opportunity</Text>
-            </TouchableOpacity>
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
         </View>
-    </ScrollView>
-</View>
- 
-          )}
- 
- 
+      )}
     </View>
   );
 };
- 
- 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#D6DBDF',
-   
   },
   header: {
     flexDirection: 'row',
@@ -817,9 +734,7 @@ const styles = StyleSheet.create({
   },
   smallCardGroupContainer: {
     justifyContent: 'space-around',
-    // backgroundColor: '#ADD8E6',
     backgroundColor: '#023B5E',
-    // backgroundColor:'black',
     borderRadius: 10,
     marginHorizontal: 5,
     marginVertical: 10,
@@ -833,13 +748,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     elevation: 3,
     zIndex: 999,
-},
-dropdownMenuItem: {
+  },
+  dropdownMenuItem: {
     fontSize: 16,
     paddingVertical: 8,
-    color:'#023B5E',
-    fontWeight:'bold'
-},
+    color: '#023B5E',
+    fontWeight: 'bold',
+  },
   row1: {
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -858,18 +773,17 @@ dropdownMenuItem: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: '#ffffff', // Change as per your design
+    backgroundColor: '#ffffff',
     borderTopWidth: 1,
-    borderTopColor: '#e0e0e0', // Change as per your design
-    paddingBottom: 10, // Adjust as per your design
-},
-tabItem: {
+    borderTopColor: '#e0e0e0',
+    paddingBottom: 10,
+  },
+  tabItem: {
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
-    paddingBottom: 10, // Adjust as per your design
-},
- 
+    paddingBottom: 10,
+  },
   totalSalesCard: {
     backgroundColor: '#fff',
     borderRadius: 10,
@@ -890,6 +804,13 @@ tabItem: {
   cardContainer: {
     flexDirection: 'row',
   },
+  loadingIndicator:{
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf:'center'
+
+  }
 });
- 
+
 export default Dashboard;

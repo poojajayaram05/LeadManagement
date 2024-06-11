@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'flex-start',
     justifyContent: 'center',
-    paddingHorizontal: 20,
+    // paddingHorizontal: 20,
   },
   label: {
     fontWeight: 'bold',
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     paddingHorizontal: 20,
-    marginBottom: 20,
+    // marginBottom: 20,
   },
 });
 

@@ -12,8 +12,8 @@ import {
 } from 'react-native';
 import MultilineTextInput from '../../customComponents/customMultilineInput';
 import { router } from 'expo-router';
-import { statusFormData } from '../../customComponents/formData';
 import { SelectList } from 'react-native-dropdown-select-list';
+import {statusFormData} from '../../customComponents/formData';
 import { CustomInput } from '../../customComponents/customInput';
 import useIdStore from '../leadStore';
 import * as SecureStore from 'expo-secure-store';

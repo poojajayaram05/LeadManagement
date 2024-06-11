@@ -25,7 +25,7 @@ export const leads_to_render = {
                 // title: { label: "Title" },
                 description: { label: "Description" },
                 number: { label: "Number" },
-                gender: { label: "gender" },
+                gender: { label: "Gender" },
                 email: { label: "Email" },
                 lead_source: { label: "Lead Source" }
             },
@@ -51,6 +51,11 @@ export const leads_to_render = {
              business_phone:{label:"Business Phone"},
              mobile_phone:{label:"Mobile Phone"},
              home_phone:{label:"Home Phone"},
+             instagram:{label:"Instagram"},
+             facebook:{label:"Facebook"},
+             linkedin:{label:"LinkedIn"},
+             twitter:{label:"Twitter"}
+
            },
         },
         address_details: {

@@ -3,7 +3,7 @@ export const opportunityFormData = {
    {
       "name": "opportunity_name",
       "type":"TextInput",
-      "title": "Oppurtunity Name",
+      "title": "Opportunity Name",
       "placeholder": "Enter Opportunity name",
       "sectionName":"General",
        "isRequired":true
@@ -14,7 +14,8 @@ export const opportunityFormData = {
       "type": "Adropdown",
       "title": " Account Name",
       "placeholder": "Enter account name",
-      "sectionName":"General"
+      "sectionName":"General",
+      "isRequired":true
     },
  
  
@@ -23,7 +24,8 @@ export const opportunityFormData = {
       "type": "Pdropdown",
       "title": "Primary Contact",
       "placeholder": "",
-      "sectionName":"General"
+      "sectionName":"General",
+      "isRequired":true
     },
  
     {
@@ -1539,7 +1541,7 @@ export const callLogFormData= {
 export const leadScoreFormData={
   "elements":[
     {
-      "name": "associated_lead",
+      "name": "associate_lead",
       "questionType":"TextInputLead",
       "questionvalue": "Associated Lead",
       "inputType": "text",
@@ -3769,7 +3771,8 @@ export const contactFormData={
       "type":"dropdownAccounts",
       "title": "Accounts",
       "inputType": "text", 
-      "sectionName":"General" 
+      "sectionName":"General" ,
+      "isRequired":true
     },
     {
       "name": "first_name",
@@ -3786,7 +3789,7 @@ export const contactFormData={
       "title": "Enter Middle Name",
       "placeholder": "Enter Middle Name",
       "sectionName":"General",
-      "isRequired":true
+     
     },
     {
       "name": "last_name",
@@ -3795,6 +3798,14 @@ export const contactFormData={
       "title": "Enter Last Name",
       "placeholder": "Enter Last Name",
       "sectionName":"General",
+      "isRequired":true
+    },
+    {
+      "name": "name",
+      "type":"TextInput",
+      "title": "Title",
+      "sectionName":"General", 
+      "placeholder":"Enter Title",
       "isRequired":true
     },
     {
@@ -4164,13 +4175,7 @@ export const contactFormData={
       "sectionName":"Personal", 
       "placeholder":"Spouse Middle Name"
     },
-    {
-      "name": "title",
-      "type":"TextInput",
-      "title": "Title",
-      "sectionName":"General", 
-      "placeholder":"Enter Title"
-    },
+
     {
       "name": "last_stay_in_touch_req_date",
       "type":"Date",
@@ -4293,6 +4298,14 @@ export const editContactFormData={
       "placeholder": "Enter Last Name",
       "sectionName":"General",
       
+    },
+    {
+      "name": "name",
+      "type":"TextInput",
+      "title": "Title",
+      "sectionName":"General", 
+      "placeholder":"Enter Title",
+
     },
     {
       "name": "alternate_email1",
@@ -6911,6 +6924,39 @@ export const editPersonAccount={
       ]
     }
 
+    export const statusFormData = {
+      "elements": [
+        {
+          "name": "number",
+          "type": "TextInput",
+          "title": "Associated Lead",
+          "inputType": "text",
+          "placeholder":""
+        },
+        {
+          "name": "reason",
+          "type": "dropdown",
+          "title": "Reason",
+          "placeholder":'Enter the reason',
+          "dropdownData":[
+            { "key":"not_reachable", "value":"Not Reachable"},
+            { "key":"ringing", "value":"Ringing"},
+            { "key":"wrong_number", "value":"Wrong Number"},
+            {"key":"busy", "value":"Busy"},
+            {"key":"appointment_fixed", "value":"Appointment fixed"},
+          ]
+        },
+        {
+          "name": "remarks",
+          "type": "multiLineText",
+          "title": "Remarks",
+          "inputType": "text",
+          "placeholder":"Enter the Remarks"
+        },
+       
+       
+       ]
+    };
     
 
   

@@ -150,6 +150,12 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
             key: 'gender',
             dropdownData: ['male', 'female'],
           },
+          {
+            title: 'Lead Status:',
+            key: 'leadstatus',
+            dropdownData: ['converted', 'new','contacted','qualified','closed-not-converted'],
+          },
+          
         ]}
         
         dataList={leadData}

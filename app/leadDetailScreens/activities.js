@@ -201,9 +201,9 @@ export default function Example() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
-        <View style={{ height: '26%' }}>
+        {/* <View style={{ height: '26%' }}>
           <LeadDet />
-        </View>
+        </View> */}
         <View style={styles.tabContainer}>
           <TouchableOpacity onPress={() => handleTabPress("All")}>
             <Text style={[styles.tab, currentTab === 'All' && styles.selectedTab]}>All</Text>

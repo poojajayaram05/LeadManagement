@@ -370,9 +370,7 @@ const onSelectRadio = (item) => {
                           <View style={styles.switchContainer}>
                           <Text style={styles.label}>{element.title}</Text>
                           <View style={styles.switch}>
-                            <CustomSwitch onToggle={handleSwitch}
- 
-                          /></View>
+                          <CustomSwitch onToggle={handleSwitch} /></View>
                           </View>
                          
                        </View>
@@ -384,8 +382,8 @@ const onSelectRadio = (item) => {
                                  key={element.name}
                                  title={element.title}
                                  placeholder={username}
-                                //  onChange={(value) => setFormValues({ ...formValues, ['new_owner']: value })}
-                                  value={username}
+                                //onChange={(value) => setFormValues({ ...formValues, ['new_owner']: value })}
+                                 value={username}
                                  name={element.name}
                                  
                              />
@@ -401,7 +399,7 @@ const onSelectRadio = (item) => {
           <View>
             <CustomHeader title={"Edit Lead"} onPress={goBack}/>
           </View>
-                     <ScrollView>
+          <ScrollView>
           <View style={styles.card}>
             <View style={styles.section}>
               {Object.keys(isCollapsed).map((sectionName, index) => (

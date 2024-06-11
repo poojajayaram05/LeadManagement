@@ -119,21 +119,21 @@ console.log("outside useEffect", leadsObj)
                       <DataRow
                         key={index}
                         label={field.label}
-                        detail={field.value.display_value || field.value || ''}
+                        detail={field.value.display_value || field.value || '--'}
                         
                       />
                     ) : (flag === 'contact' && field.value && field.value.display_value) ? (
                       <DataRow
                         key={index}
                         label={field.label}
-                        detail={field.value.display_value || field.value || ''}
+                        detail={field.value.display_value || field.value || '--'}
                         
                       />
                     ) : (
                       <DataRow
                         key={index}
                         label={field.label}
-                        detail={field.value || ''}
+                        detail={field.value || '--'}
                         
                       />
                     )

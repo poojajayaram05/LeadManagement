@@ -41,7 +41,7 @@ const accountNames = accountsData.map((account, index) => ({
   return(
     <ModalSelector
                     data={accountNames||''}
-                    initValue={selected||'Select Accounts'}
+                    initValue={selected||'Select Account'}
                     onChange={(option) => {
                       console.log(`${option.label} (${option.key})`);
                       onSelectAccount(option.label, option.id);

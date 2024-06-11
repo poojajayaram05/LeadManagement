@@ -458,19 +458,19 @@ const renderFormElement = (element) => {
     }
     switch (element.type) {
      
-      case 'TextInputLead':
-        return (
-          <View>
-             <CustomInput
-                    key={element.name}
-                    title={element.title}
-                    placeholder={leadId}
-                    name={element.name}
-                    value={leadId}
-                    readOnly={true}
-                />
-            </View>
-        );
+      // case 'TextInputLead':
+      //   return (
+      //     <View>
+      //        <CustomInput
+      //               key={element.name}
+      //               title={element.title}
+      //               placeholder={leadId}
+      //               name={element.name}
+      //               value={leadId}
+      //               readOnly={true}
+      //           />
+      //       </View>
+      //   );
        
         case 'TextInputLeadS':
         return (

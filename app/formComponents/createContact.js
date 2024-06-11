@@ -1005,7 +1005,7 @@ const searchAddress = async () => {
                               <View style={styles.inputContainer}>
            
                              
-                              <Text style={styles.label}>{element.title}</Text>
+                              <Text style={styles.label}>{element.title}{starMark}</Text>
                          
                                 <AddAccounts onSelectAccount={onSelectAccount}/>
    

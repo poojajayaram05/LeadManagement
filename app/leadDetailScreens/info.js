@@ -98,9 +98,9 @@ console.log("outside useEffect", leadsObj)
     return (
     
         <View style={styles.body}>
-          <View style={{ height: '26%' }}>
+          {/* <View style={{ height: '26%' }}>
             <LeadDet />
-          </View>
+          </View> */}
           {isLoading ? ( 
             <View style={styles.loadingContainer}>
               <ActivityIndicator size="large" color="#0000ff" />
