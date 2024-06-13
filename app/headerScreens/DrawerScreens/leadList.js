@@ -161,13 +161,11 @@ const { data, isLoading, error } = useQuery({ queryKey: ['todos'], queryFn: Fetc
         dataList={leadData}
         flag="leadlist"
       />
-      
         <FlatList
         data={filteredData||(leadData&&searchFiltered)}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
       />
- 
 
   <TouchableOpacity style={styles.plusButton} onPress={onClickPlus} > 
    <Ionicons name="add" size={24} color="white" />

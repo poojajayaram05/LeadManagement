@@ -3951,7 +3951,8 @@ export const contactFormData={
       "title": "Description",
       "placeholder": "Enter Description",
       "inputType": "text",
-      "sectionName":"General"
+      "sectionName":"General",
+      "isRequired":true
     },
     {
       "name": "do_not_call",
@@ -6933,19 +6934,19 @@ export const editPersonAccount={
           "inputType": "text",
           "placeholder":""
         },
-        {
-          "name": "reason",
-          "type": "dropdown",
-          "title": "Reason",
-          "placeholder":'Enter the reason',
-          "dropdownData":[
-            { "key":"not_reachable", "value":"Not Reachable"},
-            { "key":"ringing", "value":"Ringing"},
-            { "key":"wrong_number", "value":"Wrong Number"},
-            {"key":"busy", "value":"Busy"},
-            {"key":"appointment_fixed", "value":"Appointment fixed"},
-          ]
-        },
+        // {
+        //   "name": "reason",
+        //   "type": "dropdown",
+        //   "title": "Reason",
+        //   "placeholder":'Enter the reason',
+        //   "dropdownData":[
+        //     { "key":"not_reachable", "value":"Not Reachable"},
+        //     { "key":"ringing", "value":"Ringing"},
+        //     { "key":"wrong_number", "value":"Wrong Number"},
+        //     {"key":"busy", "value":"Busy"},
+        //     {"key":"appointment_fixed", "value":"Appointment fixed"},
+        //   ]
+        // },
         {
           "name": "remarks",
           "type": "multiLineText",
@@ -6957,6 +6958,39 @@ export const editPersonAccount={
        
        ]
     };
+
+
+   
+export const ReassignData={
+    "elements":[
+      {
+        "name": "qualification",
+        "type":"RadioButton",
+        "title": "Qualification",
+        "rdata" : [
+          { label: "warm", id: 'warm' },
+          { label: "cold", id: 'cold' },
+          { label: "hot", id: 'hot' },
+        ],
+      },
+      {
+        "name": "number",
+        "type": "TextInput",
+        "title": "Associated Lead",
+        "inputType": "text",
+        "placeholder":""
+      },
+      {
+        "name": "remarks",
+        "type": "multiLineText",
+        "title": "Remarks/Reason",
+        "inputType": "text",
+        "placeholder":"Enter the Remarks"
+      },
+     
+ 
+    ]
+  };
     
 
   

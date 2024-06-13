@@ -13,7 +13,6 @@ const ContactItem = ({ first_name, last_name, mobile, email, title, description,
    
     const [showSecondImage, setShowSecondImage] = useState(false);
     const[selectedStar, setSelectedStar]=useState(false);
-   
     const{contactId,  setContactId}=useContactStore();
     const [showDropdown, setShowDropdown] = useState(false);
     const{sysId, setSysId}=useIdStore();
@@ -109,7 +108,7 @@ const styles = {
     },
     title: {
         fontSize: 18,
-        marginBottom: 9,
+        marginBottom: 2,
         color: "#000000",
     },
     subtitle: {

@@ -19,6 +19,7 @@ const LeadItem = ({ FirstName, LastName, Email, Phone, lead_status,qualification
     const[selectedStar, setSelectedStar]=useState(false);
     const{ leadId, setLeadId } = useIdStore();
     const{status, setStatus}=useIdStore();
+    const{qualifications, setQualification}=useIdStore()
     const [showDropdown, setShowDropdown] = useState(false);
 
       const{sys_idd, setSysId}=useIdStore();
@@ -58,6 +59,11 @@ const handleCallLog = () => {
 };
  
 const handleReassign = () => {
+    router.navigate('/formComponents/reassignForm')
+    setLeadId(number);
+    setSysId(sys_id);
+    setQualification(qualification);
+    
     closeDropdown();
 };
 

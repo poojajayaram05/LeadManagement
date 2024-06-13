@@ -8,6 +8,7 @@ const useIdStore = create((set) => ({
     flag:null,
     account_type:null,
     flagCreate:null,
+    qualification:null,
     
 
     setLeadId: (newId) => set({ number: newId }),
@@ -17,6 +18,7 @@ const useIdStore = create((set) => ({
     setSysId:(newId)=>set({sys_id:newId}),
     setAccountType:(newId)=>set({account_type:newId}),
     setFlagCreate:(newId)=>set({flagCreate:newId}),
+    setQualification:(newId)=>set({qualification:newId})
     
 }));
 
