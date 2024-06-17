@@ -204,20 +204,6 @@ export default function ReassignForm() {
             );
      
  
-      // case 'TextInput':
-      //   return (
-      //     <View key={element.name} style={styles.inputContainer}>
-           
-      //       <CustomInput
-      //         key={element.name}
-      //         title={element.title}
-      //         placeholder={sys_id}
-      //         value={sys_id}
-      //         onChange={(value) => handleTextChange(value, element.name)}
-      //       />
-      //     </View>
-      //   );
- 
       default:
         return null;
     }

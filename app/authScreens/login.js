@@ -236,7 +236,7 @@ authData.append('password', password);
             <View style={styles.btnBg}>
               <Button
                 color="#023B5E"
-                title="Sign In"
+                title="Log In"
                 onPress={() => getToken(username, password)}
               />
             </View>

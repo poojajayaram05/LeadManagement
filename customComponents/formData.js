@@ -1656,6 +1656,7 @@ export const activityForm=[
     "type":"TextInput",
     "title": "Subject",
     "inputType": "text",
+    'isRequired': true,
     
   },
   {
@@ -1663,12 +1664,14 @@ export const activityForm=[
     "type":"MultilineText",
     "title": "Description",
     "inputType": "text",
+    'isRequired': true,
   },
   {
     "name": "due_date",
     "type":"TextInput",
     "title": "Due Date",
     "inputType": "text",
+    'isRequired': true,
     
   },
   {
@@ -1676,6 +1679,7 @@ export const activityForm=[
     "type":"TextInput",
     "title": "Priority",
     "inputType": "text",
+    'isRequired': true,
     
   },
   {
@@ -1683,6 +1687,7 @@ export const activityForm=[
     "type":"date",
     "title": "Created On",
     "inputType": "text",
+
     
   },
   {
@@ -3151,6 +3156,7 @@ export const activityFormData = [
               "title": "Subject",
               "inputType": "text",
               "placeholder":"Enter the subject",
+              'isRequired': true,
             },
             {
                 "name": "description",
@@ -3203,6 +3209,7 @@ export const activityFormData = [
                 { "key": "medium", "value": "Medium" },
                 { "key": "low", "value": "Low" },
             ],
+            'isRequired': true,
             },
         ]
     }
@@ -3242,6 +3249,7 @@ export const activityFormData = [
           "title": "Time",
           "inputType": "text",
           "placeholder": "Select",
+          'isRequired': true,
          
          
       },
@@ -3271,6 +3279,7 @@ export const activityFormData = [
             { "key": "medium", "value": "Medium" },
             { "key": "low", "value": "Low" }
         ],
+        'isRequired': true,
     
           
           
@@ -3429,6 +3438,7 @@ export const activityFormData = [
             { "key": "medium", "value": "Medium" },
             { "key": "low", "value": "Low" }
         ],
+        'isRequired': true,
      
           
           
@@ -3519,6 +3529,7 @@ export const activityFormData = [
             { "key": "medium", "value": "Medium" },
             { "key": "low", "value": "Low" }
         ],
+        'isRequired': true,
         
           
           

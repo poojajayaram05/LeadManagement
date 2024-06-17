@@ -74,8 +74,8 @@ const styles = StyleSheet.create({
         paddingVertical: 13,
         paddingHorizontal: 15,
         borderWidth: 1,
-        borderColor: Colors.LIGHT_GRAY,
-        borderRadius: 3,
+        borderColor: 'gray',
+        borderRadius: 12,
     },
     selectedText: {
         fontSize: 14,

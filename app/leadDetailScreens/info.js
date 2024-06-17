@@ -19,7 +19,7 @@ const Info =  () => {
   const sys_id = useIdStore((state) => state.sys_id); 
   const [api, setApi] = useState(null);
   const[leadsObj, setLeadsObj]=useState(null)
-  const token =   SecureStore.getItem('token'); // Use await to get the token asynchronously
+  const token =   SecureStore.getItem('token'); 
   const stoken = JSON.parse(token);
   const apiToken = stoken.accessToken;
   console.log("api token", apiToken);
@@ -33,7 +33,6 @@ const Info =  () => {
   
   LogBox.ignoreAllLogs();
 
-
   useEffect(() => {
     if (flag === 'lead') {
       setData(leads_to_render);
@@ -44,12 +43,12 @@ const Info =  () => {
       setApi(CONTACT_API)
     } 
     else if(flag=='account'){
-     // setData(accounts_to_render); 
-      setApi(ACCOUNT_API);
+    
+      setApi(ACCOUNT_API);1
       if(account_type=='person')
       setData(personAccounts_to_render); 
     else
-      setData(corporateAccounts_to_render);
+      setData(corporateAccounts_to_render);                                           
       
     }
   } ,[flag]); 
@@ -74,13 +73,13 @@ const Info =  () => {
       }
     };
  
-    // Fetch data only if it's available
+    
     if (data) {
       fetchLeadData();
     } else {
-      setIsLoading(false); // No data to load, set loading to false
+      setIsLoading(false); 
     }
-  }, [data]); // Include 'data' as a dependency
+  }, [data]); 
 
 
 
@@ -98,14 +97,11 @@ console.log("outside useEffect", leadsObj)
     return (
     
         <View style={styles.body}>
-          {/* <View style={{ height: '26%' }}>
-            <LeadDet />
-          </View> */}
           {isLoading ? ( 
             <View style={styles.loadingContainer}>
               <ActivityIndicator size="large" color="#0000ff" />
             </View>
-          ) : leadsObj ? ( // Check if leadsObj is not null
+          ) : leadsObj ? ( 
             <ScrollView contentContainerStyle={styles.scrollViewContent}>
               <View style={styles.container}>
                 {Object.keys(leadsObj.sections).map((sectionId) => (
@@ -121,7 +117,6 @@ console.log("outside useEffect", leadsObj)
                             key={index}
                             label={field.label}
                             detail={field.value.display_value || field.value || ''}
-                            
                           />
                         ):(
                       
@@ -157,7 +152,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 10,
     marginHorizontal: 30,
-    backgroundColor: 'white',
+    backgroundColor: 'white', 
     flex: 1,
   },
   sectionContainer: {

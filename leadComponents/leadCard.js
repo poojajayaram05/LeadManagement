@@ -20,8 +20,7 @@ const LeadItem = ({ FirstName, LastName, Email, Phone, lead_status,qualification
     const{ leadId, setLeadId } = useIdStore();
     const{status, setStatus}=useIdStore();
     const{qualifications, setQualification}=useIdStore()
-    const [showDropdown, setShowDropdown] = useState(false);
-
+    const [showDropdown, setShowDropdown] = useState(false); 
       const{sys_idd, setSysId}=useIdStore();
       const{flag,setFlag}=useIdStore();
  
@@ -31,10 +30,10 @@ const LeadItem = ({ FirstName, LastName, Email, Phone, lead_status,qualification
         closeDropdown();
     };
  
- 
     const toggleDropdown = () => {
       setShowDropdown(!showDropdown);
   };
+
   const closeDropdown = () => {
     setShowDropdown(false);
 };
@@ -45,27 +44,31 @@ const handleNavigateToLeadDetails = () => {
     setFlag('lead')
     router.navigate('/leadDetailScreens/info');
 };
+
 const handleChangeStatus = () => {
     router.navigate('../../formComponents/changeStatus');
     setLeadId(number)
     setStatus(lead_status);
-    closeDropdown(); // Close the dropdown after action
+    closeDropdown(); 
 };
  
 const handleCallLog = () => {
     router.navigate('../../formComponents/callLogForm');
     setLeadId(number);
-    closeDropdown(); // Close the dropdown after action
+    closeDropdown(); 
 };
  
-const handleReassign = () => {
-    router.navigate('/formComponents/reassignForm')
-    setLeadId(number);
+const handleQualification = () => {
+    router.navigate('/formComponents/changeQualification')
+    setLeadId(number)
     setSysId(sys_id);
     setQualification(qualification);
-    
-    closeDropdown();
+     closeDropdown();
 };
+ 
+const handleReassign=()=>{
+    router.navigate('/formComponents/reassignLead')
+}
 
 const handleCall = () => {
     Linking.openURL(`tel:${Phone}`);
@@ -99,8 +102,8 @@ return (
                   <Text style={styles.subtitle}>{Phone}</Text>
             
                   <View style={styles.badgeBox}>
-                      <BadgeLead  label={lead_status}   />
-                      <BadgeLead label={qualification}   />
+                      <BadgeLead  label={lead_status}  />
+                      <BadgeLead label={qualification} />
                   </View>
               </View>
               <View style={styles.actionsContainer}>
@@ -127,6 +130,9 @@ return (
             <TouchableOpacity onPress={() => handleCallLog()}>
                 <Text style={styles.dropdownMenuItem}>Call Log</Text>
             </TouchableOpacity>
+            <TouchableOpacity onPress={() => handleQualification()}>
+                <Text style={styles.dropdownMenuItem}>Change Qualification</Text>
+            </TouchableOpacity>
             <TouchableOpacity onPress={() => handleReassign()}>
                 <Text style={styles.dropdownMenuItem}>Reassign</Text>
             </TouchableOpacity>
@@ -136,8 +142,6 @@ return (
           )}
           </View>
       </TouchableOpacity>
- 
- 
 );
 };
 const styles = {
@@ -222,13 +226,13 @@ const styles = {
     },
     dropdownContainer: {
         position: 'absolute',
-        top: -10, // Adjust this value to move the dropdown above the card
+        top: -10,  
         right: 20,
         width: 'auto',
-        zIndex: 999,
+        zIndex: 999, 
     },
     dropdownScrollView: {
-        maxHeight: 200, // Set max height for scroll view
+        maxHeight: 200, 
     },
     dropdownMenu: {
         backgroundColor: 'white',

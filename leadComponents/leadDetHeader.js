@@ -183,18 +183,6 @@ import ArrowBack from '../customComponents/arrowBack';
 import { FetchLeads } from '../app/service/fetchLeads'; 
 
  
-// const handleAttachment = async () => {
-//   try {
-//     const result = await DocumentPicker.getDocumentAsync();
-//     console.log(result);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
- 
- 
- 
- 
 const LeadDet = () => {
   const[leadData, setLeadData]=useState([]);
   
@@ -211,7 +199,7 @@ const LeadDet = () => {
       }
     };
 
-    fetchData(); // Call the fetchData function when the component mounts
+    fetchData(); 
   }, []); 
 
   const leadId = useIdStore((state) => state.number);
@@ -227,7 +215,6 @@ const LeadDet = () => {
   };
  
   const handleCall = () => {
-    
     Linking.openURL(`tel:${mobilephone}`);
   };
  
@@ -240,27 +227,19 @@ const LeadDet = () => {
  
  
 const handleEmail = () => {
-  
   Linking.openURL(`mailto:${email}`);
 };
  
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.backButton} onPress={handleBack}>
-        {/* <ArrowBack/> */}
-        <Ionicons name="chevron-back" size={24} color="white" />
-        {/* <View style={styles.backButtonContainer}>
-          <Text style={styles.backButtonText}>Back</Text>
-        </View> */}
- 
+        <Ionicons name="arrow-back" size={24} color="white" />
       </TouchableOpacity>
  
       <View style={styles.userDetailsContainer}>
         <InitialsAvatar name={`${firstname} ${lastname}`} />
         <View style={styles.userInfo}>
           <Text style={styles.name}>{firstname} {lastname}</Text>
-  
-          {/* <Text style={styles.title}>{jobTitle}</Text> */}
         </View>
       </View>
  
@@ -279,29 +258,19 @@ const handleEmail = () => {
         </View>
       </View>
  
-      {/* <View style={styles.divider} /> */}
+      
       <View style={styles.actionButtonsContainer}>
         <TouchableOpacity style={styles.actionButton} onPress={handleCall}>
           <Ionicons name="call" size={24} color="white" />
-          {/* <Text style={styles.buttonLabel}>Contact</Text> */}
         </TouchableOpacity>
  
         <TouchableOpacity style={styles.actionButton} onPress={handleEmail}>
           <Ionicons name="mail" size={24} color="white" />
-          {/* <Text style={styles.buttonLabel}>Email</Text> */}
+      
         </TouchableOpacity>
         <TouchableOpacity style={styles.actionButton} onPress={goToleadEdit}>
           <Ionicons name="pencil" size={24} color="white" />
         </TouchableOpacity>
- 
-        {/* <TouchableOpacity style={styles.actionButton} onPress={handleDirections}>
-          <Ionicons name="location" size={24} color="white" />
-         
-        </TouchableOpacity> */}
-        {/* <TouchableOpacity style={styles.actionButton} onPress={handleAttachment}>
-          <Ionicons name="attach" size={24} color="white" />
-          <Text style={styles.buttonLabel}>Add file</Text>
-        </TouchableOpacity> */}
       </View>
     </View>
   );
@@ -319,7 +288,7 @@ const styles = StyleSheet.create({
     marginBottom:10,
     backgroundColor: '#023B5E',
     paddingHorizontal: 20,
-    paddingTop: 20, // Add padding top to avoid overlapping with the back button
+    paddingTop: 20, 
   },
   backButton: {
     position: 'absolute',
@@ -337,28 +306,14 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
   },
-  // userDetailsContainer: {
-  //   flexDirection: 'row',
-  //   alignItems: 'center',
-  //   marginHorizontal:60,
-  //   justifyContent: 'space-between', // Add this line to space items evenly
-  // },
-  // userInfo: {
-  //   marginLeft: 10,
-  //   flex: 1, // Add flex: 1 to make the container take up available space
-  // },
- 
+
   userDetailsContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    marginLeft: 0, // Adjust as needed for the desired distance from the left edge
+    marginLeft: 0, 
   },
-  // userInfo: {
-  //   marginLeft: 10,
-  //   flex: 1,
-  //  backgroundColor:'red'
-  // },
+
   title: {
     fontSize: 19,
     fontWeight: 'bold',
@@ -414,21 +369,12 @@ const styles = StyleSheet.create({
     color: 'white',
     marginTop: 5,
   },
- 
-  // actionButtonsContainer: {
-  //   flexDirection: 'row',
-  //   justifyContent: 'space-between',
-  //   position: 'absolute',
-  //   top: 33,
-  //   right: 0,
-  //   zIndex: 1,
-  // },
+
  
   userInfo: {
     marginLeft: 3, // Adjust margin as needed
     width: 140, // Set a fixed width
     height: 60, // Increase height as needed
-    // backgroundColor: 'red',
     justifyContent: 'center', // Center vertically
   },
  
@@ -440,7 +386,6 @@ const styles = StyleSheet.create({
     right: 10, // Adjust right position to avoid overlapping with the right edge
     zIndex: 1,
   },
- 
  
   actionButton: {
     alignItems: 'center',

@@ -15,19 +15,19 @@ const MapScreen = () => {
 
   const addresses = [
     {
-      name: 'John',
+      name: 'Surya',
       address: 'Kempegowda International Airport, Bangalore, Karnataka, India',
       latitude: 13.1986,
       longitude: 77.7066,
     },
     {
-      name: 'Jane',
+      name: 'Priyanka',
       address: 'Vidhana Soudha, Bengaluru, Karnataka, India',
       latitude: 12.9794,
       longitude: 77.5913,
     },
     {
-      name: 'Michael',
+      name: 'Dhanush',
       address: 'Bannerghatta National Park, Bengaluru, Karnataka, India',
       latitude: 12.8008,
       longitude: 77.5770,
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'flex-start',
     justifyContent: 'center',
-    // paddingHorizontal: 20,
+   
   },
   label: {
     fontWeight: 'bold',

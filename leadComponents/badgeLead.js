@@ -34,7 +34,7 @@ const BadgeLead = ({ label, textColor="black" }) => {
 
       paddingVertical: 1,
       paddingHorizontal: 10,
-      borderRadius: 2,
+      borderRadius: 9,
       textAlign: 'center',
       alignItems: 'center',
       marginRight: 10,

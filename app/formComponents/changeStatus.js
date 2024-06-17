@@ -291,7 +291,6 @@ import StatusForm from "../formComponents/statusForm";
 import LeadDet from "../../leadComponents/leadDetHeader";
 import { FetchLeads } from "../service/fetchLeads";
  
- 
 const ChangeStatus = () => {
   const status = useIdStore((state) => state.status);
   const leadId = useIdStore((state) => state.leadId);
@@ -336,18 +335,15 @@ const ChangeStatus = () => {
       <View style={styles.header}>
         <View style={{ height: '30%' }}>
           <LeadDet/>
-          {/* <Text>{leadId}{first_name}{last_name}</Text> */}
         </View>
       </View>
  
-      {/* Replace SwitchSelector with RadioButton */}
+    
       <View style={styles.radioButtonContainer}>
-        {/* Move the "New" text to the left */}
         <Text style={styles.statusText}>{lead_status}</Text>
-        {/* Reduce the font size of radio button labels */}
         <RadioButton
           title="Select Status"
-          labelStyle={styles.radioButtonLabel} // Custom style for radio button labels
+          labelStyle={styles.radioButtonLabel} 
           data={{
             elements: [
               {
@@ -356,14 +352,11 @@ const ChangeStatus = () => {
               }
             ]
           }}
+          selected={selectedStatus}
           onSelect={handleStatusChange}
         />
       </View>
       {selectedStatus && <StatusForm selectedStatus={selectedStatus.value} />}
- 
-      {/* <TouchableOpacity style={styles.backButton} onPress={goBackToLeadCard}>
-        <ArrowBack />
-      </TouchableOpacity> */}
     </View>
   );
 };
@@ -397,12 +390,14 @@ const generateOptions = (status) => {
       return {
         options: [
           { label: 'Closed-not converted', value: 'closed_not_converted' },
+          { label: 'Converted', value: 'converted' },
         ]
       };
     case "Converted":
       return {
         options:[
           { label: 'Converted', value: 'converted' },
+          { label: 'Closed-not converted', value: 'closed_not_converted' },
         ]
       };
     default:
@@ -421,7 +416,6 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: "#023B5E",
     paddingBottom:5,
-    // paddingTop:20,
     width: "100%",
     marginBottom:5,
   },
@@ -432,11 +426,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    // marginBottom: 10,
     marginTop:10,
   },
   statusText: {
-    // marginLeft: 120,
     fontSize: 16,
     color: "grey",
     marginBottom:18,

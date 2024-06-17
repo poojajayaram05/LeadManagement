@@ -330,7 +330,8 @@ const handleDateChange = (selectedDate, element) => {
     console.log(element.name, item);
 
   }
-
+  const starMark = element.isRequired ? <Text style={{ color: 'red' }}> *</Text> : null;
+ 
 
 
     switch (element.type) {
@@ -356,7 +357,7 @@ const handleDateChange = (selectedDate, element) => {
         case 'MultilineText':
                     return (
                         <View>
-                        <Text style={styles.label}>{element.title}</Text>
+                        <Text style={styles.label}>{element.title}{starMark}</Text>
                       <TextInput
                        style={[styles.input, styles.multilineInput]} // Add styles for multiline input
                     onChangeText={(value) => setFormValues({ ...formValues, [element.name]: value } )}
@@ -370,11 +371,7 @@ const handleDateChange = (selectedDate, element) => {
         case 'TextInput':
             return (
               <View>
-                 {/* <Text style={styles.label}>
-                {element.title}
-                {element.isRequired && <Text style={{ color: 'red' }}> *</Text>} 
-            </Text> */}
-                  {/* <RNDateTimePicker mode="time" value={new Date()} /> */}
+             
                 <CustomInput
                     key={element.name}
                     title={element.title}
@@ -392,10 +389,52 @@ const handleDateChange = (selectedDate, element) => {
                  {validationErrors[element.name] && <Text style={styles.errorMessage}>{validationErrors[element.name]}</Text>}
                 </View>
             );
+        
+            case 'timeInput':
+              return(
+                <View style={styles.timeInput}>
+                <Pressable onPress={() => setShowTimeModal(true)}>
+                  <Text style={styles.label}>
+                    {/* {customTime ? customTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : 'Select time'} */}
+                    {element.title}{starMark}
+                  </Text>
+                  <View style={styles.dateInput}>
+                  {/* <Pressable onPress={() => setShowTimeModal(true)}> */}
+                 <Text style={styles.dateText}>
+                 {customTime ? formatTime(customTime) : 'Select time '}
+                 <View style={styles.icon}>
+                 <Ionicons name='time' size={20} color='black' /> 
+                 </View>
+                 </Text>
+                 </View>
+   
+                 </Pressable>
+                  {showTimeModal && (
+                   <RNDateTimePicker
+                   value={ customTime || new Date()}
+                     mode="time"
+                      display="default"
+                 onChange={(event, selectedTime) => {
+                     if (selectedTime) {
+                     setShowTimeModal(false);
+                      setCustomTime(selectedTime);
+                     handleSelectTime(customTime);
+          }
+        }}
+      />
+    )}
+{/* </View> */}
+{validationErrors[element.name] && <Text style={styles.errorMessage}>{validationErrors[element.name]}</Text>}
+                  
+                {/* </Pressable> */}
+              </View>
+      
+              );
+
             case 'Date':
                 return (
                   <View style={styles.inputContainer}>
-                    <Text style={styles.label}>{element.title}</Text>
+                    <Text style={styles.label}>{element.title}{starMark}</Text>
                     <Pressable onPress={() => setShowCalendarModal(true)}>
                       <View style={styles.dateInput}>
                         <Text style={styles.dateText}>
@@ -424,7 +463,7 @@ const handleDateChange = (selectedDate, element) => {
             return (
                 <View>
                 <View style = {styles.inputContainer}>
-                <Text style={styles.label}>{element.title}</Text>
+                <Text style={styles.label}>{element.title}{starMark}</Text>
                
                 <MultipleSelectList 
           setSelected={(val) => setSelectedValues(val)} // Update selected values
@@ -443,7 +482,7 @@ const handleDateChange = (selectedDate, element) => {
             return (
                 <View>
                     <View style={styles.inputContainer}>
-                        <Text style={styles.label}>{element.title}</Text>
+                        <Text style={styles.label}>{element.title}{starMark}</Text>
                         
                         <SelectList 
                 boxStyles={{
@@ -475,7 +514,7 @@ const handleDateChange = (selectedDate, element) => {
                 <Pressable onPress={() => setShowTimeModal(true)}>
                   <Text style={styles.label}>
                     {/* {customTime ? customTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : 'Select time'} */}
-                    {element.title}
+                    {element.title}{starMark}
                   </Text>
                   <View style={styles.dateInput}>
   <Pressable onPress={() => setShowTimeModal(true)}>
@@ -511,8 +550,8 @@ const handleDateChange = (selectedDate, element) => {
               case 'multilineText':
                 return (
                     <View style={styles.inputContainer}>
-                        <Text style={styles.label}>Enter a note</Text>
-                        {/* <MultiSelectExample/> */}
+                        <Text style={styles.label}>Enter a note{starMark}</Text>
+                        
                         <MultilineTextInput onChange={handleNotes}/>
                         
                     </View>
@@ -520,13 +559,13 @@ const handleDateChange = (selectedDate, element) => {
                 case 'MultipleSelect':
                     return (
                       <View style={styles.inputContainer}>
-                        <Text style={styles.label}>{element.title}</Text>
+                        <Text style={styles.label}>{element.title}{starMark}</Text>
                         <MultiSelectItems
                       dropdownData={element.dropdownData}
                       onSelectedItemsChange={(selectedItems) => {
                         setFormValues(prevFormValues => ({
                           ...prevFormValues,
-                          [element.name]: selectedItems // Assuming element.name is the key to store selected items
+                          [element.name]: selectedItems 
                         }));
                       }}
                     />
@@ -539,11 +578,9 @@ const handleDateChange = (selectedDate, element) => {
                                  key={element.name}
                                  title={element.title}
                                  placeholder={username}
-                                 // control={control}
                                  value={username}
                                  name={element.name}
-                                 // errors={errors}
-                                //  readOnly={true}
+                                 
                              />
                              </View>
                           )
@@ -552,21 +589,14 @@ const handleDateChange = (selectedDate, element) => {
                   case 'Switch':
                         return( 
                           <View style={styles.inputContainer}>
-        
                           <View style={styles.switchContainer}>
-                          <Text style={styles.label}>{element.title}</Text>
+                          <Text style={styles.label}>{element.title}{starMark}</Text>
                           <View style={styles.switch}>
                             <CustomSwitch onToggle={handleSwitch}
-
                           /></View>
                           </View>
-                         
                        </View>
-                        )
-              
-              
-                  
-                        
+                        )                
 };
 }
   return (
@@ -587,7 +617,6 @@ const handleDateChange = (selectedDate, element) => {
                         { value: 'email', label: 'Email' },
                         { value: 'follow_up', label: 'Follow Up' },
                         { value: 'meeting', label: 'Meeting' },
-                        // Add other activity types if needed
                     ]}
                     onSelect={handleActivitySelect}
                 />
@@ -595,8 +624,6 @@ const handleDateChange = (selectedDate, element) => {
                 {renderForm()}
                 {selectedActivity && <Button title="Submit" onPress={onSubmit} color='#023B5E' />}
             </View>
-              
-           
         </ScrollView>
         </View>
 );
@@ -610,7 +637,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: -10,
     paddingTop:0,
     paddingBottom:15,
- 
   },
   header: {
     height:200,
@@ -637,7 +663,6 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: '#FFFFFF',
-    // borderRadius: 10,
     padding: 20,
     shadowColor: '#000000',
     shadowOpacity: 0.2,
